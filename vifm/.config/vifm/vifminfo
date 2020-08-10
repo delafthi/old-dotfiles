@@ -1,0 +1,120 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/home/thierryd/
+	..
+1597083611
+'b
+	/home/thierryd/bin/
+	..
+1597083611
+'h
+	/home/thierryd/
+	..
+1597083611
+'z
+	/home/thierryd/.config/vifm
+	..
+1597083611
+
+# Bookmarks:
+
+# TUI:
+al
+q1
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/thierryd/dotfiles
+	bash
+1
+d/home/thierryd
+	dotfiles
+1
+d/home
+	thierryd
+1
+d/home/thierryd
+	dotfiles
+1
+d/home/thierryd/dotfiles
+	doom
+4
+d/home/thierryd
+	dotfiles
+1
+d/home/thierryd/dotfiles
+	doom
+4
+d/home/thierryd
+	dotfiles
+1
+d/home
+	thierryd
+1
+d/home/thierryd
+	dotfiles
+1
+d/home/thierryd/dotfiles
+	oh-my-zsh
+7
+d/home/thierryd/dotfiles/oh-my-zsh
+	..
+0
+d/home/thierryd/dotfiles
+	bash
+2
+d/home/thierryd
+	dotfiles
+5
+d/home
+	thierryd
+1
+d/
+	mnt
+7
+d/mnt
+	bu
+11
+d/mnt/bu
+	.gnome
+11
+d
+
+# Right window history (oldest to newest):
+D/home/thierryd/dotfiles
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:q
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+pREADME.md
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].1
+]F
+s0
