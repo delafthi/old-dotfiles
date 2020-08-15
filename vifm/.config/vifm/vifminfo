@@ -84,6 +84,249 @@ d/mnt
 d/mnt/bu
 	.gnome
 11
+d/mnt
+	..
+0
+d/
+	home
+5
+d/home
+	thierryd
+1
+d/home/thierryd
+	dotfiles
+15
+d/home/thierryd/dotfiles
+	alacritty
+2
+d/home/thierryd/dotfiles/alacritty
+	.config
+1
+d/home/thierryd/dotfiles/alacritty/.config
+	alacritty
+1
+d/home/thierryd/dotfiles/alacritty/.config/alacritty
+	..
+0
+d/home/thierryd/dotfiles/alacritty/.config
+	alacritty
+1
+d/home/thierryd/dotfiles/alacritty/.config/alacritty
+	alacritty.yml
+1
+d/home/thierryd/dotfiles/alacritty/.config
+	alacritty
+1
+d/home/thierryd/dotfiles/alacritty
+	.config
+1
+d/home/thierryd/dotfiles
+	doom
+5
+d/home/thierryd
+	dotfiles
+15
+d/home
+	thierryd
+1
+d/home/thierryd
+	dotfiles
+15
+d/home/thierryd/dotfiles
+	nvim
+9
+d/home/thierryd/dotfiles/nvim
+	.vim
+2
+d/home/thierryd/dotfiles/nvim/.vim
+	plugged
+1
+d/home/thierryd/dotfiles/nvim/.vim/plugged
+	..
+0
+d/home/thierryd/dotfiles/nvim/.vim
+	plugged
+1
+d/home/thierryd/dotfiles/nvim
+	.config
+1
+d/home/thierryd/dotfiles/nvim/.config
+	nvim
+1
+d/home/thierryd/dotfiles/nvim/.config/nvim
+	.netrwhist
+1
+d/home/thierryd/dotfiles/nvim/.config
+	nvim
+1
+d/home/thierryd/dotfiles/nvim
+	.config
+1
+d/home/thierryd/dotfiles
+	doom
+5
+d/home/thierryd
+	.local
+6
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local/share/qtile
+	qtile.log
+1
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd
+	dotfiles
+15
+d/home/thierryd/dotfiles
+	qtile
+12
+d/home/thierryd/dotfiles/qtile
+	.config
+1
+d/home/thierryd/dotfiles/qtile/.config
+	qtile
+1
+d/home/thierryd/dotfiles/qtile/.config/qtile
+	config.py
+4
+d/home/thierryd/dotfiles/qtile/.config
+	qtile
+1
+d/home/thierryd/dotfiles/qtile
+	.config
+1
+d/home/thierryd/dotfiles
+	qtile
+12
+d/home/thierryd
+	dotfiles
+15
+d/home
+	thierryd
+1
+d/
+	home
+5
+d/home
+	thierryd
+1
+d/home/thierryd
+	.local
+6
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local/share/qtile
+	qtile.log
+1
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local/share/qtile
+	qtile.log
+1
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd
+	.local
+6
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local/share/qtile
+	qtile.log
+1
+d/home/thierryd/.local/share
+	qtile
+3
+d/home/thierryd/.local
+	share
+5
+d/home/thierryd
+	Downloads
+13
+d/home/thierryd/Downloads
+	ipa-bericht-frank-leemann-v1-0.pdf
+1
+d/home/thierryd
+	Documents
+12
+d/home/thierryd/Documents
+	Projects
+3
+d/home/thierryd/Documents/Projects
+	..
+0
+d/home/thierryd/Documents
+	Projects
+3
+d/home/thierryd/Documents/Projects
+	isos
+1
+d/home/thierryd/Documents
+	Projects
+3
+d/home/thierryd
+	Downloads
+13
+d/home/thierryd/Downloads
+	ipa-bericht-frank-leemann-v1-0.pdf
+1
+d/home/thierryd
+	Documents
+12
+d/home/thierryd/Documents
+	Projects
+3
+d/home/thierryd/Documents/Projects
+	isos
+1
+d/home/thierryd/Documents/Projects/isos
+	kubuntu-18.04.4-desktop-amd64.iso
+1
+d/home/thierryd/Documents/Projects
+	isos
+1
+d/home/thierryd/Documents
+	Projects
+3
+d/home/thierryd
+	Pictures
+13
+d/home/thierryd/Pictures
+	Wallpapers
+2
+d/home/thierryd/Pictures/Wallpapers
+	..
+0
+d/home/thierryd/Pictures
+	Wallpapers
+2
+d/home/thierryd
+	.gnupg
+4
+d/home
+	thierryd
+1
 d
 
 # Right window history (oldest to newest):
@@ -93,6 +336,7 @@ D/home/thierryd/dotfiles
 D
 
 # Command line history (oldest to newest):
+:mkdir isos
 :q
 
 # Search history (oldest to newest):
@@ -107,6 +351,10 @@ pREADME.md
 # Directory stack (oldest to newest):
 
 # Trash content:
+t/home/thierryd/.local/share/vifm/Trash/000_qtile.log
+	/home/thierryd/.local/share/qtile/qtile.log
+t/home/thierryd/.local/share/vifm/Trash/000_fedoraOS
+	/home/thierryd/Documents/Projects/fedoraOS
 
 # State:
 f

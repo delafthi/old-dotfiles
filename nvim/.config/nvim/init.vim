@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
     Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Code completion
-    Plug 'frazrepo/vim-rainbow'			       " More colors in vim
+    Plug 'frazrepo/vim-rainbow'			               " More colors in vim
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
     Plug 'scrooloose/nerdtree'                         " Nerdtree
@@ -46,14 +46,14 @@ filetype plugin indent on    " required
 
 " General Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set path+=**					" Searches current directory recursively.
-set wildmenu					" Display all matches when tab complete.
+set path+=**            					" Searches current directory recursively.
+set wildmenu		            			" Display all matches when tab complete.
 set incsearch          		                " Incremental search
 set hidden                     		        " Needed to keep multiple buffers open
 set nobackup                   		        " No auto backups
 set noswapfile              		        " No swap
 set t_Co=256                   		        " Set if term supports 256 colors.
-set number		      	 	        " Display line numbers
+set number		      	 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
 syntax enable
 let g:rehash256 = 1
@@ -67,7 +67,7 @@ let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'nord',
       \ }
 
 " Always show statusline
@@ -114,32 +114,32 @@ highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
 highlight String           ctermfg=12   ctermbg=none    cterm=none
 highlight Number           ctermfg=1    ctermbg=none    cterm=none
 highlight Function         ctermfg=1    ctermbg=none    cterm=none
-" highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
-" highlight Folded           ctermfg=103     ctermbg=234     cterm=none
-" highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
-" highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
-" highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
-" highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
-" highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
-" highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
-" highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
-" highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
-" highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
-" highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
-" highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
-" highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
-" highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
-" highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
-" highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
-" highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
-" highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
-" highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
-" highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
-" highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
-" highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
-" highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
-" highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
-" highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
+highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
+highlight Folded           ctermfg=103     ctermbg=234     cterm=none
+highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
+highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
+highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
+highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
+highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
+highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
+highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
+highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
+highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
+highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
+highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
+highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
+highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
+highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
+highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
+highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
+highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
+highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
+highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
+highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
+highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
+highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
+highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
+highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

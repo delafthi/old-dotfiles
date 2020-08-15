@@ -1,0 +1,5 @@
+[user]
+	name = Thierry Delafontaine
+	email = delafontaineth@gmail.com
+[core]
+	editor = nvim

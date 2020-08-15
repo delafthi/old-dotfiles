@@ -1,35 +1,40 @@
-# Qtile config file
 # -*- coding: utf-8 -*-
-#import os
-#import re
-#import socket
-#import subprocess
+
+import os
+import re
+import socket
+import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
 
-mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
-myTerm = "alacritty"                             # My terminal of choice
-myConfig = "/home/tierryd/.config/qtile/config.py"    # The Qtile config file location
+mod = "mod4" # Sets mod key to SUPER/WINDOWS
+myTerm = "alacritty" 
+myBrowser = "firefox" 
+myConfig = "/home/tierryd/.config/qtile/config.py" # The Qtile config file location
 
 keys = [
-         ### The essentials
+         # The essentials
          Key([mod], "Return",
              lazy.spawn(myTerm),
              desc='Launches My Terminal'
              ),
          Key([mod, "shift"], "Return",
-             lazy.spawn("dmenu_run -p 'Run: '"),
+             lazy.spawn("dmenu_run -b -p 'Run: '"),
              desc='Dmenu Run Launcher'
              ),
-         Key([mod], "Tab",
+         Key([mod, "shift"], "Tab",
              lazy.next_layout(),
              desc='Toggle through layouts'
              ),
          Key([mod], "q",
              lazy.window.kill(),
              desc='Kill active window'
+             ),
+         Key([mod], "e",
+             lazy.spawn(myTerm+" -e vifm ~/"),
+             desc='Launches Filemanager'
              ),
          Key([mod, "shift"], "r",
              lazy.restart(),
@@ -43,29 +48,11 @@ keys = [
              lazy.spawn("emacsclient -c -a emacs"),
              desc='Doom Emacs'
              ),
-         ### Switch focus to specific monitor (out of three)
-         Key([mod], "w",
-             lazy.to_screen(0),
-             desc='Keyboard focus to monitor 1'
+         Key([mod, "shift"], "w",
+             lazy.spawn(myBrowser),
+             desc='Launches Firefox'
              ),
-         Key([mod], "e",
-             lazy.to_screen(1),
-             desc='Keyboard focus to monitor 2'
-             ),
-         Key([mod], "r",
-             lazy.to_screen(2),
-             desc='Keyboard focus to monitor 3'
-             ),
-         ### Switch focus of monitors
-         Key([mod], "Tab",
-             lazy.next_screen(),
-             desc='Move focus to next monitor'
-             ),
-         Key([mod], "comma",
-             lazy.prev_screen(),
-             desc='Move focus to prev monitor'
-             ),
-         ### Treetab controls
+         # Treetab controls
          Key([mod, "control"], "k",
              lazy.layout.section_up(),
              desc='Move up a section in treetab'
@@ -74,7 +61,7 @@ keys = [
              lazy.layout.section_down(),
              desc='Move down a section in treetab'
              ),
-         ### Window controls
+         # Window controls
          Key([mod], "k",
              lazy.layout.down(),
              desc='Move focus down in current stack pane'
@@ -123,7 +110,7 @@ keys = [
              lazy.layout.flip(),
              desc='Switch which side main pane occupies'
              ),
-         Key([mod], "space",
+         Key([mod], "Tab",
              lazy.layout.next(),
              desc='Switch window focus to other pane(s) of stack'
              ),
@@ -133,42 +120,47 @@ keys = [
              ),
        ]
 
+group_names = [("WEB", {'layout': 'monadtall'}),
+               ("DEV", {'layout': 'monadtall'}),
+               ("VIS", {'layout': 'max'}),
+               ("VBOX", {'layout': 'max'}),
+               ("MISC", {'layout': 'monadtall'})]
 
-groups = [Group(i) for i in "asdfuiop"]
+groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
-for i in groups:
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-    ])
+for i, (name, kwargs) in enumerate(group_names, 1):
+    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # Switch to another group
+    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
 
 layout_theme = {"border_width": 2,
                 "margin": 6,
-                "border_focus": "e1acff",
-                "border_normal": "1D2330"
+                "border_focus": "bf616a",
+                "border_normal": "3b4252"
                 }
 
 layouts = [
+    #layout.MonadWide(**layout_theme),
+    #layout.Bsp(**layout_theme),
+    #layout.Stack(stacks=2, **layout_theme),
+    #layout.Columns(**layout_theme),
+    #layout.RatioTile(**layout_theme),
+    #layout.VerticalTile(**layout_theme),
+    layout.Matrix(**layout_theme),
+    #layout.Zoomy(**layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Tile(shift_windows=True, **layout_theme),
     layout.Stack(num_stacks=2),
     layout.TreeTab(
          font = "SourceCodePro",
-         fontsize = 10,
+         fontsize = 15,
          sections = ["FIRST", "SECOND"],
-         section_fontsize = 11,
-         bg_color = "141414",
-         active_bg = "90C435",
-         active_fg = "000000",
-         inactive_bg = "384323",
-         inactive_fg = "a0a0a0",
+         section_fontsize = 15,
+         bg_color = "2e3440",
+         active_bg = "88c0d0",
+         active_fg = "2e3440",
+         inactive_bg = "3b4252",
+         inactive_fg = "8fbcbb",
          padding_y = 5,
          section_top = 10,
          panel_width = 320
@@ -176,35 +168,94 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
-colors = [["#292d3e", "#292d3e"], # panel background
-          ["#434758", "#434758"], # background for current screen tab
-          ["#ffffff", "#ffffff"], # font color for group names
-          ["#ff5555", "#ff5555"], # border line color for current tab
-          ["#8d62a9", "#8d62a9"], # border line color for other tab and odd widgets
-          ["#668bd7", "#668bd7"], # color for the even widgets
-          ["#e1acff", "#e1acff"]] # window name
+colors = [["#2e3440", "#2e3440"], # panel background
+          ["#3b4252", "#3b4252"], # background for current screen tab
+          ["#d8dee9", "#d8dee9"], # font color for group names
+          ["#bf616a", "#bf616a"], # border line color for current tab
+          ["#b48ead", "#b48ead"], # border line color for other tab and odd widgets
+          ["#88c0d0", "#88c0d0"], # color for the even widgets
+          ["#8fbcbb", "#8fbcbb"]] # window name
 
-#prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
+##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font='SourceCodePro',
-    fontsize=12,
-    padding=3,
+    font="SourceCodePro",
+    fontsize = 15,
+    padding = 2,
+    background=colors[2]
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.TextBox("default config", name="default"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 6,
+                       foreground = colors[0],
+                       background = ["#000000", "#000000"] 
+                       ),
+                widget.Image(
+                       filename = "~/.config/qtile/icons/python.png",
+                       mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn("dmenu_run -b -p 'Run: '")}
+                       ),
+                widget.GroupBox(
+                       font = "SourceCodePro",
+                       fontsize = 15,
+                       margin_y = 3,
+                       margin_x = 0,
+                       padding_y = 5,
+                       padding_x = 3,
+                       borderwidth = 3,
+                       active = colors[2],
+                       inactive = colors[2],
+                       rounded = True,
+                       highlight_color = colors[1],
+                       highlight_method = "block",
+                       this_current_screen_border = colors[3],
+                       this_screen_border = colors [4],
+                       other_current_screen_border = colors[0],
+                       other_screen_border = colors[0],
+                       foreground = colors[2],
+                       background = colors[0]
+                       ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 20,
+                       foreground = colors[0],
+                       background = colors[0]
+                       ),
+                widget.WindowName(
+                       foreground = colors[6],
+                       background = colors[0],
+                       padding = 0
+                       ),
+                widget.CurrentLayout(
+                       foreground = colors[0],
+                       background = colors[5],
+                       ),
+                widget.Clock(
+                       foreground = colors[2],
+                       background = colors[1],
+                       format='%Y-%m-%d %a %I:%M %p'
+                       ),
+                widget.Sep(
+                       linewidth = 0,
+                       padding = 10,
+                       foreground = colors[1],
+                       background = colors[1]
+                       ),
+                widget.Systray(
+                       background = colors[1],
+                       padding = 5
+                       ),
+                widget.Battery(
+                        format = 'Battery: {char} {percent:2.0%}'
+                        background = colors[1],
+                        padding = 5,
+                        ),
             ],
             24,
         ),
@@ -226,8 +277,8 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+
 floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
     {'wmclass': 'confirm'},
     {'wmclass': 'dialog'},
     {'wmclass': 'download'},
@@ -245,6 +296,11 @@ floating_layout = layout.Floating(float_rules=[
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
