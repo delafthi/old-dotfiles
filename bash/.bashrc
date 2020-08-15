@@ -6,6 +6,7 @@ COLOR_GREEN="\033[0;32m"
 COLOR_BLUE="\033[0;34m"
 COLOR_YELLOW="\033[0;33m"
 COLOR_PURPLE="\033[0;35m"
+COLOR_LIGHT_PURPLE="\033[1;35m"
 COLOR_CYAN="\033[0;36m"
 COLOR_RESET="\033[0m"
 
@@ -26,7 +27,7 @@ set -o vi
 
 ### PROMPT
 color_prompt=yes
-PS1="\[$COLOR_RED\]\u@\h:\[$COLOR_YELLOW\]\w" 
+PS1="\[$COLOR_LIGHT_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
 PS1+="\[\$(git_color)\]"        # colors git status
 PS1+="\$(git_branch)"           # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
