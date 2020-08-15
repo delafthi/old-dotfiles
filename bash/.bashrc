@@ -1,6 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-
-# PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
+# ~/.bashrc: executed by bash(1) for non-login shells.  PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
 
 ### COLORS
 COLOR_RED="\033[0;31m"
@@ -28,7 +26,7 @@ set -o vi
 
 ### PROMPT
 color_prompt=yes
-PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+PS1="\[$COLOR_RED\]\u@\h:\[$COLOR_YELLOW\]\w" 
 PS1+="\[\$(git_color)\]"        # colors git status
 PS1+="\$(git_branch)"           # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
@@ -141,11 +139,11 @@ function git_color {
   if [[ ! $git_status =~ "working directory clean" ]]; then
     echo -e $COLOR_RED
   elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-    echo -e $COLOR_YELLOW
+    echo -e $COLOR_CYAN
   elif [[ $git_status =~ "nothing to commit" ]]; then
     echo -e $COLOR_GREEN
   else
-    echo -e $COLOR_OCHRE
+    echo -e $COLOR_YELLOW
   fi
 }
 

@@ -325,8 +325,11 @@ d/home/thierryd
 	.gnupg
 4
 d/home
-	thierryd
-1
+	..
+0
+d/
+	home
+4
 d
 
 # Right window history (oldest to newest):
@@ -337,6 +340,7 @@ D
 
 # Command line history (oldest to newest):
 :mkdir isos
+:Q
 :q
 
 # Search history (oldest to newest):
