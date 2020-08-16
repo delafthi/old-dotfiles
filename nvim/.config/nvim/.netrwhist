@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/thierryd/.config/alacritty'
 let g:netrw_dirhist_3='/home/thierryd/.local/share/qtile'
 let g:netrw_dirhist_2='/home/thierryd/.local/share'
 let g:netrw_dirhist_1='/home/thierryd/.local'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_8='/home/thierryd/dotfiles/qtile'
 let g:netrw_dirhist_7='/home/thierryd/dotfiles/qtile/.config'
 let g:netrw_dirhist_6='/home/thierryd/dotfiles/qtile/.config/qtile'
 let g:netrw_dirhist_5='/home/thierryd/dotfiles/qtile/.config/qtile/icons'
-let g:netrw_dirhist_4='/home/thierryd/dotfiles/qtile/.config/qtile'

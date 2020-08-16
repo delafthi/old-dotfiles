@@ -227,13 +227,13 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x2e3440'
-    foreground: '0xe5e9f0'
+    background: '#2e3440'
+    foreground: '#e5e9f0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2e3440'
-    cursor: '0xe5e9f0'
+    text: '#2e3440'
+    cursor: '#e5e9f0'
 
   # Normal colors
   normal:
