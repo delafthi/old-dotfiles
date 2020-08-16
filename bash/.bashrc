@@ -44,6 +44,16 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+### SHOPT
+shopt -s autocd # change to named directory
+shopt -s cdspell # autocorrects cd misspellings
+shopt -s cmdhist # save multi-line commands in history as single line
+shopt -s dotglob # bash includes filenames beginning with a ‘.’ in the results of filename expansion
+shopt -s histappend # do not overwrite history
+shopt -s expand_aliases # expand aliases
+shopt -s checkwinsize # checks term size when bash regains control
+
+
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
@@ -53,15 +63,6 @@ case ${TERM} in
     PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'"
     ;;
 esac
-
-### SHOPT
-shopt -s autocd # change to named directory
-shopt -s cdspell # autocorrects cd misspellings
-shopt -s cmdhist # save multi-line commands in history as single line
-shopt -s dotglob # bash includes filenames beginning with a ‘.’ in the results of filename expansion
-shopt -s histappend # do not overwrite history
-shopt -s expand_aliases # expand aliases
-shopt -s checkwinsize # checks term size when bash regains control
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
@@ -102,8 +103,9 @@ alias ...="cd ../.."
 # vim 
 alias vim=nvim
 bind "set show-mode-in-prompt on"
-bind "set vi-ins-mode-string $COLOR_WHITE[Insert]$COLOR_RESET"
-bind "set vi-cmd-mode-string $COLOR_CYAN[Normal]$COLOR_RESET"
+bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
+bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
+
 
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first" # my preferred listing
@@ -135,7 +137,6 @@ source /etc/bash_completion
 source /etc/bash_completion.d/git-prompt
 
 # git functions
-
 function git_color {
   local git_status="$(git status 2> /dev/null)"
 
@@ -149,3 +150,4 @@ function git_color {
     echo -e $COLOR_YELLOW
   fi
 }
+
