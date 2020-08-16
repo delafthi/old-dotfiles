@@ -222,8 +222,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
-# Base16 Nord 256 - alacritty color config
-# arcticicestudio
+# Nord custom config
 colors:
   # Default colors
   primary:
@@ -239,8 +238,8 @@ colors:
   normal:
     black:   '#2e3440'
     red:     '#bf616a'
-    green:   '#a3be8c'
-    yellow:  '#ebcb8b'
+    green:   '#64974c'
+    yellow:  '#ffec8a'
     blue:    '#5e81ac'
     magenta: '#b48ead'
     cyan:    '#88c0d0'
@@ -248,22 +247,14 @@ colors:
 
   # Bright colors
   bright:
-    black:   '#4c566a'
-    red:     '#d08770'
-    green:   '#8fbcbb'
-    yellow:  '#5e81ac'
-    blue:    '#ebcb8b'
-    magenta: '#b48ead'
-    cyan:    '#88c0d0'    
-    white:   '#eceff4'
-
-  indexed_colors:
-    - { index: 16, color: '0x81a1c1' }
-    - { index: 17, color: '0xb48ead' }
-    - { index: 18, color: '0x3b4252' }
-    - { index: 19, color: '0x434c5e' }
-    - { index: 20, color: '0xd8dee9' }
-    - { index: 21, color: '0xeceff4' }
+    black:   '#3e4450'
+    red:     '#cf8380'
+    green:   '#99b78c'
+    yellow:  '#ffff9b'
+    blue:    '#7ea1cc'
+    magenta: '#c59ecf'
+    cyan:    '#9fd0ef'    
+    white:   '#f5f9f0'
 
 # Visual Bell
 #
