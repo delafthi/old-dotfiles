@@ -55,13 +55,14 @@ set noswapfile              		        " No swap
 set t_Co=256                   		        " Set if term supports 256 colors.
 set number		      	 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
-syntax enable
+syntax on
 let g:rehash256 = 1
 
 " Remap Keys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 :imap ii <Esc>
+let mapleader = ","
 
 " Status Line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
