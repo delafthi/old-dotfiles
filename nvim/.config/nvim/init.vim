@@ -151,7 +151,7 @@ map <Leader>tv :TabVifm<CR>
 
 " VimWiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Vim-Instant-Markdown
@@ -163,7 +163,7 @@ map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
 
 " Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>tt :vnew term://fish<CR>
+map <Leader>tt :vnew term://bash<CR>
 
 " Mouse Scrolling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
