@@ -105,7 +105,6 @@ bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
 bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
 
-
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first" # my preferred listing
 alias la="exa -a --color=always --group-directories-first"  # all files and dirs
@@ -123,6 +122,7 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
 alias rm="rm -i"
 alias mv="mv -i"
+alias minicom="minicom -m -c on" 
 
 # shutdown or reboot
 alias ssn="sudo shutdown now"
