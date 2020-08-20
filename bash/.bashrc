@@ -19,7 +19,7 @@ export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 # sets vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 ### SET VI MODE IN BASH SHELL
 set -o vi
