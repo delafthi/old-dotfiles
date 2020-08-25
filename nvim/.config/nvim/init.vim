@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
     Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Code completion
     Plug 'frazrepo/vim-rainbow'			               " More colors in vim
+    Plug 'SirVer/ultisnips'                            " Snippets
+    Plug 'honza/vim-snippets'                          " Snippets
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
     Plug 'scrooloose/nerdtree'                         " Nerdtree
@@ -28,6 +30,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-python/python-syntax'                    " Python highlighting
     Plug 'ap/vim-css-color'                            " Color previews for CSS
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
+    Plug 'godlygeek/tabular'                           " tabular plugin is used to format tables
+    Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
+    Plug 'plasticboy/vim-markdown'                     " Markdown highlighting
 
 call plug#end()
 
@@ -142,6 +147,12 @@ highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
 highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
 highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
 
+" Ultisnips
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"            " use <Tab> to trigger autocompletion
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>vv :Vifm<CR>
@@ -158,9 +169,21 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
 " Vim-Instant-Markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:instant_markdown_autostart = 0         " Turns off auto preview
-let g:instant_markdown_browser = "surf"      " Uses surf for preview
+let g:instant_markdown_browser = "firefox"      " Uses surf for preview
 map <Leader>md :InstantMarkdownPreview<CR>   " Previews .md file
 map <Leader>ms :InstantMarkdownStop<CR>      " Kills the preview
+
+" Markdown syntax
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vim_markdown_folding_disabled = 1 " disable header folding
+let g:vim_markdown_conceal = 0 " do not use conceal feature, the implementation is not so good
+" disable math tex conceal feature
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+" support front matter of various format
+let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+let g:vim_markdown_json_frontmatter = 1  " for JSON format
 
 " Open terminal inside Vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,3 +227,4 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
+
