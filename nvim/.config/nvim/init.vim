@@ -65,6 +65,10 @@ let g:rehash256 = 1
 " Remap ESC to ii
 :imap ii <Esc>
 let mapleader = " "
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 " Status Line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -200,3 +204,7 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
