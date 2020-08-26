@@ -4,6 +4,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins managed by Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -28,6 +29,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'ap/vim-css-color'                            " Color previews for CSS
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
     Plug 'godlygeek/tabular'                           " tabular plugin is used to format tables
+    Plug 'vim-pandoc/vim-pandoc'                       " Better markdown support
+    Plug 'vim-pandoc/vim-pandoc-syntax'                " Better markdown syntax highlighting 
     Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
 
 call plug#end()
@@ -45,6 +48,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set path+=**            					" Searches current directory recursively.
@@ -54,35 +58,44 @@ set hidden                     		        " Needed to keep multiple buffers open
 set nobackup                   		        " No auto backups
 set noswapfile              		        " No swap
 set t_Co=256                   		        " Set if term supports 256 colors.
-set number		      	 	                " Display line numbers
+set number relativenumber 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
-"set cursorline                              " Highligt cursorline
+set cursorline                              " Highligt cursorline
 set tw=80                                   " Set textwidth to 80 columns
+set spell spelllang=en_us,de_ch             " Set spell check
 syntax on
 let g:rehash256 = 1
+
+" Splits and Tabbed Files
+set splitbelow splitright
+
+" Removes pipes | that act as seperators on splits
+set fillchars+=vert:\ 
 
 " Remap Keys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 :imap ii <Esc>
+" Remap Leader key to SPACE
 let mapleader = " "
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+" Open terminal inside Vim
+map <Leader>tt :vnew term://bash<CR>
+" Mouse Scrolling
+set mouse=nicr
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" Make adjusting split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+" Change 2 split windows from vert to horiz or horiz to vert
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
 
-" Status Line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" The lightline.vim theme
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ }
-
-" Always show statusline
-set laststatus=2
-
-" Uncomment to prevent non-normal modes showing in powerline and below powerline.
-set noshowmode
 
 " Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,18 +103,6 @@ set expandtab                   " Use spaces instead of tabs.
 set smarttab                    " Be smart using tabs ;)
 set shiftwidth=4                " One tab == four spaces.
 set tabstop=4                   " One tab == four spaces.
-
-" NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Uncomment to autostart the NERDTree
-" autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = '►'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize=38
 
 " Colors and Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -122,32 +123,83 @@ highlight PreProc          ctermfg=5    ctermbg=none    cterm=none
 highlight String           ctermfg=12   ctermbg=none    cterm=none
 highlight Number           ctermfg=1    ctermbg=none    cterm=none
 highlight Function         ctermfg=1    ctermbg=none    cterm=none
-highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
-highlight Folded           ctermfg=103     ctermbg=234     cterm=none
-highlight FoldColumn       ctermfg=103     ctermbg=234     cterm=none
-highlight DiffAdd          ctermfg=none    ctermbg=23      cterm=none
-highlight DiffChange       ctermfg=none    ctermbg=56      cterm=none
-highlight DiffDelete       ctermfg=168     ctermbg=96      cterm=none
-highlight DiffText         ctermfg=0       ctermbg=80      cterm=none
-highlight SignColumn       ctermfg=244     ctermbg=235     cterm=none
-highlight Conceal          ctermfg=251     ctermbg=none    cterm=none
-highlight SpellBad         ctermfg=168     ctermbg=none    cterm=underline
-highlight SpellCap         ctermfg=80      ctermbg=none    cterm=underline
-highlight SpellRare        ctermfg=121     ctermbg=none    cterm=underline
-highlight SpellLocal       ctermfg=186     ctermbg=none    cterm=underline
-highlight Pmenu            ctermfg=251     ctermbg=234     cterm=none
-highlight PmenuSel         ctermfg=0       ctermbg=111     cterm=none
-highlight PmenuSbar        ctermfg=206     ctermbg=235     cterm=none
-highlight PmenuThumb       ctermfg=235     ctermbg=206     cterm=none
-highlight TabLine          ctermfg=244     ctermbg=234     cterm=none
-highlight TablineSel       ctermfg=0       ctermbg=247     cterm=none
-highlight TablineFill      ctermfg=244     ctermbg=234     cterm=none
-highlight CursorColumn     ctermfg=none    ctermbg=236     cterm=none
-highlight CursorLine       ctermfg=none    ctermbg=236     cterm=none
-highlight ColorColumn      ctermfg=none    ctermbg=236     cterm=none
-highlight Cursor           ctermfg=0       ctermbg=5       cterm=none
-highlight htmlEndTag       ctermfg=114     ctermbg=none    cterm=none
-highlight xmlEndTag        ctermfg=114     ctermbg=none    cterm=none
+highlight WildMenu         ctermfg=0    ctermbg=80      cterm=none
+highlight Folded           ctermfg=103  ctermbg=234     cterm=none
+highlight FoldColumn       ctermfg=103  ctermbg=234     cterm=none
+highlight DiffAdd          ctermfg=none ctermbg=23      cterm=none
+highlight DiffChange       ctermfg=none ctermbg=56      cterm=none
+highlight DiffDelete       ctermfg=168  ctermbg=96      cterm=none
+highlight DiffText         ctermfg=0    ctermbg=80      cterm=none
+highlight SignColumn       ctermfg=244  ctermbg=235     cterm=none
+highlight Conceal          ctermfg=251  ctermbg=none    cterm=none
+highlight SpellBad         ctermfg=168  ctermbg=none    cterm=underline
+highlight SpellCap         ctermfg=80   ctermbg=none    cterm=underline
+highlight SpellRare        ctermfg=121  ctermbg=none    cterm=underline
+highlight SpellLocal       ctermfg=186  ctermbg=none    cterm=underline
+highlight Pmenu            ctermfg=251  ctermbg=234     cterm=none
+highlight PmenuSel         ctermfg=0    ctermbg=111     cterm=none
+highlight PmenuSbar        ctermfg=206  ctermbg=235     cterm=none
+highlight PmenuThumb       ctermfg=235  ctermbg=206     cterm=none
+highlight TabLine          ctermfg=244  ctermbg=234     cterm=none
+highlight TablineSel       ctermfg=0    ctermbg=247     cterm=none
+highlight TablineFill      ctermfg=244  ctermbg=234     cterm=none
+highlight CursorColumn     ctermfg=none ctermbg=236     cterm=none
+highlight CursorLine       ctermfg=none ctermbg=8       cterm=none
+highlight ColorColumn      ctermfg=none ctermbg=236     cterm=none
+highlight Cursor           ctermfg=0    ctermbg=5       cterm=none
+highlight htmlEndTag       ctermfg=114  ctermbg=none    cterm=none
+highlight xmlEndTag        ctermfg=114  ctermbg=none    cterm=none
+
+" Gui options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+" Other functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" LightLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" The lightline.vim theme
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
+" Always show statusline
+set laststatus=2
+
+" Uncomment to prevent non-normal modes showing in powerline and below powerline.
+set noshowmode
+
+" Vim-COC
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap TAB to trigger autocomplete
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+     \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+" NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '►'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize=38
 
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,50 +214,13 @@ map <Leader>tv :TabVifm<CR>
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-" Open terminal inside Vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>tt :vnew term://bash<CR>
-
-" Mouse Scrolling
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set mouse=nicr
-
-" Splits and Tabbed Files
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright
-
-" Remap splits navigation to just CTRL + hjkl
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Make adjusing split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
-
-" Change 2 split windows from vert to horiz or horiz to vert
-map <Leader>th <C-w>t<C-w>H
-map <Leader>tk <C-w>t<C-w>K
-
-" Removes pipes | that act as seperators on splits
-set fillchars+=vert:\ 
-
-" Other Stuff
+" Python-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:python_highlight_all = 1
 
-au! BufRead,BufWrite,BufWritePost,BufNewFile *.org 
-au BufEnter *.org            call org#SetOrgFileType()
-
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" Vim-Pandoc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable vim-pandoc syntax with vimwiki
+augroup pandoc_syntax
+  autocmd! FileType vimwiki set syntax=markdown.pandoc
+augroup END
