@@ -56,6 +56,7 @@ set noswapfile              		        " No swap
 set t_Co=256                   		        " Set if term supports 256 colors.
 set number		      	 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
+"set cursorline                              " Highligt cursorline
 set tw=80                                   " Set textwidth to 80 columns
 syntax on
 let g:rehash256 = 1
