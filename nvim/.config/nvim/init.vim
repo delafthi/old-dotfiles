@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 "{{ The Basics }}
     Plug 'gmarik/Vundle.vim'                           " Vundle
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}    " Code completion
     Plug 'frazrepo/vim-rainbow'			               " More colors in vim
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
@@ -62,15 +61,15 @@ set number relativenumber 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
 set cursorline                              " Highligt cursorline
 set tw=80                                   " Set textwidth to 80 columns
-set spell spelllang=en_us,de_ch             " Set spell check
+set spelllang=en_us,de_ch                   " Set spell check languages
 syntax on
 let g:rehash256 = 1
 
 " Splits and Tabbed Files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set splitbelow splitright
-
-" Removes pipes | that act as seperators on splits
-set fillchars+=vert:\ 
+set fillchars+=vert:\|
+set fillchars+=stlnc:-
 
 " Remap Keys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,10 +87,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +3<CR>
-noremap <silent> <C-Right> :vertical resize -3<CR>
-noremap <silent> <C-Up> :resize +3<CR>
-noremap <silent> <C-Down> :resize -3<CR>
+noremap <silent> <C-Left> :vertical resize +2<CR>
+noremap <silent> <C-Right> :vertical resize -2<CR>
+noremap <silent> <C-Up> :resize +2<CR>
+noremap <silent> <C-Down> :resize -2<CR>
 " Change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
@@ -108,7 +107,12 @@ set tabstop=4                   " One tab == four spaces.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight LineNr           ctermfg=8    ctermbg=none    cterm=none
 highlight CursorLineNr     ctermfg=7    ctermbg=8       cterm=none
-highlight VertSplit        ctermfg=0    ctermbg=8       cterm=none
+highlight CursorColumn     ctermfg=none ctermbg=236     cterm=none
+highlight CursorLine       ctermfg=none ctermbg=8       cterm=none
+highlight ColorColumn      ctermfg=none ctermbg=236     cterm=none
+highlight Cursor           ctermfg=0    ctermbg=5       cterm=none
+highlight VertSplit        ctermfg=7    ctermbg=none    cterm=none
+highlight HorizSplit       ctermfg=7    ctermbg=none    cterm=none
 highlight Statement        ctermfg=2    ctermbg=none    cterm=none
 highlight Directory        ctermfg=4    ctermbg=none    cterm=none
 highlight StatusLine       ctermfg=7    ctermbg=8       cterm=none
@@ -130,7 +134,7 @@ highlight DiffAdd          ctermfg=none ctermbg=23      cterm=none
 highlight DiffChange       ctermfg=none ctermbg=56      cterm=none
 highlight DiffDelete       ctermfg=168  ctermbg=96      cterm=none
 highlight DiffText         ctermfg=0    ctermbg=80      cterm=none
-highlight SignColumn       ctermfg=244  ctermbg=235     cterm=none
+highlight SignColumn       ctermfg=244  ctermbg=none    cterm=none
 highlight Conceal          ctermfg=251  ctermbg=none    cterm=none
 highlight SpellBad         ctermfg=168  ctermbg=none    cterm=underline
 highlight SpellCap         ctermfg=80   ctermbg=none    cterm=underline
@@ -143,10 +147,6 @@ highlight PmenuThumb       ctermfg=235  ctermbg=206     cterm=none
 highlight TabLine          ctermfg=244  ctermbg=234     cterm=none
 highlight TablineSel       ctermfg=0    ctermbg=247     cterm=none
 highlight TablineFill      ctermfg=244  ctermbg=234     cterm=none
-highlight CursorColumn     ctermfg=none ctermbg=236     cterm=none
-highlight CursorLine       ctermfg=none ctermbg=8       cterm=none
-highlight ColorColumn      ctermfg=none ctermbg=236     cterm=none
-highlight Cursor           ctermfg=0    ctermbg=5       cterm=none
 highlight htmlEndTag       ctermfg=114  ctermbg=none    cterm=none
 highlight xmlEndTag        ctermfg=114  ctermbg=none    cterm=none
 
@@ -180,16 +180,6 @@ set laststatus=2
 
 " Uncomment to prevent non-normal modes showing in powerline and below powerline.
 set noshowmode
-
-" Vim-COC
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap TAB to trigger autocomplete
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-     \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 
 " NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
