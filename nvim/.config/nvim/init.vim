@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'                             " VimWiki 
     Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
     Plug 'tpope/vim-surround'                          " Change surrounding marks
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
 "{{ Syntax Highlighting and Colors }}
     Plug 'vim-python/python-syntax'                    " Python highlighting
     Plug 'ap/vim-css-color'                            " Color previews for CSS
@@ -214,3 +215,13 @@ let g:python_highlight_all = 1
 augroup pandoc_syntax
   autocmd! FileType vimwiki set syntax=markdown.pandoc
 augroup END
+
+" Markdown-Preview
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" If set to 1 markdown preview is only refreshed, when the buffer is saved or
+" insert mode is exited
+let g:mkdp_refresh_slow = 0
+" Browser to open the preview
+let g:mkdp_browser = 'firefox'
+
+map <Leader>mp <Plug>MarkdownPreviewToggle
