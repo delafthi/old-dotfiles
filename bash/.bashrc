@@ -1,49 +1,18 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.  PATH="$HOME/.local/bin${PATH:+:${PATH}}"  # adding .local/bin to $PATH
+# ~/.bashrc: executed by bash(1) for non-login shells.
 
-### COLORS
-COLOR_RED="\033[0;31m"
-COLOR_GREEN="\033[0;32m"
-COLOR_BLUE="\033[0;34m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_PURPLE="\033[0;35m"
-COLOR_CYAN="\033[0;36m"
-COLOR_RESET="\033[0m"
-
-### EXPORT
-export TERM="xterm-256color"              # getting proper colors
-export HISTCONTROL=ignoreboth             # no duplicate entries
-export HISTSIZE=5000
-export HISTFILESIZE=10000
-export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
-export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
-export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
-
-# sets vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
-
-### SET VI MODE IN BASH SHELL
-set -o vi
+# General settings
+#----------------------------------------------------------
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-### PROMPT
-color_prompt=yes
-PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
-PS1+="\[\$(git_color)\]"        # colors git status
-PS1+="\$(__git_ps1)"           # prints current branch
-PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
+# Ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
 
-### PATH
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
+# set vim as manpager
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-### SHOPT
+### Bash options
 shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
@@ -52,48 +21,8 @@ shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # checks term size when bash regains control
 
-
-### CHANGE TITLE OF TERMINALS
-case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-    PROMPT_COMMAND="echo -ne '\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007'"
-        ;;
-  screen*)
-    PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'"
-    ;;
-esac
-
-#ignore upper and lowercase when TAB completion
-bind "set completion-ignore-case on"
-
-### ARCHIVE EXTRACTION
-# usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-### ALIASES ###
+# Aiases 
+#----------------------------------------------------------
 
 # navigation
 alias ..="cd .." 
@@ -103,7 +32,8 @@ alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
 # vim 
-alias vim="nvim"
+alias vim=$EDITOR
+alias vi=$EDITOR
 alias :q="exit"
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
@@ -133,11 +63,96 @@ alias sr="sudo reboot"
 # git 
 alias gs="git status"
 
-# auto-completion
+# Environment variables
+#----------------------------------------------------------
+export TERM="xterm-256color"              # getting proper colors
+export HISTCONTROL=ignoreboth             # no duplicate entries
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
+export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+
+# Path
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Keybindings
+#----------------------------------------------------------
+
+# Set vi mode
+set -o vi
+
+# Visuals
+#----------------------------------------------------------
+
+# Colors
+COLOR_RED="\033[0;31m"
+COLOR_GREEN="\033[0;32m"
+COLOR_BLUE="\033[0;34m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_PURPLE="\033[0;35m"
+COLOR_CYAN="\033[0;36m"
+COLOR_RESET="\033[0m"
+
+# Prompt
+color_prompt=yes
+PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+if [ -e /etc/bash_completion.d/git-prompt ]; then
+    PS1+="\[\$(git_color)\]"        # colors git status
+    PS1+="\$(__git_ps1)"            # prints current branch
+fi
+PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
+
+# Change title of terminals
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND="echo -ne '\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007'" ;;
+  screen*)
+    PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'" ;;
+esac
+
+
+# Functions
+#----------------------------------------------------------
+
+# Archive extraction
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      --help)      echo "usage: ex <file>" ;;
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;      
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# Auto-completion
 source /etc/bash_completion
 source /etc/bash_completion.d/git-prompt
 
-# git functions
+# Git coloring
 function git_color {
   local git_status="$(git status 2> /dev/null)"
 
@@ -151,4 +166,3 @@ function git_color {
     echo -e $COLOR_YELLOW
   fi
 }
-
