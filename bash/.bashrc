@@ -32,8 +32,8 @@ alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
 # vim 
-alias vim=$EDITOR
-alias vi=$EDITOR
+alias vim="nvim"
+alias vi="nvim"
 alias :q="exit"
 bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
