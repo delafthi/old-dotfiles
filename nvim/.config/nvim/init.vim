@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-pandoc/vim-pandoc'                       " Better markdown support
     Plug 'vim-pandoc/vim-pandoc-syntax'                " Better markdown syntax highlighting 
     Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
+    Plug 'mboughaba/i3config.vim'                      " i3 syntax highlighting
 
 call plug#end()
 
@@ -225,3 +226,11 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_browser = 'firefox'
 
 map <Leader>mp <Plug>MarkdownPreviewToggle
+
+" i3-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+  au BufNewFile,BufRead ~/dotfiles/i3/.config/i3/config set filetype=i3config
+aug end
