@@ -101,7 +101,6 @@ plugins=(
   git
 )
 
-
 source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # General settings
@@ -112,6 +111,11 @@ source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # set vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
+
+# Enable autocompletion for hidden files
+_comp_options+=(globdots)
+# Remove current and parent dir
+zstyle ':completion:*' special-dirs false
 
 # Aiases 
 #----------------------------------------------------------
