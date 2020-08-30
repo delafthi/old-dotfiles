@@ -1,25 +1,34 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# ~/.zshrc: executed by zsh(1) for non-login shells.
+# Path to my oh-my-zsh installation
+export ZSH="/home/thierryd/.oh-my-zsh"
+
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
 fi
 
-# Oh-my-zsh config file
-PATH="$HOME/.local/bin${PATH:+:${PATH}}"
-export TERM="xterm-256color"
+source $ZSH/oh-my-zsh.sh
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/thierryd/.oh-my-zsh"
+# Plugins
+#----------------------------------------------------------
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel9k"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='5'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='0'
+POWERLEVEL9K_STATUS_OK_BACKGROUND='8'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='11'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='8'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='10'
+POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS='0.05'
+POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT' 
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'﻿
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+ZLE_RPROMPT_INDENT=0
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -35,7 +44,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -77,77 +86,139 @@ plugins=(
   git
 )
 
-# User configuration
 
-# Set vim key bindings
-bindkey -v
+source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# General settings
+#----------------------------------------------------------
 
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-  export VISUAL="emacs"
-else
-  export EDITOR='mvim'
-fi
+# set vim as manpager
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Aiases 
+#----------------------------------------------------------
 
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# navigation
+alias ..="cd .." 
+alias ...="cd ../.."
+alias .3="cd ../../.."
+alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
-
-source $ZSH/oh-my-zsh.sh
-
-# Aliases
-
-# Navigation
-alias ..='cd ..' 
-alias ...='cd ../..'
-
-# Vim
-alias vim=nvim
+# vim 
+alias vim="nvim"
+alias vi="nvim"
+alias :q="exit"
 
 # Changing "ls" to "exa"
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first'  # long format
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias ls="exa -al --color=always --group-directories-first" # my preferred listing
+alias la="exa -a --color=always --group-directories-first"  # all files and dirs
+alias ll="exa -l --color=always --group-directories-first"  # long format
+alias lt="exa -aT --color=always --group-directories-first" # tree listing
 
-# Adding flags
+# Colorize grep output and changing it to ripgrep
+alias grep="grep --color=auto"
+
+# adding flags
 alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in MB
+alias rm="rm -i"
+alias mv="mv -i"
+alias minicom="minicom -m -c on" 
 
-# Misc
-alias grep='grep --color=auto'
-alias mv='mv -i'
-alias rm='rm -i'
-alias gs='git status'
+# shutdown or reboot
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
 
-# Set vi mode in bash shell
-set -o vi
+# git 
+alias gs="git status"
 
-# Set vim as MANPAGER
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+# Environment variables
+#----------------------------------------------------------
+export TERM="xterm-256color"              # getting proper colors
+export HISTCONTROL=ignoreboth             # no duplicate entries
+export HISTSIZE=5000
+export HISTFILESIZE=10000
+export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
+export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
+export SSH_KEY_PATH="~/.ssh/rsa_id"       # Set default ssh key path
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Path
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Keybindings
+#----------------------------------------------------------
+
+# Set vi mode
+bindkey -v
+
+# Visuals
+#----------------------------------------------------------
+
+# Colors
+COLOR_RED="\033[0;31m"
+COLOR_GREEN="\033[0;32m"
+COLOR_BLUE="\033[0;34m"
+COLOR_YELLOW="\033[0;33m"
+COLOR_PURPLE="\033[0;35m"
+COLOR_CYAN="\033[0;36m"
+COLOR_RESET="\033[0m"
+
+# Prompt
+color_prompt=yes
+PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+if [ -e /etc/bash_completion.d/git-prompt ]; then
+    PS1+="\[\$(git_color)\]"        # colors git status
+    PS1+="\$(__git_ps1)"            # prints current branch
+fi
+PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
+
+# Change title of terminals
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND="echo -ne '\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007'" ;;
+  screen*)
+    PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'" ;;
+esac
+
+
+# Functions
+#----------------------------------------------------------
+
+# Archive extraction
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      --help)      echo "usage: ex <file>" ;;
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;      
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
