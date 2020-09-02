@@ -67,6 +67,7 @@ set clipboard=unnamedplus         	        " Copy/paste between vim and other pr
 set cursorline                              " Highligt cursorline
 set tw=80                                   " Set textwidth to 80 columns
 set spelllang=en_us,de_ch                   " Set spell check languages
+set wrap linebreak                          " Prevents word wrapping in between words
 syntax on
 let g:rehash256 = 1
 
