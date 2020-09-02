@@ -85,7 +85,7 @@ let mapleader = " "
 " Open terminal inside Vim
 map <Leader>tt :vnew term://bash<CR>
 " Mouse Scrolling
-set mouse=nicr
+set mouse=nvicr
 " Remap splits navigation to just CTRL + hjkl
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
