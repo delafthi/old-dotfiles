@@ -27,12 +27,15 @@ call plug#begin('~/.vim/plugged')
 "{{ Syntax Highlighting and Colors }}
     Plug 'vim-python/python-syntax'                    " Python highlighting
     Plug 'ap/vim-css-color'                            " Color previews for CSS
-    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
     Plug 'godlygeek/tabular'                           " tabular plugin is used to format tables
     Plug 'vim-pandoc/vim-pandoc'                       " Better markdown support
     Plug 'vim-pandoc/vim-pandoc-syntax'                " Better markdown syntax highlighting 
     Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
     Plug 'mboughaba/i3config.vim'                      " i3 syntax highlighting
+"{{ Junegunn Choi Plugins }}
+    Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
+    Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
+    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
 
 call plug#end()
 
@@ -169,6 +172,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Goyo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>gg :Goyo<CR>
 
 " LightLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
