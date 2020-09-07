@@ -28,8 +28,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-python/python-syntax'                    " Python highlighting
     Plug 'ap/vim-css-color'                            " Color previews for CSS
     Plug 'godlygeek/tabular'                           " tabular plugin is used to format tables
-    Plug 'vim-pandoc/vim-pandoc'                       " Better markdown support
-    Plug 'vim-pandoc/vim-pandoc-syntax'                " Better markdown syntax highlighting 
     Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
     Plug 'mboughaba/i3config.vim'                      " i3 syntax highlighting
 "{{ Junegunn Choi Plugins }}
@@ -179,12 +177,10 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:python_highlight_all = 1
 
-" Vim-Pandoc
+" Vim-Markdown
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable vim-pandoc syntax with vimwiki
-augroup pandoc_syntax
-  autocmd! FileType vimwiki set syntax=markdown.pandoc
-augroup END
+au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
+au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 
 " Markdown-Preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
