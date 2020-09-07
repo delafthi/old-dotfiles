@@ -10,7 +10,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color
+  TERM: xterm-256color 
 
 window:
   # Window dimensions (changes require restart)
@@ -209,40 +209,35 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
-
-# Nord custom config
+#
+# Colors (Nord)
 colors:
-  # Default colors
-  primary:
-    background: '#2e3440'
-    foreground: '#e5e9f0'
+   # Default colors
+   primary:
+     background: '#2E3440'
+     foreground: '#D8DEE9'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '#2e3440'
-    cursor: '#e5e9f0'
+   # Normal colors
+   normal:
+     black:   '#3B4252'
+     red:     '#BF616A'
+     green:   '#A3BE8C'
+     yellow:  '#EBCB8B'
+     blue:    '#81A1C1'
+     magenta: '#B48EAD'
+     cyan:    '#88C0D0'
+     white:   '#E5E9F0'
 
-  # Normal colors
-  normal:
-    black:   '#2e3440'
-    red:     '#bf616a'
-    green:   '#64974c'
-    yellow:  '#ffec8a'
-    blue:    '#5e81ac'
-    magenta: '#b48ead'
-    cyan:    '#88c0d0'
-    white:   '#e5e9f0'
-
-  # Bright colors
-  bright:
-    black:   '#3e4450'
-    red:     '#cf8380'
-    green:   '#99b78c'
-    yellow:  '#ffff9b'
-    blue:    '#7ea1cc'
-    magenta: '#c59ecf'
-    cyan:    '#9fd0ef'    
-    white:   '#f5f9f0'
+   # Bright colors
+   bright:
+     black:   '#4C566A'
+     red:     '#BF616A'
+     green:   '#A3BE8C'
+     yellow:  '#EBCB8B'
+     blue:    '#81A1C1'
+     magenta: '#B48EAD'
+     cyan:    '#8FBCBB'
+     white:   '#ECEFF4'
 
 # Visual Bell
 #
