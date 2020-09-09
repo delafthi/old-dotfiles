@@ -6,7 +6,7 @@ highlight clear
 highlight Border    	cterm=none      	ctermfg=035	    ctermbg=000
 
 highlight TopLine   	cterm=none	        ctermfg=015	    ctermbg=000
-highlight TopLineSel	cterm=bold	        ctermfg=006	    ctermbg=008
+highlight TopLineSel	cterm=bold	        ctermfg=006	    ctermbg=000
 
 highlight Win	     	cterm=none	        ctermfg=250	    ctermbg=default
 highlight Directory 	cterm=bold	        ctermfg=004	    ctermbg=default
