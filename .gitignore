@@ -1,7 +1,6 @@
-nvim/.vim/plugged/**
 vifm/.config/vifm/vifminfo
 emacs/.emacs.d/**
 nvim/.config/nvim/.netrwhist
-coc/.config/coc/extensions/node_modules
+nvim/.config/nvim/plugged/**
 
 

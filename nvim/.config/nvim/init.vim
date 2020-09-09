@@ -8,10 +8,9 @@ filetype off                  " required
 " Plugins managed by Vundle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 "{{ The Basics }}
-    Plug 'gmarik/Vundle.vim'                           " Vundle
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
     Plug 'frazrepo/vim-rainbow'			               " More colors in vim
 "{{ File management }}
