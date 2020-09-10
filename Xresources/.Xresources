@@ -8,36 +8,36 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
-! Colors
+! Nord colors
 !----------------------------------------------------------
 ! black
-*.color0:       #101010 
-*.color8:       #434758
+*.color0:       #3B4252
+*.color8:       #4C566A
 
 ! red
-*.color1:       #f07178
-*.color9:       #ff8b92
+*.color1:       #BF616A
+*.color9:       #BF616A
 
 ! green
-*.color2:       #c3e88d
-*.color10:      #ddffa7
+*.color2:       #A3BE8C
+*.color10:      #A3BE8C
 
 ! yellow
-*.color3:       #ffcb6b
-*.color11:      #ffe585
+*.color3:       #EBCB8B
+*.color11:      #D08770
 
 ! blue
-*.color4:       #82aaff
-*.color12:      #9cc4ff
+*.color4:       #82A1C1
+*.color12:      #5E81AC
 
 ! magenta
-*.color5:       #c792ea
-*.color13:      #e1acff
+*.color5:       #B48EAD
+*.color13:      #B48EAD
 
 ! cyan
-*.color6:       #89ddff
-*.color14:      #a3f7ff
+*.color6:       #88C0D0
+*.color14:      #8FBCBB
 
 ! white
-*.color7:       #d0d0d0
-*.color15:      #ffffff
+*.color7:       #E5E9F0
+*.color15:      #ECEFF4
