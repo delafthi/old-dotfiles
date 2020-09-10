@@ -1,6 +1,7 @@
 vifm/.config/vifm/vifminfo
-emacs/.emacs.d/**
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugged/**
+xmonad/.xmonad/**
+
 
 
