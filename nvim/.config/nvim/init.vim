@@ -32,7 +32,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ap/vim-css-color'                            " Color previews for CSS
     Plug 'godlygeek/tabular'                           " tabular plugin is used to format tables
     Plug 'elzr/vim-json'                               " JSON front matter highlight plugin
-    Plug 'mboughaba/i3config.vim'                      " i3 syntax highlighting
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
@@ -125,6 +124,13 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+" File types
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown
+au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
+au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
+
+
 " Other functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:check_back_space() abort
@@ -184,11 +190,6 @@ let g:nv_search_paths = ['~/Documents/vimwiki']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:python_highlight_all = 1
 
-" Vim-Markdown
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
-au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
-
 " Markdown-Preview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If set to 1 markdown preview is only refreshed, when the buffer is saved or
@@ -198,11 +199,3 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_browser = 'firefox'
 
 map <Leader>mp <Plug>MarkdownPreviewToggle
-
-" i3-vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-aug i3config_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-  au BufNewFile,BufRead ~/dotfiles/i3/.config/i3/config set filetype=i3config
-aug end
