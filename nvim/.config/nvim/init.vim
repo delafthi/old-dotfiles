@@ -20,6 +20,10 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 "{{ Productivity }}
     Plug 'vimwiki/vimwiki'                             " VimWiki 
+    Plug 'junegunn/fzf'                                " A Finder Plugin
+    Plug 'junegunn/fzf.vim'                            " Vim implementation of fzf
+    Plug 'https://github.com/alok/notational-fzf-vim'  " Better searching for notes
+    Plug 'michal-h21/vim-zettel'                       " A Zettelkasten Plugin for Vim and Vim-Wiki
     Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
     Plug 'tpope/vim-surround'                          " Change surrounding marks
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
@@ -171,6 +175,10 @@ map <Leader>tv :TabVifm<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
+" Zettelkasten
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:nv_search_paths = ['~/Documents/vimwiki']
 
 " Python-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
