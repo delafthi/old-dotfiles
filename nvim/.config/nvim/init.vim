@@ -63,10 +63,10 @@ set incsearch          		                " Incremental search
 set hidden                     		        " Needed to keep multiple buffers open
 set nobackup                   		        " No auto backups
 set noswapfile              		        " No swap
-if (!match($TERM, "xterm-256color"))        " If terminal only supports 256 colors
-    set t_Co=256               		        " Set 256 color mode
-else                                        " Else
+if (match($COLORTERM, "truecolor") != -1)   " If terminal supports truecolor
     set termguicolors                       " Set 24bit color support
+else                                        " Else
+    set t_Co=256               		        " Set 256 color mode
 endif
 set number relativenumber 	                " Display line numbers
 set clipboard=unnamedplus         	        " Copy/paste between vim and other programs.
