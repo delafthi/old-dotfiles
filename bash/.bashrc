@@ -105,7 +105,7 @@ COLOR_RESET="\033[0m"
 # Prompt
 color_prompt=yes
 PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
-if [ -e /etc/bash_completion.d/git-prompt ]; then
+if [ -e /usr/share/git/completion/git-prompt.sh ]; then
     PS1+="\[\$(git_color)\]"        # colors git status
     PS1+="\$(__git_ps1)"            # prints current branch
 fi
@@ -151,8 +151,8 @@ ex ()
 }
 
 # Auto-completion
-source /etc/bash_completion
-source /etc/bash_completion.d/git-prompt
+source /usr/share/bash-completion/bash_completion
+source /usr/share/git/completion/git-prompt.sh
 
 # Git coloring
 function git_color {
