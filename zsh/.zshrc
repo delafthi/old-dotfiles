@@ -142,6 +142,7 @@ alias lt="exa -aT --color=always --group-directories-first" # tree listing
 
 # Colorize grep output and changing it to ripgrep
 alias grep="grep --color=auto"
+alias find="fd --color=auto"
 
 # adding flags
 alias cp="cp -i"                          # confirm before overwriting something
