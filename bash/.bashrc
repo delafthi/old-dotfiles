@@ -65,7 +65,6 @@ alias gs="git status"
 
 # Environment variables
 #----------------------------------------------------------
-export TERM="xterm-256color"              # getting proper colors
 export HISTCONTROL=ignoreboth             # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
