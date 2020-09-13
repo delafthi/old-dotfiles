@@ -39,6 +39,9 @@ bind "set show-mode-in-prompt on"
 bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
 bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
 
+# emacs
+alias emacs="emacsclient -c -a 'emacs'"
+
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first" # my preferred listing
 alias la="exa -a --color=always --group-directories-first"  # all files and dirs
