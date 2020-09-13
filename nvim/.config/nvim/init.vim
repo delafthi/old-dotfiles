@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "{{ The Basics }}
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
-    Plug 'frazrepo/vim-rainbow'			               " More colors in vim
+    Plug 'luochen1990/rainbow'			               " More colors in vim
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
     Plug 'scrooloose/nerdtree'                         " Nerdtree
@@ -108,7 +108,6 @@ noremap <silent> <C-Down> :resize -2<CR>
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
 
-
 " Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab                   " Use spaces instead of tabs.
@@ -118,6 +117,12 @@ set tabstop=4                   " One tab == four spaces.
 
 " Colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nord theme (must be set before colorscheme)
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold_vertical_split_line = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
 colorscheme nord
 
 " Gui options
@@ -133,7 +138,6 @@ set guioptions-=L  "remove left-hand scroll bar
 au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
 au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 
-
 " Other functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:check_back_space() abort
@@ -145,9 +149,13 @@ endfunction
 " Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Vim-rainbow
+" Rainbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'guifgs': ['#BF616A', '#D08770', '#EBCB8B', '#B48EAD'],
+\	'ctermfgs': ['red', 'yellow', 'lightyellow', 'magenta'],
+\}
 
 " Goyo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
