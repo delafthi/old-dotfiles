@@ -1,0 +1,25 @@
+Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
+        , bgColor = "#2E3440"
+        , fgColor = "#D8DEE9"
+        , position = Top
+        , sepChar =  "%"   -- delineator between plugin names and straight text
+        , alignSep = "}{"  -- separator between left-right alignment
+        , lowerOnStart =     True    -- send to bottom of window stack on start
+        , hideOnStart =      False   -- start with window unmapped (hidden)
+        , allDesktops =      True    -- show on all desktops
+        , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+        , pickBroadest =     False   -- choose widest display (multi-monitor)
+        , persistent =       True    -- enable/disable hiding (True = disabled)
+        , iconRoot = "~/.xmonad/xpm/" 
+        , template = "<icon=haskell_20.xpm/> "
+        , commands = [ 
+                       -- Time and date
+                       Run Date "<fn=1>\xf133</fn> %H:%M, %d.%b.%Y" "date" 50
+                       -- CPU usage
+                     , Run Memory ["-t", "<fn=1>\xf233</fn> mem: <used>M (<usedratio>%)"] 20
+                       -- Disk usage
+                    , Run DiskU [("/", "<fn=1>\xf0c7</fn> hdd: <free> free")] [] 60
+                      -- Kernel version
+                    , Run Com "uname" ["-r"] "" 3600
+                     ]
+        }
