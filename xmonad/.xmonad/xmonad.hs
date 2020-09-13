@@ -243,7 +243,12 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = do
+            spawnOnce "~/.fehbg &"
+            spawnOnce "picom &"
+            spawnOnce "nm-applet &"
+            spawnOnce "blueman-applet &"
+            spawnOnce "emacs --daemon &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
