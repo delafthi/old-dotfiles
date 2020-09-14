@@ -76,6 +76,7 @@ set wrap linebreak                          " Prevents word wrapping in between 
 set formatoptions=tcqj                      " Set options of automatic formating
 set spelllang=en_us,de_ch                   " Set spell check languages
 syntax on
+filetype plugin on
 let g:rehash256 = 1
 
 " Splits and Tabbed Files
@@ -91,7 +92,7 @@ set fillchars+=stlnc:-
 " Remap Leader key to SPACE
 let mapleader = " "
 " Open terminal inside Vim
-map <Leader>tt :vnew term://bash<CR>
+map <Leader>tt :vnew term://bash<cr>
 " Mouse Scrolling
 set mouse=nvicr
 " Remap splits navigation to just CTRL + hjkl
@@ -100,10 +101,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +2<CR>
-noremap <silent> <C-Right> :vertical resize -2<CR>
-noremap <silent> <C-Up> :resize +2<CR>
-noremap <silent> <C-Down> :resize -2<CR>
+noremap <silent> <C-Left> :vertical resize +2<cr>
+noremap <silent> <C-Right> :vertical resize -2<cr>
+noremap <silent> <C-Up> :resize +2<cr>
+noremap <silent> <C-Down> :resize -2<cr>
 " Change 2 split windows from vert to horiz or horiz to vert
 map <Leader>th <C-w>t<C-w>H
 map <Leader>tk <C-w>t<C-w>K
@@ -153,13 +154,15 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\	'guifgs': ['#BF616A', '#D08770', '#EBCB8B', '#B48EAD'],
-\	'ctermfgs': ['red', 'yellow', 'lightyellow', 'magenta'],
+\	'guifgs': ['#81A1C1', '#EBCB8B', '#8FBCBB', '#B48EAD'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \}
+
+autocmd FileType vimwiki :RainbowToggleOff
 
 " Goyo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>gg :Goyo<CR>
+map <Leader>gg :Goyo<cr>
 
 " LightLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,7 +179,7 @@ set noshowmode
 
 " NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<cr>
 let g:NERDTreeDirArrowExpandable = '►'
 let g:NERDTreeDirArrowCollapsible = '▼'
 let NERDTreeShowLineNumbers=1
@@ -186,20 +189,35 @@ let g:NERDTreeWinSize=38
 
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
-map <Leader>vs :VsplitVifm<CR>
-map <Leader>sp :SplitVifm<CR>
-map <Leader>dv :DiffVifm<CR>
-map <Leader>tv :TabVifm<CR>
+map <Leader>vv :Vifm<cr>
+map <Leader>vs :VsplitVifm<cr>
+map <Leader>sp :SplitVifm<cr>
+map <Leader>dv :DiffVifm<cr>
+map <Leader>tv :TabVifm<cr>
 
 " VimWiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'auto_tags': 1, 'auto_toc': 1}]
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_auto_chdir = 1
 
 " Zettelkasten
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:nv_search_paths = ['~/Documents/vimwiki']
+let g:nv_search_paths = ['~/Documents/vimwiki/']
+let g:zettel_options = [{"front_matter" : [["tags", ""], ["type", "note",]],
+                        \ "template" :  "~/Templates/zettel.tpl"}]
+let g:zettel_format = '%Y%m%d%H%M%S'
+let g:zettel_default_mappings = 1
+   augroup filetype_vimwiki
+     autocmd!
+     autocmd FileType vimwiki imap <silent> [[ [[<esc><Plug>ZettelSearchMap
+     autocmd FileType vimwiki nmap T <Plug>ZettelYankNameMap
+     autocmd FileType vimwiki xmap z <Plug>ZettelNewSelectedMap
+     autocmd FileType vimwiki nmap gZ <Plug>ZettelReplaceFileWithLink
+   augroup END
 
 " Python-syntax
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
