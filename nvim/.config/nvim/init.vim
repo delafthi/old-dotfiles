@@ -20,8 +20,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 "{{ Productivity }}
     Plug 'vimwiki/vimwiki'                             " VimWiki 
-    Plug 'junegunn/fzf'                                " A Finder Plugin
-    Plug 'junegunn/fzf.vim'                            " Vim implementation of fzf
     Plug 'https://github.com/alok/notational-fzf-vim'  " Better searching for notes
     Plug 'michal-h21/vim-zettel'                       " A Zettelkasten Plugin for Vim and Vim-Wiki
     Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
@@ -35,7 +33,9 @@ call plug#begin('~/.config/nvim/plugged')
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
-    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
+    Plug 'junegunn/fzf'                                " A Finder Plugin
+    Plug 'junegunn/fzf.vim'                            " Vim implementation of fzf
+   Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
 "{{ Themes }}
     Plug 'arcticicestudio/nord-vim'                    " Official nord theme for vim
 
