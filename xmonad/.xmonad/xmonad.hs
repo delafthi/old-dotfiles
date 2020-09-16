@@ -151,7 +151,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_q     ), kill)
 
     -- Lock the session
-    , ((modm,               xK_Escape), spawn "pkill -KILL -u thierryd")
+    , ((modm,               xK_Escape), spawn "light-locker-command -l")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -267,10 +267,12 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "light-locker &"
+    spawnOnce "xss-lock -- light-locker -n &"
     spawnOnce "~/.fehbg &"
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
-    --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --setParialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x2e3440 --height 22 &"
+    spawnOnce "dunst &"
     spawnOnce "emacs --daemon &"
 
 ------------------------------------------------------------------------
