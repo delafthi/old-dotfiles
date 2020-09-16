@@ -7,7 +7,8 @@
 
 -- Base
 import XMonad
-import System.Exit
+import System.IO (hPutStrLn)
+import System.Exit (exitSuccess)
 import qualified XMonad.StackSet as W
 
 -- Actions
@@ -17,13 +18,15 @@ import Data.Monoid
 import qualified Data.Map as M
 
 -- Hooks
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+import XMonad.Hooks.WorkspaceHistory
+import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
 
 -- Layout
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
-import XMonad.Layout.BinarySpacePartition
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
@@ -34,7 +37,7 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 -- Prompt
 
 -- Utilities
-import XMonad.Util.Run
+import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
 ------------------------------------------------------------------------
@@ -51,10 +54,6 @@ myBrowser = "firefox"
 -- The prefered GUI editor
 myEditor :: String
 myEditor = "emacsclient -c -a 'emacs'"
-
--- The preferred file browser
-myFileManager :: String
-myFileManager = "alacritty -e vifm"
 
 ------------------------------------------------------------------------
 -- Visual settings:
@@ -77,42 +76,42 @@ myNormalBorderColor = "#2E3440"
 
 -- Border color for focused windows
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#D08770"
+myFocusedBorderColor = "#5E81AC"
 
--- Name of workspaces
+-- Name of workspace
 myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3","4","5","6","7","8", "9"]
+
+-- Count windows
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 ------------------------------------------------------------------------
 -- Layouts:
 
-tall = renamed [Replace "tall"]
+tall = renamed [Replace "Tall"]
     $ mySpacing 8
     $ ResizableTall 1 (3/100) (1/2) []
 
-floats = renamed [Replace "floats"]
+floats = renamed [Replace "Floats"]
     $ Full
 
-bsp = renamed [Replace "emptyBSP"]
-    $ mySpacing 8
-    $ emptyBSP 
-
-tabs = renamed [Replace "tabs"]
+tabs = renamed [Replace "Tabs"]
     $ tabbed shrinkText myTabConfig
 
     where
         myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
-                          , activeColor = "#2E3440"
-                          , inactiveColor = "#434C5E"
-                          , activeBorderColor = "#2E3440"
+                          , activeColor = "#81A1C1"
+                          , inactiveColor = "#4C566A"
+                          , activeBorderColor = "#81A1C1"
                           , inactiveBorderColor = "#2E3440"
-                          , activeTextColor = "#ECEFF4"
-                          , inactiveTextColor = "#D8DEE9"
+                          , activeTextColor = "#2E3440"
+                          , inactiveTextColor = "#2E3440"
                       }
 
 myLayoutHook = avoidStruts $  myLayout
     where
-        myLayout = bsp
+        myLayout = tall
                ||| floats
                ||| noBorders tabs
 
@@ -121,7 +120,6 @@ myLayoutHook = avoidStruts $  myLayout
 
 -- modMask lets you specify which modkey you want to use.
 -- mod1Mask ("left alt")
--- mod2Mask ("???")
 -- mod3Mask ("right alt")
 -- mod4Mask ("windows key")
 myModMask :: KeyMask
@@ -133,7 +131,7 @@ myFocusFollowsMouse = False
 
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses :: Bool
-myClickJustFocuses = False
+myClickJustFocuses = True
 
 ------------------------------------------------------------------------
 -- Key bindings:
@@ -149,14 +147,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch browser 
     , ((modm,               xK_b     ), spawn myBrowser)
 
-    -- launch Vifm 
-    , ((modm,               xK_f     ), spawn $ XMonad.terminal conf)
-
     -- close focused window
     , ((modm,               xK_q     ), kill)
 
     -- Lock the session
-    , ((modm,               xK_Escape), spawn "xss-lock")
+    , ((modm,               xK_Escape), spawn "pkill -KILL -u thierryd")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -204,7 +199,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
-    , ((modm .|. shiftMask, xK_h     ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+    , ((modm              , xK_apostrophe), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
     ++
 
@@ -250,7 +245,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "virt-manager" --> doFloat
+    [ className =? "Virtual Machine Manager" --> doFloat
     , className =? "Gimp" --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop" --> doIgnore
@@ -275,8 +270,7 @@ myStartupHook = do
     spawnOnce "~/.fehbg &"
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
-    spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --setParialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x2e3440 --height 22 &"
-    spawnOnce "blueman-applet &"
+    --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --setParialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x2e3440 --height 22 &"
     spawnOnce "emacs --daemon &"
 
 ------------------------------------------------------------------------
@@ -284,7 +278,8 @@ myStartupHook = do
 
 main :: IO ()
 main = do 
-    xmproc <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
+    xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc"
     xmonad $ def
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
@@ -297,9 +292,21 @@ main = do
         , keys               = myKeys
         , mouseBindings      = myMouseBindings
         , layoutHook         = myLayoutHook
-        , manageHook         = myManageHook 
-        , handleEventHook    = myEventHook
-        , logHook            = myLogHook 
+        , manageHook         = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
+        , handleEventHook    = myEventHook <+> docksEventHook
+        , logHook            = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
+            { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
+            , ppCurrent = xmobarColor "#A3BE8C" "" . wrap "[" "]"
+            , ppVisible = xmobarColor "#EBCB8B" ""
+            , ppHidden = xmobarColor "#5E81AC" "" . wrap "*" "*"
+            , ppHiddenNoWindows = xmobarColor "#4C566A" ""
+            , ppWsSep = " "
+            , ppTitle = xmobarColor "#81A1C1" "" . shorten 60
+            , ppSep = "<fc=#4C566A><fn=2> | </fn></fc>"
+            , ppUrgent = xmobarColor "#BF616A" "" . wrap "!" "!"
+            , ppExtras =[windowCount]
+            , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
+            }
         , startupHook        = myStartupHook
     }
 
