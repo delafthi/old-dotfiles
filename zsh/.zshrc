@@ -160,7 +160,6 @@ alias sr="sudo reboot"
 # git 
 alias gs="git status"
 alias gl="git log"
-alias gswitch="git switch"
 
 # Environment variables
 #----------------------------------------------------------
