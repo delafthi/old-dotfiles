@@ -106,10 +106,8 @@ COLOR_RESET="\033[0m"
 # Prompt
 color_prompt=yes
 PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
-if [ -e /usr/share/git/completion/git-prompt.sh ]; then
-    PS1+="\[\$(git_color)\]"        # colors git status
-    PS1+="\$(__git_ps1)"            # prints current branch
-fi
+PS1+="\[\$(git_color)\]"        # colors git status
+PS1+="\$(__git_ps1)"            # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
 
 # Change title of terminals
@@ -153,7 +151,6 @@ ex ()
 
 # Auto-completion
 source /usr/share/bash-completion/bash_completion
-source /usr/share/git/completion/git-prompt.sh
 
 # Git coloring
 function git_color {
