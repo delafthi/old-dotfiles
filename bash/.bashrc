@@ -59,6 +59,7 @@ alias free="free -m"                      # show sizes in MB
 alias rm="rm -i"
 alias mv="mv -i"
 alias minicom="minicom -m -c on" 
+alias htop="htop -t"
 
 # shutdown or reboot
 alias ssn="sudo shutdown now"
@@ -66,6 +67,8 @@ alias sr="sudo reboot"
 
 # git 
 alias gs="git status"
+alias gl="git log"
+alias gswitch="git switch"
 
 # Environment variables
 #----------------------------------------------------------
