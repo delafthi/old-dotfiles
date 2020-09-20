@@ -41,7 +41,7 @@ POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS='0.05'
 
 # Powerline
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(pyenv virtualenv)
 ZLE_RPROMPT_INDENT=0
 
 # Set list of themes to pick from when loading at random
