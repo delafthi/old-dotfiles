@@ -24,6 +24,8 @@ shopt -s checkwinsize # checks term size when bash regains control
 # Aiases 
 #----------------------------------------------------------
 
+alias sudo="sudo "
+
 # navigation
 alias ..="cd .." 
 alias ...="cd ../.."

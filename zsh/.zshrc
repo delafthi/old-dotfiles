@@ -120,6 +120,8 @@ zstyle ':completion:*' special-dirs false
 # Aiases 
 #----------------------------------------------------------
 
+alias sudo="sudo "
+
 # navigation
 alias ..="cd .." 
 alias ...="cd ../.."
