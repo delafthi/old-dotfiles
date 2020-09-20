@@ -110,7 +110,7 @@ COLOR_RESET="\033[0m"
 color_prompt=yes
 PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
 PS1+="\[\$(git_color)\]"        # colors git status
-PS1+="\$(__git_ps1)"            # prints current branch
+PS1+="\$(git_branch)"            # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
 
 # Change title of terminals
@@ -154,6 +154,11 @@ ex ()
 
 # Auto-completion
 source /usr/share/bash-completion/bash_completion
+
+# Parse git branch
+git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
 
 # Git coloring
 function git_color {
