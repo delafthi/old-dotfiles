@@ -13,7 +13,7 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
         , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
         , pickBroadest =     False   -- choose widest display (multi-monitor)
         , persistent =       True    -- enable/disable hiding (True = disabled)
-        , template = "<fc=#B48EAD><fn=1>  </fn></fc><fc=#4C566A><fn=2>|</fn></fc><fc=#4C566A> %UnsafeStdinReader% </fc>}{<fc=#4C566A><fn=2>|</fn></fc><fc=#BF616A> %multicpu% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#D08770> %multicoretemp% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#EBCB8B> %memory% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#A3BE8C> %battery% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#B48EAD> %date% </fc>"
+        , template = "<fc=#B48EAD><fn=1>  </fn></fc><fc=#4C566A><fn=2>|</fn></fc><fc=#4C566A> %UnsafeStdinReader% </fc>}{<fc=#4C566A><fn=2>|</fn></fc><fc=#BF616A> %multicpu% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#D08770> %multicoretemp% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#EBCB8B> %memory% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#A3BE8C> %battery% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#B48EAD> %date% </fc>%trayerpad%"
         , commands =  
                     -- Allows xmonad to feed strings to xmobar
                     [ Run UnsafeStdinReader
@@ -82,7 +82,8 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
 
                     -- time and date indicator 
                     --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-                    , Run Date            "%F (%a) %T " "date" 10
-
+                    , Run Date            " %a %_d.%m.%y %H:%M" "date" 10
+                    -- Dynamically adjusts xmobar depending on the trayer size
+                    , Run Com "/home/thierryd/.xmonad/trayer-padding-icon.sh" [] "trayerpad" 20
                     ]
         }

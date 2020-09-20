@@ -284,6 +284,7 @@ myStartupHook = do
     spawnOnce "nm-applet &"
     spawnOnce "dunst &"
     spawnOnce "emacs --daemon &"
+    spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x2e3440 --padding 5 --monitor 0,1 &"
 
 ------------------------------------------------------------------------
 -- main:
