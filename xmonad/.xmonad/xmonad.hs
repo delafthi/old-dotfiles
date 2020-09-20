@@ -51,9 +51,13 @@ myTerminal = "alacritty"
 myBrowser :: String
 myBrowser = "firefox"
 
--- The prefered GUI editor
+-- The preferred GUI editor
 myEditor :: String
 myEditor = "emacsclient -c -a 'emacs'"
+
+-- The preferred file manager
+myFileBrowser :: String
+myFileBrowser = "pcmanfm"
 
 ------------------------------------------------------------------------
 -- Visual settings:
@@ -147,11 +151,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch browser 
     , ((modm,               xK_b     ), spawn myBrowser)
 
+    -- launch file browser
+    , ((modm,               xK_f     ), spawn myFileBrowser)
+
     -- close focused window
     , ((modm,               xK_q     ), kill)
 
     -- Lock the session
     , ((modm,               xK_Escape), spawn "light-locker-command -l")
+
+    -- Lxsession-logout
+    , ((modm,               xK_x     ), spawn "lxsession-logout")
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -187,7 +197,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_f     ), withFocused $ windows . W.sink)
+    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN (-1)))
@@ -321,7 +331,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Return       Launch the terminal",
     "mod-Shift-Return Launch dmenu",
     "mod-b            Launch Firefox",
-    "mod-f            Launch the file manager",
+    "mod-f            Launch the file browser",
     "mod-q            Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
