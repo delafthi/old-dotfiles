@@ -10,7 +10,7 @@
 bind "set completion-ignore-case on"
 
 # set vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 ### Bash options
 shopt -s autocd # change to named directory

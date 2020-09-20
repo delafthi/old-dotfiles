@@ -109,7 +109,7 @@ source $ZSH/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
 [[ $- != *i* ]] && return
 
 # set vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
 
 # Enable autocompletion for hidden files
 _comp_options+=(globdots)
