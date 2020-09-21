@@ -12,6 +12,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 
 -- Actions
+import XMonad.Actions.WindowGo (runOrRaise)
 
 -- Data
 import Data.Monoid
@@ -222,6 +223,29 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm              , xK_apostrophe), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+
+    -- multimedia keys
+    --
+    -- XF86AudioLowerVolume
+    , ((0                 , 0x1008ff11), spawn "aumix -v -2")
+    -- XF86AudioRaiseVolume
+    , ((0                 , 0x1008ff13), spawn "aumix -v +2")
+    -- XF86AudioMute
+    , ((0                 , 0x1008ff12), spawn "amixer -q set PCM toggle")
+    -- XF86AudioMicMute
+    , ((0                 , 0x1008ffB2), spawn "amixer -q set PCM toggle")
+    -- XF86AudioNext
+    , ((0                 , 0x1008ff17), spawn "")
+    -- XF86AudioPrev
+    , ((0                 , 0x1008ff16), spawn "")
+    -- XF86AudioPlay
+    , ((0                 , 0x1008ff14), spawn "") 
+    -- XF86Calculator
+    , ((0                 , 0x1008ff1d), runOrRaise "speedcrunch" (resource =? "speedcrunch"))
+    -- XF86BrightnessUp
+    , ((0                 , 0x1008ff02), spawn "") 
+    -- XF86BrightnessDown
+    , ((0                 , 0x1008ff03), spawn "") 
     ]
     ++
 
@@ -267,10 +291,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "Virtual Machine Manager" --> doFloat
-    , className =? "Gimp" --> doFloat
+    [ title =? "Virtual Machine Manager" --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop" --> doIgnore
+    , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat
     ]
 
 ------------------------------------------------------------------------
