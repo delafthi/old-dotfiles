@@ -42,7 +42,7 @@ import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
 ------------------------------------------------------------------------
--- Default applications:
+-- Default applications
 
 -- The preferred terminal program
 myTerminal :: String
@@ -156,46 +156,46 @@ myClickJustFocuses = True
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm              , xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
     , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run")
 
     -- launch browser 
-    , ((modm,               xK_b     ), spawn myBrowser)
+    , ((modm              , xK_b     ), spawn myBrowser)
 
     -- launch file browser
-    , ((modm,               xK_f     ), spawn myFileBrowser)
+    , ((modm              , xK_f     ), spawn myFileBrowser)
 
     -- close focused window
-    , ((modm,               xK_q     ), kill)
+    , ((modm              , xK_q     ), kill)
 
     -- Lock the session
-    , ((modm,               xK_Escape), spawn "light-locker-command -l")
+    , ((modm              , xK_Escape), spawn "light-locker-command -l")
 
     -- Quit xmonad
     , ((modm .|. controlMask, xK_q   ), io (exitWith ExitSuccess))
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((modm              , xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+    , ((modm              , xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm              , xK_Tab   ), windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ((modm              , xK_j     ), windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm              , xK_k     ), windows W.focusUp  )
 
     -- Swap the focused window and the master window
-    , ((modm,               xK_m     ), windows W.swapMaster)
+    , ((modm              , xK_m     ), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -204,13 +204,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ((modm              , xK_h     ), sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ((modm              , xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm              , xK_t     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN (-1)))
@@ -246,6 +246,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0                 , 0x1008ff02), spawn "") 
     -- XF86BrightnessDown
     , ((0                 , 0x1008ff03), spawn "") 
+    , ((modm              , xK_0      ), spawn (myTerminal ++ " -e neofetch"))
     ]
     ++
 
