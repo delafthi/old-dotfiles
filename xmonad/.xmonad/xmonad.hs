@@ -286,6 +286,7 @@ myStartupHook = do
     spawnOnce "dunst &"
     spawnOnce "~/.fehbg &"
     spawnOnce "emacs --daemon &"
+    spawnOnce "pcmanfm -d &"
 
 ------------------------------------------------------------------------
 -- main:
