@@ -227,13 +227,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- multimedia keys
     --
     -- XF86AudioLowerVolume
-    , ((0                 , 0x1008ff11), spawn "alsamixer -v -2")
+    , ((0                 , 0x1008ff11), spawn "amixer set Master 5%- unmute")
     -- XF86AudioRaiseVolume
-    , ((0                 , 0x1008ff13), spawn "aumix -v +2")
+    , ((0                 , 0x1008ff13), spawn "amixer set Master 5%+ unmute")
     -- XF86AudioMute
-    , ((0                 , 0x1008ff12), spawn "amixer -q set PCM toggle")
+    , ((0                 , 0x1008ff12), spawn "amixer set Master 0% mute")
     -- XF86AudioMicMute
-    , ((0                 , 0x1008ffB2), spawn "amixer -q set PCM toggle")
+    , ((0                 , 0x1008ffB2), spawn "")
     -- XF86AudioNext
     , ((0                 , 0x1008ff17), spawn "")
     -- XF86AudioPrev
