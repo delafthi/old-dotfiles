@@ -161,7 +161,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Escape), spawn "light-locker-command -l")
 
     -- Lxsession-logout
-    , ((modm,               xK_x     ), spawn "lxsession-logout")
+    , ((modm,               xK_x     ), io (exitWith ExitSuccess))
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
