@@ -227,7 +227,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- multimedia keys
     --
     -- XF86AudioLowerVolume
-    , ((0                 , 0x1008ff11), spawn "aumix -v -2")
+    , ((0                 , 0x1008ff11), spawn "alsamixer -v -2")
     -- XF86AudioRaiseVolume
     , ((0                 , 0x1008ff13), spawn "aumix -v +2")
     -- XF86AudioMute
@@ -318,6 +318,7 @@ myStartupHook = do
     spawnOnce "udiskie &"
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
+    spawnOnce "volumeicon &"
     spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x2e3440 --padding 5 --monitor 0,1 &"
     spawnOnce "dunst &"
     spawnOnce "~/.fehbg &"
