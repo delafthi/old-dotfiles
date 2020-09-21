@@ -246,7 +246,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0                 , 0x1008ff02), spawn "") 
     -- XF86BrightnessDown
     , ((0                 , 0x1008ff03), spawn "") 
-    , ((modm              , xK_0      ), spawn (myTerminal ++ " -e neofetch &"))
+    , ((modm              , xK_0      ), spawn "")
     ]
     ++
 
