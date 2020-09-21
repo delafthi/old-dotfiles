@@ -8,7 +8,7 @@
 -- Base
 import XMonad
 import System.IO (hPutStrLn)
-import System.Exit (exitSuccess)
+import System.Exit
 import qualified XMonad.StackSet as W
 
 -- Actions
@@ -160,8 +160,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Lock the session
     , ((modm,               xK_Escape), spawn "light-locker-command -l")
 
-    -- Lxsession-logout
-    , ((modm,               xK_x     ), io (exitWith ExitSuccess))
+    -- Quit xmonad
+    , ((modm .|. controlMask, xK_q   ), io (exitWith ExitSuccess))
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -364,8 +364,9 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-period (mod-.)   Increment the number of windows in the master area",
     "",
     "-- quit, or restart",
-    "mod-Shift-q  Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
+    "mod-Shift-q     Restart xmonad",
+    "mod-Controll-q  Quit xmonad",
+    "mod-[1..9]      Switch to workSpace N",
     "",
     "-- Workspaces & screens",
     "mod-Shift-[1..9]   Move client to workspace N",
