@@ -35,7 +35,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plug 'junegunn/fzf'                                " A Finder Plugin
     Plug 'junegunn/fzf.vim'                            " Vim implementation of fzf
-   Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
+    Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
 "{{ Themes }}
     Plug 'arcticicestudio/nord-vim'                    " Official nord theme for vim
 
