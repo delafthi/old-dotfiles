@@ -92,7 +92,7 @@ set fillchars+=stlnc:-
 " Remap Leader key to SPACE
 let mapleader = " "
 " Open terminal inside Vim
-map <Leader>tt :vnew term://bash<cr>
+map <Leader>tt :new term://bash<cr>
 " Mouse Scrolling
 set mouse=nvicr
 " Remap splits navigation to just CTRL + hjkl
