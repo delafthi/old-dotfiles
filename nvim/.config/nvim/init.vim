@@ -128,7 +128,7 @@ noremap <silent> <C-Down> :resize -2<cr>
 nnoremap <Leader>th <C-w>t<C-w>H
 nnoremap <Leader>tk <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nnoremap <Leader>bb :ls<CR> :b<Space>
+nnoremap <Leader>bb :ls<CR>:b<Space>
 " Open files located in the same dir in with the current file is edited
 nnoremap <leader>ff :e<Space>
 
