@@ -167,6 +167,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch file browser
     , ((modm              , xK_f     ), spawn myFileBrowser)
 
+    -- launch file browser
+    , ((modm .|. shiftMask, xK_e     ), spawn myEditor)
+
     -- close focused window
     , ((modm              , xK_q     ), kill)
 
@@ -210,7 +213,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_l     ), sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm              , xK_t     ), withFocused $ windows . W.sink)
+    , ((modm              , xK_p     ), withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN (-1)))
@@ -292,8 +295,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ title =? "Virtual Machine Manager" --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
+    [ resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop" --> doIgnore
     , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat
     ]
@@ -373,6 +375,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Shift-Return Launch dmenu",
     "mod-b            Launch Firefox",
     "mod-f            Launch the file browser",
+    "mod-Shift-e      Launch emacs",
     "mod-q            Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
@@ -395,7 +398,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-l  Expand the master area",
     "",
     "-- floating layer support",
-    "mod-t  Push window back into tiling; unfloat and re-tile it",
+    "mod-p  Push window back into tiling; unfloat and re-tile it",
     "",
     "-- increase or decrease number of windows in the master area",
     "mod-comma  (mod-,)   Deincrement the number of windows in the master area",
