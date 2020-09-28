@@ -1,8 +1,8 @@
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Xmonad config file.
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Imports:
 
 -- Base
@@ -23,6 +23,7 @@ import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, Toggl
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
+import XMonad.Hooks.SetWMName
 
 -- Layout
 import XMonad.Layout.SimplestFloat
@@ -41,7 +42,7 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Default applications
 
 -- The preferred terminal program
@@ -60,7 +61,7 @@ myEditor = "emacsclient -c -a 'emacs'"
 myFileBrowser :: String
 myFileBrowser = "pcmanfm"
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Visual settings:
 
 -- Default font
@@ -83,7 +84,7 @@ myNormalBorderColor = "#2E3440"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#5E81AC"
 
--- Name of workspace
+-- Name of workspaces
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
     where
@@ -92,7 +93,7 @@ xmobarEscape = concatMap doubleLts
 
 myWorkspaces :: [String]
 myWorkspaces = clickable. (map xmobarEscape)
-                $ ["1", "2", "3","4","5","6","7","8", "9"]
+                $ ["www","dev","chat","virt","sys","mus","doc","vis"]
     where
         clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>" 
                       | (i,ws) <- zip [1 .. 9] l,
@@ -103,7 +104,23 @@ myWorkspaces = clickable. (map xmobarEscape)
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+-- Window rules:
+
+myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
+myManageHook = composeAll
+    [ className =? "firefox" --> doShift( myWorkspaces !! 0 )
+    , className =? "mpv" --> doShift( myWorkspaces !! 7 )
+    , className =? "Gimp" --> doShift( myWorkspaces !! 7 )
+    , className =? "Darktable" --> doShift( myWorkspaces !! 7 )
+    , className =? "Blender" --> doShift( myWorkspaces !! 7 )
+    , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
+    , className =? "libreoffice-startcenter" --> doShift( myWorkspaces !! 6 )
+    , resource =? "Dialog" --> doFloat
+    , className =? "volumecontrol" --> doFloat
+    ]
+
+--------------------------------------------------------------------------------
 -- Layouts:
 
 tall = renamed [Replace "Tall"]
@@ -132,7 +149,7 @@ myLayoutHook = avoidStruts $  myLayout
                ||| floats
                ||| noBorders tabs
 
--------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Controls:
 
 -- modMask lets you specify which modkey you want to use.
@@ -150,7 +167,7 @@ myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = True
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Key bindings:
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -159,7 +176,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm              , xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run")
+    , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -p 'Run: '")
 
     -- launch browser 
     , ((modm              , xK_b     ), spawn myBrowser)
@@ -167,8 +184,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch file browser
     , ((modm              , xK_f     ), spawn myFileBrowser)
 
-    -- launch file browser
-    , ((modm .|. shiftMask, xK_e     ), spawn myEditor)
+    -- launch emacs
+    , ((modm              , xK_e     ), spawn myEditor)
 
     -- close focused window
     , ((modm              , xK_q     ), kill)
@@ -179,7 +196,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Quit xmonad
     , ((modm .|. controlMask, xK_q   ), io (exitWith ExitSuccess))
 
-     -- Rotate through the available layout algorithms
+     -- Rotate through the available layout
     , ((modm              , xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
@@ -249,7 +266,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0                 , 0x1008ff02), spawn "") 
     -- XF86BrightnessDown
     , ((0                 , 0x1008ff03), spawn "") 
-    , ((modm              , xK_0      ), spawn "")
     ]
     ++
 
@@ -267,11 +283,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_y, xK_x, xK_c] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Mouse bindings:
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -290,28 +306,19 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
-------------------------------------------------------------------------
--- Window rules:
 
-myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
-    [ resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop" --> doIgnore
-    , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat
-    ]
-
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event handling
 
 myEventHook = mempty
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Status bars and logging:
 
 myLogHook :: X ()
 myLogHook = return ()
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Startup hooks:
 
 myStartupHook :: X ()
@@ -322,13 +329,15 @@ myStartupHook = do
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
+    spawnOnce "blueman-applet &"
     spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x2e3440 --padding 5 --monitor 0,1 &"
     spawnOnce "dunst &"
     spawnOnce "~/.fehbg &"
     spawnOnce "emacs --daemon &"
     spawnOnce "pcmanfm -d &"
+    setWMName "LG3D"
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- main:
 
 main :: IO ()
@@ -353,7 +362,7 @@ main = do
             { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
             , ppCurrent = xmobarColor "#A3BE8C" "" . wrap "[" "]"
             , ppVisible = xmobarColor "#EBCB8B" ""
-            , ppHidden = xmobarColor "#5E81AC" "" . wrap "*" "*"
+            , ppHidden = xmobarColor "#5E81AC" "" . wrap "'" "'"
             , ppHiddenNoWindows = xmobarColor "#4C566A" ""
             , ppWsSep = " "
             , ppTitle = xmobarColor "#81A1C1" "" . shorten 60
@@ -365,7 +374,7 @@ main = do
         , startupHook        = myStartupHook
     }
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- help
 help :: String
 help = unlines ["The default modifier key is 'Super'. Default keybindings:",
