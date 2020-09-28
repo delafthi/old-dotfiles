@@ -247,11 +247,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- multimedia keys
     --
     -- XF86AudioLowerVolume
-    , ((0                 , 0x1008ff11), spawn "amixer set Master 5%- unmute")
+    , ((0                 , 0x1008ff11), spawn "amixer -c 0 sset Master 5- unmute")
     -- XF86AudioRaiseVolume
-    , ((0                 , 0x1008ff13), spawn "amixer set Master 5%+ unmute")
+    , ((0                 , 0x1008ff13), spawn "amixer -c 0 sset Master 5+ unmute")
     -- XF86AudioMute
-    , ((0                 , 0x1008ff12), spawn "amixer set Master 0% mute")
+    , ((0                 , 0x1008ff12), spawn "amixer set Master toggle")
     -- XF86AudioMicMute
     , ((0                 , 0x1008ffB2), spawn "")
     -- XF86AudioNext
