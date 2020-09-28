@@ -114,8 +114,6 @@ export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nom
 # Enable autocompletion for hidden files
 _comp_options+=(globdots)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-# Remove current and parent dir
-zstyle ':completion:*' special-dirs false
 
 # Aiases 
 #----------------------------------------------------------
