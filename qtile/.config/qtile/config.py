@@ -330,27 +330,28 @@ screens = [
                     linewidth = 1,
                     ),
                 widget.GroupBox(
-                    active = nord_color[10],
-                    highlight_color = nord_color[14],
+                    active = nord_color[13],
+                    block_highlight_text_color = nord_color[14],
+                    center_aligned = False,
+                    disable_drag = True,
+                    highlight_color = nord_color[1],
                     highlight_method = "line",
                     inactive = nord_color[3],
-                    margin_x = 0,
-                    margin_y = 3,
-                    other_current_screen_border = nord_color[13],
-                    other_screen_border = nord_color[13],
-                    padding_x = 3,
-                    padding_y = 5,
+                    other_current_screen_border = nord_color[12],
+                    other_screen_border = nord_color[12],
                     rounded = False,
                     this_current_screen_border = nord_color[14],
                     this_screen_border = nord_color[14],
+                    urgent_alert_method = "line",
                     urgent_border = nord_color[11],
+                    urgent_text = nord_color[0],
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.CurrentLayout(),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.WindowName(
                     foreground = nord_color[9]
@@ -359,28 +360,28 @@ screens = [
                     length = bar.STRETCH
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.CPU(
                     foreground = nord_color[11],
                     format = "  {load_percent}%"
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.ThermalSensor(
                     foreground = nord_color[12],
                     foreground_alert = nord_color[11]
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.Memory(
                     foreground = nord_color[13],
                     format = " {MemUsed}M/{MemTotal}M"
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.Battery(
                     charge_char = " Charging",
@@ -395,16 +396,21 @@ screens = [
                     show_short_text = False
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
                 widget.Clock(
                     foreground = nord_color[15],
                     format = " %a %d.%m.%y %H:%M"
                     ),
                 widget.Sep(
-                    linewidth = 1,
+                    linewidth = 1
                     ),
-                widget.Systray()
+                widget.Systray(),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 3
+                    ),
+
             ],
             22,
         ),
