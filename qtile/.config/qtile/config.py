@@ -318,10 +318,11 @@ screens = [
             [
                 widget.Sep(
                     linewidth = 0,
-                    padding = 6,
+                    padding = 3,
                     ),
                 widget.Image(
                     filename = "~/.config/qtile/icons/python.png",
+                    margin = 3,
                     mous_callbacks = {"Button1": lambda qtile:
                         qtile.cmd_spawn("dmenu_run -p 'Run: '")}
                     ),
