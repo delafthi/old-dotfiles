@@ -37,9 +37,6 @@ alias .5="cd ../../../../.."
 alias vim="nvim"
 alias vi="nvim"
 alias :q="exit"
-bind "set show-mode-in-prompt on"
-bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
-bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
 
 # emacs
 alias emacs="emacsclient -c -a 'emacs'"
@@ -105,6 +102,11 @@ COLOR_YELLOW="\033[0;33m"
 COLOR_PURPLE="\033[0;35m"
 COLOR_CYAN="\033[0;36m"
 COLOR_RESET="\033[0m"
+
+# vi mode strings
+bind "set show-mode-in-prompt on"
+bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
+bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
 
 # Prompt
 color_prompt=yes
