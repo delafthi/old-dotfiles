@@ -110,7 +110,7 @@ bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
 
 # Prompt
 color_prompt=yes
-PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+PS1="\[$COLOR_BLUE\]\u@\h:\[$COLOR_YELLOW\]\w" 
 PS1+="\[\$(git_color)\]"        # colors git status
 PS1+="\$(git_branch)"            # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
