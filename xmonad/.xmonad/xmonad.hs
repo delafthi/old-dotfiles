@@ -107,17 +107,20 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 --------------------------------------------------------------------------------
 -- Window rules:
 
+-- To find the property name associated with a program, use
+-- > xprop | grep WM_CLASS
+-- and click on the client you're interested in.
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "firefox" --> doShift( myWorkspaces !! 0 )
-    , className =? "mpv" --> doShift( myWorkspaces !! 7 )
+    [ className =? "mpv" --> doShift( myWorkspaces !! 7 )
     , className =? "Gimp" --> doShift( myWorkspaces !! 7 )
     , className =? "Darktable" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
     , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
     , className =? "libreoffice-startcenter" --> doShift( myWorkspaces !! 6 )
     , resource =? "Dialog" --> doFloat
-    , className =? "volumecontrol" --> doFloat
+    , className =? "Pavucontrol" --> doFloat
+    , className =? "Xmessage" --> doFloat
     ]
 
 --------------------------------------------------------------------------------
