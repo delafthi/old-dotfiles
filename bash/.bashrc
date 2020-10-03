@@ -105,8 +105,8 @@ COLOR_RESET="\033[0m"
 
 # vi mode strings
 bind "set show-mode-in-prompt on"
-bind "set vi-ins-mode-string \1$COLOR_WHITE\2[Insert]\1$COLOR_RESET\2"
-bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[Normal]\1$COLOR_RESET\2"
+bind "set vi-ins-mode-string "
+bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[NORMAL]\1$COLOR_RESET\2"
 
 # Prompt
 color_prompt=yes
