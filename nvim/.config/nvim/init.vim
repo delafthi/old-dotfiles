@@ -30,13 +30,13 @@ call plug#begin('~/.config/nvim/plugged')
                                                         " marks
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } 
                                                         " Markdown preview
-"{{ Syntax Highlighting and Colors }}
-    Plug 'vim-python/python-syntax'                     " Python highlighting
-    Plug 'ap/vim-css-color'                             " Color previews for CSS
     Plug 'godlygeek/tabular'                            " tabular plugin is used
                                                         " to format tables
-    Plug 'elzr/vim-json'                                " JSON front matter 
-                                                        " highlight plugin
+"{{ Syntax Highlighting and Colors }}
+    Plug 'ap/vim-css-color'                             " Color previews for CSS
+    Plug 'sheerun/vim-polyglot'                         " Syntax highlighting
+                                                        " for various languages
+                                                       
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim'                            " Distraction-free 
                                                         " viewing
@@ -47,7 +47,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-emoji'                           " Vim needs emojis!
 "{{ Themes }}
     Plug 'arcticicestudio/nord-vim'                     " Official nord theme 
-                                                        " for vim
 
 call plug#end()
 
