@@ -364,11 +364,11 @@ main = do
         , logHook            = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
             { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
             , ppCurrent = xmobarColor "#A3BE8C" "" . wrap "[" "]"
-            , ppVisible = xmobarColor "#EBCB8B" ""
-            , ppHidden = xmobarColor "#5E81AC" "" . wrap "'" "'"
-            , ppHiddenNoWindows = xmobarColor "#4C566A" ""
+            , ppVisible = xmobarColor "#D08770" ""
+            , ppHidden = xmobarColor "#EBCB8B" "" . wrap "'" "'"
+            , ppHiddenNoWindows = xmobarColor "#5E81AC" ""
             , ppWsSep = " "
-            , ppTitle = xmobarColor "#81A1C1" "" . shorten 60
+            , ppTitle = xmobarColor "#B48EAD" "" . shorten 60
             , ppSep = "<fc=#4C566A><fn=2> | </fn></fc>"
             , ppUrgent = xmobarColor "#BF616A" "" . wrap "!" "!"
             , ppExtras =[windowCount]
