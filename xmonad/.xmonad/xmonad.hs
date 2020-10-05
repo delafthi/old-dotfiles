@@ -340,7 +340,7 @@ myStartupHook = do
     spawnOnce "udiskie &"
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
-    spawnOnce "xfce-power-manager &"
+    spawnOnce "xfce4-power-manager &"
     spawnOnce "volumeicon &"
     spawnOnce "blueman-applet &"
     spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x282c34 --padding 5 --monitor 0,1 &"
