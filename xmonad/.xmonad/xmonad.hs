@@ -29,6 +29,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
+import XMonad.Layout.TwoPane
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
@@ -126,17 +127,31 @@ myManageHook = composeAll
 --------------------------------------------------------------------------------
 -- Layouts:
 
-tall = renamed [Replace "Tall"]
-    $ mySpacing 8
-    $ ResizableTall 1 (3/100) (1/2) []
-
-floats = renamed [Replace "Floats"]
-    $ Full
-
-tabs = renamed [Replace "Tabs"]
-    $ tabbed shrinkText myTabConfig
-
+myLayoutHook = avoidStruts $ 
+    tall
+    ||| twopane
+    ||| floats
+    ||| noBorders tabs
     where
+        -- Tall layout
+        tall = mySpacing spacing
+            $ ResizableTall nmaster delta ratio []
+        -- TwoPane layout
+        twopane = mySpacing spacing
+            $ TwoPane delta ratio 
+        -- Full screen layout
+        floats = Full
+        -- Tabbed full screen layout
+        tabs = tabbed shrinkText myTabConfig
+        -- Spacing between windows
+        spacing = 5
+        -- Number of initial windows in the master pane
+        nmaster = 1
+        -- Default ratio between master and stack
+        ratio = 1/2
+        -- Delta value when increasing or decreasing window size
+        delta = 3/100
+        -- Config for tabbed layout
         myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
                           , activeColor = "#81A1C1"
                           , inactiveColor = "#4C566A"
@@ -144,13 +159,7 @@ tabs = renamed [Replace "Tabs"]
                           , inactiveBorderColor = "#2E3440"
                           , activeTextColor = "#2E3440"
                           , inactiveTextColor = "#2E3440"
-                      }
-
-myLayoutHook = avoidStruts $  myLayout
-    where
-        myLayout = tall
-               ||| floats
-               ||| noBorders tabs
+                          }
 
 --------------------------------------------------------------------------------
 -- Controls:
