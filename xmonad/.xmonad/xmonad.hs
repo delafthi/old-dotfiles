@@ -79,11 +79,11 @@ mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Border color for unfocused windows
 myNormalBorderColor :: String
-myNormalBorderColor = "#2E3440"
+myNormalBorderColor = "#282c34"
 
 -- Border color for focused windows
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#5E81AC"
+myFocusedBorderColor = "#61afef"
 
 -- Name of workspaces
 xmobarEscape :: String -> String
@@ -130,19 +130,19 @@ myManageHook = composeAll
 myLayoutHook = avoidStruts $ 
     tall
     ||| twopane
-    ||| floats
     ||| noBorders tabs
     where
         -- Tall layout
-        tall = mySpacing spacing
+        tall = renamed[Replace "tall"]
+            $ mySpacing spacing
             $ ResizableTall nmaster delta ratio []
         -- TwoPane layout
-        twopane = mySpacing spacing
+        twopane = renamed[Replace "twopane"]
+            $ mySpacing spacing
             $ TwoPane delta ratio 
-        -- Full screen layout
-        floats = Full
         -- Tabbed full screen layout
-        tabs = tabbed shrinkText myTabConfig
+        tabs = renamed[Replace "tabs"]
+            $ tabbed shrinkText myTabConfig
         -- Spacing between windows
         spacing = 5
         -- Number of initial windows in the master pane
@@ -153,12 +153,12 @@ myLayoutHook = avoidStruts $
         delta = 3/100
         -- Config for tabbed layout
         myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
-                          , activeColor = "#81A1C1"
-                          , inactiveColor = "#4C566A"
-                          , activeBorderColor = "#81A1C1"
-                          , inactiveBorderColor = "#2E3440"
-                          , activeTextColor = "#2E3440"
-                          , inactiveTextColor = "#2E3440"
+                          , activeColor = "#61afef"
+                          , inactiveColor = "#282c34"
+                          , activeBorderColor = "#61afef"
+                          , inactiveBorderColor = "#5c6370"
+                          , activeTextColor = "#282c34"
+                          , inactiveTextColor = "#5c6370"
                           }
 
 --------------------------------------------------------------------------------
@@ -342,7 +342,7 @@ myStartupHook = do
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
     spawnOnce "blueman-applet &"
-    spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x2e3440 --padding 5 --monitor 0,1 &"
+    spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x282c34 --padding 5 --monitor 0,1 &"
     spawnOnce "dunst &"
     spawnOnce "~/.fehbg &"
     spawnOnce "emacs --daemon &"
@@ -372,15 +372,15 @@ main = do
         , handleEventHook    = myEventHook <+> docksEventHook
         , logHook            = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
             { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
-            , ppCurrent = xmobarColor "#A3BE8C" "" . wrap "[" "]"
-            , ppVisible = xmobarColor "#D08770" ""
-            , ppHidden = xmobarColor "#EBCB8B" "" . wrap "'" "'"
-            , ppHiddenNoWindows = xmobarColor "#5E81AC" ""
+            , ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
+            , ppVisible = xmobarColor "#c678dd" ""
+            , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'"
+            , ppHiddenNoWindows = xmobarColor "#5c6370" ""
             , ppWsSep = " "
-            , ppTitle = xmobarColor "#B48EAD" "" . shorten 60
-            , ppSep = "<fc=#4C566A><fn=2> | </fn></fc>"
-            , ppUrgent = xmobarColor "#BF616A" "" . wrap "!" "!"
-            , ppExtras =[windowCount]
+            , ppTitle = xmobarColor "#61afef" "" . shorten 60
+            , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
+            , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
+            , ppExtras = [windowCount]
             , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
             }
         , startupHook        = myStartupHook

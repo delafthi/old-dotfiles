@@ -2,8 +2,8 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
         , additionalFonts = [ "xft:Roboto Mono Nerd Font:regular:size=13:antialias=true"
                             , "xft:Roboto Mono Nerd Font:regular:size=16:antialias=true"
                             ]
-        , bgColor = "#2E3440"
-        , fgColor = "#D8DEE9"
+        , bgColor = "#282c34"
+        , fgColor = "#abb2bf"
         , position = Top
         , sepChar =  "%"   -- delineator between plugin names and straight text
         , alignSep = "}{"  -- separator between left-right alignment
@@ -13,7 +13,7 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
         , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
         , pickBroadest =     False   -- choose widest display (multi-monitor)
         , persistent =       True    -- enable/disable hiding (True = disabled)
-        , template = "<action=xdotool key super+shift+Return><fc=#B48EAD><fn=1>  </fn></fc></action><fc=#4C566A><fn=2>|</fn></fc><fc=#81A1C1> %UnsafeStdinReader% </fc>}{<fc=#4C566A><fn=2>|</fn></fc><fc=#BF616A> %multicpu% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#D08770> %multicoretemp% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#EBCB8B> %memory% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#A3BE8C> %battery% </fc><fc=#4C566A><fn=2>|</fn></fc><fc=#B48EAD> %date% </fc><fc=#4C566A><fn=2>|</fn></fc>%trayerpad%"
+        , template = "<action=xdotool key super+shift+Return><fc=#c678dd><fn=1>  </fn></fc></action><fc=#5c6370><fn=2>|</fn></fc><fc=#98c379> %UnsafeStdinReader% </fc>}{<fc=#5c6370><fn=2>|</fn></fc><fc=#e06c75> %multicpu% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#d19a66> %multicoretemp% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#e5c07b> %memory% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#98c379> %battery% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#c678dd> %date% </fc><fc=#5c6370><fn=2>|</fn></fc>%trayerpad%"
         , commands =  
                     -- Allows xmonad to feed strings to xmobar
                     [ Run UnsafeStdinReader
@@ -22,45 +22,45 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
                     , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
                                          , "--Low"      , "1000"       -- units: B/s
                                          , "--High"     , "5000"       -- units: B/s
-                                         , "--low"      , "#A3BE8C"
-                                         , "--normal"   , "#D08770"
-                                         , "--high"     , "#BF616A"
+                                         , "--low"      , "#98c379"
+                                         , "--normal"   , "#d19a66"
+                                         , "--high"     , "#e06c75"
                                          ] 10
 
                     -- cpu activity monitor
                     , Run MultiCpu       [ "--template" , " <nice>%"
                                          , "--Low"      , "50"         -- units: %
                                          , "--High"     , "85"         -- units: %
-                                         , "--low"      , "#A3BE8C"
-                                         , "--normal"   , "#D08770"
-                                         , "--high"     , "#BF616A"
+                                         , "--low"      , "#98c379"
+                                         , "--normal"   , "#d19a66"
+                                         , "--high"     , "#e06c75"
                                          ] 10
 
                     -- cpu core temperature monitor
                     , Run MultiCoreTemp  [ "--template" , " <max>°C"
                                          , "--Low"      , "70"        -- units: °C
                                          , "--High"     , "80"        -- units: °C
-                                         , "--low"      , "#A3BE8C"
-                                         , "--normal"   , "#D08770"
-                                         , "--high"     , "#BF616A"
+                                         , "--low"      , "#98c379"
+                                         , "--normal"   , "#d19a66"
+                                         , "--high"     , "#e06c75"
                                          ] 50
                                       
                     -- memory usage monitor
                     , Run Memory         [ "--template" , " <usedratio>%"
                                          , "--Low"      , "20"        -- units: %
                                          , "--High"     , "90"        -- units: %
-                                         , "--low"      , "#A3BE8C"
-                                         , "--normal"   , "#D08770"
-                                         , "--high"     , "#BF616A"
+                                         , "--low"      , "#98c379"
+                                         , "--normal"   , "#d19a66"
+                                         , "--high"     , "#e06c75"
                                          ] 10
 
                     -- battery monitor
                     , Run Battery        [ "--template" , "<acstatus>"
                                          , "--Low"      , "20"        -- units: %
                                          , "--High"     , "80"        -- units: %
-                                         , "--low"      , "#BF616A"
-                                         , "--normal"   , "#D08770"
-                                         , "--high"     , "#A3BE8C"
+                                         , "--low"      , "#e06c75"
+                                         , "--normal"   , "#d19a66"
+                                         , "--high"     , "#98c379"
 
                                          , "--" -- battery specific options
                                                    -- discharging
@@ -72,9 +72,9 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
                                                    -- discharging status low status
                                                    , "--lows"     , " " 
                                                    -- AC "on" status
-                                                   , "-O"	        , "<fc=#D08770> Charging</fc>"
+                                                   , "-O"	        , "<fc=#d19a66> Charging</fc>"
                                                    -- charged status
-                                                   , "-i"	        , "<fc=#A3BE8C> Charged</fc>"
+                                                   , "-i"	        , "<fc=#98c379> Charged</fc>"
                                                    -- Action to execute when battery falls under 10% 
                                                    , "-A"         , "10"  
                                                    , "-a"         , "notify-send -u critical 'Battery running out!!'"
