@@ -46,7 +46,7 @@ call plug#begin('~/.config/nvim/plugged')
                                                         " fzf
     Plug 'junegunn/vim-emoji'                           " Vim needs emojis!
 "{{ Themes }}
-    Plug 'arcticicestudio/nord-vim'                     " Official nord theme 
+    Plug 'joshdick/onedark.vim'                         " One dark theme
 
 call plug#end()
 
@@ -145,12 +145,7 @@ set tabstop=4                   " One tab == four spaces.
 " Colorscheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nord theme settings (must be set before colorscheme)
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold_vertical_split_line = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-colorscheme nord
+colorscheme onedark 
 
 set colorcolumn=80                                
 highlight ColorColumns ctermbg=1 guibg=#3b4252
@@ -197,7 +192,7 @@ nnoremap <Leader>gg :Goyo<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set nord as the lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'onedark',
       \ }
 
 set laststatus=2    " Always show the statusline
