@@ -32,6 +32,21 @@ myFileManager = "pcmanfm"
 ################################################################################
 # Visual settings:
 
+# One dark palette
+one_dark = [["#282c34", "#282c34"],
+            ["#abb2bf", "#abb2bf"],
+            ["#e06c75", "#e06c75"],
+            ["#be5046", "#be5046"],
+            ["#98c379", "#98c379"],
+            ["#e5c07b", "#e5c07b"],
+            ["#d19a66", "#d19a66"],
+            ["#61afef", "#61afef"],
+            ["#c678dd", "#c678dd"],
+            ["#56b6c2", "#56b6c2"],
+            ["#4b5263", "#4b5263"],
+            ["#5c6370", "#5c6370"]]
+
+
 # Nord color palette
 nord_color = [["#2e3440", "#2e3440"],
               ["#3b4252", "#3b4252"],
@@ -56,8 +71,8 @@ myFont = "Roboto Mono Nerd Font"
 # Window border
 layout_theme = {"border_width": 3,
                 "margin": 8,
-                "border_focus": "5e81ac",
-                "border_normal": "2e3440"
+                "border_focus": "61afef",
+                "border_normal": "282c34"
                 }
 
 # Name of workspaces
@@ -102,7 +117,7 @@ focus_on_window_activation = "smart"
 # Layouts:
 
 layouts = [
-    #layout.Columns(**layout_theme),
+    layout.Columns(num_columns=2, **layout_theme),
     layout.Max(**layout_theme),
     #layout.Stack(num_stacks=2, **layout_theme),
     #layout.Bsp(**layout_theme),
@@ -112,12 +127,12 @@ layouts = [
     #layout.RatioTile(**layout_theme),
     #layout.Tile(**layout_theme),
     layout.TreeTab(
-        active_bg = nord_color[10],
-        active_fg = nord_color[0],
-        bg_color = nord_color[0],
+        active_bg = one_dark[7],
+        active_fg = one_dark[0],
+        bg_color = one_dark[0],
         border_with = 0,
-        inactive_bg = nord_color[1],
-        inactive_fg = nord_color[10],
+        inactive_bg = one_dark[10],
+        inactive_fg = one_dark[1],
         margin_left = 0,
         margin_y = 0,
         padding_left = 0,
@@ -125,7 +140,7 @@ layouts = [
         padding_y = 2,
         panel_width = 150,
         previous_on_rm = True,
-        section_fg = nord_color[4],
+        section_fg = one_dark[1],
         section_fontsize = 13,
         section_left = 6,
         sections = ["Default"],
@@ -306,8 +321,8 @@ widget_defaults = dict(
     font = 'Robot Mono Nerd Font',
     fontsize = 13,
     padding = 3,
-    foreground = nord_color[3],
-    background = nord_color[0]
+    foreground = one_dark[11],
+    background = one_dark[0]
 
 )
 extension_defaults = widget_defaults.copy()
@@ -330,21 +345,21 @@ screens = [
                     linewidth = 1,
                     ),
                 widget.GroupBox(
-                    active = nord_color[13],
-                    block_highlight_text_color = nord_color[14],
+                    active = one_dark[6],
+                    block_highlight_text_color = one_dark[7],
                     center_aligned = False,
                     disable_drag = True,
-                    highlight_color = nord_color[1],
+                    highlight_color = one_dark[10],
                     highlight_method = "line",
-                    inactive = nord_color[3],
-                    other_current_screen_border = nord_color[12],
-                    other_screen_border = nord_color[12],
+                    inactive = one_dark[10],
+                    other_current_screen_border = one_dark[6],
+                    other_screen_border = one_dark[6],
                     rounded = False,
-                    this_current_screen_border = nord_color[14],
-                    this_screen_border = nord_color[14],
+                    this_current_screen_border = one_dark[7],
+                    this_screen_border = one_dark[7],
                     urgent_alert_method = "line",
-                    urgent_border = nord_color[11],
-                    urgent_text = nord_color[0],
+                    urgent_border = one_dark[3],
+                    urgent_text = one_dark[0],
                     ),
                 widget.Sep(
                     linewidth = 1
@@ -354,7 +369,7 @@ screens = [
                     linewidth = 1
                     ),
                 widget.WindowName(
-                    foreground = nord_color[9]
+                    foreground = one_dark[7]
                     ),
                 widget.Spacer(
                     length = bar.STRETCH
@@ -363,21 +378,21 @@ screens = [
                     linewidth = 1
                     ),
                 widget.CPU(
-                    foreground = nord_color[11],
+                    foreground = one_dark[2],
                     format = "  {load_percent}%"
                     ),
                 widget.Sep(
                     linewidth = 1
                     ),
                 widget.ThermalSensor(
-                    foreground = nord_color[12],
-                    foreground_alert = nord_color[11]
+                    foreground = one_dark[6],
+                    foreground_alert = one_dark[3]
                     ),
                 widget.Sep(
                     linewidth = 1
                     ),
                 widget.Memory(
-                    foreground = nord_color[13],
+                    foreground = one_dark[5],
                     format = " {MemUsed}M/{MemTotal}M"
                     ),
                 widget.Sep(
@@ -387,10 +402,10 @@ screens = [
                     charge_char = " Charging",
                     discharge_char = " ",
                     empty_char = " ",
-                    foreground = nord_color[14],
+                    foreground = one_dark[4],
                     format = "{char} ({hour:d}:{min:02d})",
                     full_char = " Charged",
-                    low_foreground = nord_color[11],
+                    low_foreground = one_dark[2],
                     low_percentage = 0.2,
                     notify_below = 0.1,
                     show_short_text = False
@@ -399,7 +414,7 @@ screens = [
                     linewidth = 1
                     ),
                 widget.Clock(
-                    foreground = nord_color[15],
+                    foreground = one_dark[8],
                     format = " %a %d.%m.%y %H:%M"
                     ),
                 widget.Sep(
