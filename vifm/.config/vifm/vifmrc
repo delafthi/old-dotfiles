@@ -64,13 +64,13 @@ set norunexec
 
 " Selected color scheme
 
-colorscheme nord
+colorscheme custom
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
 
-set timefmt=%m/%d\ %H:%M
+set timefmt=%d.%m.%y\ %H:%M
 
 " Show list of matches on tab completion in command-line mode
 
@@ -109,8 +109,10 @@ if !has('win')
 endif
 
 " Set custom status line look
-
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+highlight User1 ctermbg=green ctermfg=black
+highlight User2 ctermbg=008 ctermfg=white
+highlight User3 ctermbg=black ctermfg=008
+set statusline="%1* %t %2* %3* %= %3* %-A | %-7u:%-7g | %-5s %2* %l %1* %-d"
 
 " ------------------------------------------------------------------------------
 
