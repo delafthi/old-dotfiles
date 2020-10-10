@@ -3,3 +3,5 @@
 	email = delafontaineth@protonmail.com
 [core]
 	editor = nvim
+[init]
+	templatedir = ~/.git_template
