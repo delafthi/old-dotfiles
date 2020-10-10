@@ -1,0 +1,13 @@
+# Unbind hjkln
+toogle_keep_vp
+next_img
+toggle_pause
+save_filelist
+# Define key bindings
+scroll_left     [h]
+scroll_down     [j]
+scroll_up       [k]
+scroll_right    [l]
+zoom_in         [C-j]
+zoom_out        [C-k]
+zoom_default    [n]
