@@ -112,7 +112,7 @@ endif
 highlight User1 ctermbg=green ctermfg=black
 highlight User2 ctermbg=008 ctermfg=white
 highlight User3 ctermbg=black ctermfg=008
-set statusline="%1* %t %2* %3* %= %3* %-A | %-7u:%-7g | %-5s %2* %l %1* %-d"
+set statusline="%1* %t %2* vifm %3* %= %3* %-A | %-7u:%-7g | %-5s %2* %l %1* %-d"
 
 " ------------------------------------------------------------------------------
 
