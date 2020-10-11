@@ -233,6 +233,8 @@ fileviewer *.[1-8] man ./%c | col -b
 
 " Images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+        \ {View in feh}
+        \ feh -Z --keep-zoom-vp --auto-rotate --start-at %f,
         \ {View in sxiv}
         \ sxiv %f,
         \ {View in gpicview}
