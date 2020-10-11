@@ -1,13 +1,22 @@
-# Unbind hjkln
+# Unbind keys
 toogle_keep_vp
 next_img
 toggle_pause
 save_filelist
+toggle_fixed_geometry
 # Define key bindings
-scroll_left     [h]
-scroll_down     [j]
-scroll_up       [k]
-scroll_right    [l]
-zoom_in         [C-j]
-zoom_out        [C-k]
-zoom_default    [n]
+scroll_left     h
+scroll_down     j
+scroll_up       k
+scroll_right    l
+prev_dir        H
+next_img        J
+prev_img        K
+next_dir        L
+orient_3        C-h
+orient_1        C-l
+zoom_out        C-j
+zoom_in         C-k
+zoom_default    n
+jump_first      g
+jump_last       G
