@@ -121,6 +121,7 @@ myManageHook = composeAll
     , resource =? "Dialog" --> doFloat
     , className =? "Pavucontrol" --> doFloat
     , className =? "Xmessage" --> doFloat
+    , title =? "Microsoft Teams Notification" --> doFloat
     ]
 
 --------------------------------------------------------------------------------
