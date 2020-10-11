@@ -113,8 +113,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- and click on the client you're interested in.
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "mpv" --> doShift( myWorkspaces !! 7 )
-    , className =? "Gimp" --> doShift( myWorkspaces !! 7 )
+    [ className =? "Gimp" --> doShift( myWorkspaces !! 7 )
     , className =? "Darktable" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
     , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
@@ -335,6 +334,7 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "xrandr --output HDMI2 --auto --right-of eDP1"
     spawnOnce "light-locker &"
     spawnOnce "xss-lock -- light-locker -n &"
     spawnOnce "udiskie &"
