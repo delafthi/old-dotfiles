@@ -1,18 +1,18 @@
-# Unbind keys
-toogle_keep_vp
+# Unbind used keys
+toggle_keep_vp
 next_img
 toggle_pause
 save_filelist
 toggle_fixed_geometry
 # Define key bindings
-scroll_left     h
-scroll_down     j
-scroll_up       k
-scroll_right    l
-prev_dir        H
-next_img        J
-prev_img        K
-next_dir        L
+prev_dir        h
+next_img        j
+prev_img        k
+next_dir        l
+scroll_left     H
+scroll_down     J
+scroll_up       K
+scroll_right    L
 orient_3        C-h
 orient_1        C-l
 zoom_out        C-j
