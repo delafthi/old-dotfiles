@@ -32,8 +32,7 @@ call plug#begin('~/.config/nvim/plugged')
                                                         " Markdown preview
     Plug 'godlygeek/tabular'                            " tabular plugin is used
                                                         " to format tables
-"{{ Syntax Highlighting and Colors }}
-    Plug 'ap/vim-css-color'                             " Color previews for CSS
+"{{ Syntax Highlighting and Colors }} Plug 'ap/vim-css-color'                             " Color previews for CSS
     Plug 'sheerun/vim-polyglot'                         " Syntax highlighting
                                                         " for various languages
                                                        
@@ -114,15 +113,31 @@ let mapleader = " "
 " Open terminal inside Vim
 noremap <Leader>tt :new term://bash<cr>
 " Remap splits navigation to just CTRL + hjkl
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+inoremap <C-h> <C-\><C-N><C-w>h
+inoremap <C-j> <C-\><C-N><C-w>j
+inoremap <C-k> <C-\><C-N><C-w>k
+inoremap <C-l> <C-\><C-N><C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
-noremap <silent> <C-Left> :vertical resize +2<cr>
-noremap <silent> <C-Right> :vertical resize -2<cr>
-noremap <silent> <C-Up> :resize +2<cr>
-noremap <silent> <C-Down> :resize -2<cr>
+tnoremap <silent> <C-Left> <C-\><C-N> :vertical resize +2<cr>
+tnoremap <silent> <C-Up> <C-\><C-N> :resize +2<cr>
+tnoremap <silent> <C-Down> <C-\><C-N> :resize -2<cr>
+tnoremap <silent> <C-Right> <C-\><C-N> :vertical resize -2<cr>
+inoremap <silent> <C-Left> :vertical resize +2<cr>
+inoremap <silent> <C-Up> :resize +2<cr>
+inoremap <silent> <C-Down> :resize -2<cr>
+inoremap <silent> <C-Right> :vertical resize -2<cr>
+nnoremap <silent> <C-Left> :vertical resize +2<cr>
+nnoremap <silent> <C-Up> :resize +2<cr>
+nnoremap <silent> <C-Down> :resize -2<cr>
+nnoremap <silent> <C-Right> :vertical resize -2<cr>
 " Change 2 split windows from vert to horiz or horiz to vert
 nnoremap <Leader>th <C-w>t<C-w>H
 nnoremap <Leader>tk <C-w>t<C-w>K
