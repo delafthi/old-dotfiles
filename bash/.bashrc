@@ -63,10 +63,6 @@ alias htop="htop -t"
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
-# git 
-alias gs="git status"
-alias gl="git log"
-
 # Environment variables
 #----------------------------------------------------------
 export HISTCONTROL=ignoreboth             # no duplicate entries
