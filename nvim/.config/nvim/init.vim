@@ -32,7 +32,8 @@ call plug#begin('~/.config/nvim/plugged')
                                                         " Markdown preview
     Plug 'godlygeek/tabular'                            " tabular plugin is used
                                                         " to format tables
-"{{ Syntax Highlighting and Colors }} Plug 'ap/vim-css-color'                             " Color previews for CSS
+"{{ Syntax Highlighting and Colors }}
+    Plug 'ap/vim-css-color'                             " Color previews for CSS
     Plug 'sheerun/vim-polyglot'                         " Syntax highlighting
                                                         " for various languages
                                                        
@@ -196,8 +197,8 @@ endfunction
 let g:rainbow_active = 1    " Enable rainbow brackets
 " Set colors for rainbow brackets
 let g:rainbow_conf = {
-\	'guifgs': ['#61afef', '#d19a66', '#56b6c2', '#c678dd'],
-\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\	'guifgs': ['#d19a66', '#e06c75', '#c678dd', '#61afef'],
+\	'ctermfgs': ['yellow', 'red', 'magenta', 'blue'],
 \}
 
 
