@@ -197,8 +197,8 @@ endfunction
 let g:rainbow_active = 1    " Enable rainbow brackets
 " Set colors for rainbow brackets
 let g:rainbow_conf = {
-\	'guifgs': ['#d19a66', '#e06c75', '#c678dd', '#61afef'],
-\	'ctermfgs': ['yellow', 'red', 'magenta', 'blue'],
+\	'guifgs': ['#61afef', '#c678dd', '#e06c75', '#d19a66'],
+\	'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
 \}
 
 
