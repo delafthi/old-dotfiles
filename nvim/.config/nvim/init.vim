@@ -143,6 +143,8 @@ nnoremap <Leader>th <C-w>t<C-w>H
 nnoremap <Leader>tk <C-w>t<C-w>K
 " Show current buffer and change to buffer
 nnoremap <Leader>bb :ls<CR>:b<Space>
+" Kill specified buffer
+nnoremap <Leader>bk :ls<CR>:bd<Space>
 " Open files located in the same dir in with the current file is edited
 nnoremap <leader>ff :e<Space>
 
