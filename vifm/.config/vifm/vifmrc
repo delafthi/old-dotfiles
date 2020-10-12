@@ -231,6 +231,8 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filextype *.html,*.htm
+        \ {Open with nvim}
+        \ vicmd %f
         \ {Open with dwb}
         \ dwb %f %i &,
         \ {Open with firefox}
