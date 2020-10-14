@@ -11,42 +11,35 @@ filetype off                  " required
 call plug#begin('~/.config/nvim/plugged')
 
 "{{ The Basics }}
-    Plug 'itchyny/lightline.vim'                        " Lightline statusbar
-    Plug 'luochen1990/rainbow'			                " More colors in vim
+    Plug 'itchyny/lightline.vim' " Lightline statusbar
+    Plug 'luochen1990/rainbow' " More colors in vim
 "{{ File management }}
-    Plug 'vifm/vifm.vim'                                " Vifm
-    Plug 'scrooloose/nerdtree'                          " Nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'      " Highlighting Nerdtree
-    Plug 'ryanoasis/vim-devicons'                       " Icons for Nerdtree
+    Plug 'vifm/vifm.vim' " Vifm
+    Plug 'scrooloose/nerdtree' " Nerdtree
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Highlighting Nerdtree
+    Plug 'ryanoasis/vim-devicons' " Icons for Nerdtree
 "{{ Productivity }}
-    Plug 'vimwiki/vimwiki'                              " VimWiki 
-    Plug 'https://github.com/alok/notational-fzf-vim'   " Better searching for 
-                                                        " notes
-    Plug 'michal-h21/vim-zettel'                        " A Zettelkasten Plugin 
-                                                        " for Vim and Vim-Wiki
-    Plug 'jreybert/vimagit'                             " Magit-like plugin for 
-                                                        " vim
-    Plug 'tpope/vim-surround'                           " Change surrounding
-                                                        " marks
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } 
-                                                        " Markdown preview
-    Plug 'godlygeek/tabular'                            " tabular plugin is used
-                                                        " to format tables
+    Plug 'vimwiki/vimwiki' " VimWiki 
+    Plug 'https://github.com/alok/notational-fzf-vim' " Better searching for notes
+    Plug 'michal-h21/vim-zettel' " A Zettelkasten Plugin for Vim and Vim-Wiki
+    Plug 'jreybert/vimagit' " Magit-like plugin for vim
+    Plug 'tpope/vim-surround' " Change surrounding marks
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
+    Plug 'preservim/nerdcommenter' " Comment out lines
+    Plug 'godlygeek/tabular' " Tabular plugin is used to format tables
+    Plug 'ludovicchabant/vim-gutentags' " Automaticly generated tags
 "{{ Syntax Highlighting and Colors }}
-    Plug 'ap/vim-css-color'                             " Color previews for CSS
-    Plug 'sheerun/vim-polyglot'                         " Syntax highlighting
-                                                        " for various languages
+    Plug 'ap/vim-css-color' " Color previews for CSS
+    Plug 'sheerun/vim-polyglot' " Syntax highlighting for various languages
                                                        
 "{{ Junegunn Choi Plugins }}
-    Plug 'junegunn/goyo.vim'                            " Distraction-free 
-                                                        " viewing
-    Plug 'junegunn/limelight.vim'                       " Hyperfocus on a range
-    Plug 'junegunn/fzf'                                 " A Finder Plugin
-    Plug 'junegunn/fzf.vim'                             " Vim implementation of
-                                                        " fzf
-    Plug 'junegunn/vim-emoji'                           " Vim needs emojis!
+    Plug 'junegunn/goyo.vim' " Distraction-free viewing
+    Plug 'junegunn/limelight.vim' " Hyperfocus on a range
+    Plug 'junegunn/fzf' " A Finder Plugin
+    Plug 'junegunn/fzf.vim' " Vim implementation of fzf
+    Plug 'junegunn/vim-emoji' " Vim needs emojis!
 "{{ Themes }}
-    Plug 'joshdick/onedark.vim'                         " One dark theme
+    Plug 'joshdick/onedark.vim' " One dark theme
 
 call plug#end()
 
