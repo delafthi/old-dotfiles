@@ -141,6 +141,10 @@ nnoremap <Leader>bb :ls<CR>:b<Space>
 nnoremap <Leader>bk :ls<CR>:bd<Space>
 " Open files located in the same dir in with the current file is edited
 nnoremap <leader>ff :e<Space>
+" Enable/Disable spell checker
+map <Leader>o :setlocal spell!<CR>
+" Save file as sudo on files that require root permission
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Mouse settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,10 +180,10 @@ au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 
 " Other functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" Automatically deletes all trailing whitespace and newlines at end of file on
+" save.
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritepre * %s/\n\+\%$//e
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
