@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Highlighting Nerdtree
     Plug 'ryanoasis/vim-devicons' " Icons for Nerdtree
 "{{ Productivity }}
-    Plug 'vimwiki/vimwiki' " VimWiki 
+    Plug 'vimwiki/vimwiki' " VimWiki
     Plug 'https://github.com/alok/notational-fzf-vim' " Better searching for notes
     Plug 'michal-h21/vim-zettel' " A Zettelkasten Plugin for Vim and Vim-Wiki
     Plug 'jreybert/vimagit' " Magit-like plugin for vim
@@ -31,7 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
 "{{ Syntax Highlighting and Colors }}
     Plug 'ap/vim-css-color' " Color previews for CSS
     Plug 'sheerun/vim-polyglot' " Syntax highlighting for various languages
-                                                       
+
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim' " Distraction-free viewing
     Plug 'junegunn/limelight.vim' " Hyperfocus on a range
@@ -49,10 +49,10 @@ filetype plugin indent on    " required
 
 " Brief help
 " :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just 
+" :PluginInstall    - installs plugins; append `!` to update or just
 "                     :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to 
+" :PluginClean      - confirms removal of unused plugins; append `!` to
 "                     auto-approve removal
 
 " see :h vundle for more details or wiki for FAQ
@@ -61,12 +61,12 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set path+=**            					" Searches current directory 
+set path+=**            					" Searches current directory
                                             " recursively.
-set wildmenu		            			" Display all matches when tab 
+set wildmenu		            			" Display all matches when tab
                                             " complete.
 set wildmode=longest:full,full              " Set autocompletion mode
-set wildoptions-=pum                        " Remove popup menu for 
+set wildoptions-=pum                        " Remove popup menu for
                                             " autocompletion
 set incsearch          		                " Incremental search
 set hidden                     		        " Needed to keep multiple buffers
@@ -93,7 +93,7 @@ let g:rehash256 = 1
 
 " Splits and Tabbed Files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright   " The new window is is displayed on the right or 
+set splitbelow splitright   " The new window is is displayed on the right or
                             " below
 set fillchars+=vert:\|      " Fill the vertical separator with |
 set fillchars+=stlnc:-      " Fill the horizontal separator with -
@@ -148,7 +148,7 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Mouse settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set mouse=nvicr " Sets the current mouse mode as normal, visual , insert and 
+set mouse=nvicr " Sets the current mouse mode as normal, visual , insert and
 
 " Text, tab and indent related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,11 +159,9 @@ set tabstop=4                   " One tab == four spaces.
 
 " Colorscheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nord theme settings (must be set before colorscheme)
-colorscheme onedark 
+colorscheme onedark
 
-set colorcolumn=80                                
-highlight ColorColumns ctermbg=1 guibg=#3b4252
+set colorcolumn=80
 
 " Gui options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
