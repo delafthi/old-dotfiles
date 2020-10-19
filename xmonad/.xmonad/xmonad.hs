@@ -52,7 +52,7 @@ myTerminal = "alacritty"
 
 -- The preferred browser
 myBrowser :: String
-myBrowser = "firefox"
+myBrowser = "brave"
 
 -- The preferred GUI editor
 myEditor :: String
@@ -96,9 +96,9 @@ myWorkspaces :: [String]
 myWorkspaces = clickable. (map xmobarEscape)
                 $ ["www","dev","chat","virt","sys","mus","doc","vis"]
     where
-        clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>" 
+        clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>"
                       | (i,ws) <- zip [1 .. 9] l,
-                      let n = i 
+                      let n = i
                       ]
 
 -- Count windows
@@ -127,7 +127,7 @@ myManageHook = composeAll
 --------------------------------------------------------------------------------
 -- Layouts:
 
-myLayoutHook = avoidStruts $ 
+myLayoutHook = avoidStruts $
     tall
     ||| twopane
     ||| noBorders tabs
@@ -139,7 +139,7 @@ myLayoutHook = avoidStruts $
         -- TwoPane layout
         twopane = renamed[Replace "twopane"]
             $ mySpacing spacing
-            $ TwoPane delta ratio 
+            $ TwoPane delta ratio
         -- Tabbed full screen layout
         tabs = renamed[Replace "tabs"]
             $ tabbed shrinkText myTabConfig
@@ -190,7 +190,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -p 'Run: '")
 
-    -- launch browser 
+    -- launch browser
     , ((modm              , xK_b     ), spawn myBrowser)
 
     -- launch file browser
@@ -271,13 +271,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- XF86AudioPrev
     , ((0                 , 0x1008ff16), spawn "")
     -- XF86AudioPlay
-    , ((0                 , 0x1008ff14), spawn "") 
+    , ((0                 , 0x1008ff14), spawn "")
     -- XF86Calculator
     , ((0                 , 0x1008ff1d), runOrRaise "speedcrunch" (resource =? "speedcrunch"))
     -- XF86BrightnessUp
-    , ((0                 , 0x1008ff02), spawn "") 
+    , ((0                 , 0x1008ff02), spawn "")
     -- XF86BrightnessDown
-    , ((0                 , 0x1008ff03), spawn "") 
+    , ((0                 , 0x1008ff03), spawn "")
     ]
     ++
 
@@ -355,7 +355,7 @@ myStartupHook = do
 -- main:
 
 main :: IO ()
-main = do 
+main = do
     xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
     xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc"
     xmonad $ def

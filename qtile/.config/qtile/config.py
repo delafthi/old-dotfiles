@@ -21,7 +21,7 @@ from libqtile.lazy import lazy
 myTerminal = "alacritty"
 
 # The preferred browser
-myBrowser = "firefox"
+myBrowser = "brave"
 
 # The preferred GUI editor
 myEditor = "emacsclient -c -a 'emacs'"

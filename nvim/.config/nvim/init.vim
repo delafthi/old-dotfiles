@@ -266,7 +266,7 @@ let g:python_highlight_all = 1
 " insert mode is exited
 let g:mkdp_refresh_slow = 0
 " Browser to open the preview
-let g:mkdp_browser = 'firefox'
+let g:mkdp_browser = 'brave'
 let g:mkdp_page_tittle = '${name}'
 
 autocmd Filetype mkd,vimwiki nmap <Leader>mp <Plug>MarkdownPreviewToggle
