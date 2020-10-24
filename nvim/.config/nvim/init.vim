@@ -39,7 +39,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf.vim' " Vim implementation of fzf
     Plug 'junegunn/vim-emoji' " Vim needs emojis!
 "{{ Themes }}
-    Plug 'joshdick/onedark.vim' " One dark theme
+    Plug 'sonph/onehalf', { 'rtp': 'vim' } "onehalf theme
 
 call plug#end()
 
@@ -73,8 +73,10 @@ set hidden                     		        " Needed to keep multiple buffers
                                             " open
 set nobackup                   		        " No auto backups
 set noswapfile              		        " No swap
-if (match($COLORTERM, "truecolor") != -1)   " If terminal supports truecolor
-    set termguicolors                       " Set 24bit color support
+if exists('+termguicolors')                 " If terminal supports truecolor
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors                         " Set 24bit color support
 else                                        " Else
     set t_Co=256               		        " Set 256 color mode
 endif
@@ -159,7 +161,7 @@ set tabstop=4                   " One tab == four spaces.
 
 " Colorscheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme onedark
+colorscheme onehalfdark
 
 set colorcolumn=80
 
@@ -192,7 +194,7 @@ autocmd BufWritepre * %s/\n\+\%$//e
 let g:rainbow_active = 1    " Enable rainbow brackets
 " Set colors for rainbow brackets
 let g:rainbow_conf = {
-\	'guifgs': ['#61afef', '#c678dd', '#e06c75', '#d19a66'],
+\	'guifgs': ['#61afef', '#c678dd', '#e06c75', '#e5c07b'],
 \	'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
 \}
 
@@ -205,7 +207,7 @@ nnoremap <Leader>gg :Goyo<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set nord as the lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'onehalfdark',
       \ }
 
 set laststatus=2    " Always show the statusline
