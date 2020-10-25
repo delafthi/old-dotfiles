@@ -21,19 +21,19 @@ shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # checks term size when bash regains control
 
-# Aiases 
+# Aiases
 #----------------------------------------------------------
 
 alias sudo="sudo "
 
 # navigation
-alias ..="cd .." 
+alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
-# vim 
+# vim
 alias vim="nvim"
 alias vi="nvim"
 alias :q="exit"
@@ -56,7 +56,7 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
 alias rm="rm -i"
 alias mv="mv -i"
-alias minicom="minicom -m -c on" 
+alias minicom="minicom -m -c on"
 alias htop="htop -t"
 
 # shutdown or reboot
@@ -106,7 +106,7 @@ bind "set vi-cmd-mode-string \1$COLOR_CYAN\2[NORMAL]\1$COLOR_RESET\2"
 
 # Prompt
 color_prompt=yes
-PS1="\[$COLOR_BLUE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+PS1="\[$COLOR_BLUE\]\u\[$COLOR_RESET\]@\[$COLOR_BLUE\]\h:\[$COLOR_YELLOW\]\w"
 PS1+="\[\$(git_color)\]"        # colors git status
 PS1+="\$(git_branch)"            # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
@@ -142,7 +142,7 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
