@@ -15,14 +15,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'luochen1990/rainbow' " More colors in vim
 "{{ File management }}
     Plug 'vifm/vifm.vim' " Vifm
-    Plug 'scrooloose/nerdtree' " Nerdtree
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Highlighting Nerdtree
-    Plug 'ryanoasis/vim-devicons' " Icons for Nerdtree
 "{{ Productivity }}
     Plug 'vimwiki/vimwiki' " VimWiki
-    Plug 'https://github.com/alok/notational-fzf-vim' " Better searching for notes
-    Plug 'michal-h21/vim-zettel' " A Zettelkasten Plugin for Vim and Vim-Wiki
-    Plug 'jreybert/vimagit' " Magit-like plugin for vim
     Plug 'tpope/vim-surround' " Change surrounding marks
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
     Plug 'preservim/nerdcommenter' " Comment out lines
@@ -34,10 +28,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim' " Distraction-free viewing
-    Plug 'junegunn/limelight.vim' " Hyperfocus on a range
-    Plug 'junegunn/fzf' " A Finder Plugin
-    Plug 'junegunn/fzf.vim' " Vim implementation of fzf
-    Plug 'junegunn/vim-emoji' " Vim needs emojis!
 "{{ Themes }}
     Plug 'sonph/onehalf', { 'rtp': 'vim' } "onehalf theme
 
@@ -213,18 +203,6 @@ let g:lightline = {
 set laststatus=2    " Always show the statusline
 set noshowmode      " Uncomment to prevent non-normal modes showing in powerline
 
-" NERDTree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remap Ctrl-n to toggle the nerdtree
-nnoremap <C-n> :NERDTreeToggle<cr>
-" Visual nerd tree settings
-let g:NERDTreeDirArrowExpandable = '►'
-let g:NERDTreeDirArrowCollapsible = '▼'
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize=38
-
 " Vifm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>vv :Vifm<cr>
@@ -242,25 +220,6 @@ let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_auto_chdir = 1
-
-" Zettelkasten
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:nv_search_paths = ['~/Documents/vimwiki/']
-let g:zettel_options = [{"front_matter" : [["tags", ""], ["type", "note",]],
-                        \ "template" :  "~/Templates/zettel.tpl"}]
-let g:zettel_format = '%Y%m%d%H%M%S'
-let g:zettel_default_mappings = 1
-   augroup filetype_vimwiki
-     autocmd!
-     autocmd FileType vimwiki inoremap <silent> [[ [[<esc><Plug>ZettelSearchMap
-     autocmd FileType vimwiki nnoremap T <Plug>ZettelYankNameMap
-     autocmd FileType vimwiki xnoremap z <Plug>ZettelNewSelectedMap
-     autocmd FileType vimwiki nnoremap gZ <Plug>ZettelReplaceFileWithLink
-   augroup END
-
-" Python-syntax
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:python_highlight_all = 1
 
 " Markdown-Preview
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
