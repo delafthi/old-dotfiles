@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "{{ Junegunn Choi Plugins }}
     Plug 'junegunn/goyo.vim' " Distraction-free viewing
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
 "{{ Themes }}
     Plug 'sonph/onehalf', { 'rtp': 'vim' } "onehalf theme
 
@@ -132,7 +133,7 @@ nnoremap <Leader>bb :ls<CR>:b<Space>
 " Kill specified buffer
 nnoremap <Leader>bk :ls<CR>:bd<Space>
 " Open files located in the same dir in with the current file is edited
-nnoremap <leader>ff :e<Space>
+nnoremap <leader>ff :FZF<Space>
 " Enable/Disable spell checker
 map <Leader>o :setlocal spell!<CR>
 " Save file as sudo on files that require root permission
@@ -192,6 +193,9 @@ let g:rainbow_conf = {
 " Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gg :Goyo<cr>
+
+" Fuzzy Finder
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " LightLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
