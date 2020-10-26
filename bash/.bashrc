@@ -38,9 +38,6 @@ alias vim="nvim"
 alias vi="nvim"
 alias :q="exit"
 
-# emacs
-alias emacs="emacsclient -c -a 'emacs'"
-
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first" # my preferred listing
 alias la="exa -a --color=always --group-directories-first"  # all files and dirs
@@ -69,7 +66,7 @@ export HISTCONTROL=ignoreboth             # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
-export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
+export SSH_KEY_PATH="~/.ssh/rsa_id"       # Set default ssh key path
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 # Path

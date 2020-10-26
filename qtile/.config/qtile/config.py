@@ -23,9 +23,6 @@ myTerminal = "alacritty"
 # The preferred browser
 myBrowser = "brave"
 
-# The preferred GUI editor
-myEditor = "emacsclient -c -a 'emacs'"
-
 # The preferred file manager
 myFileManager = "pcmanfm"
 
@@ -181,10 +178,6 @@ keys = [
         Key([mod], "f",
             lazy.spawn(myFileManager),
             desc="Launches the file manager"
-            ),
-        Key([mod], "e",
-            lazy.spawn(myEditor),
-            desc="Launches emacs"
             ),
         Key([mod], "q",
             lazy.window.kill(),

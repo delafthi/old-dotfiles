@@ -14,14 +14,14 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 ################################################################################
-# Powerlevel10k 
+# Powerlevel10k
 ################################################################################
 
 # Instant prompt mode.
 #
 #   - off:     Disable instant prompt. Choose this if you've tried instant
 #              prompt and found it incompatible with your zsh configuration
-#              files.  
+#              files.
 #   - quiet:   Enable instant prompt and don't print warnings
 #              when detecting console output during zsh initialization. Choose
 #              this if you've read and understood
@@ -328,24 +328,21 @@ _comp_options+=(globdots)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 ################################################################################
-# Aiases 
+# Aiases
 
 alias sudo="sudo "
 
 # navigation
-alias ..="cd .." 
+alias ..="cd .."
 alias ...="cd ../.."
 alias .3="cd ../../.."
 alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
-# vim 
+# vim
 alias vim="nvim"
 alias vi="nvim"
 alias :q="exit"
-
-# emacs
-alias emacs="emacsclient -c -a 'emacs'"
 
 # Changing "ls" to "exa"
 alias ls="exa -al --color=always --group-directories-first"
@@ -362,7 +359,7 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
 alias rm="rm -i"
 alias mv="mv -i"
-alias minicom="minicom -m -c on" 
+alias minicom="minicom -m -c on"
 alias htop="htop -t"
 
 # shutdown or reboot
@@ -375,7 +372,6 @@ export HISTCONTROL=ignoreboth             # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
-export VISUAL="emacs"                     # $VISUAL use Emacs in GUI mode
 export SSH_KEY_PATH="~/.ssh/rsa_id"       # Set default ssh key path
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
@@ -408,7 +404,7 @@ COLOR_RESET="\033[0m"
 
 # Prompt
 color_prompt=yes
-PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w" 
+PS1="\[$COLOR_PURPLE\]\u@\h:\[$COLOR_YELLOW\]\w"
 if [ -e /etc/bash_completion.d/git-prompt ]; then
     PS1+="\[\$(git_color)\]"        # colors git status
     PS1+="\$(__git_ps1)"            # prints current branch
@@ -445,7 +441,7 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else

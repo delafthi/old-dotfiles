@@ -54,10 +54,6 @@ myTerminal = "alacritty"
 myBrowser :: String
 myBrowser = "brave"
 
--- The preferred GUI editor
-myEditor :: String
-myEditor = "emacsclient -c -a 'emacs'"
-
 -- The preferred file manager
 myFileBrowser :: String
 myFileBrowser = "pcmanfm"
@@ -195,9 +191,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch file browser
     , ((modm              , xK_f     ), spawn myFileBrowser)
-
-    -- launch emacs
-    , ((modm              , xK_e     ), spawn myEditor)
 
     -- close focused window
     , ((modm              , xK_q     ), kill)
@@ -347,7 +340,6 @@ myStartupHook = do
     spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x282c34 --padding 5 --monitor 1 --iconspacing 3 &"
     spawnOnce "dunst &"
     spawnOnce "~/.fehbg &"
-    spawnOnce "emacs --daemon &"
     spawnOnce "pcmanfm -d &"
     setWMName "LG3D"
 
