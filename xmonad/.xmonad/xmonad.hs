@@ -328,6 +328,7 @@ myLogHook = return ()
 
 myStartupHook :: X ()
 myStartupHook = do
+    spawnOnce "xsetroot -cursor_name left_ptr &"
     spawnOnce "xrandr --output HDMI2 --auto --right-of eDP1"
     spawnOnce "light-locker &"
     spawnOnce "xss-lock -- light-locker -n &"

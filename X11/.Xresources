@@ -7,7 +7,8 @@ Xft.rgba: rgb
 Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
-Xcursor.theme: xcursor-breeze-snow
+Xcursor.theme: Breeze_Snow
+Xcursor.size: 16
 
 ! half
 !----------------------------------------------------------
