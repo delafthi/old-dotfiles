@@ -1,5 +1,4 @@
 function fish_mode_prompt
-    fish_vi_cursor
     switch $fish_bind_mode
         case default
             set_color green

@@ -1,3 +1,4 @@
 function fish_title
-    echo $argv[1]
+    echo 'fish ' $argv[1] ' '
+    pwd
 end
