@@ -52,7 +52,7 @@ abbr -a sr "sudo reboot"
 #-------------------------------------------------------------------------------
 # Environment variables
 set -U EDITOR "nvim" # $EDITOR use Neovim in terminal
-set SSH_KEY_PATH="~/.ssh/rsa_id" # Set default ssh key path
+set SSH_KEY_PATH "~/.ssh/rsa_id" # Set default ssh key path
 set -U GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 # Path
