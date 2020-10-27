@@ -7,7 +7,7 @@
 
 -- Base
 import XMonad
-import System.IO (hPutStrLn)
+import System.IO (hPutStrLn, Handle)
 import System.Exit
 import qualified XMonad.StackSet as W
 
@@ -42,6 +42,7 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 -- Utilities
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Scratchpad
 
 --------------------------------------------------------------------------------
 -- Default applications
@@ -108,9 +109,19 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
+myManageHook = manageCompose <+> manageScratchPad
+
+manageScratchPad :: ManageHook
+manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
+    where
+        h = 0.1
+        w = 1
+        t = 1-h
+        l = 1-w
+
+manageCompose :: ManageHook
+manageCompose = composeAll
     [ className =? "Gimp" --> doShift( myWorkspaces !! 7 )
-    , className =? "Darktable" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
     , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
     , className =? "libreoffice-startcenter" --> doShift( myWorkspaces !! 6 )
@@ -182,6 +193,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
     [ ((modm              , xK_Return), spawn $ XMonad.terminal conf)
+
+    -- launch scratchpad
+    , ((modm              , xK_s     ), scratchpadSpawnActionTerminal myTerminal)
 
     -- launch dmenu
     , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -p 'Run: '")
@@ -320,8 +334,22 @@ myEventHook = mempty
 --------------------------------------------------------------------------------
 -- Status bars and logging:
 
-myLogHook :: X ()
-myLogHook = return ()
+myLogHook :: Handle -> Handle -> X ()
+myLogHook xmproc0 xmproc1 = dynamicLogWithPP xmobarPP
+    { ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
+    , ppVisible = xmobarColor "#c678dd" ""
+    , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
+    , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'". noScratchPad
+    , ppHiddenNoWindows = xmobarColor "#5c6370" "". noScratchPad
+    , ppWsSep = " "
+    , ppTitle = xmobarColor "#61afef" "" . shorten 60
+    , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
+    , ppExtras = [windowCount]
+    , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
+    , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
+    }
+        where
+            noScratchPad ws = if ws == "NSP" then "" else ws
 
 --------------------------------------------------------------------------------
 -- Startup hooks:
@@ -365,21 +393,9 @@ main = do
         , layoutHook         = myLayoutHook
         , manageHook         = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
         , handleEventHook    = myEventHook <+> docksEventHook
-        , logHook            = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
-            { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
-            , ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
-            , ppVisible = xmobarColor "#c678dd" ""
-            , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'"
-            , ppHiddenNoWindows = xmobarColor "#5c6370" ""
-            , ppWsSep = " "
-            , ppTitle = xmobarColor "#61afef" "" . shorten 60
-            , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
-            , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
-            , ppExtras = [windowCount]
-            , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
-            }
+        , logHook            = workspaceHistoryHook <+> myLogHook xmproc0 xmproc1
         , startupHook        = myStartupHook
-    }
+        }
 
 --------------------------------------------------------------------------------
 -- help
@@ -388,6 +404,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "",
     "-- launching and killing programs",
     "mod-Return       Launch the terminal",
+    "mod-s            Launch scratchpads",
     "mod-Shift-Return Launch dmenu",
     "mod-b            Launch Firefox",
     "mod-f            Launch the file browser",
