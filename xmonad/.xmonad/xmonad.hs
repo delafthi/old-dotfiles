@@ -109,18 +109,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = manageCompose <+> manageScratchPad
-
-manageScratchPad :: ManageHook
-manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
-    where
-        h = 0.1
-        w = 1
-        t = 1-h
-        l = 1-w
-
-manageCompose :: ManageHook
-manageCompose = composeAll
+myManageHook = composeAll
     [ className =? "Gimp" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
     , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
@@ -129,7 +118,15 @@ manageCompose = composeAll
     , className =? "Pavucontrol" --> doFloat
     , className =? "Xmessage" --> doFloat
     , title =? "Microsoft Teams Notification" --> doFloat
-    ]
+    ] <+> manageScratchPad
+
+manageScratchPad :: ManageHook
+manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
+    where
+        h = 0.1
+        w = 1
+        t = 1-h
+        l = 1-w
 
 --------------------------------------------------------------------------------
 -- Layouts:
