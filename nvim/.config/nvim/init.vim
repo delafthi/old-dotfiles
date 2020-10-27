@@ -1,8 +1,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Neovim config file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible " be iMproved, required
+filetype off " required
+let g:polyglot_disabled = ['markdown.plugin']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins managed by Vundle
@@ -10,27 +11,24 @@ filetype off                  " required
 
 call plug#begin('~/.config/nvim/plugged')
 
-"{{ The Basics }}
-    Plug 'itchyny/lightline.vim' " Lightline statusbar
-    Plug 'luochen1990/rainbow' " More colors in vim
-"{{ File management }}
-    Plug 'vifm/vifm.vim' " Vifm
-"{{ Productivity }}
-    Plug 'vimwiki/vimwiki' " VimWiki
-    Plug 'tpope/vim-surround' " Change surrounding marks
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Markdown preview
-    Plug 'preservim/nerdcommenter' " Comment out lines
-    Plug 'godlygeek/tabular' " Tabular plugin is used to format tables
-    Plug 'ludovicchabant/vim-gutentags' " Automaticly generated tags
-"{{ Syntax Highlighting and Colors }}
-    Plug 'ap/vim-css-color' " Color previews for CSS
-    Plug 'sheerun/vim-polyglot' " Syntax highlighting for various languages
-
-"{{ Junegunn Choi Plugins }}
-    Plug 'junegunn/goyo.vim' " Distraction-free viewing
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy finder
-"{{ Themes }}
-    Plug 'sonph/onehalf', { 'rtp': 'vim' } "onehalf theme
+" File management
+    Plug 'vifm/vifm.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Productivity
+    Plug 'junegunn/goyo.vim'
+    Plug 'vimwiki/vimwiki'
+    Plug 'tpope/vim-surround'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+    Plug 'preservim/nerdcommenter'
+    Plug 'godlygeek/tabular'
+    Plug 'ludovicchabant/vim-gutentags'
+" Syntax Highlighting and Colors
+    Plug 'luochen1990/rainbow'
+    Plug 'ap/vim-css-color'
+    Plug 'sheerun/vim-polyglot'
+" Themes
+    Plug 'itchyny/lightline.vim'
+    Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
 
@@ -52,51 +50,132 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set path+=**            					" Searches current directory
-                                            " recursively.
-set wildmenu		            			" Display all matches when tab
-                                            " complete.
-set wildmode=longest:full,full              " Set autocompletion mode
-set wildoptions-=pum                        " Remove popup menu for
-                                            " autocompletion
-set incsearch          		                " Incremental search
-set hidden                     		        " Needed to keep multiple buffers
-                                            " open
-set nobackup                   		        " No auto backups
-set noswapfile              		        " No swap
-if exists('+termguicolors')                 " If terminal supports truecolor
+" Set window title by default.
+set title
+" Don't display the intro message on starting Vim.
+set shortmess+=I
+" Searches current directory recursiveliy
+set path+=**
+" Needed to keep multiple buffers open
+set hidden
+" No auto backups
+set nobackup
+" No swap files
+set noswapfile
+" If terminal supports truecolor
+if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors                         " Set 24bit color support
-else                                        " Else
-    set t_Co=256               		        " Set 256 color mode
+  " Set 24bit color support
+  set termguicolors
+else
+    " Else set 256 color mode
+    set t_Co=256
 endif
-set number relativenumber 	                " Display line numbers
-set clipboard=unnamedplus         	        " Copy/paste between vim and other
-                                            " programs.
-set cursorline                              " Highligt cursorline
-set textwidth=80                            " Set textwidth to 80 columns
-set wrap linebreak                          " Prevents word wrapping in between
-                                            " words
-set formatoptions=tcqj                      " Set options of automatic formating
-set spelllang=en_us,de_ch                   " Set spell check languages
-syntax on
-filetype plugin on
+" Display line numbers
+set number relativenumber
+" Copy/paste between vim and other programs
+set clipboard=unnamedplus
+" Enable better theme colors
 let g:rehash256 = 1
+" Reload unchanged files automatically.
+set autoread
+" Auto reload if file was changed somewhere else (for autoread)
+au CursorHold * checktime
+" Disable annoying error and beeps
+set noerrorbells
+set visualbell
+" Don't parse modelines (google "vim modeline vulnerability").
+set nomodeline
+" Search upwards for tags file instead only locally
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+" Fix issues with fish shell
+" https://github.com/tpope/vim-sensible/issues/50
+if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
+  set shell=/usr/bin/env\ bash
+endif
+
+" Autocomplete
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Display all matches when tab complete
+set wildmenu
+" Set autocomplete mode
+set wildmode=longest,full
+" Remove popup menu for autocompletion
+set wildoptions-=pum
+
+" Search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Incremental search
+set incsearch
+" Enable search highlighting.
+set hlsearch
+" Ignore case when searching.
+set ignorecase
+" Don't ignore case when search has capital letter
+" (although also don't ignore case by default).
+set smartcase
+" Use dash as word separator.
+set iskeyword+=-
+
+" Text, tab and indent related
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highligt cursorline
+set cursorline
+" Keep 8 lines above or below t
+set scrolloff=8
+" Set textwidth to 80 columns
+set textwidth=80
+" Prevents word wrapping in between words
+set wrap linebreak
+" String to put at the start of the line if the line has been wrapped
+let &showbreak='>>> '
+" On 'wrap' display the last line even if it does not fit
+set display +=lastline
+" Set options of automatic formating
+set formatoptions=tcqj
+" Set spell check languages
+set spelllang=en_us,de_ch
+" Enable syntax highlighting
+syntax on
+" Use spaces instead of tabs.
+set expandtab
+" Be smart using tabs ;)
+set smarttab
+" One tab == four spaces.
+set shiftwidth=4
+" One tab == four spaces.
+set tabstop=4
+
+" Colorscheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Enable corolscheme onehalfdark
+colorscheme onehalfdark
+" Set column 80 to be highlighted
+set colorcolumn=80
 
 " Splits and Tabbed Files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set splitbelow splitright   " The new window is is displayed on the right or
-                            " below
-set fillchars+=vert:\|      " Fill the vertical separator with |
-set fillchars+=stlnc:-      " Fill the horizontal separator with -
+" The new window is is displayed on the right or below
+set splitbelow splitright
+" Fill the vertical separator with |
+set fillchars+=vert:\|
+" Fill the horizontal separator with -
+set fillchars+=stlnc:-
 
 " Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 inoremap ii <Esc>
+" Remap hjkl keys to navigate also the wrapped lines
+vmap j gj
+vmap k gk
+nmap j gj
+nmap k gk
 " Remap Leader key to SPACE
-let mapleader = " "
+let mapleader = "\<Space>"
 " Open terminal inside Vim
 noremap <Leader>tt :new term://bash<cr>
 " Remap splits navigation to just CTRL + hjkl
@@ -133,7 +212,7 @@ nnoremap <Leader>bb :ls<CR>:b<Space>
 " Kill specified buffer
 nnoremap <Leader>bk :ls<CR>:bd<Space>
 " Open files located in the same dir in with the current file is edited
-nnoremap <leader>ff :FZF<Space>
+nnoremap <leader>ff :e<Space>
 " Enable/Disable spell checker
 map <Leader>o :setlocal spell!<CR>
 " Save file as sudo on files that require root permission
@@ -141,27 +220,19 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Mouse settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set mouse=nvicr " Sets the current mouse mode as normal, visual , insert and
-
-" Text, tab and indent related
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set expandtab                   " Use spaces instead of tabs.
-set smarttab                    " Be smart using tabs ;)
-set shiftwidth=4                " One tab == four spaces.
-set tabstop=4                   " One tab == four spaces.
-
-" Colorscheme
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme onehalfdark
-
-set colorcolumn=80
+" Sets the current mouse mode as normal, visual , insert and
+set mouse=nvicr
 
 " Gui options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+"remove menu bar
+set guioptions-=m
+"remove toolbar
+set guioptions-=T
+"remove right-hand scroll bar
+set guioptions-=r
+"remove left-hand scroll bar
+set guioptions-=L
 
 " File types
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,7 +253,8 @@ autocmd BufWritepre * %s/\n\+\%$//e
 
 " Rainbow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:rainbow_active = 1    " Enable rainbow brackets
+" Enable rainbow brackets
+let g:rainbow_active = 1
 " Set colors for rainbow brackets
 let g:rainbow_conf = {
 \	'guifgs': ['#61afef', '#c678dd', '#e06c75', '#e5c07b'],
@@ -203,9 +275,10 @@ nnoremap <Leader>gg :Goyo<cr>
 let g:lightline = {
       \ 'colorscheme': 'onehalfdark',
       \ }
-
-set laststatus=2    " Always show the statusline
-set noshowmode      " Uncomment to prevent non-normal modes showing in powerline
+" Always show the statusline
+set laststatus=2
+" Uncomment to prevent non-normal modes showing in powerline
+set noshowmode
 
 " Vifm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -217,7 +290,8 @@ nnoremap <Leader>tv :TabVifm<cr>
 
 " VimWiki
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType vimwiki :RainbowToggleOff  " Disable rainbow mode in vimwiki
+" Disable rainbow mode in vimwiki
+autocmd FileType vimwiki :RainbowToggleOff
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md',
                       \ 'auto_tags': 1, 'auto_toc': 1}]
@@ -232,6 +306,7 @@ let g:vimwiki_auto_chdir = 1
 let g:mkdp_refresh_slow = 0
 " Browser to open the preview
 let g:mkdp_browser = 'brave'
+" Define title of the browser page
 let g:mkdp_page_tittle = '${name}'
-
+" Set keybinging to launch the markdown preview
 autocmd Filetype mkd,vimwiki nmap <Leader>mp <Plug>MarkdownPreviewToggle
