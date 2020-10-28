@@ -54,7 +54,7 @@ myTerminal = "alacritty"
 
 -- The preferred browser
 myBrowser :: String
-myBrowser = "brave"
+myBrowser = "firefox"
 
 -- The preferred file manager
 myFileBrowser :: String
