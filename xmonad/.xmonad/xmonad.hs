@@ -24,7 +24,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
 import XMonad.Hooks.SetWMName
-import Xmonad.Hooks.EwmhDesktops
+import XMonad.Hooks.EwmhDesktops
 
 -- Layout
 import XMonad.Layout.SimplestFloat
