@@ -21,7 +21,7 @@ from libqtile.lazy import lazy
 myTerminal = "alacritty"
 
 # The preferred browser
-myBrowser = "brave"
+myBrowser = "firefox"
 
 # The preferred file manager
 myFileManager = "pcmanfm"

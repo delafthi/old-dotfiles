@@ -305,7 +305,7 @@ let g:vimwiki_auto_chdir = 1
 " insert mode is exited
 let g:mkdp_refresh_slow = 0
 " Browser to open the preview
-let g:mkdp_browser = 'brave'
+let g:mkdp_browser = 'firefox'
 " Define title of the browser page
 let g:mkdp_page_tittle = '${name}'
 " Set keybinging to launch the markdown preview

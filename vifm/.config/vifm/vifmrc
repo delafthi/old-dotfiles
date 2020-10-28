@@ -235,8 +235,6 @@ filextype *.html,*.htm
         \ vicmd %f &,
         \ {Open with dwb}
         \ dwb %f %i &,
-        \ {Open with brave}
-        \ brave %f &,
         \ {Open with firefox}
         \ firefox %f &,
         \ {Open with uzbl}
