@@ -36,8 +36,8 @@ alias la="exa -a --color=always --group-directories-first"
 alias ll="exa -l --color=always --group-directories-first"
 alias lt="exa -aT --color=always --group-directories-first"
 
-# Colorize grep output and changing it to ripgrep
-alias grep="rg --color=auto"
+# Colorize grep output
+alias grep="grep --color=auto"
 
 # adding flags
 alias cp="cp -i"                          # confirm before overwriting something
