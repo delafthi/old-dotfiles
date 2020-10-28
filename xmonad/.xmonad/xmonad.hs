@@ -24,6 +24,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
 import XMonad.Hooks.SetWMName
+import Xmonad.Hooks.EwmhDesktops
 
 -- Layout
 import XMonad.Layout.SimplestFloat
@@ -376,7 +377,7 @@ main :: IO ()
 main = do
     xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
     xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc"
-    xmonad $ def
+    xmonad $ ewmh def
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
         , clickJustFocuses   = myClickJustFocuses
