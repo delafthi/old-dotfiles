@@ -11,9 +11,10 @@ set -gx MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist no
 set fish_greeting
 
 #-------------------------------------------------------------------------------
-# Abbreviations
+# Abbreviations and aliases
 
-abbr -a sudo "sudo "
+# sudo
+alias sudo="sudo "
 
 # navigation
 abbr -a .. "cd .."
@@ -22,32 +23,34 @@ abbr -a .3 "cd ../../.."
 abbr -a .4 "cd ../../../.."
 abbr -a .5 "cd ../../../../.."
 
-# vim
-abbr -a vim "nvim"
-abbr -a vi "nvim"
+# vim like exit
 abbr -a :q "exit"
 
+# neovim
+alias vim="nvim"
+alias vi="nvim"
+
 # Changing "ls" to "exa"
-abbr -a ls "exa -al --color=always --group-directories-first" # my preferred listing
-abbr -a la "exa -a --color=always --group-directories-first"  # all files and dirs
-abbr -a ll "exa -l --color=always --group-directories-first"  # long format
-abbr -a lt "exa -aT --color=always --group-directories-first" # tree listing
+alias ls="exa -al --color=always --group-directories-first"
+alias la="exa -a --color=always --group-directories-first"
+alias ll="exa -l --color=always --group-directories-first"
+alias lt="exa -aT --color=always --group-directories-first"
 
 # Colorize grep output and changing it to ripgrep
-abbr -a grep "grep --color=auto"
+alias grep="rg --color=auto"
 
 # adding flags
-abbr -a cp "cp -i"                          # confirm before overwriting something
-abbr -a df "df -h"                          # human-readable sizes
-abbr -a free "free -m"                      # show sizes in MB
-abbr -a rm "rm -i"
-abbr -a mv "mv -i"
-abbr -a minicom "minicom -m -c on"
-abbr -a htop "htop -t"
+alias cp="cp -i"                          # confirm before overwriting something
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in MB
+alias rm="rm -i"
+alias mv="mv -i"
+alias minicom="minicom -m -c on"
+alias htop="htop -t"
 
 # shutdown or reboot
-abbr -a ssn "sudo shutdown now"
-abbr -a sr "sudo reboot"
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
 
 #-------------------------------------------------------------------------------
 # Environment variables
