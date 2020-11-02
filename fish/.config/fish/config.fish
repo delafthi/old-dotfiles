@@ -54,17 +54,17 @@ alias sr="sudo reboot"
 
 #-------------------------------------------------------------------------------
 # Environment variables
-set -U EDITOR "nvim" # $EDITOR use Neovim in terminal
-set SSH_KEY_PATH "~/.ssh/rsa_id" # Set default ssh key path
-set -U GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+set -gx EDITOR "nvim" # $EDITOR use Neovim in terminal
+set -gx SSH_KEY_PATH "~/.ssh/rsa_id" # Set default ssh key path
+set -gx GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 # Path
 if test -d $HOME/.bin
-  set -U PATH $HOME/.bin $PATH
+  set -gx PATH $HOME/.bin $PATH
 end
 
 if test -d $HOME/.local/bin
-  set -U PATH $HOME/.local/bin $PATH
+  set -gx PATH $HOME/.local/bin $PATH
 end
 
 #-------------------------------------------------------------------------------
