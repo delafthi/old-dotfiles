@@ -246,8 +246,8 @@ au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically deletes all trailing whitespace and newlines at end of file on
 " save.
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritepre * %s/\n\+\%$//e
+autocmd BufWritePre * mark m | %s/\s\+$//e | 'm
+autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
