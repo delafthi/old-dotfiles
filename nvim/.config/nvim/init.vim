@@ -211,8 +211,10 @@ nnoremap <Leader>tk <C-w>t<C-w>K
 nnoremap <Leader>bb :ls<CR>:b<Space>
 " Kill specified buffer
 nnoremap <Leader>bk :ls<CR>:bd<Space>
-" Open files located in the same dir in with the current file is edited
-nnoremap <leader>ff :e<Space>
+" Search for files located in the same in recursive dirs
+nnoremap <leader>ff :call fzf#run(fzf#wrap({'sink': 'e', 'down': '30%'}))<CR>
+nnoremap <leader>fv :call fzf#run(fzf#wrap({'sink': 'vs', 'down': '30%'}))<CR>
+nnoremap <leader>fs :call fzf#run(fzf#wrap({'sink': 'sp', 'down': '30%'}))<CR>
 " Enable/Disable spell checker
 map <Leader>o :setlocal spell!<CR>
 " Save file as sudo on files that require root permission
@@ -261,13 +263,28 @@ let g:rainbow_conf = {
 \	'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
 \}
 
-
 " Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gg :Goyo<cr>
 
 " Fuzzy Finder
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Comment'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Constant'],
+  \ 'fg+':     ['fg', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine'],
+  \ 'hl+':     ['fg', 'Function'],
+  \ 'gutter':  ['bg', 'Cursorline'],
+  \ 'info':    ['fg', 'Title'],
+  \ 'border':  ['fg', 'TabLine'],
+  \ 'prompt':  ['fg', 'PreProc'],
+  \ 'pointer': ['fg', 'Function'],
+  \ 'marker':  ['fg', 'Identifier'],
+  \ 'spinner': ['fg', 'PreProc'],
+  \ 'header':  ['fg', 'Title'] }
 
 " LightLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
