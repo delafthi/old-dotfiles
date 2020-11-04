@@ -1,16 +1,42 @@
+################################################################################
 # ~/.config/fish/config.fish: executed by fish for non-login shells.
+################################################################################
 
-#-------------------------------------------------------------------------------
+################################################################################
 # General settings
 
-# set vim as the manpager
-set -gx MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
-
-# Fish options
 # Remove greeting message
 set fish_greeting
 
-#-------------------------------------------------------------------------------
+# PS1
+function fish_prompt
+    set_color $fish_color_user
+    echo -n (whoami)
+    set_color normal
+    echo -n '@'
+    set_color $fish_color_host
+    echo -n 'TDTPE15'
+    set_color $fish_color_cwd
+    echo -n (prompt_pwd)
+    set_color normal
+    echo -n (fish_vcs_prompt)
+    set_color blue
+    echo -n '$ '
+end
+
+# Set window title
+function fish_title
+    echo 'fish ' $argv[1] ' '
+    pwd
+end
+
+# Set vim keybinding
+function fish_user_key_bindings
+    fish_vi_cursor
+    fish_vi_key_bindings
+end
+
+################################################################################
 # Abbreviations and aliases
 
 # sudo
@@ -52,8 +78,11 @@ alias htop="htop -t"
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
-#-------------------------------------------------------------------------------
+################################################################################
 # Environment variables
+
+# set vim as the manpager
+set -gx MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
 set -gx EDITOR "nvim" # $EDITOR use Neovim in terminal
 set -gx SSH_KEY_PATH "~/.ssh/rsa_id" # Set default ssh key path
 set -gx GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
@@ -67,8 +96,32 @@ if test -d $HOME/.local/bin
   set -gx PATH $HOME/.local/bin $PATH
 end
 
-#-------------------------------------------------------------------------------
+################################################################################
 # Visuals
+
+# Vi mode prompt
+function fish_mode_prompt
+    switch $fish_bind_mode
+        case default
+            set_color green
+            echo '[NORMAL]'
+        case insert
+            echo ''
+        case replace_one
+            set_color green
+            echo '[NORMAL]'
+        case replace
+            set_color red
+            echo '[REPLACE]'
+        case visual
+            set_color yellow
+            echo '[VISUAL]'
+        case '*'
+            set_color --bold red
+            echo '[???]'
+    end
+    set_color normal
+end
 
 # Set the fish syntax highlighting colors
 set fish_color_normal white
@@ -115,3 +168,47 @@ set __fish_git_prompt_color_untrackedfiles yellow
 set __fish_git_prompt_color_upstream magenta
 set __fish_git_prompt_color_branch green
 set __fish_git_prompt_color_branch_detached red --bold
+
+################################################################################
+# Functions
+
+function ex --description "Function to extract most types of archives"
+    if test -f $argv
+        switch $argv
+            case --help
+                echo "usage: ex <file>"
+            case *.tar.bz2
+                tar xjf $argv
+            case *.tar.gz
+                tar xzf $argv
+            case *.bz2
+                bunzip2 $argv
+            case *.rar
+                unrar x $argv
+            case *.gz
+                gunzip $argv
+            case *.tar
+                tar xf $argv
+            case *.tbz2
+                tar xjf $argv
+            case *.tgz
+                tar xzf $argv
+            case *.zip
+                unzip $argv
+            case *.Z
+                uncompress $argv
+            case *.7z
+                7z x $argv
+            case *.deb
+                tar x $argv
+            case *.tar.xz
+                tar xf $argv
+            case *.tar.zst
+                unzstd $argv
+            case *
+                echo "'$argv' cannot be extracted via ex"
+        end
+    else
+        echo "'$argv' is not a valid file"
+    end
+end
