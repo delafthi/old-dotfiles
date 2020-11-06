@@ -10,7 +10,7 @@ Xft.lcdfilter: lcdfilter
 Xcursor.theme: Breeze_Snow
 Xcursor.size: 16
 
-! half
+! onehalf
 !----------------------------------------------------------
 ! black
 *.color0:       #282c34
