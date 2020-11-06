@@ -39,9 +39,6 @@ end
 ################################################################################
 # Abbreviations and aliases
 
-# sudo
-alias sudo="sudo "
-
 # navigation
 abbr -a .. "cd .."
 abbr -a ... "cd ../.."
