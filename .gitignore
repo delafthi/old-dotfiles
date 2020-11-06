@@ -7,3 +7,4 @@ qtile/.config/qtile/__pycache__/**
 tags
 gtk/.config/gtk-3.0/**
 gtk/.config/gtk-2.0/**
+fish/.config/fish/fish_variables
