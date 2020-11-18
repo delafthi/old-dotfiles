@@ -2,6 +2,7 @@ vifm/.config/vifm/vifminfo
 vifm/.config/vifm/vifminfo.json*
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugged/**
+nvim/.config/nvim/spell/*.spl
 xmonad/.xmonad/**
 qtile/.config/qtile/__pycache__/**
 tags
