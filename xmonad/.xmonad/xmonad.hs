@@ -54,7 +54,7 @@ myTerminal = "alacritty"
 
 -- The preferred browser
 myBrowser :: String
-myBrowser = "firefox"
+myBrowser = "brave"
 
 -- The preferred file manager
 myFileBrowser :: String
@@ -332,8 +332,8 @@ myEventHook = mempty
 --------------------------------------------------------------------------------
 -- Status bars and logging:
 
-myLogHook :: Handle -> Handle -> X ()
-myLogHook xmproc0 xmproc1 = dynamicLogWithPP xmobarPP
+myLogHook :: Handle -> Handle -> Handle -> X ()
+myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP xmobarPP
     { ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
     , ppVisible = xmobarColor "#c678dd" ""
     , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
@@ -344,7 +344,7 @@ myLogHook xmproc0 xmproc1 = dynamicLogWithPP xmobarPP
     , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
     , ppExtras = [windowCount]
     , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
-    , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
+    , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x
     }
         where
             noScratchPad ws = if ws == "NSP" then "" else ws
@@ -355,7 +355,7 @@ myLogHook xmproc0 xmproc1 = dynamicLogWithPP xmobarPP
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr &"
-    spawnOnce "xrandr --output HDMI2 --auto --right-of eDP1"
+    spawnOnce "xrandr --output HDMI0"
     spawnOnce "light-locker &"
     spawnOnce "xss-lock -- light-locker -n &"
     spawnOnce "udiskie &"
@@ -377,6 +377,7 @@ main :: IO ()
 main = do
     xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
     xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc"
+    xmproc2 <- spawnPipe "xmobar -x 2 ~/.xmonad/.xmobarrc"
     xmonad $ ewmh def
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
@@ -391,7 +392,7 @@ main = do
         , layoutHook         = myLayoutHook
         , manageHook         = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
         , handleEventHook    = myEventHook <+> docksEventHook
-        , logHook            = workspaceHistoryHook <+> myLogHook xmproc0 xmproc1
+        , logHook            = workspaceHistoryHook <+> myLogHook xmproc0 xmproc1 xmproc2
         , startupHook        = myStartupHook
         }
 
@@ -404,7 +405,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Return       Launch the terminal",
     "mod-s            Launch scratchpads",
     "mod-Shift-Return Launch dmenu",
-    "mod-b            Launch Firefox",
+    "mod-b            Launch brave",
     "mod-f            Launch the file browser",
     "mod-Shift-e      Launch emacs",
     "mod-q            Close/kill the focused window",
