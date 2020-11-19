@@ -13,7 +13,7 @@ Config { font = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true"
         , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
         , pickBroadest =     False   -- choose widest display (multi-monitor)
         , persistent =       True    -- enable/disable hiding (True = disabled)
-        , template = "<action=xdotool key super+shift+Return><fc=#c678dd><fn=1>  </fn></fc></action><fc=#5c6370><fn=2>|</fn></fc><fc=#98c379> %UnsafeStdinReader% </fc>}{<fc=#5c6370><fn=2>|</fn></fc><fc=#e06c75> %multicpu% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#d19a66> %multicoretemp% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#e5c07b> %memory% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#98c379> %battery% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#c678dd> %date% </fc><fc=#5c6370><fn=2>|</fn></fc>%trayerpad%"
+        , template = "<action=xdotool key super+shift+Return><fc=#c678dd><fn=1>  </fn></fc></action><fc=#5c6370><fn=2>|</fn></fc><fc=#98c379> %UnsafeStdinReader% </fc>}{<fc=#5c6370><fn=2>|</fn></fc><fc=#e06c75> %multicpu% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#e5c07b> %memory% </fc><fc=#5c6370><fn=2>|</fn></fc><fc=#c678dd> %date% </fc><fc=#5c6370><fn=2>|</fn></fc>%trayerpad%"
         , commands =
                     -- Allows xmonad to feed strings to xmobar
                     [ Run UnsafeStdinReader
