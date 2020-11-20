@@ -321,7 +321,7 @@ nnoremap <silent> <Leader>tv :TabVifm<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Disable rainbow mode in vimwiki
 autocmd FileType vimwiki :RainbowToggleOff
-let g:vimwiki_list = [{'path': '~Vimwiki/',
+let g:vimwiki_list = [{'path': '~/Vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md',
                       \ 'auto_tags': 1, 'auto_toc': 1}]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
