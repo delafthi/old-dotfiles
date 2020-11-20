@@ -44,7 +44,7 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 -- Utilities
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
-import XMonad.Util.Scratchpad
+import XMonad.Util.NamedScratchpad
 
 --------------------------------------------------------------------------------
 -- Default applications
@@ -120,15 +120,22 @@ myManageHook = composeAll
     , className =? "Pavucontrol" --> doFloat
     , className =? "Xmessage" --> doFloat
     , title =? "Microsoft Teams Notification" --> doFloat
-    ] <+> manageScratchPad
+    ] <+> namedScratchpadManageHook myNamedScratchpads
 
-manageScratchPad :: ManageHook
-manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
+--------------------------------------------------------------------------------
+-- Scratchpads
+
+myNamedScratchpads :: [NamedScratchpad]
+myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
     where
-        h = 0.1
-        w = 1
-        t = 1-h
-        l = 1-w
+        spawnTerm = myTerminal ++ " -t scratchpad"
+        findTerm = (title =? "scratchpad")
+        manageTerm = customFloating $ W.RationalRect l t w h
+            where
+                h = 0.9
+                w = 0.9
+                t = 0.95 - h
+                l = 0.95 - w
 
 --------------------------------------------------------------------------------
 -- Layouts:
@@ -194,7 +201,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm              , xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch scratchpad
-    , ((modm              , xK_s     ), scratchpadSpawnActionTerminal myTerminal)
+    , ((modm              , xK_s     ), namedScratchpadAction myNamedScratchpads "terminal")
 
     -- launch dmenu
     , ((modm .|. shiftMask, xK_Return), spawn "dmenu_run -p 'Run: '")
@@ -337,8 +344,8 @@ myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP xmobarPP
     { ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
     , ppVisible = xmobarColor "#c678dd" ""
     , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
-    , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'". noScratchPad
-    , ppHiddenNoWindows = xmobarColor "#5c6370" "". noScratchPad
+    , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'" . noScratchPad
+    , ppHiddenNoWindows = xmobarColor "#5c6370" "" . noScratchPad
     , ppWsSep = " "
     , ppTitle = xmobarColor "#61afef" "" . shorten 60
     , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
