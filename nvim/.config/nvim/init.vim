@@ -21,10 +21,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'preservim/nerdcommenter'
     Plug 'godlygeek/tabular'
-" Syntax Highlighting and Colors
+" Syntax Highlighting and language support
     Plug 'luochen1990/rainbow'
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
+    Plug 'neovim/nvim-lspconfig'
 " Themes
     Plug 'itchyny/lightline.vim'
     Plug 'sonph/onehalf', { 'rtp': 'vim' }
@@ -49,6 +50,8 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load lua init file
+lua require('init')
 " Set window title by default.
 set title
 " Don't display the intro message on starting Vim.
@@ -168,28 +171,38 @@ set fillchars+=stlnc:-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 inoremap ii <Esc>
-" Remap hjkl keys to navigate also the wrapped lines
-vmap j gj
-vmap k gk
-nmap j gj
-nmap k gk
 " Remap Leader key to SPACE
 let mapleader = "\<Space>"
+" Remap hjkl keys to navigate also the wrapped lines
+vmap <silent> j gj
+vmap <silent> k gk
+nmap <silent> j gj
+nmap <silent> k gk
+" LSP keybindings
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 " Open terminal inside Vim
-noremap <Leader>tt :new term://bash<cr>
+noremap <silent> <Leader>tt :new term://bash<cr>
 " Remap splits navigation to just CTRL + hjkl
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
-inoremap <C-h> <C-\><C-N><C-w>h
-inoremap <C-j> <C-\><C-N><C-w>j
-inoremap <C-k> <C-\><C-N><C-w>k
-inoremap <C-l> <C-\><C-N><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+tnoremap <silent> <C-h> <C-\><C-N><C-w>h
+tnoremap <silent> <C-j> <C-\><C-N><C-w>j
+tnoremap <silent> <C-k> <C-\><C-N><C-w>k
+tnoremap <silent> <C-l> <C-\><C-N><C-w>l
+inoremap <silent> <C-h> <C-\><C-N><C-w>h
+inoremap <silent> <C-j> <C-\><C-N><C-w>j
+inoremap <silent> <C-k> <C-\><C-N><C-w>k
+inoremap <silent> <C-l> <C-\><C-N><C-w>l
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
 tnoremap <silent> <C-Left> <C-\><C-N> :vertical resize +2<cr>
 tnoremap <silent> <C-Up> <C-\><C-N> :resize +2<cr>
@@ -204,18 +217,18 @@ nnoremap <silent> <C-Up> :resize +2<cr>
 nnoremap <silent> <C-Down> :resize -2<cr>
 nnoremap <silent> <C-Right> :vertical resize -2<cr>
 " Change 2 split windows from vert to horiz or horiz to vert
-nnoremap <Leader>th <C-w>t<C-w>H
-nnoremap <Leader>tk <C-w>t<C-w>K
+nnoremap <silent> <Leader>th <C-w>t<C-w>H
+nnoremap <silent> <Leader>tk <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nnoremap <Leader>bb :ls<CR>:b<Space>
+nnoremap <silent> <Leader>bb :ls<CR>:b<Space>
 " Kill specified buffer
-nnoremap <Leader>bk :ls<CR>:bd<Space>
+nnoremap <silent> <Leader>bk :ls<CR>:bd<Space>
 " Search for files located in the same in recursive dirs
-nnoremap <leader>ff :call fzf#run(fzf#wrap({'sink': 'e', 'down': '30%'}))<CR>
-nnoremap <leader>fv :call fzf#run(fzf#wrap({'sink': 'vs', 'down': '30%'}))<CR>
-nnoremap <leader>fs :call fzf#run(fzf#wrap({'sink': 'sp', 'down': '30%'}))<CR>
+nnoremap <silent> <Leader>ff :call fzf#run(fzf#wrap({'sink': 'e', 'down': '30%'}))<CR>
+nnoremap <silent> <Leader>fv :call fzf#run(fzf#wrap({'sink': 'vs', 'down': '30%'}))<CR>
+nnoremap <silent> <Leader>fs :call fzf#run(fzf#wrap({'sink': 'sp', 'down': '30%'}))<CR>
 " Enable/Disable spell checker
-map <Leader>o :setlocal spell!<CR>
+map <silent> <Leader>o :setlocal spell!<CR>
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
@@ -298,11 +311,11 @@ set noshowmode
 
 " Vifm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>vv :Vifm<cr>
-nnoremap <Leader>vs :VsplitVifm<cr>
-nnoremap <Leader>sp :SplitVifm<cr>
-nnoremap <Leader>dv :DiffVifm<cr>
-nnoremap <Leader>tv :TabVifm<cr>
+nnoremap <silent> <Leader>vv :Vifm<cr>
+nnoremap <silent> <Leader>vs :VsplitVifm<cr>
+nnoremap <silent> <Leader>sp :SplitVifm<cr>
+nnoremap <silent> <Leader>dv :DiffVifm<cr>
+nnoremap <silent> <Leader>tv :TabVifm<cr>
 
 " VimWiki
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -325,4 +338,4 @@ let g:mkdp_browser = 'firefox'
 " Define title of the browser page
 let g:mkdp_page_tittle = '${name}'
 " Set keybinging to launch the markdown preview
-autocmd Filetype mkd,vimwiki nmap <Leader>mp <Plug>MarkdownPreviewToggle
+autocmd Filetype mkd,vimwiki nmap <silent> <Leader>mp <Plug>MarkdownPreviewToggle
