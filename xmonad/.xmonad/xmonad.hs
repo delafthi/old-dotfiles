@@ -32,6 +32,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
+import XMonad.Layout.Magnifier
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
@@ -141,7 +142,7 @@ myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
 -- Layouts:
 
 myLayoutHook = avoidStruts $
-    tall
+    magnifiercz 1.2 tall
     ||| twopane
     ||| noBorders tabs
     where
@@ -239,8 +240,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move focus to the previous window
     , ((modm              , xK_k     ), windows W.focusUp  )
 
-    -- Swap the focused window and the master window
+    -- swap the focused window and the master window
     , ((modm              , xK_m     ), windows W.swapMaster)
+
+    -- magnify the focused window
+    , ((modm .|. shiftMask, xK_m     ), sendMessage Toggle)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
