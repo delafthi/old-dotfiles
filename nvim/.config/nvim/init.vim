@@ -1,6 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Neovim config file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set nocompatible " be iMproved, required
 filetype off " required
 let g:polyglot_disabled = ['markdown.plugin']
@@ -28,7 +29,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neovim/nvim-lspconfig'
 " Themes
     Plug 'itchyny/lightline.vim'
-    Plug 'sonph/onehalf', { 'rtp': 'vim' }
+    Plug 'delafthi/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
 
@@ -50,6 +51,7 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Load lua init file
 lua require('init')
 " Set window title by default.
@@ -99,8 +101,9 @@ if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'
   set shell=/usr/bin/env\ bash
 endif
 
-" Autocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocomplete
+
 " Display all matches when tab complete
 set wildmenu
 " Set autocomplete mode
@@ -108,8 +111,9 @@ set wildmode=longest,full
 " Remove popup menu for autocompletion
 set wildoptions-=pum
 
-" Search
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search
+
 " Incremental search
 set incsearch
 " Enable search highlighting.
@@ -122,8 +126,9 @@ set smartcase
 " Use dash as word separator.
 set iskeyword+=-
 
-" Text, tab and indent related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent related
+
 " Highligt cursorline
 set cursorline
 " Keep 8 lines above or below t
@@ -151,15 +156,17 @@ set shiftwidth=4
 " One tab == four spaces.
 set tabstop=4
 
-" Colorscheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colorscheme
+
 "Enable corolscheme onehalfdark
 colorscheme onehalfdark
 " Set column 80 to be highlighted
 set colorcolumn=80
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits and Tabbed Files
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " The new window is is displayed on the right or below
 set splitbelow splitright
 " Fill the vertical separator with |
@@ -167,8 +174,9 @@ set fillchars+=vert:\|
 " Fill the horizontal separator with -
 set fillchars+=stlnc:-
 
-" Key mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key mappings
+
 " Remap ESC to ii
 inoremap ii <Esc>
 " Remap Leader key to SPACE
@@ -232,13 +240,15 @@ map <silent> <Leader>o :setlocal spell!<CR>
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
-" Mouse settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mouse settings
+
 " Sets the current mouse mode as normal, visual , insert and
 set mouse=nvicr
 
-" Gui options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gui options
+
 "remove menu bar
 set guioptions-=m
 "remove toolbar
@@ -248,14 +258,16 @@ set guioptions-=r
 "remove left-hand scroll bar
 set guioptions-=L
 
-" File types
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" File types
+
 " Markdown
 au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
 au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 
-" Other functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Other functions
+
 " Automatically deletes all trailing whitespace and newlines at end of file on
 " save.
 autocmd BufWritePre * mark m | %s/\s\+$//e | 'm
@@ -265,8 +277,9 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Rainbow
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow
+
 " Enable rainbow brackets
 let g:rainbow_active = 1
 " Set colors for rainbow brackets
@@ -275,12 +288,14 @@ let g:rainbow_conf = {
 \	'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
 \}
 
-" Goyo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Goyo
+
 nnoremap <Leader>gg :Goyo<cr>
 
-" Fuzzy Finder
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fuzzy Finder
+
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Comment'],
@@ -298,8 +313,9 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'PreProc'],
   \ 'header':  ['fg', 'Title'] }
 
-" LightLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LightLine
+
 " Set nord as the lightline.vim theme
 let g:lightline = {
       \ 'colorscheme': 'onehalfdark',
@@ -309,16 +325,18 @@ set laststatus=2
 " Uncomment to prevent non-normal modes showing in powerline
 set noshowmode
 
-" Vifm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vifm
+
 nnoremap <silent> <Leader>vv :Vifm<cr>
 nnoremap <silent> <Leader>vs :VsplitVifm<cr>
 nnoremap <silent> <Leader>sp :SplitVifm<cr>
 nnoremap <silent> <Leader>dv :DiffVifm<cr>
 nnoremap <silent> <Leader>tv :TabVifm<cr>
 
-" VimWiki
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimWiki
+
 " Disable rainbow mode in vimwiki
 autocmd FileType vimwiki :RainbowToggleOff
 let g:vimwiki_list = [{'path': '~/Vimwiki/',
@@ -328,8 +346,9 @@ let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_auto_chdir = 1
 
-" Markdown-Preview
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown-Preview
+
 " If set to 1 markdown preview is only refreshed, when the buffer is saved or
 " insert mode is exited
 let g:mkdp_refresh_slow = 0
