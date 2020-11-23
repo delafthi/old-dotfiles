@@ -32,7 +32,6 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
-import XMonad.Layout.Magnifier
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
@@ -69,6 +68,7 @@ myFileBrowser = "pcmanfm"
 -- Default font
 myFont :: String
 myFont = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true:hinting=true"
+
 -- Onehalf Colors
 black :: String
 black = "#282c34"
@@ -99,11 +99,11 @@ mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Border color for unfocused windows
 myNormalBorderColor :: String
-myNormalBorderColor = "#282c34"
+myNormalBorderColor = black
 
 -- Border color for focused windows
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#61afef"
+myFocusedBorderColor = blue
 
 -- Name of workspaces
 xmobarEscape :: String -> String
@@ -189,12 +189,12 @@ myLayoutHook = avoidStruts $
         delta = 3/100
         -- Config for tabbed layout
         myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
-                          , activeColor = "#61afef"
-                          , inactiveColor = "#282c34"
-                          , activeBorderColor = "#61afef"
-                          , inactiveBorderColor = "#5c6370"
-                          , activeTextColor = "#282c34"
-                          , inactiveTextColor = "#5c6370"
+                          , activeColor = blue
+                          , inactiveColor = black
+                          , activeBorderColor = blue
+                          , inactiveBorderColor = blackLite
+                          , activeTextColor = black
+                          , inactiveTextColor = blackLite
                           }
 
 --------------------------------------------------------------------------------
@@ -363,21 +363,19 @@ myEventHook = mempty
 -- Status bars and logging:
 
 myLogHook :: Handle -> Handle -> Handle -> X ()
-myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP xmobarPP
-    { ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
-    , ppVisible = xmobarColor "#c678dd" ""
-    , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
-    , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'" . noScratchPad
-    , ppHiddenNoWindows = xmobarColor "#5c6370" "" . noScratchPad
+myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ xmobarPP
+    { ppCurrent = xmobarColor blue "" . wrap "[" "]"
+    , ppVisible = xmobarColor magenta "" .wrap "<" ">"
+    , ppUrgent = xmobarColor red "" . wrap "!" "!"
+    , ppHidden = xmobarColor yellow "" . wrap "(" ")"
+    , ppHiddenNoWindows = xmobarColor blackLite ""
     , ppWsSep = " "
-    , ppTitle = xmobarColor "#61afef" "" . shorten 60
-    , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
+    , ppTitle = xmobarColor blue "" . shorten 60
+    , ppSep = "<fc=" ++ blackLite ++ "><fn=2> | </fn></fc>"
     , ppExtras = [windowCount]
     , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
     , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x
     }
-        where
-            noScratchPad ws = if ws == "NSP" then "" else ws
 
 --------------------------------------------------------------------------------
 -- Startup hooks:
@@ -463,7 +461,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-p  Push window back into tiling; unfloat and re-tile it",
     "",
     "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Deincrement the number of windows in the master area",
+    "mod-comma  (mod-,)   Decrement the number of windows in the master area",
     "mod-period (mod-.)   Increment the number of windows in the master area",
     "",
     "-- quit, or restart",
@@ -478,5 +476,5 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "",
     "-- Mouse bindings: default actions bound to mouse events",
     "mod-button1  Set the window to floating mode and move by dragging",
-    "mod-button2  Raise the window to the top of the stack",
-    "mod-button3  Set the window to floating mode and resize by dragging"]
+   "mod-button2  Raise the window to the top of the stack",
+    "mod-button2  Set the window to floating mode and resize by dragging"]
