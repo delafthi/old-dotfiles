@@ -14,7 +14,6 @@ import qualified XMonad.StackSet as W
 -- Actions
 import XMonad.Actions.WindowGo (runOrRaise)
 import XMonad.Actions.PhysicalScreens
-import XMonad.Actions.Search as S
 
 -- Data
 import Data.Monoid
@@ -33,6 +32,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
+import XMonad.Layout.Magnifier
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
@@ -42,11 +42,8 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.Magnifier as Mag
 
 -- Prompt
-import XMonad.Prompt
-import XMonad.Prompt.FuzzyMatch
 
 -- Utilities
-import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
@@ -102,11 +99,11 @@ mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Border color for unfocused windows
 myNormalBorderColor :: String
-myNormalBorderColor = black
+myNormalBorderColor = "#282c34"
 
 -- Border color for focused windows
 myFocusedBorderColor :: String
-myFocusedBorderColor = blue
+myFocusedBorderColor = "#61afef"
 
 -- Name of workspaces
 xmobarEscape :: String -> String
@@ -147,7 +144,7 @@ myManageHook = composeAll
     ] <+> namedScratchpadManageHook myNamedScratchpads
 
 --------------------------------------------------------------------------------
--- Scratchpads:
+-- Scratchpads
 
 myNamedScratchpads :: [NamedScratchpad]
 myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
@@ -160,28 +157,6 @@ myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
                 w = 0.9
                 t = 0.95 - h
                 l = 0.95 - w
-
---------------------------------------------------------------------------------
--- XPrompt Keymap:
-
---------------------------------------------------------------------------------
--- XPrompts:
-
---------------------------------------------------------------------------------
--- Search engines:
-
-archwiki :: S.SearchEngine
-archwiki = S.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
-
-searchList :: [(String, S.SearchEngine)]
-searchList = [ ("a", archwiki)
-             , ("d", S.duckduckgo)
-             , ("h", S.hackage)
-             , ("m", S.mathworld)
-             , ("t", S.thesaurus)
-             , ("v", S.vocabulary)
-             , ("w", S.wikipedia)
-             ]
 
 --------------------------------------------------------------------------------
 -- Layouts:
@@ -213,13 +188,13 @@ myLayoutHook = avoidStruts $
         -- Delta value when increasing or decreasing window size
         delta = 3/100
         -- Config for tabbed layout
-        myTabConfig = def { fontName = myFont
-                          , activeColor = blue
-                          , inactiveColor = black
-                          , activeBorderColor = blue
-                          , inactiveBorderColor = blackLite
-                          , activeTextColor = black
-                          , inactiveTextColor = blackLite
+        myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
+                          , activeColor = "#61afef"
+                          , inactiveColor = "#282c34"
+                          , activeBorderColor = "#61afef"
+                          , inactiveBorderColor = "#5c6370"
+                          , activeTextColor = "#282c34"
+                          , inactiveTextColor = "#5c6370"
                           }
 
 --------------------------------------------------------------------------------
@@ -362,11 +337,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]]
 
-myAdditionalKeys :: [(String, X())]
-myAdditionalKeys =
-    -- Search commands
-    [ ("M-s " ++ k, S.promptSearch amberXPConfig f) | (k, f) <- searchList
-    ]
 --------------------------------------------------------------------------------
 -- Mouse bindings:
 
@@ -397,14 +367,14 @@ myEventHook = mempty
 
 myLogHook :: Handle -> Handle -> Handle -> X ()
 myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP xmobarPP
-    { ppCurrent = xmobarColor blue "" . wrap "[" "]"
-    , ppVisible = xmobarColor magenta "" . wrap "<" ">"
-    , ppUrgent = xmobarColor red "" . wrap "!" "!"
-    , ppHidden = xmobarColor yellow "" . wrap "(" ")" . noScratchPad
-    , ppHiddenNoWindows = xmobarColor blackLite "" . noScratchPad
+    { ppCurrent = xmobarColor "#61afef" "" . wrap "[" "]"
+    , ppVisible = xmobarColor "#c678dd" ""
+    , ppUrgent = xmobarColor "#e06c75" "" . wrap "!" "!"
+    , ppHidden = xmobarColor "#d19a66" "" . wrap "'" "'" . noScratchPad
+    , ppHiddenNoWindows = xmobarColor "#5c6370" "" . noScratchPad
     , ppWsSep = " "
-    , ppTitle = xmobarColor blue "" . shorten 60
-    , ppSep = ("<fc=" ++ blackLite ++ "><fn=2> | </fn></fc>")
+    , ppTitle = xmobarColor "#61afef" "" . shorten 60
+    , ppSep = "<fc=#5c6370><fn=2> | </fn></fc>"
     , ppExtras = [windowCount]
     , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
     , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x
@@ -457,7 +427,7 @@ main = do
         , handleEventHook    = myEventHook <+> docksEventHook
         , logHook            = workspaceHistoryHook <+> myLogHook xmproc0 xmproc1 xmproc2
         , startupHook        = myStartupHook
-        } `additionalKeysP` myAdditionalKeys
+        }
 
 --------------------------------------------------------------------------------
 -- help
@@ -496,7 +466,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-p  Push window back into tiling; unfloat and re-tile it",
     "",
     "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Decrement the number of windows in the master area",
+    "mod-comma  (mod-,)   Deincrement the number of windows in the master area",
     "mod-period (mod-.)   Increment the number of windows in the master area",
     "",
     "-- quit, or restart",
