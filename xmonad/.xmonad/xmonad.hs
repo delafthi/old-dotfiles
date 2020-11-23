@@ -247,11 +247,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
      -- Rotate through the available layout
     , ((modm              , xK_space ), sendMessage NextLayout)
 
-    --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-
     -- Resize viewed windows to the correct size
-    , ((modm              , xK_n     ), refresh)
+    , ((modm              , xK_n     ), setLayout $ XMonad.layoutHook conf)
 
     -- Move focus to the next window
     , ((modm              , xK_Tab   ), windows W.focusDown)
