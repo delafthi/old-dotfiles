@@ -168,12 +168,12 @@ myLayoutHook = avoidStruts $
     where
         -- Tall layout
         tall = renamed[Replace "tall"]
-            $ Mag.magnifiercz 1.2
+            $ Mag.magnifierOff
             $ mySpacing spacing
             $ ResizableTall nmaster delta ratio []
         -- TwoPane layout
         twopane = renamed[Replace "twopane"]
-            $ Mag.magnifiercz 1.2
+            $ Mag.magnifierOff
             $ mySpacing spacing
             $ TwoPane delta ratio
         -- Tabbed full screen layout
