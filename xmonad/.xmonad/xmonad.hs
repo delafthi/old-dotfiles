@@ -39,7 +39,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
-import XMonad.Layout.Magnifier
+import XMonad.Layout.Magnifier as Mag
 
 -- Prompt
 import XMonad.Prompt
@@ -72,7 +72,6 @@ myFileBrowser = "pcmanfm"
 -- Default font
 myFont :: String
 myFont = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true:hinting=true"
-
 -- Onehalf Colors
 black :: String
 black = "#282c34"
@@ -188,16 +187,18 @@ searchList = [ ("a", archwiki)
 -- Layouts:
 
 myLayoutHook = avoidStruts $
-    magnifiercz 1.2 tall
+    tall
     ||| twopane
     ||| noBorders tabs
     where
         -- Tall layout
         tall = renamed[Replace "tall"]
+            $ Mag.magnifiercz 1.2
             $ mySpacing spacing
             $ ResizableTall nmaster delta ratio []
         -- TwoPane layout
         twopane = renamed[Replace "twopane"]
+            $ Mag.magnifiercz 1.2
             $ mySpacing spacing
             $ TwoPane delta ratio
         -- Tabbed full screen layout
@@ -290,7 +291,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_m     ), windows W.swapMaster)
 
     -- magnify the focused window
-    , ((modm .|. shiftMask, xK_m     ), sendMessage Toggle)
+    , ((modm .|. shiftMask, xK_m     ), sendMessage Mag.Toggle)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
