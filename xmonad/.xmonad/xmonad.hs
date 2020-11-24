@@ -396,6 +396,7 @@ myStartupHook = do
     spawnOnce "dunst &"
     spawnOnce "feh --bg-scale --randomize /usr/share/backgrounds/*"
     spawnOnce "pcmanfm -d &"
+    spawnOnce "unclutter --timeout 10 &"
     setWMName "LG3D"
 
 --------------------------------------------------------------------------------
