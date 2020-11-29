@@ -43,3 +43,23 @@ Xcursor.size: 16
 ! white
 *.color7:       #dcdfe4
 *.color15:      #dcdfe4
+
+! XTerm Configuration
+!----------------------------------------------------------
+XTerm*renderFont: true
+XTerm*faceName: xft:Roboto Mono Nerd Font, \
+                xft:JoyPixels:size=12, \
+                xft:Monospace:style=Medium:size=12
+XTerm*faceSize: 11
+XTerm*utf8: 2
+XTerm*locale: true
+
+XTerm*loginshell: true
+XTerm*savelines: 10000
+
+! double-click to select whole URLs :D
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+XTerm*foreground: #dcdfe4
+XTerm*background: #282c34
+XTerm*cursorColor: #dcdfe4
