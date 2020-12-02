@@ -163,6 +163,8 @@ set tabstop=4
 colorscheme onehalfdark
 " Set column 80 to be highlighted
 set colorcolumn=80
+" Highlight yanked text
+au TextYankPost * silent! lua vim.highlight.on_yank()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits and Tabbed Files
