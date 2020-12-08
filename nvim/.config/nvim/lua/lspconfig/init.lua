@@ -5,12 +5,22 @@
 --------------------------------------------------------------------------------
 -- LSP server settings
 -- bashls
-require'lspconfig'.bashls.setup{}
+require'lspconfig'.bashls.setup({
+
+})
 -- dockerls
-require'lspconfig'.dockerls.setup{}
+require'lspconfig'.dockerls.setup({
+})
 -- vimls
-require'lspconfig'.vimls.setup{}
+require'lspconfig'.vimls.setup({
+})
 -- texlab
-require'lspconfig'.texlab.setup{}
+require'lspconfig'.texlab.setup({
+})
 -- pyls
-require'lspconfig'.pyls.setup{}
+require'lspconfig'.pyls.setup({
+})
+-- sumneko_lua
+require'lspconfig'.sumneko_lua.setup({
+        cmd
+})
