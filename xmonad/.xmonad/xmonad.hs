@@ -35,7 +35,6 @@ import XMonad.Layout.TwoPane
 
 -- Layout modifiers
 import XMonad.Layout.LayoutModifier
-import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.Magnifier as Mag
@@ -92,10 +91,6 @@ blackLite = "#5c6370"
 -- Width of the window border in pixels.
 myBorderWidth :: Dimension
 myBorderWidth = 3
-
--- Spacing between windows
-mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
-mySpacing i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 -- Border color for unfocused windows
 myNormalBorderColor :: String
@@ -161,26 +156,31 @@ myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
 --------------------------------------------------------------------------------
 -- Layouts:
 
-myLayoutHook = avoidStruts $
+myLayoutHook =
     tall
     ||| twopane
-    ||| noBorders tabs
+    ||| tabs
+    ||| full
     where
         -- Tall layout
         tall = renamed[Replace "tall"]
+            $ avoidStruts
             $ Mag.magnifierOff
-            $ mySpacing spacing
+            $ spacingWithEdge wspace
             $ ResizableTall nmaster delta ratio []
         -- TwoPane layout
         twopane = renamed[Replace "twopane"]
+            $ avoidStruts
             $ Mag.magnifierOff
-            $ mySpacing spacing
+            $ spacingWithEdge wspace
             $ TwoPane delta ratio
         -- Tabbed full screen layout
         tabs = renamed[Replace "tabs"]
+            $ avoidStruts
+            $ spacingWithEdge wspace
             $ tabbed shrinkText myTabConfig
         -- Spacing between windows
-        spacing = 5
+        wspace = 2
         -- Number of initial windows in the master pane
         nmaster = 1
         -- Default ratio between master and stack
@@ -196,6 +196,9 @@ myLayoutHook = avoidStruts $
                           , activeTextColor = black
                           , inactiveTextColor = blackLite
                           }
+        -- Full screen layout
+        full = renamed [Replace "full"]
+            $ Full
 
 --------------------------------------------------------------------------------
 -- Controls:
@@ -392,7 +395,7 @@ myStartupHook = do
     spawnOnce "xfce4-power-manager &"
     spawnOnce "volumeicon &"
     spawnOnce "blueman-applet &"
-    spawnOnce "trayer --edge top --align right --widthtype request --transparent true --height 22 --alpha 0 --tint 0x282c34 --padding 5 --monitor 1 --iconspacing 3 &"
+    spawnOnce "trayer --edge top --align right --distance 4,4 --distancefrom top,right --widthtype request --transparent true --height 24 --alpha 0 --tint 0x282c34 --padding 5 --monitor 1 --iconspacing 3 &"
     spawnOnce "dunst &"
     spawnOnce "feh --bg-scale --randomize /usr/share/backgrounds/*"
     spawnOnce "pcmanfm -d &"
