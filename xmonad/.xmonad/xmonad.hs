@@ -109,7 +109,7 @@ xmobarEscape = concatMap doubleLts
 
 myWorkspaces :: [String]
 myWorkspaces = clickable. (map xmobarEscape)
-                $ ["www","dev","chat","virt","sys","mus","doc","vis"]
+                $ ["www","dev","sys","chat","mus","virt","doc","vis"]
     where
         clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>"
                       | (i,ws) <- zip [1 .. 9] l,
@@ -130,7 +130,8 @@ myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
     [ className =? "Gimp" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
-    , className =? "Virt-manager" --> doShift( myWorkspaces !! 3 )
+    , className =? "Virt-manager" --> doShift( myWorkspaces !! 5 )
+    , className =? "Microsoft Teams - Preview" --> doShift( myWorkspaces !! 3 )
     , className =? "libreoffice-startcenter" --> doShift( myWorkspaces !! 6 )
     , resource =? "Dialog" --> doFloat
     , className =? "Pavucontrol" --> doFloat
