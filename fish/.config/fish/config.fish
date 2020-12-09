@@ -26,7 +26,7 @@ end
 
 # Set window title
 function fish_title
-    echo 'fish ' $argv[1] ' '
+    echo $argv[1]
     pwd
 end
 
