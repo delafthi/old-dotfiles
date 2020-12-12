@@ -38,6 +38,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.Magnifier as Mag
+import XMonad.Layout.SubLayouts
 
 -- Prompt
 
@@ -193,7 +194,7 @@ myLayoutHook =
                           , activeColor = blue
                           , inactiveColor = black
                           , activeBorderColor = blue
-                          , inactiveBorderColor = blackLite
+                          , inactiveBorderColor = black
                           , activeTextColor = black
                           , inactiveTextColor = blackLite
                           }
@@ -387,7 +388,7 @@ myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP . namedScratchpadFilterOutW
 myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr &"
-    spawnOnce "xrandr --output HDMI0"
+    spawnOnce "xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --primary --left-of HDMI-0 --output HDMI0 --mode 2560x1440 --rate 60.00 --right-of DP-1 &"
     spawnOnce "light-locker &"
     spawnOnce "xss-lock -- light-locker -n &"
     spawnOnce "udiskie &"
@@ -408,9 +409,9 @@ myStartupHook = do
 
 main :: IO ()
 main = do
-    xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc"
-    xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc"
-    xmproc2 <- spawnPipe "xmobar -x 2 ~/.xmonad/.xmobarrc"
+    xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/.xmobarrc0"
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/.xmobarrc1"
+    xmproc2 <- spawnPipe "xmobar -x 2 ~/.xmonad/.xmobarrc2"
     xmonad $ ewmh def
         { terminal           = myTerminal
         , focusFollowsMouse  = myFocusFollowsMouse
