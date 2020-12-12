@@ -244,7 +244,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_q     ), kill)
 
     -- Lock the session
-    , ((modm              , xK_Escape), spawn "light-locker-command -l")
+    , ((modm              , xK_Escape), spawn "slock")
 
     -- Quit xmonad
     , ((modm .|. controlMask, xK_q   ), io (exitWith ExitSuccess))
@@ -390,7 +390,7 @@ myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr &"
     spawnOnce "xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --primary --left-of HDMI-0 --output HDMI0 --mode 2560x1440 --rate 60.00 --right-of DP-1 &"
     spawnOnce "light-locker &"
-    spawnOnce "xss-lock -- light-locker -n &"
+    spawnOnce "xss-lock slock &"
     spawnOnce "udiskie &"
     spawnOnce "picom &"
     spawnOnce "nm-applet &"
