@@ -514,8 +514,6 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: Y,        mods: Control,       action: Copy             }
   - { key: Key0,     mods: Control,       action: ResetFontSize    }
-  - { key: Period,   mods: Control,       action: IncreaseFontSize }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   - { key: Paste,                         action: Paste                      }
   - { key: Copy,                          action: Copy                       }
