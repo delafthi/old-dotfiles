@@ -31,6 +31,10 @@ function fish_title
 end
 
 # Set vim keybinding
+if string match -q 'alacritty' -- $TERM
+    # Needs to be set for fish_vi_cursor to work
+    set -gx KONSOLE_PROFILE_NAME
+end
 function fish_user_key_bindings
     fish_vi_cursor
     fish_vi_key_bindings
