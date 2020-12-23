@@ -191,12 +191,6 @@ font:
   #  x: 0
   #  y: 0
 
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`.
-  #use_thin_strokes: true
-
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
@@ -672,8 +666,10 @@ key_bindings:
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
   - { key: U,         mods: Shift|Control, mode: ~Alt, action: ScrollPageUp }
+  - { key: K,         mods: Shift|Control, mode: ~Alt, action: ScrollLineUp }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
   - { key: D,         mods: Shift|Control, mode: ~Alt, action: ScrollPageDown }
+  - { key: J,         mods: Shift|Control, mode: ~Alt, action: ScrollLineDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
   - { key: G,         mods: Shift|Control, mode: ~Alt, action: ScrollToBottom }
