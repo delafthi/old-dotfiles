@@ -665,18 +665,18 @@ colors:
 # in the order they were defined in.
 key_bindings:
   #- { key: Paste,                                action: Paste          }
-  - { key: P,         mods: Control,             action: Paste          }
+  - { key: P,         mods: Shift|Control,       action: Paste          }
   #- { key: Copy,                                 action: Copy           }
-  - { key: Y,         mods: Control,             action: Copy           }
+  - { key: Y,         mods: Shift|Control,       action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
-  - { key: U,         mods: Control, mode: ~Alt, action: ScrollPageUp   }
+  - { key: U,         mods: Shift|Control, mode: ~Alt, action: ScrollPageUp }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
-  - { key: D,         mods: Control, mode: ~Alt, action: ScrollPageDown }
+  - { key: D,         mods: Shift|Control, mode: ~Alt, action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
-  - { key: G,         mods: Control, mode: ~Alt, action: ScrollToBottom }
+  - { key: G,         mods: Shift|Control, mode: ~Alt, action: ScrollToBottom }
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
