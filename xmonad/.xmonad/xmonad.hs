@@ -67,7 +67,7 @@ myFileBrowser = "pcmanfm"
 
 -- Default font
 myFont :: String
-myFont = "xft:Roboto Mono Nerd Font:regular:size=11:antialias=true:hinting=true"
+myFont = "xft:Victor Mono Nerd Font Mono:regular:size=11:antialias=true:hinting=true"
 
 -- Onehalf Colors
 black :: String
@@ -190,7 +190,7 @@ myLayoutHook =
         -- Delta value when increasing or decreasing window size
         delta = 3/100
         -- Config for tabbed layout
-        myTabConfig = def { fontName = "xft:Roboto Mono Nerd Font:regular:size=11"
+        myTabConfig = def { fontName = "xft:Victor Mono Nerd Font Mono:regular:size=11"
                           , activeColor = blue
                           , inactiveColor = black
                           , activeBorderColor = blue
