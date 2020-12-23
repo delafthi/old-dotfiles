@@ -52,7 +52,7 @@ import XMonad.Util.NamedScratchpad
 
 -- The preferred terminal program
 myTerminal :: String
-myTerminal = "alacritty"
+myTerminal = "kitty"
 
 -- The preferred browser
 myBrowser :: String
