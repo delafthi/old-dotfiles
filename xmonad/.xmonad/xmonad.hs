@@ -389,7 +389,7 @@ myStartupHook :: X ()
 myStartupHook = do
     spawnOnce "xsetroot -cursor_name left_ptr &"
     --spawnOnce "xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --primary --output HDMI-0 --mode 2560x1440 --rate 60.00 --right-of DP-1 --output DP-1-1 --mode 2560x1440 --rate 120.00 --left-of DP-1 &"
-    spawnOnce "xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --output HDMI-0 --auto --right-of DP-1"
+    spawnOnce "xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --output HDMI-0 --auto --right-of DP-1 &"
     spawnOnce "xss-lock slock &"
     spawnOnce "udiskie &"
     spawnOnce "picom &"
