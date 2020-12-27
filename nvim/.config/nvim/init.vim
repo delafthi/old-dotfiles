@@ -228,15 +228,15 @@ nnoremap <silent> <C-Right> :vertical resize -2<cr>
 nnoremap <silent> <Leader>th <C-w>t<C-w>H
 nnoremap <silent> <Leader>tk <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nnoremap <silent> <Leader>bb :ls<CR>:b<Space>
+nnoremap <silent> <Leader>fb <cmd>Telescope buffers<cr>
 " Kill specified buffer
-nnoremap <silent> <Leader>bk :ls<CR>:bd<Space>
+nnoremap <silent> <Leader>bk :ls<cr>:bd<Space>
 " Search for files located in the same in recursive dirs
-nnoremap <silent> <Leader>ff :call fzf#run(fzf#wrap({'sink': 'e', 'down': '30%'}))<CR>
-nnoremap <silent> <Leader>fv :call fzf#run(fzf#wrap({'sink': 'vs', 'down': '30%'}))<CR>
-nnoremap <silent> <Leader>fs :call fzf#run(fzf#wrap({'sink': 'sp', 'down': '30%'}))<CR>
+nnoremap <silent> <Leader>ff <cmd>Telescope find_files<cr>
+" global grep in project files
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 " Enable/Disable spell checker
-map <silent> <Leader>o :setlocal spell!<CR>
+map <silent> <Leader>o :setlocal spell!<cr>
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
