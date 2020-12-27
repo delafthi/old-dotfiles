@@ -25,6 +25,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'preservim/nerdcommenter'
     Plug 'godlygeek/tabular'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete-lsp'
 " Syntax Highlighting and language support
     Plug 'luochen1990/rainbow'
     Plug 'ap/vim-css-color'
@@ -56,8 +58,9 @@ filetype plugin indent on    " required
 " General Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Load lua lspconfig
-lua require('lspconfig')
+" Load lua lsp config
+lua require('lsp')
+" Load lua treesitter config
 lua require('treesitter')
 " Set window title by default.
 set title
@@ -273,6 +276,10 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rainbow
