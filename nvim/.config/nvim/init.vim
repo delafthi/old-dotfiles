@@ -4,7 +4,7 @@
 
 set nocompatible " be iMproved, required
 filetype off " required
-let g:polyglot_disabled = ['markdown.plugin']
+let g:polyglot_disabled = ['markdown.plugin'] " Needs to be defined before loading polyglot
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins managed by Vundle
@@ -15,6 +15,9 @@ call plug#begin('~/.config/nvim/plugged')
 " File management
     Plug 'vifm/vifm.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 " Productivity
     Plug 'junegunn/goyo.vim'
     Plug 'vimwiki/vimwiki'
@@ -26,6 +29,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'luochen1990/rainbow'
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Themes
     Plug 'itchyny/lightline.vim'
     Plug 'delafthi/onehalf', { 'rtp': 'vim' }
@@ -53,6 +58,7 @@ filetype plugin indent on    " required
 
 " Load lua lspconfig
 lua require('lspconfig')
+lua require('treesitter')
 " Set window title by default.
 set title
 " Don't display the intro message on starting Vim.
