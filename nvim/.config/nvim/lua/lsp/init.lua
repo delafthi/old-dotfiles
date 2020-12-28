@@ -16,7 +16,8 @@ local lsp = require 'lspconfig'
 lsp.bashls.setup{}
 lsp.ccls.setup{}
 lsp.dockerls.setup{}
-lsp.pyls.setup{root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd())}
+lsp.pyls.setup{root_dir = lsp.util.root_pattern(".git", vim.fn.getcwd())}
+lsp.sumneko_lua.setup{root_dir = lsp.util.root_pattern(".git", vim.fn.getcwd())}
 lsp.texlab.setup{}
 lsp.vimls.setup{}
 
