@@ -39,6 +39,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.Magnifier as Mag
 import XMonad.Layout.SubLayouts
+import XMonad.Layout.NoBorders (noBorders)
 
 -- Prompt
 
@@ -200,7 +201,7 @@ myLayoutHook =
                           }
         -- Full screen layout
         full = renamed [Replace "full"]
-            $ Full
+            $ noBorders Full
 
 --------------------------------------------------------------------------------
 -- Controls:
