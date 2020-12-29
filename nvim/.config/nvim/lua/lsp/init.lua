@@ -32,3 +32,15 @@ map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<leader>m', '<cmd>lua vim.lsp.buf.rename()<CR>')
 map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>')
 map('n', '<leader>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+
+--------------------------------------------------------------------------------
+-- Sign Character customization
+local sign_chars = vim.api.nvim_exec(
+    [[
+    sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsSignError
+    sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsSignWarning
+    sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsSignInformation
+    sign define LspDiagnosticsSignHint text=ﯦ texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsSignHint
+    ]],
+    true
+)
