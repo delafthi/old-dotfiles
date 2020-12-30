@@ -543,11 +543,15 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "k",
         function() awful.client.focus.byidx(-1) end,
-        {description = "focus next client", group = "client"}
+        {description = "focus previous client", group = "client"}
     ),
     awful.key({ modkey, "Shift"   }, "j",
         function() awful.client.swap.byidx(1) end,
-        {description = "focus previous client", group = "client"}
+        {description = "swap with next client", group = "client"}
+    ),
+    awful.key({ modkey, "Shift"   }, "k",
+        function() awful.client.swap.byidx(-1) end,
+        {description = "swap with previous client", group = "client"}
     ),
     awful.key({ modkey,           }, "w",
         function() awful.screen.focus(1) end,
