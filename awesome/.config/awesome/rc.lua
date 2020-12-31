@@ -44,7 +44,7 @@ do
                 })
             in_error = false
         end
-    )
+        )
 end
 
 -- }}}
@@ -125,31 +125,31 @@ mylauncher:buttons(gears.table.join(
 local taglist_buttons = gears.table.join(
     awful.button({        }, 1,
         function(t) t:view_only() end
-    ),
+        ),
     awful.button({ modkey }, 1,
         function(t)
             if client.focus then
                 client.focus:move_to_tag(t)
             end
         end
-    ),
+        ),
     awful.button({        }, 3,
         awful.tag.viewtoggle
-    ),
+        ),
     awful.button({ modkey }, 3,
         function(t)
             if client.focus then
                 client.focus:toggle_tag(t)
             end
         end
-    ),
+        ),
     awful.button({        }, 4,
         function(t) awful.tag.viewnext(t.screen) end
-    ),
+        ),
     awful.button({        }, 5,
         function(t) awful.tag.viewprev(t.screen) end
+        )
     )
-)
 
 local mytaglist = function(s)
     local taglist = awful.widget.taglist {
@@ -231,8 +231,8 @@ local mylayoutbox = function(s)
     }
     layoutbox:get_children_by_id("layoutbox_role")[1]:buttons(gears.table.join(
             layoutbox_buttons
+            )
         )
-    )
     return layoutbox
 end
 
@@ -247,20 +247,20 @@ local tasklist_buttons = gears.table.join(
                     "request::activate",
                     "tasklist",
                     {raise = true}
-                )
+                    )
             end
         end
-    ),
+        ),
     awful.button({ }, 3,
         function() awful.menu.client_list({ theme = { width = 250 } }) end
-    ),
+        ),
     awful.button({ }, 4,
         function() awful.client.focus.byidx(1) end
-    ),
+        ),
     awful.button({ }, 5,
         function() awful.client.focus.byidx(-1) end
+        )
     )
-)
 
 local mytasklist = function(s)
     local tasklist = awful.widget.tasklist {
@@ -313,40 +313,82 @@ local mytasklist = function(s)
 end
 
 -- CPU info widget
+local cpus = {}
 mycpuinfo = wibox.widget {
     {
-        fg = beautiful.red,
-        markup = "<span color='" .. beautiful.red .. "'>: 20%</span>",
-        align = "center",
-        valign = "center",
-        widget = wibox.widget.textbox,
+        {
+            markup = "<span color='" .. beautiful.red .. "' size='x-large'></span>",
+            widget = wibox.widget.textbox
+        },
+        id = "watch_role",
+        awful.widget.watch([[bash -c "grep '^cpu.' /proc/stat"]], 1,
+            function(widget, stdout)
+                for line in stdout:gmatch("[^\r\n]+") do
+                    if line:sub(1, #"cpu") == "cpu" then
+                        local name, user, nice, system, idle, iowait, irq, softirq, steal, _, _ =
+                            line:match("(%w+)%s+(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)%s(%d+)")
+                        local total = user + nice + system + idle + iowait + irq + softirq + steal
+
+                        if cpus[name] == nil then cpus[name] = {} end
+                        local diff_idle = idle - tonumber(cpus[name]['idle_prev'] == nil and 0 or cpus[name]['idle_prev'])
+                        local diff_total = total - tonumber(cpus[name]['total_prev'] == nil and 0 or cpus[name]['total_prev'])
+                        cpus[name]["diff_usage"] = ((diff_total - diff_idle) / diff_total)*100
+
+                        cpus[name]["total_prev"] = total
+                        cpus[name]["idle_prev"] = idle
+                    end
+                end
+                widget:set_markup_silently(string.format("<span color=%q>:%3.f%%</span>", beautiful.red, cpus["cpu"]["diff_usage"]))
+            end
+            ),
+        layout = wibox.layout.fixed.horizontal,
     },
     right = 6,
     left = 6,
     widget = wibox.container.margin,
 }
 
-
--- Mem info widget
+-- Mem info widg
+local mem = {}
 mymeminfo = wibox.widget {
     {
-        markup = "<span color='" .. beautiful.yellow .. "'>: 300MB</span>",
-        align = "center",
-        valign = "center",
-        widget = wibox.widget.textbox,
+        {
+            markup = "<span color='" .. beautiful.yellow .. "' size='x-large'></span>",
+            widget = wibox.widget.textbox
+        },
+        id = "watch_role",
+        awful.widget.watch([[bash -c "grep '^Mem.' /proc/meminfo"]], 1,
+            function(widget, stdout)
+                for line in stdout:gmatch("[^\r\n]+") do
+                    if line:sub(1, #"Mem") == "Mem" then
+                        local name, number, _ = line:match("(%w+):%s+(%d+)%s(%w+)")
+                        mem[name] = number
+                    end
+                end
+                mem["MemUsed"] = tonumber(mem["MemTotal"] == nil and 0 or mem["MemTotal"]) - tonumber(mem["MemFree"] == nil and 0 or mem["MemFree"])
+                widget:set_markup_silently(string.format("<span color=%q>: %2.2f GB/%2.2f GB</span>", beautiful.yellow, mem["MemUsed"]/1024^2, mem["MemAvailable"]/1024^2))
+            end
+            ),
+        layout = wibox.layout.fixed.horizontal,
     },
     right = 6,
     left = 6,
     widget = wibox.container.margin,
 }
-
 -- battery widget
 
 -- Clock
 mytextclock = wibox.widget {
     {
-        format = "<span color='" .. beautiful.magenta .. "'>%a %d. %b %Y %H:%M</span>",
-        widget = wibox.widget.textclock,
+        {
+            markup = "<span color='" .. beautiful.magenta .. "' size='x-large'></span>",
+            widget = wibox.widget.textbox
+        },
+        {
+            format = "<span color='" .. beautiful.magenta .. "'>: %a %d. %b %Y %H:%M</span>",
+            widget = wibox.widget.textclock,
+        },
+        layout = wibox.layout.fixed.horizontal
     },
     right = 6,
     left = 6,
@@ -464,164 +506,164 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Return",
         function() awful.spawn(terminal) end,
         {description = "open a terminal", group = "launcher"}
-    ),
+        ),
     awful.key({ modkey,           }, "s",
         function()
             awful.spawn(terminal)
         end,
         {description = "open a scratchpad terminal", group = "launcher"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "Return",
         function() awful.spawn("dmenu_run -p 'Run: '") end,
         {description = "open dmenu", group = "launcher"}
-    ),
+        ),
     awful.key({ modkey,           }, "b",
         function() awful.spawn(browser) end,
         {description = "open a browser", group = "launcher"}
-    ),
+        ),
     awful.key({ modkey,           }, "f",
         function() awful.spawn(filemanager) end,
         {description = "open a file manager", group = "launcher"}
-    ),
+        ),
     awful.key({ modkey,           }, "Escape",
         function() awful.spawn("slock") end,
         {description = "lock the session", group = "awesome"}
-    ),
+        ),
     awful.key({ modkey, "Control" }, "q",
         function() awesome.quit() end,
         {description = "quit awesome", group = "awesome"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "q",
         function () awesome.restart() end,
         {description = "restart awesome", group = "awesome"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "slash",
         function() hotkeys_popup.show_help(nil, awful.screen.focused()) end,
         {description = "display help", group = "awesome"}
-    ),
+        ),
     awful.key({ modkey,           }, "space",
         function()
             local screen = awful.screen.focused()
             awful.layout.inc(1, screen)
         end,
         {description = "next layout", group = "layout"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "space",
         function()
             local screen = awful.screen.focused()
             awful.layout.inc(-1, screen)
         end,
         {description = "previous layout", group = "layout"}
-    ),
+        ),
     awful.key({ modkey,           }, "h",
         function() awful.tag.incmwfact(-0.03, nil) end,
         {description = "minmize the master pane", group = "layout"}
-    ),
+        ),
     awful.key({ modkey,           }, "l",
         function() awful.tag.incmwfact(0.03, nil) end,
         {description = "maximize the master pane", group = "layout"}
-    ),
+        ),
     awful.key({ modkey,           }, "comma",
         function() awful.tag.incnmaster(-1, nil, true) end,
         {description = "decrease number of master clients", group = "layout"}
-    ),
+        ),
     awful.key({ modkey,           }, "period",
         function() awful.tag.incnmaster(1, nil, true) end,
         {description = "increase number of master clients", group = "layout"}
-    ),
+        ),
     awful.key({ modkey,           }, "Tab",
         function() awful.client.focus.byidx(1) end,
         {description = "focus next client", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "Tab",
         function() awful.client.focus.byidx(-1) end,
         {description = "focus previous client", group = "client"}
-    ),
+        ),
     awful.key({ modkey,           }, "j",
         function() awful.client.focus.byidx(1) end,
         {description = "focus next client", group = "client"}
-    ),
+        ),
     awful.key({ modkey,           }, "k",
         function() awful.client.focus.byidx(-1) end,
         {description = "focus previous client", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "j",
         function() awful.client.swap.byidx(1) end,
         {description = "swap with next client", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "k",
         function() awful.client.swap.byidx(-1) end,
         {description = "swap with previous client", group = "client"}
-    ),
+        ),
     awful.key({ modkey,           }, "w",
         function() awful.screen.focus(1) end,
         {description = "focus screen 1", group = "screen"}
-    ),
+        ),
     awful.key({ modkey,           }, "e",
         function() awful.screen.focus(2) end,
         {description = "focus screen 2", group = "screen"}
-    ),
+        ),
     awful.key({ modkey,           }, "r",
         function() awful.screen.focus(3) end,
         {description = "focus screen 3", group = "screen"}
-    ),
+        ),
     awful.key({                   }, "XF86AudioRaiseVolume",
         function()
             os.execute(string.format("amixer -c 0 sset Master 5+ unmute"))
         end,
         {description = "raise volume", group = "system"}
-    ),
+        ),
     awful.key({                   }, "XF86AudioLowerVolume",
         function()
             os.execute(string.format("amixer -c 0 sset Master 5- unmute"))
         end,
         {description = "lower volume", group = "system"}
-    ),
+        ),
     awful.key({                   }, "XF86AudioMute",
         function()
             os.execute(string.format("amixer set Master toggle"))
         end,
         {description = "mute volume", group = "system"}
+        )
     )
-)
 
 -- Set client related key bindings
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "q",
         function(c) c:kill() end,
         {description = "kill the current client", group = "client"}
-    ),
+        ),
     awful.key({ modkey,           }, "m",
         function(c) awful.client.setmaster(c) end,
         {description = "set the current client as master", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "m",
         function(c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
         {description = "toggle fullscreen mode for the current client", group = "client"}
-    ),
+        ),
     awful.key({ modkey,           }, "p",
         function(c)
             c.floating = not c.floating
             c:raise()
         end,
         {description = "toggle floating for the current client", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "w",
         function(c) c:move_to_screen(1) end,
         {description = "move focued client to screen 1", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "e",
         function(c) c:move_to_screen(2) end,
         {description = "move focued client to screen 2", group = "client"}
-    ),
+        ),
     awful.key({ modkey, "Shift"   }, "r",
         function(c) c:move_to_screen(3) end,
         {description = "move focued client to screen 3", group = "client"}
+        )
     )
-)
 
 -- Set tag  related key bindings
 for i = 1, 8 do
@@ -636,7 +678,7 @@ for i = 1, 8 do
                 end
             end,
             {description = "switch to tag " .. awful.screen.focused().tags[i].name , group = "tag"}
-        ),
+            ),
         -- Toggle tag display
         awful.key({ modkey, "Shift"   }, "#" .. i + 9,
             function()
@@ -646,8 +688,8 @@ for i = 1, 8 do
                 end
             end,
             {description = "move client to tag " .. awful.screen.focused().tags[i].name , group = "tag"}
+            )
         )
-    )
 end
 
 -- Set keys
@@ -663,22 +705,22 @@ clientbuttons = gears.table.join(
             client.focus = c
             c:raise()
         end
-    ),
+        ),
     awful.button({ modkey }, 1,
         function(c)
             c.floating = true
             c:raise()
             awful.mouse.client.move(c)
         end
-    ),
+        ),
     awful.button({ modkey }, 3,
         function(c)
             c.floating = true
             c:raise()
             awful.mouse.client.resize(c)
         end
+        )
     )
-)
 
 -- }}}
 --------------------------------------------------------------------------------
@@ -731,14 +773,14 @@ client.connect_signal("manage",
             awful.placement.no_offscreen(c)
         end
     end
-)
+    )
 
 -- Focus signals
 client.connect_signal("focus",
     function(c)
         c.border_color = beautiful.border_focus
     end
-)
+    )
 client.connect_signal("unfocus",
     function(c)
         if c.floating == true then
@@ -747,7 +789,7 @@ client.connect_signal("unfocus",
              c.border_color = beautiful.border_normal
         end
     end
-)
+    )
 
 -- }}}
 --------------------------------------------------------------------------------
