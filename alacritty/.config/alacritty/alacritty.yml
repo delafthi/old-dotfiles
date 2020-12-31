@@ -642,6 +642,10 @@ colors:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
+  - { key: H,         mods: Control,             chars: "\x1b[D"        }
+  - { key: J,         mods: Control,             chars: "\x1b[B"        }
+  - { key: K,         mods: Control,             chars: "\x1b[A"        }
+  - { key: L,         mods: Control,             chars: "\x1b[C"        }
   #- { key: Paste,                                action: Paste          }
   - { key: P,         mods: Shift|Control,       action: Paste          }
   #- { key: Copy,                                 action: Copy           }
