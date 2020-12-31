@@ -27,6 +27,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'Shougo/deoplete-lsp'
+    Plug 'tjdevries/cyclist.vim',
 " Syntax Highlighting and language support
     Plug 'luochen1990/rainbow'
     Plug 'ap/vim-css-color'
@@ -324,10 +325,29 @@ let g:fzf_colors =
 let g:lightline = {
       \ 'colorscheme': 'onehalfdark',
       \ }
+
 " Always show the statusline
 set laststatus=2
 " Uncomment to prevent non-normal modes showing in powerline
 set noshowmode
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cyclist
+
+" Cycle through the differenc cyclist configurations
+nnoremap <silent> <leader>ln <plug>CyclistNext
+nnoremap <silent> <leader>lp <plug>CyclistPrev
+
+call cyclist#add_listchar_option_set('busy', {
+        \ 'eol': '↲',
+        \ 'tab': '»·',
+        \ 'space': '␣',
+        \ 'trail': '-',
+        \ 'extends': '☛',
+        \ 'precedes': '☚',
+        \ 'conceal': '┊',
+        \ 'nbsp': '☠',
+        \ })
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
