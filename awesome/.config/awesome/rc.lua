@@ -104,10 +104,10 @@ mylauncher = wibox.widget {
         resize = true,
         widget = wibox.widget.imagebox,
     },
-    top = 2,
+    top = 4,
     right = 6,
-    left = 6,
-    bottom = 2,
+    left = 8,
+    bottom = 4,
     widget = wibox.container.margin,
 }
 
