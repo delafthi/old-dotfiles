@@ -129,7 +129,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
+myManageHook = ( isFullscreen --> doFullFloat ) <+> manageDocks <+> composeAll
     [ className =? "Gimp" --> doShift( myWorkspaces !! 7 )
     , className =? "Blender" --> doShift( myWorkspaces !! 7 )
     , className =? "Virt-manager" --> doShift( myWorkspaces !! 5 )
@@ -140,7 +140,6 @@ myManageHook = composeAll
     , className =? "Xmessage" --> doFloat
     , title =? "Microsoft Teams Notification" --> doFloat
     ] <+> namedScratchpadManageHook myNamedScratchpads
-
 --------------------------------------------------------------------------------
 -- Scratchpads
 
@@ -363,13 +362,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --------------------------------------------------------------------------------
 -- Event handling
 
-myEventHook = mempty
+myEventHook = docksEventHook <+> handleEventHook def <+> fullscreenEventHook
 
 --------------------------------------------------------------------------------
 -- Status bars and logging:
 
 myLogHook :: Handle -> Handle -> Handle -> X ()
-myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP . namedScratchpadFilterOutWorkspacePP $ xmobarPP
+myLogHook xmproc0 xmproc1 xmproc2 = workspaceHistoryHook <+> (dynamicLogWithPP .
+    namedScratchpadFilterOutWorkspacePP $ xmobarPP
     { ppCurrent = xmobarColor blue "" . wrap "[" "]"
     , ppVisible = xmobarColor magenta "" .wrap "<" ">"
     , ppUrgent = xmobarColor red "" . wrap "!" "!"
@@ -381,7 +381,7 @@ myLogHook xmproc0 xmproc1 xmproc2 = dynamicLogWithPP . namedScratchpadFilterOutW
     , ppExtras = [windowCount]
     , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
     , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x >> hPutStrLn xmproc2 x
-    }
+    })
 
 --------------------------------------------------------------------------------
 -- Startup hooks:
@@ -423,9 +423,9 @@ main = do
         , keys               = myKeys
         , mouseBindings      = myMouseBindings
         , layoutHook         = myLayoutHook
-        , manageHook         = ( isFullscreen --> doFullFloat ) <+> myManageHook <+> manageDocks
-        , handleEventHook    = myEventHook <+> docksEventHook
-        , logHook            = workspaceHistoryHook <+> myLogHook xmproc0 xmproc1 xmproc2
+        , manageHook         = myManageHook
+        , handleEventHook    = myEventHook
+        , logHook            = myLogHook xmproc0 xmproc1 xmproc2
         , startupHook        = myStartupHook
         }
 
