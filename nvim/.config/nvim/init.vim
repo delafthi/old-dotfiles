@@ -77,10 +77,10 @@ set nobackup
 set noswapfile
 " If terminal supports truecolor
 if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  " Set 24bit color support
-  set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    " Set 24bit color support
+    set termguicolors
 else
     " Else set 256 color mode
     set t_Co=256
@@ -102,12 +102,12 @@ set visualbell
 set nomodeline
 " Search upwards for tags file instead only locally
 if has('path_extra')
-  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+    setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 " Fix issues with fish shell
 " https://github.com/tpope/vim-sensible/issues/50
 if &shell =~# 'fish$' && (v:version < 704 || v:version == 704 && !has('patch276'))
-  set shell=/usr/bin/env\ bash
+    set shell=/usr/bin/env\ bash
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,9 +289,9 @@ let g:deoplete#enable_at_startup = 1
 let g:rainbow_active = 1
 " Set colors for rainbow brackets
 let g:rainbow_conf = {
-\	'guifgs': ['#61afef', '#c678dd', '#e06c75', '#e5c07b'],
-\	'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
-\}
+            \ 'guifgs': ['#61afef', '#c678dd', '#e06c75', '#e5c07b'],
+            \ 'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
+            \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
@@ -302,29 +302,30 @@ nnoremap <silent> <Leader>gg :Goyo<cr>
 " Fuzzy Finder
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Comment'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Constant'],
-  \ 'fg+':     ['fg', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine'],
-  \ 'hl+':     ['fg', 'Function'],
-  \ 'gutter':  ['bg', 'Cursorline'],
-  \ 'info':    ['fg', 'Title'],
-  \ 'border':  ['fg', 'TabLine'],
-  \ 'prompt':  ['fg', 'PreProc'],
-  \ 'pointer': ['fg', 'Function'],
-  \ 'marker':  ['fg', 'Identifier'],
-  \ 'spinner': ['fg', 'PreProc'],
-  \ 'header':  ['fg', 'Title'] }
+let g:fzf_colors = {
+            \ 'fg': ['fg', 'Comment'],
+            \ 'bg': ['bg', 'Normal'],
+            \ 'hl': ['fg', 'Constant'],
+            \ 'fg+': ['fg', 'Normal'],
+            \ 'bg+': ['bg', 'CursorLine'],
+            \ 'hl+': ['fg', 'Function'],
+            \ 'gutter': ['bg', 'Cursorline'],
+            \ 'info': ['fg', 'Title'],
+            \ 'border': ['fg', 'TabLine'],
+            \ 'prompt': ['fg', 'PreProc'],
+            \ 'pointer': ['fg', 'Function'],
+            \ 'marker': ['fg', 'Identifier'],
+            \ 'spinner': ['fg', 'PreProc'],
+            \ 'header': ['fg', 'Title']
+            \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LightLine
 
 " Set nord as the lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
-      \ }
+            \ 'colorscheme': 'onehalfdark',
+            \ }
 
 " Always show the statusline
 set laststatus=2
@@ -339,15 +340,15 @@ nnoremap <silent> <leader>ln <plug>CyclistNext
 nnoremap <silent> <leader>lp <plug>CyclistPrev
 
 call cyclist#add_listchar_option_set('busy', {
-        \ 'eol': '↲',
-        \ 'tab': '»·',
-        \ 'space': '␣',
-        \ 'trail': '-',
-        \ 'extends': '☛',
-        \ 'precedes': '☚',
-        \ 'conceal': '┊',
-        \ 'nbsp': '☠',
-        \ })
+            \ 'eol': '↲',
+            \ 'tab': '»·',
+            \ 'space': '␣',
+            \ 'trail': '-',
+            \ 'extends': '☛',
+            \ 'precedes': '☚',
+            \ 'conceal': '┊',
+            \ 'nbsp': '☠',
+            \ })
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
@@ -363,9 +364,11 @@ nnoremap <silent> <leader>tv :TabVifm<cr>
 
 " Disable rainbow mode in vimwiki
 autocmd FileType vimwiki :RainbowToggleOff
-let g:vimwiki_list = [{'path': '~/Vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md',
-                      \ 'auto_tags': 1, 'auto_toc': 1}]
+let g:vimwiki_list = [{
+            \ 'path': '~/Vimwiki/',
+            \ 'syntax': 'markdown', 'ext': '.md',
+            \ 'auto_tags': 1, 'auto_toc': 1,
+            \ }]
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_auto_chdir = 1
