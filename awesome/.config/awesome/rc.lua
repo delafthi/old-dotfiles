@@ -754,8 +754,6 @@ client.connect_signal("unfocus",
 -- {{{ Autostart applications
 
 awful.spawn.once("xsetroot -cursor_name left_ptr")
---awful.spawn.once("xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --primary --output HDMI-0 --mode 2560x1440 --rate 60.00 --right-of DP-1 --output DP-1-1 --mode 2560x1440 --rate 120.00 --left-of DP-1")
-awful.spawn.once("xrandr --output DP-1 --mode 2560x1440 --rate 143.97 --output HDMI-0 --auto --right-of DP-1")
 awful.spawn.single_instance("xss-lock slock")
 awful.spawn.single_instance("udiskie")
 awful.spawn.single_instance("picom")
