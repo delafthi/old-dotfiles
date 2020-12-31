@@ -219,7 +219,7 @@ local mylayoutbox = function(s)
     local layoutbox = wibox.widget {
         {
             id = "layoutbox_role",
-            awful.widget.layoutbox(s):get_children_by_id("imagebox")[1],
+            awful.widget.layoutbox(s),
             opacity = 0.24,
             layout = wibox.layout.fixed.horizontal,
         },
