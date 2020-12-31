@@ -193,12 +193,12 @@ inoremap ii <Esc>
 " Remap Leader key to SPACE
 let mapleader = "\<Space>"
 " Remap hjkl keys to navigate also the wrapped lines
-vmap <silent> j gj
-vmap <silent> k gk
-nmap <silent> j gj
-nmap <silent> k gk
+vnoremap <silent> j gj
+vnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 " Open terminal inside Vim
-noremap <silent> <Leader>tt :new term://bash<cr>
+nmap <silent> <Leader>tt :new term://fish<cr>
 " Remap splits navigation to just CTRL + hjkl
 tnoremap <silent> <C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-j> <C-\><C-n><C-w>j
@@ -213,10 +213,10 @@ nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
-tnoremap <silent> <C-Left> <C-\><C-N> :vertical resize +2<cr>
-tnoremap <silent> <C-Up> <C-\><C-N> :resize +2<cr>
-tnoremap <silent> <C-Down> <C-\><C-N> :resize -2<cr>
-tnoremap <silent> <C-Right> <C-\><C-N> :vertical resize -2<cr>
+tnoremap <silent> <C-Left> <C-\><C-n> :vertical resize +2<cr>
+tnoremap <silent> <C-Up> <C-\><C-n> :resize +2<cr>
+tnoremap <silent> <C-Down> <C-\><C-n> :resize -2<cr>
+tnoremap <silent> <C-Right> <C-\><C-n> :vertical resize -2<cr>
 inoremap <silent> <C-Left> :vertical resize +2<cr>
 inoremap <silent> <C-Up> :resize +2<cr>
 inoremap <silent> <C-Down> :resize -2<cr>
@@ -229,17 +229,17 @@ nnoremap <silent> <C-Right> :vertical resize -2<cr>
 nnoremap <silent> <leader>lv <C-w>t<C-w>H
 nnoremap <silent> <leader>lh <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nmap <silent> <leader>fb <cmd>Telescope buffers<cr>
 " Kill specified buffer
-nnoremap <silent> <leader>bk :ls<cr>:bd<Space>
+nmap <silent> <leader>bk :ls<cr>:bd<Space>
 " Search for files located in the same in recursive dirs
-nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
+nmap <silent> <leader>ff <cmd>Telescope find_files<cr>
 " global grep in project files
-nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nmap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 " Enable/Disable spell checker
 map <silent> <leader>o :setlocal spell!<cr>
 " Save file as sudo on files that require root permission
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+cmap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse settings
@@ -296,7 +296,7 @@ let g:rainbow_conf = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
 "
-nnoremap <silent> <Leader>gg :Goyo<cr>
+nmap <silent> <Leader>gg :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fuzzy Finder
@@ -415,7 +415,7 @@ set noshowmode
 nmap <silent> <leader>ln <plug>CyclistNext
 nmap <silent> <leader>lp <plug>CyclistPrev
 
-call cyclist#add_listchar_option_set('busy', {
+call cyclist#add_listchar_option_set('all', {
             \ 'eol': '↲',
             \ 'tab': '»·',
             \ 'space': '␣',
@@ -429,11 +429,11 @@ call cyclist#add_listchar_option_set('busy', {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
 
-nnoremap <silent> <leader>vv :Vifm<cr>
-nnoremap <silent> <leader>vs :VsplitVifm<cr>
-nnoremap <silent> <leader>sp :SplitVifm<cr>
-nnoremap <silent> <leader>dv :DiffVifm<cr>
-nnoremap <silent> <leader>tv :TabVifm<cr>
+nmap <silent> <leader>vv :Vifm<cr>
+nmap <silent> <leader>vs :VsplitVifm<cr>
+nmap <silent> <leader>sp :SplitVifm<cr>
+nmap <silent> <leader>dv :DiffVifm<cr>
+nmap <silent> <leader>tv :TabVifm<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
