@@ -180,8 +180,7 @@ theme.layout_fg = theme.black_lite
 theme.layout_bg = theme.bg_normal
 
 -- Generate Awesome icon:
--- theme.awesome_icon = theme_assets.awesome_icon(20, theme.black, theme.magenta)
-theme.awesome_icon = theme.config_path .. "img/Awesome_logo.png"
+theme.awesome_icon = theme_assets.awesome_icon(20, theme.magenta, theme.black)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
