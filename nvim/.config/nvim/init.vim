@@ -200,14 +200,14 @@ nmap <silent> k gk
 " Open terminal inside Vim
 noremap <silent> <Leader>tt :new term://bash<cr>
 " Remap splits navigation to just CTRL + hjkl
-tnoremap <silent> <C-h> <C-\><C-N><C-w>h
-tnoremap <silent> <C-j> <C-\><C-N><C-w>j
-tnoremap <silent> <C-k> <C-\><C-N><C-w>k
-tnoremap <silent> <C-l> <C-\><C-N><C-w>l
-inoremap <silent> <C-h> <C-\><C-N><C-w>h
-inoremap <silent> <C-j> <C-\><C-N><C-w>j
-inoremap <silent> <C-k> <C-\><C-N><C-w>k
-inoremap <silent> <C-l> <C-\><C-N><C-w>l
+tnoremap <silent> <C-h> <C-\><C-n><C-w>h
+tnoremap <silent> <C-j> <C-\><C-n><C-w>j
+tnoremap <silent> <C-k> <C-\><C-n><C-w>k
+tnoremap <silent> <C-l> <C-\><C-n><C-w>l
+inoremap <silent> <C-h> <C-\><C-n><C-w>h
+inoremap <silent> <C-j> <C-\><C-n><C-w>j
+inoremap <silent> <C-k> <C-\><C-n><C-w>k
+inoremap <silent> <C-l> <C-\><C-n><C-w>l
 nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
@@ -226,18 +226,18 @@ nnoremap <silent> <C-Up> :resize +2<cr>
 nnoremap <silent> <C-Down> :resize -2<cr>
 nnoremap <silent> <C-Right> :vertical resize -2<cr>
 " Change 2 split windows from vert to horiz or horiz to vert
-nnoremap <silent> <Leader>th <C-w>t<C-w>H
-nnoremap <silent> <Leader>tk <C-w>t<C-w>K
+nnoremap <silent> <leader>lv <C-w>t<C-w>H
+nnoremap <silent> <leader>lh <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nnoremap <silent> <Leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
 " Kill specified buffer
-nnoremap <silent> <Leader>bk :ls<cr>:bd<Space>
+nnoremap <silent> <leader>bk :ls<cr>:bd<Space>
 " Search for files located in the same in recursive dirs
-nnoremap <silent> <Leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
 " global grep in project files
 nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 " Enable/Disable spell checker
-map <silent> <Leader>o :setlocal spell!<cr>
+map <silent> <leader>o :setlocal spell!<cr>
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
@@ -352,11 +352,11 @@ call cyclist#add_listchar_option_set('busy', {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
 
-nnoremap <silent> <Leader>vv :Vifm<cr>
-nnoremap <silent> <Leader>vs :VsplitVifm<cr>
-nnoremap <silent> <Leader>sp :SplitVifm<cr>
-nnoremap <silent> <Leader>dv :DiffVifm<cr>
-nnoremap <silent> <Leader>tv :TabVifm<cr>
+nnoremap <silent> <leader>vv :Vifm<cr>
+nnoremap <silent> <leader>vs :VsplitVifm<cr>
+nnoremap <silent> <leader>sp :SplitVifm<cr>
+nnoremap <silent> <leader>dv :DiffVifm<cr>
+nnoremap <silent> <leader>tv :TabVifm<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
