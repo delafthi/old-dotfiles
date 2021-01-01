@@ -778,11 +778,13 @@ client.connect_signal("manage",
 -- Focus signals
 client.connect_signal("focus",
     function(c)
+        c.skip_taskbar = false
         c.border_color = beautiful.border_focus
     end
     )
 client.connect_signal("unfocus",
     function(c)
+        c.skip_taskbar = true
         if c.floating == true then
              c.border_color = beautiful.border_floating
          else
