@@ -795,14 +795,6 @@ client.connect_signal("unfocus",
 --------------------------------------------------------------------------------
 -- {{{ Autostart applications
 
-awful.spawn.once("xsetroot -cursor_name left_ptr")
-awful.spawn.single_instance("xss-lock slock")
-awful.spawn.single_instance("udiskie")
-awful.spawn.single_instance("picom")
-awful.spawn.single_instance("nm-applet")
-awful.spawn.single_instance("xfce4-power-manager")
-awful.spawn.single_instance("volumeicon")
-awful.spawn.single_instance("pcmanfm -d")
-awful.spawn.single_instance("unclutter --timeout 10")
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- }}}
