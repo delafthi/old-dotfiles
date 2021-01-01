@@ -101,7 +101,7 @@ theme.tasklist_fg_normal = theme.fg_normal
 theme.tasklist_fg_minimize = theme.black_lite
 theme.tasklist_fg_urgent = theme.black
 
-theme.tasklist_bg_focus = theme.black_lite
+theme.tasklist_bg_focus = theme.bg_normal
 theme.tasklist_bg_normal = theme.bg_normal
 theme.tasklist_bg_minimize = theme.bg_normal
 theme.tasklist_bg_urgent = theme.bg_normal
