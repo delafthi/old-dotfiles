@@ -36,8 +36,8 @@ theme.config_path = gfs.get_configuration_dir() .. "themes/onehalf-dark/"
 theme.wallpaper = "/usr/share/backgrounds/wallpaper1.jpg"
 
 -- Set fonts
-theme.font = "Victor Mono Nerd Font Mono 11"
-theme.taglist_font = "Victor Mono Nerd Font Mono 11"
+theme.font = "Victor Mono Nerd Font 11"
+theme.taglist_font = "Victor Mono Nerd Font 11"
 
 -- Window settings
 theme.bg_normal = theme.black
