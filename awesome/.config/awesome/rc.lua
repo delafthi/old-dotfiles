@@ -2,7 +2,7 @@
 -- {{{ Includes
 
 pcall(require, "luarocks.loader")
--- Standard awesome librarys
+-- Standard awesome libraries
 local gears = require("gears") -- Utilities such as color parsing and objects
 local awful = require("awful") -- Everything related to window management
 require("awful.autofocus")
@@ -468,6 +468,7 @@ awful.screen.connect_for_each_screen(
             },
             layout = wibox.layout.align.horizontal,
         }
+        awful.screen.focus(s.index)
     end
 )
 
