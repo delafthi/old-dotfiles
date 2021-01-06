@@ -298,27 +298,6 @@ let g:rainbow_conf = {
 nmap <silent> <Leader>gg :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fuzzy Finder
-
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.7 } }
-let g:fzf_colors = {
-            \ 'fg': ['fg', 'Comment'],
-            \ 'bg': ['bg', 'Normal'],
-            \ 'hl': ['fg', 'Constant'],
-            \ 'fg+': ['fg', 'Normal'],
-            \ 'bg+': ['bg', 'CursorLine'],
-            \ 'hl+': ['fg', 'Function'],
-            \ 'gutter': ['bg', 'Cursorline'],
-            \ 'info': ['fg', 'Title'],
-            \ 'border': ['fg', 'TabLine'],
-            \ 'prompt': ['fg', 'PreProc'],
-            \ 'pointer': ['fg', 'Function'],
-            \ 'marker': ['fg', 'Identifier'],
-            \ 'spinner': ['fg', 'PreProc'],
-            \ 'header': ['fg', 'Title']
-            \ }
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LightLine
 
 " Set nord as the lightline.vim theme
