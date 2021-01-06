@@ -30,7 +30,7 @@ theme.white = "#dcdfe4"
 theme.black_lite = "#5c6370"
 
 -- Path of this theme config
-theme.config_path = gfs.get_configuration_dir() .. "themes/onehalf-dark/"
+theme.config_path = gfs.get_configuration_dir()
 
 -- Set wallpaper
 theme.wallpaper = "/usr/share/backgrounds/wallpaper1.jpg"
@@ -169,7 +169,10 @@ theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
 theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
 theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
 theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
+theme.layout_twopane = theme.config_path.."layouts/twopanew.png"
+theme.layout_twopaneleft = theme.config_path.."layouts/twopaneleftw.png"
+theme.layout_twopanetop = theme.config_path.."layouts/twopanetopw.png"
+theme.layout_twopanebottom = theme.config_path.."layouts/twopanebottomw.png"
 theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
 theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
 theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
