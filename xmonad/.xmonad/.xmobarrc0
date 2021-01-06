@@ -1,6 +1,6 @@
-Config { font = "xft:Victor Mono Nerd Font Mono:regular:size=11:antialias=true"
-        , additionalFonts = [ "xft:Victor Mono Nerd Font Mono:regular:size=13:antialias=true"
-                            , "xft:Victor Mono Nerd Font Mono:regular:size=12:antialias=true"
+Config { font = "xft:Victor Mono Nerd Font:regular:size=11:antialias=true"
+        , additionalFonts = [ "xft:Victor Mono Nerd Font:regular:size=13:antialias=true"
+                            , "xft:Victor Mono Nerd Font:regular:size=12:antialias=true"
                             ]
         , bgColor = "#282c34"
         , fgColor = "#abb2bf"
