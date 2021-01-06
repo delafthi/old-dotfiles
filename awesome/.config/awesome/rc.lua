@@ -13,6 +13,7 @@ local beautiful = require("beautiful") -- Awesome theme module
 -- Nofification library
 local naughty = require("naughty") -- Notifications
 local hotkeys_popup = require("awful.hotkeys_popup")
+local twopane = require("layouts.twopane")
 
 -- }}}
 --------------------------------------------------------------------------------
@@ -68,6 +69,7 @@ beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/onehalf-dark/
 awful.layout.layouts = {
     -- awful.layout.suit.floating,
     awful.layout.suit.tile,
+    twopane,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
