@@ -28,7 +28,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Shougo/deoplete-lsp'
     Plug 'tjdevries/cyclist.vim',
 " Syntax Highlighting and language support
-    Plug 'luochen1990/rainbow'
     Plug 'ap/vim-css-color'
     Plug 'sheerun/vim-polyglot'
     Plug 'neovim/nvim-lspconfig'
@@ -280,17 +279,6 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " deoplete
 let g:deoplete#enable_at_startup = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Rainbow
-
-" Enable rainbow brackets
-let g:rainbow_active = 1
-" Set colors for rainbow brackets
-let g:rainbow_conf = {
-            \ 'guifgs': ['#61afef', '#c678dd', '#e06c75', '#e5c07b'],
-            \ 'ctermfgs': ['blue', 'magenta', 'red', 'yellow'],
-            \ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
