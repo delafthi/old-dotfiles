@@ -33,7 +33,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Themes
-    Plug 'itchyny/lightline.vim'
     Plug 'delafthi/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
@@ -286,95 +285,6 @@ let g:deoplete#enable_at_startup = 1
 nmap <silent> <Leader>gg :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" LightLine
-
-" Set nord as the lightline.vim theme
-let g:lightline = {
-            \ 'colorscheme': 'onehalfdark',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'readonly', 'filename', 'modified' ],
-            \             [ 'lspnumerror', 'lspnumwarning', 'lspnuminformation', 'lspnumhint' ] ],
-            \   'right': [ [ 'lineinfo' ],
-            \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
-            \ },
-            \ 'component_function': {
-            \   'readonly': 'LightlineReadonly',
-            \   'lspnumerror': 'LspNumError',
-            \   'lspnumwarning': 'LspNumWarning',
-            \   'lspnuminformation': 'LspNumInformation',
-            \   'lspnumhint': 'LspNumHint',
-            \ },
-            \ }
-
-" Disables readonly flag in the help buffer
-function! LighlineReadonly()
-    return &readonly && &filetype !=# 'help' ? 'RO' : ''
-endfunction
-" Shows the number of errors in the current file
-function! LspNumError()
-    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let num = luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])")
-        if num > 0
-            return printf(' %d', num)
-        else
-            if luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])") > 0
-                return printf('')
-            else
-                return printf('﫟')
-            endif
-        endif
-    else
-                return printf('')
-    endif
-endfunction
-" Shows the number of warnings in the current file
-function! LspNumWarning()
-    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let num = luaeval("vim.lsp.diagnostic.get_count(0, [[Warning]])")
-        if num > 0
-            return printf(' %d', num)
-        else
-            return printf('')
-        endif
-    else
-                return printf('')
-    endif
-endfunction
-" Shows the number of infos in the current file
-function! LspNumInformation()
-    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let num = luaeval("vim.lsp.diagnostic.get_count(0, [[Information]])")
-        if num > 0
-            return printf(' %d', num)
-        else
-            return printf('')
-        endif
-    else
-                return printf('')
-    endif
-endfunction
-" Shows the number of hints in the current file
-function! LspNumHint()
-    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let num = luaeval("vim.lsp.diagnostic.get_count(0, [[Hint]])")
-        if num > 0
-            return printf('ﯦ %d', num)
-        else
-            return printf('')
-        endif
-    else
-                return printf('')
-    endif
-endfunction
-
-" Always show the statusline
-set laststatus=2
-" Uncomment to prevent non-normal modes showing in powerline
-set noshowmode
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cyclist
 
 " Cycle through the differenc cyclist configurations
@@ -405,7 +315,6 @@ nmap <silent> <leader>tv :TabVifm<cr>
 " VimWiki
 
 " Disable rainbow mode in vimwiki
-autocmd FileType vimwiki :RainbowToggleOff
 let g:vimwiki_list = [{
             \ 'path': '~/Vimwiki/',
             \ 'syntax': 'markdown', 'ext': '.md',
