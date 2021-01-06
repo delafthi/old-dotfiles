@@ -14,7 +14,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " File management
     Plug 'vifm/vifm.vim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
