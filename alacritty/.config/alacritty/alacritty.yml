@@ -108,10 +108,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: SauceCodePro Nerd Font Mono
-    # family: RobotoMono Nerd Font Mono
-    # family: FiraMono Nerd Font Mono
-    family: Victor Mono Nerd Font Mono
+    # family: SauceCodePro Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: FiraMono Nerd Font
+    family: Victor Mono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -122,10 +122,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: SauceCodePro Nerd Font Mono
-    # family: RobotoMono Nerd Font Mono
-    # family: FiraMono Nerd Font Mono
-    family: VictorMono Nerd Font Mono
+    # family: SauceCodePro Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: FiraMono Nerd Font
+    family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -136,10 +136,10 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: SauceCodePro Nerd Font Mono
-    # family: RobotoMono Nerd Font Mono
-    # family: FiraMono Nerd Font Mono
-    family: VictorMono Nerd Font Mono
+    # family: SauceCodePro Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: FiraMono Nerd Font
+    family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -150,10 +150,10 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: SauceCodePro Nerd Font Mono
-    # family: RobotoMono Nerd Font Mono
-    # family: FiraMono Nerd Font Mono
-    family: VictorMono Nerd Font Mono
+    # family: SauceCodePro Nerd Font
+    # family: RobotoMono Nerd Font
+    # family: FiraMono Nerd Font
+    family: VictorMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
