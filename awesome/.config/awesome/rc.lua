@@ -303,10 +303,6 @@ end
 local cpus = {}
 mycpuinfo = wibox.widget {
     {
-        {
-            markup = "<span color='" .. beautiful.red .. "' size='x-large'></span>",
-            widget = wibox.widget.textbox
-        },
         id = "watch_role",
         awful.widget.watch([[bash -c "grep '^cpu.' /proc/stat"]], 1,
             function(widget, stdout)
@@ -325,7 +321,7 @@ mycpuinfo = wibox.widget {
                         cpus[name]["idle_prev"] = idle
                     end
                 end
-                widget:set_markup_silently(string.format("<span color=%q>:%3.f%%</span>", beautiful.red, cpus["cpu"]["diff_usage"]))
+                widget:set_markup_silently(string.format("<span color=%q> :%3.f%%</span>", beautiful.red, cpus["cpu"]["diff_usage"]))
             end
             ),
         layout = wibox.layout.fixed.horizontal,
@@ -339,10 +335,6 @@ mycpuinfo = wibox.widget {
 local mem = {}
 mymeminfo = wibox.widget {
     {
-        {
-            markup = "<span color='" .. beautiful.yellow .. "' size='x-large'></span>",
-            widget = wibox.widget.textbox
-        },
         id = "watch_role",
         awful.widget.watch([[bash -c "grep '^Mem.' /proc/meminfo"]], 1,
             function(widget, stdout)
@@ -353,7 +345,7 @@ mymeminfo = wibox.widget {
                     end
                 end
                 mem["MemUsed"] = tonumber(mem["MemTotal"] == nil and 0 or mem["MemTotal"]) - tonumber(mem["MemFree"] == nil and 0 or mem["MemFree"])
-                widget:set_markup_silently(string.format("<span color=%q>: %2.2f GB/%2.2f GB</span>", beautiful.yellow, mem["MemUsed"]/1024^2, mem["MemAvailable"]/1024^2))
+                widget:set_markup_silently(string.format("<span color=%q> : %2.2f GB/%2.2f GB</span>", beautiful.yellow, mem["MemUsed"]/1024^2, mem["MemAvailable"]/1024^2))
             end
             ),
         layout = wibox.layout.fixed.horizontal,
@@ -367,15 +359,8 @@ mymeminfo = wibox.widget {
 -- Clock
 mytextclock = wibox.widget {
     {
-        {
-            markup = "<span color='" .. beautiful.magenta .. "' size='x-large'></span>",
-            widget = wibox.widget.textbox
-        },
-        {
-            format = "<span color='" .. beautiful.magenta .. "'>: %a %d. %b %Y %H:%M</span>",
-            widget = wibox.widget.textclock,
-        },
-        layout = wibox.layout.fixed.horizontal
+        format = "<span color='" .. beautiful.magenta .. "'> : %a %d. %b %Y %H:%M</span>",
+        widget = wibox.widget.textclock,
     },
     right = 6,
     left = 6,
