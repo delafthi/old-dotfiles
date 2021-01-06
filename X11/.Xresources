@@ -47,7 +47,7 @@ Xcursor.size: 16
 ! XTerm Configuration
 !----------------------------------------------------------
 XTerm*renderFont: true
-XTerm*faceName: xft:Victor Mono Nerd Font Mono, \
+XTerm*faceName: xft:Victor Mono Nerd Font, \
                 xft:JoyPixels:size=12, \
                 xft:Monospace:style=Medium:size=12
 XTerm*faceSize: 11
