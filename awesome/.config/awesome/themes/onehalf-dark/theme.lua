@@ -79,6 +79,8 @@ theme.wibox_separator_fg = theme.black_lite
 
 theme.wibox_bg = theme.bg_normal
 
+theme.wibox_height = 24
+
 -- Widget settings
 
 -- Taglist settings
@@ -153,8 +155,8 @@ theme.notification_bg_critical = theme.red
 theme.notification_fg = theme.white
 theme.notification_width = 300
 theme.notification_margin = 4
-theme.notification_border_color = theme.yellow
-theme.notification_border_width = 1
+theme.notification_border_color = theme.blue
+theme.notification_border_width = 3
 theme.notification_spacing = theme.useless_gap
 -- theme.notification_height = 30
 -- notification_[shape|opacity]
