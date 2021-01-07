@@ -380,27 +380,66 @@ myseparator = {
 --------------------------------------------------------------------------------
 -- {{{ Wibox
 
-local mywibox = function(s)
-    local lwibox = wibox {
+local function set_wibox(s)
+    local gap = 2 * beautiful.useless_gap
+    -- Create screen specific widgets
+    s.mytaglist = mytaglist(s)
+    s.mylayoutbox = mylayoutbox(s)
+    s.mytasklist = mytasklist(s)
+    -- Create wibox
+    s.mywibox = wibox {
         visible = true,
         opacity = 1.0,
         type = "dock",
-        x = 4 + (s.index - 1) * 2560,
-        y = 4,
-        width = 2552,
-        height = 24,
+        x = s.geometry["x"] + gap,
+        y = s.geometry["y"] + gap,
+        width = s.geometry["width"] - 2 * gap,
+        height = beautiful.wibox_height,
         screen = s,
         bg = beautiful.wibox_bg,
         fg = beautiful.wibox_fg,
-    } -- Set wibox struts
-    lwibox:struts {
+    }
+    -- Set wibox struts
+    s.mywibox:struts {
         top = 28,
         right = 0,
         left = 0,
         bottom = 0,
     }
-    return lwibox
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        { -- Left widgets
+            mylauncher,
+            s.mytaglist,
+            s.mylayoutbox,
+            wibox.widget.separator {
+                forced_width = 0,
+                color = beautiful.wibox_bg,
+            },
+            spacing = 1,
+            spacing_widget = myseparator,
+            layout = wibox.layout.fixed.horizontal(),
+        },
+        {-- Middle widgets
+            s.mytasklist,
+            spacing = 1,
+            spacing_widget = myseparator,
+            layout = wibox.layout.fixed.horizontal
+        },
+        { -- Right widgets
+            mycpuinfo,
+            mymeminfo,
+            mytextclock,
+            wibox.widget.systray(),
+            spacing = 1,
+            spacing_widget = myseparator,
+            layout = wibox.layout.fixed.horizontal(),
+        },
+        layout = wibox.layout.align.horizontal,
+    }
 end
+
+
 
 -- }}}
 --------------------------------------------------------------------------------
@@ -417,58 +456,23 @@ local function set_wallpaper(s)
     end
 end
 
+local function set_screen(s)
+    -- Reset wallpaper
+    set_wallpaper(s)
+    -- Reset wibox
+    set_wibox(s)
+end
+
 -- Re-set wallpaper when a screen's geometry changes
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", set_screen)
 
 awful.screen.connect_for_each_screen(
     function(s)
-        -- Set wallpaper
-        set_wallpaper(s)
-
         -- Create taglist
         -- Each screen has its own tag table
         awful.tag({ "www", "dev", "sys", "chat", "mus", "virt", "doc", "vis"}, s, awful.layout.layouts[1])
-
-        -- Create screen specific widgets
-        s.mytaglist = mytaglist(s)
-        s.mylayoutbox = mylayoutbox(s)
-        s.mytasklist = mytasklist(s)
-
-        -- Wibox
-        s.mywibox = mywibox(s)
-
-        -- Add widgets to the wibox
-        s.mywibox:setup {
-            { -- Left widgets
-                mylauncher,
-                s.mytaglist,
-                s.mylayoutbox,
-                wibox.widget.separator {
-                    forced_width = 0,
-                    color = beautiful.wibox_bg,
-                },
-                spacing = 1,
-                spacing_widget = myseparator,
-                layout = wibox.layout.fixed.horizontal(),
-            },
-            {-- Middle widgets
-                s.mytasklist,
-                spacing = 1,
-                spacing_widget = myseparator,
-                layout = wibox.layout.fixed.horizontal
-            },
-            { -- Right widgets
-                mycpuinfo,
-                mymeminfo,
-                mytextclock,
-                wibox.widget.systray(),
-                spacing = 1,
-                spacing_widget = myseparator,
-                layout = wibox.layout.fixed.horizontal(),
-            },
-            layout = wibox.layout.align.horizontal,
-        }
-        awful.screen.focus(s.index)
+        -- Set screen
+        set_screen(s)
     end
 )
 
