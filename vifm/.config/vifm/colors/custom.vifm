@@ -3,10 +3,10 @@
 " Reset all styles first
 highlight clear
 
-highlight Border    	cterm=none      	ctermfg=none        ctermbg=235
+highlight Border    	cterm=none      	ctermfg=none        ctermbg=default
 
-highlight TopLine   	cterm=none	        ctermfg=white	    ctermbg=235
-highlight TopLineSel	cterm=bold	        ctermfg=red	        ctermbg=235
+highlight TopLine   	cterm=none	        ctermfg=white	    ctermbg=default
+highlight TopLineSel	cterm=bold	        ctermfg=red	        ctermbg=default
 
 highlight Win	     	cterm=none	        ctermfg=white       ctermbg=default
 highlight Directory 	cterm=bold	        ctermfg=blue	    ctermbg=default
@@ -15,7 +15,7 @@ highlight OtherLine 	cterm=bold	        ctermfg=default	    ctermbg=default
 highlight Selected  	cterm=none	        ctermfg=yellow      ctermbg=default
 
 highlight JobLine   	cterm=bold	        ctermfg=white       ctermbg=blue
-highlight StatusLine	cterm=none	        ctermfg=black       ctermbg=green
+highlight StatusLine	cterm=none	        ctermfg=white       ctermbg=008
 highlight ErrorMsg  	cterm=bold	        ctermfg=black       ctermbg=red
 highlight WildMenu  	cterm=bold	        ctermfg=white       ctermbg=lightblack
 highlight CmdLine   	cterm=none	        ctermfg=white       ctermbg=default
