@@ -74,8 +74,8 @@ set nobackup
 set noswapfile
 " If terminal supports truecolor
 if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    let &g:t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &g:t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     " Set 24bit color support
     set termguicolors
 else
@@ -144,7 +144,7 @@ set textwidth=80
 " Prevents word wrapping in between words
 set wrap linebreak
 " String to put at the start of the line if the line has been wrapped
-let &showbreak='>>> '
+let &g:showbreak='>>> '
 " On 'wrap' display the last line even if it does not fit
 set display +=lastline
 " Set options of automatic formating
@@ -188,7 +188,7 @@ set fillchars+=stlnc:-
 " Remap ESC to ii
 inoremap ii <Esc>
 " Remap Leader key to SPACE
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 " Remap hjkl keys to navigate also the wrapped lines
 vnoremap <silent> j gj
 vnoremap <silent> k gk
