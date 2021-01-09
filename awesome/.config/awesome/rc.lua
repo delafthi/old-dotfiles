@@ -380,12 +380,15 @@ myseparator = {
 --------------------------------------------------------------------------------
 -- {{{ Wibox
 
+
 local function set_wibox(s)
     local gap = 2 * beautiful.useless_gap
     -- Create screen specific widgets
     s.mytaglist = mytaglist(s)
     s.mylayoutbox = mylayoutbox(s)
     s.mytasklist = mytasklist(s)
+    -- Remove old wibox
+    if s.mywibox ~= nil then s.mywibox.visible = false end
     -- Create wibox
     s.mywibox = wibox {
         visible = true,
@@ -439,8 +442,6 @@ local function set_wibox(s)
     }
 end
 
-
-
 -- }}}
 --------------------------------------------------------------------------------
 -- {{{ Create environment
@@ -457,10 +458,18 @@ local function set_wallpaper(s)
 end
 
 local function set_screen(s)
-    -- Reset wallpaper
+    -- Re/set wallpaper
     set_wallpaper(s)
-    -- Reset wibox
+    -- Re/set wibox
     set_wibox(s)
+    -- Sort screens according to their position
+    -- for sc in screen do
+    --    if sc.geometry["x"] < s.geometry["x"] then
+    --        sc:swap(s)
+    --        break
+    --    end
+    -- end
+    awful.screen.focus(1)
 end
 
 -- Re-set wallpaper when a screen's geometry changes
@@ -632,15 +641,15 @@ clientkeys = gears.table.join(
         ),
     awful.key({ modkey, "Shift"   }, "w",
         function(c) c:move_to_screen(1) end,
-        {description = "move focued client to screen 1", group = "client"}
+        {description = "move focused client to screen 1", group = "client"}
         ),
     awful.key({ modkey, "Shift"   }, "e",
         function(c) c:move_to_screen(2) end,
-        {description = "move focued client to screen 2", group = "client"}
+        {description = "move focused client to screen 2", group = "client"}
         ),
     awful.key({ modkey, "Shift"   }, "r",
         function(c) c:move_to_screen(3) end,
-        {description = "move focued client to screen 3", group = "client"}
+        {description = "move focused client to screen 3", group = "client"}
         )
     )
 
