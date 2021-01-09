@@ -58,6 +58,21 @@ browser = "brave"
 filemanager = "pcmanfm"
 editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
+mydmenu_run =  function()
+    local gap = 2 * beautiful.useless_gap
+    local screen = awful.screen.focused()
+    local x_offset = " -x " .. screen.geometry["x"] + gap
+    local y_offset = " -y " .. screen.geometry["y"] + gap
+    local width = " -z " .. screen.geometry["width"] - 2 * gap
+    local height = " -h " .. beautiful.wibox_height
+    return "dmenu_run -p 'Run: '" .. x_offset .. y_offset .. width .. height
+end
+
+-- Set default focused screen to the screen with the focused client
+awful.screen.default_focused_args = {
+    client = true,
+    mouse = false,
+}
 
 -- Default mod key
 modkey = "Mod4"
@@ -115,7 +130,7 @@ mylauncher = wibox.widget {
 
 mylauncher:buttons(gears.table.join(
         awful.button({ }, 1,
-            function() awful.spawn("dmenu_run -p 'Run: '") end
+            function() awful.spawn(mydmenu_run()) end
         ),
         awful.button({ }, 3,
             function() mymenu:toggle() end
@@ -174,31 +189,8 @@ local mytaglist = function(s)
         },
         widget_template = {
             {
-                -- {
-                --     {
-                --         {
-                --             id = "index_role",
-                --             widget = wibox.widget.textbox,
-                --         },
-                --         margins = 4,
-                --         widget = wibox.container.margin,
-                --     },
-                --     bg = beautiful.taglist_bg,
-                --     widget = wibox.container.background,
-                -- },
-                -- {
-                --     {
-                --         id = "icon_role",
-                --         widget = wibox.widget.imagebox,
-                --     },
-                --     margin = 4,
-                --     widget = wibox.container.margin,
-                -- },
-                {
-                    id = "text_role",
-                    widget = wibox.widget.textbox,
-                },
-                layout = wibox.layout.fixed.horizontal,
+                id = "text_role",
+                widget = wibox.widget.textbox,
             },
             left = 6,
             right = 6,
@@ -469,7 +461,7 @@ local function set_screen(s)
     --        break
     --    end
     -- end
-    awful.screen.focus(1)
+    -- awful.screen.focus(1)
 end
 
 -- Re-set wallpaper when a screen's geometry changes
@@ -502,7 +494,7 @@ globalkeys = gears.table.join(
         {description = "open a scratchpad terminal", group = "launcher"}
         ),
     awful.key({ modkey, "Shift"   }, "Return",
-        function() awful.spawn("dmenu_run -p 'Run: '") end,
+        function() awful.spawn(mydmenu_run()) end,
         {description = "open dmenu", group = "launcher"}
         ),
     awful.key({ modkey,           }, "b",
