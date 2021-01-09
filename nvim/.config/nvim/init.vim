@@ -172,6 +172,77 @@ set colorcolumn=80
 " Highlight yanked text
 au TextYankPost * silent! lua vim.highlight.on_yank()
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Statusline
+
+" Always show the statusline
+set laststatus=2
+" Show all modes in the statusline
+set noshowmode
+
+" Custom functions called in the statusline
+let g:translateMode={
+            \ 'n' : 'NORMAL',
+            \ 'i' : 'INSERT',
+            \ 'c' : 'COMMAND',
+            \ 'v' : 'VISUAL',
+            \ 'V' : 'V-LINE',
+            \ '^V' : 'V-BLOCK',
+            \ 'r' : 'REPLACE',
+            \ 'R' : 'R-CONTINOUS',
+            \}
+
+function! StatuslineLsp()
+    let l:sl = ''
+    if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+        let l:numError = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
+        let l:numWarning = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
+        if and(l:numError == 0, l:numWarning == 0)
+            let l:sl = '﫟'
+        else
+            if l:numError > 0
+                let l:sl.= ' :'.l:numError
+            endif
+            if l:numWarning > 0
+                let l:sl.= ' :'.l:numWarning
+            endif
+        endif
+    endif
+    return l:sl
+endfunction
+
+function! StatuslineModified()
+    if getbufinfo()[0].changed
+        let l:sl = ' [+] '
+    else
+        let l:sl = ''
+    endif
+    return l:sl
+endfunction
+
+function! StatuslineReadOnly()
+    if &readonly || !&modifiable
+        let s:sl = ' [RO] '
+    else
+        let s:sl = ''
+    endif
+    return s:sl
+endfunction
+
+let s:slSeparator = '%#StatusLineNC#|'
+let s:slLinemode = '%#StatusLineMode# %{toupper(g:translateMode[mode()])} '.s:slSeparator
+let s:slFilename = '%#StatusLineFileName# %-t '
+let s:slModified = '%#StatusLineReadOnly#%{StatuslineReadOnly()}'
+let s:slModified = '%#StatusLineModified#%{StatuslineModified()}'.s:slSeparator
+let s:slLsp = '%#StatusLineLsp# %{StatuslineLsp()} '.s:slSeparator
+let s:slEncoding = s:slSeparator.'%#StatusLineEncoding# %-{&fileencoding?&fileencoding:&encoding} '
+let s:slFiletype = s:slSeparator.'%#StatusLineFileType# %-Y '
+let s:slPercentage = '%#StatusLinePercentage# %p%% '
+let s:slLinenumber = '%#StatusLineLineNumber# %l/%L '
+let s:slLeft = s:slLinemode.s:slFilename.s:slModified.s:slLsp
+let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slLinenumber
+let &l:statusline = s:slLeft.'%*%='.s:slRight
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits and Tabbed Files
 
