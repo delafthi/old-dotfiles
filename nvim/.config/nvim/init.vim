@@ -198,7 +198,7 @@ function! StatuslineLsp()
         let l:numError = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
         let l:numWarning = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
         if and(l:numError == 0, l:numWarning == 0)
-            let l:sl = '﫟'
+            let l:sl = '✓'
         else
             if l:numError > 0
                 let l:sl.= ' :'.l:numError
