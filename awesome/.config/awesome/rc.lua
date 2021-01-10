@@ -68,6 +68,9 @@ mydmenu_run =  function()
     return "dmenu_run -p 'Run: '" .. x_offset .. y_offset .. width .. height
 end
 
+-- Set the default focused screen to be the one with the mouse
+awful.screen.default_focused_args = { client = true }
+
 -- Default mod key
 modkey = "Mod4"
 
