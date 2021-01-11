@@ -33,6 +33,7 @@ theme.black_lite = "#5c6370"
 theme.config_path = gfs.get_configuration_dir()
 
 -- Set wallpaper
+theme.wallpapers_path = "/usr/share/backgrounds/*.jpg"
 theme.wallpaper = "/usr/share/backgrounds/wallpaper1.jpg"
 
 -- Set fonts
