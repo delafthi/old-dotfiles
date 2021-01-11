@@ -366,6 +366,12 @@ alias htop="htop -t"
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
+# kitty specific aliases
+if [ $TERM == "xterm-kitty" ]
+then
+    alias ssh="kitty +kitten ssh"
+fi
+
 ################################################################################
 # Environment variables
 export HISTCONTROL=ignoreboth             # no duplicate entries
