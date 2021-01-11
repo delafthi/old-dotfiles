@@ -60,6 +60,8 @@ filetype plugin indent on    " required
 lua require('lsp_config')
 " Load lua treesitter config
 lua require('treesitter_config')
+" Load lua telescope config
+lua require('telescope_config')
 " Set window title by default.
 set title
 " Don't display the intro message on starting Vim.
