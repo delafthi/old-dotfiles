@@ -82,6 +82,11 @@ alias htop="htop -t"
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
 
+# kitty specific aliases
+if string match -q "xterm-kitty" -- $TERM
+    alias ssh="kitty +kitten ssh"
+end
+
 ################################################################################
 # Environment variables
 
