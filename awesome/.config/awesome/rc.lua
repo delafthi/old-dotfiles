@@ -60,16 +60,13 @@ editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 mydmenu_run =  function()
     local gap = 2 * beautiful.useless_gap
-    local screen = awful.screen.focused()
+    local screen = awful.screen.focused({ client = true })
     local x_offset = " -x " .. screen.geometry["x"] + gap
     local y_offset = " -y " .. screen.geometry["y"] + gap
     local width = " -z " .. screen.geometry["width"] - 2 * gap
     local height = " -h " .. beautiful.wibox_height
     return "dmenu_run -p 'Run: '" .. x_offset .. y_offset .. width .. height
 end
-
--- Set the default focused screen to be the one with the mouse
-awful.screen.default_focused_args = { client = true }
 
 -- Default mod key
 modkey = "Mod4"
