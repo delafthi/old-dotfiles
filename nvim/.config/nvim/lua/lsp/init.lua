@@ -20,12 +20,12 @@ lsp.ccls.setup{}
 -- dockerfile-language-server
 lsp.dockerls.setup{}
 -- python-language-server
-lsp.pyls.setup{root_dir = lsp.util.root_pattern(".git", vim.fn.getcwd())}
+lsp.pyls.setup{root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd())}
 -- sumneko lua-language-server
 local sumneko_lua_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
-local sumneko_lua_binary = sumneko_lua_root_path .. "/bin/Linux/lua-language-server"
+local sumneko_lua_binary = sumneko_lua_root_path .. '/bin/Linux/lua-language-server'
 lsp.sumneko_lua.setup{
-    cmd = {sumneko_lua_binary, "-E", sumneko_lua_root_path .. "/main.lua"};
+    cmd = {sumneko_lua_binary, '-E', sumneko_lua_root_path .. '/main.lua'};
     settings = {
         Lua = {
             runtime = {
