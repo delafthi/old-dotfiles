@@ -4,7 +4,7 @@ Config { font = "xft:Victor Mono Nerd Font:regular:size=11:antialias=true"
                             ]
         , bgColor = "#282c34"
         , fgColor = "#abb2bf"
-        , position = Static {xpos = 4, ypos = 4, width = 2552, height = 24 }
+        , position = Static {xpos = 2564, ypos = 4, width = 2552, height = 24 }
         , sepChar =  "%"   -- delineator between plugin names and straight text
         , alignSep = "}{"  -- separator between left-right alignment
         , lowerOnStart =     True    -- send to bottom of window stack on start
