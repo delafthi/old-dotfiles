@@ -194,9 +194,9 @@ let g:translateMode={
 
 function! StatuslineLsp()
     let l:sl = ''
+    let l:numError = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
+    let l:numWarning = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
     if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-        let l:numError = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
-        let l:numWarning = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
         if and(l:numError == 0, l:numWarning == 0)
             let l:sl = '✓'
         else
@@ -234,11 +234,11 @@ let s:slLinemode = '%#StatusLineMode# %{toupper(g:translateMode[mode()])} '.s:sl
 let s:slFilename = '%#StatusLineFileName# %-t '
 let s:slModified = '%#StatusLineReadOnly#%{StatuslineReadOnly()}'
 let s:slModified = '%#StatusLineModified#%{StatuslineModified()}'.s:slSeparator
-let s:slLsp = '%#StatusLineLsp# %{StatuslineLsp()} '.s:slSeparator
+let s:slLsp = '%#StatusLineLsp# %{StatuslineLsp()}'
 let s:slEncoding = s:slSeparator.'%#StatusLineEncoding# %-{&fileencoding?&fileencoding:&encoding} '
 let s:slFiletype = s:slSeparator.'%#StatusLineFileType# %-Y '
-let s:slPercentage = '%#StatusLinePercentage# %p%% '
-let s:slLinenumber = '%#StatusLineLineNumber# %l/%L '
+let s:slPercentage = s:slSeparator.'%#StatusLinePercentage# %p%% '
+let s:slLinenumber = s:slSeparator.'%#StatusLineLineNumber# %l/%L '
 let s:slLeft = s:slLinemode.s:slFilename.s:slModified.s:slLsp
 let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slLinenumber
 let &l:statusline = s:slLeft.'%*%='.s:slRight
