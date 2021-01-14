@@ -268,7 +268,7 @@ vnoremap <silent> k gk
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 " Open terminal inside Vim
-nmap <silent> <Leader>tt :new term://fish<cr>
+nnoremap <silent> <Leader>tt :new term://fish<cr>
 " Remap splits navigation to just CTRL + hjkl
 tnoremap <silent> <C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-j> <C-\><C-n><C-w>j
@@ -299,17 +299,17 @@ nnoremap <silent> <C-Right> :vertical resize -2<cr>
 nnoremap <silent> <leader>lv <C-w>t<C-w>H
 nnoremap <silent> <leader>lh <C-w>t<C-w>K
 " Show current buffer and change to buffer
-nmap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
 " Kill specified buffer
-nmap <silent> <leader>bk :ls<cr>:bd<Space>
+nnoremap <silent> <leader>bk :ls<cr>:bd<Space>
 " Search for files located in the same in recursive dirs
-nmap <silent> <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
 " global grep in project files
-nmap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 " Enable/Disable spell checker
-map <silent> <leader>o :setlocal spell!<cr>
+noremap <silent> <leader>o :setlocal spell!<cr>
 " Save file as sudo on files that require root permission
-cmap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse settings
@@ -355,14 +355,14 @@ let g:deoplete#enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
 "
-nmap <silent> <Leader>gg :Goyo<cr>
+nnoremap <silent> <Leader>gg :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cyclist
 
 " Cycle through the differenc cyclist configurations
-nmap <silent> <leader>ln <plug>CyclistNext
-nmap <silent> <leader>lp <plug>CyclistPrev
+nnoremap <silent> <leader>ln <plug>CyclistNext
+nnoremap <silent> <leader>lp <plug>CyclistPrev
 
 call cyclist#add_listchar_option_set('all', {
             \ 'eol': '↲',
@@ -378,11 +378,11 @@ call cyclist#add_listchar_option_set('all', {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
 
-nmap <silent> <leader>vv :Vifm<cr>
-nmap <silent> <leader>vs :VsplitVifm<cr>
-nmap <silent> <leader>sp :SplitVifm<cr>
-nmap <silent> <leader>dv :DiffVifm<cr>
-nmap <silent> <leader>tv :TabVifm<cr>
+nnoremap <silent> <leader>vv :Vifm<cr>
+nnoremap <silent> <leader>vs :VsplitVifm<cr>
+nnoremap <silent> <leader>sp :SplitVifm<cr>
+nnoremap <silent> <leader>dv :DiffVifm<cr>
+nnoremap <silent> <leader>tv :TabVifm<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
@@ -408,7 +408,7 @@ let g:mkdp_browser = 'brave'
 " Define title of the browser page
 let g:mkdp_page_tittle = '${name}'
 " Set keybinging to launch the markdown preview
-autocmd Filetype mkd,vimwiki nmap <silent> <Leader>mp <Plug>MarkdownPreviewToggle
+autocmd Filetype mkd,vimwiki nnoremap <silent> <Leader>mp <Plug>MarkdownPreviewToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDCommenter
