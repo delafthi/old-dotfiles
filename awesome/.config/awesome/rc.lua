@@ -332,7 +332,7 @@ mymeminfo = wibox.widget {
                         mem[name] = number
                     end
                 end
-                mem["MemUsed"] = tonumber(mem["MemTotal"] == nil and 0 or mem["MemTotal"]) - tonumber(mem["MemFree"] == nil and 0 or mem["MemFree"])
+                mem["MemUsed"] = tonumber(mem["MemTotal"] == nil and 0 or mem["MemTotal"]) - tonumber(mem["MemAvailable"] == nil and 0 or mem["MemAvailable"])
                 widget:set_markup_silently(string.format("<span color=%q> : %2.2f GB/%2.2f GB</span>", beautiful.yellow, mem["MemUsed"]/1024^2, mem["MemTotal"]/1024^2))
             end
             ),
