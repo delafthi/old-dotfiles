@@ -24,8 +24,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'preservim/nerdcommenter'
     Plug 'godlygeek/tabular'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'Shougo/deoplete-lsp'
+    Plug 'nvim-lua/completion-nvim'
+    Plug 'nvim-treesitter/completion-treesitter'
     Plug 'tjdevries/cyclist.vim',
 " Syntax Highlighting and language support
     Plug 'ap/vim-css-color'
@@ -118,6 +118,10 @@ set wildmenu
 set wildmode=longest,full
 " Remove popup menu for autocompletion
 set wildoptions-=pum
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+" Avoid shoving message extra message when using completion
+set shortmess+=c
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search
@@ -308,6 +312,9 @@ nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
 " Enable/Disable spell checker
 noremap <silent> <leader>o :setlocal spell!<cr>
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
@@ -349,8 +356,38 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" deoplete
-let g:deoplete#enable_at_startup = 1
+" nvim-completion
+
+" Enable nvim-completion
+autocmd BufEnter * lua require('completion').on_attach()
+" Configure the completion chains
+let g:completion_chain_complete_list = {
+            \'default' : {
+            \   'default' : [
+            \       {'complete_items' : ['ts']},
+            \       {'mode' : '<C-p>'},
+            \       {'mode' : '<C-n>'}
+            \   ],
+            \   'string' : [
+            \       {'complete_items' : ['lsp']},
+            \       {'mode' : '<C-p>'},
+            \       {'mode' : '<C-n>'}
+            \   ],
+            \   'comment' : []
+            \   }
+            \}
+" Enable auto popup
+let g:completion_enable_auto_popup = 1
+" Disable auto hover
+let g:completion_enable_auto_hover = 0
+" Disable auto signature
+let g:completion_enable_auto_signature = 0
+" set sorting of completion items (possible values: 'length', 'alphabet', 'none'
+let g:completion_sorting = 'length'
+" Set matching strategy
+let g:completion_matching_strategy = 'exact'
+" Enable smart case matching
+let g:completion_matching_smart_case = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
