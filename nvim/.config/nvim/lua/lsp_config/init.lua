@@ -29,9 +29,9 @@ local on_attach = function(client, bufnr)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+      buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+      buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -65,6 +65,11 @@ lsp.bashls.setup{ on_attach = on_attach }
 lsp.ccls.setup{ on_attach = on_attach }
 -- dockerfile-language-server
 lsp.dockerls.setup{ on_attach = on_attach }
+-- haskell-language-server
+lsp.hls.setup{
+    on_attach = on_attach,
+    root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml')
+}
 -- python-language-server
 lsp.pyls.setup{
     on_attach = on_attach,
@@ -103,3 +108,5 @@ lsp.sumneko_lua.setup{
 lsp.texlab.setup{ on_attach = on_attach }
 -- vim-language-server
 lsp.vimls.setup{ on_attach = on_attach }
+-- yaml-language-server
+lsp.yamlls.setup{ on_attach = on_attach }
