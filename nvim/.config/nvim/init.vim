@@ -392,14 +392,14 @@ let g:completion_matching_smart_case = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
 "
-nnoremap <silent> <Leader>gg :Goyo<cr>
+nnoremap <silent> <leader>gg :Goyo<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cyclist
 
 " Cycle through the differenc cyclist configurations
-nnoremap <silent> <leader>ln <plug>CyclistNext
-nnoremap <silent> <leader>lp <plug>CyclistPrev
+nmap <silent> <leader>ln <plug>CyclistNext
+nmap <silent> <leader>lp <plug>CyclistPrev
 
 call cyclist#add_listchar_option_set('all', {
             \ 'eol': '↲',
@@ -445,7 +445,7 @@ let g:mkdp_browser = 'brave'
 " Define title of the browser page
 let g:mkdp_page_tittle = '${name}'
 " Set keybinging to launch the markdown preview
-autocmd Filetype mkd,vimwiki nnoremap <silent> <Leader>mp <Plug>MarkdownPreviewToggle
+autocmd Filetype mkd,vimwiki nmap <silent> <leader>mp <plug>MarkdownPreviewToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDCommenter
