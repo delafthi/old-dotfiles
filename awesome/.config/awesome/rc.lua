@@ -703,26 +703,25 @@ clientbuttons = gears.table.join(
 -- All new appearing clients will match these rules
 
 awful.rules.rules = {
-    { rule = { },
-      properties = {
-          border_width = beautiful.border_width,
-          border_color = beautiful.border_normal,
-          focus = awful.client.focus.filter,
-          raise = true,
-          keys = clientkeys,
-          buttons = clientbuttons,
-          screen = awful.screen.preferred,
-          placement = awful.placement.no_overlap+awful.placement.no_offscreen
-      }
+    {
+        rule = { },
+        properties = {
+            border_width = beautiful.border_width,
+            border_color = beautiful.border_normal,
+            focus = awful.client.focus.filter,
+            raise = true,
+            keys = clientkeys,
+            buttons = clientbuttons,
+            screen = awful.screen.preferred,
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+        }
     },
     -- Floating clients
-    { rule_any = {
+    {
+        rule_any = {
             class = {
                 "Pavucontrol",
                 "Xmessage"
-            },
-            name = {
-                "Microsoft Teams Notifications"
             },
             type= {
                 "dialog"
@@ -731,6 +730,22 @@ awful.rules.rules = {
         properties = { floating = true }
     },
     -- Client specific rules
+    {
+        id = "teams_notification",
+        rule_any = {
+            name = { "Microsoft Teams Notification" },
+        },
+        properties = {
+            titlebars_enabled = false,
+            floating = true,
+            focus = false,
+            draw_backdrop = false,
+            skip_decoration = true,
+            skip_taskbar = true,
+            ontop = true,
+            sticky = true
+        },
+    },
 }
 
 -- }}}
