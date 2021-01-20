@@ -13,7 +13,6 @@ run udiskie
 run picom
 run nm-applet
 run blueman-applet
-run xfce4-power-manager
 run volumeicon
 run pcmanfm -d
 run unclutter --timeout 10
