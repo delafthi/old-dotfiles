@@ -60,7 +60,7 @@ editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 mydmenu_run =  function()
     local gap = 2 * beautiful.useless_gap
-    local screen = awful.screen.focused({ client = true })
+    local screen = awful.screen.focused()
     local x_offset = " -x " .. screen.geometry["x"] + gap
     local y_offset = " -y " .. screen.geometry["y"] + gap
     local width = " -z " .. screen.geometry["width"] - 2 * gap
