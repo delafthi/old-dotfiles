@@ -362,22 +362,22 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | try | 'm | catch | G | endtry
 autocmd BufEnter * lua require('completion').on_attach()
 " Configure the completion chains
 let g:completion_chain_complete_list = {
-            \'default' : {
-            \   'default' : [
-            \       {'complete_items' : ['ts']},
-            \       {'complete_items' : ['lsp']},
-            \       {'mode' : 'file'},
-            \   ],
-            \   'string' : [
-            \       {'complete_items' : ['ts']},
-            \       {'complete_items' : ['lsp']},
-            \       {'mode' : 'file'},
-            \       {'mode' : 'spell'},
-            \   ],
-            \   'comment' : [
-            \       {'mode' : 'spell'},
-            \   ],
-            \   }
+            \ 'default' : {
+            \     'default' : [
+            \         {'complete_items' : ['ts']},
+            \         {'complete_items' : ['lsp']},
+            \         {'mode' : 'file'},
+            \     ],
+            \     'func' : [
+            \         {'complete_items' : ['lsp']},
+            \     ],
+            \     'string' : [
+            \         {'complete_items' : ['ts']},
+            \         {'complete_items' : ['lsp']},
+            \         {'mode' : 'file'},
+            \     ],
+            \     'comment' : [],
+            \ },
             \}
 " Enable auto popup
 let g:completion_enable_auto_popup = 1
