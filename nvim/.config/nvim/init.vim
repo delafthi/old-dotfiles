@@ -348,8 +348,8 @@ au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
 
 " Automatically deletes all trailing whitespace and newlines at end of file on
 " save.
-autocmd BufWritePre * mark m | %s/\s\+$//e | 'm
-autocmd BufWritepre * mark m | %s/\n\+\%$//e | 'm
+autocmd BufWritePre * mark m | %s/\s\+$//e | try | 'm | catch | G | endtry
+autocmd BufWritepre * mark m | %s/\n\+\%$//e | try | 'm | catch | G | endtry
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
@@ -365,15 +365,18 @@ let g:completion_chain_complete_list = {
             \'default' : {
             \   'default' : [
             \       {'complete_items' : ['ts']},
-            \       {'mode' : '<C-p>'},
-            \       {'mode' : '<C-n>'}
+            \       {'complete_items' : ['lsp']},
+            \       {'mode' : 'file'},
             \   ],
             \   'string' : [
+            \       {'complete_items' : ['ts']},
             \       {'complete_items' : ['lsp']},
-            \       {'mode' : '<C-p>'},
-            \       {'mode' : '<C-n>'}
+            \       {'mode' : 'file'},
+            \       {'mode' : 'spell'},
             \   ],
-            \   'comment' : []
+            \   'comment' : [
+            \       {'mode' : 'spell'},
+            \   ],
             \   }
             \}
 " Enable auto popup
@@ -383,11 +386,13 @@ let g:completion_enable_auto_hover = 0
 " Disable auto signature
 let g:completion_enable_auto_signature = 0
 " set sorting of completion items (possible values: 'length', 'alphabet', 'none'
-let g:completion_sorting = 'length'
+let g:completion_sorting = 'none'
 " Set matching strategy
 let g:completion_matching_strategy = 'exact'
 " Enable smart case matching
 let g:completion_matching_smart_case = 1
+" Automatically change the completion source
+let g:completion_auto_change_source = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Goyo
