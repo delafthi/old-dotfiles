@@ -247,7 +247,7 @@ let s:slPercentage = s:slSeparator.'%#StatusLinePercentage# %p%% '
 let s:slLinenumber = s:slSeparator.'%#StatusLineLineNumber# %l/%L '
 let s:slLeft = s:slLinemode.s:slFilename.s:slModified.s:slLsp
 let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slLinenumber
-let &l:statusline = s:slLeft.'%*%='.s:slRight
+let &g:statusline = s:slLeft.'%*%='.s:slRight
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits and Tabbed Files
