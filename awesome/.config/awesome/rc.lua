@@ -333,7 +333,7 @@ mymeminfo = wibox.widget {
                     end
                 end
                 mem["MemUsed"] = tonumber(mem["MemTotal"] == nil and 0 or mem["MemTotal"]) - tonumber(mem["MemAvailable"] == nil and 0 or mem["MemAvailable"])
-                widget:set_markup_silently(string.format("<span color=%q> : %2.2f GB/%2.2f GB</span>", beautiful.yellow, mem["MemUsed"]/1024^2, mem["MemTotal"]/1024^2))
+                widget:set_markup_silently(string.format("<span color=%q> : %3.f%%</span>", beautiful.yellow, mem["MemUsed"]/mem["MemTotal"]*100))
             end
             ),
         layout = wibox.layout.fixed.horizontal,
