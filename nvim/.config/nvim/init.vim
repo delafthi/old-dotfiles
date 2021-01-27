@@ -21,7 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'tpope/vim-surround'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-    Plug 'preservim/nerdcommenter'
+    Plug 'tpope/vim-commentary'
     Plug 'godlygeek/tabular'
     Plug 'nvim-lua/completion-nvim'
     Plug 'nvim-treesitter/completion-treesitter'
@@ -441,26 +441,3 @@ let g:mkdp_browser = 'brave'
 let g:mkdp_page_tittle = '${name}'
 " Set keybinging to launch the markdown preview
 autocmd Filetype mkd,vimwiki nmap <silent> <leader>mp <plug>MarkdownPreviewToggle
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDCommenter
-
-" Create default mappings
-let g:NERDCreateDefaultMappings = 1
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = {
-            \ 'c': { 'left': '/**','right': '*/' },
-            \ 'python': { 'left': '#','right': '' },
-            \ }
