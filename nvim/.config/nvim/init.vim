@@ -4,7 +4,6 @@
 
 set nocompatible " be iMproved, required
 filetype off " required
-let g:polyglot_disabled = ['markdown.plugin'] " Needs to be defined before loading polyglot
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins managed by Vundle
@@ -337,13 +336,6 @@ set guioptions-=r
 set guioptions-=L
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File types
-
-" Markdown
-au! BufRead,BufNewFile,BufFilePre *.markdown set filetype=mkd
-au! BufRead,BufNewFile,BufFilePre *.md set filetype=mkd
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other functions
 
 " Automatically deletes all trailing whitespace and newlines at end of file on
@@ -433,9 +425,7 @@ nnoremap <silent> <leader>tv :TabVifm<cr>
 let g:vimwiki_list = [{
             \ 'path': '~/Vimwiki/',
             \ 'syntax': 'markdown', 'ext': '.md',
-            \ 'auto_tags': 1, 'auto_toc': 1,
             \ }]
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_auto_chdir = 1
 
