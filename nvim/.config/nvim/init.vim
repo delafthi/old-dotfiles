@@ -27,7 +27,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-treesitter/completion-treesitter'
     Plug 'tjdevries/cyclist.vim',
 " Syntax Highlighting and language support
-    Plug 'ap/vim-css-color'
+    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'sheerun/vim-polyglot'
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -346,6 +346,11 @@ autocmd BufWritepre * mark m | %s/\n\+\%$//e | try | 'm | catch | G | endtry
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nvim-colorizer.lua
+
+lua require('colorizer').setup()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nvim-completion
