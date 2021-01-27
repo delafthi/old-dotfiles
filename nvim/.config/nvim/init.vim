@@ -277,10 +277,10 @@ inoremap ii <Esc>
 " Remap Leader key to SPACE
 let g:mapleader = "\<Space>"
 " Remap hjkl keys to navigate also the wrapped lines
-vnoremap <silent> j gj
-vnoremap <silent> k gk
-nnoremap <silent> j gj
 nnoremap <silent> k gk
+nnoremap <silent> j gj
+vnoremap <silent> k gk
+vnoremap <silent> j gj
 " Open terminal inside Vim
 nnoremap <silent> <Leader>tt :new term://fish<cr>
 " Remap splits navigation to just CTRL + hjkl
@@ -326,7 +326,7 @@ noremap <silent> <leader>o :setlocal spell!<cr>
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Save file as sudo on files that require root permission
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+ca w!! w !sudo tee >/dev/null "%"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse settings
@@ -351,8 +351,18 @@ set guioptions-=L
 
 " Automatically deletes all trailing whitespace and newlines at end of file on
 " save.
-autocmd BufWritePre * mark m | %s/\s\+$//e | try | 'm | catch | G | endtry
-autocmd BufWritepre * mark m | %s/\n\+\%$//e | try | 'm | catch | G | endtry
+function! TrimTrailingLines()
+    let lastLine = line('$')
+    let lastNonblankLine = prevnonblank(lastLine)
+    if lastLine > 0 && lastNonblankLine != lastLine
+        silent! execute lastNonblankLine + 1 . ',$delete _'
+    endif
+endfunction
+augroup remove
+    au!
+    au BufWritePre * %s/\s\+$//e
+    au BufWritepre * call TrimTrailingLines()
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
