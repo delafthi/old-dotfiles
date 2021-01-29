@@ -1,7 +1,9 @@
+################################################################################
 # ~/.bashrc: executed by bash(1) for non-login shells.
+################################################################################
 
+################################################################################
 # General settings
-#----------------------------------------------------------
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -21,8 +23,8 @@ shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # checks term size when bash regains control
 
+################################################################################
 # Aiases
-#----------------------------------------------------------
 
 alias sudo="sudo "
 
@@ -62,13 +64,13 @@ alias sr="sudo reboot"
 
 # kitty specific aliases
 
-if [ $TERM == "xterm-kitty" ]
-then
+if [ $TERM == "xterm-kitty" ]; then
     alias ssh="kitty +kitten ssh"
 fi
 
+################################################################################
 # Environment variables
-#----------------------------------------------------------
+
 export HISTCONTROL=ignoreboth             # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
@@ -77,22 +79,25 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"       # Set default ssh key path
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
 # Path
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
+if [ -d "$HOME/.bin" ]; then
+    PATH="$HOME/.bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
+################################################################################
 # Keybindings
-#----------------------------------------------------------
 
 # Set vi mode
 set -o vi
 
+################################################################################
 # Visuals
-#----------------------------------------------------------
+
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
 
 # Colors
 COLOR_RED="\033[0;31m"
@@ -124,13 +129,13 @@ case ${TERM} in
 esac
 
 
+################################################################################
 # Functions
-#----------------------------------------------------------
 
 # Archive extraction
 ex ()
 {
-  if [ -f $1 ] ; then
+  if [ -f $1 ]; then
     case $1 in
       --help)      echo "usage: ex <file>" ;;
       *.tar.bz2)   tar xjf $1   ;;
@@ -176,3 +181,17 @@ function git_color {
     echo -e $COLOR_YELLOW
   fi
 }
+
+################################################################################
+# Plugins
+
+# Starship prompt
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+if [[ $(type -t starship) == "file" ]]; then
+    eval "$(starship init bash)"
+else
+    echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL Starship not installed.\n"
+    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Starship will be downloaded and installed in the following steps"
+    curl -fsSL https://starship.rs/install.sh | bash && \
+        eval "$(starship init bash)"
+fi

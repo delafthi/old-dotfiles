@@ -221,3 +221,24 @@ function ex --description "Function to extract most types of archives"
         echo "'$argv' is not a valid file"
     end
 end
+
+################################################################################
+# Plugins
+
+# Starship prompt
+# Change default config directory
+set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
+if test (type -t starship) = 'file'
+    starship init fish | source
+else
+    set_color --bold red
+    echo -n "=> Error: "
+    set_color normal
+    echo -e "Starship not installed.\n"
+    set_color --bold green
+    echo -n "=> Info: "
+    set_color normal
+    echo "Starship will be downloaded and installed in the following steps"
+    curl -fsSL https://starship.rs/install.sh | bash && \
+       starship init fish | source
+end
