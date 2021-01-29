@@ -355,6 +355,14 @@ mytextclock = wibox.widget {
     widget = wibox.container.margin,
 }
 
+mysystray = wibox.widget {
+    {
+        widget = wibox.widget.systray,
+    },
+    right = 6,
+    widget = wibox.container.margin,
+}
+
 -- Default separator
 myseparator = {
     color = beautiful.wibox_separator_fg,
@@ -419,7 +427,7 @@ local function set_wibox(s)
             mycpuinfo,
             mymeminfo,
             mytextclock,
-            wibox.widget.systray(),
+            mysystray,
             spacing = 1,
             spacing_widget = myseparator,
             layout = wibox.layout.fixed.horizontal(),
