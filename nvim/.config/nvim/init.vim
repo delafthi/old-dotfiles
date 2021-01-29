@@ -254,9 +254,10 @@ let s:slLsp = '%#StatusLineLsp# %{StatuslineLsp()}'
 let s:slEncoding = s:slSeparator.'%#StatusLineEncoding# %-{&fileencoding?&fileencoding:&encoding} '
 let s:slFiletype = s:slSeparator.'%#StatusLineFileType# %-Y '
 let s:slPercentage = s:slSeparator.'%#StatusLinePercentage# %p%% '
+let s:slColumnnumber = s:slSeparator.'%#StatusLineColumnNumber# %c '
 let s:slLinenumber = s:slSeparator.'%#StatusLineLineNumber# %l/%L '
 let s:slLeft = s:slLinemode.s:slFilename.s:slModified.s:slLsp
-let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slLinenumber
+let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slColumnnumber.s:slLinenumber
 let &g:statusline = s:slLeft.'%*%='.s:slRight
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
