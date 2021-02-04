@@ -463,7 +463,7 @@ local function set_screen(s)
     --        break
     --    end
     -- end
-    -- awful.screen.focus(1)
+    awful.screen.focus(1)
 end
 
 -- Re-set wallpaper when a screen's geometry changes
