@@ -791,9 +791,3 @@ client.connect_signal("unfocus",
     )
 
 -- }}}
---------------------------------------------------------------------------------
--- {{{ Autostart applications
-
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
-
--- }}}
