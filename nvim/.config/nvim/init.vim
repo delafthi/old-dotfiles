@@ -24,9 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " File management
     Plug 'vifm/vifm.vim'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
 " Productivity
     Plug 'junegunn/goyo.vim'
     Plug 'vimwiki/vimwiki'
@@ -36,14 +33,21 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'nvim-lua/completion-nvim'
     Plug 'nvim-treesitter/completion-treesitter'
+    Plug 'oberblastmeister/neuron.nvim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'tjdevries/cyclist.vim',
+    Plug 'lewis6991/gitsigns.nvim'
 " Syntax Highlighting and language support
     Plug 'norcalli/nvim-colorizer.lua'
-    Plug 'sheerun/vim-polyglot'
     Plug 'neovim/nvim-lspconfig'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Themes
-    Plug 'delafthi/onehalf', { 'rtp': 'vim' }
+" Theming
+    Plug 'tjdevries/colorbuddy.vim'
+    Plug 'Th3Whit3Wolf/spacebuddy'
+    Plug 'glepnir/galaxyline.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -63,8 +67,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Included lua configs
 
 " Load lua lsp config
 lua require('lsp_config')
@@ -72,6 +75,10 @@ lua require('lsp_config')
 lua require('treesitter_config')
 " Load lua telescope config
 lua require('telescope_config')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General settings
+
 " Set window title by default.
 set title
 " Don't display the intro message on starting Vim.
@@ -181,8 +188,10 @@ set tabstop=4
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme
 
+" Set dark background
+set background=light
 "Enable corolscheme onehalfdark
-colorscheme onehalfdark
+lua require('colorbuddy').colorscheme('onehalfbuddy')
 " Set column 80 to be highlighted
 set colorcolumn=80
 " Highlight yanked text
@@ -190,6 +199,9 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline
+
+" Load lua galaxyline config
+lua require('galaxyline_config')
 
 " Always show the statusline
 set laststatus=2
@@ -367,7 +379,10 @@ augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Settings
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Neuron
+lua require('neuron').setup{ }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nvim-colorizer.lua
