@@ -70,11 +70,11 @@ filetype plugin indent on    " required
 " Included lua configs
 
 " Load lua lsp config
-lua require('lsp_config')
+lua require('config.lsp')
 " Load lua treesitter config
-lua require('treesitter_config')
+lua require('config.treesitter')
 " Load lua telescope config
-lua require('telescope_config')
+lua require('config.telescope')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General settings
@@ -191,7 +191,7 @@ set tabstop=4
 " Set dark background
 set background=light
 "Enable corolscheme onehalfdark
-lua require('colorbuddy').colorscheme('onehalfbuddy')
+lua require('colorbuddy').colorscheme('colors.onehalfbuddy')
 " Set column 80 to be highlighted
 set colorcolumn=80
 " Highlight yanked text
@@ -201,7 +201,7 @@ au TextYankPost * silent! lua vim.highlight.on_yank()
 " Statusline
 
 " Load lua galaxyline config
-lua require('galaxyline_config')
+lua require('config.galaxyline')
 
 " Always show the statusline
 set laststatus=2
