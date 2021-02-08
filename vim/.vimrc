@@ -4,10 +4,10 @@ set nocompatible " required
 filetype off " required
 
 " Install vimplug
-if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+if ! filereadable(expand('~/.vim/autoload/plug.vim'))
     echo 'Downloading junegunn/vim-plug to manage plugins...'
-    silent !mkdir -p ~/.config/nvim/autoload/
-    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+    silent !mkdir -p ~/.vim/autoload/
+    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.vim/autoload/plug.vim
     augroup plug
         au!
         au VimEnter * PlugInstall
@@ -15,7 +15,7 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
 endif
 
 " Plugins
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugins')
 
 " Productivity
     Plug 'vimwiki/vimwiki'
