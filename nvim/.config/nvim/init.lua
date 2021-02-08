@@ -8,6 +8,7 @@ local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim' .. ' ' ..
            install_path)
+  cmd [[packadd packer.nvim]]
   cmd [[autocmd VimEnter * PackerInstall]]
 end
 
@@ -47,8 +48,7 @@ require('packer').startup(function()
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
-    config = function() require('conf.gitsigns').setup() end,
-    disable = true,
+    config = function() require('config.gitsigns').setup() end,
     requires = {'nvim-lua/plenary.nvim'},
   }
   -- LSP
@@ -62,7 +62,6 @@ require('packer').startup(function()
   use {
     'vimwiki/vimwiki',
     config = function() require('config.vimwiki') end,
-    disable = true,
   }
   use {
     'oberblastmeister/neuron.nvim',
@@ -70,9 +69,10 @@ require('packer').startup(function()
   }
   use {
     'iamcco/markdown-preview.nvim',
+    cmd = 'MarkdownPreview',
     config = function() require('config.markdown-preview') end,
     ft = {'markdown', 'vimwiki'},
-    run = 'vim.cmd[[cd app & yarn install]]',
+    run = 'cd app & yarn install',
   }
   -- Snippets
   use {
@@ -111,83 +111,100 @@ local function add(value, str, sep)
   return str ~= '' and table.concat({value, str}, sep) or value
 end
 local executable = function(e) return fn.executable(e) > 0 end
+local opts_info = vim.api.nvim_get_all_options_info()
+local opt = setmetatable({}, {
+  __newindex = function(_, key, value)
+    vim.o[key] = value
+    local scope = opts_info[key].scope
+    if scope == "win" then
+      vim.wo[key] = value
+    elseif scope == "buf" then
+       vim.bo[key] = value
+    end
+  end
+})
 
 -- Backup {{{1
-vim.o.backup = false -- Disable backups.
-vim.o.confirm = true -- Prompt to save before destructive actions.
-vim.o.swapfile = false -- Disable swapfiles.
-vim.o.undofile = true -- Save undo history.
+opt.backup = false -- Disable backups.
+opt.confirm = true -- Prompt to save before destructive actions.
+opt.swapfile = false -- Disable swapfiles.
+opt.undofile = true -- Save undo history.
 if fn.isdirectory(vim.o.undodir) == 0 then fn.mkdir(vim.o.undodir, 'p') end -- Create undo directory.
-vim.o.writebackup = false -- Disable backups, when a file is written.
+opt.writebackup = false -- Disable backups, when a file is written.
 
 -- Buffers {{{1
-vim.o.autoread = true -- Enable automatic reload of unchanged files.
+opt.autoread = true -- Enable automatic reload of unchanged files.
 cmd [[autocmd CursorHold * checktime]] -- Auto reload file, when changes where made somewhere else (for autoreload)
-vim.o.hidden = true -- Enable modified buffers in the background.
-vim.o.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
+opt.hidden = true -- Enable modified buffers in the background.
+opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 
 -- Colorscheme {{{1
 vim.g.rehash256 = 1 -- Better color support.
-vim.o.termguicolors = true -- Enable termguicolor support.
+opt.termguicolors = true -- Enable termguicolor support.
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
-vim.o.diffopt = add({
-    'vertical', 'iwhite', 'hiddenoff', 'foldcolumn:0', 'context:4',
-    'algorithm:histogram', 'indent-heuristic'
-}, vim.o.diffopt)
+opt.diffopt = add({
+    'vertical',
+    'iwhite',
+    'hiddenoff',
+    'foldcolumn:0',
+    'context:4',
+    'algorithm:histogram',
+    'indent-heuristic'
+    }, vim.o.diffopt)
 
 -- Display {{{1
-vim.o.colorcolumn = '80' -- Set colorcolumn to 80
-vim.o.cursorline = true -- Enable the cursorline.
-vim.o.display = add {'lastline'} -- On wrap display the last line even if it does not fit
-vim.o.errorbells = false -- Disable annoying errors
--- vim.o.lazyredraw = true -- Disables redraw when executing macros and other commands.
-vim.o.linebreak = true -- Prevent wrapping between words.
-vim.o.list = true -- Enable listchars.
+opt.colorcolumn = '80' -- Set colorcolumn to 80
+opt.cursorline = true -- Enable the cursorline.
+opt.display = add {'lastline'} -- On wrap display the last line even if it does not fit
+opt.errorbells = false -- Disable annoying errors
+-- opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
+opt.linebreak = true -- Prevent wrapping between words.
+opt.list = true -- Enable listchars.
  -- Set listchar characters.
-vim.o.listchars = add {
+opt.listchars = add {
   'eol:↲',
   'tab:»·',
-  'space:',
+  'space: ',
   'trail:',
   'extends:…',
   'precedes:…',
   'conceal:┊',
-  'nbsp:☠',
+  'nbsp:☠'
 }
-vim.o.number = true -- Print line numbers.
-vim.o.relativenumber = true -- Set line numbers to be relative to the cursor position.
-vim.o.scrolloff = 8 -- Keep 8 lines above or below the cursorline
-vim.o.shortmess = add({'I'}, vim.o.shortmess) -- Disables intro message, when starting vim.
+cmd [[set list]]
+opt.number = true -- Print line numbers.
+opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
+opt.scrolloff = 4 -- Keep 8 lines above or below the cursorline
 vim.g.showbreak = '>>> ' -- Show wrapped lines with a prepended string.
-vim.o.showcmd = true -- Show command in the command line.
-vim.o.showmode = false -- Don't show mode in the command line.
-vim.o.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
-vim.o.synmaxcol = 1024 -- Don't syntax highlight long lines.
-vim.o.textwidth = 80 -- Max text length.
+opt.showcmd = true -- Show command in the command line.
+opt.showmode = false -- Don't show mode in the command line.
+opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
+opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
+opt.textwidth = 80 -- Max text length.
 cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]] -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
-vim.o.wrap = true -- Enable line wrapping.
-vim.o.virtualedit = 'all' -- Allow cursor to move past end of line.
-vim.o.visualbell = false -- Disable annoying beeps
+opt.wrap = true -- Enable line wrapping.
+opt.virtualedit = 'all' -- Allow cursor to move past end of line.
+opt.visualbell = false -- Disable annoying beeps
 
 -- Folds {{{1
-vim.o.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
-vim.o.foldmethod = 'marker' -- The kind of folding for the current window.
-vim.o.foldopen = add(vim.o.foldopen, 'search') -- Open folds, when something is found inside the fold.
-vim.o.foldtext = 'folds#render()' -- Function called to display fold line.
+opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
+opt.foldmethod = 'marker' -- The kind of folding for the current window.
+opt.foldopen = add(vim.o.foldopen, 'search') -- Open folds, when something is found inside the fold.
+opt.foldtext = 'folds#render()' -- Function called to display fold line.
 
 -- Indentation {{{1
-vim.o.autoindent = true -- Allow filetype plugins and syntax highlighting
-vim.o.expandtab = true -- Use spaces instead of tabs
-vim.o.joinspaces = false -- No double spaces with join after a dot
-vim.o.shiftround = true -- Round indent
-vim.o.shiftwidth = 2 -- Size of an indent
-vim.o.smartindent = true -- Insert indents automatically
-vim.o.smarttab = true -- Automatically tab to the next softtabstop
-vim.o.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
-vim.o.tabstop = 2 -- Number of spaces tabs count for
+opt.autoindent = true -- Allow filetype plugins and syntax highlighting
+opt.expandtab = true -- Use spaces instead of tabs
+opt.joinspaces = false -- No double spaces with join after a dot
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.smartindent = true -- Insert indents automatically
+opt.smarttab = true -- Automatically tab to the next softtabstop
+opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
+opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
 local function map(mode, lhs, rhs, opts)
@@ -254,59 +271,62 @@ map('i', '<S-Tab>', '<expr>pumvisible() ? "\\<C-p>" : "\\<S-Tab>"')
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
 -- Mouse {{{1
-vim.o.mouse = 'nvicr' -- Enables different support modes for the mouse
+opt.mouse = 'nvicr' -- Enables different support modes for the mouse
 
 -- Netrw {{{1
 vim.g.netrw_banner = 0 -- Disable banner on top of the window.
 
 -- Search {{{1
-vim.o.hlsearch = true -- Enable search highlighting.
-vim.o.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
-vim.o.ignorecase = true -- Ignore case when searching.
-vim.o.scrolloff = 4 -- Lines of context
-vim.o.showmatch = true -- Jumps to the matching bracket, if it can be seen on screen.
-vim.o.smartcase = true -- Don't ignore case with capitals.
-vim.o.wrapscan = true -- Searches wraps at the end of the file.
+opt.hlsearch = true -- Enable search highlighting.
+opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
+opt.ignorecase = true -- Ignore case when searching.
+vim.wo.scrolloff = 4 -- Lines of context
+opt.showmatch = true -- Jumps to the matching bracket, if it can be seen on screen.
+opt.smartcase = true -- Don't ignore case with capitals.
+opt.wrapscan = true -- Searches wraps at the end of the file.
 -- Use faster grep alternatives if possible
 if executable('rg') then
-    vim.o.grepprg =
+    opt.grepprg =
         [[rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*]]
-    vim.o.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+    opt.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
 end
 
 -- Spell checking {{{1
-vim.o.spelllang = 'en_us,de_ch' -- Set spell check languages.
+opt.spelllang = 'en_us,de_ch' -- Set spell check languages.
 
 -- Splits {{{1
 -- Fill characters for the statusline and vertical separators
-vim.o.fillchars = add {
+opt.fillchars = add {
     'stl: ',
     'stlnc:-',
     'vert:│',
     'fold: ',
+    'foldopen:▾',
+    'foldclose:▸',
+    'foldsep:│',
     'diff:',
-    'msgsep:^',
-    'eop:~',
+    'msgsep:‾',
+    'eob:~',
 }
-vim.o.splitbelow = true -- Put new windows below the current.
-vim.o.splitright = true -- Put new windows right of the current.
+opt.splitbelow = true -- Put new windows below the current.
+opt.splitright = true -- Put new windows right of the current.
 
 -- Timings {{{1
-vim.o.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
-vim.o.timeoutlen = 500 -- Wait 500 milliseconds for further input.
-vim.o.ttimeoutlen = 10 -- Wait 10 milliseconds in mappings with CTRL.
+opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
+opt.timeoutlen = 500 -- Wait 500 milliseconds for further input.
+opt.ttimeoutlen = 10 -- Wait 10 milliseconds in mappings with CTRL.
 
 -- Title {{{1
-vim.o.title = true -- Set window title by default.
-vim.o.titlelen = 70 -- Set maximum title length.
-vim.o.titleold = '%{fnamemodify(getcwd(), ":t")}' -- Set title, while exiting the vim.
-vim.o.titlestring = '%t' -- Set title string.
+opt.title = true -- Set window title by default.
+opt.titlelen = 70 -- Set maximum title length.
+opt.titleold = '%{fnamemodify(getcwd(), ":t")}' -- Set title, while exiting the vim.
+opt.titlestring = '%t' -- Set title string.
 
 -- Utils {{{1
-vim.o.backspace = 'indent,eol,start' -- Change backspace to behave more intuitively.
-vim.o.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
-vim.o.completeopt = add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
-vim.o.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
-vim.o.path = add({'**'}, vim.o.path) -- Searches current directory recursively
+opt.backspace = 'indent,eol,start' -- Change backspace to behave more intuitively.
+opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
+opt.completeopt = add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
+opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
+opt.path = add('**', vim.o.path) -- Searches current directory recursively
 
 -- }}}1
