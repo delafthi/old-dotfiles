@@ -265,7 +265,6 @@ let &g:titlestring = '%t' " Set title string.
 let  &g:backspace = 'indent,eol,start' " Change backspace to behave more intuitively.
 set clipboard=unnamedplus " Enable copy paste into and out of nvim.
 let &g:completeopt = 'menu,noinsert,noselect,longest' " Set completeopt to have a better completion experience.
-set inccommand=nosplit " Show the effect of a command incrementally, as you type.
 set path+=** " Searches current directory recursively
 
 " Plugin Settings {{{1
