@@ -5,30 +5,32 @@ filetype off " required
 
 " Install vimplug
 if ! filereadable(expand('~/.vim/autoload/plug.vim'))
-    echo 'Downloading junegunn/vim-plug to manage plugins...'
-    silent !mkdir -p ~/.vim/autoload/
-    silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.vim/autoload/plug.vim
-    augroup plug
-        au!
-        au VimEnter * PlugInstall
-    augroup END
+  echo 'Downloading junegunn/vim-plug to manage plugins...'
+  silent !mkdir -p ~/.vim/autoload/
+  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.vim/autoload/plug.vim
+  augroup plug
+    au!
+    au VimEnter * PlugInstall
+  augroup END
 endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
-
-" Productivity
-    Plug 'vimwiki/vimwiki'
-    Plug 'tpope/vim-surround'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-    Plug 'tpope/vim-commentary'
-    Plug 'godlygeek/tabular'
-" Syntax Highlighting and language support
-    Plug 'lilydjwg/colorizer'
-    Plug 'sheerun/vim-polyglot'
-" Theming
-    Plug 'delafthi/onehalf', { 'rtp': 'vim' }
-
+  " Colors
+  Plug 'delafthi/onehalf', { 'rtp': 'vim' }
+  " Comment
+  Plug 'tpope/vim-commentary'
+  " Note taking
+  Plug 'vimwiki/vimwiki'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+  " Start screen
+  Plug 'mhinz/vim-startify'
+  " Syntax highlighting
+  Plug 'lilydjwg/colorizer'
+  Plug 'sheerun/vim-polyglot'
+  " Text editing
+  Plug 'tpope/vim-surround'
+  Plug 'godlygeek/tabular'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -53,7 +55,7 @@ set noswapfile " Disable swapfiles.
 set undofile " Save undo history.
 " Create undo directory.
 if isdirectory(&undodir) == 0
-    call mkdir(&undodir, 'p')
+  call mkdir(&undodir, 'p')
 endif
 set nowritebackup " Disable backups, when a file is written.
 
@@ -65,16 +67,16 @@ set modeline " Don't parse modelines (google 'vim modeline vulnerability').
 " Automatically deletes all trailing whitespace and newlines at end of file on
 " save.
 function! TrimTrailingLines()
-    let lastLine = line('$')
-    let lastNonblankLine = prevnonblank(lastLine)
-    if lastLine > 0 && lastNonblankLine != lastLine
-        silent! execute lastNonblankLine + 1 . ',$delete _'
-    endif
+  let lastLine = line('$')
+  let lastNonblankLine = prevnonblank(lastLine)
+  if lastLine > 0 && lastNonblankLine != lastLine
+    silent! execute lastNonblankLine + 1 . ',$delete _'
+  endif
 endfunction
 augroup remove
-    au!
-    au BufWritePre * %s/\s\+$//e
-    au BufWritepre * call TrimTrailingLines()
+  au!
+  au BufWritePre * %s/\s\+$//e
+  au BufWritepre * call TrimTrailingLines()
 augroup END
 
 " Colorscheme {{{1
@@ -191,8 +193,8 @@ set smartcase " Don't ignore case with capitals.
 set wrapscan " Searches wraps at the end of the file.
 " Use faster grep alternatives if possible
 if executable('rg')
-    let &g:grepprg='rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*'
-    set grepformat+=%f:%l:%c:%m
+  let &g:grepprg='rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*'
+  set grepformat+=%f:%l:%c:%m
 end
 
 " Statusline {{{1
@@ -209,21 +211,21 @@ let g:translateMode={
             \}
 
 function! StatuslineModified()
-    if getbufinfo()[0].changed
-        let l:sl = ' [+] '
-    else
-        let l:sl = ''
-    endif
-    return l:sl
+  if getbufinfo()[0].changed
+    let l:sl = ' [+] '
+  else
+    let l:sl = ''
+  endif
+  return l:sl
 endfunction
 
 function! StatuslineReadOnly()
-    if &readonly || !&modifiable
-        let s:sl = ' [RO] '
-    else
-        let s:sl = ''
-    endif
-    return s:sl
+  if &readonly || !&modifiable
+    let s:sl = ' [RO] '
+  else
+    let s:sl = ''
+  endif
+  return s:sl
 endfunction
 
 let s:slSeparator = '%#StatusLineNC#|'
