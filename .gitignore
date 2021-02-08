@@ -1,7 +1,7 @@
 vifm/.config/vifm/vifminfo
 vifm/.config/vifm/vifminfo.json*
 nvim/.config/nvim/.netrwhist
-nvim/.config/nvim/plugged/**
+nvim/.config/nvim/plugin/**
 nvim/.config/nvim/spell/*.spl
 nvim/.config/nvim/autoload/**
 xmonad/.xmonad/**
