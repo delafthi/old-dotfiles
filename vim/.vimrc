@@ -15,7 +15,7 @@ if ! filereadable(expand('~/.vim/autoload/plug.vim'))
 endif
 
 " Plugins
-call plug#begin('~/.vim/plugins')
+call plug#begin('~/.vim/plugged')
 
 " Productivity
     Plug 'vimwiki/vimwiki'
