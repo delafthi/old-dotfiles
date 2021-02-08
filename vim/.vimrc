@@ -97,7 +97,6 @@ let &g:listchars = 'eol:↲,tab:»·,space: ,trail:,extends:…,precedes:…,
 set number " Print line numbers.
 set relativenumber " Set line numbers to be relative to the cursor position.
 set scrolloff=8 " Keep 8 lines above or below the cursorline
-set shortmess+=I " Disables intro message, when starting vim.
 let &g:showbreak = '>>> ' " Show wrapped lines with a prepended string.
 set showcmd "Show command in the command line.
 set noshowmode " Don't show mode in the command line.
