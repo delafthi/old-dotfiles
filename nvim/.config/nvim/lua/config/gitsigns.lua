@@ -3,25 +3,32 @@ local M = {}
 function M.setup()
   require('gitsigns').setup {
     signs = {
-      add = {hl = 'DiffAdd', text = '+', numhl = 'GitSignsAddNr'},
-      change = {hl = 'DiffChange', text = '~', numhl = 'GitSignsChangeNr'},
+      add = {
+        hl = 'SignifySignAdd',
+        text = '+',
+        numhl = 'SignifySignAdd'
+      },
+      change = {
+        hl = 'SignifySignChange',
+        text = '~',
+        numhl = 'SignifySignChange'},
       delete = {
-        hl = 'DiffDelete',
-        text = '_',
+        hl = 'SignifySignDelete',
+        text = '-',
         show_count = true,
-        numhl = 'GitSignsDeleteNr'
+        numhl = 'SignifySignDelete'
       },
       topdelete = {
-        hl = 'DiffDelete',
-        text = '‾',
+        hl = 'SignifySignDelete',
+        text = 'ﬠ',
         show_count = true,
-        numhl = 'GitSignsDeleteNr'
+        numhl = 'SignifySignDelete'
       },
       changedelete = {
-         hl = 'DiffChange',
-         text = '~',
-         show_count = true,
-         numhl = 'GitSignsChangeNr'
+        hl = 'SignifySignChange',
+        text = '~',
+        show_count = true,
+        numhl = 'SignifySignChange'
       }
     },
     count_chars = {
@@ -43,17 +50,17 @@ function M.setup()
       buffer = true,
       ['n ]c'] = {
         expr = true,
-        "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"
+        "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<Cr>'"
       },
       ['n [c'] = {
         expr = true,
-        "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"
+        "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<Cr>'"
       },
-      ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-      ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-      ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-      ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-      ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>'
+      ['n <Leader>hs'] = '<Cmd>lua require"gitsigns".stage_hunk()<Cr>',
+      ['n <Leader>hu'] = '<Cmd>lua require"gitsigns".undo_stage_hunk()<Cr>',
+      ['n <Leader>hr'] = '<Cmd>lua require"gitsigns".reset_hunk()<Cr>',
+      ['n <Leader>hp'] = '<Cmd>lua require"gitsigns".preview_hunk()<Cr>',
+      ['n <Leader>hb'] = '<Cmd>lua require"gitsigns".blame_line()<Cr>'
     },
     watch_index = {interval = 1000},
     sign_priority = 6,
