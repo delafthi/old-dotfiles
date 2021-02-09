@@ -17,7 +17,7 @@ endif
 " Plugins
 call plug#begin('~/.vim/plugged')
   " Colors
-  Plug 'delafthi/onehalf', { 'rtp': 'vim' }
+  Plug 'delafthi/onedarkvim',
   " Comment
   Plug 'tpope/vim-commentary'
   " Note taking
@@ -80,9 +80,8 @@ augroup remove
 augroup END
 
 " Colorscheme {{{1
-colorscheme onehalfdark
-let g:rehash256=1 " Better color support.
 set termguicolors " Enable termguicolor support.
+colorscheme onedark
 
 " Diff {{{1
 let  &g:diffopt = 'vertical,iwhite,hiddenoff,foldcolumn:0,context:4,algorithm:histogram,indent-heuristic'
