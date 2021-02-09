@@ -89,6 +89,7 @@ let  &g:diffopt = 'vertical,iwhite,hiddenoff,foldcolumn:0,context:4,algorithm:hi
 
 " Display {{{1
 set colorcolumn=80 " Set colorcolumn to 80
+let &g:guicursor = 'n-v-c:block-Cursor,i:ver25,r:hor10' " Set cursor shape in different modes.
 set cursorline " Enable the cursorline.
 set display+=lastline " On wrap display the last line even if it does not fit
 set noerrorbells " Disable annoying errors
