@@ -1,6 +1,8 @@
---------------------------------------------------------------------------------
--- Treesitter config
---------------------------------------------------------------------------------
+local M = {}
 
-local ts = require 'nvim-treesitter.configs'
-ts.setup{ensure_installed = 'all', highlight = {enable = true}}
+function M.setup()
+  local ts = require 'nvim-treesitter.configs'
+  ts.setup{ensure_installed = 'all', highlight = {enable = true}}
+end
+
+return M
