@@ -154,7 +154,9 @@ function M.setup()
   gls.right[1] = {
     GitIcon = {
       provider = function() return '  ' end,
-      condition = buffer_not_empty,
+      condition = function() 
+        return buffer_not_empty and require('galaxyline.provider_vcs').check_git_workspace()
+      end,
       highlight = {colors.orange, colors.mono1},
     }
   }
