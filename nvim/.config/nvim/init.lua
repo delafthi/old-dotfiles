@@ -1,6 +1,9 @@
 local cmd = vim.cmd -- to execute vim commands
 local fn = vim.fn -- to execute vim functions
 
+vim.g.mapleader = ' ' -- Set leader to space.
+vim.o.termguicolors = true -- Enable termguicolor support.
+
 -- Install packer.nvim, if it is not yet installed {{{1
 local execute = vim.api.nvim_command
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
@@ -9,9 +12,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim' .. ' ' ..
            install_path)
   cmd [[packadd packer.nvim]]
-  cmd [[autocmd VimEnter * PackerInstall]]
 end
-
 -- Plugin specification {{{1
 -- Only required if you have packer in your `opt` pack
 cmd [[packadd packer.nvim]]
@@ -29,55 +30,58 @@ require('packer').startup(function()
     requires = {'tjdevries/colorbuddy.vim'},
   }
   -- Comment
-  use {'b3nj5m1n/kommentary'}
+  use {
+    'b3nj5m1n/kommentary',
+    config = require('config.kommentary').config(),
+    setup = require('config.kommentary').setup(),
+  }
   -- Completion
   use {
     'nvim-lua/completion-nvim',
-    config = function()
-      require('config.completion-nvim')
-      require('completion').on_attach()
-    end,
-    {'nvim-treesitter/completion-treesitter', opt = true},
+    config = require('config.completion-nvim').config(),
+    setup = require('config.completion-nvim').setup(),
+    requires = {
+      {'nvim-treesitter/completion-treesitter', opt = true},
+      {
+        'norcalli/snippets.nvim',
+        config = require('snippets').use_suggested_mappings(),
+      }
+    }
   }
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
-    config = function() require('config.telescope') end,
+    setup = require('config.telescope').setup(),
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   }
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
-    config = function() require('config.gitsigns').setup() end,
+    setup = require('config.gitsigns').setup(),
     requires = {'nvim-lua/plenary.nvim'},
   }
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    config = function() require('config.nvim-lspconfig') end,
+    setup = require('config.nvim-lspconfig').setup(),
+    requires = {{'nvim-lua/lsp-status.nvim', opt = true}, {'nvim-lua/lsp_extensions.nvim', opt = true}}
   }
-  use {'nvim-lua/lsp-status.nvim'}
-  use {'nvim-lua/lsp_extensions.nvim'}
   -- Note taking
   use {
     'vimwiki/vimwiki',
-    config = function() require('config.vimwiki') end,
+    setup = require('config.vimwiki').setup(),
   }
   use {
     'oberblastmeister/neuron.nvim',
-    config = function() require('neuron').setup() end,
+    setup = require('neuron').setup(),
   }
   use {
     'iamcco/markdown-preview.nvim',
     cmd = 'MarkdownPreview',
-    config = function() require('config.markdown-preview') end,
+    config = require('config.markdown-preview').config(),
+    setup = require('config.markdown-preview').setup(),
     ft = {'markdown', 'vimwiki'},
     run = 'cd app & yarn install',
-  }
-  -- Snippets
-  use {
-    'norcalli/snippets.nvim',
-    config = function() require('snippets').use_suggested_mappings() end,
   }
   -- Start screen
   use {'mhinz/vim-startify'}
@@ -85,18 +89,18 @@ require('packer').startup(function()
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
-    config = function() require('config.galaxyline') end,
+    setup = require('config.galaxyline').setup(),
     requires = {'kyazdani42/nvim-web-devicons', opt=true},
   }
   -- Syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    config = function() require('config.nvim-treesitter') end,
+    setup = require('config.nvim-treesitter').setup(),
     run = ':TSUpdate',
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    config = function() require('colorizer').setup() end,
+    setup = require('colorizer').setup(),
   }
   -- Text editing
   use {'godlygeek/tabular'}
@@ -140,7 +144,6 @@ opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability
 
 -- Colorscheme {{{1
 vim.g.rehash256 = 1 -- Better color support.
-opt.termguicolors = true -- Enable termguicolor support.
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
@@ -157,7 +160,7 @@ opt.diffopt = add({
 -- Display {{{1
 opt.colorcolumn = '80' -- Set colorcolumn to 80
 opt.cursorline = true -- Enable the cursorline.
-opt.display = add {'lastline'} -- On wrap display the last line even if it does not fit
+opt.display = add('lastline', vim.o.display) -- On wrap display the last line even if it does not fit
 opt.errorbells = false -- Disable annoying errors
 -- opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
 opt.linebreak = true -- Prevent wrapping between words.
@@ -213,60 +216,60 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ' ' -- Set leader to space.
-map('i', 'ii', '<Esc>') -- Remap ii as Escape.
+opts = {silent = true}
+map('i', 'ii', '<Esc>', opts) -- Remap ii as Escape.
 -- Remap jk keys to navigate through visual lines.
-map('n', 'j', 'gj')
-map('v', 'j', 'gj')
-map('n', 'k', 'gk')
-map('v', 'k', 'gk')
+map('n', 'j', 'gj', opts)
+map('v', 'j', 'gj', opts)
+map('n', 'k', 'gk', opts)
+map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
-map('n', '<Leader>tt', ':new term://fish<cr>')
+map('n', '<Leader>tt', ':new term://fish<cr>', opts)
 -- Map window navigation to CTRL + hjkl.
-map('n', '<C-h>', '<C-\\><C-n><C-w>h')
-map('i', '<C-h>', '<C-\\><C-n><C-w>h')
-map('t', '<C-h>', '<C-\\><C-n><C-w>h')
-map('n', '<C-j>', '<C-\\><C-n><C-w>j')
-map('i', '<C-j>', '<C-\\><C-n><C-w>j')
-map('t', '<C-j>', '<C-\\><C-n><C-w>j')
-map('n', '<C-k>', '<C-\\><C-n><C-w>k')
-map('i', '<C-k>', '<C-\\><C-n><C-w>k')
-map('t', '<C-k>', '<C-\\><C-n><C-w>k')
-map('n', '<C-l>', '<C-\\><C-n><C-w>l')
-map('i', '<C-l>', '<C-\\><C-n><C-w>l')
-map('t', '<C-l>', '<C-\\><C-n><C-w>l')
+map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+map('n', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+map('i', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+map('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+map('n', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+map('i', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+map('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 -- Better resizing of windows with CTRL + arrows
-map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>')
-map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>')
-map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>')
-map('n', '<C-Up>', '<C-\\><C-n : resize +2<cr>')
-map('i', '<C-Up>', '<C-\\><C-n : resize +2<cr>')
-map('t', '<C-Up>', '<C-\\><C-n : resize +2<cr>')
-map('n', '<C-Down>', '<C-\\><C-n : resize -2<cr>')
-map('i', '<C-Down>', '<C-\\><C-n : resize -2<cr>')
-map('t', '<C-Down>', '<C-\\><C-n : resize -2<cr>')
-map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>')
-map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>')
-map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>')
+map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+map('n', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+map('i', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+map('t', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+map('n', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+map('i', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+map('t', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
 -- Change splits layout from vertical to horizontal or vice versa.
-map('n', '<Leader>lv', '<C-w>t<C-w>H')
-map('n', '<Leader>lh', '<C-w>t<C-w>K')
+map('n', '<Leader>lv', '<C-w>t<C-w>H', opts)
+map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
 -- Better indenting in the visual mode.
-map('v', '<', '<gv')
-map('v', '>', '>gv')
+map('v', '<', '<gv', opts)
+map('v', '>', '>gv', opts)
 -- Show Telescope buffers.
-map('n', '<Leader>fb', '<Cmd>Telescope buffers <cr>')
+map('n', '<Leader>fb', '<Cmd>Telescope buffers <cr>', opts)
 -- Show buffers and select one to kill.
-map('n', '<Leader>bk', ':ls<cr>:bd<Space>')
+map('n', '<Leader>bk', ':ls<cr>:bd<Space>', opts)
 -- Search recursively for file in current project directory.
-map('n', '<Leader>ff', '<Cmd>Telescope find_files<cr>')
+map('n', '<Leader>ff', '<Cmd>Telescope find_files<cr>', opts)
 -- Grep in project directory.
-map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>')
+map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>', opts)
 -- Toggle spell checking.
-map('n', '<Leader>o', ':setlocal spell!<cr>')
+map('n', '<Leader>o', ':setlocal spell!<cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
