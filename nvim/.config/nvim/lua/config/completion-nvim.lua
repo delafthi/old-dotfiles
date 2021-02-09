@@ -1,26 +1,68 @@
-vim.g.completion_chain_complete_list = {
-  default = {
+local M = {}
+
+function M.setup()
+  -- Enable automatic source change.
+  vim.g.completion_auto_change_source = 1
+  -- Set completion chain list.
+  vim.g.completion_chain_complete_list = {
     default = {
-      {complete_items = {'ts', 'lsp', 'snippet'}},
+      default = {
+        {complete_items = {'lsp', 'snippet'}},
+        {complete_items = {'ts'}},
+        {mode = {'file'}},
+      },
+      string = {
+        {complete_items = {'path'}, triggered_only = {'/'}},
+      },
     },
-    string = {
-      {compete_items = {'path'}, triggered_only = {'/'}}
+    vim = {
+      default = {
+        {complete_items = {'lsp', 'snippet'}},
+        {complete_items = {'ts'}},
+        {mode = {'cmd'}},
+      },
     },
-  },
-  vim = {
-    default = {
-      {complete_items = {'ts', 'lsp', 'snippet'}},
-      {mode = {'cmd'}},
-    },
-  },
-}
--- Enable auto popups.
-vim.g.completion_enable_auto_popup = 1
--- Disable auto hover.
-vim.g.completion_enable_auto_hover =0
--- Disable auto signature.
-vim.g.completion_enable_auto_signature = 0
--- Set sortin of completion items.
-vim.g.completion_sorting = 'none'
--- Set matching strategy.
-vim.g.completion_matchin_strategy = 'exact'
+  }
+  -- Custom lsp completion labels.
+  vim.g.completion_customize_lsp_label = {
+    Function = ' [function]',
+    Method = ' [method]',
+    Reference = ' [refrence]',
+    Enum = ' [enum]',
+    Field = 'ﰠ [field]',
+    Keyword = ' [key]',
+    Variable = ' [variable]',
+    Folder = ' [folder]',
+    Snippet = ' [snippet]',
+    Operator = ' [operator]',
+    Module = ' [module]',
+    Text = 'ﮜ [text]',
+    Class = ' [class]',
+    Interface = ' [interface]'
+  }
+  -- Enable auto popups.
+  vim.g.completion_enable_auto_popup = 1
+  -- Disable auto hover.
+  vim.g.completion_enable_auto_hover = 0
+  -- Disable auto signature.
+  vim.g.completion_enable_auto_signature = 0
+  -- Define snippet source.
+  vim.g.completion_enable_snippet = 'snippets.nvim'
+  -- Set smart case matching.
+  vim.g.completion_matching_smart_case = 1
+  -- Set matching strategy.
+  vim.g.completion_matching_strategy = {'exact', 'substring'}
+  -- Set sorting of completion items.
+  vim.g.completion_sorting = 'none'
+end
+
+function M.config()
+  vim.cmd [[ augroup completion_nvim_autocmd ]]
+  vim.cmd [[ autocmd! ]]
+  vim.cmd [[ autocmd BufEnter * lua require'completion'.on_attach()]]
+  vim.cmd [[ autocmd BufEnter * let g:completion_trigger_character = ['.'] ]]
+  vim.cmd [[ autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->'] ]]
+  vim.cmd [[ augroup END ]]
+end
+
+return M
