@@ -217,7 +217,7 @@ vim.g.mapleader = ' ' -- Set leader to space.
 map('i', 'ii', '<Esc>') -- Remap ii as Escape.
 -- Remap jk keys to navigate through visual lines.
 map('n', 'j', 'gj')
-map('v', 'j', 'gk')
+map('v', 'j', 'gj')
 map('n', 'k', 'gk')
 map('v', 'k', 'gk')
 -- Open terminal inside nvim with <Leader>tt.
@@ -265,8 +265,8 @@ map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>')
 -- Toggle spell checking.
 map('n', '<Leader>o', ':setlocal spell!<cr>')
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
-map('i', '<Tab>', '<expr>pumvisible() ? "\\<C-n>" : "\\<Tab>"')
-map('i', '<S-Tab>', '<expr>pumvisible() ? "\\<C-p>" : "\\<S-Tab>"')
+map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true})
 -- Try to save file with sudo on files that require root permission
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
