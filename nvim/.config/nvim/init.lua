@@ -27,24 +27,24 @@ require('packer').startup(function()
   use {
     'delafthi/onedarkbuddy',
     config = function() require('colorbuddy').colorscheme('onedarkbuddy') end,
-    requires = {'tjdevries/colorbuddy.vim'},
+    requires = {'tjdevries/colorbuddy.vim'}
   }
   -- Comment
   use {
     'b3nj5m1n/kommentary',
-    config = require('config.kommentary').config(),
     setup = require('config.kommentary').setup(),
+    config = require('config.kommentary').config(),
   }
   -- Completion
   use {
     'nvim-lua/completion-nvim',
-    config = require('config.completion-nvim').config(),
     setup = require('config.completion-nvim').setup(),
+    config = require('config.completion-nvim').config(),
     requires = {
       {'nvim-treesitter/completion-treesitter', opt = true},
       {
         'norcalli/snippets.nvim',
-        config = require('snippets').use_suggested_mappings(),
+        config = require('snippets').use_suggested_mappings()
       }
     }
   }
@@ -52,13 +52,13 @@ require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     setup = require('config.telescope').setup(),
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
     setup = require('config.gitsigns').setup(),
-    requires = {'nvim-lua/plenary.nvim'},
+    requires = {'nvim-lua/plenary.nvim'}
   }
   -- LSP
   use {
@@ -69,19 +69,19 @@ require('packer').startup(function()
   -- Note taking
   use {
     'vimwiki/vimwiki',
-    setup = require('config.vimwiki').setup(),
+    setup = require('config.vimwiki').setup()
   }
   use {
     'oberblastmeister/neuron.nvim',
-    setup = require('neuron').setup(),
+    setup = require('neuron').setup()
   }
   use {
     'iamcco/markdown-preview.nvim',
-    cmd = 'MarkdownPreview',
-    config = require('config.markdown-preview').config(),
-    setup = require('config.markdown-preview').setup(),
-    ft = {'markdown', 'vimwiki'},
     run = 'cd app & yarn install',
+    setup = require('config.markdown-preview').setup(),
+    config = require('config.markdown-preview').config(),
+    cmd = 'MarkdownPreview',
+    ft = {'markdown', 'vimwiki'},
   }
   -- Start screen
   use {'mhinz/vim-startify'}
@@ -90,17 +90,17 @@ require('packer').startup(function()
     'glepnir/galaxyline.nvim',
     branch = 'main',
     setup = require('config.galaxyline').setup(),
-    requires = {'kyazdani42/nvim-web-devicons', opt=true},
+    requires = {'kyazdani42/nvim-web-devicons', opt=true}
   }
   -- Syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     setup = require('config.nvim-treesitter').setup(),
-    run = ':TSUpdate',
+    run = ':TSUpdate'
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    setup = require('colorizer').setup(),
+    setup = require('colorizer').setup()
   }
   -- Text editing
   use {'godlygeek/tabular'}
