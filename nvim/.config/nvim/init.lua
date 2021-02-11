@@ -48,6 +48,12 @@ require('packer').startup(function()
       }
     }
   }
+  -- File manager
+  use {
+    'kyazdani42/nvim-tree.lua',
+    setup = require('config.nvim-tree').setup(),
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
