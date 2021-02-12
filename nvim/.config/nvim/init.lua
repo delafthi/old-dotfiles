@@ -110,7 +110,10 @@ require('packer').startup(function()
   }
   -- Text editing
   use {'godlygeek/tabular'}
-  use {'blackCauldron7/surround.nvim'}
+  use {
+    'blackCauldron7/surround.nvim',
+    setup = require('surround').setup{}
+  }
 end)
 
 -- Helper functions {{{1
