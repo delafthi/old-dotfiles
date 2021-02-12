@@ -77,10 +77,10 @@ require('packer').startup(function()
     'vimwiki/vimwiki',
     setup = require('config.vimwiki').setup()
   }
-  use {
+  --[[ use {
     'oberblastmeister/neuron.nvim',
-    setup = require('neuron').setup()
-  }
+    setup = require('neuron').setup(),
+  } ]]
   use {
     'iamcco/markdown-preview.nvim',
     run = 'cd app & yarn install',
@@ -154,13 +154,13 @@ vim.g.rehash256 = 1 -- Better color support.
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
 opt.diffopt = add({
-    'vertical',
+    'context:4',
     'iwhite',
+    'vertical',
     'hiddenoff',
     'foldcolumn:0',
-    'context:4',
-    'algorithm:histogram',
-    'indent-heuristic'
+    'indent-heuristic',
+    'algorithm:histogram'
     }, vim.o.diffopt)
 
 -- Display {{{1
@@ -168,7 +168,7 @@ opt.colorcolumn = '80' -- Set colorcolumn to 80
 opt.cursorline = true -- Enable the cursorline.
 opt.display = add('lastline', vim.o.display) -- On wrap display the last line even if it does not fit
 opt.errorbells = false -- Disable annoying errors
--- opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
+opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
 opt.linebreak = true -- Prevent wrapping between words.
 opt.list = true -- Enable listchars.
  -- Set listchar characters.
@@ -185,7 +185,7 @@ opt.listchars = add {
 cmd [[set list]]
 opt.number = true -- Print line numbers.
 opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
-opt.scrolloff = 4 -- Keep 8 lines above or below the cursorline
+opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
 vim.g.showbreak = '>>> ' -- Show wrapped lines with a prepended string.
 opt.showcmd = true -- Show command in the command line.
 opt.showmode = false -- Don't show mode in the command line.
@@ -195,7 +195,7 @@ opt.textwidth = 80 -- Max text length.
 cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]] -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
 opt.wrap = true -- Enable line wrapping.
-opt.virtualedit = 'all' -- Allow cursor to move past end of line.
+opt.virtualedit = 'block' -- Allow cursor to move past end of line.
 opt.visualbell = false -- Disable annoying beeps
 
 -- Folds {{{1
@@ -289,8 +289,6 @@ vim.g.netrw_banner = 0 -- Disable banner on top of the window.
 opt.hlsearch = true -- Enable search highlighting.
 opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
 opt.ignorecase = true -- Ignore case when searching.
-vim.wo.scrolloff = 4 -- Lines of context
-opt.showmatch = true -- Jumps to the matching bracket, if it can be seen on screen.
 opt.smartcase = true -- Don't ignore case with capitals.
 opt.wrapscan = true -- Searches wraps at the end of the file.
 -- Use faster grep alternatives if possible
@@ -320,6 +318,9 @@ opt.fillchars = add {
 opt.splitbelow = true -- Put new windows below the current.
 opt.splitright = true -- Put new windows right of the current.
 
+-- Statusline {{{1
+opt.laststatus = 2 -- Always show the statusline
+
 -- Timings {{{1
 opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
 opt.timeoutlen = 500 -- Wait 500 milliseconds for further input.
@@ -337,5 +338,11 @@ opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
 opt.completeopt = add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
 opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
 opt.path = add('**', vim.o.path) -- Searches current directory recursively
+
+-- Wildmenu {{{1
+opt.wildmenu = true -- Enable commandline autocompletion menu.
+opt.wildmode = 'full' -- Select completion mode.
+opt.wildignorecase = true -- Ignores case when completing.
+opt.wildoptions = 'pum' -- Display the completion matches using the popupmenu.
 
 -- }}}1
