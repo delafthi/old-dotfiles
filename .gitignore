@@ -4,6 +4,8 @@ nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugin/**
 nvim/.config/nvim/spell/*.spl
 nvim/.config/nvim/autoload/**
+vim/.vim/plugged/**
+vim/.vim/autoload/plug.vim
 xmonad/.xmonad/**
 qtile/.config/qtile/__pycache__/**
 tags
