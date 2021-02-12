@@ -23,6 +23,9 @@ call plug#begin('~/.vim/plugged')
   " Note taking
   Plug 'vimwiki/vimwiki'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+  " File manager
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   " Start screen
   Plug 'mhinz/vim-startify'
   " Syntax highlighting
@@ -80,6 +83,7 @@ augroup remove
 augroup END
 
 " Colorscheme {{{1
+let g:rehash256=1
 set termguicolors " Enable termguicolor support.
 colorscheme onedark
 
@@ -88,11 +92,10 @@ let  &g:diffopt = 'vertical,iwhite,hiddenoff,foldcolumn:0,context:4,algorithm:hi
 
 " Display {{{1
 set colorcolumn=80 " Set colorcolumn to 80
-let &g:guicursor = 'n-v-c:block-Cursor,i:ver25,r:hor10' " Set cursor shape in different modes.
 set cursorline " Enable the cursorline.
 set display+=lastline " On wrap display the last line even if it does not fit
 set noerrorbells " Disable annoying errors
-" set lazyredraw " Disables redraw when executing macros and other commands.
+set lazyredraw " Disables redraw when executing macros and other commands.
 set linebreak " Prevent wrapping between words.
 set list " Enable listchars.
 let &g:listchars = 'eol:↲,tab:»·,space: ,trail:,extends:…,precedes:…,conceal:┊,nbsp:☠' " Set listchar characters.
@@ -107,14 +110,13 @@ set synmaxcol=1024 " Don't syntax highlight long lines.
 set textwidth=80 " Max text length.
 let g:vimsyn_embed = 'lPr' " Allow embedded syntax highlighting for lua, python, ruby.
 set wrap " Enable line wrapping.
-set virtualedit=all " Allow cursor to move past end of line.
+set virtualedit=block " Allow cursor to move past end of line.
 set novisualbell " Disable annoying beeps
 
 " Folds {{{1
 set foldlevelstart=10 " Set level of opened folds, when starting vim. set foldmethod=marker " The kind of folding for the current window.
 set foldmethod=marker " The kind of folding for the current window.
 set foldopen+=search " Open folds, when something is found inside the fold.
-" set foldtext=folds#render() " Function called to display fold line.
 
 " Indentation {{{1
 set autoindent " Allow filetype plugins and syntax highlighting
@@ -187,8 +189,6 @@ let g:netrw_banner=0 " Disable banner on top of the window.
 set hlsearch " Enable search highlighting.
 set incsearch " While typing a search command, show where the pattern, as it was typed so far, matches.
 set ignorecase " Ignore case when searching.
-set scrolloff=4 " Lines of context
-set showmatch " Jumps to the matching bracket, if it can be seen on screen.
 set smartcase " Don't ignore case with capitals.
 set wrapscan " Searches wraps at the end of the file.
 " Use faster grep alternatives if possible
@@ -197,53 +197,6 @@ if executable('rg')
   set grepformat+=%f:%l:%c:%m
 end
 
-" Statusline {{{1
-" Custom functions called in the statusline
-let g:translateMode={
-            \ 'n' : 'NORMAL',
-            \ 'i' : 'INSERT',
-            \ 'c' : 'COMMAND',
-            \ 'v' : 'VISUAL',
-            \ 'V' : 'V-LINE',
-            \ '^V' : 'V-BLOCK',
-            \ 'r' : 'REPLACE',
-            \ 'R' : 'R-CONTINOUS',
-            \}
-
-function! StatuslineModified()
-  if getbufinfo()[0].changed
-    let l:sl = ' [+] '
-  else
-    let l:sl = ''
-  endif
-  return l:sl
-endfunction
-
-function! StatuslineReadOnly()
-  if &readonly || !&modifiable
-    let s:sl = ' [RO] '
-  else
-    let s:sl = ''
-  endif
-  return s:sl
-endfunction
-
-let s:slSeparator = '%#StatusLineNC#|'
-let s:slLinemode = '%#StatusLineMode# %{toupper(g:translateMode[mode()])} '.s:slSeparator
-let s:slFilename = '%#StatusLineFileName# %-t '
-let s:slModified = '%#StatusLineReadOnly#%{StatuslineReadOnly()}'
-let s:slModified = '%#StatusLineModified#%{StatuslineModified()}'.s:slSeparator
-let s:slEncoding = s:slSeparator.'%#StatusLineEncoding# %-{&fileencoding?&fileencoding:&encoding} '
-let s:slFiletype = s:slSeparator.'%#StatusLineFileType# %-Y '
-let s:slPercentage = s:slSeparator.'%#StatusLinePercentage# %p%% '
-let s:slColumnnumber = s:slSeparator.'%#StatusLineColumnNumber# %c '
-let s:slLinenumber = s:slSeparator.'%#StatusLineLineNumber# %l/%L '
-let s:slLeft = s:slLinemode.s:slFilename.s:slModified
-let s:slRight = s:slEncoding.s:slFiletype.s:slPercentage.s:slColumnnumber.s:slLinenumber
-set laststatus=2 " Always show the statusline
-set noshowmode " Show all modes in the statusline
-let &g:statusline = s:slLeft.'%*%='.s:slRight " Set statusline.
-
 " Spell checking {{{1
 set spelllang=en_us,de_ch " Set spell check languages.
 
@@ -251,6 +204,10 @@ set spelllang=en_us,de_ch " Set spell check languages.
 let &g:fillchars = 'stl: ,stlnc:-,vert:│,fold: ,diff:,msgsep:‾,eob:~' " Fill characters for the statusline and vertical separators
 set splitbelow " Put new windows below the current.
 set splitright " Put new windows right of the current.
+
+" Statusline {{{1
+set laststatus=2 " Always show the statusline
+call statusline#setup()
 
 " Timings {{{1
 set timeout " Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
@@ -269,6 +226,11 @@ set clipboard=unnamedplus " Enable copy paste into and out of nvim.
 let &g:completeopt = 'menu,noinsert,noselect,longest' " Set completeopt to have a better completion experience.
 set path+=** " Searches current directory recursively
 
+" Wildmenu {{{1
+set wildmenu " Enable commandline autocompletion menu.
+set wildmode=full " Select completion mode.
+set wildignorecase " Ignores case when completing.
+
 " Plugin Settings {{{1
 " Vimwiki {{{2
 let g:vimwiki_list = [{
@@ -285,4 +247,13 @@ let g:mkdp_page_tittle = '${name}' " Define title of the browser page
 " Set keybinging to launch the markdown preview
 autocmd Filetype mkd,vimwiki nmap <Silent> <Leader>mp <Plug>MarkdownPreviewToggle
 
+" Nerdtree {{{2
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeShowHidden = 1
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+nnoremap <C-n> :NERDTreeToggle<Cr>
+" }}}2
 " }}}1
