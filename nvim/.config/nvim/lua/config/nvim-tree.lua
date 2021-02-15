@@ -5,9 +5,10 @@ function M.setup()
   vim.g.nvim_tree_side = 'left'
   vim.g.nvim_tree_width = 30
   vim.g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
-  vim.g.nvim_tree_auto_open = 0
+  vim.g.nvim_tree_auto_open = 1
+  vim.g.nvim_tree_auto_ignore_ft = {'startify', 'vimwiki'}
   vim.g.nvim_tree_auto_close = 1
-  vim.g.nvim_tree_quit_on_open = 1
+  vim.g.nvim_tree_quit_on_open = 0
   vim.g.nvim_tree_follow = 1
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_hide_dotfiles = 0
@@ -21,24 +22,24 @@ function M.setup()
     files = 1
   }
   vim.g.nvim_tree_bindings = {
-    edit = {'<Cr>', 'o'},
+    edit = '<Cr>',
     edit_vsplit = '<C-v>',
     edit_split = '<C-x>',
     edit_tab = '<C-t>',
-    close_node = {'<S-CR>', '<BS>'},
+    close_node = '<BS>',
     toggle_ignored = 'I',
     toggle_dotfiles = 'H',
     refresh = 'R',
     preview = '<Tab>',
-    cd = '<C-]>',
-    create = 'a',
+    cd = 'cd',
+    create = 'i',
     remove = 'dd',
     rename = 'r',
     cut = 'dy',
     copy = 'yy',
-    paste = 'p',
-    prev_git_item = '[c',
-    next_git_item = ']c',
+    paste = 'pp',
+    prev_git_item = 'gp',
+    next_git_item = 'gn',
     dir_up = '-',
     close = 'q',
   }
@@ -59,12 +60,6 @@ function M.setup()
       symlink = "",
     }
   }
-
-  local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend('force', options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-  end
 
   local opts = {silent = true, noremap = true}
 
