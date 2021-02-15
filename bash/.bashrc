@@ -195,3 +195,8 @@ else
     curl -fsSL https://starship.rs/install.sh | bash && \
         eval "$(starship init bash)"
 fi
+
+# Nix
+if [ -f /etc/profile.d/nix.sh ]; then
+  source /etc/profile.d/nix.sh
+fi
