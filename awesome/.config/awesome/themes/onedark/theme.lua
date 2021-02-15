@@ -67,20 +67,20 @@ theme.taglist_font = "Victor Mono Nerd Font 11"
 theme.bg_normal = theme.black
 theme.bg_focus = theme.black
 theme.bg_urgent = theme.red
-theme.bg_minimize = theme.mono1
+theme.bg_minimize = theme.mono3
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = theme.white
 theme.fg_focus = theme.blue
 theme.fg_urgent = theme.black
-theme.fg_minimize = theme.mono1
+theme.fg_minimize = theme.mono3
 
 theme.useless_gap = 2
 theme.border_width = 3
 theme.border_normal = theme.black
 theme.border_focus = theme.blue
 theme.border_marked = theme.purple
-theme.border_floating = theme.mono1
+theme.border_floating = theme.mono3
 
 -- Menu settings
 theme.menu_fg_normal = theme.fg_normal
@@ -99,7 +99,7 @@ theme.menu_font = theme.font
 
 -- Wibox settings
 theme.wibox_fg = theme.fg_normal
-theme.wibox_separator_fg = theme.mono1
+theme.wibox_separator_fg = theme.mono3
 
 theme.wibox_bg = theme.bg_normal
 
@@ -112,7 +112,7 @@ theme.wibox_height = 24
 theme.taglist_fg_focus = theme.blue
 theme.taglist_fg_urgent = theme.red
 theme.taglist_fg_occupied = theme.purple
-theme.taglist_fg_empty = theme.mono1
+theme.taglist_fg_empty = theme.mono3
 theme.taglist_fg_volatile = theme.yellow
 
 theme.taglist_bg_focus = theme.bg_normal
@@ -124,7 +124,7 @@ theme.taglist_bg_volatile = theme.bg_normal
 -- Tasklist settings
 theme.tasklist_fg_focus = theme.blue
 theme.tasklist_fg_normal = theme.fg_normal
-theme.tasklist_fg_minimize = theme.mono1
+theme.tasklist_fg_minimize = theme.mono3
 theme.tasklist_fg_urgent = theme.black
 
 theme.tasklist_bg_focus = theme.bg_normal
@@ -177,7 +177,7 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
-theme.layout_fg = theme.mono1
+theme.layout_fg = theme.mono3
 theme.layout_bg = theme.bg_normal
 
 -- Generate Awesome icon:
