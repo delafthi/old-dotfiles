@@ -2,8 +2,7 @@
 # ~/.config/fish/config.fish: executed by fish for non-login shells.
 ################################################################################
 
-################################################################################
-# General settings
+# General settings {{{1
 
 # Remove greeting message
 set fish_greeting
@@ -40,8 +39,7 @@ function fish_user_key_bindings
     fish_vi_key_bindings
 end
 
-################################################################################
-# Abbreviations and aliases
+# Abbreviations and aliases {{{1
 
 # sudo
 alias sudo="sudo -s"
@@ -87,8 +85,7 @@ if string match -q "xterm-kitty" -- $TERM
     alias ssh="kitty +kitten ssh"
 end
 
-################################################################################
-# Environment variables
+# Environment variables {{{1
 
 # set vim as the manpager
 set -gx MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
@@ -105,8 +102,7 @@ if test -d $HOME/.local/bin
   set -gx PATH $HOME/.local/bin $PATH
 end
 
-################################################################################
-# Visuals
+# Visuals {{{1
 
 # Vi mode prompt
 function fish_mode_prompt
@@ -178,8 +174,7 @@ set __fish_git_prompt_color_upstream magenta
 set __fish_git_prompt_color_branch green
 set __fish_git_prompt_color_branch_detached red --bold
 
-################################################################################
-# Functions
+# Functions {{{1
 
 function ex --description "Function to extract most types of archives"
     if test -f $argv
@@ -222,15 +217,15 @@ function ex --description "Function to extract most types of archives"
     end
 end
 
-################################################################################
-# Plugins
+# Plugins {{{1
+if ! test -d $HOME/.config/fish/plugins
+  mkdir -p $HOME/.config/fish/plugins
+end
 
 # Starship prompt
 # Change default config directory
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
-if test (type -t starship) = 'file'
-    starship init fish | source
-else
+if ! test (type -t starship) = 'file'
     set_color --bold red
     echo -n "=> Error: "
     set_color normal
@@ -239,6 +234,19 @@ else
     echo -n "=> Info: "
     set_color normal
     echo "Starship will be downloaded and installed in the following steps"
-    curl -fsSL https://starship.rs/install.sh | bash && \
-       starship init fish | source
+    curl -fsSL https://starship.rs/install.sh | bash
+end
+    starship init fish | source
+
+# foreign-env
+if ! test -d $HOME/.config/fish/plugins/foreign-env
+  mkdir -p $HOME/.config/fish/plugins/foreign-env
+  git clone https://github.com/oh-my-fish/plugin-foreign-env $HOME/.config/fish/plugins/foreign-env
+end
+  set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-env/functions
+
+# Nix
+# has to come aftet foreign-env
+if test -f /etc/profile.d/nix.sh
+  fenv source /etc/profile.d/nix.sh
 end
