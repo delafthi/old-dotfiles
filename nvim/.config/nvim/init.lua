@@ -58,6 +58,7 @@ require('packer').startup(function()
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
+    config = require('config.telescope').config(),
     setup = require('config.telescope').setup(),
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   }
@@ -225,7 +226,7 @@ u.map('v', 'j', 'gj', opts)
 u.map('n', 'k', 'gk', opts)
 u.map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
-u.map('n', '<Leader>tt', ':new term://fish<cr>', opts)
+u.map('n', '<Leader>tt', ':new term://fish<Cr>', opts)
 -- Map window navigation to CTRL + hjkl.
 u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
 u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
@@ -240,34 +241,28 @@ u.map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 u.map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 u.map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 -- Better resizing of windows with CTRL + arrows
-u.map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-u.map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-u.map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-u.map('n', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-u.map('i', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-u.map('t', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-u.map('n', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-u.map('i', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-u.map('t', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-u.map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
-u.map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
-u.map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+u.map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<Cr>', opts)
+u.map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<Cr>', opts)
+u.map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<Cr>', opts)
+u.map('n', '<C-Up>', '<C-\\><C-n : resize +2<Cr>', opts)
+u.map('i', '<C-Up>', '<C-\\><C-n : resize +2<Cr>', opts)
+u.map('t', '<C-Up>', '<C-\\><C-n : resize +2<Cr>', opts)
+u.map('n', '<C-Down>', '<C-\\><C-n : resize -2<Cr>', opts)
+u.map('i', '<C-Down>', '<C-\\><C-n : resize -2<Cr>', opts)
+u.map('t', '<C-Down>', '<C-\\><C-n : resize -2<Cr>', opts)
+u.map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<Cr>', opts)
+u.map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<Cr>', opts)
+u.map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<Cr>', opts)
 -- Change splits layout from vertical to horizontal or vice versa.
 u.map('n', '<Leader>lv', '<C-w>t<C-w>H', opts)
 u.map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
 -- Better indenting in the visual mode.
 u.map('v', '<', '<gv', opts)
 u.map('v', '>', '>gv', opts)
--- Show Telescope buffers.
-u.map('n', '<Leader>fb', '<Cmd>Telescope buffers <cr>', opts)
 -- Show buffers and select one to kill.
-u.map('n', '<Leader>bk', ':ls<cr>:bd<Space>', opts)
--- Search recursively for file in current project directory.
-u.map('n', '<Leader>ff', '<Cmd>Telescope find_files<cr>', opts)
--- Grep in project directory.
-u.map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>', opts)
+u.map('n', '<Leader>bk', ':ls<Cr>:bd<Space>', opts)
 -- Toggle spell checking.
-u.map('n', '<Leader>o', ':setlocal spell!<cr>', opts)
+u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
 u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
 u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
