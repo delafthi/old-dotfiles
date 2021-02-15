@@ -1,5 +1,6 @@
 local cmd = vim.cmd -- to execute vim commands
 local fn = vim.fn -- to execute vim functions
+local u = require('utils')
 
 vim.g.mapleader = ' ' -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
@@ -77,10 +78,10 @@ require('packer').startup(function()
     'vimwiki/vimwiki',
     setup = require('config.vimwiki').setup()
   }
-  --[[ use {
+  use {
     'oberblastmeister/neuron.nvim',
     setup = require('neuron').setup(),
-  } ]]
+  }
   use {
     'iamcco/markdown-preview.nvim',
     run = 'cd app & yarn install',
@@ -111,52 +112,47 @@ require('packer').startup(function()
   -- Text editing
   use {'godlygeek/tabular'}
   use {
-    'blackCauldron7/surround.nvim',
+    'delafthi/surround.nvim',
     setup = require('surround').setup{}
   }
 end)
 
--- Helper functions {{{1
-local function add(value, str, sep)
-  sep = sep or ','
-  str = str or ''
-  value = type(value) == 'table' and table.concat(value, sep) or value
-  return str ~= '' and table.concat({value, str}, sep) or value
-end
-local executable = function(e) return fn.executable(e) > 0 end
-local opts_info = vim.api.nvim_get_all_options_info()
-local opt = setmetatable({}, {
-  __newindex = function(_, key, value)
-    vim.o[key] = value
-    local scope = opts_info[key].scope
-    if scope == "win" then
-      vim.wo[key] = value
-    elseif scope == "buf" then
-       vim.bo[key] = value
-    end
-  end
-})
-
 -- Backup {{{1
-opt.backup = false -- Disable backups.
-opt.confirm = true -- Prompt to save before destructive actions.
-opt.swapfile = false -- Disable swapfiles.
-opt.undofile = true -- Save undo history.
+u.opt.backup = false -- Disable backups.
+u.opt.confirm = true -- Prompt to save before destructive actions.
+u.opt.swapfile = false -- Disable swapfiles.
+u.opt.undofile = true -- Save undo history.
 if fn.isdirectory(vim.o.undodir) == 0 then fn.mkdir(vim.o.undodir, 'p') end -- Create undo directory.
-opt.writebackup = false -- Disable backups, when a file is written.
+u.opt.writebackup = false -- Disable backups, when a file is written.
 
 -- Buffers {{{1
-opt.autoread = true -- Enable automatic reload of unchanged files.
+u.opt.autoread = true -- Enable automatic reload of unchanged files.
 cmd [[autocmd CursorHold * checktime]] -- Auto reload file, when changes where made somewhere else (for autoreload)
-opt.hidden = true -- Enable modified buffers in the background.
-opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
+u.opt.hidden = true -- Enable modified buffers in the background.
+u.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
+-- Automatically deletes all trailing whitespace and newlines at end of file on
+-- save.
+vim.api.nvim_exec([[
+function! TrimTrailingLines()
+  let lastLine = line('$')
+  let lastNonblankLine = prevnonblank(lastLine)
+  if lastLine > 0 && lastNonblankLine != lastLine
+    silent! execute lastNonblankLine + 1 . ',$delete _'
+  endif
+endfunction
+augroup remove
+  au!
+  au BufWritePre * %s/\s\+$//e
+  au BufWritepre * call TrimTrailingLines()
+augroup END
+]], false)
 
 -- Colorscheme {{{1
 vim.g.rehash256 = 1 -- Better color support.
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
-opt.diffopt = add({
+u.opt.diffopt = u.add({
     'context:4',
     'iwhite',
     'vertical',
@@ -167,15 +163,15 @@ opt.diffopt = add({
     }, vim.o.diffopt)
 
 -- Display {{{1
-opt.colorcolumn = '80' -- Set colorcolumn to 80
-opt.cursorline = true -- Enable the cursorline.
-opt.display = add('lastline', vim.o.display) -- On wrap display the last line even if it does not fit
-opt.errorbells = false -- Disable annoying errors
-opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
-opt.linebreak = true -- Prevent wrapping between words.
-opt.list = true -- Enable listchars.
+u.opt.colorcolumn = '80' -- Set colorcolumn to 80
+u.opt.cursorline = true -- Enable the cursorline.
+u.opt.display = u.add('lastline', vim.o.display) -- On wrap display the last line even if it does not fit
+u.opt.errorbells = false -- Disable annoying errors
+u.opt.lazyredraw = true -- Disables redraw when executing macros and other commands.
+u.opt.linebreak = true -- Prevent wrapping between words.
+u.opt.list = true -- Enable listchars.
  -- Set listchar characters.
-opt.listchars = add {
+u.opt.listchars = u.add {
   'eol:↲',
   'tab:»·',
   'space: ',
@@ -186,127 +182,121 @@ opt.listchars = add {
   'nbsp:☠'
 }
 cmd [[set list]]
-opt.number = true -- Print line numbers.
-opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
-opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
+u.opt.number = true -- Print line numbers.
+u.opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
+u.opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
 vim.g.showbreak = '>>> ' -- Show wrapped lines with a prepended string.
-opt.showcmd = true -- Show command in the command line.
-opt.showmode = false -- Don't show mode in the command line.
-opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
-opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
-opt.textwidth = 80 -- Max text length.
+u.opt.showcmd = true -- Show command in the command line.
+u.opt.showmode = false -- Don't show mode in the command line.
+u.opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
+u.opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
+u.opt.textwidth = 80 -- Max text length.
 cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]] -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
-opt.wrap = true -- Enable line wrapping.
-opt.virtualedit = 'block' -- Allow cursor to move past end of line.
-opt.visualbell = false -- Disable annoying beeps
+u.opt.wrap = true -- Enable line wrapping.
+u.opt.virtualedit = 'block' -- Allow cursor to move past end of line.
+u.opt.visualbell = false -- Disable annoying beeps
 
 -- Folds {{{1
-opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
-opt.foldmethod = 'marker' -- The kind of folding for the current window.
-opt.foldopen = add(vim.o.foldopen, 'search') -- Open folds, when something is found inside the fold.
-opt.foldtext = 'folds#render()' -- Function called to display fold line.
+u.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
+u.opt.foldmethod = 'marker' -- The kind of folding for the current window.
+u.opt.foldopen = u.add(vim.o.foldopen, 'search') -- Open folds, when something is found inside the fold.
+u.opt.foldtext = 'folds#render()' -- Function called to display fold line.
 
 -- Indentation {{{1
-opt.autoindent = true -- Allow filetype plugins and syntax highlighting
-opt.expandtab = true -- Use spaces instead of tabs
-opt.joinspaces = false -- No double spaces with join after a dot
-opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.smartindent = true -- Insert indents automatically
-opt.smarttab = true -- Automatically tab to the next softtabstop
-opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
-opt.tabstop = 2 -- Number of spaces tabs count for
+u.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
+u.opt.expandtab = true -- Use spaces instead of tabs
+u.opt.joinspaces = false -- No double spaces with join after a dot
+u.opt.shiftround = true -- Round indent
+u.opt.shiftwidth = 2 -- Size of an indent
+u.opt.smartindent = true -- Insert indents automatically
+u.opt.smarttab = true -- Automatically tab to the next softtabstop
+u.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
+u.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend('force', options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-opts = {silent = true}
-map('i', 'ii', '<Esc>', opts) -- Remap ii as Escape.
+opts = {noremap = true, silent = true}
+u.map('i', 'ii', '<Esc>', opts) -- Remap ii as Escape.
 -- Remap jk keys to navigate through visual lines.
-map('n', 'j', 'gj', opts)
-map('v', 'j', 'gj', opts)
-map('n', 'k', 'gk', opts)
-map('v', 'k', 'gk', opts)
+u.map('n', 'j', 'gj', opts)
+u.map('v', 'j', 'gj', opts)
+u.map('n', 'k', 'gk', opts)
+u.map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
-map('n', '<Leader>tt', ':new term://fish<cr>', opts)
+u.map('n', '<Leader>tt', ':new term://fish<cr>', opts)
 -- Map window navigation to CTRL + hjkl.
-map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-map('n', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-map('i', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-map('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-map('n', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-map('i', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-map('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
-map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
-map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+u.map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+u.map('n', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+u.map('i', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+u.map('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+u.map('n', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+u.map('i', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+u.map('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+u.map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+u.map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+u.map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
 -- Better resizing of windows with CTRL + arrows
-map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
-map('n', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-map('i', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-map('t', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
-map('n', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-map('i', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-map('t', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
-map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
-map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
-map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+u.map('n', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+u.map('i', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+u.map('t', '<C-Left>', '<C-\\><C-n :vertical resize +2<cr>', opts)
+u.map('n', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+u.map('i', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+u.map('t', '<C-Up>', '<C-\\><C-n : resize +2<cr>', opts)
+u.map('n', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+u.map('i', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+u.map('t', '<C-Down>', '<C-\\><C-n : resize -2<cr>', opts)
+u.map('n', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+u.map('i', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
+u.map('t', '<C-Right>', '<C-\\><C-n :vertical resize -2<cr>', opts)
 -- Change splits layout from vertical to horizontal or vice versa.
-map('n', '<Leader>lv', '<C-w>t<C-w>H', opts)
-map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
+u.map('n', '<Leader>lv', '<C-w>t<C-w>H', opts)
+u.map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
 -- Better indenting in the visual mode.
-map('v', '<', '<gv', opts)
-map('v', '>', '>gv', opts)
+u.map('v', '<', '<gv', opts)
+u.map('v', '>', '>gv', opts)
 -- Show Telescope buffers.
-map('n', '<Leader>fb', '<Cmd>Telescope buffers <cr>', opts)
+u.map('n', '<Leader>fb', '<Cmd>Telescope buffers <cr>', opts)
 -- Show buffers and select one to kill.
-map('n', '<Leader>bk', ':ls<cr>:bd<Space>', opts)
+u.map('n', '<Leader>bk', ':ls<cr>:bd<Space>', opts)
 -- Search recursively for file in current project directory.
-map('n', '<Leader>ff', '<Cmd>Telescope find_files<cr>', opts)
+u.map('n', '<Leader>ff', '<Cmd>Telescope find_files<cr>', opts)
 -- Grep in project directory.
-map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>', opts)
+u.map('n', '<Leader>fg', '<Cmd>Telescope live_grep<cr>', opts)
 -- Toggle spell checking.
-map('n', '<Leader>o', ':setlocal spell!<cr>', opts)
+u.map('n', '<Leader>o', ':setlocal spell!<cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
+u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
+u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
 -- Mouse {{{1
-opt.mouse = 'nvicr' -- Enables different support modes for the mouse
+u.opt.mouse = 'nvicr' -- Enables different support modes for the mouse
 
 -- Netrw {{{1
 vim.g.netrw_banner = 0 -- Disable banner on top of the window.
 
 -- Search {{{1
-opt.hlsearch = true -- Enable search highlighting.
-opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
-opt.ignorecase = true -- Ignore case when searching.
-opt.smartcase = true -- Don't ignore case with capitals.
-opt.wrapscan = true -- Searches wraps at the end of the file.
+u.opt.hlsearch = true -- Enable search highlighting.
+u.opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
+u.opt.ignorecase = true -- Ignore case when searching.
+u.opt.smartcase = true -- Don't ignore case with capitals.
+u.opt.wrapscan = true -- Searches wraps at the end of the file.
 -- Use faster grep alternatives if possible
-if executable('rg') then
-    opt.grepprg =
+if fn.executable('rg') > 0 then
+    u.opt.grepprg =
         [[rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*]]
-    opt.grepformat = add('%f:%l:%c:%m', vim.o.grepformat)
+    u.opt.grepformat = u.add('%f:%l:%c:%m', vim.o.grepformat)
 end
 
 -- Spell checking {{{1
-opt.spelllang = 'en_us,de_ch' -- Set spell check languages.
+u.opt.spelllang = 'en_us,de_ch' -- Set spell check languages.
 
 -- Splits {{{1
 -- Fill characters for the statusline and vertical separators
-opt.fillchars = add {
+u.opt.fillchars = u.add {
     'stl: ',
     'stlnc:-',
     'vert:│',
@@ -318,34 +308,34 @@ opt.fillchars = add {
     'msgsep:‾',
     'eob:~',
 }
-opt.splitbelow = true -- Put new windows below the current.
-opt.splitright = true -- Put new windows right of the current.
+u.opt.splitbelow = true -- Put new windows below the current.
+u.opt.splitright = true -- Put new windows right of the current.
 
 -- Statusline {{{1
-opt.laststatus = 2 -- Always show the statusline
+u.opt.laststatus = 2 -- Always show the statusline
 
 -- Timings {{{1
-opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
-opt.timeoutlen = 500 -- Wait 500 milliseconds for further input.
-opt.ttimeoutlen = 10 -- Wait 10 milliseconds in mappings with CTRL.
+u.opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
+u.opt.timeoutlen = 500 -- Wait 500 milliseconds for further input.
+u.opt.ttimeoutlen = 10 -- Wait 10 milliseconds in mappings with CTRL.
 
 -- Title {{{1
-opt.title = true -- Set window title by default.
-opt.titlelen = 70 -- Set maximum title length.
-opt.titleold = '%{fnamemodify(getcwd(), ":t")}' -- Set title, while exiting the vim.
-opt.titlestring = '%t' -- Set title string.
+u.opt.title = true -- Set window title by default.
+u.opt.titlelen = 70 -- Set maximum title length.
+u.opt.titleold = '%{fnamemodify(getcwd(), ":t")}' -- Set title, while exiting the vim.
+u.opt.titlestring = '%t' -- Set title string.
 
 -- Utils {{{1
-opt.backspace = 'indent,eol,start' -- Change backspace to behave more intuitively.
-opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
-opt.completeopt = add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
-opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
-opt.path = add('**', vim.o.path) -- Searches current directory recursively
+u.opt.backspace = 'indent,eol,start' -- Change backspace to behave more intuitively.
+u.opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
+u.opt.completeopt = u.add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
+u.opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
+u.opt.path = u.add('**', vim.o.path) -- Searches current directory recursively
 
 -- Wildmenu {{{1
-opt.wildmenu = true -- Enable commandline autocompletion menu.
-opt.wildmode = 'full' -- Select completion mode.
-opt.wildignorecase = true -- Ignores case when completing.
-opt.wildoptions = 'pum' -- Display the completion matches using the popupmenu.
+u.opt.wildmenu = true -- Enable commandline autocompletion menu.
+u.opt.wildmode = 'full' -- Select completion mode.
+u.opt.wildignorecase = true -- Ignores case when completing.
+u.opt.wildoptions = 'pum' -- Display the completion matches using the popupmenu.
 
 -- }}}1
