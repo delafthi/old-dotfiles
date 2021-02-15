@@ -28,7 +28,7 @@ require('packer').startup(function()
   use {
     'delafthi/onedarkbuddy',
     config = function() require('colorbuddy').colorscheme('onedarkbuddy') end,
-    requires = {'tjdevries/colorbuddy.vim'}
+    requires = {'tjdevries/colorbuddy.vim'},
   }
   -- Comment
   use {
@@ -46,41 +46,43 @@ require('packer').startup(function()
       {
         'norcalli/snippets.nvim',
         config = require('snippets').use_suggested_mappings()
-      }
+      },
     }
   }
   -- File manager
   use {
     'kyazdani42/nvim-tree.lua',
     setup = require('config.nvim-tree').setup(),
-    requires = {'kyazdani42/nvim-web-devicons'}
+    requires = {'kyazdani42/nvim-web-devicons'},
   }
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim',
     setup = require('config.telescope').setup(),
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   }
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
     setup = require('config.gitsigns').setup(),
-    requires = {'nvim-lua/plenary.nvim'}
+    requires = {'nvim-lua/plenary.nvim'},
   }
   -- LSP
   use {
     'neovim/nvim-lspconfig',
     setup = require('config.nvim-lspconfig').setup(),
-    requires = {{'nvim-lua/lsp-status.nvim', opt = true}, {'nvim-lua/lsp_extensions.nvim', opt = true}}
+    requires = {{'nvim-lua/lsp-status.nvim', opt = true}, {'nvim-lua/lsp_extensions.nvim', opt = true}},
   }
   -- Note taking
   use {
     'vimwiki/vimwiki',
-    setup = require('config.vimwiki').setup()
+    setup = require('config.vimwiki').setup(),
   }
   use {
     'oberblastmeister/neuron.nvim',
-    setup = require('neuron').setup(),
+    config = require('config.neuron').config(),
+    setup = require('config.neuron').setup(),
+    requires = {{'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope.nvim'}},
   }
   use {
     'iamcco/markdown-preview.nvim',
@@ -97,23 +99,23 @@ require('packer').startup(function()
     'glepnir/galaxyline.nvim',
     branch = 'main',
     setup = require('config.galaxyline').setup(),
-    requires = {'kyazdani42/nvim-web-devicons', opt=true}
+    requires = {'kyazdani42/nvim-web-devicons', opt=true},
   }
   -- Syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
     setup = require('config.nvim-treesitter').setup(),
-    run = ':TSUpdate'
+    run = ':TSUpdate',
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    setup = require('colorizer').setup()
+    setup = require('colorizer').setup(),
   }
   -- Text editing
   use {'godlygeek/tabular'}
   use {
     'delafthi/surround.nvim',
-    setup = require('surround').setup{}
+    setup = require('surround').setup{},
   }
 end)
 
