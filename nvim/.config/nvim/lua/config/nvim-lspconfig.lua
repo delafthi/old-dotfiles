@@ -1,36 +1,35 @@
 local M = {}
 local lsp = require('lspconfig')
+local u = require('utils')
 
 function M.setup()
   local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Mappings.
     local opts = { noremap=true, silent=true }
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
-    buf_set_keymap('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>', opts)
-    buf_set_keymap('n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>', opts)
-    buf_set_keymap('n', '<Leader>D', '<Cmd>lua vim.lsp.buf.type_definition()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<Cr>', opts)
-    buf_set_keymap('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>', opts)
-    buf_set_keymap('n', '[d', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>', opts)
-    buf_set_keymap('n', ']d', '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>', opts)
-    buf_set_keymap('n', '<Leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>D', '<Cmd>lua vim.lsp.buf.type_definition()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '[d', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>', opts)
+    u.bufmap(bufnr, 'n', ']d', '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -107,6 +106,6 @@ function M.setup()
   lsp.vimls.setup{ on_attach = on_attach }
   -- yaml-language-server
   lsp.yamlls.setup{ on_attach = on_attach }
-end 
+end
 
 return M
