@@ -72,7 +72,7 @@ end
 modkey = "Mod4"
 
 -- Initialize theme
-beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/onehalf-dark/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/onedark/theme.lua")
 
 -- Table of layouts
 awful.layout.layouts = {
@@ -347,7 +347,7 @@ mymeminfo = wibox.widget {
 -- Clock
 mytextclock = wibox.widget {
   {
-    format = "<span color='" .. beautiful.magenta .. "'> : %a %d. %b %Y %H:%M</span>",
+    format = "<span color='" .. beautiful.purple .. "'> : %a %d. %b %Y %H:%M</span>",
     widget = wibox.widget.textclock,
   },
   right = 6,

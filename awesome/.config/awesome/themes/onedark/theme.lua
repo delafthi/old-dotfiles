@@ -19,16 +19,39 @@ local theme = {}
 theme.shape = gears.shape.powerline
 
 -- Colors
-theme.black = "#282c34"
-theme.red = "#e06c75"
-theme.green = "#98c379"
-theme.yellow = "#e5c07b"
-theme.blue = "#61afef"
-theme.magenta = "#c678dd"
-theme.cyan = "#56b6c2"
-theme.white = "#dcdfe4"
-theme.black_lite = "#5c6370"
 
+theme.red = '#e06c75'
+theme.green = '#98c379'
+theme.orange = '#e59F70'
+theme.yellow = '#e5c07b'
+theme.blue = '#61afef'
+theme.purple = '#c678dd'
+theme.cyan = '#56b6c2'
+
+theme.red_dark = '#be646a'
+theme.green_dark = '#7e9d69'
+theme.orange_dark = '#c08768'
+theme.yellow_dark = '#bd9e6f'
+theme.blue_dark = '#5f96c9'
+theme.purple_dark = '#a86cbb'
+theme.cyan_dark = '#51969f'
+
+theme.red_light = '#e8838c'
+theme.green_light = '#a6d18c'
+theme.orange_light = '#ecb07e'
+theme.yellow_light = '#eccd84'
+theme.blue_light = '#75c2f3'
+theme.purple_light = '#d38de6'
+theme.cyan_light = '#69c7d1'
+
+theme.black = '#282c34'
+theme.white = '#dcdfe4'
+
+theme.mono1 = '#313640'
+theme.mono2 = '#4b5263'
+theme.mono3 = '#5c6370'
+theme.mono4 = '#919baa'
+theme.mono5 = '#abb2bf'
 -- Path of this theme config
 theme.config_path = gfs.get_configuration_dir()
 
@@ -44,20 +67,20 @@ theme.taglist_font = "Victor Mono Nerd Font 11"
 theme.bg_normal = theme.black
 theme.bg_focus = theme.black
 theme.bg_urgent = theme.red
-theme.bg_minimize = theme.black
+theme.bg_minimize = theme.mono1
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = theme.white
 theme.fg_focus = theme.blue
 theme.fg_urgent = theme.black
-theme.fg_minimize = theme.black_lite
+theme.fg_minimize = theme.mono1
 
 theme.useless_gap = 2
 theme.border_width = 3
 theme.border_normal = theme.black
 theme.border_focus = theme.blue
-theme.border_marked = theme.magenta
-theme.border_floating = theme.black_lite
+theme.border_marked = theme.purple
+theme.border_floating = theme.mono1
 
 -- Menu settings
 theme.menu_fg_normal = theme.fg_normal
@@ -76,7 +99,7 @@ theme.menu_font = theme.font
 
 -- Wibox settings
 theme.wibox_fg = theme.fg_normal
-theme.wibox_separator_fg = theme.black_lite
+theme.wibox_separator_fg = theme.mono1
 
 theme.wibox_bg = theme.bg_normal
 
@@ -88,8 +111,8 @@ theme.wibox_height = 24
 -- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
 theme.taglist_fg_focus = theme.blue
 theme.taglist_fg_urgent = theme.red
-theme.taglist_fg_occupied = theme.magenta
-theme.taglist_fg_empty = theme.black_lite
+theme.taglist_fg_occupied = theme.purple
+theme.taglist_fg_empty = theme.mono1
 theme.taglist_fg_volatile = theme.yellow
 
 theme.taglist_bg_focus = theme.bg_normal
@@ -101,41 +124,13 @@ theme.taglist_bg_volatile = theme.bg_normal
 -- Tasklist settings
 theme.tasklist_fg_focus = theme.blue
 theme.tasklist_fg_normal = theme.fg_normal
-theme.tasklist_fg_minimize = theme.black_lite
+theme.tasklist_fg_minimize = theme.mono1
 theme.tasklist_fg_urgent = theme.black
 
 theme.tasklist_bg_focus = theme.bg_normal
 theme.tasklist_bg_normal = theme.bg_normal
 theme.tasklist_bg_minimize = theme.bg_normal
 theme.tasklist_bg_urgent = theme.bg_normal
-
--- Titlebar settings
---them]
--- theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
--- theme.titlebar_close_button_focus = themes_path.."default/titlebar/close_focus.png"
-
--- theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
--- theme.titlebar_minimize_button_focus = themes_path.."default/titlebar/minimize_focus.png"
-
--- theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
--- theme.titlebar_ontop_button_focus_inactive = themes_path.."default/titlebar/ontop_focus_inactive.png"
--- theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
--- theme.titlebar_ontop_button_focus_active = themes_path.."default/titlebar/ontop_focus_active.png"
-
--- theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
--- theme.titlebar_sticky_button_focus_inactive = themes_path.."default/titlebar/sticky_focus_inactive.png"
--- theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
--- theme.titlebar_sticky_button_focus_active = themes_path.."default/titlebar/sticky_focus_active.png"
-
--- theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
--- theme.titlebar_floating_button_focus_inactive = themes_path.."default/titlebar/floating_focus_inactive.png"
--- theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
--- theme.titlebar_floating_button_focus_active = themes_path.."default/titlebar/floating_focus_active.png"
-
--- theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
--- theme.titlebar_maximized_button_focus_inactive = themes_path.."default/titlebar/maximized_focus_inactive.png"
--- theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
--- theme.titlebar_maximized_button_focus_active = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- Tooltip settings
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
@@ -182,11 +177,11 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
-theme.layout_fg = theme.black_lite
+theme.layout_fg = theme.mono1
 theme.layout_bg = theme.bg_normal
 
 -- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(20, theme.magenta, theme.black)
+theme.awesome_icon = theme_assets.awesome_icon(20, theme.purple, theme.black)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
