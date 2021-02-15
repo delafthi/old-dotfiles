@@ -1,4 +1,5 @@
 local M = {}
+local u = require('utils')
 
 function M.setup()
   require'telescope'.setup{
@@ -44,4 +45,12 @@ function M.setup()
   }
 end
 
+function M.config()
+  -- Show Telescope buffers.
+  u.map('n', '<Leader>fb', '<Cmd>lua require("telescope.builtin").buffers()<Cr>', opts)
+  -- Search recursively for file in current project directory.
+  u.map('n', '<Leader>ff', '<Cmd>lua require("telescope.builtin").find_files({find_command = {"rg","--ignore","--hidden","--files"}})<Cr>', opts)
+  -- Grep in project directory.
+  u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
+end
 return M
