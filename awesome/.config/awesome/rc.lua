@@ -456,13 +456,6 @@ local function set_screen(s)
   set_wallpaper(s)
   -- Re/set wibox
   set_wibox(s)
-  -- Sort screens according to their position
-  --[[ for sc in screen do
-    if sc.geometry["x"] < s.geometry["x"] then
-      sc:swap(s)
-      break
-    end
-  end ]]
   awful.screen.focus(1)
 end
 
