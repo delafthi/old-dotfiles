@@ -1,4 +1,5 @@
 local M = {}
+local u = require('utils')
 
 function M.setup()
   vim.g.mkdp_autoclose = 0 -- Disable auto close, when changing to a different buffer.
@@ -9,7 +10,8 @@ function M.setup()
 end
 
 function M.config()
-  vim.api.nvim_set_keymap('n', '<Leader>mp', '<Plug>MarkdownPreviewToggle', {silent = true}) -- Set keymap to toggle preview.
+  local opts = {noremap = false, silent = true}
+  u.map('n', '<Leader>mp', '<Plug>MarkdownPreviewToggle', opts) -- Set keymap to toggle preview.
 end
 
 return M
