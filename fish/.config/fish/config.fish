@@ -9,34 +9,34 @@ set fish_greeting
 
 # PS1
 function fish_prompt
-    set_color $fish_color_user
-    echo -n (whoami)
-    set_color normal
-    echo -n '@'
-    set_color $fish_color_host
-    echo -n 'TDTPE15'
-    set_color $fish_color_cwd
-    echo -n (prompt_pwd)
-    set_color normal
-    echo -n (fish_vcs_prompt)
-    set_color blue
-    echo -n '$ '
+  set_color $fish_color_user
+  echo -n (whoami)
+  set_color normal
+  echo -n '@'
+  set_color $fish_color_host
+  echo -n 'TDTPE15'
+  set_color $fish_color_cwd
+  echo -n (prompt_pwd)
+  set_color normal
+  echo -n (fish_vcs_prompt)
+  set_color blue
+  echo -n '$ '
 end
 
 # Set window title
 function fish_title
-    echo $argv[1]
-    pwd
+  echo $argv[1]
+  pwd
 end
 
 # Set vim keybinding
 if string match -q 'alacritty' -- $TERM
-    # Needs to be set for fish_vi_cursor to work
-    set -gx KONSOLE_PROFILE_NAME
+  # Needs to be set for fish_vi_cursor to work
+  set -gx KONSOLE_PROFILE_NAME
 end
 function fish_user_key_bindings
-    fish_vi_cursor
-    fish_vi_key_bindings
+  fish_vi_cursor
+  fish_vi_key_bindings
 end
 
 # Abbreviations and aliases {{{1
@@ -82,7 +82,7 @@ alias sr="sudo reboot"
 
 # kitty specific aliases
 if string match -q "xterm-kitty" -- $TERM
-    alias ssh="kitty +kitten ssh"
+  alias ssh="kitty +kitten ssh"
 end
 
 # Environment variables {{{1
@@ -106,26 +106,26 @@ end
 
 # Vi mode prompt
 function fish_mode_prompt
-    switch $fish_bind_mode
-        case default
-            set_color green
-            echo '[NORMAL]'
-        case insert
-            echo ''
-        case replace_one
-            set_color green
-            echo '[NORMAL]'
-        case replace
-            set_color red
-            echo '[REPLACE]'
-        case visual
-            set_color yellow
-            echo '[VISUAL]'
-        case '*'
-            set_color --bold red
-            echo '[???]'
-    end
-    set_color normal
+  switch $fish_bind_mode
+    case default
+      set_color green
+      echo '[NORMAL]'
+    case insert
+      echo ''
+    case replace_one
+      set_color green
+      echo '[NORMAL]'
+    case replace
+      set_color red
+      echo '[REPLACE]'
+    case visual
+      set_color yellow
+      echo '[VISUAL]'
+    case '*'
+      set_color --bold red
+      echo '[???]'
+  end
+  set_color normal
 end
 
 # Set the fish syntax highlighting colors
@@ -177,69 +177,77 @@ set __fish_git_prompt_color_branch_detached red --bold
 # Functions {{{1
 
 function ex --description "Function to extract most types of archives"
-    if test -f $argv
-        switch $argv
-            case --help
-                echo "usage: ex <file>"
-            case '*.tar.bz2'
-                tar -xjf $argv
-            case '*.tar.gz'
-                tar -xzf $argv
-            case '*.bz2'
-                bunzip2 $argv
-            case '*.rar'
-                unrar -x $argv
-            case '*.gz'
-                gunzip $argv
-            case '*.tar'
-                tar -xf $argv
-            case '*.tbz2'
-                tar -xjf $argv
-            case '*.tgz'
-                tar -xzf $argv
-            case '*.zip'
-                unzip $argv
-            case '*.Z'
-                uncompress $argv
-            case '*.7z'
-                7z -x $argv
-            case '*.deb'
-                tar -x $argv
-            case '*.tar.xz'
-                tar -xf $argv
-            case '*.tar.zst'
-                unzstd $argv
-            case '*'
-                echo "'$argv' cannot be extracted via ex"
-        end
-    else
-        echo "'$argv' is not a valid file"
+  if test -f $argv
+    switch $argv
+      case --help
+        echo "usage: ex <file>"
+      case '*.tar.bz2'
+        tar -xjf $argv
+      case '*.tar.gz'
+        tar -xzf $argv
+      case '*.bz2'
+        bunzip2 $argv
+      case '*.rar'
+        unrar -x $argv
+      case '*.gz'
+        gunzip $argv
+      case '*.tar'
+        tar -xf $argv
+      case '*.tbz2'
+        tar -xjf $argv
+      case '*.tgz'
+        tar -xzf $argv
+      case '*.zip'
+        unzip $argv
+      case '*.Z'
+        uncompress $argv
+      case '*.7z'
+        7z -x $argv
+      case '*.deb'
+        tar -x $argv
+      case '*.tar.xz'
+        tar -xf $argv
+      case '*.tar.zst'
+        unzstd $argv
+      case '*'
+        echo "'$argv' cannot be extracted via ex"
     end
+  else
+    echo "'$argv' is not a valid file"
+  end
+end
+
+function nofunc --description "Run command ignoring functions and aliases"
+  functions -c $argv[1] functionholder
+  functions --erase $argv[1]
+  $argv
+  functions -c functionholder $argv[1]
+  functions --erase functionholder
 end
 
 # Plugins {{{1
-if ! test -d $HOME/.config/fish/plugins
+if not test -d $HOME/.config/fish/plugins
   mkdir -p $HOME/.config/fish/plugins
 end
 
 # Starship prompt
 # Change default config directory
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
-if ! test (type -t starship) = 'file'
-    set_color --bold red
-    echo -n "=> Error: "
-    set_color normal
-    echo -e "Starship not installed.\n"
-    set_color --bold green
-    echo -n "=> Info: "
-    set_color normal
-    echo "Starship will be downloaded and installed in the following steps"
-    curl -fsSL https://starship.rs/install.sh | bash
+if not test (type -t starship) = 'file'
+  set_color --bold red
+  echo -n "=> Error: "
+  set_color normal
+  echo -e "Starship not installed.\n"
+  set_color --bold green
+  echo -n "=> Info: "
+  set_color normal
+  echo "Starship will be downloaded and installed in the following steps"
+  curl -fsSL https://starship.rs/install.sh | bash
 end
-    starship init fish | source
+starship init fish | source
 
 # foreign-env
-if ! test -d $HOME/.config/fish/plugins/foreign-env
+if not test -d $HOME/.config/fish/plugins/foreign-env
   mkdir -p $HOME/.config/fish/plugins/foreign-env
   git clone https://github.com/oh-my-fish/plugin-foreign-env $HOME/.config/fish/plugins/foreign-env
 end
