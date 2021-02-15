@@ -1,4 +1,5 @@
 local M = {}
+local u = require('utils')
 
 function M.setup()
   vim.g.nvim_tree_side = 'left'
@@ -67,9 +68,8 @@ function M.setup()
 
   local opts = {silent = true, noremap = true}
 
-  map('n', '<C-n>', ':NvimTreeToggle<Cr>', opts)
-  map('n', '<Leader>r', ':NvimTreeRefresh<Cr>', opts)
-  map('n', '<Leader>f', ':NvimTreeFindFile<Cr>', opts)
+  u.map('n', '<C-n>', ':NvimTreeToggle<Cr>', opts)
+  u.map('n', '<Leader>tr', ':NvimTreeRefresh<Cr>', opts)
 end
 
 return M
