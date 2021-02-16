@@ -188,7 +188,7 @@ cmd [[set list]]
 u.opt.number = true -- Print line numbers.
 u.opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
 u.opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
-vim.g.showbreak = '>>> ' -- Show wrapped lines with a prepended string.
+u.opt.showbreak = '>>> ' -- Show wrapped lines with a prepended string.
 u.opt.showcmd = true -- Show command in the command line.
 u.opt.showmode = false -- Don't show mode in the command line.
 u.opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
