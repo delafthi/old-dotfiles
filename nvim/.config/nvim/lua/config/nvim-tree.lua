@@ -16,6 +16,8 @@ function M.setup()
   vim.g.nvim_tree_root_folder_modifier = ':~'
   vim.g.nvim_tree_tab_open = 1
   vim.g.nvim_tree_width_allow_resize  = 1
+  vim.g.nvim_tree_disable_netrw = 1
+  vim.g.nvim_tree_hijack_netrw = 1
   vim.g.nvim_tree_show_icons = {
     git = 1,
     folders = 1,
