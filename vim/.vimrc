@@ -201,7 +201,7 @@ end
 set spelllang=en_us,de_ch " Set spell check languages.
 
 " Splits {{{1
-let &g:fillchars = 'stl: ,stlnc:-,vert:│,fold: ,diff:,msgsep:‾,eob:~' " Fill characters for the statusline and vertical separators
+let &g:fillchars = 'stl: ,stlnc:_,vert:│,fold: ,diff:,msgsep:‾,eob:~' " Fill characters for the statusline and vertical separators
 set splitbelow " Put new windows below the current.
 set splitright " Put new windows right of the current.
 
