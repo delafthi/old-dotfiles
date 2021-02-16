@@ -16,7 +16,7 @@ end
 -- Only required if you have packer in your `opt` pack
 exec([[packadd packer.nvim]], false)
 exec([[
-  augroup Packer
+  augroup packer_compile
     autocmd BufWritePost init.lua PackerCompile
   augroup end]], false)
 
@@ -147,10 +147,10 @@ function! TrimTrailingLines()
     silent! execute lastNonblankLine + 1 . ',$delete _'
   endif
 endfunction
-augroup remove
-  au!
-  au BufWritePre * %s/\s\+$//e
-  au BufWritepre * call TrimTrailingLines()
+augroup remove_trailing_whitespaces_and_lines
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritepre * call TrimTrailingLines()
 augroup END
 ]], false)
 
