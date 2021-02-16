@@ -127,8 +127,6 @@ function M.setup()
       provider = 'DiagnosticError',
       icon = '  ',
       highlight = {colors.red, colors.mono1},
-      separator = ' ',
-      separator_highlight = {colors.mono1, colors.mono1},
     }
   }
   gls.left[6] = {
@@ -136,8 +134,6 @@ function M.setup()
       provider = 'DiagnosticWarn',
       icon = '  ',
       highlight = {colors.yellow, colors.mono1},
-      separator = ' ',
-      separator_highlight = {colors.mono1, colors.mono1},
     }
   }
   gls.left[7] = {
@@ -145,8 +141,6 @@ function M.setup()
       provider = 'DiagnosticInfo',
       icon = '  ',
       highlight = {colors.blue, colors.mono1},
-      separator = ' ',
-      separator_highlight = {colors.mono1, colors.mono1},
     }
   }
 
