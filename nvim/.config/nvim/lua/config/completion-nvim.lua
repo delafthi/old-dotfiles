@@ -57,12 +57,13 @@ function M.setup()
 end
 
 function M.config()
-  vim.cmd [[ augroup completion_nvim_autocmd ]]
-  vim.cmd [[ autocmd! ]]
-  vim.cmd [[ autocmd BufEnter * lua require'completion'.on_attach()]]
-  vim.cmd [[ autocmd BufEnter * let g:completion_trigger_character = ['.'] ]]
-  vim.cmd [[ autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->'] ]]
-  vim.cmd [[ augroup END ]]
+  vim.api.nvim_exec([[
+    augroup completion_nvim
+      autocmd!
+      autocmd BufEnter * lua require'completion'.on_attach()
+      autocmd BufEnter * let g:completion_trigger_character = ['.']
+      autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->']
+    augroup END ]], false)
 end
 
 return M
