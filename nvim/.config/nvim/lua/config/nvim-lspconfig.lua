@@ -13,7 +13,7 @@ function M.setup()
     u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>', opts)
-    u.bufmap(bufnr, 'n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>', opts)
@@ -27,9 +27,9 @@ function M.setup()
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      u.bufmap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>lf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>lf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
