@@ -15,3 +15,4 @@ fish/.config/fish/fish_variables
 speedcrunch/.local/share/SpeedCrunch/**
 systemd/.config/systemd/user/default.target.wants
 gnupg/.gnupg/**
+spotify-tui/.config/spotify-tui/**
