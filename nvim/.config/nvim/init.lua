@@ -1,4 +1,4 @@
-local cmd = vim.cmd -- to execute vim commands
+local exec = vim.api.nvim_exec -- to execute vim commands
 local fn = vim.fn -- to execute vim functions
 local u = require('utils')
 
@@ -6,18 +6,19 @@ vim.g.mapleader = ' ' -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
 
 -- Install packer.nvim, if it is not yet installed {{{1
-local execute = vim.api.nvim_command
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim' .. ' ' ..
-           install_path)
-  cmd [[packadd packer.nvim]]
+  exec('!git clone https://github.com/wbthomason/packer.nvim' .. ' ' ..
+           install_path, false)
 end
 -- Plugin specification {{{1
 -- Only required if you have packer in your `opt` pack
-cmd [[packadd packer.nvim]]
-cmd [[autocmd BufWritePost init.lua PackerCompile]]
+exec([[packadd packer.nvim]], false)
+exec([[
+  augroup Packer
+    autocmd BufWritePost init.lua PackerCompile
+  augroup end]], false)
 
 local use = require('packer').use
 require('packer').startup(function()
@@ -130,12 +131,15 @@ u.opt.writebackup = false -- Disable backups, when a file is written.
 
 -- Buffers {{{1
 u.opt.autoread = true -- Enable automatic reload of unchanged files.
-cmd [[autocmd CursorHold * checktime]] -- Auto reload file, when changes where made somewhere else (for autoreload)
+exec([[
+  augroup autoreload
+    autocmd CursorHold * checktime
+  augroup end]], false) -- Auto reload file, when changes where made somewhere else (for autoreload)
 u.opt.hidden = true -- Enable modified buffers in the background.
 u.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 -- Automatically deletes all trailing whitespace and newlines at end of file on
 -- save.
-vim.api.nvim_exec([[
+exec([[
 function! TrimTrailingLines()
   let lastLine = line('$')
   let lastNonblankLine = prevnonblank(lastLine)
@@ -184,7 +188,6 @@ u.opt.listchars = u.add {
   'conceal:┊',
   'nbsp:☠'
 }
-cmd [[set list]]
 u.opt.number = true -- Print line numbers.
 u.opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
 u.opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
@@ -194,7 +197,10 @@ u.opt.showmode = false -- Don't show mode in the command line.
 u.opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
 u.opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
 u.opt.textwidth = 80 -- Max text length.
-cmd [[autocmd TextYankPost * silent! lua vim.highlight.on_yank()]] -- Enable highlight on yank.
+exec([[
+  augroup highlight_on_yank
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end]], false) -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
 u.opt.wrap = true -- Enable line wrapping.
 u.opt.virtualedit = 'block' -- Allow cursor to move past end of line.
@@ -267,7 +273,7 @@ u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
 u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
-cmd [[ca w!! w !sudo tee >/dev/null "%"]]
+exec([[ca w!! w !sudo tee >/dev/null "%"]], false)
 
 -- Mouse {{{1
 u.opt.mouse = 'nvicr' -- Enables different support modes for the mouse
