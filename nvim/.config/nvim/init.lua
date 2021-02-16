@@ -301,7 +301,7 @@ u.opt.spelllang = 'en_us,de_ch' -- Set spell check languages.
 -- Fill characters for the statusline and vertical separators
 u.opt.fillchars = u.add {
     'stl: ',
-    'stlnc:-',
+    'stlnc:_',
     'vert:│',
     'fold: ',
     'foldopen:▾',
