@@ -67,7 +67,7 @@ function M.setup()
     root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml')
   }
   -- python-language-server
-  lsp.pyls.setup{
+  lsp.pyright.setup{
     on_attach = on_attach,
     root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd()),
   }
