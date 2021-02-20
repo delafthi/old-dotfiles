@@ -59,6 +59,8 @@ function M.setup()
     folder = {
       default = "",
       open = "",
+      empty = "",
+      empty_open = "",
       symlink = "",
     }
   }
