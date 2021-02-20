@@ -6,6 +6,7 @@ function M.setup()
     defaults = {
       vimgrep_arguments = {
         'rg',
+        '--ignore',
         '--color=never',
         '--no-heading',
         '--with-filename',
@@ -23,7 +24,7 @@ function M.setup()
       layout_defaults = {
       },
       file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-      file_ignore_patterns = {},
+      file_ignore_patterns = {'.git', 'node_modules', '.cache'},
       generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
       shorten_path = true,
       winblend = 0,
