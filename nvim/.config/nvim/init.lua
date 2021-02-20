@@ -117,7 +117,7 @@ require('packer').startup(function()
   use {'godlygeek/tabular'}
   use {
     'delafthi/surround.nvim',
-    setup = require('surround').setup{},
+    setup = require('config.surround').setup(),
   }
 end)
 
