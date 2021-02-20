@@ -139,7 +139,7 @@ nnoremap <silent> j gj
 vnoremap <silent> k gk
 vnoremap <silent> j gj
 " Open terminal inside Vim
-nnoremap <silent> <Leader>tt :new term://fish<cr>
+nnoremap <silent> <Leader>tt :new term://fish<Cr>
 " Remap splits navigation to just CTRL + hjkl
 tnoremap <silent> <C-h> <C-\><C-n><C-w>h
 tnoremap <silent> <C-j> <C-\><C-n><C-w>j
@@ -154,25 +154,25 @@ nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
 " Make adjusting split sizes a bit more friendly
-tnoremap <silent> <C-Left> <C-\><C-n> :vertical resize +2<cr>
-tnoremap <silent> <C-Up> <C-\><C-n> :resize +2<cr>
-tnoremap <silent> <C-Down> <C-\><C-n> :resize -2<cr>
-tnoremap <silent> <C-Right> <C-\><C-n> :vertical resize -2<cr>
-inoremap <silent> <C-Left> :vertical resize +2<cr>
-inoremap <silent> <C-Up> :resize +2<cr>
-inoremap <silent> <C-Down> :resize -2<cr>
-inoremap <silent> <C-Right> :vertical resize -2<cr>
-nnoremap <silent> <C-Left> :vertical resize +2<cr>
-nnoremap <silent> <C-Up> :resize +2<cr>
-nnoremap <silent> <C-Down> :resize -2<cr>
-nnoremap <silent> <C-Right> :vertical resize -2<cr>
+tnoremap <silent> <C-Left> <C-\><C-n>:vertical resize +2<Cr>
+tnoremap <silent> <C-Up> <C-\><C-n>:resize +2<Cr>
+tnoremap <silent> <C-Down> <C-\><C-n>:resize -2<Cr>
+tnoremap <silent> <C-Right> <C-\><C-n>:vertical resize -2<Cr>
+inoremap <silent> <C-Left>:vertical resize +2<Cr>
+inoremap <silent> <C-Up>:resize +2<Cr>
+inoremap <silent> <C-Down>:resize -2<Cr>
+inoremap <silent> <C-Right>:vertical resize -2<Cr>
+nnoremap <silent> <C-Left>:vertical resize +2<Cr>
+nnoremap <silent> <C-Up>:resize +2<Cr>
+nnoremap <silent> <C-Down>:resize -2<Cr>
+nnoremap <silent> <C-Right>:vertical resize -2<Cr>
 " Change 2 split windows from vert to horiz or horiz to vert
 nnoremap <silent> <Leader>lv <C-w>t<C-w>H
 nnoremap <silent> <Leader>lh <C-w>t<C-w>K
 " Kill specified buffer
-nnoremap <silent> <Leader>bk :ls<cr>:bd<Space>
+nnoremap <silent> <Leader>bk :ls<Cr>:bd<Space>
 " Enable/Disable spell checker
-nnoremap <silent> <Leader>o :setlocal spell!<cr>
+nnoremap <silent> <Leader>o :setlocal spell!<Cr>
 " " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
