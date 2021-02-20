@@ -254,7 +254,14 @@ end
   set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-env/functions
 
 # Nix
-# has to come aftet foreign-env
+# has to be defined aftet foreign-env
 if test -f /etc/profile.d/nix.sh
   fenv source /etc/profile.d/nix.sh
+end
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1
+  set -gx PYENV_ROOT $HOME/.pyenv
+  set -gx fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  pyenv init - | source
 end
