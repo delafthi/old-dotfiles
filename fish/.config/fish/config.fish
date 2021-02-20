@@ -232,8 +232,7 @@ end
 
 # Starship prompt
 # Change default config directory
-set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
-if not test (type -t starship) = 'file'
+if not command -v  starship 1>/dev/null 2>&1
   set_color --bold red
   echo -n "=> Error: "
   set_color normal
@@ -244,6 +243,7 @@ if not test (type -t starship) = 'file'
   echo "Starship will be downloaded and installed in the following steps"
   curl -fsSL https://starship.rs/install.sh | bash
 end
+set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
 starship init fish | source
 
 # foreign-env

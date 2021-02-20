@@ -186,15 +186,13 @@ function git_color {
 # Plugins
 
 # Starship prompt
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-if [[ $(type -t starship) == "file" ]]; then
-    eval "$(starship init bash)"
-else
+if ! command -v starship 1>/dev/null 2>&1; then
     echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL Starship not installed.\n"
     echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Starship will be downloaded and installed in the following steps"
-    curl -fsSL https://starship.rs/install.sh | bash && \
-        eval "$(starship init bash)"
+    curl -fsSL https://starship.rs/install.sh | bash
 fi
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+eval "$(starship init bash)"
 
 # Nix
 if [ -f /etc/profile.d/nix.sh ]; then
