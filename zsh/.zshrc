@@ -148,7 +148,7 @@ ex ()
 # Starship prompt
 if ! command -v starship 1>/dev/null 2>&1; then
     echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL Starship not installed.\n"
-    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Starship will be downloaded and installed in the following steps"
+    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Starship will be downloaded and installed."
     curl -fsSL https://starship.rs/install.sh | bash
 fi
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
@@ -163,5 +163,12 @@ fi
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
+  if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
+    echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL pyenv-virtualenv is not installed.\n"
+    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL pyenv-virtualenv will be downloaded and installed."
+    mkdir -p $PYENV_ROOT/plugins/pyenv-virtualenv
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+  fi
   eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi

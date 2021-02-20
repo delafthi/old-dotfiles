@@ -240,7 +240,7 @@ if not command -v  starship 1>/dev/null 2>&1
   set_color --bold green
   echo -n "=> Info: "
   set_color normal
-  echo "Starship will be downloaded and installed in the following steps"
+  echo "Starship will be downloaded and installed."
   curl -fsSL https://starship.rs/install.sh | bash
 end
 set -gx STARSHIP_CONFIG $HOME/.config/starship/starship.toml
@@ -263,5 +263,18 @@ end
 if command -v pyenv 1>/dev/null 2>&1
   set -gx PYENV_ROOT $HOME/.pyenv
   set -gx fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  if not test -d $PYENV_ROOT/plugins/pyenv-virtualenv
+    set_color --bold red
+    echo -n "=> Error: "
+    set_color normal
+    echo -e "pyenv-virtualenv not installed.\n"
+    set_color --bold green
+    echo -n "=> Info: "
+    set_color normal
+    echo "pyenv-virtualenv will be downloaded and installed."
+    mkdir -p $PYENV_ROOT/plugins/pyenv-virtualenv
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+  end
   pyenv init - | source
+  pyenv virtualenv-init - | source
 end
