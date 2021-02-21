@@ -75,6 +75,11 @@ require('packer').startup(function()
     setup = require('config.nvim-lspconfig').setup(),
     requires = {{'nvim-lua/lsp-status.nvim', opt = true}, {'nvim-lua/lsp_extensions.nvim', opt = true}},
   }
+  -- Movement
+  use {
+    'unblevable/quick-scope',
+    setup = require('config.quick-scope').setup(),
+  }
   -- Note taking
   use {
     'vimwiki/vimwiki',
