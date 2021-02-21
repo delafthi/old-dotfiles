@@ -20,12 +20,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'delafthi/onedarkvim',
   " Comment
   Plug 'tpope/vim-commentary'
-  " Note taking
-  Plug 'vimwiki/vimwiki'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
   " File manager
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Movement
+  Plug 'unblevable/quick-scope'
+  " Note taking
+  Plug 'vimwiki/vimwiki'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
   " Start screen
   Plug 'mhinz/vim-startify'
   " Syntax highlighting
@@ -232,6 +234,7 @@ set wildmode=full " Select completion mode.
 set wildignorecase " Ignores case when completing.
 
 " Plugin Settings {{{1
+"
 " Vimwiki {{{2
 let g:vimwiki_list = [{
             \ 'path': '~/Vimwiki/',
@@ -255,5 +258,10 @@ let g:NERDTreeShowHidden = 1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
 nnoremap <C-n> :NERDTreeToggle<Cr>
+
+" Quick-scope
+let g:qs_buftype_blacklist = ['terminal', 'nofile', 'nerdtree']
+
 " }}}2
+"
 " }}}1
