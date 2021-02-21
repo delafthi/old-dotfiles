@@ -260,7 +260,7 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nnoremap <C-n> :NERDTreeToggle<Cr>
 
 " Quick-scope
-let g:qs_buftype_blacklist = ['terminal', 'nofile', 'nerdtree']
+let g:qs_buftype_blacklist = ['terminal', 'nofile', 'nerdtree', 'help']
 
 " }}}2
 "
