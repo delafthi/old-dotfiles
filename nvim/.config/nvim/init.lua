@@ -54,7 +54,7 @@ require('packer').startup(function()
   use {
     'kyazdani42/nvim-tree.lua',
     setup = require('config.nvim-tree').setup(),
-    requires = {'kyazdani42/nvim-web-devicons'},
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
   -- Fuzzy finder
   use {
@@ -106,7 +106,7 @@ require('packer').startup(function()
     'glepnir/galaxyline.nvim',
     branch = 'main',
     setup = require('config.galaxyline').setup(),
-    requires = {'kyazdani42/nvim-web-devicons', opt=true},
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
   -- Syntax highlighting
   use {

@@ -34,7 +34,7 @@ function M.setup()
     refresh = 'R',
     preview = '<Tab>',
     cd = 'cd',
-    create = 'i',
+    create = 'a',
     remove = 'dd',
     rename = 'r',
     cut = 'dy',
