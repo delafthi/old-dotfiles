@@ -642,27 +642,30 @@ colors:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
 key_bindings:
-  - { key: H,         mods: Shift|Control,       chars: "\x1b[D"        }
-  - { key: L,         mods: Shift|Control,       chars: "\x1b[C"        }
+  - { key: H,         mods: Control|Shift,       chars: "\x1b[D"        }
+  - { key: L,         mods: Control|Shift,       chars: "\x1b[C"        }
   #- { key: Paste,                                action: Paste          }
-  - { key: P,         mods: Shift|Control,       action: Paste          }
+  - { key: P,         mods: Control|Shift,       action: Paste          }
   #- { key: Copy,                                 action: Copy           }
-  - { key: Y,         mods: Shift|Control,       action: Copy           }
+  - { key: Y,         mods: Control|Shift,       action: Copy           }
   #- { key: L,         mods: Control,             action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi,  chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
-  - { key: U,         mods: Shift|Control, mode: ~Alt, action: ScrollPageUp }
-  - { key: K,         mods: Shift|Control, mode: ~Alt, action: ScrollLineUp }
+  - { key: U,         mods: Control|Shift, mode: ~Alt, action: ScrollPageUp }
+  - { key: K,         mods: Control|Shift, mode: ~Alt, action: ScrollLineUp }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
-  - { key: D,         mods: Shift|Control, mode: ~Alt, action: ScrollPageDown }
-  - { key: J,         mods: Shift|Control, mode: ~Alt, action: ScrollLineDown }
+  - { key: D,         mods: Control|Shift, mode: ~Alt, action: ScrollPageDown }
+  - { key: J,         mods: Control|Shift, mode: ~Alt, action: ScrollLineDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt, action: ScrollToBottom }
-  - { key: G,         mods: Shift|Control, mode: ~Alt, action: ScrollToBottom }
+  - { key: G,         mods: Control|Shift, mode: ~Alt, action: ScrollToBottom }
+  - { key: Period,    mods: Control,             action: IncreaseFontSize }
+  - { key: Comma,     mods: Control,             action: DecreaseFontSize }
+  - { key: 0,         mods: Control,             action: ResetFontSize    }
 
   # Vi Mode
-  #- { key: Space,  mods: Shift|Control, mode: Vi, action: ScrollToBottom          }
-  #- { key: Space,  mods: Shift|Control,           action: ToggleViMode            }
+  #- { key: Space,  mods: Control|Shift, mode: Vi, action: ScrollToBottom          }
+  #- { key: Space,  mods: Control|Shift,           action: ToggleViMode            }
   #- { key: Escape,                      mode: Vi, action: ClearSelection          }
   #- { key: I,                           mode: Vi, action: ScrollToBottom          }
   #- { key: I,                           mode: Vi, action: ToggleViMode            }
