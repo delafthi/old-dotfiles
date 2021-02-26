@@ -53,8 +53,10 @@ require('packer').startup(function()
   -- File manager
   use {
     'kyazdani42/nvim-tree.lua',
+    disable = true,
+    config = require('config.nvim-tree').config(),
     setup = require('config.nvim-tree').setup(),
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    -- requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
   -- Fuzzy finder
   use {
