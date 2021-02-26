@@ -1,3 +1,5 @@
+# Enable links
+set sandbox none
 # Set clipboard
 set selection-clipboard clipboard
 # Set custom key mappings
