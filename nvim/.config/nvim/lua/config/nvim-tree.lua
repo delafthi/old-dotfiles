@@ -71,4 +71,12 @@ function M.setup()
   u.map('n', '<Leader>tr', ':NvimTreeRefresh<Cr>', opts)
 end
 
+function M.config()
+  vim.api.nvim_exec([[
+  augroup NvimTree
+    autocmd! BufWritePost *
+  augroup END
+  ]], false)
+end
+
 return M
