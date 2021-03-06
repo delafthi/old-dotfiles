@@ -6,7 +6,7 @@
 -- Imports:
 
 -- Base
-import XMonad
+import XMonad hiding ( (|||) )
 import System.IO (hPutStrLn, Handle)
 import System.Exit
 import qualified XMonad.StackSet as W
@@ -40,6 +40,7 @@ import XMonad.Layout.Renamed (renamed, Rename(Replace))
 import XMonad.Layout.Magnifier as Mag
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.NoBorders (noBorders)
+import XMonad.Layout.LayoutCombinators
 
 -- Prompt
 
@@ -267,8 +268,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- swap the focused window and the master window
     , ((modm              , xK_m     ), windows W.swapMaster)
 
+    -- toggle fullscreen layout
+    , ((modm .|. shiftMask, xK_m     ), sendMessage $ JumpToLayout "full")
+
     -- magnify the focused window
-    , ((modm .|. shiftMask, xK_m     ), sendMessage Mag.Toggle)
+    , ((modm .|. shiftMask, xK_z     ), sendMessage Mag.Toggle)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -430,7 +434,6 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Shift-Return Launch dmenu",
     "mod-b            Launch brave",
     "mod-f            Launch the file browser",
-    "mod-Shift-e      Launch emacs",
     "mod-q            Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
@@ -441,16 +444,19 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Shift-Tab  Move focus to the previous window",
     "mod-j          Move focus to the next window",
     "mod-k          Move focus to the previous window",
-    "mod-m          Move focus to the master window",
     "",
     "-- modifying the window order",
     "mod-m        Swap the focused window and the master window",
     "mod-Shift-j  Swap the focused window with the next window",
     "mod-Shift-k  Swap the focused window with the previous window",
     "",
-    "-- resizing the master/slave ratio",
-    "mod-h  Shrink the master area",
-    "mod-l  Expand the master area",
+    "-- modifing layout",
+    "mod-h            Shrink the master area",
+    "mod-l            Expand the master area",
+    "mod-Space        Next layout",
+    "mod-Shift-Space  Previous layout",
+    "mod-Shift-m      Jump to full screen layout",
+    "mod-Shif-z       Increas focused window size (zoom)",
     "",
     "-- floating layer support",
     "mod-p  Push window back into tiling; unfloat and re-tile it",
