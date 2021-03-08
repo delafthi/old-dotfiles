@@ -18,7 +18,8 @@ exec([[packadd packer.nvim]], false)
 exec([[
   augroup packer_compile
     autocmd BufWritePost init.lua PackerCompile
-  augroup end]], false)
+  augroup END
+  ]], false)
 
 local use = require('packer').use
 require('packer').startup(function()
@@ -141,7 +142,8 @@ u.opt.autoread = true -- Enable automatic reload of unchanged files.
 exec([[
   augroup autoreload
     autocmd CursorHold * checktime
-  augroup end]], false) -- Auto reload file, when changes where made somewhere else (for autoreload)
+  augroup END
+  ]], false) -- Auto reload file, when changes where made somewhere else (for autoreload)
 u.opt.hidden = true -- Enable modified buffers in the background.
 u.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 -- Automatically deletes all trailing whitespace and newlines at end of file on
@@ -207,11 +209,20 @@ u.opt.textwidth = 80 -- Max text length.
 exec([[
   augroup highlight_on_yank
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end]], false) -- Enable highlight on yank.
+  augroup END
+  ]], false) -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
 u.opt.wrap = true -- Enable line wrapping.
 u.opt.virtualedit = 'block' -- Allow cursor to move past end of line.
 u.opt.visualbell = false -- Disable annoying beeps
+
+-- Filetypes {{{1
+exec([[
+  augroup opencl
+    autocmd!
+    autocmd BufNewFile,BufRead *.cl set filetype=cpp
+  augroup END
+  ]], false) -- Set filetype for opencl device code
 
 -- Folds {{{1
 u.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
