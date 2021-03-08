@@ -46,6 +46,7 @@ unclutter --timeout 10 &
 # Default session
 session=${2:-awesome}
 case $session in
+    dwm ) exec startdwm;;
     awesome ) exec awesome;;
     xmonad ) exec xmonad;;
     qtile ) exec qtile;;
