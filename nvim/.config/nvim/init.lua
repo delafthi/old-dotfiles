@@ -228,7 +228,13 @@ exec([[
 u.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 u.opt.foldmethod = 'marker' -- The kind of folding for the current window.
 u.opt.foldopen = u.add(vim.o.foldopen, 'search') -- Open folds, when something is found inside the fold.
-u.opt.foldtext = 'folds#render()' -- Function called to display fold line.
+function _G.__foldtext()
+  local foldstart = vim.api.nvim_get_vvar('foldstart')
+  local line = vim.api.nvim_buf_get_lines(0, foldstart-1, foldstart, false)
+  local sub = string.gsub(line[1], '{{{.*', '')
+  return '▸ ' .. sub
+end
+u.opt.foldtext = 'luaeval("_G.__foldtext()")' -- Function called to display fold line.
 
 -- Indentation {{{1
 u.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
