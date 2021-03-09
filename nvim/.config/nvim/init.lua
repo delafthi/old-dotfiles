@@ -250,7 +250,7 @@ u.map('v', 'j', 'gj', opts)
 u.map('n', 'k', 'gk', opts)
 u.map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
-u.map('n', '<Leader>tt', ':new term://fish<Cr>', opts)
+u.map('n', '<Leader>tt', ':call luaeval("_G.__split_term_right()")<Cr>', opts)
 -- Map window navigation to CTRL + hjkl.
 u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
 u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
@@ -334,6 +334,20 @@ u.opt.splitright = true -- Put new windows right of the current.
 
 -- Statusline {{{1
 u.opt.laststatus = 2 -- Always show the statusline
+
+-- Terminal {{{1
+function _G.__split_term_right()
+  exec([[botright vsplit term://$SHELL]], false)
+  exec([[setlocal nonumber]], false)
+  exec([[setlocal norelativenumber]], false)
+  exec([[startinsert]], false)
+end
+exec([[
+  augroup terminal
+    autocmd!
+    autocmd BufWinEnter,WinEnter term://* startinsert
+  augroup END
+  ]], false) -- Automatically go to insert mode, when changing to the terminal window
 
 -- Timings {{{1
 u.opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
