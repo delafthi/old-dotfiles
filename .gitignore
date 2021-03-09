@@ -33,6 +33,10 @@ vim/.vim/plugged
 vim/.vim/autoload/plug.vim
 # xmonad
 xmonad/.xmonad/hie.yaml
+xmonad/.xmonad/xmonad-X86_64-linux
+xmonad/.xmonad/xmonad.errors
+xmonad/.xmonad/xmonad.hi
+xmonad/.xmonad/xmonad.o
 # xorg
 # zathura
 # zsh
