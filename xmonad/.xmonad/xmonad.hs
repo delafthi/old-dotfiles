@@ -147,7 +147,7 @@ myManageHook = ( isFullscreen --> doFullFloat ) <+> manageDocks <+> composeAll
 myNamedScratchpads :: [NamedScratchpad]
 myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
   where
-    spawnTerm = myTerminal ++ " -t scratchpad"
+    spawnTerm = myTerminal ++ " -T scratchpad"
     findTerm = (title =? "scratchpad")
     manageTerm = customFloating $ W.RationalRect l t w h
       where
