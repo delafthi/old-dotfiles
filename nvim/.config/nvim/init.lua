@@ -257,6 +257,18 @@ u.map('n', 'k', 'gk', opts)
 u.map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
 u.map('n', '<Leader>tt', ':call luaeval("_G.__split_term_right()")<Cr>', opts)
+-- Execute
+function _G.__execute_line()
+  local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+  local line = vim.api.nvim_get_current_line()
+  if filetype == 'vim' then
+    vim.api.nvim_command(line)
+  elseif filetype == 'lua' then
+    vim.api.nvim_command('call luaeval(\"' .. line .. '\")')
+  end
+end
+
+u.map('n', '<Leader>x', ':call luaeval("_G.__execute_line()")<Cr>', opts)
 -- Map window navigation to CTRL + hjkl.
 u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
 u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
