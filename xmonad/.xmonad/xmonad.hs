@@ -1,10 +1,4 @@
---------------------------------------------------------------------------------
--- Xmonad config file.
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
--- Imports:
-
+-- Imports {{{1
 -- Base
 import XMonad hiding ( (|||) )
 import System.IO (hPutStrLn, Handle)
@@ -41,6 +35,7 @@ import XMonad.Layout.Magnifier as Mag
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.NoBorders (noBorders)
 import XMonad.Layout.LayoutCombinators
+import XMonad.Layout.IndependentScreens
 
 -- Prompt
 
@@ -49,9 +44,7 @@ import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.NamedScratchpad
 
---------------------------------------------------------------------------------
--- Default applications
-
+-- Default applications {{{1
 -- The preferred terminal program
 myTerminal :: String
 myTerminal = "kitty"
@@ -64,9 +57,7 @@ myBrowser = "brave"
 myFileBrowser :: String
 myFileBrowser = "pcmanfm"
 
---------------------------------------------------------------------------------
--- Visual settings:
-
+-- Visual settings {{{1
 -- Default font
 myFont :: String
 myFont = "xft:Victor Mono Nerd Font:regular:size=11:antialias=true:hinting=true"
@@ -111,7 +102,7 @@ xmobarEscape = concatMap doubleLts
     doubleLts x   = [x]
 
 myWorkspaces :: [String]
-myWorkspaces = clickable. (map xmobarEscape)
+myWorkspaces = withScreens 2 $ clickable. (map xmobarEscape)
         $ ["www","dev","sys","chat","mus","virt","doc","vis"]
   where
     clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>"
@@ -123,9 +114,7 @@ myWorkspaces = clickable. (map xmobarEscape)
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
---------------------------------------------------------------------------------
--- Window rules:
-
+-- Window rules {{{1
 -- To find the property name associated with a program, use
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
@@ -141,9 +130,8 @@ myManageHook = ( isFullscreen --> doFullFloat ) <+> manageDocks <+> composeAll
   , className =? "Xmessage" --> doFloat
   , title =? "Microsoft Teams Notification" --> doFloat
   ] <+> namedScratchpadManageHook myNamedScratchpads
---------------------------------------------------------------------------------
--- Scratchpads
 
+-- Scratchpads {{{1
 myNamedScratchpads :: [NamedScratchpad]
 myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
   where
@@ -156,9 +144,7 @@ myNamedScratchpads = [ NS "terminal" spawnTerm findTerm manageTerm]
         t = 0.95 - h
         l = 0.95 - w
 
---------------------------------------------------------------------------------
--- Layouts:
-
+-- Layouts {{{1
 myLayoutHook =
   tall
   ||| twopane
@@ -203,9 +189,7 @@ myLayoutHook =
     full = renamed [Replace "full"]
       $ noBorders Full
 
---------------------------------------------------------------------------------
--- Controls:
-
+-- Controls {{{1
 -- modMask lets you specify which modkey you want to use.
 -- mod1Mask ("left alt")
 -- mod3Mask ("right alt")
@@ -221,9 +205,7 @@ myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = True
 
---------------------------------------------------------------------------------
--- Key bindings:
---
+-- Key bindings {{{1
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
   -- launch a terminal
@@ -330,7 +312,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
   -- mod-[1..9], Switch to workspace N
   -- mod-shift-[1..9], Move client to workspace N
   --
-  [((m .|. modm, k), windows $ f i)
+  [((m .|. modm, k), windows $ onCurrentScreen f i)
     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
     , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
   ++
@@ -343,9 +325,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     , (f, m) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]]
 
---------------------------------------------------------------------------------
--- Mouse bindings:
-
+-- Mouse bindings {{{1
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 
@@ -363,33 +343,29 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
   -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
 
---------------------------------------------------------------------------------
--- Event handling
-
+-- Event handling {{{1
 myEventHook = docksEventHook <+> handleEventHook def <+> fullscreenEventHook
 
---------------------------------------------------------------------------------
--- Status bars and logging:
-
+-- Status bars and logging {{{1
 myLogHook :: Handle -> Handle -> X()
-myLogHook xmproc0 xmproc1 = workspaceHistoryHook <+> (dynamicLogWithPP .
-  namedScratchpadFilterOutWorkspacePP $ xmobarPP
-  { ppCurrent = xmobarColor blue "" . wrap "[" "]"
-  , ppVisible = xmobarColor magenta "" . wrap "<" ">"
-  , ppUrgent = xmobarColor red "" . wrap "!" "!"
-  , ppHidden = xmobarColor yellow "" . wrap "(" ")"
-  , ppHiddenNoWindows = xmobarColor blackLite ""
-  , ppWsSep = " "
-  , ppTitle = xmobarColor blue "" . shorten 60
-  , ppSep = "<fc=" ++ blackLite ++ "><fn=2> | </fn></fc>"
-  , ppExtras = [windowCount]
-  , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
-  , ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x
-  })
+myLogHook xmproc0 xmproc1 = let
+  log screen handle xmproc = workspaceHistoryHook <+> (dynamicLogWithPP . marshallPP
+    screen . namedScratchpadFilterOutWorkspacePP $ xmobarPP
+    { ppCurrent = xmobarColor blue "" . wrap "[" "]"
+    , ppVisible = xmobarColor magenta "" . wrap "<" ">"
+    , ppUrgent = xmobarColor red "" . wrap "!" "!"
+    , ppHidden = xmobarColor yellow "" . wrap "(" ")"
+    , ppHiddenNoWindows = xmobarColor blackLite ""
+    , ppWsSep = " "
+    , ppTitle = xmobarColor blue "" . shorten 60
+    , ppSep = "<fc=" ++ blackLite ++ "><fn=2> | </fn></fc>"
+    , ppExtras = [windowCount]
+    , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
+    , ppOutput = \x -> handle xmproc x
+    })
+  in log 0 hPutStrLn xmproc0 >> log 1 hPutStrLn xmproc1
 
---------------------------------------------------------------------------------
--- Startup hooks:
-
+-- Startup hooks {{{1
 myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "trayer --edge top --align right --distance 4,4 --distancefrom top,right --widthtype request --transparent true --height 24 --alpha 0 --tint 0x282c34 --padding 5 --monitor 0 --iconspacing 3 &"
@@ -397,33 +373,30 @@ myStartupHook = do
   spawnOnce "feh --bg-scale --randomize /usr/share/backgrounds/*"
   setWMName "LG3D"
 
---------------------------------------------------------------------------------
--- main:
-
+-- main {{{1
 main :: IO ()
 main = do
   xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobarrc_systray.hs"
   xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobarrc.hs"
   xmonad $ ewmh def
-    { terminal       = myTerminal
+    { terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
     , clickJustFocuses   = myClickJustFocuses
-    , borderWidth    = myBorderWidth
-    , modMask      = myModMask
-    , workspaces     = myWorkspaces
+    , borderWidth        = myBorderWidth
+    , modMask            = myModMask
+    , workspaces         = myWorkspaces
     , normalBorderColor  = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
-    , keys         = myKeys
-    , mouseBindings    = myMouseBindings
-    , layoutHook     = myLayoutHook
-    , manageHook     = myManageHook
-    , handleEventHook  = myEventHook
-    , logHook      = myLogHook xmproc0 xmproc1
-    , startupHook    = myStartupHook
+    , keys               = myKeys
+    , mouseBindings      = myMouseBindings
+    , layoutHook         = myLayoutHook
+    , manageHook         = myManageHook
+    , handleEventHook    = myEventHook
+    , logHook            = myLogHook xmproc0 xmproc1
+    , startupHook        = myStartupHook
     }
 
---------------------------------------------------------------------------------
--- help
+-- Help {{{1
 help :: String
 help = unlines ["The default modifier key is 'Super'. Default keybindings:",
   "",
@@ -478,3 +451,5 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
   "mod-button1  Set the window to floating mode and move by dragging",
   "mod-button2  Raise the window to the top of the stack",
   "mod-button2  Set the window to floating mode and resize by dragging"]
+
+-- 1}}}
