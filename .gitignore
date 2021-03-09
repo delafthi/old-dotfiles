@@ -1,18 +1,38 @@
+# alacritty
+# awesome
+# bash
+# doom
+# dunst
+# feh
+# fish
+# git
+# gnupg
+# gtk
+gtk/.config/gtk-3.0/bookmarks
+# jupyter
+# kitty
+# latexmk
+# mpv
+# nvim
+nvim/.config/nvim/.netrwhist
+nvim/.config/nvim/plugin
+# picom
+# qtile
+qtile/.config/qtile/__pycache__/
+# speedcrunch
+speedcrunch/.local/share/SpeedCrunch/history.json
+# spotify-tui
+# starship
+# systemd
+systemd/.config/systemd/user/default.target.wants
+# vifm
 vifm/.config/vifm/vifminfo
 vifm/.config/vifm/vifminfo.json*
-nvim/.config/nvim/.netrwhist
-nvim/.config/nvim/plugin/**
-nvim/.config/nvim/spell/*.spl
-nvim/.config/nvim/autoload/**
-vim/.vim/plugged/**
+# vim
+vim/.vim/plugged
 vim/.vim/autoload/plug.vim
-xmonad/.xmonad/**
-qtile/.config/qtile/__pycache__/**
-tags
-gtk/.config/gtk-3.0/**
-gtk/.config/gtk-2.0/**
-fish/.config/fish/fish_variables
-speedcrunch/.local/share/SpeedCrunch/**
-systemd/.config/systemd/user/default.target.wants
-gnupg/.gnupg/**
-spotify-tui/.config/spotify-tui/**
+# xmonad
+xmonad/.xmonad/hie.yaml
+# xorg
+# zathura
+# zsh
