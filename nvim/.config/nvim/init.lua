@@ -121,6 +121,10 @@ require('packer').startup(function()
     'norcalli/nvim-colorizer.lua',
     setup = require('colorizer').setup(),
   }
+  use {
+    'neovimhaskell/haskell-vim',
+    setup = require('config.haskell-vim').setup(),
+  }
   -- Text editing
   use {'godlygeek/tabular'}
   use {
