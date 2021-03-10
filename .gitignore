@@ -7,6 +7,14 @@
 # fish
 # git
 # gnupg
+gnupg/.gnupg/.#*
+gnupg/.gnupg/crls.d
+gnupg/.gnupg/openpgp-revocs.d
+gnupg/.gnupg/private-keys-v1.d
+gnupg/.gnupg/pubring.kbx*
+gnupg/.gnupg/random_seed
+gnupg/.gnupg/sshcontrol
+gnupg/.gnupg/trustdb.gpg
 # gtk
 gtk/.config/gtk-3.0/bookmarks
 # jupyter
@@ -22,6 +30,8 @@ qtile/.config/qtile/__pycache__/
 # speedcrunch
 speedcrunch/.local/share/SpeedCrunch/history.json
 # spotify-tui
+spotify-tui/.config/spotify-tui/.spotify_token_cache.json
+spotify-tui/.config/spotify-tui/client.yml
 # starship
 # systemd
 systemd/.config/systemd/user/default.target.wants
@@ -33,7 +43,7 @@ vim/.vim/plugged
 vim/.vim/autoload/plug.vim
 # xmonad
 xmonad/.xmonad/hie.yaml
-xmonad/.xmonad/xmonad-X86_64-linux
+xmonad/.xmonad/xmonad-x86_64-linux
 xmonad/.xmonad/xmonad.errors
 xmonad/.xmonad/xmonad.hi
 xmonad/.xmonad/xmonad.o
