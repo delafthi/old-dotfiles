@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   " Syntax highlighting
   Plug 'lilydjwg/colorizer'
   Plug 'sheerun/vim-polyglot'
+  Plug 'neovimhaskell/haskell-vim'
   " Text editing
   Plug 'tpope/vim-surround'
   Plug 'godlygeek/tabular'
@@ -261,6 +262,15 @@ nnoremap <C-n> :NERDTreeToggle<Cr>
 
 " Quick-scope
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'nerdtree', 'help']
+
+" Haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " }}}2
 "
