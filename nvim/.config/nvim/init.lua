@@ -385,7 +385,7 @@ u.opt.titlestring = '%t' -- Set title string.
 -- Utils {{{1
 u.opt.backspace = 'indent,eol,start' -- Change backspace to behave more intuitively.
 u.opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
-u.opt.completeopt = u.add {'menu', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
+u.opt.completeopt = u.add {'menuone', 'noinsert', 'noselect', 'longest'} -- Set completionopt to have a better completion experience.
 u.opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
 u.opt.path = u.add('**', vim.o.path) -- Searches current directory recursively
 
