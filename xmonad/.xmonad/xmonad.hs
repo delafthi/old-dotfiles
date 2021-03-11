@@ -424,7 +424,7 @@ toggleFullscreen w = do
   fullsc <- getAtom "_NET_WM_STATE_FULLSCREEN"
   wstate <- fromMaybe [] `fmap` getProp32 wmstate w
   let isFull = fromIntegral fullsc `elem` wstate
-  if isFull > False then do
+  if isFull == False then do
     sendMessage $ AddFullscreen w
   else do
     sendMessage $ RemoveFullscreen w
