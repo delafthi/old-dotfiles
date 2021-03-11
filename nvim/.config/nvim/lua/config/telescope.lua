@@ -15,11 +15,11 @@ function M.setup()
         '--smart-case',
         '--hidden',
       },
-      prompt_position = 'bottom',
+      prompt_position = 'top',
       prompt_prefix = '>>',
       initial_mode = 'insert',
       selection_strategy = 'reset',
-      sorting_strategy = 'descending',
+      sorting_strategy = 'ascending',
       layout_strategy = 'flex',
       layout_defaults = {
       },
