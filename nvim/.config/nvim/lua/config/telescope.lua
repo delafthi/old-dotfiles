@@ -1,8 +1,10 @@
 local M = {}
 local u = require('utils')
 
-function M.setup()
-  require'telescope'.setup{
+function M.config()
+  telescope = require('telescope')
+  telescope.load_extension('fzy_native')
+  telescope.setup{
     defaults = {
       vimgrep_arguments = {
         'rg',
@@ -42,11 +44,15 @@ function M.setup()
       qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    },
+    extensions = {
+      fzy_native = {
+        override_generic_sorter = false,
+        override_file_sorter = true,
+      }
     }
   }
-end
 
-function M.config()
   -- Show Telescope buffers.
   u.map('n', '<Leader>fb', '<Cmd>lua require("telescope.builtin").buffers()<Cr>', opts)
   -- Search recursively for file in current project directory.
@@ -54,4 +60,5 @@ function M.config()
   -- Grep in project directory.
   u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
 end
+
 return M

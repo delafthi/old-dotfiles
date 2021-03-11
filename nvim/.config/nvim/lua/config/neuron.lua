@@ -1,17 +1,15 @@
 local M = {}
 local u = require('utils')
 
-function M.setup()
-  require'neuron'.setup {
+function M.config()
+  require('neuron').setup {
     virtual_titles = true,
     mappings = true,
     run = nil,
     neuron_dir = '~/neuron',
     leader = '<Leader>n'
   }
-end
 
-function M.config()
   --[[ local opts = {noremap = true, silent = true}
   u.bufmap(0, 'n', '<Cr>', '<Cmd> lua require"neuron".enter_link()<Cr>', opts)
   u.bufmap(0, 'n', '<Leader>nn', '<Cmd> lua require"neuron/cmd".new_edit(require"neuron".config.neuron_dir)<Cr>', opts)

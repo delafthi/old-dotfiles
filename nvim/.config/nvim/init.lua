@@ -51,6 +51,11 @@ require('packer').startup(function()
       },
     }
   }
+  -- Debugging
+  use {
+    'mfussenegger/nvim-dap',
+    -- config = require('config.nvim-dap').config(),
+  }
   -- File manager
   use {
     'kyazdani42/nvim-tree.lua',
@@ -63,19 +68,23 @@ require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     config = require('config.telescope').config(),
-    setup = require('config.telescope').setup(),
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    requires = {
+	    {'nvim-lua/popup.nvim'},
+	    {'nvim-lua/plenary.nvim'},
+	    {'nvim-telescope/telescope-fzy-native.nvim'},
+
+    }
   }
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
-    setup = require('config.gitsigns').setup(),
+    config = require('config.gitsigns').config(),
     requires = {'nvim-lua/plenary.nvim'},
   }
   -- LSP
   use {
     'neovim/nvim-lspconfig',
-    setup = require('config.nvim-lspconfig').setup(),
+    config = require('config.nvim-lspconfig').config(),
     requires = {{'nvim-lua/lsp-status.nvim', opt = true}, {'nvim-lua/lsp_extensions.nvim', opt = true}},
   }
   -- Movement
@@ -91,16 +100,15 @@ require('packer').startup(function()
   use {
     'oberblastmeister/neuron.nvim',
     config = require('config.neuron').config(),
-    setup = require('config.neuron').setup(),
     requires = {{'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope.nvim'}},
   }
   use {
     'iamcco/markdown-preview.nvim',
-    run = 'cd app & yarn install',
     setup = require('config.markdown-preview').setup(),
     config = require('config.markdown-preview').config(),
     cmd = 'MarkdownPreview',
     ft = {'markdown', 'vimwiki'},
+    run = 'cd app & yarn install',
   }
   -- Start screen
   use {'mhinz/vim-startify'}
@@ -108,18 +116,18 @@ require('packer').startup(function()
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
-    setup = require('config.galaxyline').setup(),
+    config = require('config.galaxyline').config(),
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
   }
   -- Syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    setup = require('config.nvim-treesitter').setup(),
+    config = require('config.nvim-treesitter').config(),
     run = ':TSUpdate',
   }
   use {
     'norcalli/nvim-colorizer.lua',
-    setup = require('colorizer').setup(),
+    config = require('colorizer').setup(),
   }
   use {
     'neovimhaskell/haskell-vim',
@@ -130,6 +138,7 @@ require('packer').startup(function()
   use {
     'delafthi/surround.nvim',
     setup = require('config.surround').setup(),
+    config = require('config.surround').config(),
   }
 end)
 

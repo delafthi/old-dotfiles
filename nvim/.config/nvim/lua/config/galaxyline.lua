@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.config()
   local gl = require('galaxyline')
   local gls = gl.section
   gl.short_line_list = {'defx', 'packager', 'vista', 'NvimTree'}
