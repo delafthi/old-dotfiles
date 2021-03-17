@@ -747,6 +747,22 @@ awful.rules.rules = {
       sticky = true
     },
   },
+  {
+    id = "zoom notification",
+    rule_any = {
+      name = { "zoom" },
+    },
+    properties = {
+      titlebars_enabled = false,
+      floating = true,
+      focus = false,
+      draw_backdrop = false,
+      skip_decoration = true,
+      skip_taskbar = true,
+      ontop = true,
+      sticky = true
+    },
+  },
 }
 
 -- }}}
