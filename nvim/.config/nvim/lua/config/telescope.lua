@@ -31,9 +31,9 @@ function M.config()
       shorten_path = true,
       winblend = 0,
       width = 0.85,
-      preview_cutoff = 0,
+      preview_cutoff = 120,
       results_height = 1,
-      results_width = 0.4,
+      results_width = 0.8,
       border = {},
       borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
       color_devicons = true,
@@ -59,6 +59,7 @@ function M.config()
   u.map('n', '<Leader>ff', '<Cmd>lua require("telescope.builtin").find_files({find_command = {"rg","--ignore","--hidden","--files"}})<Cr>', opts)
   -- Grep in project directory.
   u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
+  u.map('n', '<Leader>fh', '<Cmd>lua require("telescope.builtin").help_tags()<Cr>', opts)
 end
 
 return M
