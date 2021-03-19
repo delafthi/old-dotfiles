@@ -60,6 +60,8 @@ function M.config()
   -- Grep in project directory.
   u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
   u.map('n', '<Leader>fh', '<Cmd>lua require("telescope.builtin").help_tags()<Cr>', opts)
+  u.map('n', '<Leader>gs', '<Cmd>lua require("telescope.builtin").git_status()<Cr>', opts)
+  u.map('n', '<Leader>gb', '<Cmd>lua require("telescope.builtin").git_branches()<Cr>', opts)
 end
 
 return M
