@@ -440,9 +440,27 @@ end
 --------------------------------------------------------------------------------
 -- {{{ Create environment
 
+local function set_random_wallpaper(s)
+  local wallpaper_path = beautiful.wallpapers_path
+  local fileending = beautiful.wallpapers_fileending
+  local f = io.popen('fd -d 1 --regex ' .. fileending .. ' ' ..  wallpaper_path, 'r')
+  local files = {}
+  local length = 0
+  local line = 'begin'
+  while line ~= nil do
+    line = f:read('*l')
+    table.insert(files, line)
+    length = length + 1
+  end
+  f:close()
+  math.randomseed(os.time()) -- Set the random seed
+  math.random(); math.random(); math.random() -- Pop some random numbers, before using it
+  return gears.wallpaper.maximized(files[math.random(1, length)], s, true)
+end
+
 local function set_wallpaper(s)
   if beautiful.wallpaper then
-    local wallpaper = beautiful.wallpaper
+    local wallpaper = set_random_wallpaper
     -- If wallpaper is a function, call it with the screen
     if type(wallpaper) == "function" then
       wallpaper = wallpaper(s)
