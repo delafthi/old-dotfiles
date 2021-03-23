@@ -269,7 +269,9 @@ u.map('v', 'j', 'gj', opts)
 u.map('n', 'k', 'gk', opts)
 u.map('v', 'k', 'gk', opts)
 -- Open terminal inside nvim with <Leader>tt.
-u.map('n', '<Leader>tt', ':call luaeval("_G.__split_term_right()")<Cr>', opts)
+u.map('n', '<Leader>tt', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
+u.map('n', '<Leader>th', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
+u.map('n', '<Leader>tv', ':call luaeval("_G.__new_term(\'v\')")<Cr>', opts)
 -- Execute
 function _G.__execute_line()
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -367,8 +369,12 @@ u.opt.splitright = true -- Put new windows right of the current.
 u.opt.laststatus = 2 -- Always show the statusline
 
 -- Terminal {{{1
-function _G.__split_term_right()
-  exec([[botright vsplit term://$SHELL]], false)
+function _G.__new_term(split)
+  if split == 'h' then
+    exec([[botright split term://$SHELL]], false)
+  else
+    exec([[botright vsplit term://$SHELL]], false)
+  end
   exec([[setlocal nonumber]], false)
   exec([[setlocal norelativenumber]], false)
   exec([[startinsert]], false)
