@@ -19,11 +19,19 @@ function M.config()
       },
       prompt_position = 'top',
       prompt_prefix = '>>',
+      entry_prefix = ' ',
       initial_mode = 'insert',
       selection_strategy = 'reset',
       sorting_strategy = 'ascending',
       layout_strategy = 'flex',
       layout_defaults = {
+        horizontal = {
+          mirror = false,
+          preview_width = 0.6,
+        },
+        vertical = {
+          mirror = true,
+        },
       },
       file_sorter =  require'telescope.sorters'.get_fuzzy_file,
       file_ignore_patterns = {'\\.git', 'node_modules', '\\.cache'},
