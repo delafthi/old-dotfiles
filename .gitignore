@@ -24,6 +24,8 @@ gtk/.config/gtk-3.0/bookmarks
 # nvim
 nvim/.config/nvim/.netrwhist
 nvim/.config/nvim/plugin
+# papis
+papis/.config/papis/scripts
 # picom
 # qtile
 qtile/.config/qtile/__pycache__/
