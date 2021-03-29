@@ -18,7 +18,7 @@ function M.config()
         '--hidden',
       },
       prompt_position = 'top',
-      prompt_prefix = '>>',
+      prompt_prefix = '>> ',
       entry_prefix = ' ',
       initial_mode = 'insert',
       selection_strategy = 'reset',
