@@ -371,7 +371,7 @@ u.opt.laststatus = 2 -- Always show the statusline
 -- Terminal {{{1
 function _G.__new_term(split)
   if split == 'h' then
-    exec([[botright split term://$SHELL]], false)
+    exec([[botright 12 split term://$SHELL]], false)
   else
     exec([[botright vsplit term://$SHELL]], false)
   end
