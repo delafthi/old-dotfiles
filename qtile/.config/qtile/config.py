@@ -355,6 +355,9 @@ def init_widgets_list():
                 linewidth = 0,
                 padding = 3,
             ),
+            widget.Systray(
+                iconsize=24
+            ),
         ]
     return widgets_list
 
