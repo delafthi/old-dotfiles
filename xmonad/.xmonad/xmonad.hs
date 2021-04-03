@@ -341,8 +341,8 @@ myStartupHook = do
 -- main {{{1
 main :: IO ()
 main = do
-  xmproc0 <- spawnPipe "xmobar -x 0 ~/.xmonad/xmobarrc_systray.hs"
-  xmproc1 <- spawnPipe "xmobar -x 1 ~/.xmonad/xmobarrc.hs"
+  xmproc0 <- spawnPipe "xmobar -x 0 -p 'Static {xpos = 4, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc_systray.hs"
+  xmproc1 <- spawnPipe "xmobar -x 1 -p 'Static {xpos = 2564, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc.hs"
   xmonad $ ewmh def
     { terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
