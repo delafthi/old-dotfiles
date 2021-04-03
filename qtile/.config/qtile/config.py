@@ -362,7 +362,8 @@ def init_widgets_list():
     return widgets_list
 
 screens = [
-    Screen(top=bar.Bar(widgets=init_widgets_list(),size=24, margin=4,)),
+    Screen(top=bar.Bar(widgets=init_widgets_list(), size=24, margin=4,)),
+    Screen(top=bar.Bar(widgets=init_widgets_list(), size=24, margin=4,)),
     Screen(top=bar.Bar(widgets=init_widgets_list(), size=24, margin=4,)),
 ]
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
