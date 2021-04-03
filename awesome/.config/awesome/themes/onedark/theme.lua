@@ -4,9 +4,9 @@
 
 --------------------------------------------------------------------------------
 -- {{{ Includes
-local gears = require("gears")
-local theme_assets = require("beautiful.theme_assets")
-local gfs = require("gears.filesystem")
+local gears = require('gears')
+local theme_assets = require('beautiful.theme_assets')
+local gfs = require('gears.filesystem')
 
 -- }}}
 --------------------------------------------------------------------------------
@@ -56,12 +56,12 @@ theme.mono5 = '#abb2bf'
 theme.config_path = gfs.get_configuration_dir()
 
 -- Set wallpaper
-theme.wallpapers_path = "/usr/share/backgrounds/"
-theme.wallpapers_fileending = ".jpg"
+theme.wallpapers_path = '/usr/share/backgrounds/'
+theme.wallpapers_fileending = '.jpg'
 
 -- Set fonts
-theme.font = "Victor Mono Nerd Font 11"
-theme.taglist_font = "Victor Mono Nerd Font 11"
+theme.font = 'Victor Mono Nerd Font 11'
+theme.taglist_font = 'Victor Mono Nerd Font 11'
 
 -- Window settings
 theme.bg_normal = theme.black
@@ -94,7 +94,7 @@ theme.menu_border_color = theme.border_focus
 theme.menu_height = 20
 theme.menu_width = 140
 
-theme.menu_submenu_icon = themes_path .. "/icons/submenu.png"
+theme.menu_submenu_icon = themes_path .. '/icons/submenu.png'
 theme.menu_font = theme.font
 
 -- Wibox settings
@@ -158,25 +158,25 @@ theme.notification_spacing = theme.useless_gap
 -- notification_[shape|opacity]
 
 -- Layout icons
-theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
-theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
-theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
-theme.layout_max = themes_path.."default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
-theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_twopane = theme.config_path.."layouts/twopanew.png"
-theme.layout_twopaneleft = theme.config_path.."layouts/twopaneleftw.png"
-theme.layout_twopanetop = theme.config_path.."layouts/twopanetopw.png"
-theme.layout_twopanebottom = theme.config_path.."layouts/twopanebottomw.png"
-theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+theme.layout_fairh = themes_path..'default/layouts/fairhw.png'
+theme.layout_fairv = themes_path..'default/layouts/fairvw.png'
+theme.layout_floating  = themes_path..'default/layouts/floatingw.png'
+theme.layout_magnifier = themes_path..'default/layouts/magnifierw.png'
+theme.layout_max = themes_path..'default/layouts/maxw.png'
+theme.layout_fullscreen = themes_path..'default/layouts/fullscreenw.png'
+theme.layout_tilebottom = themes_path..'default/layouts/tilebottomw.png'
+theme.layout_tileleft   = themes_path..'default/layouts/tileleftw.png'
+theme.layout_tile = themes_path..'default/layouts/tilew.png'
+theme.layout_twopane = theme.config_path..'layouts/twopanew.png'
+theme.layout_twopaneleft = theme.config_path..'layouts/twopaneleftw.png'
+theme.layout_twopanetop = theme.config_path..'layouts/twopanetopw.png'
+theme.layout_twopanebottom = theme.config_path..'layouts/twopanebottomw.png'
+theme.layout_spiral  = themes_path..'default/layouts/spiralw.png'
+theme.layout_dwindle = themes_path..'default/layouts/dwindlew.png'
+theme.layout_cornernw = themes_path..'default/layouts/cornernww.png'
+theme.layout_cornerne = themes_path..'default/layouts/cornernew.png'
+theme.layout_cornersw = themes_path..'default/layouts/cornersww.png'
+theme.layout_cornerse = themes_path..'default/layouts/cornersew.png'
 theme.layout_fg = theme.mono3
 theme.layout_bg = theme.bg_normal
 
