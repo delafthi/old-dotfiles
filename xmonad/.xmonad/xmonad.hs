@@ -105,7 +105,7 @@ xmobarEscape = concatMap doubleLts
     doubleLts x   = [x]
 
 myWorkspaces :: [String]
-myWorkspaces = withScreens 2 $ clickable . (map xmobarEscape)
+myWorkspaces = withScreens 3 $ clickable . (map xmobarEscape)
         $ ["www","dev","sys","chat","mus","virt","doc","vis"]
   where
     clickable l = ["<action=xdotool key super+" ++ show(n) ++ ">" ++ ws ++ "</action>"
@@ -312,8 +312,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 myEventHook = docksEventHook <+> handleEventHook def <+> fullscreenEventHook
 
 -- Status bars and logging {{{1
-myLogHook :: Handle -> Handle -> X()
-myLogHook xmproc0 xmproc1 = let
+myLogHook :: Handle -> Handle -> Handle -> X()
+myLogHook xmproc0 xmproc1 xmproc2 = let
   log screen handle xmproc = workspaceHistoryHook <+> (dynamicLogWithPP . marshallPP
     screen . namedScratchpadFilterOutWorkspacePP $ xmobarPP
       { ppCurrent = xmobarColor blue "" . wrap "[" "]"
@@ -328,7 +328,7 @@ myLogHook xmproc0 xmproc1 = let
       , ppOrder = \(ws:l:t:ex) -> [ws]++ex++[l,t]
       , ppOutput = \x -> handle xmproc x
       })
-  in log 0 hPutStrLn xmproc0 >> log 1 hPutStrLn xmproc1
+  in log 0 hPutStrLn xmproc0 >> log 1 hPutStrLn xmproc1 >> log 2 hPutStrLn xmproc2
 
 -- Startup hooks {{{1
 myStartupHook :: X ()
@@ -341,8 +341,9 @@ myStartupHook = do
 -- main {{{1
 main :: IO ()
 main = do
-  xmproc0 <- spawnPipe "xmobar -x 0 -p 'Static {xpos = 4, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc_systray.hs"
-  xmproc1 <- spawnPipe "xmobar -x 1 -p 'Static {xpos = 2564, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc.hs"
+  xmproc0 <- spawnPipe "xmobar -x 0 -p 'Static {xpos = 4, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc.hs"
+  xmproc1 <- spawnPipe "xmobar -x 1 -p 'Static {xpos = 2564, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc_systray.hs"
+  xmproc2 <- spawnPipe "xmobar -x 2 -p 'Static {xpos = 5124, ypos = 4, width = 2552, height = 24 }' ~/.xmonad/xmobarrc.hs"
   xmonad $ ewmh def
     { terminal           = myTerminal
     , focusFollowsMouse  = myFocusFollowsMouse
@@ -357,7 +358,7 @@ main = do
     , layoutHook         = myLayoutHook
     , manageHook         = myManageHook
     , handleEventHook    = myEventHook
-    , logHook            = myLogHook xmproc0 xmproc1
+    , logHook            = myLogHook xmproc0 xmproc1 xmproc2
     , startupHook        = myStartupHook
     }
 
