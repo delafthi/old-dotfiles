@@ -584,16 +584,16 @@ globalkeys = gears.table.join(
       {description = 'swap with previous client', group = 'client'}
     ),
     awful.key({ modkey,           }, 'w',
-      function() awful.screen.focus(1) end,
+      function()
+        awful.screen.focus_bydirection('left', awful.screen.focused())
+      end,
       {description = 'focus screen 1', group = 'screen'}
     ),
     awful.key({ modkey,           }, 'e',
-      function() awful.screen.focus(2) end,
+      function()
+        awful.screen.focus_bydirection('right', awful.screen.focused())
+      end,
       {description = 'focus screen 2', group = 'screen'}
-    ),
-    awful.key({ modkey,           }, 'r',
-      function() awful.screen.focus(3) end,
-      {description = 'focus screen 3', group = 'screen'}
     ),
     awful.key({                   }, 'XF86AudioRaiseVolume',
       function()
@@ -640,17 +640,17 @@ clientkeys = gears.table.join(
       {description = 'toggle floating for the current client', group = 'client'}
       ),
     awful.key({ modkey, 'Shift'   }, 'w',
-      function(c) c:move_to_screen(1) end,
+      function(c)
+        c:move_to_screen(awful.screen.focused().index - 1)
+      end,
       {description = 'move focused client to screen 1', group = 'client'}
       ),
     awful.key({ modkey, 'Shift'   }, 'e',
-      function(c) c:move_to_screen(2) end,
+      function(c)
+        c:move_to_screen(awful.screen.focused().index - 1)
+      end,
       {description = 'move focused client to screen 2', group = 'client'}
-      ),
-    awful.key({ modkey, 'Shift'   }, 'r',
-      function(c) c:move_to_screen(3) end,
-      {description = 'move focused client to screen 3', group = 'client'}
-    )
+      )
   )
 
 -- Set tag  related key bindings
