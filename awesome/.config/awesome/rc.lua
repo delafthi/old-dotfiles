@@ -459,13 +459,8 @@ local function set_random_wallpaper(s)
 end
 
 local function set_wallpaper(s)
-  if beautiful.wallpaper then
-    local wallpaper = set_random_wallpaper
-    -- If wallpaper is a function, call it with the screen
-    if type(wallpaper) == "function" then
-      wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
+  if beautiful.wallpapers_path and beautiful.wallpapers_fileending then
+    set_random_wallpaper(s)
   end
 end
 

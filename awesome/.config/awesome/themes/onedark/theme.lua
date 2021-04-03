@@ -58,7 +58,6 @@ theme.config_path = gfs.get_configuration_dir()
 -- Set wallpaper
 theme.wallpapers_path = "/usr/share/backgrounds/"
 theme.wallpapers_fileending = ".jpg"
-theme.wallpaper = "/usr/share/backgrounds/wallpaper1.jpg"
 
 -- Set fonts
 theme.font = "Victor Mono Nerd Font 11"
