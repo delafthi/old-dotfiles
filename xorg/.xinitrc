@@ -41,7 +41,7 @@ udiskie &
 picom &
 nm-applet &
 blueman-applet &
-volumeicon &
+pasystray &
 pcmanfm -d &
 unclutter --timeout 10 &
 # Default session
