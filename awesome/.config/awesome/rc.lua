@@ -587,13 +587,13 @@ globalkeys = gears.table.join(
       function()
         awful.screen.focus_bydirection('left', awful.screen.focused())
       end,
-      {description = 'focus screen 1', group = 'screen'}
+      {description = 'focus left screen', group = 'screen'}
     ),
     awful.key({ modkey,           }, 'e',
       function()
         awful.screen.focus_bydirection('right', awful.screen.focused())
       end,
-      {description = 'focus screen 2', group = 'screen'}
+      {description = 'focus right screen', group = 'screen'}
     ),
     awful.key({                   }, 'XF86AudioRaiseVolume',
       function()
@@ -643,13 +643,13 @@ clientkeys = gears.table.join(
       function(c)
         c:move_to_screen(awful.screen.focused().index + 1)
       end,
-      {description = 'move focused client to screen 1', group = 'client'}
+      {description = 'move focused client to the left screen', group = 'client'}
       ),
     awful.key({ modkey, 'Shift'   }, 'e',
       function(c)
         c:move_to_screen(awful.screen.focused().index - 1)
       end,
-      {description = 'move focused client to screen 2', group = 'client'}
+      {description = 'move focused client to the right screen', group = 'client'}
       )
   )
 
