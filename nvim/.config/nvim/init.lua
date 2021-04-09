@@ -130,6 +130,10 @@ require('packer').startup(function()
     config = require('colorizer').setup(),
   }
   use {
+    'p00f/nvim-ts-rainbow',
+    config = require('config.nvim-ts-rainbow').config()
+  }
+  use {
     'neovimhaskell/haskell-vim',
     setup = require('config.haskell-vim').setup(),
   }
