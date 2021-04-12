@@ -47,7 +47,7 @@ require('packer').startup(function()
       {'nvim-treesitter/completion-treesitter', opt = true},
       {
         'norcalli/snippets.nvim',
-        config = require('snippets').use_suggested_mappings()
+        config = require('config.snippets').config(),
       },
     }
   }
