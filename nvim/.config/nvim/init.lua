@@ -45,10 +45,6 @@ require('packer').startup(function()
     config = require('config.completion-nvim').config(),
     requires = {
       {'nvim-treesitter/completion-treesitter', opt = true},
-      {
-        'norcalli/snippets.nvim',
-        config = require('config.snippets').config(),
-      },
     }
   }
   -- Debugging
