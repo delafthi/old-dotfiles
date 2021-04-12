@@ -88,7 +88,7 @@ end
 # Environment variables {{{1
 
 # set vim as the manpager
-set -gx MANPAGER "/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
+set -gx MANPAGER "nvim +Man!"
 set -gx EDITOR "nvim" # $EDITOR use Neovim in terminal
 set -gx SSH_KEY_PATH "~/.ssh/rsa_id" # Set default ssh key path
 set -gx GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
