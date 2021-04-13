@@ -7,7 +7,7 @@ function M.setup()
   vim.g.completion_chain_complete_list = {
     default = {
       default = {
-        {complete_items = {'lsp', 'snippet'}},
+        {complete_items = {'lsp'}},
         {complete_items = {'ts'}},
         {mode = {'file'}},
       },
@@ -17,7 +17,7 @@ function M.setup()
     },
     vim = {
       default = {
-        {complete_items = {'lsp', 'snippet'}},
+        {complete_items = {'lsp'}},
         {complete_items = {'ts'}},
         {mode = {'cmd'}},
       },
@@ -46,8 +46,6 @@ function M.setup()
   vim.g.completion_enable_auto_hover = 0
   -- Disable auto signature.
   vim.g.completion_enable_auto_signature = 0
-  -- Define snippet source.
-  vim.g.completion_enable_snippet = 'snippets.nvim'
   -- Set smart case matching.
   vim.g.completion_matching_smart_case = 1
   -- Set matching strategy.
