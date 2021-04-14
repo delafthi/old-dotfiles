@@ -156,7 +156,7 @@ function M.config()
   }
   gls.right[2] = {
     GitBranch = {
-      provider = 'GitBranch',
+      provider = {'GitBranch', function() return ' ' end},
       condition = buffer_not_empty,
       highlight = {colors.white, colors.mono1},
     }
@@ -164,21 +164,21 @@ function M.config()
   gls.right[3] = {
     DiffAdd = {
       provider = 'DiffAdd',
-      icon = ' ',
+      icon = '  ',
       highlight = {colors.green, colors.mono1},
     }
   }
   gls.right[4] = {
     DiffModified = {
       provider = 'DiffModified',
-      icon = ' ',
+      icon = '  ',
       highlight = {colors.yellow, colors.mono1},
     }
   }
   gls.right[5] = {
     DiffRemove = {
       provider = 'DiffRemove',
-      icon = ' ',
+      icon = '  ',
       highlight = {colors.red, colors.mono1},
     }
   }
