@@ -70,6 +70,11 @@ function M.config()
   lsp.pyright.setup{
     on_attach = on_attach,
     root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd()),
+    settings = {
+      python = {
+        venvPath = vim.fn.expand('$HOME/.pyenv/versions'),
+      }
+    }
   }
   -- sumneko lua-language-server
   local sumneko_lua_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
