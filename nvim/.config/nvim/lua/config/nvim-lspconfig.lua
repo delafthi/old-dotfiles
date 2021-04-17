@@ -11,25 +11,25 @@ function M.config()
     local opts = { noremap=true, silent=true }
     u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gp', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'gn', '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>D', '<Cmd>lua vim.lsp.buf.type_definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
-    u.bufmap(bufnr, 'n', '<Leader>e', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>', opts)
-    u.bufmap(bufnr, 'n', '[d', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>', opts)
-    u.bufmap(bufnr, 'n', ']d', '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>', opts)
-    u.bufmap(bufnr, 'n', '<Leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>ld', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>sl', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>lf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>lf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -64,7 +64,8 @@ function M.config()
   -- haskell-language-server
   lsp.hls.setup{
     on_attach = on_attach,
-    root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml')
+    root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
+      'package.yaml', 'hie.yaml')
   }
   -- python-language-server
   lsp.pyright.setup{
