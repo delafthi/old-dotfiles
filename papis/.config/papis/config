@@ -23,14 +23,14 @@ options_list.unselected_margin_style =
 
 # Define a lib
 [papers]
-dir = ~/Papers
+dir = ~/Bibliography/papers
 # rename files added by author and title
 add-file-name = {doc[author]}{doc[title]}
 
 # Define a lib for books
 [books]
-dir = ~/Books
+dir = ~/Bibliography/books
 
 # Define a lib for Videos
 [videos]
-dir = ~/Videos/courses
+dir = ~/Bibliography/videos
