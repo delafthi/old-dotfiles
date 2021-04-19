@@ -78,11 +78,9 @@ function M.config()
     }
   }
   -- sumneko lua-language-server
-  local sumneko_lua_root_path = vim.fn.stdpath('cache') .. '/lspconfig/sumneko_lua/lua-language-server'
-  local sumneko_lua_binary = sumneko_lua_root_path .. '/bin/Linux/lua-language-server'
   lsp.sumneko_lua.setup{
     on_attach = on_attach,
-    cmd = {sumneko_lua_binary, '-E', sumneko_lua_root_path .. '/main.lua'};
+    cmd = {'lua-language-server'},
     settings = {
       Lua = {
         runtime = {
