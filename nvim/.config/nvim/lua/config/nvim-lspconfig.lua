@@ -101,6 +101,9 @@ function M.config()
             [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
             },
         },
+        telemetry = {
+          enable = false,
+        },
       },
     },
   }
