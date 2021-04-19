@@ -73,6 +73,11 @@ require('packer').startup(function()
   }
   -- Git
   use {
+    'TimUntersberger/neogit',
+    config = require('config.neogit').config(),
+    requires = {'nvim-lua/plenary.nvim'},
+  }
+  use {
     'lewis6991/gitsigns.nvim',
     config = require('config.gitsigns').config(),
     requires = {'nvim-lua/plenary.nvim'},
@@ -261,7 +266,7 @@ u.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performi
 u.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
-opts = {noremap = true, silent = true}
+local opts = {noremap = true, silent = true}
 u.map('i', 'ii', '<Esc>', opts) -- Remap ii as Escape.
 -- Remap jk keys to navigate through visual lines.
 u.map('n', 'j', 'gj', opts)
