@@ -65,7 +65,7 @@ function M.config()
   lsp.hls.setup{
     on_attach = on_attach,
     root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
-      'package.yaml', 'hie.yaml')
+      'package.yaml', 'hie.yaml'),
   }
   -- python-language-server
   lsp.pyright.setup{
