@@ -141,7 +141,7 @@ require('packer').startup(function()
   -- Text editing
   use {'godlygeek/tabular'}
   use {
-    'delafthi/surround.nvim',
+    'blackCauldron7/surround.nvim',
     setup = require('config.surround').setup(),
     config = require('config.surround').config(),
   }
