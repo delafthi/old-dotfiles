@@ -20,9 +20,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'delafthi/onedarkvim',
   " Comment
   Plug 'tpope/vim-commentary'
-  " File manager
-  Plug 'preservim/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   " Movement
   Plug 'unblevable/quick-scope'
   " Note taking
@@ -249,16 +246,7 @@ let g:mkdp_refresh_slow = 0 " If set to 1 markdown preview is only refreshed, wh
 let g:mkdp_browser = 'brave' " Browser to open the preview
 let g:mkdp_page_tittle = '${name}' " Define title of the browser page
 " Set keybinging to launch the markdown preview
-autocmd Filetype mkd,vimwiki nmap <Silent> <Leader>mp <Plug>MarkdownPreviewToggle
-
-" Nerdtree {{{2
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeShowHidden = 1
-" Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
-nnoremap <C-n> :NERDTreeToggle<Cr>
+autocmd Filetype mkd,vimwiki nmap <silent> <Leader>mp <Plug>MarkdownPreviewToggle
 
 " Quick-scope
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'nerdtree', 'help']
