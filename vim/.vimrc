@@ -112,6 +112,10 @@ let g:vimsyn_embed = 'lPr' " Allow embedded syntax highlighting for lua, python,
 set wrap " Enable line wrapping.
 set virtualedit=block " Allow cursor to move past end of line.
 set novisualbell " Disable annoying beeps
+" Set the cursor shape for different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 " Folds {{{1
 set foldlevelstart=10 " Set level of opened folds, when starting vim. set foldmethod=marker " The kind of folding for the current window.
