@@ -41,6 +41,7 @@ systemd/.config/systemd/user/default.target.wants
 vifm/.config/vifm/vifminfo
 vifm/.config/vifm/vifminfo.json*
 # vim
+vim/.vim/.netrwhist
 vim/.vim/plugged
 vim/.vim/autoload/plug.vim
 # xmonad
