@@ -247,6 +247,9 @@ let g:vimwiki_list = [{
             \ }]
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_auto_chdir = 1
+let g:vimwiki_tags_header = 'Wiki tags'
+let g:vimwiki_auto_header = 1
+let g:vimwiki_hl_headers = 1
 
 " Markdown-Preview {{{2
 let g:mkdp_refresh_slow = 0 " If set to 1 markdown preview is only refreshed, when the buffer is saved or insert mode is exited
