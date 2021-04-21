@@ -6,7 +6,15 @@ function M.setup()
 end
 
 function M.config()
-  require'kommentary.config'.use_extended_mappings()
+  local ok, kommentary = pcall(function()
+    return require('kommentary.config')
+  end)
+
+  if not ok then
+    return
+  end
+
+  kommentary.use_extended_mappings()
   local opts = {noremap = false, silent = true}
   u.map('n', 'gcc', '<Plug>kommentary_line_default', opts)
   u.map('n', 'gc', '<Plug>kommentary_motion_default', opts)

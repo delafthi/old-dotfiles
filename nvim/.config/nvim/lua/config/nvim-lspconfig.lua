@@ -1,8 +1,15 @@
 local M = {}
-local lsp = require('lspconfig')
 local u = require('utils')
 
 function M.config()
+  local ok, lsp = pcall(function()
+    return require('lsp')
+  end)
+
+  if not ok then
+    return
+  end
+
   local on_attach = function(client, bufnr)
 
     u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'

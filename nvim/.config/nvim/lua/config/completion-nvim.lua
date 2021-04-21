@@ -55,10 +55,14 @@ function M.setup()
 end
 
 function M.config()
+  if not pcall(require, 'completion') then
+    return
+  end
+
   vim.api.nvim_exec([[
     augroup completion_nvim
       autocmd!
-      autocmd BufEnter * lua require'completion'.on_attach()
+      autocmd BufEnter * lua require('completion').on_attach()
       autocmd BufEnter * let g:completion_trigger_character = ['.']
       autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->']
     augroup END ]], false)

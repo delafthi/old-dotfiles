@@ -5,7 +5,15 @@ function M.setup()
 end
 
 function M.config()
-  require('surround').setup{}
+  local ok, surround = pcall(function()
+    return require('surround')
+  end)
+
+  if not ok then
+    return
+  end
+
+  surround.setup {}
 end
 
 return M

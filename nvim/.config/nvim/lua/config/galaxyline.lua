@@ -1,7 +1,14 @@
 local M = {}
 
 function M.config()
-  local gl = require('galaxyline')
+  local ok, gl = pcall(function()
+    return require('galaxyline')
+  end)
+
+  if not ok then
+    return
+  end
+
   local gls = gl.section
   gl.short_line_list = {'defx', 'packager', 'vista', 'NvimTree'}
 

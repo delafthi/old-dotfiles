@@ -2,7 +2,15 @@ local M = {}
 local u = require('utils')
 
 function M.config()
-  require('neuron').setup {
+  local ok, neuron = pcall(function()
+    return require('neuron')
+  end)
+
+  if not ok then
+    return
+  end
+
+  neuron.setup {
     virtual_titles = true,
     mappings = true,
     run = nil,

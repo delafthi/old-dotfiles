@@ -2,7 +2,14 @@ local M = {}
 local u = require('utils')
 
 function M.config()
-  local neogit = require('neogit')
+  local ok, neogit = pcall(function()
+    return require('neogit')
+  end)
+
+  if not ok then
+    return
+  end
+
   neogit.setup {
     disable_signs = false,
     disable_context_highlighting = false,
@@ -40,7 +47,8 @@ function M.config()
   }
 
 local opts = {noremap = true, silent = true}
-u.map('n', '<Leader>gs', '<Cmd>lua require("neogit").open({kind="split"})<Cr>', opts)
+u.map('n', '<Leader>gs', '<Cmd>lua require("neogit").open({kind="split"})<Cr>',
+  opts)
 
 end
 
