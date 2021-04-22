@@ -2,8 +2,8 @@ local M = {}
 local u = require('utils')
 
 function M.config()
-  local ok, lsp = pcall(function()
-    return require('lsp')
+  local ok, lspconfig = pcall(function()
+    return require('lspconfig')
   end)
 
   if not ok then
@@ -63,21 +63,21 @@ function M.config()
 
   -- Setup different language servers
   -- bash-language-server
-  lsp.bashls.setup{ on_attach = on_attach }
+  lspconfig.bashls.setup{ on_attach = on_attach }
   -- c-language-server
-  lsp.ccls.setup{ on_attach = on_attach }
+  lspconfig.ccls.setup{ on_attach = on_attach }
   -- dockerfile-language-server
-  lsp.dockerls.setup{ on_attach = on_attach }
+  lspconfig.dockerls.setup{ on_attach = on_attach }
   -- haskell-language-server
-  lsp.hls.setup{
+  lspconfig.hls.setup{
     on_attach = on_attach,
-    root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
+    root_dir = lspconfig.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
       'package.yaml', 'hie.yaml'),
   }
   -- python-language-server
-  lsp.pyright.setup{
+  lspconfig.pyright.setup{
     on_attach = on_attach,
-    root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
     settings = {
       python = {
         venvPath = vim.fn.expand('$HOME/.pyenv/versions'),
@@ -85,7 +85,7 @@ function M.config()
     }
   }
   -- sumneko lua-language-server
-  lsp.sumneko_lua.setup{
+  lspconfig.sumneko_lua.setup{
     on_attach = on_attach,
     cmd = {'lua-language-server'},
     settings = {
@@ -115,11 +115,11 @@ function M.config()
     },
   }
   -- (La)Tex-language-server
-  lsp.texlab.setup{ on_attach = on_attach }
+  lspconfig.texlab.setup{ on_attach = on_attach }
   -- vim-language-server
-  lsp.vimls.setup{ on_attach = on_attach }
+  lspconfig.vimls.setup{ on_attach = on_attach }
   -- yaml-language-server
-  lsp.yamlls.setup{ on_attach = on_attach }
+  lspconfig.yamlls.setup{ on_attach = on_attach }
 end
 
 return M
