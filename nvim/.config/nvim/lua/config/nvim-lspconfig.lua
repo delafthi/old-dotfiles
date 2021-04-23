@@ -18,7 +18,7 @@ function M.config()
     u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Mappings.
-    local opts = { noremap=true, silent=true }
+    local opts = {noremap=true, silent=true}
     u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
