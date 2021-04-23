@@ -1,14 +1,13 @@
 local M = {}
 
 function M.setup()
-  -- Enable automatic source change.
-  vim.g.completion_auto_change_source = 1
   -- Set completion chain list.
   vim.g.completion_chain_complete_list = {
     default = {
       default = {
-        {complete_items = {'lsp', 'ts'}},
-        {mode = {'file'}},
+        {complete_items = {'lsp', 'ts', 'snippet'}},
+        {mode = '<C-p>'},
+        {mode = '<C-n>'},
       },
       string = {
         {complete_items = {'path'}, triggered_only = {'/'}},
@@ -16,8 +15,10 @@ function M.setup()
     },
     vim = {
       default = {
-        {complete_items = {'lsp', 'ts'}},
-        {mode = {'cmd'}},
+        {complete_items = {'lsp', 'ts', 'snippet'}},
+        {mode = 'cmd'},
+        {mode = '<C-p>'},
+        {mode = '<C-n>'},
       },
     },
   }
@@ -38,8 +39,14 @@ function M.setup()
     Class = ' [class]',
     Interface = ' [interface]'
   }
+  -- Enable automatic source change.
+  vim.g.completion_auto_change_source = 1
+  -- Set matching strategy.
+  vim.g.completion_matching_strategy = {'exact', 'substring', 'fuzzy', 'all'}
   -- Enable auto popups.
   vim.g.completion_enable_auto_popup = 1
+  -- Enable snippets
+  vim.g.completion_enable_snippet = 'snippets.nvim'
   -- Disable auto hover.
   vim.g.completion_enable_auto_hover = 0
   -- Disable auto signature.
@@ -47,15 +54,16 @@ function M.setup()
   -- Set smart case matching.
   vim.g.completion_matching_smart_case = 1
   -- Set trigger characters
-  vim.g.completion_trigger_character = {'.', '::', '->'}
+  vim.g.completion_trigger_character = {'.', '::'}
   -- Set minimum keyword trigger length
   vim.g.completion_trigger_keyword_length = 3
-  -- Set matching strategy.
-  vim.g.completion_matching_strategy = {'exact', 'substring', 'fuzzy', 'all'}
   -- Set sorting of completion items.
   vim.g.completion_sorting = 'none'
   -- Set the completion timer
   vim.g.completion_timer = 200
+  -- Limit the length of the completion menu
+  vim.g.completion_abbr_length = 30
+  vim.g.completion_menu_length = 30
 end
 
 function M.config()
