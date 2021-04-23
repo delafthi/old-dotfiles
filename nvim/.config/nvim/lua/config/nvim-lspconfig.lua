@@ -11,7 +11,7 @@ function M.config()
   end
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.snippetSupport = false
 
   local on_attach = function(client, bufnr)
 
@@ -39,7 +39,7 @@ function M.config()
     if client.resolved_capabilities.document_formatting then
       u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'v', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
