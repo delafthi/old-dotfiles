@@ -10,6 +10,9 @@ function M.config()
     return
   end
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
   local on_attach = function(client, bufnr)
 
     u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -63,19 +66,30 @@ function M.config()
 
   -- Setup different language servers
   -- bash-language-server
-  lspconfig.bashls.setup{ on_attach = on_attach }
+  lspconfig.bashls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- c-language-server
-  lspconfig.ccls.setup{ on_attach = on_attach }
+  lspconfig.ccls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- dockerfile-language-server
-  lspconfig.dockerls.setup{ on_attach = on_attach }
+  lspconfig.dockerls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- haskell-language-server
   lspconfig.hls.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     root_dir = lspconfig.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
       'package.yaml', 'hie.yaml'),
   }
   -- python-language-server
   lspconfig.pyright.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
     settings = {
@@ -86,6 +100,7 @@ function M.config()
   }
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     cmd = {'lua-language-server'},
     settings = {
@@ -115,11 +130,20 @@ function M.config()
     },
   }
   -- (La)Tex-language-server
-  lspconfig.texlab.setup{ on_attach = on_attach }
+  lspconfig.texlab.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- vim-language-server
-  lspconfig.vimls.setup{ on_attach = on_attach }
+  lspconfig.vimls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- yaml-language-server
-  lspconfig.yamlls.setup{ on_attach = on_attach }
+  lspconfig.yamlls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
 end
 
 return M
