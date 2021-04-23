@@ -7,8 +7,7 @@ function M.setup()
   vim.g.completion_chain_complete_list = {
     default = {
       default = {
-        {complete_items = {'lsp'}},
-        {complete_items = {'ts'}},
+        {complete_items = {'lsp', 'ts'}},
         {mode = {'file'}},
       },
       string = {
@@ -17,8 +16,7 @@ function M.setup()
     },
     vim = {
       default = {
-        {complete_items = {'lsp'}},
-        {complete_items = {'ts'}},
+        {complete_items = {'lsp', 'ts'}},
         {mode = {'cmd'}},
       },
     },
@@ -48,10 +46,16 @@ function M.setup()
   vim.g.completion_enable_auto_signature = 0
   -- Set smart case matching.
   vim.g.completion_matching_smart_case = 1
+  -- Set trigger characters
+  vim.g.completion_trigger_character = {'.', '::', '->'}
+  -- Set minimum keyword trigger length
+  vim.g.completion_trigger_keyword_length = 3
   -- Set matching strategy.
-  vim.g.completion_matching_strategy = {'exact', 'substring'}
+  vim.g.completion_matching_strategy = {'exact', 'substring', 'fuzzy', 'all'}
   -- Set sorting of completion items.
   vim.g.completion_sorting = 'none'
+  -- Set the completion timer
+  vim.g.completion_timer = 200
 end
 
 function M.config()
@@ -63,8 +67,6 @@ function M.config()
     augroup completion_nvim
       autocmd!
       autocmd BufEnter * lua require('completion').on_attach()
-      autocmd BufEnter * let g:completion_trigger_character = ['.']
-      autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->']
     augroup END ]], false)
 end
 
