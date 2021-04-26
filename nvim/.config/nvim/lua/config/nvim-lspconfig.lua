@@ -2,20 +2,23 @@ local M = {}
 local u = require('utils')
 
 function M.config()
-  local ok, lsp = pcall(function()
-    return require('lsp')
+  local ok, lspconfig = pcall(function()
+    return require('lspconfig')
   end)
 
   if not ok then
     return
   end
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = false
+
   local on_attach = function(client, bufnr)
 
     u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Mappings.
-    local opts = { noremap=true, silent=true }
+    local opts = {noremap=true, silent=true}
     u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
@@ -36,7 +39,7 @@ function M.config()
     if client.resolved_capabilities.document_formatting then
       u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'v', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -63,21 +66,32 @@ function M.config()
 
   -- Setup different language servers
   -- bash-language-server
-  lsp.bashls.setup{ on_attach = on_attach }
-  -- c-language-server
-  lsp.ccls.setup{ on_attach = on_attach }
-  -- dockerfile-language-server
-  lsp.dockerls.setup{ on_attach = on_attach }
-  -- haskell-language-server
-  lsp.hls.setup{
+  lspconfig.bashls.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
-    root_dir = lsp.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
+  }
+  -- c-language-server
+  lspconfig.ccls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+  -- dockerfile-language-server
+  lspconfig.dockerls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+  -- haskell-language-server
+  lspconfig.hls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
       'package.yaml', 'hie.yaml'),
   }
   -- python-language-server
-  lsp.pyright.setup{
+  lspconfig.pyright.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
-    root_dir = lsp.util.root_pattern('.git', vim.fn.getcwd()),
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
     settings = {
       python = {
         venvPath = vim.fn.expand('$HOME/.pyenv/versions'),
@@ -85,7 +99,8 @@ function M.config()
     }
   }
   -- sumneko lua-language-server
-  lsp.sumneko_lua.setup{
+  lspconfig.sumneko_lua.setup{
+    capabilities = capabilities,
     on_attach = on_attach,
     cmd = {'lua-language-server'},
     settings = {
@@ -115,11 +130,20 @@ function M.config()
     },
   }
   -- (La)Tex-language-server
-  lsp.texlab.setup{ on_attach = on_attach }
+  lspconfig.texlab.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- vim-language-server
-  lsp.vimls.setup{ on_attach = on_attach }
+  lspconfig.vimls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- yaml-language-server
-  lsp.yamlls.setup{ on_attach = on_attach }
+  lspconfig.yamlls.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
 end
 
 return M

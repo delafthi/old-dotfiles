@@ -93,6 +93,7 @@ vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python
 u.opt.wrap = true -- Enable line wrapping.
 u.opt.virtualedit = 'block' -- Allow cursor to move past end of line.
 u.opt.visualbell = false -- Disable annoying beeps
+u.opt.shortmess = u.add('c') -- Avoid showing extra messages when using completion
 
 -- Filetypes {{{1
 exec([[

@@ -114,6 +114,11 @@ require('packer').startup {
       setup = require('config.markdown-preview').setup(),
       config = require('config.markdown-preview').config(),
     }
+    -- Snippets
+    use {
+      'norcalli/snippets.nvim',
+      config = require('config.snippets').config(),
+    }
     -- Start screen
     use {
       'mhinz/vim-startify',

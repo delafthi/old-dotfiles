@@ -37,6 +37,7 @@ spotify-tui/.config/spotify-tui/client.yml
 # starship
 # systemd
 systemd/.config/systemd/user/default.target.wants
+systemd/.config/systemd/user/graphical-session.target.wants
 # vifm
 vifm/.config/vifm/vifminfo
 vifm/.config/vifm/vifminfo.json*
