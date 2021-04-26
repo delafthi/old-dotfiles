@@ -104,6 +104,7 @@ require('packer').startup {
         {'nvim-lua/plenary.nvim'},
         {'nvim-telescope/telescope.nvim'}
       },
+      branch = 'unstable',
       config = require('config.neuron').config(),
     }
     use {
