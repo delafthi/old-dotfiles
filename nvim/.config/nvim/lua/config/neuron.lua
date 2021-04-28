@@ -1,6 +1,8 @@
 local M = {}
 local u = require('utils')
 
+M.neuron_dir = vim.fn.expand('~/Zettelkasten')
+
 function M.config()
   local ok, neuron = pcall(function()
     return require('neuron')
@@ -10,17 +12,20 @@ function M.config()
     return
   end
 
+
   neuron.setup {
-    virtual_titles = true,
+    neuron_dir = M.neuron_dir,
     mappings = false,
+    virtual_titles = true,
     run = nil,
-    neuron_dir = '~/Zettelkasten',
-    leader = '<Leader>n'
+    leader = '<Leader>n',
+    gen_cache_on_write = true,
+    virt_text_highlight = 'Comment',
   }
 
   local opts = {noremap = true, silent = true}
   -- u.bufmap(0, 'n', '<Cr>', '<Cmd> lua require("neuron").enter_link()<Cr>', opts)
-  u.bufmap(0, 'n', '<Leader>nn', '<Cmd> lua require("neuron.cmd").new_edit(require("neuron").config.neuron_dir)<Cr>', opts)
+  u.bufmap(0, 'n', '<Leader>nn', '<Cmd> lua require("neuron.cmd").new_edit(require("config.neuron").neuron_dir)<Cr>', opts)
   u.bufmap(0, 'n', '<Leader>nf', '<Cmd> lua require("neuron.telescope").find_zettels()<Cr>', opts)
   u.bufmap(0, 'n', '<Leader>nF', '<Cmd> lua require("neuron.telescope").find_zettels {insert = true}<Cr>', opts)
   u.bufmap(0, 'n', '<Leader>nb', '<Cmd> lua require("neuron.telescope").find_backlinks()<Cr>', opts)
