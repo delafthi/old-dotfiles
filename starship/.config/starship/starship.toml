@@ -36,5 +36,5 @@ vicmd_symbol = '[<](bold green)'
 disabled = false
 format = '$indicator'
 fish_indicator = ''
-zsh_indicator = '[\[zsh\]](bold red)'
-bash_indicator = '[\[bsh\]](bold red)'
+zsh_indicator = '[\[zsh\]](bold #4b5263)'
+bash_indicator = '[\[bsh\]](bold #4b5263)'
