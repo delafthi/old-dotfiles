@@ -39,6 +39,11 @@ function fish_user_key_bindings
   fish_vi_key_bindings
 end
 
+# Set command not found handler to the default one
+function fish_command_not_found
+  __fish_default_command_not_found_handler $argv
+end
+
 # Abbreviations and aliases {{{1
 
 # sudo
