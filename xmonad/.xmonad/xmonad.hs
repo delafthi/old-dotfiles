@@ -333,7 +333,7 @@ myLogHook xmproc0 xmproc1 xmproc2 = let
 -- Startup hooks {{{1
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "trayer --edge top --align right --distance 4,4 --distancefrom top,right --widthtype request --transparent true --height 24 --alpha 0 --tint 0x282c34 --padding 5 --monitor 0 --iconspacing 3 &"
+  spawnOnce "trayer --edge top --align right --distance 4,4 --distancefrom top,right --widthtype request --transparent true --height 24 --alpha 0 --tint 0x282c34 --padding 5 --monitor 1 --iconspacing 3 &"
   spawnOnce "dunst &"
   spawnOnce "feh --bg-scale --randomize /usr/share/backgrounds/*"
   setWMName "LG3D"

@@ -83,6 +83,6 @@ Config { font = "xft:Victor Mono Nerd Font:regular:size=11:antialias=true"
                     --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
                     , Run Date            " %a %_d.%m.%y %H:%M" "date" 10
                     -- Dynamically adjusts xmobar depending on the trayer size
-                    , Run Com "/home/thierryd/.xmonad/trayer-padding-icon.sh" [] "trayerpad" 20
+                    , Run Com ".xmonad/trayer-padding-icon.sh" [] "trayerpad" 20
                     ]
         }
