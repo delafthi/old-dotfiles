@@ -641,13 +641,13 @@ clientkeys = gears.table.join(
       ),
     awful.key({ modkey, 'Shift'   }, 'w',
       function(c)
-        c:move_to_screen(awful.screen.focused().index + 1)
+        c:move_to_screen(awful.screen.focused().index - 1)
       end,
       {description = 'move focused client to the left screen', group = 'client'}
       ),
     awful.key({ modkey, 'Shift'   }, 'e',
       function(c)
-        c:move_to_screen(awful.screen.focused().index - 1)
+        c:move_to_screen(awful.screen.focused().index + 1)
       end,
       {description = 'move focused client to the right screen', group = 'client'}
       )
