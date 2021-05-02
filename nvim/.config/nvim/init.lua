@@ -97,9 +97,11 @@ u.opt.shortmess = u.add('c') -- Avoid showing extra messages when using completi
 
 -- Filetypes {{{1
 exec([[
-  augroup opencl
+  augroup additionalFiletypes
     autocmd!
     autocmd BufNewFile,BufRead *.cl set filetype=cpp
+    autocmd BufNewFile,BufRead *.bb set filetype=sh
+    autocmd BufNewFile,BufRead *.bbappend set filetype=sh
   augroup END
   ]], false) -- Set filetype for opencl device code
 

@@ -238,6 +238,14 @@ set wildmenu " Enable commandline autocompletion menu.
 set wildmode=full " Select completion mode.
 set wildignorecase " Ignores case when completing.
 
+" Additional Filetypes {{{1
+augroup additionalFiletypes
+  autocmd!
+  autocmd BufNewFile,BufRead *.cl set filetype=cpp
+  autocmd BufNewFile,BufRead *.bb set filetype=sh
+  autocmd BufNewFile,BufRead *.bbappend set filetype=sh
+augroup END
+
 " Plugin Settings {{{1
 "
 " Vimwiki {{{2
