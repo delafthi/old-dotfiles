@@ -29,6 +29,9 @@ papis/.config/papis/scripts
 # picom
 # qtile
 qtile/.config/qtile/__pycache__/
+# ranger
+ranger/.config/ranger/plugins/__init__.py
+ranger/.config/ranger/plugins/__pycache__
 # speedcrunch
 speedcrunch/.local/share/SpeedCrunch/history.json
 # spotify-tui
