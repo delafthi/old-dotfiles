@@ -44,7 +44,7 @@ function fish_command_not_found
   __fish_default_command_not_found_handler $argv
 end
 
-# Abbreviations and aliases {{{1
+# Abbreviations and aliases
 
 # sudo
 alias sudo="sudo -s"
@@ -69,8 +69,33 @@ alias la="exa -a --color=always --group-directories-first"
 alias ll="exa -l --color=always --group-directories-first"
 alias lt="exa -aT --color=always --group-directories-first"
 
-# Colorize grep output
-alias grep="grep --color=auto"
+function batgrep --description "Uses ripgrep instead of grep and outputs via bat"
+  rg $argv --hidden --color always | bat --theme base16 --paging=never \
+    --color=always
+end
+alias grep="batgrep"
+
+function batfind --description "Uses ripgrep --files instead of find and outputs via bat"
+  rg $argv --ignore --color=always --smart-case --hidden --files | bat \
+    --theme base16
+end
+alias find="batfind"
+
+function batdiff --description "Uses bat for a nicer git diff"
+  git diff $argv --name-only --diff-filter=d | xargs bat --diff --theme base16
+end
+
+# Use fzf in combination with grep
+set INITIAL_QUERY ""
+set RG_PREFIX "rg --ignore --color=always --no-heading --with-filename \
+  --line-number --column --smart-case --hidden"
+set FZF_DEFAULT_COMMAND "$RG_PREFIX '$INITIAL_QUERY'"
+alias fgrep="fzf --bind 'change:reload:$RG_PREFIX {q} || true' --disabled \
+  --query '$INITIAL_QUERY' --ansi --height=50% --layout=reverse --preview 'bat \
+  --theme base16 --color=always --style=numbers --line-range :500 {}'"
+alias ff="rg --ignore --color=auto --smart-case --hidden --files | \
+  fzf --ansi --height=50% --layout=reverse --preview 'bat --theme base16 \
+  --color=always --style=numbers --line-range :500 {}'"
 
 # adding flags
 alias cp="cp -i"                          # confirm before overwriting something

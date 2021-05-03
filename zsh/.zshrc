@@ -37,8 +37,37 @@ alias la="exa -a --color=always --group-directories-first"  # all files and dirs
 alias ll="exa -l --color=always --group-directories-first"  # long format
 alias lt="exa -aT --color=always --group-directories-first" # tree listing
 
-# Colorize grep output and changing it to ripgrep
-alias grep="grep --color=auto"
+# Use ripgrep instead of grep and outputs via bat
+function batgrep ()
+{
+  rg $@ --hidden --color always | bat --theme base16 --paging=never --color=always
+}
+alias grep="batgrep"
+
+# Use ripgrep --files instead of find and use bat for the output
+function batfind ()
+{
+  rg $@ --ignore --color=always --smart-case --hidden --files | bat --theme base16
+}
+alias find="batfind"
+
+# Use bat for a nicer git diff
+function batdiff ()
+{
+  git diff $@ --name-only --diff-filter=d | xargs bat --diff --theme base16
+}
+
+# Use fzf in combination with grep
+set INITIAL_QUERY ""
+set RG_PREFIX "rg --ignore --color=always --no-heading --with-filename \
+  --line-number --column --smart-case --hidden"
+set FZF_DEFAULT_COMMAND "$RG_PREFIX '$INITIAL_QUERY'"
+alias fgrep="fzf --bind 'change:reload:$RG_PREFIX {q} || true' --disabled \
+  --query '$INITIAL_QUERY' --ansi --height=50% --layout=reverse --preview 'bat \
+  --theme base16 --color=always --style=numbers --line-range :500 {}'"
+alias ff="rg --ignore --color=auto --smart-case --hidden --files | \
+  fzf --ansi --height=50% --layout=reverse --preview 'bat --theme base16 \
+  --color=always --style=numbers --line-range :500 {}'"
 
 # adding flags
 alias cp="cp -i"                          # confirm before overwriting something
