@@ -67,6 +67,7 @@ function M.config()
     }
   }
 
+  local opts = {noremap = true, silent = true}
   -- Show Telescope buffers.
   u.map('n', '<Leader>fb', '<Cmd>lua require("telescope.builtin").buffers()<Cr>', opts)
   -- Search recursively for file in current project directory.
