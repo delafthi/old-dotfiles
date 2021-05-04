@@ -69,20 +69,21 @@ alias la="exa -a --color=always --group-directories-first"
 alias ll="exa -l --color=always --group-directories-first"
 alias lt="exa -aT --color=always --group-directories-first"
 
+# Set defaults for bat
+alias bat="bat --italic-text=always --color=always --theme TwoDark"
+
 function batgrep --description "Uses ripgrep instead of grep and outputs via bat"
-  rg $argv --hidden --color always | bat --theme base16 --paging=never \
-    --color=always
+  rg $argv --hidden --color always | bat --paging=never
 end
 alias grep="batgrep"
 
 function batfind --description "Uses ripgrep --files instead of find and outputs via bat"
-  rg $argv --ignore --color=always --smart-case --hidden --files | bat \
-    --theme base16
+  rg $argv --ignore --color=always --smart-case --hidden --files | bat
 end
 alias find="batfind"
 
 function batdiff --description "Uses bat for a nicer git diff"
-  git diff $argv --name-only --diff-filter=d | xargs bat --diff --theme base16
+  git diff $argv --name-only --diff-filter=d | xargs bat --diff
 end
 
 # Use fzf in combination with grep
@@ -110,9 +111,6 @@ alias fg="fzf \
   --delimiter : \
   --preview-window '+{2}/2' \
   --preview 'bat \
-  --theme TwoDark \
-  --italic-text=always \
-  --color=always \
   --style=numbers \
   -r {2}: \
   -H {2} \
@@ -127,9 +125,6 @@ alias ff="rg \
   --layout=reverse \
   --tabstop=2 \
   --preview 'bat \
-  --theme TwoDark \
-  --italic-text=always \
-  --color=always \
   --style=numbers \
   --line-range :500 {}'"
 
