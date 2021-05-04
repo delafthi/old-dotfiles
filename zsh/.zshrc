@@ -58,16 +58,52 @@ function batdiff ()
 }
 
 # Use fzf in combination with grep
-set INITIAL_QUERY ""
-set RG_PREFIX "rg --ignore --color=always --no-heading --with-filename \
-  --line-number --column --smart-case --hidden"
-set FZF_DEFAULT_COMMAND "$RG_PREFIX '$INITIAL_QUERY'"
-alias fgrep="fzf --bind 'change:reload:$RG_PREFIX {q} || true' --disabled \
-  --query '$INITIAL_QUERY' --ansi --height=50% --layout=reverse --preview 'bat \
-  --theme base16 --color=always --style=numbers --line-range :500 {}'"
-alias ff="rg --ignore --color=auto --smart-case --hidden --files | \
-  fzf --ansi --height=50% --layout=reverse --preview 'bat --theme base16 \
-  --color=always --style=numbers --line-range :500 {}'"
+# fzf colors
+alias fzf="fzf \
+  --black \
+  --color='fg:#dcdfe4,bg:#282c34,fg+:#61afef,bg+:#343944,border:#abb2bf' \
+  --color='info:#61afef,spinner:#c678dd,header:#e06c75,prompt:#c678dd' \
+  --color='hl:#e5c07b,hl+:#e5c07b,pointer:#c678dd,marker:#e59F70' \
+  --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
+  --color='hl:reverse,hl+:reverse'"
+
+export INITIAL_QUERY=""
+export RG_PREFIX="rg --ignore --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
+export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'"
+alias fg="fzf \
+  --bind 'change:reload:$RG_PREFIX {q} || true' \
+  --disabled \
+  --ansi \
+  --query '$INITIAL_QUERY' \
+  --height=50% \
+  --tabstop=2 \
+  --layout=reverse \
+  --nth=2 \
+  --delimiter : \
+  --preview-window '+{2}/2' \
+  --preview 'bat \
+  --theme TwoDark \
+  --italic-text=always \
+  --color=always \
+  --style=numbers \
+  -r {2}: \
+  -H {2} \
+  --line-range :500 {1}'"
+alias ff="rg \
+  --ignore \
+  --smart-case \
+  --hidden \
+  --files | fzf \
+  --ansi \
+  --height=50% \
+  --layout=reverse \
+  --tabstop=2 \
+  --preview 'bat \
+  --theme TwoDark \
+  --italic-text=always \
+  --color=always \
+  --style=numbers \
+  --line-range :500 {}'"
 
 # adding flags
 alias cp="cp -i"                          # confirm before overwriting something
