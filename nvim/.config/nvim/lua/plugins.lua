@@ -87,6 +87,11 @@ require('packer').startup {
       },
       config = require('config.nvim-lspconfig').config(),
     }
+    use {
+      'folke/trouble.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = require('config.trouble').config(),
+    }
     -- Movement
     use {
       'unblevable/quick-scope',
@@ -177,9 +182,9 @@ require('packer').startup {
         end
 
         vim.api.nvim_buf_set_name(float_win.bufnr, name)
-        vim.api.nvim_win_set_option(flaot_win.win_id, 'winblend', 10)
+        vim.api.nvim_win_set_option(float_win.win_id, 'winblend', 10)
 
-        return win, bufnr
+        return float_win, float_win.bufnr
       end
     },
   },
