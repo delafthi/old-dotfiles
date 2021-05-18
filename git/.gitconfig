@@ -8,7 +8,7 @@
 [alias]
   co = checkout
   ci = commit
-  st = status
+  st = status -s -u -b --show-stash
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [color "status"]
