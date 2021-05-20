@@ -650,13 +650,13 @@ client.connect_signal('request::default_keybindings', function()
     ),
     awful.key({ modkey, 'Shift'   }, 'w',
       function(c)
-        c:move_to_screen(awful.screen.focused().index - 1)
+        c:move_to_screen(c.screen.index - 1)
       end,
       {description = 'move focused client to the left screen', group = 'client'}
     ),
     awful.key({ modkey, 'Shift'   }, 'e',
       function(c)
-        c:move_to_screen(awful.screen.focused().index + 1)
+        c:move_to_screen(c.screen.index + 1)
       end,
       {description = 'move focused client to the right screen', group = 'client'}
     ),
@@ -697,7 +697,7 @@ end)
 -- {{{ Client rules
 
 -- All new appearing clients will match these rules
-ruled.client.connect_signal('request:;rules', function()
+ruled.client.connect_signal('request::rules', function()
   -- All clients
   ruled.client.append_rule {
     id = 'global',
@@ -742,26 +742,20 @@ ruled.notification.connect_signal('request::rules', function()
   }
 end)
 
+naughty.connect_signal('request::display', function(n)
+  naughty.layout.box { notification = n }
+end)
+
 -- }}}
 --------------------------------------------------------------------------------
 -- {{{ Signals
 
--- Signal function to execute when a new client appears or is managed by awesome
-client.connect_signal('request::manage', function(c)
-  if awesome.startup
-    and not c.size_hints.user_position
-    and not c.size_hints.program_position then
-    -- Prevent clients from being unreachable after screen count changes
-    awful.placement.no_offscreen(c)
-  end
-end)
-
 -- Focus signals
-client.connect_signal('request::focus', function(c)
+client.connect_signal('focus', function(c)
   c.skip_taskbar = false
   c.border_color = beautiful.border_focus
 end)
-client.connect_signal('request::unfocus', function(c)
+client.connect_signal('unfocus', function(c)
   c.skip_taskbar = true
   if c.floating == true then
       c.border_color = beautiful.border_floating
