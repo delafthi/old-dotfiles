@@ -126,7 +126,8 @@ require('packer').startup {
     }
     -- Start screen
     use {
-      'mhinz/vim-startify',
+      'glepnir/dashboard-nvim',
+      config = function() vim.g.dashboard_default_executive = 'telescope' end,
     }
     -- Statusline
     use {
@@ -167,25 +168,15 @@ require('packer').startup {
       setup = require('config.surround').setup(),
       config = require('config.surround').config(),
     }
+    -- Visuals/aesthetics
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      branch = 'lua',
+      setup = require('config.indent-blankline').setup(),
+    }
+    use {
+      'akinsho/nvim-bufferline.lua',
+      requires = {'kyazdani42/nvim-web-devicons'},
+    }
   end,
-  config = {
-    _display = {
-      open_fn = function(name)
-        local ok, float_win = pcall(function()
-          return require('plenary.window.float').percentage_range_window(0.8,
-            0.8)
-        end)
-
-        if not ok then
-          vim.cmd('65vnew [packer]')
-          return vim.api.nvim_get_current_win(), vim.api.nvim_get_current_buf()
-        end
-
-        vim.api.nvim_buf_set_name(float_win.bufnr, name)
-        vim.api.nvim_win_set_option(float_win.win_id, 'winblend', 10)
-
-        return float_win, float_win.bufnr
-      end
-    },
-  },
 }
