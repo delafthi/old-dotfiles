@@ -64,6 +64,15 @@ function M.config()
     true
   )
 
+  -- Customize virtual text prefix
+  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = {
+        prefix = ' ',
+      },
+    }
+  )
+
   -- Setup different language servers
   -- bash-language-server
   lspconfig.bashls.setup{
