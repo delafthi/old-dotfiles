@@ -1,0 +1,3 @@
+# Global ignored directories and files
+.ccls-cache/
+.python-version
