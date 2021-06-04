@@ -265,8 +265,7 @@ fi
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
   if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
     echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL pyenv-virtualenv is not installed.\n"
     echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL pyenv-virtualenv will be downloaded and installed."

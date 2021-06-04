@@ -322,8 +322,7 @@ end
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1
-  set -gx PYENV_ROOT $HOME/.pyenv
-  set -gx fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  pyenv init --path | source
   if not test -d $PYENV_ROOT/plugins/pyenv-virtualenv
     set_color --bold red
     echo -n "=> Error: "
