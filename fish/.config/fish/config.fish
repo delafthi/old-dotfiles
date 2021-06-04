@@ -335,6 +335,6 @@ if command -v pyenv 1>/dev/null 2>&1
     mkdir -p $PYENV_ROOT/plugins/pyenv-virtualenv
     git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
   end
-  pyenv init - | source 1>/dev/null
+  pyenv init - | source
   pyenv virtualenv-init - | source
 end

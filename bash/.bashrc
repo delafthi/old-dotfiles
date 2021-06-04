@@ -272,6 +272,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
     mkdir -p $PYENV_ROOT/plugins/pyenv-virtualenv
     git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
   fi
-  eval "$(pyenv init -)" 1>/dev/null
+  eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
 fi
