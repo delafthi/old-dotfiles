@@ -1,0 +1,4 @@
+
+#!/bin/bash
+
+brave --app=https://outlook.office365.com/mail/inbox
