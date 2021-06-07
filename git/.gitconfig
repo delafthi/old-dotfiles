@@ -3,7 +3,7 @@
 	email = delafontaineth@pm.me
 [core]
 	editor = nvim
-	excludesfile = /home/deaa/.gitignore
+	excludesfile = $HOME/.gitignore
 [init]
 	templatedir = ~/.git_template
 [alias]
