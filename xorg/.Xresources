@@ -1,16 +1,23 @@
-! General settings
+! XTerm Configuration
 !----------------------------------------------------------
-Xft.dpi: 96
-Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcdfilter
-Xcursor.theme: Breeze_Snow
-Xcursor.size: 16
 
-! onehalf
+! Font
+XTerm*renderFont: true
+XTerm*faceName: xft:VictorMono Nerd Font:size=12:fontfeatures=ss01
+XTerm*faceSize: 11
+XTerm*utf8: 2
+XTerm*locale: true
+
+XTerm*loginshell: true
+XTerm*savelines: 10000
+
+! double-click to select whole URLs :D
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+XTerm*foreground: #dcdfe4
+XTerm*background: #282c34
+XTerm*cursorColor: #dcdfe4
+! colors {{{
 !----------------------------------------------------------
 ! black
 *.color0:       #282c34
@@ -44,22 +51,4 @@ Xcursor.size: 16
 *.color7:       #dcdfe4
 *.color15:      #dcdfe4
 
-! XTerm Configuration
-!----------------------------------------------------------
-XTerm*renderFont: true
-XTerm*faceName: xft:Victor Mono Nerd Font, \
-                xft:JoyPixels:size=12, \
-                xft:Monospace:style=Medium:size=12
-XTerm*faceSize: 11
-XTerm*utf8: 2
-XTerm*locale: true
-
-XTerm*loginshell: true
-XTerm*savelines: 10000
-
-! double-click to select whole URLs :D
-XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
-
-XTerm*foreground: #dcdfe4
-XTerm*background: #282c34
-XTerm*cursorColor: #dcdfe4
+! }}}
