@@ -79,6 +79,11 @@ function M.config()
     capabilities = capabilities,
     on_attach = on_attach,
   }
+  -- cmake-language server
+  lspconfig.cmake.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
   -- c-language-server
   lspconfig.ccls.setup{
     capabilities = capabilities,
