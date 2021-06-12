@@ -1,8 +1,5 @@
-# alacritty
-# awesome
+# awesomewm
 # bash
-# doom
-# dunst
 # feh
 # fish
 # git
@@ -21,19 +18,15 @@ gtk/.config/gtk-3.0/bookmarks
 # kitty
 # latexmk
 # mpv
-# nvim
-nvim/.config/nvim/.netrwhist
-nvim/.config/nvim/plugin
+# neovim
+neovim/.config/nvim/.netrwhist
+neovim/.config/nvim/plugin
 # papis
 papis/.config/papis/scripts
 # picom
-# qtile
-qtile/.config/qtile/__pycache__/
 # ranger
 ranger/.config/ranger/plugins/__init__.py
 ranger/.config/ranger/plugins/__pycache__
-# speedcrunch
-speedcrunch/.local/share/SpeedCrunch/history.json
 # spotify-tui
 spotify-tui/.config/spotify-tui/.spotify_token_cache.json
 spotify-tui/.config/spotify-tui/client.yml
@@ -41,19 +34,5 @@ spotify-tui/.config/spotify-tui/client.yml
 # systemd
 systemd/.config/systemd/user/default.target.wants
 systemd/.config/systemd/user/graphical-session.target.wants
-# vifm
-vifm/.config/vifm/vifminfo
-vifm/.config/vifm/vifminfo.json*
-# vim
-vim/.vim/.netrwhist
-vim/.vim/plugged
-vim/.vim/autoload/plug.vim
-# xmonad
-xmonad/.xmonad/hie.yaml
-xmonad/.xmonad/xmonad-x86_64-linux
-xmonad/.xmonad/xmonad.errors
-xmonad/.xmonad/xmonad.hi
-xmonad/.xmonad/xmonad.o
 # xorg
 # zathura
-# zsh
