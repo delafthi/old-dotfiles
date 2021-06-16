@@ -9,22 +9,19 @@ function M.config()
   if not ok then
     return
   end
-  telescope.load_extension('fzy_native')
   telescope.setup{
     defaults = {
       vimgrep_arguments = {
         'rg',
-        '--ignore',
-        '--color=never',
         '--no-heading',
         '--with-filename',
         '--line-number',
         '--column',
         '--smart-case',
-        '--hidden',
       },
       prompt_position = 'top',
       prompt_prefix = '>> ',
+      selection_caret = '> ',
       entry_prefix = ' ',
       initial_mode = 'insert',
       selection_strategy = 'reset',
@@ -66,17 +63,26 @@ function M.config()
       }
     }
   }
+  telescope.load_extension('fzy_native')
 
   local opts = {noremap = true, silent = true}
   -- Show Telescope buffers.
-  u.map('n', '<Leader>fb', '<Cmd>lua require("telescope.builtin").buffers()<Cr>', opts)
-  -- Search recursively for file in current project directory.
-  u.map('n', '<Leader>ff', '<Cmd>lua require("telescope.builtin").find_files({find_command = {"rg","--ignore","--hidden","--files"}})<Cr>', opts)
-  -- Grep in project directory.
-  u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
+  u.map('n', '<Leader>bb', '<Cmd>lua require("telescope.builtin").buffers()<Cr>', opts)
+  -- Search recursively in all files
+  u.map('n', '<Leader>ff', '<Cmd>lua require("telescope.builtin").fd()<Cr>', opts)
+  -- Search recursively in all git files
+  u.map('n', '<Leader>fg', '<Cmd>lua require("telescope.builtin").git_files()<Cr>', opts)
+  -- Grep a string in the workspace
+  u.map('n', '<Leader>rg', '<Cmd>lua require("telescope.builtin").live_grep()<Cr>', opts)
+  -- Find something in the documentation
   u.map('n', '<Leader>fh', '<Cmd>lua require("telescope.builtin").help_tags()<Cr>', opts)
+  -- File browser
+  u.map('n', '<Leader>fb', '<Cmd>lua require("telescope.builtin").file_browser()<Cr>', opts)
+  -- Git
   u.map('n', '<Leader>gs', '<Cmd>lua require("telescope.builtin").git_status()<Cr>', opts)
   u.map('n', '<Leader>gb', '<Cmd>lua require("telescope.builtin").git_branches()<Cr>', opts)
+  u.map('n', '<Leader>gl', '<Cmd>lua require("telescope.builtin").git_log()<Cr>', opts)
+
 end
 
 return M
