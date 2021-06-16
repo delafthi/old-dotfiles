@@ -15,7 +15,7 @@ function M.config()
 
   local on_attach = function(client, bufnr)
 
-    u.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Mappings.
     local opts = {noremap=true, silent=true}
