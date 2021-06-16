@@ -42,8 +42,6 @@ augroup remove_trailing_whitespaces_and_lines
 augroup END
 ]], false)
 
--- Colorscheme {{{1
-
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
 u.opt.diffopt = u.add({
@@ -140,7 +138,7 @@ u.map('v', 'k', 'gk', opts)
 u.map('n', '<Leader>tt', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
 u.map('n', '<Leader>th', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
 u.map('n', '<Leader>tv', ':call luaeval("_G.__new_term(\'v\')")<Cr>', opts)
--- Execute
+-- Execute a lua line
 function _G.__execute_line()
   local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
   local line = vim.api.nvim_get_current_line()
@@ -198,7 +196,7 @@ exec([[ca w!! w !sudo tee >/dev/null "%"]], false)
 u.opt.mouse = 'nvicr' -- Enables different support modes for the mouse
 
 -- Netrw {{{1
-vim.g.netrw_banner = 0 -- Disable banner on top of the window.
+vim.g.netrw_banner = 0 -- Disable the banner on top of the window.
 
 -- Search {{{1
 u.opt.hlsearch = true -- Enable search highlighting.
@@ -220,7 +218,7 @@ u.opt.spelllang = 'en_us,de_ch' -- Set spell check languages.
 -- Fill characters for the statusline and vertical separators
 u.opt.fillchars = u.add {
     'stl: ',
-    'stlnc:_',
+    'stlnc: ',
     'vert:│',
     'fold: ',
     'foldopen:▾',
