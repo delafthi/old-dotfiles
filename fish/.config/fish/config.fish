@@ -165,6 +165,9 @@ end
 
 # Visuals {{{1
 
+# Load dircolors
+test -r ~/.dir_colors && eval (dircolors -c ~/.dir_colors)
+
 # Vi mode prompt
 function fish_mode_prompt
   switch $fish_bind_mode

@@ -190,6 +190,8 @@ case ${TERM} in
     PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'" ;;
 esac
 
+# Load dircolors
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 ################################################################################
 # Functions
