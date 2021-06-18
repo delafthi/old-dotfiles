@@ -1,0 +1,2 @@
+.config/systemd/user/default.target.wants
+.config/systemd/user/graphical-session.target.wants
