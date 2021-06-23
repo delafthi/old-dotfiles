@@ -94,8 +94,7 @@ require('packer').startup {
     }
     -- Movement
     use {
-      'unblevable/quick-scope',
-      setup = require('config.quick-scope').setup(),
+      'justinmk/vim-sneak',
     }
     -- Note taking
     use {
