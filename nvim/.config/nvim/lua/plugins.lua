@@ -13,7 +13,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     'https://github.com/wbthomason/packer.nvim', install_path})
   print(out)
   exec('packadd packer.nvim', false)
-  print('Installation of packer.nvim successfull. Run :PackerSync to download and install all plugins.')
+  print('Installation of packer.nvim successfull. Run :PackerSync to download ',
+    'and install all plugins.')
 end
 
 -- Run PackerCompile automatically whenever plugins.lua is updated
@@ -26,16 +27,9 @@ require('packer').startup {
     use {'wbthomason/packer.nvim'}
     -- Colors
     use {
-      'delafthi/onedarkbuddy',
-      requires = {'tjdevries/colorbuddy.vim'},
-      config = function()
-        local ok, colorbuddy = pcall(function()
-          return require('colorbuddy')
-        end)
-          if ok then
-            colorbuddy.colorscheme('onedarkbuddy')
-          end
-        end,
+      'shaunsingh/nord.nvim',
+      setup = require('config.nord').setup(),
+      config = require('config.nord').config(),
     }
     -- Comment
     use {
@@ -45,12 +39,9 @@ require('packer').startup {
     }
     -- Completion
     use {
-      'nvim-lua/completion-nvim',
-      requires = {
-        {'nvim-treesitter/completion-treesitter'},
-      },
-      setup = require('config.completion-nvim').setup(),
-      config = require('config.completion-nvim').config(),
+      'hrsh7th/nvim-compe',
+      setup = require('config.nvim-compe').setup(),
+      config = require('config.nvim-compe').config(),
     }
     -- Debugging
     use {
@@ -89,7 +80,7 @@ require('packer').startup {
     }
     use {
       'folke/trouble.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
+      requires = {'kyazdani42/nvim-web-devicons', opt = true},
       config = require('config.trouble').config(),
     }
     -- Movement
@@ -131,10 +122,13 @@ require('packer').startup {
     -- Statusline
     use {
       'glepnir/galaxyline.nvim',
-      requires = {'kyazdani42/nvim-web-devicons'},
       branch = 'main',
-      config = require('config.galaxyline').config(),
-    }
+      requires = {
+        {'kyazdani42/nvim-web-devicons', opt = true},
+        'shaunsingh/nord.nvim',
+      },
+      config = require('config.galaxyline').config()
+      }
     -- Syntax highlighting
     use {
       'nvim-treesitter/nvim-treesitter',
@@ -153,10 +147,6 @@ require('packer').startup {
         end
       end,
     }
-    use {
-      'neovimhaskell/haskell-vim',
-      setup = require('config.haskell-vim').setup(),
-    }
     -- Text editing
     use {
       'godlygeek/tabular',
@@ -172,10 +162,6 @@ require('packer').startup {
       'lukas-reineke/indent-blankline.nvim',
       branch = 'lua',
       setup = require('config.indent-blankline').setup(),
-    }
-    use {
-      'akinsho/nvim-bufferline.lua',
-      requires = {'kyazdani42/nvim-web-devicons'},
     }
   end,
 }
