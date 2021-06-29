@@ -15,7 +15,7 @@ function M.config()
       enable = true,
     },
     indent = {
-      enable = true
+      enable = false
     },
     keymaps = {
       init_selection = "gnn",
