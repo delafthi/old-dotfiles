@@ -1,200 +1,222 @@
 local M = {}
 
 function M.config()
-  local ok, gl = pcall(function()
+  local gl_ok, gl = pcall(function()
     return require('galaxyline')
   end)
 
-  if not ok then
+  local nord_ok, nord = pcall(function()
+    return require('nord.colors')
+  end)
+
+  if not (gl_ok and nord_ok) then
     return
   end
 
+  local condition = require('galaxyline.condition')
+
   local gls = gl.section
-  gl.short_line_list = {'defx', 'packager', 'vista', 'NvimTree'}
 
-  local colors = {
-    red = '#e06c75',
-    green = '#98c379',
-    orange = '#e59F70',
-    yellow = '#e5c07b',
-    blue = '#61afef',
-    purple = '#c678dd',
-    cyan = '#56b6c2',
-
-    red_dark = '#be646a',
-    green_dark = '#7e9d69',
-    orange_dark = '#c08768',
-    yellow_dark = '#bd9e6f',
-    blue_dark = '#5f96c9',
-    purple_dark = '#a86cbb',
-    cyan_dark = '#51969f',
-
-    red_light = '#e8838c',
-    green_light = '#a6d18c',
-    orange_light = '#ecb07e',
-    yellow_light = '#eccd84',
-    blue_light = '#75c2f3',
-    purple_light = '#d38de6',
-    cyan_light = '#69c7d1',
-
-    black = '#282c34',
-    white = '#dcdfe4',
-
-    mono1 = '#313640',
-    mono2 = '#4b5263',
-    mono3 = '#5c6370',
-    mono4 = '#919baa',
-    mono5 = '#abb2bf',
+  -- Shorter statusline for these filetypes
+  gl.short_line_list = {
+    'packer',
+    'dashboard',
   }
 
+  -- Set some defaults
+  local left_cap = ''
+  local right_cap = ''
+
   -- Local helper functions
-  local buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-  end
-
-  local mode_color = function()
-    local mode_colors = {
-      n = colors.green,
-      i = colors.blue,
-      c = colors.red,
-      t = colors.orange,
-      v = colors.yellow,
-      V = colors.yellow,
-      [''] = colors.yellow,
-      R = colors.purple,
-      s = colors.red,
-      S = colors.red,
-      [''] = colors.red,
-    }
-
-    local mode_color = mode_colors[vim.fn.mode()]
-    if mode_color ~= nil then
-      return mode_color
-    else
-      return colors.red
-    end
-  end
+  local modes = {
+    n = {'NORMAL', nord.nord14_gui},
+    i = {'INSERT', nord.nord8_gui},
+    c = {'COMMAND', nord.nord11_gui},
+    t = {'TERMINAL', nord.nord12_gui},
+    v = {'VISUAL', nord.nord13_gui},
+    V = {'V-LINE', nord.nord13_gui},
+    [''] = {'V-BLOCK', nord.nord13_gui},
+    R = {'REPLACE', nord.nord15_gui},
+    s = {'SELECT', nord.nord11_gui},
+    S = {'S-LINE', nord.nord11_gui},
+    [''] = {'X-BLOCK', nord.nord11_gui},
+  }
 
   -- Left side
+  ---------------------------------------------------------
+  -- ViMode
   gls.left[1] = {
-    ViMode = {
+    ViModeLeftCap = {
       provider = function()
-        local aliases = {
-          n = 'NORMAL',
-          i = 'INSERT',
-          c = 'COMMAND',
-          t = 'TERMINAL',
-          v = 'VISUAL',
-          V = 'V-LINE',
-          [''] = 'V-BLOCK',
-          R = 'REPLACE',
-          s = 'SELECT',
-          S = 'S-LINE',
-          [''] = 'X-BLOCK',
-        }
-        vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color())
-        local alias = aliases[vim.fn.mode()]
-        if alias ~= nil then
-          return '  ' .. alias .. ' '
-        else
-          return '  ' .. vim.fn.mode() .. ' '
-        end
+        local vim_mode = vim.fn.mode()
+        local mode_style = modes[vim_mode]
+        vim.api.nvim_command('hi GalaxyViModeLeftCap guifg=' .. mode_style[2])
+        return left_cap
       end,
-      highlight = {colors.black, colors.mono2, 'bold'},
+      highlight = {nord.nord2_gui, nord.nord0_gui, 'bold'},
     }
   }
   gls.left[2] = {
-    Space = {
-      provider = function() return ' ' end,
-      condition = buffer_not_empty,
-      highlight = {colors.mono2, colors.mono2},
+    ViMode = {
+      provider = function()
+        local vim_mode = vim.fn.mode()
+        local mode_style = modes[vim_mode]
+        vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_style[2])
+        return mode_style[1]
+      end,
+      highlight = {nord.nord0_gui, nord.nord2_gui, 'bold'},
     }
   }
   gls.left[3] = {
-    FileIcon = {
-      provider = 'FileIcon',
-      condition = buffer_not_empty,
-      highlight = {
-          require('galaxyline.provider_fileinfo').get_file_icon_color,
-          colors.mono2
-      },
+    ViModeRightCap = {
+      provider = function()
+        local vim_mode = vim.fn.mode()
+        local mode_style = modes[vim_mode]
+        vim.api.nvim_command('hi GalaxyViModeRightCap guifg=' .. mode_style[2])
+        return right_cap
+      end,
+      highlight = {nord.nord2_gui, nord.nord1_gui, 'bold'},
     }
   }
   gls.left[4] = {
-    FileName = {
-      provider = {'FileName', 'FileSize'},
-      condition = buffer_not_empty,
-      highlight = {colors.white, colors.mono2},
-      separator = "",
-      separator_highlight = {colors.mono2, colors.mono1},
+    Space = {
+      provider = function() return ' ' end,
+      condition = condition.buffer_not_empty,
+      highlight = {nord.nord4_gui, nord.nord1_gui}
     }
   }
   gls.left[5] = {
     DiagnosticError = {
       provider = 'DiagnosticError',
       icon = '  ',
-      highlight = {colors.red, colors.mono1},
+      highlight = {nord.nord11_gui, nord.nord1_gui},
     }
   }
   gls.left[6] = {
     DiagnosticWarn = {
       provider = 'DiagnosticWarn',
       icon = '  ',
-      highlight = {colors.yellow, colors.mono1},
+      highlight = {nord.nord14_gui, nord.nord1_gui},
     }
   }
   gls.left[7] = {
     DiagnosticInfo = {
       provider = 'DiagnosticInfo',
       icon = '  ',
-      highlight = {colors.blue, colors.mono1},
+      highlight = {nord.nord8_gui, nord.nord1_gui},
     }
   }
+  -- Middle
+  ---------------------------------------------------------
 
   -- Right side
+  ---------------------------------------------------------
   gls.right[1] = {
-    GitIcon = {
-      provider = function() return '  ' end,
-      condition = function()
-        return buffer_not_empty and require('galaxyline.condition').check_git_workspace()
-      end,
-      highlight = {colors.orange, colors.mono1},
+    FileInfoRightCap = {
+      provider = function() return left_cap end,
+      highlight = {nord.nord3_gui, nord.nord1_gui, 'bold'},
     }
   }
+  -- Git diff
   gls.right[2] = {
-    GitBranch = {
-      provider = {'GitBranch', function() return ' ' end},
-      condition = buffer_not_empty,
-      highlight = {colors.white, colors.mono1},
+    GitDiffAdd = {
+      provider = 'DiffAdd',
+      icon = '  ',
+      highlight = {nord.nord14_gui, nord.nord3_gui},
     }
   }
   gls.right[3] = {
-    DiffAdd = {
-      provider = 'DiffAdd',
-      icon = '  ',
-      highlight = {colors.green, colors.mono1},
+    GitDiffModified = {
+      provider = 'DiffModified',
+      icon = '  ',
+      highlight = {nord.nord15_gui, nord.nord3_gui},
     }
   }
   gls.right[4] = {
-    DiffModified = {
-      provider = 'DiffModified',
-      icon = '  ',
-      highlight = {colors.yellow, colors.mono1},
-    }
-  }
-  gls.right[5] = {
-    DiffRemove = {
+    GitDiffRemove = {
       provider = 'DiffRemove',
       icon = '  ',
-      highlight = {colors.red, colors.mono1},
+      highlight = {nord.nord11_gui, nord.nord3_gui},
     }
   }
+  -- Git branch
   gls.right[6] = {
-    PerCent = {
-      provider = 'LinePercent',
-      highlight = {colors.black, colors.blue},
-      separator = '',
-      separator_highlight = {colors.blue, colors.mono1},
+    GitIcon = {
+      provider = function() return '  ' end,
+      condition = function()
+        return condition.buffer_not_empty and condition.check_git_workspace()
+      end,
+      highlight = {nord.nord12_gui, nord.nord3_gui},
+    }
+  }
+  gls.right[7] = {
+    GitBranch = {
+      provider = {'GitBranch', function() return ' ' end},
+      condition = condition.buffer_not_empty,
+      highlight = {nord.nord4_gui, nord.nord3_gui},
+    }
+  }
+  -- File info
+  gls.right[8] = {
+    FileIcon = {
+      provider = 'FileIcon',
+      condition = condition.buffer_not_empty,
+      highlight = {
+          require('galaxyline.provider_fileinfo').get_file_icon_color,
+          nord.nord3_gui
+      },
+    }
+  }
+  gls.right[9] = {
+    FileName = {
+      provider = {'FileName', 'FileSize'},
+      condition = condition.buffer_not_empty,
+      highlight = {nord.nord4_gui, nord.nord3_gui},
+    }
+  }
+  -- Line Info
+  gls.right[10] = {
+    LineInfoLeftCap = {
+      provider = function() return left_cap end,
+      highlight = {nord.nord8_gui, nord.nord3_gui, 'bold'},
+    }
+  }
+  gls.right[11] = {
+    LineColumn = {
+      provider = function()
+        local line = vim.fn.line('.')
+        local column = vim.fn.col('.')
+        return line .. ':' .. column
+      end,
+      highlight = {nord.nord0_gui, nord.nord8_gui},
+    }
+  }
+  gls.right[12] = {
+    LineInfoSpacer = {
+      provider = function() return ' ' end,
+      highlight = {nord.nord0_gui, nord.nord8_gui},
+    }
+  }
+  gls.right[13] = {
+    LinePercent = {
+      provider = function()
+        local current_line = vim.fn.line('.')
+        local total_line = vim.fn.line('$')
+        if current_line == 1 then
+          return 'Top'
+        elseif current_line == vim.fn.line('$') then
+          return 'Bot'
+        end
+        local result,_ = math.modf((current_line/total_line)*100)
+        return result .. '%'
+      end,
+      highlight = {nord.nord0_gui, nord.nord8_gui},
+    }
+  }
+  gls.right[14] = {
+    LineInfoRightCap = {
+      provider = function() return right_cap end,
+      highlight = {nord.nord8_gui, nord.nord0_gui, 'bold'},
     }
   }
 end
