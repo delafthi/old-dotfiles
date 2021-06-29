@@ -9,71 +9,74 @@ function M.config()
     return
   end
 
-  gitsigns.setup {
-    signs = {
-      add = {
-        hl = 'SignifySignAdd',
-        text = '+',
-        numhl = 'SignifySignAdd'
-      },
-      change = {
-        hl = 'SignifySignChange',
-        text = '~',
-        numhl = 'SignifySignChange'},
-      delete = {
-        hl = 'SignifySignDelete',
-        text = '-',
-        show_count = true,
-        numhl = 'SignifySignDelete'
-      },
-      topdelete = {
-        hl = 'SignifySignDelete',
-        text = 'ﬠ',
-        show_count = true,
-        numhl = 'SignifySignDelete'
-      },
-      changedelete = {
-        hl = 'SignifySignChange',
-        text = '~',
-        show_count = true,
-        numhl = 'SignifySignChange'
-      }
+require('gitsigns').setup {
+  signs = {
+    add = {
+      hl = 'GitSignsAdd',
+      text = '│',
+      numhl='GitSignsAddNr',
+      linehl='GitSignsAddLn'
     },
-    count_chars = {
-      [1] = '',
-      [2] = '₂',
-      [3] = '₃',
-      [4] = '₄',
-      [5] = '₅',
-      [6] = '₆',
-      [7] = '₇',
-      [8] = '₈',
-      [9] = '₉',
-      ['+'] = '₊'
+    change = {
+      hl = 'GitSignsChange',
+      text = '│',
+      numhl='GitSignsChangeNr',
+      linehl='GitSignsChangeLn'
     },
-    numhl = false,
-    keymaps = {
-      -- Default keymap options
-      noremap = true,
-      buffer = true,
-      ['n ]c'] = {
-        expr = true,
-        "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<Cr>'"
-      },
-      ['n [c'] = {
-        expr = true,
-        "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<Cr>'"
-      },
-      ['n <Leader>hs'] = '<Cmd>lua require"gitsigns".stage_hunk()<Cr>',
-      ['n <Leader>hu'] = '<Cmd>lua require"gitsigns".undo_stage_hunk()<Cr>',
-      ['n <Leader>hr'] = '<Cmd>lua require"gitsigns".reset_hunk()<Cr>',
-      ['n <Leader>hp'] = '<Cmd>lua require"gitsigns".preview_hunk()<Cr>',
-      ['n <Leader>hb'] = '<Cmd>lua require"gitsigns".blame_line()<Cr>'
+    delete = {
+      hl = 'GitSignsDelete',
+      text = '_',
+      numhl='GitSignsDeleteNr',
+      linehl='GitSignsDeleteLn'
     },
-    watch_index = {interval = 1000},
-    sign_priority = 6,
-    status_formatter = nil -- Use default
-  }
+    topdelete = {
+      hl = 'GitSignsDelete',
+      text = '‾',
+      numhl='GitSignsDeleteNr',
+      linehl='GitSignsDeleteLn'
+    },
+    changedelete = {
+      hl = 'GitSignsChange',
+      text = '~',
+      numhl='GitSignsChangeNr',
+      linehl='GitSignsChangeLn'
+    },
+  },
+  numhl = false,
+  linehl = false,
+  keymaps = {
+    -- Default keymap options
+    noremap = true,
+    buffer = true,
+
+    ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+    ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+    ['n <Leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['v <Leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <Leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+    ['n <Leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+    ['v <Leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <Leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+    ['n <Leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+    ['n <Leader>hb'] = '<cmd>lua require"gitsigns".blame_line(true)<CR>',
+
+    -- Text objects
+    ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+  },
+  watch_index = {
+    interval = 1000
+  },
+  current_line_blame = false,
+  current_line_blame_delay = 1000,
+  current_line_blame_position = 'eol',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  use_decoration_api = true,
+  use_internal_diff = true,  -- If luajit is present
+}
 end
 
 return M
