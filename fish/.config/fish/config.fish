@@ -241,6 +241,15 @@ if command -v nvim 1>/dev/null 2>&1
   set -gx EDITOR "nvim" # $EDITOR use Neovim in terminal
 end
 
+# Check if the shell was opened from ranger before opening a new ranger
+function ranger --description "Check the ranger level before opening ranger."
+  if test "$RANGER_LEVEL"
+    exit
+  else
+    /usr/bin/ranger $argv
+  end
+end
+
 ############################################################
 # Plugins {{{1
 

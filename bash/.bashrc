@@ -198,6 +198,16 @@ if [ $TERM == "xterm-kitty" ]; then
     alias ssh="kitty +kitten ssh"
 fi
 
+# Check if the shell was opened from ranger before opening a new ranger
+function ranger()
+{
+  if [ -n "$RANGER_LEVEL" ]; then
+    exit
+  else
+    /usr/bin/ranger $argv
+  fi
+}
+
 ############################################################
 # Plugins {{{1
 
