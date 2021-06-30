@@ -1,17 +1,22 @@
-# Enable links
-set sandbox none
-# Set clipboard
-set selection-clipboard clipboard
-# Set custom key mappings
-map <C-j> zoom out
-map <C-k> zoom in
-# Layout
-set page-padding 4
-# Colors
-set highlight-color \#e5c07b
+# General settings {{{1
+set sandbox none # Enables copying to the system clipboard
+
+# Colors {{{1
+set highlight-color \#
 set highlight-active-color \#61afef
 set recolor false
 set recolor-lightcolor \#313640
 set recolor-darkcolor \#dcdfe4
 set recolor-keephue
 set default-bg \#282c34
+
+# Enable copying to the system clipboard {{{1
+set selection-clipboard clipboard
+
+# Layout {{{1
+set page-padding 4
+
+
+# Key mappings {{{1
+map <C-j> zoom out
+map <C-k> zoom in
