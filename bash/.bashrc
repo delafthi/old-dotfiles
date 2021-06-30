@@ -1,9 +1,9 @@
-################################################################################
-# ~/.bashrc: executed by bash(1) for non-login shells.
-################################################################################
+########################################################
+# ~/.bashrc: executed by bash(1) for non-login shells. #
+########################################################
 
-################################################################################
-# General settings
+############################################################
+# General settings {{{1
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -11,10 +11,7 @@
 # Ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-# set vim as manpager
-export MANPAGER="nvim +Man!"
-
-### Bash options
+# Bash options
 shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
@@ -23,10 +20,13 @@ shopt -s histappend # do not overwrite history
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize # checks term size when bash regains control
 
-################################################################################
-# Aiases
+# Set vi bindings
+set -o vi
 
-alias sudo="sudo "
+############################################################
+# Aliases {{{1
+
+alias sudo="sudo -s"
 
 # navigation
 alias ..="cd .."
@@ -36,82 +36,9 @@ alias .4="cd ../../../.."
 alias .5="cd ../../../../.."
 
 # vim
-alias vim="nvim"
-alias vi="nvim"
 alias :q="exit"
 
-# Changing "ls" to "exa"
-alias ls="exa -al --color=always --group-directories-first" # my preferred listing
-alias la="exa -a --color=always --group-directories-first"  # all files and dirs
-alias ll="exa -l --color=always --group-directories-first"  # long format
-alias lt="exa -aT --color=always --group-directories-first" # tree listing
-
-# Set defaults for bat
-alias bat="bat --italic-text=always --color=always --theme TwoDark"
-
-# Use ripgrep instead of grep and outputs via bat
-function batgrep ()
-{
-  rg $@ --hidden --color always | bat --paging=never --color=always
-}
-alias grep="batgrep"
-
-# Use ripgrep --files instead of find and use bat for the output
-function batfind ()
-{
-  rg $@ --ignore --color=always --smart-case --hidden --files | bat
-}
-alias find="batfind"
-
-# Use bat for a nicer git diff
-function batdiff ()
-{
-  git diff $@ --name-only --diff-filter=d | xargs bat --diff
-}
-
-# Use fzf in combination with grep
-# fzf colors
-alias fzf="fzf \
-  --black \
-  --color='fg:#dcdfe4,bg:#282c34,fg+:#61afef,bg+:#343944,border:#abb2bf' \
-  --color='info:#61afef,spinner:#c678dd,header:#e06c75,prompt:#c678dd' \
-  --color='hl:#e5c07b,hl+:#e5c07b,pointer:#c678dd,marker:#e59F70' \
-  --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
-  --color='hl:reverse,hl+:reverse'"
-
-export INITIAL_QUERY=""
-export RG_PREFIX="rg --ignore --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
-export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'"
-alias fg="fzf \
-  --bind 'change:reload:$RG_PREFIX {q} || true' \
-  --disabled \
-  --ansi \
-  --query '$INITIAL_QUERY' \
-  --height=50% \
-  --tabstop=2 \
-  --layout=reverse \
-  --nth=2 \
-  --delimiter : \
-  --preview-window '+{2}/2' \
-  --preview 'bat \
-  --style=numbers \
-  -r {2}: \
-  -H {2} \
-  --line-range :500 {1}'"
-alias ff="rg \
-  --ignore \
-  --smart-case \
-  --hidden \
-  --files | fzf \
-  --ansi \
-  --height=50% \
-  --layout=reverse \
-  --tabstop=2 \
-  --preview 'bat \
-  --style=numbers \
-  --line-range :500 {}'"
-
-# adding flags
+# Adding flags
 alias cp="cp -i"                          # confirm before overwriting something
 alias df="df -h"                          # human-readable sizes
 alias free="free -m"                      # show sizes in MB
@@ -120,23 +47,15 @@ alias mv="mv -i"
 alias minicom="minicom -m -c on"
 alias htop="htop -t"
 
-# shutdown or reboot
-alias ssn="sudo shutdown now"
-alias sr="sudo reboot"
-
-# kitty specific aliases
-
-if [ $TERM == "xterm-kitty" ]; then
-    alias ssh="kitty +kitten ssh"
-fi
-
-################################################################################
-# Environment variables
+############################################################
+# Environment variables {{{1
 
 export HISTCONTROL=ignoreboth             # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
-export EDITOR="nvim"                      # $EDITOR use Neovim in terminal
+# Set the default editor, this variable is overwritten in case neovim is
+# installed
+export EDITOR="vi"
 export SSH_KEY_PATH="~/.ssh/rsa_id"       # Set default ssh key path
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
 
@@ -149,52 +68,14 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-################################################################################
-# Keybindings
-
-# Set vi mode
-set -o vi
-
-################################################################################
-# Visuals
-
-BOLD=$(tput bold)
-NORMAL=$(tput sgr0)
-
-# Colors
-COLOR_RED="\033[0;31m"
-COLOR_GREEN="\033[0;32m"
-COLOR_BLUE="\033[0;34m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_PURPLE="\033[0;35m"
-COLOR_CYAN="\033[0;36m"
-COLOR_RESET="\033[0m"
-
-# vi mode strings
-bind "set show-mode-in-prompt on"
-bind "set vi-cmd-mode-string \1\e[2 q\2"
-bind "set vi-ins-mode-string \1\e[6 q\2"
-
-# Prompt
-color_prompt=yes
-PS1="\[$COLOR_BLUE\]\u\[$COLOR_RESET\]@\[$COLOR_BLUE\]\h:\[$COLOR_YELLOW\]\w"
-PS1+="\[\$(git_color)\]"        # colors git status
-PS1+="\$(git_branch)"            # prints current branch
-PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
-
-# Change title of terminals
-case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-    PROMPT_COMMAND="echo -ne '\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007'" ;;
-  screen*)
-    PROMPT_COMMAND="echo -ne '\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\'" ;;
-esac
+############################################################
+# Visuals {{{1
 
 # Load dircolors
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
-################################################################################
-# Functions
+############################################################
+# Functions {{{1
 
 # Archive extraction
 function ex ()
@@ -226,39 +107,108 @@ function ex ()
 # Auto-completion
 source /usr/share/bash-completion/bash_completion
 
-# Parse git branch
-git_branch()
-{
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
+###########################################################
+# Settings with dependencies {{{1
 
-# Git coloring
-function git_color ()
-{
-  local git_status="$(git status 2> /dev/null)"
+# Set defaults for bat
+if command -v bat 1>/dev/null 2>&1 && command -v rg 1>/dev/null 2>&1; then
+  alias bat="bat --italic-text=always --color=always --theme Nord"
 
-  if [[ ! $git_status =~ "working tree clean" ]]; then
-    echo -e $COLOR_RED
-  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-    echo -e $COLOR_CYAN
-  elif [[ $git_status =~ "nothing to commit" ]]; then
-    echo -e $COLOR_GREEN
-  else
-    echo -e $COLOR_YELLOW
-  fi
-}
+  # Use ripgrep instead of grep and outputs via bat
+  function batgrep ()
+  {
+    rg $@ --hidden --color always | bat --paging=never --color=always
+  }
+  alias grep="batgrep"
 
-################################################################################
-# Plugins
+  # Use ripgrep --files instead of find and use bat for the output
+  function batfind ()
+  {
+    rg $@ --ignore --color=always --smart-case --hidden --files | bat
+  }
+  alias find="batfind"
+
+  # Use bat for a nicer git diff
+  function batdiff ()
+  {
+    git diff $@ --name-only --diff-filter=d | xargs bat --diff
+  }
+fi
+
+# Use fzf in combination with grep
+# fzf colors
+if command -v fzf 1>/dev/null 2>&1 && command -v rg 1>/dev/null 2>&1; then
+  alias fzf="fzf \
+    --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
+    --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
+    --color='hl:#ebcb8b,hl+:#ebcb8b,pointer:#b48ead,marker:#d08770' \
+    --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
+    --color='hl:reverse,hl+:reverse'"
+
+  export INITIAL_QUERY=""
+  export RG_PREFIX="rg --ignore --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
+  export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'"
+  alias fg="fzf \
+    --bind 'change:reload:$RG_PREFIX {q} || true' \
+    --disabled \
+    --ansi \
+    --query '$INITIAL_QUERY' \
+    --height=50% \
+    --tabstop=2 \
+    --layout=reverse \
+    --nth=2 \
+    --delimiter : \
+    --preview-window '+{2}/2' \
+    --preview 'bat \
+    --style=numbers \
+    -r {2}: \
+    -H {2} \
+    --line-range :500 {1}'"
+  alias ff="rg \
+    --ignore \
+    --smart-case \
+    --hidden \
+    --files | fzf \
+    --ansi \
+    --height=50% \
+    --layout=reverse \
+    --tabstop=2 \
+    --preview 'bat \
+    --style=numbers \
+    --line-range :500 {}'"
+fi
+
+if command -v nvim 1>/dev/null 2>&1; then
+  alias vim="nvim"
+  alias vi="nvim"
+  # set vim as manpager
+  export MANPAGER="nvim +Man!"
+fi
+
+# Changing "ls" to "exa"
+if command -v exa 1>/dev/null 2>&1; then
+  alias ls="exa -al --color=always --group-directories-first" # my preferred listing
+  alias la="exa -a --color=always --group-directories-first"  # all files and dirs
+  alias ll="exa -l --color=always --group-directories-first"  # long format
+  alias lt="exa -aT --color=always --group-directories-first" # tree listing
+fi
+
+# kitty specific aliases
+if [ $TERM == "xterm-kitty" ]; then
+    alias ssh="kitty +kitten ssh"
+fi
+
+############################################################
+# Plugins {{{1
 
 # Starship prompt
 if ! command -v starship 1>/dev/null 2>&1; then
     echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL Starship not installed.\n"
-    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Starship will be downloaded and installed."
-    curl -fsSL https://starship.rs/install.sh | bash
+    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Please install starship through your package manager or manually. An installation guide can be found here: https://starship.rs/guide/#%F0%9F%9A%80-installation"
+else
+  export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+  eval "$(starship init bash)"
 fi
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-eval "$(starship init bash)"
 
 # Nix
 if [ -f /etc/profile.d/nix.sh ]; then
@@ -268,12 +218,13 @@ fi
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
   if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
     echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL pyenv-virtualenv is not installed.\n"
-    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL pyenv-virtualenv will be downloaded and installed."
-    mkdir -p $PYENV_ROOT/plugins/pyenv-virtualenv
-    git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
+    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Please install pyenv-virtualenv through your package manager or manually. An installation guide can be found here: https://github.com/pyenv/pyenv-virtualenv#installation"
+  else
+    eval "$(pyenv virtualenv-init -)"
   fi
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
 fi
+
+# }}}1
