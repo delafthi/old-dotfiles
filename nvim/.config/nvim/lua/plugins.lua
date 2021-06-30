@@ -164,4 +164,9 @@ require('packer').startup {
       setup = require('config.indent-blankline').setup(),
     }
   end,
+  config = {
+    display = {
+      open_fn = require('packer.util').float,
+    },
+  },
 }
