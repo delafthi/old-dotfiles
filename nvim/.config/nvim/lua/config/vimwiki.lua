@@ -29,7 +29,6 @@ function M.setup()
     cmd('au BufEnter *.md hi VimwikiHeader4 guifg=' .. nord.nord14_gui)
     cmd('au BufEnter *.md hi VimwikiHeader5 guifg=' .. nord.nord15_gui)
     cmd('au BufEnter *.md hi VimwikiHeader6 guifg=' .. nord.nord10_gui)
-    cmd('echo "Everything executed"')
   end
 end
 
