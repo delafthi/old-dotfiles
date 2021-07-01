@@ -19,7 +19,6 @@ function M.config()
         '--column',
         '--smart-case',
       },
-      prompt_position = 'top',
       prompt_prefix = '>> ',
       selection_caret = '> ',
       entry_prefix = ' ',
@@ -27,7 +26,11 @@ function M.config()
       selection_strategy = 'reset',
       sorting_strategy = 'ascending',
       layout_strategy = 'flex',
-      layout_defaults = {
+      layout_config = {
+        height = 0.8,
+        width = 0.8,
+        prompt_position = 'top',
+        preview_cutoff = 120,
         horizontal = {
           mirror = false,
           preview_width = 0.6,
@@ -41,10 +44,6 @@ function M.config()
       generic_sorter =  require('telescope.sorters').get_generic_fuzzy_sorter,
       shorten_path = true,
       winblend = 0,
-      width = 0.85,
-      preview_cutoff = 120,
-      results_height = 1,
-      results_width = 0.8,
       border = {},
       borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰'},
       color_devicons = true,
