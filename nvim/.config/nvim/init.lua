@@ -277,9 +277,7 @@ vim.opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
 -- Set completionopt to have a better completion experience.
 vim.opt.completeopt = {
   'menuone',
-  'noinsert',
   'noselect',
-  'longest'
 }
 vim.opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
 vim.opt.path:prepend('**') -- Searches current directory recursively

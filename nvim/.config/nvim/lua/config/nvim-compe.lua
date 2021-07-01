@@ -16,8 +16,8 @@ function M.config()
     enabled = true,
     autocomplete = true,
     debug = false,
-    min_length = 1,
-    preselect = 'enable',
+    min_length = 2,
+    preselect = 'disable',
     throttle_time = 80,
     source_timeout = 200,
     resolve_timeout = 800,
@@ -32,7 +32,7 @@ function M.config()
       calc = true,
       nvim_lsp = true,
       nvim_lua = true,
-      snippets = true,
+      snippets_nvim = true,
     },
   }
 end
