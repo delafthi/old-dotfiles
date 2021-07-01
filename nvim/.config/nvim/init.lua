@@ -1,4 +1,4 @@
-local exec = vim.api.nvim_exec -- to execute vim commands
+local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
 local u = require('utils')
 
@@ -18,16 +18,16 @@ vim.opt.writebackup = false -- Disable backups, when a file is written.
 
 -- Buffers {{{1
 vim.opt.autoread = true -- Enable automatic reload of unchanged files.
-exec([[
+cmd [[
   augroup autoreload
     autocmd CursorHold * checktime
   augroup END
-  ]], false) -- Auto reload file, when changes where made somewhere else (for autoreload)
+]] -- Auto reload file, when changes where made somewhere else (for autoreload)
 vim.opt.hidden = true -- Enable modified buffers in the background.
 vim.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 -- Automatically deletes all trailing whitespace and newlines at end of file on
 -- save.
-exec([[
+cmd [[
 function! TrimTrailingLines()
   let lastLine = line('$')
   let lastNonblankLine = prevnonblank(lastLine)
@@ -40,7 +40,7 @@ augroup remove_trailing_whitespaces_and_lines
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufWritepre * call TrimTrailingLines()
 augroup END
-]], false)
+]]
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
@@ -82,11 +82,11 @@ vim.opt.showmode = false -- Don't show mode in the command line.
 vim.opt.signcolumn = 'yes' -- Enable sign columns left of the line numbers.
 vim.opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
 vim.opt.textwidth = 80 -- Max text length.
-exec([[
+cmd [[
   augroup highlight_on_yank
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup END
-  ]], false) -- Enable highlight on yank.
+]] -- Enable highlight on yank.
 vim.g.vimsyn_embed = 'lPr' -- Allow embedded syntax highlighting for lua, python, ruby.
 vim.opt.wrap = true -- Enable line wrapping.
 vim.opt.virtualedit = 'block' -- Allow cursor to move past end of line.
@@ -94,14 +94,14 @@ vim.opt.visualbell = false -- Disable annoying beeps
 vim.opt.shortmess = 'c' -- Avoid showing extra messages when using completion
 
 -- Filetypes {{{1
-exec([[
+cmd [[
   augroup additionalFiletypes
     autocmd!
     autocmd BufNewFile,BufRead *.cl set filetype=cpp
     autocmd BufNewFile,BufRead *.bb set filetype=sh
     autocmd BufNewFile,BufRead *.bbappend set filetype=sh
   augroup END
-  ]], false) -- Set filetype for opencl device code
+]] -- Set filetype for opencl device code
 
 -- Folds {{{1
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
@@ -190,7 +190,7 @@ u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
 u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
-exec([[ca w!! w !sudo tee >/dev/null "%"]], false)
+cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
 -- Mouse {{{1
 vim.opt.mouse = 'nvicr' -- Enables different support modes for the mouse
@@ -240,20 +240,20 @@ vim.opt.laststatus = 2 -- Always show the statusline
 -- Terminal {{{1
 function _G.__new_term(split)
   if split == 'h' then
-    exec([[botright 12 split term://$SHELL]], false)
+    cmd [[botright 12 split term://$SHELL]]
   else
-    exec([[botright vsplit term://$SHELL]], false)
+    cmd [[botright vsplit term://$SHELL]]
   end
-  exec([[setlocal nonumber]], false)
-  exec([[setlocal norelativenumber]], false)
-  exec([[startinsert]], false)
+  cmd [[setlocal nonumber]]
+  cmd [[setlocal norelativenumber]]
+  cmd [[startinsert]]
 end
-exec([[
+cmd [[
   augroup terminal
     autocmd!
     autocmd BufWinEnter,WinEnter term://* startinsert
   augroup END
-  ]], false) -- Automatically go to insert mode, when changing to the terminal window
+]] -- Automatically go to insert mode, when changing to the terminal window
 
 -- Timings {{{1
 vim.opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
