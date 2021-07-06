@@ -13,8 +13,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
     'https://github.com/wbthomason/packer.nvim', install_path})
   print(out)
   cmd [[packadd packer.nvim]]
-  print('Installation of packer.nvim successfull. Run :PackerSync to download ',
-    'and install all plugins.')
+  print('Installation of packer.nvim successfull. Run :PackerSync to download',
+    'and install all plugins. In case of failures rerun :PackerSync until the',
+    'the installation succeeeds.')
 end
 
 -- Run PackerCompile automatically whenever plugins.lua is updated
