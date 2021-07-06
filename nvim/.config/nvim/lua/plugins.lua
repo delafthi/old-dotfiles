@@ -160,7 +160,7 @@ require('packer').startup {
     -- Visuals/aesthetics
     use {
       'lukas-reineke/indent-blankline.nvim',
-      branch = 'lua',
+      branch = 'master',
       setup = require('config.indent-blankline').setup(),
     }
   end,
