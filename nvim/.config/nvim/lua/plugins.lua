@@ -1,4 +1,4 @@
-local exec = vim.api.nvim_exec -- to execute vim commands
+local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
 
 -- Install packer.nvim, if it is not yet installed {{{1
@@ -12,13 +12,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   local out = fn.system({'git', 'clone',
     'https://github.com/wbthomason/packer.nvim', install_path})
   print(out)
-  exec('packadd packer.nvim', false)
+  cmd [[packadd packer.nvim]]
   print('Installation of packer.nvim successfull. Run :PackerSync to download ',
     'and install all plugins.')
 end
 
 -- Run PackerCompile automatically whenever plugins.lua is updated
-exec('autocmd BufWritePost plugins.lua PackerCompile', false)
+cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 -- Plugin specification {{{1
 require('packer').startup {
