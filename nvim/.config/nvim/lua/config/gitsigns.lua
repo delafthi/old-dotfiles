@@ -9,7 +9,7 @@ function M.config()
     return
   end
 
-require('gitsigns').setup {
+gitsigns.setup {
   signs = {
     add = {
       hl = 'GitSignsAdd',
