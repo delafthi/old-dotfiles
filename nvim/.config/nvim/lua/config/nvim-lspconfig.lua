@@ -82,7 +82,7 @@ function M.config()
     on_attach = on_attach,
   }
   -- c-language-server
-  lspconfig.ccls.setup{
+  lspconfig.clangd.setup{
     capabilities = capabilities,
     on_attach = on_attach,
   }
