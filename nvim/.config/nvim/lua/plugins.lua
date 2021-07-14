@@ -94,6 +94,11 @@ require('packer').startup {
     }
     -- Note taking
     use {
+      'vhyrro/neorg',
+      requires = 'nvim-lua/plenary.nvim',
+      config = require('config.neorg').config(),
+    }
+    use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app & yarn install',
       ft = {'markdown', 'vimwiki'},

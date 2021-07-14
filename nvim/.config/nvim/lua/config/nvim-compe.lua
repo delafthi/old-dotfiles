@@ -33,6 +33,7 @@ function M.config()
       nvim_lsp = true,
       nvim_lua = true,
       snippets_nvim = true,
+      neorg = true,
     },
   }
 end
