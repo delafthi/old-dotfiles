@@ -1,3 +1,5 @@
 # Global ignored directories and files
-.ccls-cache/
+.cache/
+compile_commands.json
 .python-version
+pyrightconfig.json
