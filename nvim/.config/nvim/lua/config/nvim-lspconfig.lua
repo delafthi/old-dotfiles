@@ -22,24 +22,25 @@ function M.config()
     u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
+    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gp', '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gn', '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>', opts)
     u.bufmap(bufnr, 'n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'gs', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
+    u.bufmap(bufnr, 'i', '<C-k>', '<Cmd>lua vim.lsp.buf.signature_help()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wa', '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wr', '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>wl', '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>D', '<Cmd>lua vim.lsp.buf.type_definition()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>rn', '<Cmd>lua vim.lsp.buf.rename()<Cr>', opts)
     u.bufmap(bufnr, 'n', '<Leader>ld', '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>', opts)
-    u.bufmap(bufnr, 'n', '<Leader>sl', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
+    u.bufmap(bufnr, 'n', '<Leader>q', '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>', opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>bf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'v', '<Leader>df', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'v', '<Leader>bf', '<cmd>lua vim.lsp.buf.ranger_formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
