@@ -90,10 +90,6 @@ require('packer').startup {
     }
     -- Note taking
     use {
-      'vimwiki/vimwiki',
-      setup = require('config.vimwiki').setup(),
-    }
-    use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app & yarn install',
       ft = {'markdown', 'vimwiki'},
