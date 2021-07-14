@@ -47,7 +47,7 @@ function M.config()
   }
 
 local opts = {noremap = true, silent = true}
-u.map('n', '<Leader>gs', '<Cmd>lua require("neogit").open({kind="split"})<Cr>',
+u.map('n', '<Leader>ng', '<Cmd>lua require("neogit").open({kind="split"})<Cr>',
   opts)
 
 end
