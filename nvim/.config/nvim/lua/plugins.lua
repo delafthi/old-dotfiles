@@ -94,16 +94,6 @@ require('packer').startup {
       setup = require('config.vimwiki').setup(),
     }
     use {
-      'oberblastmeister/neuron.nvim',
-      requires = {
-        {'nvim-lua/popup.nvim'},
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-telescope/telescope.nvim'}
-      },
-      branch = 'unstable',
-      config = require('config.neuron').config(),
-    }
-    use {
       'iamcco/markdown-preview.nvim',
       run = 'cd app & yarn install',
       ft = {'markdown', 'vimwiki'},
