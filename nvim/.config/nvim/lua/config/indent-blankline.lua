@@ -5,6 +5,7 @@ function M.setup()
   vim.g.indent_blankline_filetype_exclude = {
     'dashboard',
     'packer',
+    'help',
   }
 end
 
