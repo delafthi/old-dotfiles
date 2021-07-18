@@ -107,8 +107,7 @@ require('packer').startup {
     }
     -- Snippets
     use {
-      'norcalli/snippets.nvim',
-      config = require('config.snippets').config(),
+      'L3MON4D3/Luasnip',
     }
     -- Start screen
     use {
