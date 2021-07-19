@@ -1,4 +1,6 @@
-# Binaries/Scripts
+# Scripts
+
+This folder contains custom scripts and executables I regularly use.
 
 ## outlook, teams, protonmail
 
