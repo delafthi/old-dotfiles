@@ -1,6 +1,6 @@
 [settings]
 opentool = zathura
-file-browser = vifm
+file-browser = ranger
 # Ask for confirmation when doing papis add
 add-confirm = True
 # Edit the info.yaml file before adding a doc into the library
