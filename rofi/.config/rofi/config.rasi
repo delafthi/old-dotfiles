@@ -1,6 +1,15 @@
 configuration {
   modi: "window,drun,ssh,combi";
-  theme: "nord";
-  font: "VictorMonoNerdFont 12";
   combi-modi: "window,drun,ssh";
+  font: "VictorMonoNerdFont 12";
+  width: 30;
+  line-margin: 10;
+  columns: 2;
+  theme: "nord";
+  dispaly-ssh: " "";
+  display-run:    " ";
+  display-drun:   " ";
+  display-window: " ";
+  display-combi:  " ";
+  show-icons:     true;
 }
