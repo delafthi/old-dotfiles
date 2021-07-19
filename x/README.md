@@ -1,22 +1,24 @@
 # X
 
+This folder contains configurations related to X, Xterm or Xinit.
+
 ## Requirements
 
-- Victor Mono Nerd Font
-- Breeze Snow Cursor Theme
-- picom
-- udiskie
-- xss-lock
-- nm-applet
-- blueman-applet
-- pasystray
-- pcmanfm
-- unclutter
-- awesome
+- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/VictorMono.zip)
+- [Breeze Snow Cursor Theme](https://github.com/KDE/breeze)
+- [picom](https://github.com/yshui/picom)
+- [udiskie](https://github.com/coldfix/udiskie)
+- [xss-lock](https://www.mankier.com/1/xss-lock)
+- [nm-applet](https://networkmanager.dev/)
+- [blueman-applet](https://github.com/blueman-project/blueman)
+- [pasystray](https://github.com/christophgysin/pasystray)
+- [pcmanfm](https://wiki.lxde.org/en/PCManFM)
+- [unclutter](https://github.com/Airblader/unclutter-xfixes)
+- [awesome](https://awesomewm.org/)
 
 ## Reference
 
-- https://wiki.archlinux.org/title/Xinit#xinitrc
-- https://wiki.archlinux.org/title/X_resources
-- https://wiki.archlinux.org/title/Cursor_themes#X_resources
-- https://wiki.archlinux.org/title/Xterm#Configuration
+- [Xinit](https://wiki.archlinux.org/title/Xinit#xinitrc)
+- [Xresources](https://wiki.archlinux.org/title/X_resources)
+- [Cursor themes](https://wiki.archlinux.org/title/Cursor_themes#X_resources)
+- [Xterm config](https://wiki.archlinux.org/title/Xterm#Configuration)
