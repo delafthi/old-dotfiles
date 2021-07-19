@@ -1,7 +1,9 @@
 # Bash
 
-## Dependencies
+This folders contains the configuration for bash. The most popular shell, which
+is widely used in the industry.
 
+## Dependencies
 
 The only hard dependency of this configuration is `bash_completion`, which is in
 my opinion a necessity for bash. The following dependency are not required.
