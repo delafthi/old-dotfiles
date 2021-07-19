@@ -28,7 +28,7 @@ require('packer').startup {
     use {'wbthomason/packer.nvim'}
     -- Colors
     use {
-      'shaunsingh/nord.nvim',
+      'delafthi/nord.nvim',
       setup = require('config.nord').setup(),
       config = require('config.nord').config(),
     }
@@ -100,8 +100,8 @@ require('packer').startup {
     }
     use {
       'iamcco/markdown-preview.nvim',
-      run = 'cd app & yarn install',
-      ft = {'markdown', 'vimwiki'},
+      run = 'cd app && yarn install',
+      ft = {'markdown', 'mkd'},
       setup = require('config.markdown-preview').setup(),
       config = require('config.markdown-preview').config(),
     }
@@ -127,10 +127,13 @@ require('packer').startup {
     -- Syntax highlighting
     use {
       'nvim-treesitter/nvim-treesitter',
-      requires = {'p00f/nvim-ts-rainbow'},
       run = ':TSUpdate',
       config = require('config.nvim-treesitter').config(),
     }
+    use {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    }
+    use {'p00f/nvim-ts-rainbow'}
     use {
       'norcalli/nvim-colorizer.lua',
       config = function()
@@ -141,6 +144,14 @@ require('packer').startup {
           colorizer.setup()
         end
       end,
+    }
+    use {
+      'lewis6991/spellsitter.nvim',
+      config = require('config.spellsitter').config(),
+    }
+    use {
+      'folke/todo-comments.nvim',
+      config = require('config.todo-comments').config(),
     }
     -- Text editing
     use {
