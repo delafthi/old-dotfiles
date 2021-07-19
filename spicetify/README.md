@@ -1,8 +1,10 @@
 # Spicetify
 
 Customize the appearance of Spotify. The configuration is heavily based on
-dribbblishs configuration (see references). Make sure to adjust the paths in
-`config-xpui.ini` (relative paths are not possible).
+dribbblishs configuration (see references).
+
+- Make sure to adjust the paths in `config-xpui.ini` (relative paths are not
+  possible).
 
 ## Dependencies
 
