@@ -23,6 +23,9 @@ shopt -s checkwinsize # checks term size when bash regains control
 # Set vi bindings
 set -o vi
 
+# Auto-completion
+source /usr/share/bash-completion/bash_completion
+
 ############################################################
 # Aliases {{{1
 
@@ -103,9 +106,6 @@ function ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-# Auto-completion
-source /usr/share/bash-completion/bash_completion
 
 ###########################################################
 # Settings with dependencies {{{1
