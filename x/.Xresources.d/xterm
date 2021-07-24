@@ -3,6 +3,7 @@ XTerm*faceName: xft:VictorMono Nerd Font
 XTerm*faceSize: 11
 XTerm*locale: true
 XTerm*savelines: 10000
-XTerm*.metaSendsEscape: true
-XTerm.*.backarrowKey: false
-XTerm.ttyModes: erase ^?
+XTerm*internalBorder: 8
+XTerm*metaSendsEscape: true
+XTerm*backarrowKey: false
+XTerm*ttyModes: erase ^?
