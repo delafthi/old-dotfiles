@@ -38,18 +38,17 @@ function M.get_widget()
               end
             end
             mem['MemUsed'] = tonumber(mem['MemTotal'] == nil and 0 or mem['MemTotal']) - tonumber(mem['MemAvailable'] == nil and 0 or mem['MemAvailable'])
-            widget:set_markup_silently(string.format('<span color=%q> : %2.f%%</span>', beautiful.yellow, mem['MemUsed']/mem['MemTotal']*100))
+            widget:set_markup_silently(string.format(' : %.f%%',
+                mem['MemUsed']/mem['MemTotal']*100))
           end),
         layout = wibox.layout.fixed.horizontal,
       },
-      top = 2 * beautiful.useless_gap,
-      bottom = 2 * beautiful.useless_gap,
       left = 5 * beautiful.useless_gap,
       right = 5 * beautiful.useless_gap,
       widget = wibox.container.margin,
     },
-    bg = beautiful.nord1,
-    fg = beautiful.fg_normal,
+    bg = beautiful.green,
+    fg = beautiful.nord0,
     shape = gears.shape.rounded_bar,
     widget = wibox.container.background,
   }

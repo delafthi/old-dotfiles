@@ -53,6 +53,7 @@ function M.get_widget(s)
         {
           {
             id = 'icon_role',
+            resize = true,
             widget = wibox.widget.imagebox,
           },
           {
@@ -62,8 +63,6 @@ function M.get_widget(s)
           spacing = 2 * beautiful.useless_gap,
           layout = wibox.layout.fixed.horizontal,
         },
-        top = 2 * beautiful.useless_gap,
-        bottom = 2 * beautiful.useless_gap,
         left = 3 * beautiful.useless_gap,
         right = 5 * beautiful.useless_gap,
         widget = wibox.container.margin,

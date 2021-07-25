@@ -359,7 +359,10 @@ ruled.client.connect_signal('request::rules', function()
       raise = true,
       screen = awful.screen.preferred,
       shape = beautiful.shape,
-      -- titlebars_enabled = true,
+      maximized = false,
+      maximized_horizontal = false,
+      maximized_vertical = false,
+      minimized = false,
     }
   }
   -- Floating clients
@@ -415,9 +418,27 @@ end)
 
 -----------------------------------------------------------
 -- Create environment {{{1
+--
+local function set_random_wallpaper(s)
+  local wallpaper_path = '/usr/share/backgrounds'
+  local fileending = '.jpg'
+  local f = io.popen('fd -d 1 --regex ' .. fileending .. ' ' ..  wallpaper_path, 'r')
+  local files = {}
+  local length = 0
+  local line = 'begin'
+  while line ~= nil do
+    line = f:read('*l')
+    table.insert(files, line)
+    length = length + 1
+  end
+  f:close()
+  math.randomseed(os.time()) -- Set the random seed
+  math.random(); math.random(); math.random() -- Pop some random numbers, before using it
+  return gears.wallpaper.maximized(files[math.random(1, length)], s, true)
+end
 
 screen.connect_signal('request::wallpaper', function(s)
-  gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+  set_random_wallpaper(s)
 end)
 
 screen.connect_signal('request::desktop_decoration', function(s)

@@ -67,7 +67,7 @@ function M.get_popup(widget, s)
         widget_template = {
           {
             {
-              id            = 'icon_role',
+              id            = 'clienticon',
               forced_height = 22,
               forced_width  = 22,
               widget        = wibox.widget.imagebox,

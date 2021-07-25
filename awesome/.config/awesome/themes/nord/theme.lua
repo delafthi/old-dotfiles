@@ -6,7 +6,6 @@
 -- Includes {{{1
 local theme_assets = require('beautiful.theme_assets')
 local xresources = require('beautiful.xresources')
-local rnotification = require('ruled.notification')
 local dpi = xresources.apply_dpi
 local gears = require('gears')
 
@@ -55,11 +54,8 @@ theme.cyan = theme.nord7
 -- Default variables {{{2
 theme.font = 'Victor Mono Nerd Font' -- The default font
 theme.wallpaper = '~/.local/share/backgrounds/nord.png' -- The wallpaper path
-theme.icon_theme = nil -- The icon theme name
-theme.radius = dpi(15) -- The radious used to round corners
-theme.shape = function(cr, width, height)
-  return gears.shape.rounded_rect(cr, width, height, theme.radius)
-end -- The clients shape
+theme.icon_theme = 'Papirus' -- The icon theme name
+theme.shape = gears.shape.rectangle-- The clients shape
 
 -- Background {{{2
 theme.bg_normal = theme.nord0 -- The default background color
@@ -339,10 +335,7 @@ theme.tooltip_font = theme.font -- The tooltip font
 theme.tooltip_border_width = dpi(5) -- The tooltip border width
 theme.tooltip_opacity = 1.0 -- The tooltip opacity
 theme.tooltip_gaps = {2, 2, 2, 2} -- The tooltip margins
-theme.tooltip_shape = function(cr, width, height)
-  return gears.shape.partially_rounded_rect(cr, width, height, false, true,
-    true, true, theme.radius)
-end -- The default tooltip shape
+theme.tooltip_shape = theme.shape -- The default tooltip shape
 theme.tooltip_align = 'bottom_right' -- The default tooltip alignment
 
 -- Wibar {{{2
@@ -351,14 +344,15 @@ theme.wibar_bgimage = nil -- The wibar’s background image
 theme.wibar_fg = theme.nord4 -- The wibar’s foreground (text) color
 theme.wibar_shape = theme.shape -- The wibar’s shape
 theme.wibar_stretch = true -- If the wibar needs to be stretched to fill the screen
-theme.wibar_border_width = dpi(3) -- The wibar border width
+theme.wibar_border_width = dpi(0) -- The wibar border width
 theme.wibar_border_color = theme.wibar_bg -- The wibar border color
 theme.wibar_ontop = false -- If the wibar is to be on top of other windows
 theme.wibar_cursor = 'left_ptr' -- The wibar’s mouse cursor
 theme.wibar_opacity = 1.0 -- The wibar opacity, between 0 and 1
 theme.wibar_type = 'dock' -- The window type (desktop, normal, dock, …)
 theme.wibar_width = nil -- The wibar’s width
-theme.wibar_height = dpi(40) -- The wibar’s height
+theme.wibar_height = dpi(30) -- The wibar’s height
+theme.wibar_spacing = 3 * theme.useless_gap -- The spacing between widgets in the wibar
 
 -- Widgets {{{2
 -- arcchart {{{3
@@ -493,8 +487,8 @@ theme.systray_icon_spacing = dpi(3) -- The systray icon spacing
 -- Taglist {{{3
 theme.taglist_fg_focus = theme.nord0 -- The tag list main foreground (text) color
 theme.taglist_bg_focus = theme.nord9 -- The tag list main background color
-theme.taglist_fg_urgent = theme.nord11 -- The tag list urgent elements foreground (text) color
-theme.taglist_bg_urgent = theme.nord1 -- The tag list urgent elements background color
+theme.taglist_fg_urgent = theme.nord0 -- The tag list urgent elements foreground (text) color
+theme.taglist_bg_urgent = theme.nord11 -- The tag list urgent elements background color
 theme.taglist_fg_occupied = theme.nord4 -- The tag list occupied elements foreground (text) color
 theme.taglist_bg_occupied = theme.nord1 -- The tag list occupied elements background color
 theme.taglist_fg_empty = theme.nord2 -- The tag list empty elements foreground (text) color
@@ -509,18 +503,18 @@ theme.taglist_squares_resize = true -- If the background images can be resized
 theme.taglist_disable_icon = false -- Do not display the tag icons, even if they are set
 theme.taglist_font = theme.font -- The taglist font
 theme.taglist_spacing = dpi(3) -- The space between the taglist elements
-theme.taglist_shape = theme.shape -- The main shape used for the elements
+theme.taglist_shape = gears.shape.rounded_bar -- The main shape used for the elements
 theme.taglist_shape_border_width = dpi(3) -- The shape elements border width
 theme.taglist_shape_border_color = theme.nord1 -- The elements shape border color
 theme.taglist_shape_empty = nil -- The shape used for the empty elements
 theme.taglist_shape_border_width_empty = theme.taglist_shape_border_width -- The shape used for the empty elements border width
-theme.taglist_shape_border_color_empty = theme.taglist_shape_border_color -- The empty elements shape border color
+theme.taglist_shape_border_color_empty = theme.taglist_bg_empty -- The empty elements shape border color
 theme.taglist_shape_focus = theme.taglist_shape -- The shape used for the selected elements
 theme.taglist_shape_border_width_focus = theme.taglist_shape_border_width -- The shape used for the selected elements border width
 theme.taglist_shape_border_color_focus = theme.taglist_bg_focus -- The selected elements shape border color
 theme.taglist_shape_urgent = theme.taglist_shape -- The shape used for the urgent elements
 theme.taglist_shape_border_width_urgent = theme.taglist_shape_border_width -- The shape used for the urgent elements border width
-theme.taglist_shape_border_color_urgent = theme.taglist_fg_urgent -- The urgents elements shape border color
+theme.taglist_shape_border_color_urgent = theme.taglist_bg_urgent -- The urgents elements shape border color
 theme.taglist_shape_volatile = theme.taglist_shape -- The shape used for the volatile elements
 theme.taglist_shape_border_width_volatile = theme.taglist_shape_border_width -- The shape used for the volatile elements border width
 theme.taglist_shape_border_color_volatile = theme.taglist_bg_volatile -- The volatile elements shape border color
@@ -541,21 +535,21 @@ theme.tasklist_bg_image_minimize = nil -- The minimized clients background image
 theme.tasklist_disable_icon = false -- Disable the tasklist client icons
 theme.tasklist_disable_task_name = false -- Disable the tasklist client titles
 theme.tasklist_plain_task_name = true -- Disable the extra tasklist client property notification icons
-theme.tasklist_sticky = 's' -- Extra tasklist client property notification icon for clients with the sticky property set
-theme.tasklist_ontop = 't' -- Extra tasklist client property notification icon for clients with the ontop property set
-theme.tasklist_above = 'a' -- Extra tasklist client property notification icon for clients with the above property set
-theme.tasklist_below = 'b' -- Extra tasklist client property notification icon for clients with the below property set
-theme.tasklist_floating = 'f' -- Extra tasklist client property notification icon for clients with the floating property set
-theme.tasklist_maximized = 'm' -- Extra tasklist client property notification icon for clients with the maximized property set
-theme.tasklist_maximized_horizontal = 'm' -- Extra tasklist client property notification icon for clients with the maximized_horizontal property set
-theme.tasklist_maximized_vertical = 'm' -- Extra tasklist client property notification icon for clients with the maximized_vertical property set
+theme.tasklist_sticky = ' ' -- Extra tasklist client property notification icon for clients with the sticky property set
+theme.tasklist_ontop = ' ' -- Extra tasklist client property notification icon for clients with the ontop property set
+theme.tasklist_above = '禎' -- Extra tasklist client property notification icon for clients with the above property set
+theme.tasklist_below = '穀' -- Extra tasklist client property notification icon for clients with the below property set
+theme.tasklist_floating = ' ' -- Extra tasklist client property notification icon for clients with the floating property set
+theme.tasklist_maximized = '' -- Extra tasklist client property notification icon for clients with the maximized property set
+theme.tasklist_maximized_horizontal = 'ﱟ' -- Extra tasklist client property notification icon for clients with the maximized_horizontal property set
+theme.tasklist_maximized_vertical = '祈' -- Extra tasklist client property notification icon for clients with the maximized_vertical property set
 theme.tasklist_font = theme.font -- The tasklist font
 theme.tasklist_align =  'center' -- The focused client alignment
 theme.tasklist_font_focus = theme.font -- The focused client title alignment
 theme.tasklist_font_minimized = theme.font -- The minimized clients font
 theme.tasklist_font_urgent = theme.font -- The urgent clients font
 theme.tasklist_spacing = dpi(7) -- The space between the tasklist elements
-theme.tasklist_shape = theme.shape -- The default tasklist elements shape
+theme.tasklist_shape = gears.shape.rounded_bar -- The default tasklist elements shape
 theme.tasklist_shape_border_width = dpi(3) -- The default tasklist elements border width
 theme.tasklist_shape_border_color = theme.tasklist_bg_normal -- The default tasklist elements border color
 theme.tasklist_shape_focus = theme.tasklist_shape -- The focused client shape
