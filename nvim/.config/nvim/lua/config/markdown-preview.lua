@@ -17,7 +17,7 @@ function M.setup()
     sequence_diagrams = {},
     flowchart_diagrams = {},
     content_editable = false,
-    disable_filename = 0,
+    disable_filename = 0
   }
 
 end

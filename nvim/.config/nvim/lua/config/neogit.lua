@@ -2,13 +2,9 @@ local M = {}
 local u = require('utils')
 
 function M.config()
-  local ok, neogit = pcall(function()
-    return require('neogit')
-  end)
+  local ok, neogit = pcall(function() return require('neogit') end)
 
-  if not ok then
-    return
-  end
+  if not ok then return end
 
   neogit.setup {
     disable_signs = false,
@@ -16,9 +12,9 @@ function M.config()
     -- customize displayed signs
     signs = {
       -- { CLOSED, OPENED }
-      section = { '>', 'v' },
-      item = { '>', 'v' },
-      hunk = { '', '' },
+      section = {'>', 'v'},
+      item = {'>', 'v'},
+      hunk = {'', ''}
     },
     -- override/add mappings
     mappings = {
@@ -41,14 +37,14 @@ function M.config()
         ['Z'] = 'StashPopup',
         ['x'] = 'Discard changes',
         ['<Enter>'] = 'GoToFile',
-        ['<C-r>'] = 'RefreshBuffer',
+        ['<C-r>'] = 'RefreshBuffer'
       }
     }
   }
 
-local opts = {noremap = true, silent = true}
-u.map('n', '<Leader>ng', '<Cmd>lua require("neogit").open({kind="split"})<Cr>',
-  opts)
+  local opts = {noremap = true, silent = true}
+  u.map('n', '<Leader>ng',
+        '<Cmd>lua require("neogit").open({kind="split"})<Cr>', opts)
 
 end
 

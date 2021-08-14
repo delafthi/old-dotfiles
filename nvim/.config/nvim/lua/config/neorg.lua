@@ -1,13 +1,9 @@
 local M = {}
 
 function M.config()
-  local ok, neorg = pcall(function()
-    return require('neorg')
-  end)
+  local ok, neorg = pcall(function() return require('neorg') end)
 
-  if not ok then
-    return
-  end
+  if not ok then return end
 
   neorg.setup {
     load = {
@@ -17,115 +13,91 @@ function M.config()
         config = {
           icons = {
             todo = {
-                enabled = true, -- Conceal TODO items
+              enabled = true, -- Conceal TODO items
 
-                done = {
-                    enabled = true, -- Conceal whenever an item is marked as done
-                    icon = '',
-                },
-                pending = {
-                    enabled = true, -- Conceal whenever an item is marked as pending
-                    icon = '',
-                },
-                undone = {
-                    enabled = true, -- Conceal whenever an item is marked as undone
-                    icon = '×',
-                }
+              done = {
+                enabled = true, -- Conceal whenever an item is marked as done
+                icon = ''
+              },
+              pending = {
+                enabled = true, -- Conceal whenever an item is marked as pending
+                icon = ''
+              },
+              undone = {
+                enabled = true, -- Conceal whenever an item is marked as undone
+                icon = '×'
+              }
             },
             quote = {
-                enabled = true, -- Conceal quotes
-                icon = '∣',
+              enabled = true, -- Conceal quotes
+              icon = '∣'
             },
             heading = {
-                enabled = true, -- Enable beautified headings
+              enabled = true, -- Enable beautified headings
 
-                -- Define icons for all the different heading levels
-                level_1 = {
-                    enabled = true,
-                    icon = '◉',
-                },
+              -- Define icons for all the different heading levels
+              level_1 = {enabled = true, icon = '◉'},
 
-                level_2 = {
-                    enabled = true,
-                    icon = '○',
-                },
+              level_2 = {enabled = true, icon = '○'},
 
-                level_3 = {
-                    enabled = true,
-                    icon = '✿',
-                },
+              level_3 = {enabled = true, icon = '✿'},
 
-                level_4 = {
-                    enabled = true,
-                    icon = '•',
-                },
+              level_4 = {enabled = true, icon = '•'}
             },
             marker = {
-                enabled = true, -- Enable the beautification of markers
-                icon = '',
-            },
-          },
-        },
+              enabled = true, -- Enable the beautification of markers
+              icon = ''
+            }
+          }
+        }
       },
       ['core.integrations.treesitter'] = {
         config = {
           highlights = {
             tag = {
-                -- The + tells neorg to link to an existing hl
-                begin = '+TSKeyword',
+              -- The + tells neorg to link to an existing hl
+              begin = '+TSKeyword',
 
-                ['end'] = '+TSKeyword',
+              ['end'] = '+TSKeyword',
 
-                name = '+TSKeyword',
-                parameters = '+TSType',
-                content = '+Normal',
-                comment = '+TSComment',
+              name = '+TSKeyword',
+              parameters = '+TSType',
+              content = '+Normal',
+              comment = '+TSComment'
             },
 
             heading = {
-                ['1'] = '+TSAttribute',
-                ['2'] = '+TSLabel',
-                ['3'] = '+TSMath',
-                ['4'] = '+TSString',
+              ['1'] = '+TSAttribute',
+              ['2'] = '+TSLabel',
+              ['3'] = '+TSMath',
+              ['4'] = '+TSString'
             },
 
             error = '+TSError',
 
-            marker = {
-                [''] = '+TSLabel',
-                title = '+Normal',
-            },
+            marker = {[''] = '+TSLabel', title = '+Normal'},
 
             drawer = {
-                [''] = '+TSPunctDelimiter',
-                title = '+TSMath',
-                content = '+Normal'
+              [''] = '+TSPunctDelimiter',
+              title = '+TSMath',
+              content = '+Normal'
             },
 
             escapesequence = '+TSType',
 
             todoitem = {
-                [''] = '+TSCharacter',
-                pendingmark = '+TSNamespace',
-                donemark = '+TSMethod',
+              [''] = '+TSCharacter',
+              pendingmark = '+TSNamespace',
+              donemark = '+TSMethod'
             },
 
             unorderedlist = '+TSPunctDelimiter',
 
-            quote = {
-                [''] = '+TSPunctDelimiter',
-                content = '+TSPunctDelimiter',
-            },
-          },
-        },
-      },
-      ['core.norg.dirman'] = {
-        config = {
-          workspaces = {
-            notes = '~/neorg',
+            quote = {[''] = '+TSPunctDelimiter', content = '+TSPunctDelimiter'}
           }
         }
-      }
+      },
+      ['core.norg.dirman'] = {config = {workspaces = {notes = '~/neorg'}}}
     }
   }
 end

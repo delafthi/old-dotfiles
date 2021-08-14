@@ -1,13 +1,9 @@
 local M = {}
 
 function M.config()
-  local ok, ts = pcall(function()
-    return require('nvim-treesitter.configs')
-  end)
+  local ok, ts = pcall(function() return require('nvim-treesitter.configs') end)
 
-  if not ok then
-    return
-  end
+  if not ok then return end
 
   -- Additional parsers
   local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
@@ -15,22 +11,16 @@ function M.config()
   parser_configs.norg = {
     install_info = {
       url = 'https://github.com/vhyrro/tree-sitter-norg',
-      files = { 'src/parser.c' },
-      branch = 'main',
-    },
+      files = {'src/parser.c'},
+      branch = 'main'
+    }
   }
 
-  ts.setup{
+  ts.setup {
     ensure_installed = 'maintained',
-    highlight = {
-      enable = true,
-    },
-    indent = {
-      enable = false,
-    },
-    incremental_selection = {
-      enable = false,
-    },
+    highlight = {enable = true},
+    indent = {enable = false},
+    incremental_selection = {enable = false},
     -- Treesitter Plugins
     textobjects = {
       select = {
@@ -41,51 +31,37 @@ function M.config()
           ['af'] = '@function.outer',
           ['if'] = '@function.inner',
           ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
+          ['ic'] = '@class.inner'
+        }
       },
       swap = {
         enable = true,
-        swap_next = {
-          ['<Leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<Leader>A'] = '@parameter.inner',
-        },
+        swap_next = {['<Leader>a'] = '@parameter.inner'},
+        swap_previous = {['<Leader>A'] = '@parameter.inner'}
       },
       move = {
         set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
+        goto_next_start = {[']m'] = '@function.outer', [']]'] = '@class.outer'},
+        goto_next_end = {[']M'] = '@function.outer', [']['] = '@class.outer'},
         goto_previous_start = {
           ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          ['[['] = '@class.outer'
         },
         goto_previous_end = {
           ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
+          ['[]'] = '@class.outer'
+        }
       },
       lsp_interop = {
         enable = true,
         border = 'none',
         peek_definition_code = {
           ['df'] = '@function.outer',
-          ['dF'] = '@class.outer',
-        },
-      },
+          ['dF'] = '@class.outer'
+        }
+      }
     },
-    rainbow = {
-      enable = true,
-      extended_mode = true,
-      max_file_lines = 1000,
-    },
+    rainbow = {enable = true, extended_mode = true, max_file_lines = 1000}
   }
 end
 

@@ -44,15 +44,10 @@ augroup END
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
-vim.opt.diffopt:prepend {
-  'context:4',
-  'iwhite',
-  'vertical',
-  'hiddenoff',
-  'foldcolumn:0',
-  'indent-heuristic',
-  'algorithm:histogram',
-  }
+vim.opt.diffopt:prepend{
+  'context:4', 'iwhite', 'vertical', 'hiddenoff', 'foldcolumn:0',
+  'indent-heuristic', 'algorithm:histogram'
+}
 
 -- Display {{{1
 vim.opt.colorcolumn = '80' -- Set colorcolumn to 80
@@ -71,7 +66,7 @@ vim.opt.listchars = {
   extends = '…',
   precedes = '…',
   conceal = '┊',
-  nbsp = '☠',
+  nbsp = '☠'
 }
 vim.opt.number = true -- Print line numbers.
 vim.opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
@@ -109,7 +104,7 @@ vim.opt.foldmethod = 'marker' -- The kind of folding for the current window.
 vim.opt.foldopen:append('search') -- Open folds, when something is found inside the fold.
 function _G.__foldtext()
   local foldstart = vim.api.nvim_get_vvar('foldstart')
-  local line = vim.api.nvim_buf_get_lines(0, foldstart-1, foldstart, false)
+  local line = vim.api.nvim_buf_get_lines(0, foldstart - 1, foldstart, false)
   local sub = string.gsub(line[1], '{{{.*', '')
   return '▸ ' .. sub
 end
@@ -187,8 +182,10 @@ u.map('n', '<Leader>bk', ':ls<Cr>:bd<Space>', opts)
 -- Toggle spell checking.
 u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
-u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true, silent = true})
-u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"', {expr = true, silent = true})
+u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
+      {expr = true, silent = true})
+u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
+      {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]
 
@@ -206,16 +203,14 @@ vim.opt.smartcase = true -- Don't ignore case with capitals.
 vim.opt.wrapscan = true -- Searches wraps at the end of the file.
 -- Use faster grep alternatives if possible
 if fn.executable('rg') > 0 then
-    vim.opt.grepprg =
-        [[rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*]]
-    vim.opt.grepformat:prepend('%f:%l:%c:%m')
+  vim.opt.grepprg =
+      [[rg --hidden --glob '!.git' --no-heading --smart-case --vimgrep --follow $*]]
+  vim.opt.grepformat:prepend('%f:%l:%c:%m')
 end
 
 -- Spell checking {{{1
 -- Set spell check languages.
-vim.opt.spelllang = {
-  'en_us',
-  'de_ch'}
+vim.opt.spelllang = {'en_us', 'de_ch'}
 
 -- Splits {{{1
 -- Fill characters for the statusline and vertical separators
@@ -229,7 +224,7 @@ vim.opt.fillchars = {
   foldsep = '│',
   diff = '',
   msgsep = '‾',
-  eob = '~',
+  eob = '~'
 }
 vim.opt.splitbelow = true -- Put new windows below the current.
 vim.opt.splitright = true -- Put new windows right of the current.
@@ -268,17 +263,10 @@ vim.opt.titlestring = '%t' -- Set title string.
 
 -- Utils {{{1
 -- Change backspace to behave more intuitively.
-vim.opt.backspace = {
-  'indent',
-  'eol',
-  'start'
-}
+vim.opt.backspace = {'indent', 'eol', 'start'}
 vim.opt.clipboard = 'unnamedplus' -- Enable copy paste into and out of nvim.
 -- Set completionopt to have a better completion experience.
-vim.opt.completeopt = {
-  'menuone',
-  'noselect',
-}
+vim.opt.completeopt = {'menuone', 'noselect'}
 vim.opt.inccommand = 'nosplit' -- Show the effect of a command incrementally, as you type.
 vim.opt.path:prepend('**') -- Searches current directory recursively
 
