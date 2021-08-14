@@ -49,6 +49,10 @@ require('packer').startup {
       'mfussenegger/nvim-dap',
       -- config = require('config.nvim-dap').config(),
     }
+    use {
+      'mhartington/formatter.nvim',
+      config = require('config.formatter').config(),
+    }
     -- Fuzzy finder
     use {
       'nvim-telescope/telescope.nvim',
