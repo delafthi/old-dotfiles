@@ -20,7 +20,11 @@ Neovim is a terminal based text editor with a f
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
-    - [yamlls](https://github.com/redhat-developer/yaml-language-server)
+  - Code formatters
+    - [shfmt](https://github.com/mvdan/sh)
+    - [hindent](https://hackage.haskell.org/package/hindent)
+    - [lua-format](https://github.com/Koihik/LuaFormatter)
+    - [yapf](https://github.com/google/yapf)
 
 ## References
 
