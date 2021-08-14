@@ -38,9 +38,9 @@ function M.config()
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      u.bufmap(bufnr, 'n', '<Leader>bf', '<cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'n', '<Leader>bf', '<Cmd>lua vim.lsp.buf.formatting()<Cr>', opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(bufnr, 'v', '<Leader>bf', '<cmd>lua vim.lsp.buf.ranger_formatting()<Cr>', opts)
+      u.bufmap(bufnr, 'v', '<Leader>bf', '<Cmd>lua vim.lsp.buf.ranger_formatting()<Cr>', opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
