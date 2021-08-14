@@ -108,6 +108,8 @@ require('packer').startup {
     -- Snippets
     use {
       'L3MON4D3/Luasnip',
+      after = 'nvim-compe',
+      config = require('config.luasnip').config(),
     }
     -- Start screen
     use {
@@ -130,9 +132,7 @@ require('packer').startup {
       run = ':TSUpdate',
       config = require('config.nvim-treesitter').config(),
     }
-    use {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    }
+    use {'nvim-treesitter/nvim-treesitter-textobjects'}
     use {'p00f/nvim-ts-rainbow'}
     use {
       'norcalli/nvim-colorizer.lua',
