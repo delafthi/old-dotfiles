@@ -99,17 +99,6 @@ function M.config()
     root_dir = lspconfig.util.root_pattern('*.cabal', 'stack.yaml', 'cabal.project',
       'package.yaml', 'hie.yaml'),
   }
-  -- python-language-server
-  lspconfig.pyright.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-    settings = {
-      python = {
-        venvPath = vim.fn.expand('$HOME/.pyenv/versions'),
-      }
-    }
-  }
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup{
     capabilities = capabilities,
@@ -141,6 +130,17 @@ function M.config()
       },
     },
   }
+  -- python-language-server
+  lspconfig.pyright.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
+    settings = {
+      python = {
+        venvPath = vim.fn.expand('$HOME/.pyenv/versions'),
+      }
+    }
+  }
   -- (La)Tex-language-server
   lspconfig.texlab.setup{
     capabilities = capabilities,
@@ -148,11 +148,6 @@ function M.config()
   }
   -- vim-language-server
   lspconfig.vimls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
-  -- yaml-language-server
-  lspconfig.yamlls.setup{
     capabilities = capabilities,
     on_attach = on_attach,
   }
