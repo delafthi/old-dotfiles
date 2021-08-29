@@ -54,7 +54,7 @@ function M.get_widget()
               cpus[name]['idle_prev'] = idle
             end
           end
-          widget:set_markup_silently(string.format(' : %.f%%',
+          widget:set_markup_silently(string.format(' :%.f%%',
                                                    cpus['cpu']['diff_usage']))
         end),
         layout = wibox.layout.fixed.horizontal
@@ -63,7 +63,7 @@ function M.get_widget()
       right = 5 * beautiful.useless_gap,
       widget = wibox.container.margin
     },
-    bg = beautiful.red,
+    bg = beautiful.nord9,
     fg = beautiful.nord0,
     shape = gears.shape.rounded_bar,
     widget = wibox.container.background

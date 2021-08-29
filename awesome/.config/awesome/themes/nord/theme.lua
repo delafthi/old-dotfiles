@@ -61,7 +61,7 @@ theme.bg_normal = theme.nord0 -- The default background color
 theme.bg_focus = theme.nord9 -- The default focused element background color
 theme.bg_urgent = theme.bg_normal -- The default urgent element background color
 theme.bg_minimize = theme.bg_normal -- The default minimized element background color
-theme.bg_systray = theme.nord1 -- The system tray background color
+theme.bg_systray = theme.nord3 -- The system tray background color
 
 -- Foreground {{{2
 theme.fg_normal = theme.nord4 -- The default foreground (text) color

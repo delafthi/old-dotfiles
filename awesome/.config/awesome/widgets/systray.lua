@@ -31,7 +31,7 @@ function M.get_widget(s)
         right = 5 * beautiful.useless_gap,
         widget = wibox.container.margin
       },
-      bg = beautiful.nord1,
+      bg = beautiful.bg_systray,
       fg = beautiful.fg_normal,
       shape = gears.shape.rounded_bar,
       widget = wibox.container.background
