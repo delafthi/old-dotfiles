@@ -43,19 +43,15 @@ require('packer').startup {
     use {
       'hrsh7th/nvim-cmp',
       requires = {
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-nvim-lua',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-calc',
-        'kdheepak/cmp-latex-symbols',
-        'saadparwaiz1/cmp_luasnip',
+        'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'hrsh7th/cmp-nvim-lua',
+        'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-calc',
+        'kdheepak/cmp-latex-symbols', 'saadparwaiz1/cmp_luasnip'
       },
       config = require('config.nvim-cmp').config()
     }
     -- Debugging
     use {
-      'mfussenegger/nvim-dap'
+      'mfussenegger/nvim-dap',
       -- config = require('config.nvim-dap').config(),
     }
     use {
@@ -115,10 +111,7 @@ require('packer').startup {
       config = require('config.markdown-preview').config()
     }
     -- Snippets
-    use {
-      'L3MON4D3/Luasnip',
-      config = require('config.luasnip').config()
-    }
+    use {'L3MON4D3/Luasnip', config = require('config.luasnip').config()}
     -- Start screen
     use {
       'glepnir/dashboard-nvim',
