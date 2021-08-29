@@ -182,9 +182,14 @@ u.map('n', '<Leader>bk', ':ls<Cr>:bd<Space>', opts)
 -- Toggle spell checking.
 u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
+-- This settings are overwritten in the luasnip config.
 u.map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
       {expr = true, silent = true})
+u.map('s', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
+      {expr = true, silent = true})
 u.map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
+      {expr = true, silent = true})
+u.map('s', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
       {expr = true, silent = true})
 -- Try to save file with sudo on files that require root permission
 cmd [[ca w!! w !sudo tee >/dev/null "%"]]

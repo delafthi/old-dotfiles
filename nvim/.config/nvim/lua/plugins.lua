@@ -40,9 +40,17 @@ require('packer').startup {
     }
     -- Completion
     use {
-      'hrsh7th/nvim-compe',
-      setup = require('config.nvim-compe').setup(),
-      config = require('config.nvim-compe').config()
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lua',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-calc',
+        'kdheepak/cmp-latex-symbols',
+        'saadparwaiz1/cmp_luasnip',
+      },
+      config = require('config.nvim-cmp').config()
     }
     -- Debugging
     use {
@@ -108,7 +116,6 @@ require('packer').startup {
     -- Snippets
     use {
       'L3MON4D3/Luasnip',
-      after = 'nvim-compe',
       config = require('config.luasnip').config()
     }
     -- Start screen
