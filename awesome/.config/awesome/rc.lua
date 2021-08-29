@@ -333,8 +333,8 @@ local function set_random_wallpaper(s)
   math.randomseed(os.time()) -- Set the random seed
   math.random();
   math.random();
-  math.random() -- Pop some random numbers, before using it
-  return gears.wallpaper.maximized(files[math.random(1, length)], s, true)
+  math.random() -- Pop some random numbers, before using the generator
+  return gears.wallpaper.maximized(files[math.random(0, length)], s, true)
 end
 
 screen.connect_signal('request::wallpaper',
