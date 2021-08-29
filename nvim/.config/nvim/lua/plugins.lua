@@ -29,6 +29,7 @@ require('packer').startup {
     -- Colors
     use {
       'delafthi/nord.nvim',
+      branch = 'devel',
       setup = require('config.nord').setup(),
       config = require('config.nord').config()
     }
