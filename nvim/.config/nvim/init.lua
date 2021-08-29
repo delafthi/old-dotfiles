@@ -178,7 +178,7 @@ u.map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
 u.map('v', '<', '<gv', opts)
 u.map('v', '>', '>gv', opts)
 -- Show buffers and select one to kill.
-u.map('n', '<Leader>bk', ':ls<Cr>:bd<Space>', opts)
+u.map('n', '<Leader>bd', ':ls<Cr>:bd<Space>', opts)
 -- Toggle spell checking.
 u.map('n', '<Leader>o', ':setlocal spell!<Cr>', opts)
 -- Use <Tab> and <S-Tab> to navigate through completion suggestion.
