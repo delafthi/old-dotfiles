@@ -151,6 +151,7 @@ require('packer').startup {
     }
     use {
       'lewis6991/spellsitter.nvim',
+      run = ':set spell',
       config = require('config.spellsitter').config()
     }
     use {
