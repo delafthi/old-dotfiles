@@ -1,7 +1,6 @@
 -----------------------------------------------------------
 -- Nord theme
 -----------------------------------------------------------
-
 -----------------------------------------------------------
 -- Includes {{{1
 local theme_assets = require('beautiful.theme_assets')
@@ -46,7 +45,7 @@ theme.nord15 = '#b48ead'
 theme.red = theme.nord11
 theme.green = theme.nord14
 theme.orange = theme.nord12
-theme.yellow = theme.nord14
+theme.yellow = theme.nord13
 theme.blue = theme.nord9
 theme.purple = theme.nord15
 theme.cyan = theme.nord7
@@ -55,7 +54,7 @@ theme.cyan = theme.nord7
 theme.font = 'Victor Mono Nerd Font' -- The default font
 theme.wallpaper = '~/.local/share/backgrounds/nord.png' -- The wallpaper path
 theme.icon_theme = 'Papirus' -- The icon theme name
-theme.shape = gears.shape.rectangle-- The clients shape
+theme.shape = gears.shape.rectangle -- The clients shape
 
 -- Background {{{2
 theme.bg_normal = theme.nord0 -- The default background color
@@ -213,14 +212,19 @@ theme.notification_action_underline_normal = false -- Whether or not to underlin
 theme.notification_action_underline_selected = false -- Whether or not to underline the selected action name
 theme.notification_action_icon_only = false -- Whether or not the action label should be shown
 theme.notification_action_label_only = false -- Whether or not the action icon should be shown
-theme.notification_action_shape_normal = theme.notification_shape  -- The shape used for a normal action
+theme.notification_action_shape_normal = theme.notification_shape -- The shape used for a normal action
 theme.notification_action_shape_selected = theme.notification_shape -- The shape used for a selected action
-theme.notification_action_shape_border_color_normal = theme.notification_action_bg_normal -- The shape border color for normal actions
-theme.notification_action_shape_border_color_selected = theme.notification_action_bg_selected -- The shape border color for selected actions
-theme.notification_action_shape_border_width_normal = theme.notification_border_width -- The shape border color for selected actions
-theme.notification_action_shape_border_width_selected = theme.notification_border_width -- The shape border width for selected actions
+theme.notification_action_shape_border_color_normal =
+    theme.notification_action_bg_normal -- The shape border color for normal actions
+theme.notification_action_shape_border_color_selected =
+    theme.notification_action_bg_selected -- The shape border color for selected actions
+theme.notification_action_shape_border_width_normal =
+    theme.notification_border_width -- The shape border color for selected actions
+theme.notification_action_shape_border_width_selected =
+    theme.notification_border_width -- The shape border width for selected actions
 theme.notification_action_icon_size_normal = theme.notification_icon_size_normal -- The action icon size
-theme.notification_action_icon_size_selected = theme.notification_icon_size_selected -- The selected action icon size
+theme.notification_action_icon_size_selected =
+    theme.notification_icon_size_selected -- The selected action icon size
 
 -- Opacity {{{2
 theme.opacity_normal = 1.0 -- The client opacity for the normal clients
@@ -427,7 +431,6 @@ theme.menubar_fg_focus = theme.nord0 -- Menubar selected item text color
 theme.menubar_bg_focus = theme.nord9 -- Menubar selected item background color
 theme.menubar_font = theme.font -- Menubar font
 
-
 -- Piechart {{{3
 theme.piechart_border_color = theme.border_color -- The border color
 theme.piechart_border_width = dpi(3) -- The border color
@@ -523,7 +526,7 @@ theme.taglist_shape_border_color_volatile = theme.taglist_bg_volatile -- The vol
 theme.tasklist_fg_normal = theme.nord9 -- The default foreground (text) color
 theme.tasklist_bg_normal = theme.nord1 -- The default background color
 theme.tasklist_fg_focus = theme.nord4 -- The focused client foreground (text) color
-theme.tasklist_bg_focus = theme.nord1-- The focused client background color
+theme.tasklist_bg_focus = theme.nord1 -- The focused client background color
 theme.tasklist_fg_urgent = theme.nord0 -- The urgent clients foreground (text) color
 theme.tasklist_bg_urgent = theme.nord11 -- The urgent clients background color
 theme.tasklist_fg_minimize = theme.tasklist_fg_normal -- The minimized clients foreground (text) color
@@ -544,7 +547,7 @@ theme.tasklist_maximized = '' -- Extra tasklist client property notification 
 theme.tasklist_maximized_horizontal = 'ﱟ' -- Extra tasklist client property notification icon for clients with the maximized_horizontal property set
 theme.tasklist_maximized_vertical = '祈' -- Extra tasklist client property notification icon for clients with the maximized_vertical property set
 theme.tasklist_font = theme.font -- The tasklist font
-theme.tasklist_align =  'center' -- The focused client alignment
+theme.tasklist_align = 'center' -- The focused client alignment
 theme.tasklist_font_focus = theme.font -- The focused client title alignment
 theme.tasklist_font_minimized = theme.font -- The minimized clients font
 theme.tasklist_font_urgent = theme.font -- The urgent clients font
@@ -563,8 +566,8 @@ theme.tasklist_shape_border_width_urgent = theme.tasklist_shape_border_width -- 
 theme.tasklist_shape_border_color_urgent = theme.bg_urgent -- The urgent clients border color
 
 -- Awesome {{{2
-theme.awesome_icon = theme_assets.awesome_icon(theme.wibar_height,
-  theme.nord9, theme.fg_focus) -- The Awesome icon path
+theme.awesome_icon = theme_assets.awesome_icon(theme.wibar_height, theme.nord9,
+                                               theme.fg_focus) -- The Awesome icon path
 
 -- }}}1
 

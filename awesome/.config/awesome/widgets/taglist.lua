@@ -1,7 +1,6 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-
 pcall(require, 'luarocks.loader')
 -- Standard awesome libraries
 local gears = require('gears') -- Utilities such as color parsing and objects
@@ -31,7 +30,7 @@ function M.get_prompt()
     exe_callback = function(input)
       if not input or #input == 0 then return end
       awful.screen.focused().selected_tag.name = input
-    end,
+    end
   }
   return prompt
 end
@@ -48,29 +47,24 @@ function M.get_widget(s)
         screen = s,
         filter = awful.widget.taglist.filter.noempty,
         buttons = {
-          awful.button({ }, 1, function(t) t:view_only() end),
-          awful.button({ modkey }, 1, function(t)
-            if client.focus then
-              client.focus:move_to_tag(t)
-            end
+          awful.button({}, 1, function(t) t:view_only() end),
+          awful.button({modkey}, 1, function(t)
+            if client.focus then client.focus:move_to_tag(t) end
+          end), awful.button({}, 3, awful.tag.viewtoggle),
+          awful.button({modkey}, 3, function(t)
+            if client.focus then client.focus:toggle_tag(t) end
           end),
-          awful.button({ }, 3, awful.tag.viewtoggle),
-          awful.button({ modkey }, 3, function(t)
-            if client.focus then
-              client.focus:toggle_tag(t)
-            end
-          end),
-          awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-          awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end),
-        },
+          awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
+          awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
+        }
       },
       taglist.prompt,
-      layout = wibox.layout.fixed.horizontal(),
+      layout = wibox.layout.fixed.horizontal()
     },
     bg = beautiful.nord1,
     fg = beautiful.fg_normal,
     shape = gears.shape.rounded_bar,
-    widget = wibox.container.background,
+    widget = wibox.container.background
   }
   return taglist
 end

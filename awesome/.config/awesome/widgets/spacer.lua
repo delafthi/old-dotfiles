@@ -1,7 +1,6 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-
 pcall(require, 'luarocks.loader')
 -- Standard awesome libraries
 local gears = require('gears') -- Utilities such as color parsing and objects

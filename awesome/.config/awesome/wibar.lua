@@ -1,7 +1,6 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-
 -- Widget and layout library
 local wibox = require('wibox') -- Awesome own generic widget framework
 -- Theme handling library
@@ -29,7 +28,7 @@ function M.set(s)
   s.mywibar = wibox {
     border_width = beautiful.wibar_border_width,
     border_color = beautiful.wibar_border_color,
-    ontop  = beautiful.wibar_ontop,
+    ontop = beautiful.wibar_ontop,
     cursor = beautiful.wibar_cursor,
     visible = true,
     opacity = beautiful.wibar_opacity,
@@ -42,12 +41,10 @@ function M.set(s)
     shape = beautiful.wibar_shape,
     bg = beautiful.wibar_bg,
     bgimage = beautiful.wibar_bgimage,
-    fg = beautiful.wibar_fg,
+    fg = beautiful.wibar_fg
   }
 
-  s.mywibar:struts {
-    top = beautiful.wibar_height + gap,
-  }
+  s.mywibar:struts{top = beautiful.wibar_height + gap}
 
   -- Create screen specific widgets
   s.mytaglist = require('widgets.taglist').get_widget(s)
@@ -61,39 +58,39 @@ function M.set(s)
   local systray = require('widgets.systray').get_widget(s)
 
   -- Add widgets to the wibox
-  s.mywibar:setup {
-      {
-        { -- Left widgets
-          s.mytaglist.widget,
-          s.mylayoutbox,
-          wibox.widget.separator {
-            forced_width = dpi(0),
-            color = beautiful.wibar_bg,
-          },
-          spacing = beautiful.wibar_spacing,
-          spacing_widget = spacer,
-          layout = wibox.layout.fixed.horizontal(),
+  s.mywibar:setup{
+    {
+      { -- Left widgets
+        s.mytaglist.widget,
+        s.mylayoutbox,
+        wibox.widget.separator {
+          forced_width = dpi(0),
+          color = beautiful.wibar_bg
         },
-        {-- Middle widgets
-          s.mytasklist,
-          spacing = beautiful.wibar_spacing,
-          spacing_widget = spacer,
-          layout = wibox.layout.fixed.horizontal
-        },
-        { -- Right widgets
-          cpuinfo,
-          meminfo,
-          time,
-          systray,
-          spacing = beautiful.wibar_spacing,
-          spacing_widget = spacer,
-          layout = wibox.layout.fixed.horizontal(),
-        },
-        layout = wibox.layout.align.horizontal,
+        spacing = beautiful.wibar_spacing,
+        spacing_widget = spacer,
+        layout = wibox.layout.fixed.horizontal()
       },
-      margins = gap,
-      widget = wibox.container.margin,
-    }
+      { -- Middle widgets
+        s.mytasklist,
+        spacing = beautiful.wibar_spacing,
+        spacing_widget = spacer,
+        layout = wibox.layout.fixed.horizontal
+      },
+      { -- Right widgets
+        cpuinfo,
+        meminfo,
+        time,
+        systray,
+        spacing = beautiful.wibar_spacing,
+        spacing_widget = spacer,
+        layout = wibox.layout.fixed.horizontal()
+      },
+      layout = wibox.layout.align.horizontal
+    },
+    margins = gap,
+    widget = wibox.container.margin
+  }
 end
 
 return M

@@ -1,7 +1,6 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-
 pcall(require, 'luarocks.loader')
 -- Standard awesome libraries
 local gears = require('gears') -- Utilities such as color parsing and objects
@@ -30,11 +29,12 @@ local editor_cmd = terminal .. ' -e ' .. editor -- command to open the editor
 -- Launcher menu {{{1
 local menu = awful.menu {
   items = {
-    { 'edit config', editor_cmd .. ' ' .. awesome.conffile },
-    { 'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { 'restart', function() awesome.restart() end },
-    { 'quit', function() awesome.quit() end }
-  },
+    {'edit config', editor_cmd .. ' ' .. awesome.conffile}, {
+      'hotkeys',
+      function() hotkeys_popup.show_help(nil, awful.screen.focused()) end
+    }, {'restart', function() awesome.restart() end},
+    {'quit', function() awesome.quit() end}
+  }
 }
 
 -- Launcher widget
@@ -44,11 +44,7 @@ function M.get_widget()
     clip_shape = gears.shape.rounded_bar,
     resize = true,
     widget = wibox.widget.imagebox,
-    buttons = {
-      awful.button({ }, 1,
-        function() menu:toggle() end
-      ),
-    },
+    buttons = {awful.button({}, 1, function() menu:toggle() end)}
   }
   return menulauncher
 end

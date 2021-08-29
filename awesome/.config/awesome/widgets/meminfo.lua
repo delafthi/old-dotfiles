@@ -1,7 +1,6 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-
 pcall(require, 'luarocks.loader')
 -- Standard awesome libraries
 local gears = require('gears') -- Utilities such as color parsing and objects
@@ -30,27 +29,32 @@ function M.get_widget()
       {
         id = 'watch_role',
         awful.widget.watch([[bash -c 'grep '^Mem.' /proc/meminfo']], 1,
-          function(widget, stdout)
-            for line in stdout:gmatch('[^\r\n]+') do
-              if line:sub(1, #'Mem') == 'Mem' then
-                local name, number, _ = line:match('(%w+):%s+(%d+)%s(%w+)')
-                mem[name] = number
-              end
+                           function(widget, stdout)
+          for line in stdout:gmatch('[^\r\n]+') do
+            if line:sub(1, #'Mem') == 'Mem' then
+              local name, number, _ = line:match('(%w+):%s+(%d+)%s(%w+)')
+              mem[name] = number
             end
-            mem['MemUsed'] = tonumber(mem['MemTotal'] == nil and 0 or mem['MemTotal']) - tonumber(mem['MemAvailable'] == nil and 0 or mem['MemAvailable'])
-            widget:set_markup_silently(string.format(' : %.f%%',
-                mem['MemUsed']/mem['MemTotal']*100))
-          end),
-        layout = wibox.layout.fixed.horizontal,
+          end
+          mem['MemUsed'] = tonumber(mem['MemTotal'] == nil and 0 or
+                                        mem['MemTotal']) -
+                               tonumber(
+                                   mem['MemAvailable'] == nil and 0 or
+                                       mem['MemAvailable'])
+          widget:set_markup_silently(string.format(' : %.f%%',
+                                                   mem['MemUsed'] /
+                                                       mem['MemTotal'] * 100))
+        end),
+        layout = wibox.layout.fixed.horizontal
       },
       left = 5 * beautiful.useless_gap,
       right = 5 * beautiful.useless_gap,
-      widget = wibox.container.margin,
+      widget = wibox.container.margin
     },
-    bg = beautiful.green,
+    bg = beautiful.orange,
     fg = beautiful.nord0,
     shape = gears.shape.rounded_bar,
-    widget = wibox.container.background,
+    widget = wibox.container.background
   }
   return meminfo
 end
