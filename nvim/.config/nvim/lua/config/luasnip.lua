@@ -49,16 +49,7 @@ function M.config()
   end
 
   ls.snippets = {
-    all = {
-      s({trig = "(", wordTrig = false}, {t({"("}), i(1), t({")"}), i(0)}),
-      s({trig = "{", wordTrig = false}, {t({"{"}), i(1), t({"}"}), i(0)}),
-      s({trig = "[", wordTrig = false}, {t({"["}), i(1), t({"]"}), i(0)}),
-      s({trig = "<", wordTrig = false}, {t({"<"}), i(1), t({">"}), i(0)}),
-      s({trig = "'", wordTrig = false}, {t({"'"}), i(1), t({"'"}), i(0)}),
-      s({trig = "\"", wordTrig = false}, {t({"\""}), i(1), t({"\""}), i(0)}),
-      s({trig = "`", wordTrig = false}, {t({"`"}), i(1), t({"`"}), i(0)}),
-      s({trig = "{,", wordTrig = false}, {t({"{", "\t"}), i(1), t({"", "}"})})
-    },
+    all = {s('trigger', {t('wow text'), i(2), t('some other text'), i(1), t('text'), i(0)})},
     markdown = {
       s({trig = '$$', wordTrig = true}, {
         t({'$$', '\\begin{array}{rcl}', ''}), i(1),
@@ -66,50 +57,6 @@ function M.config()
       })
     }
   }
-
-  -- Keybindings
-  local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
-  end
-
-  _G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true,
-                                                        true), 'n')
-    elseif luasnip and luasnip.expand_or_jumpable() then
-      return fn.feedkeys(vim.api.nvim_replace_termcodes(
-                             '<Plug>luasnip-expand-or-jump', true, true, true),
-                         'n')
-    elseif check_back_space() then
-      return fn.feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true,
-                                                        true), 'n')
-    else
-      return fn['cmp#complete']()
-    end
-  end
-  _G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-      return fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true,
-                                                        true), 'n')
-    elseif luasnip and luasnip.jumpable(-1) then
-      return fn.feedkeys(vim.api.nvim_replace_termcodes(
-                             '<Plug>luasnip-jump-prev', true, true, true), 'n')
-    else
-      return fn.feedkeys(vim.api.nvim_replace_termcodes('<S-Tab>', true, true,
-                                                        true), 'n')
-    end
-  end
-
-  u.map('i', '<Tab>', 'v:lua.tab_complete()', {expr = true, silent = true})
-  u.map('s', '<Tab>', 'v:lua.tab_complete()', {expr = true, silent = true})
-  u.map('i', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true, silent = true})
-  u.map('s', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true, silent = true})
-  u.map('i', '<C-Tab>', '<Plug>luasnip-expand-or-jump',
-        {expr = true, silent = true})
-  u.map('s', '<C-Tab>', '<Plug>luasnip-expand-or-jump',
-        {expr = true, silent = true})
-
 end
 
 return M

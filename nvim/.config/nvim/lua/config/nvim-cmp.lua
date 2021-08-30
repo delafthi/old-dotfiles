@@ -1,10 +1,12 @@
 local M = {}
+local fn = vim.fn
 
 function M.config()
   local ok_cmp, cmp = pcall(function() return require('cmp') end)
   local ok_luasnip, ls = pcall(function() return require('luasnip') end)
+  local ok_neogen, neogen = pcall(function() return require('neogen') end)
 
-  if not ok_cmp or not ok_luasnip then return end
+  if not ok_cmp then return end
 
   local check_back_space = function()
     local col = fn.col('.') - 1
@@ -18,6 +20,35 @@ function M.config()
       winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder'
     },
     mapping = {
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if fn.pumvisible() == 1 then
+          fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true),
+                      'n')
+        elseif ok_neogen and neogen.jumpable() then
+          fn.feedkeys(vim.api.nvim_replace_termcodes(
+                          '<Cmd>lua require("neogen").jump_next()<Cr>', true,
+                          true, true), '')
+        elseif ok_luasnip and luasnip and luasnip.expand_or_jumpable() then
+          fn.feedkeys(vim.api.nvim_replace_termcodes(
+                          '<Plug>luasnip-expand-or-jump', true, true, true), '')
+        elseif check_back_space() then
+          fn.feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true),
+                      'n')
+        else
+          fallback()
+        end
+      end, {'i', 's'}),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if fn.pumvisible() == 1 then
+          fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true),
+                      'n')
+        elseif ok_luasnip and luasnip and luasnip.jumpable(-1) then
+          fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev',
+                                                     true, true, true), '')
+        else
+          fallback()
+        end
+      end, {'i', 's'}),
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),

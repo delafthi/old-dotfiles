@@ -39,6 +39,11 @@ require('packer').startup {
       setup = require('config.kommentary').setup(),
       config = require('config.kommentary').config()
     }
+    use {
+      'danymat/neogen',
+      requires = {'nvim-treesitter/nvim-treesitter'},
+      config = require('config.neogen').config(),
+    }
     -- Completion
     use {
       'hrsh7th/nvim-cmp',
