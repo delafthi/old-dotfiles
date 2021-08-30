@@ -2,14 +2,16 @@ configuration {
   modi: "window,drun,ssh,combi";
   combi-modi: "window,drun,ssh";
   font: "VictorMonoNerdFont 12";
-  width: 30;
-  line-margin: 10;
-  columns: 2;
+  width: 0;
+  line-margin: 0;
+  columns: 1;
   theme: "nord";
-  dispaly-ssh: " "";
+  dispaly-ssh: " ";
   display-run:    " ";
   display-drun:   " ";
   display-window: " ";
   display-combi:  " ";
   show-icons:     true;
 }
+
+/* vim:ft=css

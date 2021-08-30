@@ -19,65 +19,67 @@
 	nord14: #a3be8c;
 	nord15: #b48ead;
 
-  foreground: @nord4;
+  text-color: @nord4;
   background-color: @nord1;
 }
 
 window {
-    location: center;
-    anchor:   center;
-    padding: 10px;
-
-    spacing: 0;
-    children:  [mainbox];
-    orientation: horizontal;
+  location: center;
+  anchor:   center;
+  orientation: horizontal;
+  padding: 10px;
+  children:  [mainbox];
 }
 
 mainbox {
-    spacing: 0;
-    children: [ inputbar, message, listview ];
-}
-
-message {
-    color: @nord1;
-    padding: 5;
-    background-color: @nord8;
+  children: [inputbar, listview, message];
 }
 
 inputbar {
-    color: @nord6;
-    padding: 11px;
+  padding: 10px;
+  chidlren: [box, case-indicator, prompt, entry];
 }
 
-entry, prompt, case-indicator {
-    text-font: inherit;
-    text-color:inherit;
+case-indicator {
+  text-color: @nord15;
 }
 
 prompt {
-    margin: 0px 0.3em 0em 0em ;
+  margin: 0 5px 0 0 ;
 }
 
 listview {
-    padding: 8px;
-    dynamic: true;
+  padding: 8px;
+  dynamic: true;
+  children: [scrollbar, element];
 }
 
 element {
-    padding: 3px;
-    vertical-align: 0.5;
-    border-radius: 10px;
-    color: @nord8;
-    text-color: @nord4;
+  padding: 3px;
+  border-radius: 10px;
+  children: [element-icon, element-text];
 }
 
-element selected.normal {
-	background-color: @nord8;
-	text-color: @nord0;
+element-icon {
+  margin: 2px 10px 0 0;
+  background-color: inherit;
+  text-color: inherit;
 }
 
-button {
-    padding: 6px;
-    color: @nord9;
-    horizontal-align: 0.5;
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+  highlight: bold underline;
 }
+
+element selected {
+	background-color: @nord9;
+	text-color: @nord1;
+}
+
+message {
+  padding: 5;
+  children: [textbox];
+}
+
+/* vim:ft=css
