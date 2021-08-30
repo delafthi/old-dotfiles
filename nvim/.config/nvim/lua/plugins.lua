@@ -52,7 +52,7 @@ require('packer').startup {
     -- Debugging
     use {
       'mfussenegger/nvim-dap',
-      -- config = require('config.nvim-dap').config(),
+      config = require('config.nvim-dap').config(),
     }
     use {
       'mhartington/formatter.nvim',
