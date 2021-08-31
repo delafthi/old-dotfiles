@@ -69,9 +69,6 @@ function M.config()
         '<Cmd>lua require("telescope.builtin").git_status()<Cr>', opts)
   u.map('n', '<Leader>gb',
         '<Cmd>lua require("telescope.builtin").git_branches()<Cr>', opts)
-  u.map('n', '<Leader>gl',
-        '<Cmd>lua require("telescope.builtin").git_log()<Cr>', opts)
-
 end
 
 return M
