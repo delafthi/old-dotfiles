@@ -34,7 +34,9 @@ function M.config()
       borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
       color_devicons = true,
       use_less = true,
-      path_display = {'shorten'},
+      path_display = {
+        shorten = 3,
+      },
       set_env = {['COLORTERM'] = 'truecolor'},
       file_previewer = require('telescope.previewers').vim_buffer_cat.new,
       grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
