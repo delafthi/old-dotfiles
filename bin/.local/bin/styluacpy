@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+cp ~/.config/stylua/stylua.toml .
