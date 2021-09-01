@@ -28,7 +28,7 @@ function M.config()
           fn.feedkeys(vim.api.nvim_replace_termcodes(
                           '<Cmd>lua require("neogen").jump_next()<Cr>', true,
                           true, true), '')
-        elseif ok_luasnip and luasnip and luasnip.expand_or_jumpable() then
+        elseif ok_luasnip and ls and ls.expand_or_jumpable() then
           fn.feedkeys(vim.api.nvim_replace_termcodes(
                           '<Plug>luasnip-expand-or-jump', true, true, true), '')
         elseif check_back_space() then
@@ -42,7 +42,7 @@ function M.config()
         if fn.pumvisible() == 1 then
           fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true),
                       'n')
-        elseif ok_luasnip and luasnip and luasnip.jumpable(-1) then
+        elseif ok_luasnip and ls and ls.jumpable(-1) then
           fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev',
                                                      true, true, true), '')
         else
@@ -59,9 +59,9 @@ function M.config()
       })
     },
     sources = {
-      {name = 'buffer'}, {name = 'path'}, {name = 'nvim_lua'},
-      {name = 'nvim_lsp'}, {name = 'calc'}, {name = 'latex_symbols'},
-      {name = 'luasnip'}
+      {name = 'nvim_lsp'}, {name = 'path'}, {name = 'luasnip'},
+      {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'buffer'},
+      {name = 'calc'}
     }
   }
 end
