@@ -61,7 +61,7 @@ function M.config()
     sources = {
       {name = 'nvim_lsp'}, {name = 'path'}, {name = 'luasnip'},
       {name = 'latex_symbols'}, {name = 'nvim_lua'}, {name = 'buffer'},
-      {name = 'calc'}
+      {name = 'spell'}, {name = 'calc'}
     }
   }
 end
