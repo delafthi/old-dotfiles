@@ -85,7 +85,19 @@ function M.config()
 	-- cmake-language server
 	lspconfig.cmake.setup({ capabilities = capabilities, on_attach = on_attach })
 	-- c-language-server
-	lspconfig.clangd.setup({ capabilities = capabilities, on_attach = on_attach })
+	lspconfig.clangd.setup({
+		capabilities = capabilities,
+		on_attach = on_attach,
+		cmd = {
+			"clangd",
+			"--all-scopes-completion",
+			"--background-index",
+			"--clang-tidy",
+			"--cross-file-rename",
+			"--header-insertion=iwyu",
+			"--header-insertion-decorators",
+		},
+	})
 	-- dockerfile-language-server
 	lspconfig.dockerls.setup({ capabilities = capabilities, on_attach = on_attach })
 	-- haskell-language-server
