@@ -1,8 +1,11 @@
 add_newline = false
 
 [directory]
+truncation_length = 1
+truncate_to_repo = false
 disabled = false
 style = 'bold blue'
+fish_style_pwd_dir_length = 3
 
 [git_branch]
 disabled = false
