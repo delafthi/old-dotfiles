@@ -14,18 +14,17 @@ function M.config()
           icons = {
             todo = {
               enabled = true, -- Conceal TODO items
-
               done = {
                 enabled = true, -- Conceal whenever an item is marked as done
-                icon = ''
+                icon = ' '
               },
               pending = {
                 enabled = true, -- Conceal whenever an item is marked as pending
-                icon = ''
+                icon = ' '
               },
               undone = {
                 enabled = true, -- Conceal whenever an item is marked as undone
-                icon = '×'
+                icon = ' '
               }
             },
             quote = {
@@ -36,13 +35,10 @@ function M.config()
               enabled = true, -- Enable beautified headings
 
               -- Define icons for all the different heading levels
-              level_1 = {enabled = true, icon = '◉'},
-
-              level_2 = {enabled = true, icon = '○'},
-
-              level_3 = {enabled = true, icon = '✿'},
-
-              level_4 = {enabled = true, icon = '•'}
+              level_1 = {enabled = true, icon = '綠'},
+              level_2 = {enabled = true, icon = '祿'},
+              level_3 = {enabled = true, icon = '雷'},
+              level_4 = {enabled = true, icon = '• '}
             },
             marker = {
               enabled = true, -- Enable the beautification of markers
