@@ -49,7 +49,7 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias minicom="minicom -m -c on"
 alias htop="htop -t"
-alias feh="feh --scale-down"
+alias feh="feh --auto-zoom --scale-down"
 
 ############################################################
 # Environment variables {{{1
