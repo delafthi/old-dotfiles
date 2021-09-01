@@ -3,10 +3,10 @@
 -----------------------------------------------------------
 -----------------------------------------------------------
 -- Includes {{{1
-local theme_assets = require('beautiful.theme_assets')
-local xresources = require('beautiful.xresources')
+local theme_assets = require("beautiful.theme_assets")
+local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local gears = require('gears')
+local gears = require("gears")
 
 -----------------------------------------------------------
 -- Variable definitions {{{1
@@ -18,28 +18,28 @@ local theme = {}
 
 -- Nord color palette {{{2
 -- Polar night
-theme.nord0 = '#2e3440' -- The origin color or the Polar Night palette
-theme.nord1 = '#3b4252' -- A brighter shade color based on `nord0`
-theme.nord2 = '#434c5e' -- An even more brighter shade color of `nord0`
-theme.nord3 = '#4c566a' -- The brightest shade color based on `nord0`
+theme.nord0 = "#2e3440" -- The origin color or the Polar Night palette
+theme.nord1 = "#3b4252" -- A brighter shade color based on `nord0`
+theme.nord2 = "#434c5e" -- An even more brighter shade color of `nord0`
+theme.nord3 = "#4c566a" -- The brightest shade color based on `nord0`
 
 -- Snow Storm
-theme.nord4 = '#d8dee9' -- The origin color or the Snow Storm palette
-theme.nord5 = '#e5e9f0' -- A brighter shade color of `nord4`
-theme.nord6 = '#eceff4' -- The brightest shade color based on `nord4`
+theme.nord4 = "#d8dee9" -- The origin color or the Snow Storm palette
+theme.nord5 = "#e5e9f0" -- A brighter shade color of `nord4`
+theme.nord6 = "#eceff4" -- The brightest shade color based on `nord4`
 
 -- Frost
-theme.nord7 = '#8fbcbb' -- A calm and highly contrasted color reminiscent of frozen polar water
-theme.nord8 = '#88c0d0' -- The bright and shiny primary accent color reminiscent of pure and clear ice
-theme.nord9 = '#81a1c1' -- A more darkened and less saturated color reminiscent of arctic waters
-theme.nord10 = '#5e81ac' -- A dark and intensive color reminiscent of the deep arctic ocean
+theme.nord7 = "#8fbcbb" -- A calm and highly contrasted color reminiscent of frozen polar water
+theme.nord8 = "#88c0d0" -- The bright and shiny primary accent color reminiscent of pure and clear ice
+theme.nord9 = "#81a1c1" -- A more darkened and less saturated color reminiscent of arctic waters
+theme.nord10 = "#5e81ac" -- A dark and intensive color reminiscent of the deep arctic ocean
 
 -- Aurora
-theme.nord11 = '#bf616a'
-theme.nord12 = '#d08770'
-theme.nord13 = '#ebcb8b'
-theme.nord14 = '#a3be8c'
-theme.nord15 = '#b48ead'
+theme.nord11 = "#bf616a"
+theme.nord12 = "#d08770"
+theme.nord13 = "#ebcb8b"
+theme.nord14 = "#a3be8c"
+theme.nord15 = "#b48ead"
 
 -- Default colors {{{2
 theme.red = theme.nord11
@@ -51,9 +51,9 @@ theme.purple = theme.nord15
 theme.cyan = theme.nord7
 
 -- Default variables {{{2
-theme.font = 'Victor Mono Nerd Font' -- The default font
-theme.wallpaper = '~/.local/share/backgrounds/nord.png' -- The wallpaper path
-theme.icon_theme = 'Papirus' -- The icon theme name
+theme.font = "Victor Mono Nerd Font" -- The default font
+theme.wallpaper = "~/.local/share/backgrounds/nord.png" -- The wallpaper path
+theme.icon_theme = "Papirus" -- The icon theme name
 theme.shape = gears.shape.rectangle -- The clients shape
 
 -- Background {{{2
@@ -117,33 +117,33 @@ theme.useless_gap = dpi(2) -- The default gap
 theme.gap_single_client = true -- Enable gaps for a single client
 
 -- Layouts {{{2
-theme.layout_cornernw = themes_path .. 'default/layouts/cornernww.png' -- The cornernw layout layoutbox icon
-theme.layout_cornerne = themes_path .. 'default/layouts/cornernew.png' -- The cornerne layout layoutbox icon
-theme.layout_cornersw = themes_path .. 'default/layouts/cornersww.png' -- The cornersw layout layoutbox icon
-theme.layout_cornerse = themes_path .. 'default/layouts/cornersew.png' -- The cornerse layout layoutbox icon
-theme.layout_fairh = themes_path .. 'default/layouts/fairhw.png' -- The fairh layout layoutbox icon
-theme.layout_fairv = themes_path .. 'default/layouts/fairvw.png' -- The fairv layout layoutbox icon
-theme.layout_floating = themes_path .. 'default/layouts/floatingw.png' -- The floating layout layoutbox icon
-theme.layout_magnifier = themes_path .. 'default/layouts/magnifierw.png' -- The magnifier layout layoutbox icon
-theme.layout_max = themes_path .. 'default/layouts/maxw.png' -- The max layout layoutbox icon
-theme.layout_fullscreen = themes_path .. 'default/layouts/fullscreenw.png' -- The fullscreen layout layoutbox icon
-theme.layout_spiral = themes_path .. 'default/layouts/spiralw.png' -- The fullscreen layout layoutbox icon
-theme.layout_dwindle = themes_path .. 'default/layouts/dwindlew.png' -- The dwindle layout layoutbox icon
-theme.layout_tile = themes_path .. 'default/layouts/tilew.png' -- The tile layout layoutbox icon
-theme.layout_tiletop = themes_path .. 'default/layouts/tiletopw.png' -- The tile top layout layoutbox icon
-theme.layout_tilebottom = themes_path .. 'default/layouts/tilebottomw.png' -- The tile bottom layout layoutbox icon
-theme.layout_tileleft = themes_path .. 'default/layouts/tileleftw.png' -- The tile left layout layoutbox icon
-theme.layout_twopane = config_path .. 'layouts/twopanew.png' -- The twopane layout layoutbox icon
-theme.layout_twopanetop = config_path .. 'layouts/twopanetopw.png' -- The twopane top layout layoutbox icon
-theme.layout_twopanebottom = config_path .. 'layouts/twopanebottomw.png' -- The twopane bottom layout layoutbox icon
-theme.layout_twopaneleft = config_path .. 'layouts/twopaneleftw.png' -- The twopane left layout layoutbox icon
+theme.layout_cornernw = themes_path .. "default/layouts/cornernww.png" -- The cornernw layout layoutbox icon
+theme.layout_cornerne = themes_path .. "default/layouts/cornernew.png" -- The cornerne layout layoutbox icon
+theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png" -- The cornersw layout layoutbox icon
+theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png" -- The cornerse layout layoutbox icon
+theme.layout_fairh = themes_path .. "default/layouts/fairhw.png" -- The fairh layout layoutbox icon
+theme.layout_fairv = themes_path .. "default/layouts/fairvw.png" -- The fairv layout layoutbox icon
+theme.layout_floating = themes_path .. "default/layouts/floatingw.png" -- The floating layout layoutbox icon
+theme.layout_magnifier = themes_path .. "default/layouts/magnifierw.png" -- The magnifier layout layoutbox icon
+theme.layout_max = themes_path .. "default/layouts/maxw.png" -- The max layout layoutbox icon
+theme.layout_fullscreen = themes_path .. "default/layouts/fullscreenw.png" -- The fullscreen layout layoutbox icon
+theme.layout_spiral = themes_path .. "default/layouts/spiralw.png" -- The fullscreen layout layoutbox icon
+theme.layout_dwindle = themes_path .. "default/layouts/dwindlew.png" -- The dwindle layout layoutbox icon
+theme.layout_tile = themes_path .. "default/layouts/tilew.png" -- The tile layout layoutbox icon
+theme.layout_tiletop = themes_path .. "default/layouts/tiletopw.png" -- The tile top layout layoutbox icon
+theme.layout_tilebottom = themes_path .. "default/layouts/tilebottomw.png" -- The tile bottom layout layoutbox icon
+theme.layout_tileleft = themes_path .. "default/layouts/tileleftw.png" -- The tile left layout layoutbox icon
+theme.layout_twopane = config_path .. "layouts/twopanew.png" -- The twopane layout layoutbox icon
+theme.layout_twopanetop = config_path .. "layouts/twopanetopw.png" -- The twopane top layout layoutbox icon
+theme.layout_twopanebottom = config_path .. "layouts/twopanebottomw.png" -- The twopane bottom layout layoutbox icon
+theme.layout_twopaneleft = config_path .. "layouts/twopaneleftw.png" -- The twopane left layout layoutbox icon
 
 -- Columns {{{3
 theme.column_count = 1 -- The default number of columns
 
 -- Master {{{3
 theme.master_width_factor = 0.5 -- The default master width factor
-theme.master_fill_policy = 'expand' -- The default fill policy
+theme.master_fill_policy = "expand" -- The default fill policy
 theme.master_count = 1 -- The default number of master windows
 
 -- Fullscreen {{{3
@@ -154,14 +154,14 @@ theme.maximized_honor_padding = true -- Honor the screen padding when maximizing
 theme.maximized_hide_border = false -- Hide the border on maximized clients
 
 -- Cursor {{{2
-theme.cursor_mouse_resize = 'resize' -- The resize cursor name
-theme.cursor_mouse_move = 'move' -- The move cursor name
+theme.cursor_mouse_resize = "resize" -- The resize cursor name
+theme.cursor_mouse_move = "move" -- The move cursor name
 
 -- Enable {{{2
 theme.enable_spawn_cursor = false -- Show busy mouse cursor during spawn
 
 -- Menu {{{2
-theme.menu_submenu_icon = themes_path .. 'default/submenu.png' -- The icon used for sub-menus
+theme.menu_submenu_icon = themes_path .. "default/submenu.png" -- The icon used for sub-menus
 theme.menu_font = theme.font -- The menu text font
 theme.menu_height = dpi(24) -- The item height
 theme.menu_width = dpi(200) -- The default menu width
@@ -171,11 +171,11 @@ theme.menu_fg_focus = theme.nord0 -- The default focused item foreground (text) 
 theme.menu_bg_focus = theme.nord9 -- The default focused item background color
 theme.menu_fg_normal = theme.nord4 -- The default foreground (text) color
 theme.menu_bg_normal = theme.nord1 -- The default background color
-theme.menu_submenu = '>' -- The default sub-menu indicator if no menu_submenu_icon is provided
+theme.menu_submenu = ">" -- The default sub-menu indicator if no menu_submenu_icon is provided
 
 -- Notification {{{2
 theme.notification_max_width = dpi(600) -- The maximum notification width
-theme.notification_position = 'top_right' -- The maximum notification position
+theme.notification_position = "top_right" -- The maximum notification position
 theme.notification_bg_normal = theme.nord1 -- The background color for normal notifications
 theme.notification_bg_selected = theme.nord2 -- The background color for selected notifications
 theme.notification_fg_normal = theme.fg_normal -- The foreground color for normal notifications
@@ -193,7 +193,7 @@ theme.notification_margin = dpi(5) -- Notifications opacity
 theme.notification_width = dpi(300) -- Notifications width
 theme.notification_height = dpi(150) -- Notifications height
 theme.notification_spacing = theme.useless_gap -- The spacing between the notifications
-theme.notification_icon_resize_strategy = 'resize' -- The default way to resize the icon
+theme.notification_icon_resize_strategy = "resize" -- The default way to resize the icon
 theme.notification_icon_size_normal = dpi(30) -- The notification icon size
 theme.notification_icon_size_selected = dpi(30) -- The selected notification icon size
 theme.notification_shape_normal = theme.notification_shape -- The shape used for a normal notification
@@ -214,17 +214,12 @@ theme.notification_action_icon_only = false -- Whether or not the action label s
 theme.notification_action_label_only = false -- Whether or not the action icon should be shown
 theme.notification_action_shape_normal = theme.notification_shape -- The shape used for a normal action
 theme.notification_action_shape_selected = theme.notification_shape -- The shape used for a selected action
-theme.notification_action_shape_border_color_normal =
-    theme.notification_action_bg_normal -- The shape border color for normal actions
-theme.notification_action_shape_border_color_selected =
-    theme.notification_action_bg_selected -- The shape border color for selected actions
-theme.notification_action_shape_border_width_normal =
-    theme.notification_border_width -- The shape border color for selected actions
-theme.notification_action_shape_border_width_selected =
-    theme.notification_border_width -- The shape border width for selected actions
+theme.notification_action_shape_border_color_normal = theme.notification_action_bg_normal -- The shape border color for normal actions
+theme.notification_action_shape_border_color_selected = theme.notification_action_bg_selected -- The shape border color for selected actions
+theme.notification_action_shape_border_width_normal = theme.notification_border_width -- The shape border color for selected actions
+theme.notification_action_shape_border_width_selected = theme.notification_border_width -- The shape border width for selected actions
 theme.notification_action_icon_size_normal = theme.notification_icon_size_normal -- The action icon size
-theme.notification_action_icon_size_selected =
-    theme.notification_icon_size_selected -- The selected action icon size
+theme.notification_action_icon_size_selected = theme.notification_icon_size_selected -- The selected action icon size
 
 -- Opacity {{{2
 theme.opacity_normal = 1.0 -- The client opacity for the normal clients
@@ -338,9 +333,9 @@ theme.tooltip_fg = theme.nord4 -- The tooltip foregound (text) color
 theme.tooltip_font = theme.font -- The tooltip font
 theme.tooltip_border_width = dpi(5) -- The tooltip border width
 theme.tooltip_opacity = 1.0 -- The tooltip opacity
-theme.tooltip_gaps = {2, 2, 2, 2} -- The tooltip margins
+theme.tooltip_gaps = { 2, 2, 2, 2 } -- The tooltip margins
 theme.tooltip_shape = theme.shape -- The default tooltip shape
-theme.tooltip_align = 'bottom_right' -- The default tooltip alignment
+theme.tooltip_align = "bottom_right" -- The default tooltip alignment
 
 -- Wibar {{{2
 theme.wibar_bg = theme.nord0 -- The wibar’s background color
@@ -351,9 +346,9 @@ theme.wibar_stretch = true -- If the wibar needs to be stretched to fill the scr
 theme.wibar_border_width = dpi(0) -- The wibar border width
 theme.wibar_border_color = theme.wibar_bg -- The wibar border color
 theme.wibar_ontop = false -- If the wibar is to be on top of other windows
-theme.wibar_cursor = 'left_ptr' -- The wibar’s mouse cursor
+theme.wibar_cursor = "left_ptr" -- The wibar’s mouse cursor
 theme.wibar_opacity = 1.0 -- The wibar opacity, between 0 and 1
-theme.wibar_type = 'dock' -- The window type (desktop, normal, dock, …)
+theme.wibar_type = "dock" -- The window type (desktop, normal, dock, …)
 theme.wibar_width = nil -- The wibar’s width
 theme.wibar_height = dpi(30) -- The wibar’s height
 theme.wibar_spacing = 3 * theme.useless_gap -- The spacing between widgets in the wibar
@@ -412,7 +407,7 @@ theme.layoutlist_bg_selected = theme.nord9 -- The selected layout background col
 theme.layoutlist_disable_icon = false -- Disable the layout icons (only show the name label)
 theme.layoutlist_disable_name = true -- Disable the layout name label (only show the icon)
 theme.layoutlist_font = theme.font -- The layoutlist font
-theme.layoutlist_align = 'center' -- The selected layout alignment
+theme.layoutlist_align = "center" -- The selected layout alignment
 theme.layoutlist_font_selected = theme.font -- The selected layout title font
 theme.layoutlist_spacing = dpi(7) -- The space between the layouts
 theme.layoutlist_shape = theme.shape -- The default layoutlist elements shape
@@ -538,16 +533,16 @@ theme.tasklist_bg_image_minimize = nil -- The minimized clients background image
 theme.tasklist_disable_icon = false -- Disable the tasklist client icons
 theme.tasklist_disable_task_name = false -- Disable the tasklist client titles
 theme.tasklist_plain_task_name = true -- Disable the extra tasklist client property notification icons
-theme.tasklist_sticky = ' ' -- Extra tasklist client property notification icon for clients with the sticky property set
-theme.tasklist_ontop = ' ' -- Extra tasklist client property notification icon for clients with the ontop property set
-theme.tasklist_above = '禎' -- Extra tasklist client property notification icon for clients with the above property set
-theme.tasklist_below = '穀' -- Extra tasklist client property notification icon for clients with the below property set
-theme.tasklist_floating = ' ' -- Extra tasklist client property notification icon for clients with the floating property set
-theme.tasklist_maximized = '' -- Extra tasklist client property notification icon for clients with the maximized property set
-theme.tasklist_maximized_horizontal = 'ﱟ' -- Extra tasklist client property notification icon for clients with the maximized_horizontal property set
-theme.tasklist_maximized_vertical = '祈' -- Extra tasklist client property notification icon for clients with the maximized_vertical property set
+theme.tasklist_sticky = " " -- Extra tasklist client property notification icon for clients with the sticky property set
+theme.tasklist_ontop = " " -- Extra tasklist client property notification icon for clients with the ontop property set
+theme.tasklist_above = "禎" -- Extra tasklist client property notification icon for clients with the above property set
+theme.tasklist_below = "穀" -- Extra tasklist client property notification icon for clients with the below property set
+theme.tasklist_floating = " " -- Extra tasklist client property notification icon for clients with the floating property set
+theme.tasklist_maximized = "" -- Extra tasklist client property notification icon for clients with the maximized property set
+theme.tasklist_maximized_horizontal = "ﱟ" -- Extra tasklist client property notification icon for clients with the maximized_horizontal property set
+theme.tasklist_maximized_vertical = "祈" -- Extra tasklist client property notification icon for clients with the maximized_vertical property set
 theme.tasklist_font = theme.font -- The tasklist font
-theme.tasklist_align = 'center' -- The focused client alignment
+theme.tasklist_align = "center" -- The focused client alignment
 theme.tasklist_font_focus = theme.font -- The focused client title alignment
 theme.tasklist_font_minimized = theme.font -- The minimized clients font
 theme.tasklist_font_urgent = theme.font -- The urgent clients font
@@ -566,8 +561,7 @@ theme.tasklist_shape_border_width_urgent = theme.tasklist_shape_border_width -- 
 theme.tasklist_shape_border_color_urgent = theme.bg_urgent -- The urgent clients border color
 
 -- Awesome {{{2
-theme.awesome_icon = theme_assets.awesome_icon(theme.wibar_height, theme.nord9,
-                                               theme.fg_focus) -- The Awesome icon path
+theme.awesome_icon = theme_assets.awesome_icon(theme.wibar_height, theme.nord9, theme.fg_focus) -- The Awesome icon path
 
 -- }}}1
 
