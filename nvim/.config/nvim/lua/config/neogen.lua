@@ -1,16 +1,17 @@
 local M = {}
 
 function M.config()
-  local ok, neogen = pcall(function()
-    return require('neogen')
-  end)
+	local ok, neogen = pcall(function()
+		return require("neogen")
+	end)
 
-  if not ok then return end
+	if not ok then
+		return
+	end
 
-  neogen.setup {
-    enabled = true,
-  }
-
+	neogen.setup({
+		enabled = true,
+	})
 end
 
 return M
