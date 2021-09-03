@@ -33,17 +33,17 @@ function M.config()
 	dap.configurations.c = dap.configurations.cpp
 
 	-- Visuals
-	vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "Error", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
 	vim.fn.sign_define("DapBreakpointRejected", {
 		text = " ",
 		texthl = "Ignore",
 		linehl = "",
 		numhl = "",
 	})
-	vim.fn.sign_define("DapLogPoint", { text = "ﯽ ", texthl = "Todo", linehl = "", numhl = "" })
+	vim.fn.sign_define("DapLogPoint", { text = "ﯽ ", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 	vim.fn.sign_define("DapStopped", {
 		text = " ",
-		texthl = "Warnings",
+		texthl = "DapStopped",
 		linehl = "",
 		numhl = "",
 	})
