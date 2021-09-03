@@ -145,9 +145,7 @@ require('packer').startup({
     -- Start screen
     use({
       'glepnir/dashboard-nvim',
-      config = function()
-        vim.g.dashboard_default_executive = 'telescope'
-      end,
+      setup = require('config.dashboard').setup(),
     })
     -- Statusline
     use({
