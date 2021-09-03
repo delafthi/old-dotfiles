@@ -74,6 +74,9 @@ require('packer').startup({
       'termdebug',
       installer = function() end,
       updater = function() end,
+      config = function()
+        vim.cmd([[let g:termdebug_wide = 1]])
+      end,
       cmd = 'Termdebug',
     })
     use({
