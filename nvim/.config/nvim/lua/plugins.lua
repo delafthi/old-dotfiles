@@ -66,7 +66,7 @@ require("packer").startup({
 			config = require("config.nvim-cmp").config(),
 		})
 		-- Debugging
-		use({ "mfussenegger/nvim-dap", config = require("config.nvim-dap").config() })
+		-- use({ "mfussenegger/nvim-dap", config = require("config.nvim-dap").config() })
 		use({
 			"lukas-reineke/format.nvim",
 			config = require("config.format").config(),
