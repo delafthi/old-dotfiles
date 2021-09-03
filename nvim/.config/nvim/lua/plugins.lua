@@ -68,8 +68,8 @@ require("packer").startup({
 		-- Debugging
 		use({ "mfussenegger/nvim-dap", config = require("config.nvim-dap").config() })
 		use({
-			"mhartington/formatter.nvim",
-			config = require("config.formatter").config(),
+			"lukas-reineke/format.nvim",
+			config = require("config.format").config(),
 		})
 		-- Fuzzy finder
 		use({
