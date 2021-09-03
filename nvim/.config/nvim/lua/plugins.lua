@@ -71,6 +71,12 @@ require('packer').startup({
     -- Debugging
     -- use({ "mfussenegger/nvim-dap", config = require("config.nvim-dap").config() })
     use({
+      'termdebug',
+      installer = function() end,
+      updater = function() end,
+      cmd = 'Termdebug',
+    })
+    use({
       'lukas-reineke/format.nvim',
       config = require('config.format').config(),
     })
