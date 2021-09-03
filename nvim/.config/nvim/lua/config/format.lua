@@ -77,17 +77,9 @@ function M.config()
   -- Automatically deletes all trailing whitespace and newlines at end of file on
   -- save.
   vim.cmd([[
-  function! TrimTrailingLines()
-    let lastLine = line('$')
-    let lastNonblankLine = prevnonblank(lastLine)
-    if lastLine > 0 && lastNonblankLine != lastLine
-      silent! execute lastNonblankLine + 1 . ',$delete _'
-    endif
-  endfunction
-  augroup remove_trailing_whitespaces_and_lines
+  augroup format_text
     autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd BufWritepre * call TrimTrailingLines()
+    autocmd BufWritePost * FormatWrite
   augroup END
   ]])
 end
