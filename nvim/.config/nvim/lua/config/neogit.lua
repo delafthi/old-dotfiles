@@ -17,7 +17,7 @@ function M.config()
     auto_refresh = true,
     didsable_builtin_notifications = true,
     commit_popup = {
-      kind = 'floating',
+      kind = 'split',
     },
     -- customize displayed signs
     signs = {
