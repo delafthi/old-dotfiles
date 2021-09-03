@@ -132,6 +132,7 @@ require('packer').startup({
       'vhyrro/neorg',
       requires = 'nvim-lua/plenary.nvim',
       config = require('config.neorg').config(),
+      ft = 'norg',
     })
     use({
       'iamcco/markdown-preview.nvim',
