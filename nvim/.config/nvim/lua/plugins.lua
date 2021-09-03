@@ -111,7 +111,10 @@ require("packer").startup({
 			config = require("config.lspkind-nvim").config(),
 		})
 		-- Movement
-		use({ "justinmk/vim-sneak" })
+		use({
+      "ggandor/lightspeed.nvim",
+      config = require("config.lightspeed").config(),
+    })
 		-- Note taking
 		use({
 			"vhyrro/neorg",
