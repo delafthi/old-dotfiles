@@ -2,10 +2,12 @@ local M = {}
 
 function M.config()
   local ok, lightspeed = pcall(function()
-    return require("lightspeed")
+    return require('lightspeed')
   end)
 
-  if not ok then return end
+  if not ok then
+    return
+  end
 
   lightspeed.setup({
     jump_to_first_match = true,
