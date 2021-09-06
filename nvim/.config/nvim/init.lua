@@ -130,7 +130,6 @@ vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
 local opts = { noremap = true, silent = true }
-u.map('i', 'ii', '<Esc>', opts) -- Remap ii as Escape.
 -- Remap jk keys to navigate through visual lines.
 u.map('n', 'j', 'gj', opts)
 u.map('v', 'j', 'gj', opts)
@@ -153,7 +152,9 @@ end
 
 u.map('n', '<Leader>x', ':call luaeval("_G.__execute_line()")<Cr>', opts)
 -- Map window navigation to CTRL + hjkl.
-if not pcall(function() require('Navigator') end) then
+if not pcall(function()
+  require('Navigator')
+end) then
   u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
   u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
   u.map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
