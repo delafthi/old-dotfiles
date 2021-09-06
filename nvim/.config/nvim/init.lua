@@ -135,6 +135,24 @@ u.map('n', 'j', 'gj', opts)
 u.map('v', 'j', 'gj', opts)
 u.map('n', 'k', 'gk', opts)
 u.map('v', 'k', 'gk', opts)
+-- Move lines with <Leader>j and <Leader>k
+u.map('n', '<Leader>j', ':m .+1<Cr>==', opts)
+u.map('n', '<Leader>k', ':m .-2<Cr>==', opts)
+u.map('v', '<Leader>j', ":m '>+1<Cr>gv=gv", opts)
+u.map('v', '<Leader>k', ":m '<-2<Cr>gv=gv", opts)
+-- Keep the cursor centered and open folds
+u.map('n', 'n', 'nzzzv', opts)
+u.map('n', 'N', 'Nzzzv', opts)
+u.map('n', 'J', 'mzJ`z', opts)
+-- Insert undo breakpoints in insert mode
+u.map('i', ',', ',<C-g>u', opts)
+u.map('i', '.', '.<C-g>u', opts)
+u.map('i', '(', '(<C-g>u', opts)
+u.map('i', ')', ')<C-g>u', opts)
+u.map('i', '[', '[<C-g>u', opts)
+u.map('i', ']', ']<C-g>u', opts)
+u.map('i', '{', '{<C-g>u', opts)
+u.map('i', '}', '}<C-g>u', opts)
 -- Open terminal inside nvim with <Leader>tt.
 u.map('n', '<Leader>tt', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
 u.map('n', '<Leader>th', ':call luaeval("_G.__new_term(\'h\')")<Cr>', opts)
@@ -183,7 +201,9 @@ u.map('i', '<C-Right>', '<C-\\><C-n>:vertical resize +2<Cr>', opts)
 u.map('t', '<C-Right>', '<C-\\><C-n>:vertical resize +2<Cr>', opts)
 -- Change splits layout from vertical to horizontal or vice versa.
 u.map('n', '<Leader>lv', '<C-w>t<C-w>H', opts)
+u.map('t', '<Leader>lv', '<C-w>t<C-w>H', opts)
 u.map('n', '<Leader>lh', '<C-w>t<C-w>K', opts)
+u.map('t', '<Leader>lh', '<C-w>t<C-w>K', opts)
 -- Better indenting in the visual mode.
 u.map('v', '<', '<gv', opts)
 u.map('v', '>', '>gv', opts)
@@ -197,25 +217,25 @@ u.map(
   'i',
   '<Tab>',
   'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
-  { expr = true, silent = true }
+  { silent = true, expr = true }
 )
 u.map(
   's',
   '<Tab>',
   'pumvisible() ? "\\<C-n>" : "\\<Tab>"',
-  { expr = true, silent = true }
+  { silent = true, expr = true }
 )
 u.map(
   'i',
   '<S-Tab>',
   'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
-  { expr = true, silent = true }
+  { silent = true, expr = true }
 )
 u.map(
   's',
   '<S-Tab>',
   'pumvisible() ? "\\<C-p>" : "\\<S-Tab>"',
-  { expr = true, silent = true }
+  { silent = true, expr = true }
 )
 -- Try to save file with sudo on files that require root permission
 cmd([[ca w!! w !sudo tee >/dev/null "%"]])
