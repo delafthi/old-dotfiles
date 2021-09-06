@@ -46,14 +46,14 @@ function M.config()
     u.bufmap(
       bufnr,
       'n',
-      '<C-k>',
+      '<C-s>',
       '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
       opts
     )
     u.bufmap(
       bufnr,
       'i',
-      '<C-k>',
+      '<C-s>',
       '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
       opts
     )

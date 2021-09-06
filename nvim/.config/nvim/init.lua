@@ -153,18 +153,20 @@ end
 
 u.map('n', '<Leader>x', ':call luaeval("_G.__execute_line()")<Cr>', opts)
 -- Map window navigation to CTRL + hjkl.
-u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-u.map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
-u.map('n', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-u.map('i', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-u.map('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
-u.map('n', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-u.map('i', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-u.map('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
-u.map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
-u.map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
-u.map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+if not pcall(function() require('Navigator') end) then
+  u.map('n', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+  u.map('i', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+  u.map('t', '<C-h>', '<C-\\><C-n><C-w>h', opts)
+  u.map('n', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+  u.map('i', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+  u.map('t', '<C-j>', '<C-\\><C-n><C-w>j', opts)
+  u.map('n', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+  u.map('i', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+  u.map('t', '<C-k>', '<C-\\><C-n><C-w>k', opts)
+  u.map('n', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+  u.map('i', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+  u.map('t', '<C-l>', '<C-\\><C-n><C-w>l', opts)
+end
 -- Better resizing of windows with CTRL + arrows
 u.map('n', '<C-Left>', '<C-\\><C-n>:vertical resize -2<Cr>', opts)
 u.map('i', '<C-Left>', '<C-\\><C-n>:vertical resize -2<Cr>', opts)

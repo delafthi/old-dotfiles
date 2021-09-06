@@ -125,10 +125,14 @@ require('packer').startup({
       'onsails/lspkind-nvim',
       config = require('config.lspkind-nvim').config(),
     })
-    -- Movement
+    -- Navigation
     use({
       'ggandor/lightspeed.nvim',
       config = require('config.lightspeed').config(),
+    })
+    use({
+      'numToStr/Navigator.nvim',
+      config = require('config.Navigator').config(),
     })
     -- Note taking
     use({
