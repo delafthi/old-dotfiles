@@ -67,7 +67,7 @@ function M.config()
   u.map(
     'n',
     '<Leader>ff',
-    '<Cmd>lua require("telescope.builtin").fd()<Cr>',
+    '<Cmd>lua require("telescope.builtin").fd({hidden=true})<Cr>',
     opts
   )
   -- Search recursively in all git files
