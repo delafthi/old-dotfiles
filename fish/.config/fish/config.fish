@@ -238,7 +238,7 @@ if command -v nvim 1>/dev/null 2>&1
   alias vim="nvim"
   alias vi="nvim"
   # set vim as the manpager
-  set -gx MANPAGER "nvim +Man!"
+  set -gx MANPAGER "nvim +Man! +'set noma'"
   set -gx EDITOR "nvim" # $EDITOR use Neovim in terminal
 end
 
