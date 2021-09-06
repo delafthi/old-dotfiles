@@ -79,8 +79,7 @@ function M.config()
   local opts = { noremap = true, silent = true }
   u.map('n', '<Leader>bf', ':Format<Cr>', opts)
 
-  -- Automatically deletes all trailing whitespace and newlines at end of file on
-  -- save.
+  -- Automatically formats filetypes on save.
   vim.cmd([[
   augroup format_text
     autocmd!
