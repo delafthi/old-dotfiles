@@ -188,7 +188,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord8_gui, nord.nord3_gui, 'bold' },
+      highlight = { nord.nord9_gui, nord.nord3_gui, 'bold' },
     },
   }
   gls.right[11] = {
@@ -198,7 +198,7 @@ function M.config()
         local column = vim.fn.col('.')
         return line .. ':' .. column
       end,
-      highlight = { nord.nord0_gui, nord.nord8_gui },
+      highlight = { nord.nord0_gui, nord.nord9_gui },
     },
   }
   gls.right[12] = {
@@ -206,7 +206,7 @@ function M.config()
       provider = function()
         return ' '
       end,
-      highlight = { nord.nord0_gui, nord.nord8_gui },
+      highlight = { nord.nord0_gui, nord.nord9_gui },
     },
   }
   gls.right[13] = {
@@ -222,7 +222,7 @@ function M.config()
         local result, _ = math.modf((current_line / total_line) * 100)
         return result .. '%'
       end,
-      highlight = { nord.nord0_gui, nord.nord8_gui },
+      highlight = { nord.nord0_gui, nord.nord9_gui },
     },
   }
   gls.right[14] = {
@@ -230,7 +230,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord8_gui, nord.nord0_gui, 'bold' },
+      highlight = { nord.nord9_gui, nord.nord0_gui, 'bold' },
     },
   }
 end
