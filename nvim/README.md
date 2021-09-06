@@ -23,8 +23,9 @@ Neovim is a terminal based text editor with a f
   - Code formatters
     - [shfmt](https://github.com/mvdan/sh)
     - [hindent](https://hackage.haskell.org/package/hindent)
-    - [lua-format](https://github.com/Koihik/LuaFormatter)
+    - [stylua](https://github.com/johnnymorganz/stylua)
     - [yapf](https://github.com/google/yapf)
+    - [prettier](https://prettier.io/)
 
 ## References
 
