@@ -57,6 +57,11 @@ function M.config()
     python = {
       { cmd = { 'yapf' } },
     },
+    shell = {
+      cmd = {
+        'shfmt', '-ln', 'posix', '-i', 2, '-ci', '-sr', '-kp', '-fn'
+      },
+    },
     vim = {
       {
         cmd = {
