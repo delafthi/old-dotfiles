@@ -277,7 +277,7 @@ function M.config()
     ShortFileIcon = {
       provider = "FileIcon",
       highlight = {
-        glpf.get_file_icon_color,
+        nord.nord10_gui,
         nord.nord3_gui,
       },
     },
