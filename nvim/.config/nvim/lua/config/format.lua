@@ -1,9 +1,9 @@
 local M = {}
-local u = require('utils')
+local u = require("utils")
 
 function M.config()
   local ok, formatter = pcall(function()
-    return require('format')
+    return require("format")
   end)
 
   if not ok then
@@ -11,73 +11,81 @@ function M.config()
   end
 
   formatter.setup({
-    ['*'] = {
+    ["*"] = {
       { cmd = { "sed -i 's/[ \t]*$//'" } }, -- remove trailing whitespace
     },
     c = {
-      { cmd = { 'clang-format' } },
+      { cmd = { "clang-format" } },
     },
     cpp = {
-      { cmd = { 'clang-format' } },
+      { cmd = { "clang-format" } },
     },
     fish = {
-      { cmd = { 'fish_indent' } },
+      { cmd = { "fish_indent" } },
     },
     haskell = {
       {
         cmd = {
-          'hindent',
-          '--line-lenght',
+          "hindent",
+          "--line-lenght",
           80,
-          '--indent-size',
+          "--indent-size",
           2,
-          '--sort-imports',
+          "--sort-imports",
         },
       },
     },
     lua = {
       {
         cmd = {
-          'stylua',
-          '--stdin-filepath',
+          "stylua",
+          "--stdin-filepath",
           vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-          '-',
+          "-",
         },
       },
     },
     markdown = {
-      { cmd = { 'prettier -w' } },
+      { cmd = { "prettier -w" } },
       {
-        cmd = { 'yapf' },
-        start_pattern = '^```python$',
-        end_pattern = '^```python$',
-        target = 'current',
+        cmd = { "yapf" },
+        start_pattern = "^```python$",
+        end_pattern = "^```python$",
+        target = "current",
       },
     },
     python = {
-      { cmd = { 'yapf' } },
+      { cmd = { "yapf" } },
     },
     shell = {
       cmd = {
-        'shfmt', '-ln', 'posix', '-i', 2, '-ci', '-sr', '-kp', '-fn'
+        "shfmt",
+        "-ln",
+        "posix",
+        "-i",
+        2,
+        "-ci",
+        "-sr",
+        "-kp",
+        "-fn",
       },
     },
     vim = {
       {
         cmd = {
-          'stylua',
-          '--stdin-filepath',
+          "stylua",
+          "--stdin-filepath",
           vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-          '-',
+          "-",
         },
-        start_pattern = '^lua << EOF$',
-        end_pattern = '^EOF$',
+        start_pattern = "^lua << EOF$",
+        end_pattern = "^EOF$",
       },
     },
   })
 
   local opts = { noremap = true, silent = true }
-  u.map('n', '<Leader>bf', ':Format<Cr>', opts)
+  u.map("n", "<Leader>bf", ":Format<Cr>", opts)
 
   -- Automatically formats filetypes on save.
   vim.cmd([[
