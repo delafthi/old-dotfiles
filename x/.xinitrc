@@ -39,9 +39,6 @@ xsetroot -cursor_name left_ptr
 xss-lock slock &
 udiskie &
 picom &
-nm-applet &
-blueman-applet &
-pasystray &
 pcmanfm -d &
 unclutter --timeout 10 &
 # Default session
