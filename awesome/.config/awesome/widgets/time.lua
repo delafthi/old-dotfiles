@@ -17,7 +17,10 @@ local M = {}
 function M.get_widget()
   local time = wibox.widget({
     {
-      { format = " :%a %d. %b %Y %H:%M", widget = wibox.widget.textclock },
+      {
+        format = " %a %d. %b %Y %H:%M",
+        widget = wibox.widget.textclock,
+      },
       left = 5 * beautiful.useless_gap,
       right = 5 * beautiful.useless_gap,
       widget = wibox.container.margin,

@@ -410,7 +410,7 @@ theme.systray_icon_spacing = dpi(3) -- The systray icon spacing
 
 -- Taglist {{{3
 theme.taglist_fg_focus = theme.nord0 -- The tag list main foreground (text) color
-theme.taglist_bg_focus = theme.nord14 -- The tag list main background color
+theme.taglist_bg_focus = theme.nord8 -- The tag list main background color
 theme.taglist_fg_urgent = theme.nord0 -- The tag list urgent elements foreground (text) color
 theme.taglist_bg_urgent = theme.nord11 -- The tag list urgent elements background color
 theme.taglist_fg_occupied = theme.nord4 -- The tag list occupied elements foreground (text) color

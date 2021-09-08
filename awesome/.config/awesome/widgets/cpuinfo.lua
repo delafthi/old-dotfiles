@@ -60,7 +60,7 @@ function M.get_widget()
           end
           widget:set_markup_silently(
             string.format(
-              "<span weight='bold' size='larger' foreground='%s'> </span>%.f%%",
+              "<span weight='bold' foreground='%s'> </span>%.f%%",
               beautiful.nord11,
               cpus["cpu"]["diff_usage"]
             )
@@ -69,8 +69,8 @@ function M.get_widget()
       ),
       layout = wibox.layout.fixed.horizontal,
     },
-    left = 5 * beautiful.useless_gap,
-    right = 5 * beautiful.useless_gap,
+    left = 6 * beautiful.useless_gap,
+    right = 3 * beautiful.useless_gap,
     widget = wibox.container.margin,
   })
   return cpuinfo

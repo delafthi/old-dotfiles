@@ -17,7 +17,7 @@ local M = {}
 -- Volume control {{{1
 
 local volumecfg = {
-  cardid = 1,
+  cardid = 2,
   channel = "Speaker",
 }
 
@@ -36,20 +36,25 @@ function M.get_widget()
           local volume = stdout:match("%[%d+%%%]")
           volume = tonumber(volume:match("%d+"))
           local status = stdout:match("%[o[n|ff]%]")
-          local out = ""
+          local icon = ""
           if status:find("off") then
-            out = "婢 "
+            icon = "婢"
           elseif volume >= 60 then
-            out = "墳 "
+            icon = "墳"
           elseif volume >= 10 then
-            out = "奔 "
+            icon = "奔"
           elseif volume < 10 then
-            out = "奄 "
+            icon = "奄"
           else
-            out = "ﱝ "
+            icon = "ﱝ "
           end
           widget:set_markup_silently(
-            string.format("<big><b>%s</b></big>%.f%%", out, volume)
+            string.format(
+              "<span weight='bold' foreground='%s'>%s </span>%.f%%",
+              beautiful.nord15,
+              icon,
+              volume
+            )
           )
         end
       ),
@@ -69,8 +74,8 @@ function M.get_widget()
       },
       layout = wibox.layout.fixed.horizontal,
     },
-    left = 2 * beautiful.useless_gap,
-    right = 2 * beautiful.useless_gap,
+    left = 3 * beautiful.useless_gap,
+    right = 6 * beautiful.useless_gap,
     widget = wibox.container.margin,
   })
   return volumectrl
