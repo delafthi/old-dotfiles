@@ -2,15 +2,15 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Standard awesome libraries
-local gears = require('gears') -- Utilities such as color parsing and objects
-local awful = require('awful') -- Everything related to window management
+local gears = require("gears") -- Utilities such as color parsing and objects
+local awful = require("awful") -- Everything related to window management
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 
 -- Default mod key
-local modkey = 'Mod4' -- Meta key
+local modkey = "Mod4" -- Meta key
 
 local M = {}
 
@@ -19,7 +19,7 @@ local M = {}
 
 function M.get_prompt()
   local prompt = awful.widget.prompt({
-    prompt = ' Rename tag: ',
+    prompt = " Rename tag: ",
     exe_callback = function(input)
       if not input or #input == 0 then
         return

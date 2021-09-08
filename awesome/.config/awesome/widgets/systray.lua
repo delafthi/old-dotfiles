@@ -2,11 +2,11 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Standard awesome libraries
-local gears = require('gears') -- Utilities such as color parsing and objects
+local gears = require("gears") -- Utilities such as color parsing and objects
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 
 local M = {}
 

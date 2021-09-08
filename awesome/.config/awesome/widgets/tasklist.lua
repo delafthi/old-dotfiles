@@ -2,13 +2,13 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Standard awesome libraries
-local awful = require('awful') -- Everything related to window management
+local awful = require("awful") -- Everything related to window management
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 -- Adjust pixel size to dpi
-local dpi = require('beautiful.xresources').apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 local M = {}
 
@@ -39,8 +39,8 @@ function M.get_widget(s)
           color = beautiful.separator_fg,
           widget = wibox.widget.separator,
         },
-        valign = 'center',
-        halign = 'center',
+        valign = "center",
+        halign = "center",
         widget = wibox.container.place,
       },
       layout = wibox.layout.fixed.horizontal,
@@ -49,11 +49,11 @@ function M.get_widget(s)
       {
         {
           {
-            { id = 'icon_role', resize = true, widget = wibox.widget.imagebox },
+            { id = "icon_role", resize = true, widget = wibox.widget.imagebox },
             margins = 2,
             widget = wibox.container.margin,
           },
-          { id = 'text_role', widget = wibox.widget.textbox },
+          { id = "text_role", widget = wibox.widget.textbox },
           spacing = 2 * beautiful.useless_gap,
           layout = wibox.layout.fixed.horizontal,
         },
@@ -61,7 +61,7 @@ function M.get_widget(s)
         right = 5 * beautiful.useless_gap,
         widget = wibox.container.margin,
       },
-      id = 'background_role',
+      id = "background_role",
       widget = wibox.container.background,
     },
   })

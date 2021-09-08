@@ -2,14 +2,14 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Standard awesome libraries
-local gears = require('gears') -- Utilities such as color parsing and objects
-local awful = require('awful') -- Everything related to window management
+local gears = require("gears") -- Utilities such as color parsing and objects
+local awful = require("awful") -- Everything related to window management
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 -- Adjust pixel size to dpi
-local dpi = require('beautiful.xresources').apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 local M = {}
 
@@ -20,7 +20,7 @@ function M.get_widget(s)
   local layoutbox = wibox.widget({
     {
       {
-        id = 'icon_role',
+        id = "icon_role",
         awful.widget.layoutbox({
           screen = s,
           buttons = {
@@ -32,14 +32,14 @@ function M.get_widget(s)
             end),
           },
         }),
-        opacity = 0.24,
+        opacity = 0.5,
         layout = wibox.layout.fixed.horizontal,
       },
       margins = 3 * beautiful.useless_gap,
       widget = wibox.container.margin,
     },
-    bg = beautiful.nord1,
-    fg = beautiful.fg_normal,
+    bg = beautiful.nord3,
+    fg = beautiful.nord7,
     shape = gears.shape.rounded_bar,
     widget = wibox.container.background,
   })
@@ -64,7 +64,7 @@ function M.get_popup(widget, s)
         widget_template = {
           {
             {
-              id = 'clienticon',
+              id = "clienticon",
               forced_height = 22,
               forced_width = 22,
               widget = wibox.widget.imagebox,
@@ -72,7 +72,7 @@ function M.get_popup(widget, s)
             margins = dpi(4),
             widget = wibox.container.margin,
           },
-          id = 'background_role',
+          id = "background_role",
           forced_width = dpi(24),
           forced_height = dpi(24),
           shape = gears.shape.rounded_rect,
@@ -82,7 +82,7 @@ function M.get_popup(widget, s)
       margins = dpi(4),
       widget = wibox.container.margin,
     }),
-    preferred_anchors = 'middle',
+    preferred_anchors = "middle",
     border_color = beautiful.border_color,
     border_width = beautiful.border_width,
     shape = gears.shape.infobubble,

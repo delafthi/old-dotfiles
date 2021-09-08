@@ -2,12 +2,12 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Standard awesome libraries
-local gears = require('gears') -- Utilities such as color parsing and objects
-local awful = require('awful') -- Everything related to window management
+local gears = require("gears") -- Utilities such as color parsing and objects
+local awful = require("awful") -- Everything related to window management
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 
 local M = {}
 
@@ -17,7 +17,7 @@ local M = {}
 function M.get_widget()
   local time = wibox.widget({
     {
-      { format = ' :%a %d. %b %Y %H:%M', widget = wibox.widget.textclock },
+      { format = " :%a %d. %b %Y %H:%M", widget = wibox.widget.textclock },
       left = 5 * beautiful.useless_gap,
       right = 5 * beautiful.useless_gap,
       widget = wibox.container.margin,
@@ -36,11 +36,11 @@ end
 function M.get_popup(widget)
   local p = awful.popup({
     widget = wibox.widget({
-      date = os.date('*t'),
+      date = os.date("*t"),
       font = beautiful.font,
       widget = wibox.widget.calendar.year,
     }),
-    preferred_anchors = 'middle',
+    preferred_anchors = "middle",
     border_color = beautiful.border_color,
     border_width = beautiful.border_width,
     shape = gears.shape.infobubble,
