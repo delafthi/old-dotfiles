@@ -11,6 +11,9 @@ function M.config()
   local ok_neogen, neogen = pcall(function()
     return require("neogen")
   end)
+  local ok_lspkind, lspkind = pcall(function()
+    return require("lspkind")
+  end)
 
   if not ok_cmp then
     return
@@ -30,6 +33,23 @@ function M.config()
     documentation = {
       border = { "", "", "", " ", "", "", "", " " },
       winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        if ok_lspkind then
+          vim_item.kind = lspkind.presets.default[vim_item.kind]
+        else
+          vim_item.kind = vim_item.kind
+        end
+        vim_item.menu = ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]",
+          nvim_lua = "[Lua]",
+          latex_symbols = "[Latex]",
+        })[entry.source.name]
+        return vim_item
+      end,
     },
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
