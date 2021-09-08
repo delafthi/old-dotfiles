@@ -3,13 +3,12 @@
 -- Includes {{{1
 -- Widget and layout library
 local wibox = require('wibox') -- Awesome own generic widget framework
+-- Standard awesome libraries
+local gears = require('gears') -- Utilities such as color parsing and objects
 -- Theme handling library
 local beautiful = require('beautiful') -- Awesome theme module
 -- Adjust pixel size to dpi
 local dpi = require('beautiful.xresources').apply_dpi
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require('awful.hotkeys_popup.keys')
 
 local M = {}
 

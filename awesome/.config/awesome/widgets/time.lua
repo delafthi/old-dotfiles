@@ -1,18 +1,13 @@
 -- awesome_mode: api-level=4:screen=on
 -----------------------------------------------------------
 -- Includes {{{1
-pcall(require, 'luarocks.loader')
 -- Standard awesome libraries
 local gears = require('gears') -- Utilities such as color parsing and objects
 local awful = require('awful') -- Everything related to window management
-require('awful.autofocus')
 -- Widget and layout library
 local wibox = require('wibox') -- Awesome own generic widget framework
 -- Theme handling library
 local beautiful = require('beautiful') -- Awesome theme module
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
-require('awful.hotkeys_popup.keys')
 
 local M = {}
 
