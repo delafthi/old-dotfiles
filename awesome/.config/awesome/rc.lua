@@ -380,7 +380,7 @@ ruled.client.connect_signal("request::rules", function()
     id = "global",
     rule = {},
     properties = {
-      border_width = beautiful.border_width,
+      border_width = beautiful.border_width_normal,
       border_color = beautiful.border_normal,
       focus = awful.client.focus.filter,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen,
@@ -396,7 +396,10 @@ ruled.client.connect_signal("request::rules", function()
   -- Floating clients
   ruled.client.append_rule({
     id = "floating",
-    rule_any = { class = { "Pavucontrol", "Xmessage" }, type = { "dialog" } },
+    rule_any = {
+      class = { "Pavucontrol", "Xmessage" },
+      type = { "dialog" },
+    },
     properties = { floating = true },
   })
 end)
@@ -422,14 +425,14 @@ end)
 -- Focus signals
 client.connect_signal("focus", function(c)
   c.skip_taskbar = false
-  c.border_color = beautiful.border_focus
+  c.border_color = beautiful.border_color_active
 end)
 client.connect_signal("unfocus", function(c)
   c.skip_taskbar = true
   if c.floating == true then
-    c.border_color = beautiful.border_floating
+    c.border_color = beautiful.border_color_floating
   else
-    c.border_color = beautiful.border_normal
+    c.border_color = beautiful.border_color_normal
   end
 end)
 
