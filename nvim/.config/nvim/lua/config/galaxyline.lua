@@ -13,6 +13,7 @@ function M.config()
     return
   end
 
+  local glpf = require('galaxyline.provider_fileinfo')
   local condition = require('galaxyline.condition')
 
   local gls = gl.section
@@ -75,15 +76,17 @@ function M.config()
       highlight = { nord.nord2_gui, nord.nord1_gui, 'bold' },
     },
   }
+  -- Spacer
   gls.left[4] = {
     Space = {
       provider = function()
         return ' '
       end,
-      condition = condition.buffer_not_empty,
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord4_gui, nord.nord1_gui },
     },
   }
+  -- LSP Diagnostics
   gls.left[5] = {
     DiagnosticError = {
       provider = 'DiagnosticError',
@@ -111,7 +114,7 @@ function M.config()
   -- Right side
   ---------------------------------------------------------
   gls.right[1] = {
-    FileInfoRightCap = {
+    FileInfoLeftCap = {
       provider = function()
         return left_cap
       end,
@@ -147,7 +150,7 @@ function M.config()
         return '  '
       end,
       condition = function()
-        return condition.buffer_not_empty and condition.check_git_workspace()
+        return condition.buffer_not_empty() and condition.check_git_workspace()
       end,
       highlight = { nord.nord12_gui, nord.nord3_gui },
     },
@@ -160,7 +163,9 @@ function M.config()
           return ' '
         end,
       },
-      condition = condition.buffer_not_empty,
+      condition = function()
+        return condition.buffer_not_empty() and condition.check_git_workspace()
+      end,
       highlight = { nord.nord4_gui, nord.nord3_gui },
     },
   }
@@ -168,9 +173,8 @@ function M.config()
   gls.right[8] = {
     FileIcon = {
       provider = 'FileIcon',
-      condition = condition.buffer_not_empty,
       highlight = {
-        require('galaxyline.provider_fileinfo').get_file_icon_color,
+        glpf.get_file_icon_color,
         nord.nord3_gui,
       },
     },
@@ -178,7 +182,9 @@ function M.config()
   gls.right[9] = {
     FileName = {
       provider = { 'FileName', 'FileSize' },
-      condition = condition.buffer_not_empty,
+      condition = function()
+        return condition.buffer_not_empty()
+      end,
       highlight = { nord.nord4_gui, nord.nord3_gui },
     },
   }
@@ -231,6 +237,68 @@ function M.config()
         return right_cap
       end,
       highlight = { nord.nord9_gui, nord.nord0_gui, 'bold' },
+    },
+  }
+
+  ---------------------------------------------------------
+  -- Short line status line
+  ---------------------------------------------------------
+  -- Left side
+  ---------------------------------------------------------
+  gls.short_line_left[1] = {
+    ShortLeftCap = {
+      provider = function()
+        return left_cap
+      end,
+      highlight = { nord.nord1_gui, nord.nord0_gui, 'bold' },
+    },
+  }
+  gls.short_line_left[2] = {
+    ShortSpacer = {
+      provider = function()
+        return ' '
+      end,
+      highlight = { nord.nord4_gui, nord.nord1_gui, 'bold' },
+    },
+  }
+
+  -- Right side
+  ---------------------------------------------------------
+  gls.short_line_right[1] = {
+    ShortFileInfoLeftCap = {
+      provider = function()
+        return left_cap
+      end,
+      highlight = { nord.nord3_gui, nord.nord1_gui, 'bold' },
+    },
+  }
+  -- File info
+  gls.short_line_right[2] = {
+    ShortFileIcon = {
+      provider = 'FileIcon',
+      highlight = {
+        glpf.get_file_icon_color,
+        nord.nord3_gui,
+      },
+    },
+  }
+  gls.short_line_right[3] = {
+    ShortFileName = {
+      provider = {
+        'FileName',
+        function()
+          return glpf.get_file_size():sub(1, -2)
+        end,
+      },
+      highlight = { nord.nord4_gui, nord.nord3_gui },
+    },
+  }
+  gls.short_line_right[4] = {
+    ShortFileInfoRightCap = {
+      provider = function()
+        return right_cap
+      end,
+      highlight = { nord.nord3_gui, nord.nord0_gui, 'bold' },
     },
   }
 end
