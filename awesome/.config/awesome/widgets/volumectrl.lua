@@ -60,16 +60,34 @@ function M.get_widget()
       ),
       buttons = {
         awful.button({}, 1, function()
-          os.execute("amixer -c 1 sset Speaker toggle")
+          os.execute(
+            "amixer -c "
+              .. volumecfg.cardid
+              .. " sset "
+              .. volumecfg.channel
+              .. " toggle"
+          )
         end),
         awful.button({}, 3, function()
           awful.spawn("pavucontrol")
         end),
         awful.button({}, 4, function()
-          os.execute("amixer -c 1 sset Speaker 5%+")
+          os.execute(
+            "amixer -c "
+              .. volumecfg.cardid
+              .. " sset "
+              .. volumecfg.channel
+              .. " 5%+"
+          )
         end),
         awful.button({}, 5, function()
-          os.execute("amixer -c 1 sset Speaker 5%-")
+          os.execute(
+            "amixer -c "
+              .. volumecfg.cardid
+              .. " sset "
+              .. volumecfg.channel
+              .. " 5%-"
+          )
         end),
       },
       layout = wibox.layout.fixed.horizontal,
