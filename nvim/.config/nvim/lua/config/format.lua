@@ -80,12 +80,12 @@ function M.config()
   u.map('n', '<Leader>bf', ':Format<Cr>', opts)
 
   -- Automatically formats filetypes on save.
-  vim.cmd([[
-  augroup format_text
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-  augroup END
-  ]])
+  -- vim.cmd([[
+  -- augroup format_text
+    -- autocmd!
+    -- autocmd BufWritePost * FormatWrite
+  -- augroup END
+  -- ]])
 end
 
 return M
