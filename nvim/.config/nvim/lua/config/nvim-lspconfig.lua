@@ -1,9 +1,9 @@
 local M = {}
-local u = require('utils')
+local u = require("utils")
 
 function M.config()
   local ok, lspconfig = pcall(function()
-    return require('lspconfig')
+    return require("lspconfig")
   end)
 
   if not ok then
@@ -14,96 +14,96 @@ function M.config()
   capabilities.textDocument.completion.completionItem.snippetSupport = false
 
   local on_attach = function(client, bufnr)
-    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
     -- Mappings.
     local opts = { noremap = true, silent = true }
-    u.bufmap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'gr', '<Cmd>lua vim.lsp.buf.references()<Cr>', opts)
-    u.bufmap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<Cr>', opts)
+    u.bufmap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<Cr>", opts)
+    u.bufmap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<Cr>", opts)
+    u.bufmap(bufnr, "n", "gr", "<Cmd>lua vim.lsp.buf.references()<Cr>", opts)
+    u.bufmap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<Cr>", opts)
     u.bufmap(
       bufnr,
-      'n',
-      'gp',
-      '<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>',
+      "n",
+      "gp",
+      "<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      'gn',
-      '<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>',
+      "n",
+      "gn",
+      "<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      'gi',
-      '<Cmd>lua vim.lsp.buf.implementation()<Cr>',
+      "n",
+      "gi",
+      "<Cmd>lua vim.lsp.buf.implementation()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<C-s>',
-      '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
+      "n",
+      "<C-s>",
+      "<Cmd>lua vim.lsp.buf.signature_help()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'i',
-      '<C-s>',
-      '<Cmd>lua vim.lsp.buf.signature_help()<Cr>',
+      "i",
+      "<C-s>",
+      "<Cmd>lua vim.lsp.buf.signature_help()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>wa',
-      '<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>',
+      "n",
+      "<Leader>wa",
+      "<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>wr',
-      '<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>',
+      "n",
+      "<Leader>wr",
+      "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>wl',
-      '<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>',
+      "n",
+      "<Leader>wl",
+      "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>D',
-      '<Cmd>lua vim.lsp.buf.type_definition()<Cr>',
+      "n",
+      "<Leader>D",
+      "<Cmd>lua vim.lsp.buf.type_definition()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>rn',
-      '<Cmd>lua vim.lsp.buf.rename()<Cr>',
+      "n",
+      "<Leader>rn",
+      "<Cmd>lua vim.lsp.buf.rename()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>ld',
-      '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>',
+      "n",
+      "<Leader>ld",
+      "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
-      'n',
-      '<Leader>q',
-      '<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>',
+      "n",
+      "<Leader>q",
+      "<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>",
       opts
     )
 
@@ -111,17 +111,17 @@ function M.config()
     if client.resolved_capabilities.document_formatting then
       u.bufmap(
         bufnr,
-        'n',
-        '<Leader>bf',
-        '<Cmd>lua vim.lsp.buf.formatting()<Cr>',
+        "n",
+        "<Leader>bf",
+        "<Cmd>lua vim.lsp.buf.formatting()<Cr>",
         opts
       )
     elseif client.resolved_capabilities.document_range_formatting then
       u.bufmap(
         bufnr,
-        'v',
-        '<Leader>bf',
-        '<Cmd>lua vim.lsp.buf.ranger_formatting()<Cr>',
+        "v",
+        "<Leader>bf",
+        "<Cmd>lua vim.lsp.buf.ranger_formatting()<Cr>",
         opts
       )
     end
@@ -152,9 +152,9 @@ function M.config()
   )
 
   -- Customize virtual text prefix
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = { prefix = '' } }
+    { virtual_text = { prefix = "" } }
   )
 
   -- Setup different language servers
@@ -167,13 +167,13 @@ function M.config()
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = {
-      'clangd',
-      '--all-scopes-completion',
-      '--background-index',
-      '--clang-tidy',
-      '--cross-file-rename',
-      '--header-insertion=iwyu',
-      '--header-insertion-decorators',
+      "/usr/bin/clangd",
+      "--all-scopes-completion",
+      "--background-index",
+      "--clang-tidy",
+      "--cross-file-rename",
+      "--header-insertion=iwyu",
+      "--header-insertion-decorators",
     },
   })
   -- dockerfile-language-server
@@ -183,37 +183,41 @@ function M.config()
     capabilities = capabilities,
     on_attach = on_attach,
     root_dir = lspconfig.util.root_pattern(
-      '*.cabal',
-      'stack.yaml',
-      'cabal.project',
-      'package.yaml',
-      'hie.yaml'
+      "*.cabal",
+      "stack.yaml",
+      "cabal.project",
+      "package.yaml",
+      "hie.yaml"
     ),
   })
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    cmd = { 'lua-language-server' },
+    cmd = {
+      "/usr/bin/lua-language-server",
+      "-E",
+      "/usr/share/lua-language-server/main.lua",
+    },
     settings = {
       Lua = {
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
+          version = "LuaJIT",
           -- Setup your lua path
-          path = vim.split(package.path, ';'),
+          path = {
+            "lua/?.lua",
+            "lua/?/init.lua",
+          },
         },
         diagnostics = {
           enable = true,
           -- Get the language server to recognize the vim and awesome globals
-          globals = { 'vim', 'awesome', 'client', 'root', 'screen' },
+          globals = { "vim", "awesome", "client", "root", "screen" },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-          },
+          library = vim.api.nvim_get_runtime_file("", true),
         },
         telemetry = { enable = false },
       },
@@ -223,8 +227,8 @@ function M.config()
   lspconfig.pyright.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    root_dir = lspconfig.util.root_pattern('.git', vim.fn.getcwd()),
-    settings = { python = { venvPath = vim.fn.expand('$HOME/.pyenv/versions') } },
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+    settings = { python = { venvPath = vim.fn.expand("$HOME/.pyenv/versions") } },
   })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
