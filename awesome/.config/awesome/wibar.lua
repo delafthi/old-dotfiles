@@ -2,13 +2,13 @@
 -----------------------------------------------------------
 -- Includes {{{1
 -- Widget and layout library
-local wibox = require('wibox') -- Awesome own generic widget framework
+local wibox = require("wibox") -- Awesome own generic widget framework
 -- Standard awesome libraries
-local gears = require('gears') -- Utilities such as color parsing and objects
+local gears = require("gears") -- Utilities such as color parsing and objects
 -- Theme handling library
-local beautiful = require('beautiful') -- Awesome theme module
+local beautiful = require("beautiful") -- Awesome theme module
 -- Adjust pixel size to dpi
-local dpi = require('beautiful.xresources').apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 local M = {}
 
@@ -34,7 +34,7 @@ function M.set(s)
     type = beautiful.wibar_type,
     x = s.geometry.x + gap,
     y = s.geometry.y + gap,
-    width = s.geometry.width - 2 * gap,
+    width = s.geometry.width - 2 * beautiful.wibar_border_width - 2 * gap,
     height = beautiful.wibar_height,
     screen = s,
     shape = beautiful.wibar_shape,
@@ -43,52 +43,57 @@ function M.set(s)
     fg = beautiful.wibar_fg,
   })
 
-  s.mywibar:struts({ top = beautiful.wibar_height + gap })
+  s.mywibar:struts({
+    top = beautiful.wibar_height + 2 * beautiful.wibar_border_width + gap,
+  })
 
   -- Create screen specific widgets
-  s.mytaglist = require('widgets.taglist').get_widget(s)
-  s.mylayoutbox = require('widgets.layoutbox').get_widget(s)
-  s.mytasklist = require('widgets.tasklist').get_widget(s)
+  s.mytaglist = require("widgets.taglist").get_widget(s)
+  s.mylayoutbox = require("widgets.layoutbox").get_widget(s)
+  s.mytasklist = require("widgets.tasklist").get_widget(s)
   -- Create non-specific widgets
-  local spacer = require('widgets.spacer').get_widget()
-  local cpuinfo = require('widgets.cpuinfo').get_widget()
-  local meminfo = require('widgets.meminfo').get_widget()
-  local time = require('widgets.time').get_widget()
-  local systray = require('widgets.systray').get_widget(s)
+  local spacer = require("widgets.spacer").get_widget()
+  local cpuinfo = require("widgets.cpuinfo").get_widget()
+  local meminfo = require("widgets.meminfo").get_widget()
+  local volumectrl = require("widgets.volumectrl").get_widget()
+  local time = require("widgets.time").get_widget()
 
   -- Add widgets to the wibox
   s.mywibar:setup({
-    {
-      { -- Left widgets
-        s.mytaglist.widget,
-        s.mylayoutbox,
-        wibox.widget.separator({
-          forced_width = dpi(0),
-          color = beautiful.wibar_bg,
-        }),
-        spacing = beautiful.wibar_spacing,
-        spacing_widget = spacer,
-        layout = wibox.layout.fixed.horizontal(),
-      },
-      { -- Middle widgets
-        s.mytasklist,
-        spacing = beautiful.wibar_spacing,
-        spacing_widget = spacer,
-        layout = wibox.layout.fixed.horizontal,
-      },
-      { -- Right widgets
-        cpuinfo,
-        meminfo,
-        time,
-        systray,
-        spacing = beautiful.wibar_spacing,
-        spacing_widget = spacer,
-        layout = wibox.layout.fixed.horizontal(),
+    { -- Left widgets
+      s.mytaglist.widget,
+      s.mylayoutbox,
+      wibox.widget.separator({
+        forced_width = dpi(0),
+        color = beautiful.wibar_bg,
+      }),
+      spacing = beautiful.wibar_spacing,
+      spacing_widget = spacer,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    { -- Middle widgets
+      s.mytasklist,
+      spacing = beautiful.wibar_spacing,
+      spacing_widget = spacer,
+      layout = wibox.layout.fixed.horizontal,
+    },
+    { -- Right widgets
+      {
+        {
+          cpuinfo,
+          meminfo,
+          volumectrl,
+          time,
+          layout = wibox.layout.fixed.horizontal,
+        },
+        bg = beautiful.nord3,
+        fg = beautiful.nord4,
+        shape = gears.shape.rounded_bar,
+        widget = wibox.container.background,
       },
       layout = wibox.layout.align.horizontal,
     },
-    margins = gap,
-    widget = wibox.container.margin,
+    layout = wibox.layout.align.horizontal,
   })
 end
 
