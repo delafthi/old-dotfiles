@@ -5,7 +5,7 @@ local api = vim.api
 function M.map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
-    options = vim.tbl_extend('force', options, opts)
+    options = vim.tbl_extend("force", options, opts)
   end
   api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -14,7 +14,7 @@ end
 function M.bufmap(bufnr, mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
-    options = vim.tbl_extend('force', options, opts)
+    options = vim.tbl_extend("force", options, opts)
   end
   api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
 end

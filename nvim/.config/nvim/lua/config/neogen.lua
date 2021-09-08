@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
   local ok, neogen = pcall(function()
-    return require('neogen')
+    return require("neogen")
   end)
 
   if not ok then

@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
   local ok, lightspeed = pcall(function()
-    return require('lightspeed')
+    return require("lightspeed")
   end)
 
   if not ok then
@@ -18,7 +18,7 @@ function M.config()
     grey_out_search_area = true,
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,
-    full_inclusive_prefix_key = '<c-x>',
+    full_inclusive_prefix_key = "<C-x>",
     -- For instant-repeat, pressing the trigger key again (f/F/t/T)
     -- always works, but here you can specify additional keys too.
     instant_repeat_fwd_key = nil,

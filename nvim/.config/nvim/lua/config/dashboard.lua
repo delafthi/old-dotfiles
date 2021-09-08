@@ -1,19 +1,19 @@
 local M = {}
-local u = require('utils')
+local u = require("utils")
 
 function M.setup()
-  vim.g.dashboard_default_executive = 'telescope'
+  vim.g.dashboard_default_executive = "telescope"
   vim.g.dashboard_custom_header = {
-    '                                                       ',
-    '                                                       ',
-    ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-    ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-    ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-    ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-    ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-    ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-    '                                                       ',
-    '                                                       ',
+    "                                                       ",
+    "                                                       ",
+    " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+    " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+    " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+    " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+    " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+    " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+    "                                                       ",
+    "                                                       ",
   }
   --[[ vim.g.dashboard_custom_shortcut = {
     last_session = 'SPC s l',
@@ -31,9 +31,9 @@ function M.setup()
 
   -- Keybindings
   local opts = { noremap = true, silent = true }
-  u.map('n', '<Leader>ss', ':<C-u>SessionSave<Cr>', opts)
-  u.map('n', '<Leader>sl', ':<C-u>SessionLoad<Cr>', opts)
-  u.map('n', '<Leader>cn', ':DashboardNewFile<Cr>', opts)
+  u.map("n", "<Leader>ss", ":<C-u>SessionSave<Cr>", opts)
+  u.map("n", "<Leader>sl", ":<C-u>SessionLoad<Cr>", opts)
+  u.map("n", "<Leader>cn", ":DashboardNewFile<Cr>", opts)
 end
 
 return M

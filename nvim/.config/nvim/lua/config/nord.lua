@@ -8,7 +8,7 @@ end
 
 function M.config()
   local ok, nord = pcall(function()
-    return require('nord')
+    return require("nord")
   end)
 
   if not ok then

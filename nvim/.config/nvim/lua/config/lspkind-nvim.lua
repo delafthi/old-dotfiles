@@ -2,7 +2,7 @@ local M = {}
 
 function M.config()
   local ok, lspkind = pcall(function()
-    return require('lspkind')
+    return require("lspkind")
   end)
 
   if not ok then
@@ -11,34 +11,34 @@ function M.config()
 
   lspkind.init({
     with_text = true,
-    preset = 'default',
+    preset = "default",
 
     symbol_map = {
-      Text = '',
-      Method = '',
-      Function = '',
-      Constructor = '',
-      Field = 'ﰠ',
-      Variable = '',
-      Class = 'ﴯ',
-      Interface = '',
-      Module = '',
-      Property = 'ﰠ',
-      Unit = '塞',
-      Value = '',
-      Enum = '',
-      Keyword = '',
-      Snippet = '',
-      Color = '',
-      File = '',
-      Reference = '',
-      Folder = '',
-      EnumMember = '',
-      Constant = '',
-      Struct = 'פּ',
-      Event = '',
-      Operator = '',
-      TypeParameter = '',
+      Text = "",
+      Method = "",
+      Function = "",
+      Constructor = "",
+      Field = "ﰠ",
+      Variable = "",
+      Class = "ﴯ",
+      Interface = "",
+      Module = "",
+      Property = "ﰠ",
+      Unit = "塞",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "פּ",
+      Event = "",
+      Operator = "",
+      TypeParameter = "",
     },
   })
 end

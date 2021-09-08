@@ -2,42 +2,42 @@ local M = {}
 
 function M.config()
   local gl_ok, gl = pcall(function()
-    return require('galaxyline')
+    return require("galaxyline")
   end)
 
   local nord_ok, nord = pcall(function()
-    return require('nord.colors')
+    return require("nord.colors")
   end)
 
   if not (gl_ok and nord_ok) then
     return
   end
 
-  local glpf = require('galaxyline.provider_fileinfo')
-  local condition = require('galaxyline.condition')
+  local glpf = require("galaxyline.provider_fileinfo")
+  local condition = require("galaxyline.condition")
 
   local gls = gl.section
 
   -- Shorter statusline for these filetypes
-  gl.short_line_list = { 'packer', 'dashboard' }
+  gl.short_line_list = { "packer", "dashboard" }
 
   -- Set some defaults
-  local left_cap = ''
-  local right_cap = ''
+  local left_cap = ""
+  local right_cap = ""
 
   -- Local helper functions
   local modes = {
-    n = { 'NORMAL', nord.nord14_gui },
-    i = { 'INSERT', nord.nord8_gui },
-    c = { 'COMMAND', nord.nord11_gui },
-    t = { 'TERMINAL', nord.nord12_gui },
-    v = { 'VISUAL', nord.nord13_gui },
-    V = { 'V-LINE', nord.nord13_gui },
-    [''] = { 'V-BLOCK', nord.nord13_gui },
-    R = { 'REPLACE', nord.nord15_gui },
-    s = { 'SELECT', nord.nord11_gui },
-    S = { 'S-LINE', nord.nord11_gui },
-    [''] = { 'X-BLOCK', nord.nord11_gui },
+    n = { "NORMAL", nord.nord14_gui },
+    i = { "INSERT", nord.nord8_gui },
+    c = { "COMMAND", nord.nord11_gui },
+    t = { "TERMINAL", nord.nord12_gui },
+    v = { "VISUAL", nord.nord13_gui },
+    V = { "V-LINE", nord.nord13_gui },
+    [""] = { "V-BLOCK", nord.nord13_gui },
+    R = { "REPLACE", nord.nord15_gui },
+    s = { "SELECT", nord.nord11_gui },
+    S = { "S-LINE", nord.nord11_gui },
+    [""] = { "X-BLOCK", nord.nord11_gui },
   }
 
   -- Left side
@@ -48,10 +48,10 @@ function M.config()
       provider = function()
         local vim_mode = vim.fn.mode()
         local mode_style = modes[vim_mode]
-        vim.api.nvim_command('hi GalaxyViModeLeftCap guifg=' .. mode_style[2])
+        vim.api.nvim_command("hi GalaxyViModeLeftCap guifg=" .. mode_style[2])
         return left_cap
       end,
-      highlight = { nord.nord2_gui, nord.nord0_gui, 'bold' },
+      highlight = { nord.nord2_gui, nord.nord0_gui, "bold" },
     },
   }
   gls.left[2] = {
@@ -59,10 +59,10 @@ function M.config()
       provider = function()
         local vim_mode = vim.fn.mode()
         local mode_style = modes[vim_mode]
-        vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_style[2])
+        vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_style[2])
         return mode_style[1]
       end,
-      highlight = { nord.nord0_gui, nord.nord2_gui, 'bold' },
+      highlight = { nord.nord0_gui, nord.nord2_gui, "bold" },
     },
   }
   gls.left[3] = {
@@ -70,17 +70,17 @@ function M.config()
       provider = function()
         local vim_mode = vim.fn.mode()
         local mode_style = modes[vim_mode]
-        vim.api.nvim_command('hi GalaxyViModeRightCap guifg=' .. mode_style[2])
+        vim.api.nvim_command("hi GalaxyViModeRightCap guifg=" .. mode_style[2])
         return right_cap
       end,
-      highlight = { nord.nord2_gui, nord.nord1_gui, 'bold' },
+      highlight = { nord.nord2_gui, nord.nord1_gui, "bold" },
     },
   }
   -- Spacer
   gls.left[4] = {
     Space = {
       provider = function()
-        return ' '
+        return " "
       end,
       condition = condition.buffer_not_empty(),
       highlight = { nord.nord4_gui, nord.nord1_gui },
@@ -89,22 +89,22 @@ function M.config()
   -- LSP Diagnostics
   gls.left[5] = {
     DiagnosticError = {
-      provider = 'DiagnosticError',
-      icon = '  ',
+      provider = "DiagnosticError",
+      icon = "  ",
       highlight = { nord.nord11_gui, nord.nord1_gui },
     },
   }
   gls.left[6] = {
     DiagnosticWarn = {
-      provider = 'DiagnosticWarn',
-      icon = '  ',
+      provider = "DiagnosticWarn",
+      icon = "  ",
       highlight = { nord.nord14_gui, nord.nord1_gui },
     },
   }
   gls.left[7] = {
     DiagnosticInfo = {
-      provider = 'DiagnosticInfo',
-      icon = '  ',
+      provider = "DiagnosticInfo",
+      icon = "  ",
       highlight = { nord.nord8_gui, nord.nord1_gui },
     },
   }
@@ -118,28 +118,28 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord1_gui, 'bold' },
+      highlight = { nord.nord3_gui, nord.nord1_gui, "bold" },
     },
   }
   -- Git diff
   gls.right[2] = {
     GitDiffAdd = {
-      provider = 'DiffAdd',
-      icon = '  ',
+      provider = "DiffAdd",
+      icon = "  ",
       highlight = { nord.nord14_gui, nord.nord3_gui },
     },
   }
   gls.right[3] = {
     GitDiffModified = {
-      provider = 'DiffModified',
-      icon = '  ',
+      provider = "DiffModified",
+      icon = "  ",
       highlight = { nord.nord15_gui, nord.nord3_gui },
     },
   }
   gls.right[4] = {
     GitDiffRemove = {
-      provider = 'DiffRemove',
-      icon = '  ',
+      provider = "DiffRemove",
+      icon = "  ",
       highlight = { nord.nord11_gui, nord.nord3_gui },
     },
   }
@@ -147,7 +147,7 @@ function M.config()
   gls.right[6] = {
     GitIcon = {
       provider = function()
-        return '  '
+        return "  "
       end,
       condition = function()
         return condition.buffer_not_empty() and condition.check_git_workspace()
@@ -158,9 +158,9 @@ function M.config()
   gls.right[7] = {
     GitBranch = {
       provider = {
-        'GitBranch',
+        "GitBranch",
         function()
-          return ' '
+          return " "
         end,
       },
       condition = function()
@@ -172,7 +172,7 @@ function M.config()
   -- File info
   gls.right[8] = {
     FileIcon = {
-      provider = 'FileIcon',
+      provider = "FileIcon",
       highlight = {
         glpf.get_file_icon_color,
         nord.nord3_gui,
@@ -181,7 +181,7 @@ function M.config()
   }
   gls.right[9] = {
     FileName = {
-      provider = { 'FileName', 'FileSize' },
+      provider = { "FileName", "FileSize" },
       condition = function()
         return condition.buffer_not_empty()
       end,
@@ -194,15 +194,15 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord9_gui, nord.nord3_gui, 'bold' },
+      highlight = { nord.nord9_gui, nord.nord3_gui, "bold" },
     },
   }
   gls.right[11] = {
     LineColumn = {
       provider = function()
-        local line = vim.fn.line('.')
-        local column = vim.fn.col('.')
-        return line .. ':' .. column
+        local line = vim.fn.line(".")
+        local column = vim.fn.col(".")
+        return line .. ":" .. column
       end,
       highlight = { nord.nord0_gui, nord.nord9_gui },
     },
@@ -210,7 +210,7 @@ function M.config()
   gls.right[12] = {
     LineInfoSpacer = {
       provider = function()
-        return ' '
+        return " "
       end,
       highlight = { nord.nord0_gui, nord.nord9_gui },
     },
@@ -218,15 +218,15 @@ function M.config()
   gls.right[13] = {
     LinePercent = {
       provider = function()
-        local current_line = vim.fn.line('.')
-        local total_line = vim.fn.line('$')
+        local current_line = vim.fn.line(".")
+        local total_line = vim.fn.line("$")
         if current_line == 1 then
-          return 'Top'
-        elseif current_line == vim.fn.line('$') then
-          return 'Bot'
+          return "Top"
+        elseif current_line == vim.fn.line("$") then
+          return "Bot"
         end
         local result, _ = math.modf((current_line / total_line) * 100)
-        return result .. '%'
+        return result .. "%"
       end,
       highlight = { nord.nord0_gui, nord.nord9_gui },
     },
@@ -236,7 +236,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord9_gui, nord.nord0_gui, 'bold' },
+      highlight = { nord.nord9_gui, nord.nord0_gui, "bold" },
     },
   }
 
@@ -250,15 +250,15 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord1_gui, nord.nord0_gui, 'bold' },
+      highlight = { nord.nord1_gui, nord.nord0_gui, "bold" },
     },
   }
   gls.short_line_left[2] = {
     ShortSpacer = {
       provider = function()
-        return ' '
+        return " "
       end,
-      highlight = { nord.nord4_gui, nord.nord1_gui, 'bold' },
+      highlight = { nord.nord4_gui, nord.nord1_gui, "bold" },
     },
   }
 
@@ -269,13 +269,13 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord1_gui, 'bold' },
+      highlight = { nord.nord3_gui, nord.nord1_gui, "bold" },
     },
   }
   -- File info
   gls.short_line_right[2] = {
     ShortFileIcon = {
-      provider = 'FileIcon',
+      provider = "FileIcon",
       highlight = {
         glpf.get_file_icon_color,
         nord.nord3_gui,
@@ -285,7 +285,7 @@ function M.config()
   gls.short_line_right[3] = {
     ShortFileName = {
       provider = {
-        'FileName',
+        "FileName",
         function()
           return glpf.get_file_size():sub(1, -2)
         end,
@@ -298,7 +298,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord0_gui, 'bold' },
+      highlight = { nord.nord3_gui, nord.nord0_gui, "bold" },
     },
   }
 end

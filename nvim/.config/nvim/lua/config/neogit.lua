@@ -1,9 +1,9 @@
 local M = {}
-local u = require('utils')
+local u = require("utils")
 
 function M.config()
   local ok, neogit = pcall(function()
-    return require('neogit')
+    return require("neogit")
   end)
 
   if not ok then
@@ -17,14 +17,14 @@ function M.config()
     auto_refresh = true,
     didsable_builtin_notifications = true,
     commit_popup = {
-      kind = 'split',
+      kind = "split",
     },
     -- customize displayed signs
     signs = {
       -- { CLOSED, OPENED }
-      section = { '>', 'v' },
-      item = { '>', 'v' },
-      hunk = { '', '' },
+      section = { ">", "v" },
+      item = { ">", "v" },
+      hunk = { "", "" },
     },
     integrations = {
       diffview = true,
@@ -33,43 +33,43 @@ function M.config()
     mappings = {
       -- modify status buffer mappings
       status = {
-        ['q'] = 'Close',
-        ['1'] = 'Depth1',
-        ['2'] = 'Depth2',
-        ['3'] = 'Depth3',
-        ['4'] = 'Depth4',
-        ['<tab>'] = 'Toggle',
-        ['x'] = 'Discard',
-        ['s'] = 'Stage',
-        ['S'] = 'StageUnstaged',
-        ['<c-s>'] = 'StageAll',
-        ['u'] = 'Unstage',
-        ['U'] = 'UnstageStaged',
-        ['d'] = 'DiffAtFile',
-        ['$'] = 'CommandHistory',
-        ['<c-r>'] = 'RefreshBuffer',
-        ['<enter>'] = 'GoToFile',
-        ['<c-v>'] = 'VSplitOpen',
-        ['<c-x>'] = 'SplitOpen',
-        ['<c-t>'] = 'TabOpen',
-        ['?'] = 'HelpPopup',
-        ['D'] = 'DiffPopup',
-        ['p'] = 'PullPopup',
-        ['r'] = 'RebasePopup',
-        ['P'] = 'PushPopup',
-        ['c'] = 'CommitPopup',
-        ['L'] = 'LogPopup',
-        ['Z'] = 'StashPopup',
-        ['b'] = 'BranchPopup',
+        ["q"] = "Close",
+        ["1"] = "Depth1",
+        ["2"] = "Depth2",
+        ["3"] = "Depth3",
+        ["4"] = "Depth4",
+        ["<Tab>"] = "Toggle",
+        ["x"] = "Discard",
+        ["s"] = "Stage",
+        ["S"] = "StageUnstaged",
+        ["<c-s>"] = "StageAll",
+        ["u"] = "Unstage",
+        ["U"] = "UnstageStaged",
+        ["d"] = "DiffAtFile",
+        ["$"] = "CommandHistory",
+        ["<C-r>"] = "RefreshBuffer",
+        ["<Enter>"] = "GoToFile",
+        ["<C-v>"] = "VSplitOpen",
+        ["<C-x>"] = "SplitOpen",
+        ["<C-t>"] = "TabOpen",
+        ["?"] = "HelpPopup",
+        ["D"] = "DiffPopup",
+        ["p"] = "PullPopup",
+        ["r"] = "RebasePopup",
+        ["P"] = "PushPopup",
+        ["c"] = "CommitPopup",
+        ["L"] = "LogPopup",
+        ["Z"] = "StashPopup",
+        ["b"] = "BranchPopup",
       },
     },
   })
 
   local opts = { noremap = true, silent = true }
   u.map(
-    'n',
-    '<Leader>ng',
-    '<Cmd>lua require("neogit").open({kind="vsplit"})<Cr>',
+    "n",
+    "<Leader>ng",
+    "<Cmd>lua require('neogit').open({kind='vsplit'})<Cr>",
     opts
   )
 end
