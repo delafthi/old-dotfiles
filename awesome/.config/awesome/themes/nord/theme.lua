@@ -371,10 +371,10 @@ theme.progressbar_paddings = dpi(3) -- The progressbar bar border color
 
 -- Prompt {{{3
 theme.prompt_fg_cursor = theme.nord4 -- The prompt cursor foreground color
-theme.prompt_bg_cursor = theme.nord1 -- The prompt cursor background color
+theme.prompt_bg_cursor = theme.nord3 -- The prompt cursor background color
 theme.prompt_font = theme.font -- The prompt text font
 theme.prompt_fg = theme.nord4 -- The prompt foreground color
-theme.prompt_bg = theme.nord1 -- The prompt background color
+theme.prompt_bg = theme.nord3 -- The prompt background color
 
 -- Radialprogressbar {{{3
 theme.radialprogressbar_border_color = theme.nord2 -- The progressbar border background color
