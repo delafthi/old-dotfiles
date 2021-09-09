@@ -80,8 +80,8 @@ require("packer").startup({
       cmd = "Termdebug",
     })
     use({
-      "lukas-reineke/format.nvim",
-      config = require("config.format").config(),
+      "mhartington/formatter.nvim",
+      config = require("config.formatter").config(),
     })
     -- Fuzzy finder
     use({
