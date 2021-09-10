@@ -24,11 +24,8 @@ function M.get_widget()
           [[bash -c 'grep '^Mem.' /proc/meminfo']],
           5,
           function(widget, stdout)
-            for line in stdout:gmatch("[^\\r\\n]+") do
-              if line:sub(1, #"Mem") == "Mem" then
-                local name, number, _ = line:match("(%w+):%s+(%d+)%s(%w+)")
-                mem[name] = number
-              end
+            for name, number in stdout:gmatch("(Mem%w+):%s+(%d+)") do
+              mem[name] = number
             end
             mem["MemUsed"] = tonumber(
               mem["MemTotal"] == nil and 0 or mem["MemTotal"]
