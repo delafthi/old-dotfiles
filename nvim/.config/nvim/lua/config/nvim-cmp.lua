@@ -129,6 +129,7 @@ function M.config()
       { name = "nvim_lua" },
       { name = "buffer" },
       { name = "latex_symbols" },
+      { name = "neorg" },
       { name = "orgmode" },
       { name = "spell" },
       { name = "calc" },

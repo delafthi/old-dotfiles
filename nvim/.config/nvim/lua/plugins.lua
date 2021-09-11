@@ -150,8 +150,11 @@ require("packer").startup({
       config = require("config.markdown-preview").config(),
     })
     use({
-      "vhyrro/neorg",
-      requires = "nvim-lua/plenary.nvim",
+      "nvim-neorg/neorg",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-neorg/neorg-telescope",
+      },
       config = require("config.neorg").config(),
       ft = "norg",
     })

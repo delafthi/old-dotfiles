@@ -39,10 +39,25 @@ function M.config()
               enabled = true, -- Enable beautified headings
 
               -- Define icons for all the different heading levels
-              level_1 = { enabled = true, icon = "綠" },
-              level_2 = { enabled = true, icon = "祿" },
-              level_3 = { enabled = true, icon = "雷" },
-              level_4 = { enabled = true, icon = "• " },
+              level_1 = {
+                enabled = true,
+                icon = "◉",
+              },
+
+              level_2 = {
+                enabled = true,
+                icon = "○",
+              },
+
+              level_3 = {
+                enabled = true,
+                icon = "✿",
+              },
+
+              level_4 = {
+                enabled = true,
+                icon = "•",
+              },
             },
             marker = {
               enabled = true, -- Enable the beautification of markers
@@ -98,6 +113,7 @@ function M.config()
         },
       },
       ["core.norg.dirman"] = { config = { workspaces = { notes = "~/neorg" } } },
+      ["core.integrations.telescope"] = {},
     },
   })
 end
