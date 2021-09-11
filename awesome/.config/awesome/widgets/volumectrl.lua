@@ -17,7 +17,7 @@ local M = {}
 -- Volume control {{{1
 
 local volumecfg = {
-  cardid = 2,
+  cardid = 0,
   channel = "Speaker",
 }
 
