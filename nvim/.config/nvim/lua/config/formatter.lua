@@ -35,6 +35,18 @@ function M.config()
           }
         end,
       },
+      css = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--stdin-filepath",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
+            stdin = true,
+          }
+        end,
+      },
       fish = {
         function()
           return {
@@ -55,6 +67,19 @@ function M.config()
               "--sort-imports",
             },
             stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
+      html = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--stdin-filepath",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
+            stdin = true,
           }
         end,
       },
@@ -69,6 +94,7 @@ function M.config()
               "-",
             },
             stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
           }
         end,
       },
@@ -76,7 +102,10 @@ function M.config()
         function()
           return {
             exe = "prettier",
-            args = { "-w" },
+            args = {
+              "--stdin-filepath",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
             stdin = true,
           }
         end,
@@ -84,23 +113,58 @@ function M.config()
       python = {
         function()
           return {
-            exe = "yapf",
+            exe = "black",
+            args = {
+              "--stdin-filename",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "-",
+            },
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
           }
         end,
       },
-      shell = {
+      scala = {
+        function()
+          return {
+            exe = "scalafmt",
+            args = {
+              "--stdout",
+              "--stdin",
+            },
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
+      sh = {
         function()
           return {
             exe = "shfmt",
             args = {
-              "-ln",
-              "posix",
+              "-s",
+              "-p",
+              "-filename",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
               "-i",
               2,
               "-ci",
               "-sr",
-              "-kp",
               "-fn",
+              "-",
+            },
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
+      yaml = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--stdin-filepath",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
@@ -116,7 +180,7 @@ function M.config()
   vim.cmd([[
   augroup format_text
     autocmd!
-    autocmd BufWritePost * silent! FormatWrite
+    autocmd BufWritePost * FormatWrite
   augroup END
   ]])
 end
