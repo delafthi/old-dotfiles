@@ -1,4 +1,5 @@
 local M = {}
+local u = require("utils")
 
 function M.config()
   local ok, neogen = pcall(function()
@@ -11,7 +12,11 @@ function M.config()
 
   neogen.setup({
     enabled = true,
+    input_after_comment = true,
   })
+
+  local opts = { noremap = true, silent = true }
+  u.map("n", "<Leader>gc", ":lua require('neogen').generate()<CR>", opts)
 end
 
 return M
