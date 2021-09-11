@@ -21,11 +21,13 @@ Neovim is a terminal based text editor with a f
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - Code formatters
-    - [shfmt](https://github.com/mvdan/sh)
+    - [black](https://github.com/psf/black)
+    - [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
     - [hindent](https://hackage.haskell.org/package/hindent)
-    - [stylua](https://github.com/johnnymorganz/stylua)
-    - [yapf](https://github.com/google/yapf)
     - [prettier](https://prettier.io/)
+    - [scalafmt](https://scalameta.org/scalafmt/)
+    - [shfmt](https://github.com/mvdan/sh)
+    - [stylua](https://github.com/johnnymorganz/stylua)
 
 ## References
 
