@@ -68,7 +68,14 @@ require("packer").startup({
       config = require("config.nvim-cmp").config(),
     })
     -- Debugging
-    -- use({ "mfussenegger/nvim-dap", config = require("config.nvim-dap").config() })
+    use({
+      "mfussenegger/nvim-dap",
+      config = require("config.nvim-dap").config(),
+    })
+    use({
+      "rcarriga/nvim-dap-ui",
+      requires = { "mfussenegger/nvim-dap" },
+    })
     use({
       "termdebug",
       installer = function() end,

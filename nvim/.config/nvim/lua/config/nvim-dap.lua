@@ -36,24 +36,32 @@ function M.config()
   }
   dap.configurations.c = dap.configurations.cpp
 
+  -- Autocompletion
+  vim.cmd([[
+    augroup dap-repl
+    autocmd!
+    autocmd FileType dap-repl lua require("dap.ext.autocompl").attach()
+    augroup END
+    ]])
+
   -- Visuals
   vim.fn.sign_define(
     "DapBreakpoint",
-    { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" }
+    { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" }
   )
   vim.fn.sign_define("DapBreakpointRejected", {
-    text = " ",
+    text = "",
     texthl = "Ignore",
     linehl = "",
     numhl = "",
   })
   vim.fn.sign_define(
     "DapLogPoint",
-    { text = "ﯽ ", texthl = "DiagnosticInfo", linehl = "", numhl = "" }
+    { text = "", texthl = "DiagnosticInfo", linehl = "", numhl = "" }
   )
   vim.fn.sign_define("DapStopped", {
-    text = " ",
-    texthl = "DapStopped",
+    text = "",
+    texthl = "TSCharacter",
     linehl = "",
     numhl = "",
   })
@@ -66,10 +74,6 @@ function M.config()
     "<Cmd>lua require('dap').toggle_breakpoint()<Cr>",
     opts
   )
-  u.map("n", "<Leader>dx", "<Cmd>lua require('dap').continue()<Cr>", opts)
-  u.map("n", "<Leader>sn", "<Cmd>lua require('dap').step_over()<Cr>", opts)
-  u.map("n", "<Leader>si", "<Cmd>lua require('dap').step_into()<Cr>", opts)
-  u.map("n", "<Leader>so", "<Cmd>lua require('dap').step_out()<Cr>", opts)
   u.map(
     "n",
     "<Leader>bl",
@@ -77,12 +81,6 @@ function M.config()
     opts
   )
   u.map("n", "<Leader>dr", "<Cmd>lua require('dap').repl.toggle()<Cr>", opts)
-  u.map(
-    "n",
-    "<Leader>vi",
-    "<Cmd>lua require('dap.ui.widgets').hover()<Cr>",
-    opts
-  )
 end
 
 return M
