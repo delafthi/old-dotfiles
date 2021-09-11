@@ -15,8 +15,16 @@ function M.config()
   parser_configs.norg = {
     install_info = {
       url = "https://github.com/vhyrro/tree-sitter-norg",
-      files = { "src/parser.c" },
       branch = "main",
+      files = { "src/parser.c" },
+    },
+  }
+
+  parser_configs.org = {
+    install_info = {
+      url = "https:://github.com/milisims/tree-sitter-org",
+      branch = "main",
+      files = { "src/parser.c", "src/scanner.cc" },
     },
   }
 
@@ -26,6 +34,10 @@ function M.config()
     indent = { enable = false },
     incremental_selection = { enable = false },
     -- Treesitter Plugins
+    context_commentstring = {
+      enable = true,
+    },
+    rainbow = { enable = true, extended_mode = true, max_file_lines = 1000 },
     textobjects = {
       select = {
         enable = true,
@@ -65,7 +77,6 @@ function M.config()
         },
       },
     },
-    rainbow = { enable = true, extended_mode = true, max_file_lines = 1000 },
   })
 end
 

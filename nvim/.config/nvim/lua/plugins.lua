@@ -167,11 +167,14 @@ require("packer").startup({
     -- Syntax highlighting
     use({
       "nvim-treesitter/nvim-treesitter",
+      requires = {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "p00f/nvim-ts-rainbow",
+      },
       run = ":TSUpdate",
       config = require("config.nvim-treesitter").config(),
     })
-    use({ "nvim-treesitter/nvim-treesitter-textobjects" })
-    use({ "p00f/nvim-ts-rainbow" })
     use({
       "norcalli/nvim-colorizer.lua",
       config = function()
