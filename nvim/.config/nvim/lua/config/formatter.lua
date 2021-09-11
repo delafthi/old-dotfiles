@@ -116,7 +116,7 @@ function M.config()
   vim.cmd([[
   augroup format_text
     autocmd!
-    autocmd BufWritePost * FormatWrite
+    autocmd BufWritePost * silent! FormatWrite
   augroup END
   ]])
 end
