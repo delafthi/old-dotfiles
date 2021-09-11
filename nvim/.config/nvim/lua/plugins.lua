@@ -44,9 +44,8 @@ require("packer").startup({
     })
     -- Comment
     use({
-      "b3nj5m1n/kommentary",
-      setup = require("config.kommentary").setup(),
-      config = require("config.kommentary").config(),
+      "winston0410/commented.nvim",
+      config = require("config.commented").config(),
     })
     use({
       "danymat/neogen",
