@@ -16,6 +16,7 @@ function M.config()
     -- turn it on only if your machine can always cope with it.
     highlight_unique_chars = false,
     grey_out_search_area = true,
+    disable_hlsearch = true,
     match_only_the_start_of_same_char_seqs = true,
     limit_ft_matches = 5,
     full_inclusive_prefix_key = "<C-x>",
