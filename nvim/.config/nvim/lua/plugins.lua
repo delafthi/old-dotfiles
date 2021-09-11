@@ -85,6 +85,7 @@ require("packer").startup({
       end,
       cmd = "Termdebug",
     })
+    -- Formatting
     use({
       "mhartington/formatter.nvim",
       config = require("config.formatter").config(),
