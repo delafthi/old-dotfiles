@@ -143,17 +143,22 @@ require("packer").startup({
     })
     -- Note taking
     use({
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && yarn install",
+      ft = { "markdown", "mkd" },
+      setup = require("config.markdown-preview").setup(),
+      config = require("config.markdown-preview").config(),
+    })
+    use({
       "vhyrro/neorg",
       requires = "nvim-lua/plenary.nvim",
       config = require("config.neorg").config(),
       ft = "norg",
     })
     use({
-      "iamcco/markdown-preview.nvim",
-      run = "cd app && yarn install",
-      ft = { "markdown", "mkd" },
-      setup = require("config.markdown-preview").setup(),
-      config = require("config.markdown-preview").config(),
+      "kristijanhusak/orgmode.nvim",
+      branch = "tree-sitter",
+      config = require("config.orgmode").config(),
     })
     -- Snippets
     use({ "L3MON4D3/Luasnip", config = require("config.luasnip").config() })
