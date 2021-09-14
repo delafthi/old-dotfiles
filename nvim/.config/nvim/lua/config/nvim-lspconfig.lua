@@ -224,11 +224,14 @@ function M.config()
     },
   })
   -- python-language-server
-  lspconfig.pyright.setup({
+  lspconfig.pylsp.setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
-    settings = { python = { venvPath = vim.fn.expand("$HOME/.pyenv/versions") } },
+    settings = {
+      plugins = {
+        flake8 = { enabled = true },
+      },
+    },
   })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
