@@ -66,7 +66,10 @@ function M.config()
       s({ trig = "$$", wordTrig = true }, {
         t({ "$$", "\\begin{array}{rcl}", "" }),
         i(1),
-        t({ "", "\\end{array}", "$$" }),
+        t({ "", "\\end{array}", "$$", "" }),
+        i(0),
+      }),
+    },
       }),
     },
   }
