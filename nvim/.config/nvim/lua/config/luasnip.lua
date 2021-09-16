@@ -61,12 +61,7 @@ function M.config()
   end
 
   ls.snippets = {
-    all = {
-      s(
-        "trigger",
-        { t("wow text"), i(2), t("some other text"), i(1), t("text"), i(0) }
-      ),
-    },
+    all = {},
     markdown = {
       s({ trig = "$$", wordTrig = true }, {
         t({ "$$", "\\begin{array}{rcl}", "" }),
