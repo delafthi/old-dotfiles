@@ -70,6 +70,12 @@ function M.config()
         i(0),
       }),
     },
+    sh = {
+      s({ trig = "#!", worTrig = true }, {
+        t({ "#!/bin/bash" }),
+        i(1),
+        t({ "", "", "" }),
+        i(0),
       }),
     },
   }
