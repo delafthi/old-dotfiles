@@ -230,6 +230,10 @@ require("packer").startup({
       branch = "master",
       setup = require("config.indent-blankline").setup(),
     })
+    use({
+      "lukas-reineke/headlines.nvim",
+      config = require("config.headlines").config(),
+    })
   end,
   config = { display = { open_fn = require("packer.util").float } },
 })
