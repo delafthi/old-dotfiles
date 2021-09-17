@@ -22,6 +22,15 @@ function M.config()
           }
         end,
       },
+      cmake = {
+        function()
+          return {
+            exe = "cmake-format",
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
       cpp = {
         function()
           return {

@@ -25,6 +25,7 @@ Neovim is a terminal based text editor with a f
   - Code formatters
     - [black](https://github.com/psf/black)
     - [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
+    - [cmake-format](https://github.com/cheshirekow/cmake_format)
     - [hindent](https://hackage.haskell.org/package/hindent)
     - [prettier](https://prettier.io/)
     - [scalafmt](https://scalameta.org/scalafmt/)
