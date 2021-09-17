@@ -167,6 +167,23 @@ function M.config()
           }
         end,
       },
+      systemverilog = {
+        function()
+          return {
+            exe = "iStyle",
+            args = {
+              "--style=gnu",
+              "-s=spaces=2",
+              "--brackets=break",
+              "--one-line=keep-blocks",
+              "--convert-tabs",
+              "--break-blocks",
+            },
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
       yaml = {
         function()
           return {
