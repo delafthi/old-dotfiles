@@ -163,6 +163,12 @@ require("packer").startup({
       branch = "tree-sitter",
       config = require("config.orgmode").config(),
     })
+    use({
+      "akinsho/org-bullets.nvim",
+      requires = { "kristijanhusak/orgmode.nvim" },
+      config = require("config.org-bullets").config(),
+      ft = { "org" },
+    })
     -- Snippets
     use({ "L3MON4D3/Luasnip", config = require("config.luasnip").config() })
     -- Start screen
