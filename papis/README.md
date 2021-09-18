@@ -6,7 +6,6 @@ keybindings and default viewer
 ## Dependencies
 
 - [zathura](https://pwmt.org/projects/zathura/): PDF-Viewer
-- [ranger](https://github.com/ranger/ranger): File browser
 
 ## Reference
 
