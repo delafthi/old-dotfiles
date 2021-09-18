@@ -1,0 +1,18 @@
+#!/bin/bash
+
+selected=$(rg \
+  --ignore \
+  --smart-case \
+  --hidden \
+  --files |
+  fzf \
+    --ansi \
+    --height=50% \
+    --layout=reverse \
+    --tabstop=2 \
+    --preview "bat --style=numbers --line-range :500 {}")
+
+# Check that the string is not empty
+if not test -z $selected; then
+  nvim +"edit $selected"
+fi
