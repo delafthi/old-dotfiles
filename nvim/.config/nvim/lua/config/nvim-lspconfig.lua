@@ -159,7 +159,10 @@ function M.config()
 
   -- Setup different language servers
   -- bash-language-server
-  lspconfig.bashls.setup({ capabilities = capabilities, on_attach = on_attach })
+  lspconfig.bashls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
   -- cmake-language server
   lspconfig.cmake.setup({ capabilities = capabilities, on_attach = on_attach })
   -- c-language-server
@@ -177,7 +180,10 @@ function M.config()
     },
   })
   -- dockerfile-language-server
-  lspconfig.dockerls.setup({ capabilities = capabilities, on_attach = on_attach })
+  lspconfig.dockerls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
   -- haskell-language-server
   lspconfig.hls.setup({
     capabilities = capabilities,
@@ -233,8 +239,16 @@ function M.config()
       },
     },
   })
+  -- systemverilog language-server
+  lspconfig.svls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
   -- (La)Tex-language-server
-  lspconfig.texlab.setup({ capabilities = capabilities, on_attach = on_attach })
+  lspconfig.texlab.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+  })
   -- vim-language-server
   lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })
 end

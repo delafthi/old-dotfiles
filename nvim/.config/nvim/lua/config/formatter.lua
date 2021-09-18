@@ -22,6 +22,15 @@ function M.config()
           }
         end,
       },
+      cmake = {
+        function()
+          return {
+            exe = "cmake-format",
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
       cpp = {
         function()
           return {
@@ -152,6 +161,23 @@ function M.config()
               "-sr",
               "-fn",
               "-",
+            },
+            stdin = true,
+            cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
+      systemverilog = {
+        function()
+          return {
+            exe = "iStyle",
+            args = {
+              "--style=gnu",
+              "-s=spaces=2",
+              "--brackets=break",
+              "--one-line=keep-blocks",
+              "--convert-tabs",
+              "--break-blocks",
             },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),

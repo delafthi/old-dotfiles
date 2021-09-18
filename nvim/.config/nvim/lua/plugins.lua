@@ -163,6 +163,12 @@ require("packer").startup({
       branch = "tree-sitter",
       config = require("config.orgmode").config(),
     })
+    use({
+      "akinsho/org-bullets.nvim",
+      requires = { "kristijanhusak/orgmode.nvim" },
+      config = require("config.org-bullets").config(),
+      ft = { "org" },
+    })
     -- Snippets
     use({ "L3MON4D3/Luasnip", config = require("config.luasnip").config() })
     -- Start screen
@@ -223,6 +229,10 @@ require("packer").startup({
       "lukas-reineke/indent-blankline.nvim",
       branch = "master",
       setup = require("config.indent-blankline").setup(),
+    })
+    use({
+      "lukas-reineke/headlines.nvim",
+      config = require("config.headlines").config(),
     })
   end,
   config = { display = { open_fn = require("packer.util").float } },

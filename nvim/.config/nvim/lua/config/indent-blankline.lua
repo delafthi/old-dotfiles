@@ -6,7 +6,11 @@ function M.setup()
     "dashboard",
     "help",
     "man",
+    "markdown",
+    "norg",
     "packer",
+    "terminal",
+    "org",
   }
 end
 
