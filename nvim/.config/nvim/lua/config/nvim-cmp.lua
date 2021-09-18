@@ -42,11 +42,16 @@ function M.config()
           vim_item.kind = vim_item.kind
         end
         vim_item.menu = ({
-          buffer = "[Buffer]",
+          buffer = "[Bufr]",
+          calc = "[Calc]",
+          latex_symbols = "[Tex]",
+          luasnip = "[Snip]",
           nvim_lsp = "[LSP]",
-          luasnip = "[LuaSnip]",
           nvim_lua = "[Lua]",
-          latex_symbols = "[Latex]",
+          orgmode = "[Org]",
+          neorg = "[Norg]",
+          path = "[Path]",
+          spell = "[Spell]",
         })[entry.source.name]
         return vim_item
       end,
@@ -126,15 +131,54 @@ function M.config()
       { name = "nvim_lsp" },
       { name = "path" },
       { name = "luasnip" },
-      { name = "nvim_lua" },
       { name = "buffer" },
-      { name = "latex_symbols" },
-      { name = "neorg" },
-      { name = "orgmode" },
-      { name = "spell" },
-      { name = "calc" },
     },
   })
+
+  vim.cmd([[
+  augroup nvim-cmp
+    autocmd!
+    autocmd FileType lua,nvim lua require("cmp").setup.buffer({
+    \  sources = {
+    \    { name = "nvim_lsp" },
+    \    { name = "path" },
+    \    { name = "luasnip" },
+    \    { name = "buffer" },
+    \    { name = "nvim_lua" },
+    \  },
+    \})
+    autocmd FileType latex,markdown lua require("cmp").setup.buffer({
+    \  sources = {
+    \    { name = "nvim_lsp" },
+    \    { name = "path" },
+    \    { name = "luasnip" },
+    \    { name = "buffer" },
+    \    { name = "spell" },
+    \    { name = "latex_symbols" },
+    \  },
+    \})
+    autocmd FileType org lua require("cmp").setup.buffer({
+    \  sources = {
+    \    { name = "nvim_lsp" },
+    \    { name = "path" },
+    \    { name = "luasnip" },
+    \    { name = "buffer" },
+    \    { name = "spell" },
+    \    { name = "orgmode" },
+    \  },
+    \})
+    autocmd FileType norg lua require("cmp").setup.buffer({
+    \  sources = {
+    \    { name = "nvim_lsp" },
+    \    { name = "path" },
+    \    { name = "luasnip" },
+    \    { name = "buffer" },
+    \    { name = "spell" },
+    \    { name = "neorg" },
+    \  },
+    \})
+  augroup END
+  ]])
 end
 
 return M
