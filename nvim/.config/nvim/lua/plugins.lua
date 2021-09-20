@@ -199,14 +199,7 @@ require("packer").startup({
     })
     use({
       "norcalli/nvim-colorizer.lua",
-      config = function()
-        local ok, colorizer = pcall(function()
-          return require("colorizer")
-        end)
-        if ok then
-          colorizer.setup()
-        end
-      end,
+      config = require("config.nvim-colorizer").config(),
     })
     use({
       "lewis6991/spellsitter.nvim",
