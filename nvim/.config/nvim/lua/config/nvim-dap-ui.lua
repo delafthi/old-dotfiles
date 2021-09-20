@@ -1,5 +1,5 @@
 local M = {}
-local u = require("utils")
+local u = require("util")
 
 function M.config()
   local ok, dapui = pcall(function()

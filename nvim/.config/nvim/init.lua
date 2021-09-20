@@ -1,6 +1,6 @@
 local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
-local u = require("utils")
+local u = require("util")
 
 vim.g.mapleader = " " -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.

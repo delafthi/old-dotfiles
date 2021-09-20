@@ -1,5 +1,5 @@
 local M = {}
-local u = require("utils")
+local u = require("util")
 
 function M.setup()
   vim.g.mkdp_autoclose = 0 -- Disable auto close, when changing to a different buffer.

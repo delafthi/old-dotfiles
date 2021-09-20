@@ -1,8 +1,8 @@
-local M = {}
+local util = {}
 local api = vim.api
 
 -- Set global keymappings
-function M.map(mode, lhs, rhs, opts)
+function util.map(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -11,7 +11,7 @@ function M.map(mode, lhs, rhs, opts)
 end
 
 -- Set buffer specific key mappings
-function M.bufmap(bufnr, mode, lhs, rhs, opts)
+function util.bufmap(bufnr, mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -19,4 +19,4 @@ function M.bufmap(bufnr, mode, lhs, rhs, opts)
   api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
 end
 
-return M
+return util
