@@ -398,6 +398,7 @@ ruled.client.connect_signal("request::rules", function()
     id = "floating",
     rule_any = {
       class = { "Pavucontrol", "Xmessage" },
+      name = { "Origin" },
       type = { "dialog" },
     },
     properties = { floating = true },
