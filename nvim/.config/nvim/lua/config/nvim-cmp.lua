@@ -124,7 +124,7 @@ function M.config()
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<Cr>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
+        select = false,
       }),
     },
     sources = {
