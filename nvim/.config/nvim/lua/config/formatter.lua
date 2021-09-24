@@ -220,10 +220,10 @@ function M.config()
 
   -- Automatically formats filetypes on save.
   vim.cmd([[
-  augroup format_text
-    autocmd!
-    autocmd BufWritePost * silent! FormatWrite
-  augroup END
+    augroup format_text
+      autocmd!
+      autocmd BufWritePost * silent! FormatWrite
+    augroup END
   ]])
 end
 

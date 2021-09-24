@@ -30,10 +30,10 @@ function M.config()
     cycle_group_bwd_key = nil,
   })
   vim.cmd([[
-  augroup Lightspeed_nohlsearch
-    autocmd User LightspeedEnter let &hlsearch = 0
-    autocmd User LightspeedLeave let &hlsearch = 1
-  augroup END
+    augroup Lightspeed_nohlsearch
+      autocmd User LightspeedEnter let &hlsearch = 0
+      autocmd User LightspeedLeave let &hlsearch = 1
+    augroup END
   ]])
 end
 

@@ -39,10 +39,10 @@ function M.config()
   -- Autocompletion
   vim.cmd([[
     augroup dap-repl
-    autocmd!
-    autocmd FileType dap-repl lua require("dap.ext.autocompl").attach()
+      autocmd!
+      autocmd FileType dap-repl lua require("dap.ext.autocompl").attach()
     augroup END
-    ]])
+  ]])
 
   -- Visuals
   vim.fn.sign_define(

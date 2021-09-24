@@ -30,18 +30,18 @@ vim.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerabi
 -- Automatically deletes all trailing whitespace and newlines at end of file on
 -- save.
 cmd([[
-function! TrimTrailingLines()
-  let lastLine = line('$')
-  let lastNonblankLine = prevnonblank(lastLine)
-  if lastLine > 0 && lastNonblankLine != lastLine
-    silent! execute lastNonblankLine + 1 . ',$delete _'
-  endif
-endfunction
-augroup remove_trailing_whitespaces_and_lines
-  autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
-  autocmd BufWritepre * call TrimTrailingLines()
-augroup END
+  function! TrimTrailingLines()
+    let lastLine = line('$')
+    let lastNonblankLine = prevnonblank(lastLine)
+    if lastLine > 0 && lastNonblankLine != lastLine
+      silent! execute lastNonblankLine + 1 . ',$delete _'
+    endif
+  endfunction
+  augroup remove_trailing_whitespaces_and_lines
+    autocmd!
+    autocmd BufWritePre * %s/\s\+$//e
+    autocmd BufWritepre * call TrimTrailingLines()
+  augroup END
 ]])
 
 -- Diff {{{1

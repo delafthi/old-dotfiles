@@ -136,48 +136,48 @@ function M.config()
   })
 
   vim.cmd([[
-  augroup nvim-cmp
-    autocmd!
-    autocmd FileType lua,nvim lua require("cmp").setup.buffer({
-    \  sources = {
-    \    { name = "nvim_lsp" },
-    \    { name = "path" },
-    \    { name = "luasnip" },
-    \    { name = "buffer" },
-    \    { name = "nvim_lua" },
-    \  },
-    \})
-    autocmd FileType latex,markdown lua require("cmp").setup.buffer({
-    \  sources = {
-    \    { name = "nvim_lsp" },
-    \    { name = "path" },
-    \    { name = "luasnip" },
-    \    { name = "buffer" },
-    \    { name = "spell" },
-    \    { name = "latex_symbols" },
-    \  },
-    \})
-    autocmd FileType org lua require("cmp").setup.buffer({
-    \  sources = {
-    \    { name = "nvim_lsp" },
-    \    { name = "path" },
-    \    { name = "luasnip" },
-    \    { name = "buffer" },
-    \    { name = "spell" },
-    \    { name = "orgmode" },
-    \  },
-    \})
-    autocmd FileType norg lua require("cmp").setup.buffer({
-    \  sources = {
-    \    { name = "nvim_lsp" },
-    \    { name = "path" },
-    \    { name = "luasnip" },
-    \    { name = "buffer" },
-    \    { name = "spell" },
-    \    { name = "neorg" },
-    \  },
-    \})
-  augroup END
+    augroup nvim-cmp
+      autocmd!
+      autocmd FileType lua,nvim lua require("cmp").setup.buffer({
+      \  sources = {
+      \    { name = "nvim_lsp" },
+      \    { name = "path" },
+      \    { name = "luasnip" },
+      \    { name = "buffer" },
+      \    { name = "nvim_lua" },
+      \  },
+      \})
+      autocmd FileType latex,markdown lua require("cmp").setup.buffer({
+      \  sources = {
+      \    { name = "nvim_lsp" },
+      \    { name = "path" },
+      \    { name = "luasnip" },
+      \    { name = "buffer" },
+      \    { name = "spell" },
+      \    { name = "latex_symbols" },
+      \  },
+      \})
+      autocmd FileType org lua require("cmp").setup.buffer({
+      \  sources = {
+      \    { name = "nvim_lsp" },
+      \    { name = "path" },
+      \    { name = "luasnip" },
+      \    { name = "buffer" },
+      \    { name = "spell" },
+      \    { name = "orgmode" },
+      \  },
+      \})
+      autocmd FileType norg lua require("cmp").setup.buffer({
+      \  sources = {
+      \    { name = "nvim_lsp" },
+      \    { name = "path" },
+      \    { name = "luasnip" },
+      \    { name = "buffer" },
+      \    { name = "spell" },
+      \    { name = "neorg" },
+      \  },
+      \})
+    augroup END
   ]])
 end
 
