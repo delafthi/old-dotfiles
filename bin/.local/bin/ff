@@ -13,6 +13,6 @@ selected=$(rg \
     --preview "bat --style=numbers --line-range :500 {}")
 
 # Check that the string is not empty
-if not test -z $selected; then
+if ! test -z $selected; then
   nvim +"edit $selected"
 fi

@@ -21,6 +21,6 @@ selected=$(fzf \
     --line-range :500 {1}")
 
 # Check that the string is not empty
-if not test -z $selected; then
+if ! test -z $selected; then
   nvim -c +"edit $selected"
 fi
