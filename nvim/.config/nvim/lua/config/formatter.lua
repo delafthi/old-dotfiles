@@ -26,6 +26,14 @@ function M.config()
         function()
           return {
             exe = "cmake-format",
+            args = {
+              "--tab-size",
+              2,
+              "--enable-sort",
+              "-o",
+              "-",
+              "-",
+            },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
           }
