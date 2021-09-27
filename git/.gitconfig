@@ -1,11 +1,9 @@
 [user]
 	name = Thierry Delafontaine
-	email = delafontaineth@pm.me
+	email = deaa@zhaw.ch
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
-[init]
-	templatedir = ~/.git_template
 [alias]
   co = checkout
   ci = commit
