@@ -128,10 +128,6 @@ require("packer").startup({
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
       config = require("config.trouble").config(),
     })
-    use({
-      "onsails/lspkind-nvim",
-      config = require("config.lspkind-nvim").config(),
-    })
     -- Navigation
     use({
       "ggandor/lightspeed.nvim",
