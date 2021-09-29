@@ -1,0 +1,14 @@
+#!/bin/bash
+
+proj_dir="$HOME/Projects/work"
+selected=$(ls $proj_dir |
+  fzf \
+    --ansi \
+    --height=50% \
+    --layout=reverse)
+
+# Check that the string is not empty
+if ! test -z "${proj_dir}/$selected"; then
+  # This does not work as this script is executed in a subshell
+  cd "${proj_dir}/$selected"
+fi
