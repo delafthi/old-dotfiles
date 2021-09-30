@@ -85,7 +85,6 @@ test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 if command -v bat 1> /dev/null 2>&1 && command -v rg 1> /dev/null 2>&1; then
   alias bat="bat --italic-text=always --color=always --theme Nord"
   alias grep="batgrep"
-  alias find="batfind"
 fi
 
 # Use fzf in combination with grep
