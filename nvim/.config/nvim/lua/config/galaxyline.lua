@@ -1,7 +1,7 @@
 local M = {}
 
 function M.config()
-  local gl_ok, gl = pcall(function()
+  local ok, gl = pcall(function()
     return require("galaxyline")
   end)
 
@@ -9,7 +9,7 @@ function M.config()
     return require("nord.colors")
   end)
 
-  if not (gl_ok and nord_ok) then
+  if not ok then
     return
   end
 
@@ -18,9 +18,48 @@ function M.config()
 
   local gls = gl.section
 
+  local c = {
+    black0 = "Black",
+    black1 = "DimGrey",
+    black2 = "Grey",
+    black3 = "WebGrey",
+    white1 = "Snow",
+    white2 = "GhostWhite",
+    white3 = "White",
+    cyan = "DarkCyan",
+    blue0 = "LightBlue",
+    blue1 = "Blue",
+    blue2 = "DarkBlue",
+    red = "DarkRed",
+    yellow = "DarkYellow",
+    orange = "DarkOrange",
+    green = "DarkGreen",
+    magenta = "DarkMagenta",
+  }
+  if nord_ok then
+    c = {
+      black0 = nord.nord0,
+      black1 = nord.nord1,
+      black2 = nord.nord2,
+      black3 = nord.nord3,
+      white0 = nord.nord4,
+      white1 = nord.nord5,
+      white2 = nord.nord6,
+      cyan = nord.nord7,
+      blue0 = nord.nord8,
+      blue1 = nord.nord9,
+      blue2 = nord.nord10,
+      red = nord.nord11,
+      orange = nord.nord12,
+      yellow = nord.nord13,
+      green = nord.nord14,
+      magenta = nord.nord15,
+    }
+  end
+
   -- Overwrite the statusline hls to prevent interference
-  vim.cmd("highlight Statusline guibg=" .. nord.nord0)
-  vim.cmd("highlight StatuslineNC guibg=" .. nord.nord0)
+  vim.cmd("highlight Statusline guibg=" .. c.black0)
+  vim.cmd("highlight StatuslineNC guibg=" .. c.black0)
 
   -- Shorter statusline for these filetypes
   gl.short_line_list = { "packer", "dashboard" }
@@ -31,17 +70,17 @@ function M.config()
 
   -- Local helper functions
   local modes = {
-    n = { "NORMAL", nord.nord14 },
-    i = { "INSERT", nord.nord8 },
-    c = { "COMMAND", nord.nord11 },
-    t = { "TERMINAL", nord.nord12 },
-    v = { "VISUAL", nord.nord13 },
-    V = { "V-LINE", nord.nord13 },
-    [""] = { "V-BLOCK", nord.nord13 },
-    R = { "REPLACE", nord.nord15 },
-    s = { "SELECT", nord.nord11 },
-    S = { "S-LINE", nord.nord11 },
-    [""] = { "X-BLOCK", nord.nord11 },
+    n = { "NORMAL", c.green },
+    i = { "INSERT", c.blue0 },
+    c = { "COMMAND", c.red },
+    t = { "TERMINAL", c.orange },
+    v = { "VISUAL", c.yellow },
+    V = { "V-LINE", c.yellow },
+    [""] = { "V-BLOCK", c.yellow },
+    R = { "REPLACE", c.magenta },
+    s = { "SELECT", c.red },
+    S = { "S-LINE", c.red },
+    [""] = { "X-BLOCK", c.red },
   }
 
   -- Left side
@@ -55,7 +94,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViModeLeftCap guifg=" .. mode_style[2])
         return left_cap
       end,
-      highlight = { nord.nord2, nord.nord0, "bold" },
+      highlight = { c.black2, c.black0, "bold" },
     },
   }
   gls.left[2] = {
@@ -66,7 +105,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_style[2])
         return mode_style[1]
       end,
-      highlight = { nord.nord0, nord.nord2, "bold" },
+      highlight = { c.black0, c.black2, "bold" },
     },
   }
   gls.left[3] = {
@@ -77,7 +116,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViModeRightCap guifg=" .. mode_style[2])
         return right_cap
       end,
-      highlight = { nord.nord2, nord.nord1, "bold" },
+      highlight = { c.black2, c.black1, "bold" },
     },
   }
   -- Spacer
@@ -86,7 +125,7 @@ function M.config()
       provider = function()
         return " "
       end,
-      highlight = { nord.nord4, nord.nord1 },
+      highlight = { c.white0, c.black1 },
     },
   }
   -- LSP Diagnostics
@@ -94,21 +133,21 @@ function M.config()
     DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
-      highlight = { nord.nord11, nord.nord1 },
+      highlight = { c.red, c.black1 },
     },
   }
   gls.left[6] = {
     DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
-      highlight = { nord.nord14, nord.nord1 },
+      highlight = { c.green, c.black1 },
     },
   }
   gls.left[7] = {
     DiagnosticInfo = {
       provider = "DiagnosticInfo",
       icon = "  ",
-      highlight = { nord.nord8, nord.nord1 },
+      highlight = { c.blue0, c.black1 },
     },
   }
   -- Middle
@@ -122,7 +161,7 @@ function M.config()
         return left_cap
       end,
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord3, nord.nord1, "bold" },
+      highlight = { c.black3, c.black1, "bold" },
     },
   }
   -- Git diff
@@ -131,7 +170,7 @@ function M.config()
       provider = "DiffAdd",
       icon = "  ",
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord14, nord.nord3 },
+      highlight = { c.green, c.black3 },
     },
   }
   gls.right[3] = {
@@ -139,7 +178,7 @@ function M.config()
       provider = "DiffModified",
       icon = "  ",
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord15, nord.nord3 },
+      highlight = { c.magenta, c.black3 },
     },
   }
   gls.right[4] = {
@@ -147,7 +186,7 @@ function M.config()
       provider = "DiffRemove",
       icon = "  ",
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord11, nord.nord3 },
+      highlight = { c.red, c.black3 },
     },
   }
   -- Git branch
@@ -159,7 +198,7 @@ function M.config()
       condition = function()
         return condition.buffer_not_empty() and condition.check_git_workspace()
       end,
-      highlight = { nord.nord12, nord.nord3 },
+      highlight = { c.orange, c.black3 },
     },
   }
   gls.right[7] = {
@@ -173,7 +212,7 @@ function M.config()
       condition = function()
         return condition.buffer_not_empty() and condition.check_git_workspace()
       end,
-      highlight = { nord.nord4, nord.nord3 },
+      highlight = { c.white0, c.black3 },
     },
   }
   -- File info
@@ -183,7 +222,7 @@ function M.config()
       condition = condition.buffer_not_empty(),
       highlight = {
         glpf.get_file_icon_color,
-        nord.nord3,
+        c.black3,
       },
     },
   }
@@ -191,7 +230,7 @@ function M.config()
     FileName = {
       provider = { "FileName", "FileSize" },
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord4, nord.nord3 },
+      highlight = { c.white0, c.black3 },
     },
   }
   -- Line Info
@@ -200,7 +239,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord9, nord.nord3, "bold" },
+      highlight = { c.blue1, c.black3, "bold" },
     },
   }
   gls.right[11] = {
@@ -210,7 +249,7 @@ function M.config()
         local column = vim.fn.col(".")
         return line .. ":" .. column
       end,
-      highlight = { nord.nord0, nord.nord9 },
+      highlight = { c.black0, c.blue1 },
     },
   }
   gls.right[12] = {
@@ -218,7 +257,7 @@ function M.config()
       provider = function()
         return " "
       end,
-      highlight = { nord.nord0, nord.nord9 },
+      highlight = { c.black0, c.blue1 },
     },
   }
   gls.right[13] = {
@@ -234,7 +273,7 @@ function M.config()
         local result, _ = math.modf((current_line / total_line) * 100)
         return result .. "%"
       end,
-      highlight = { nord.nord0, nord.nord9 },
+      highlight = { c.black0, c.blue1 },
     },
   }
   gls.right[14] = {
@@ -242,7 +281,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord9, nord.nord0, "bold" },
+      highlight = { c.blue1, c.black0, "bold" },
     },
   }
 
@@ -256,7 +295,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord1, nord.nord0, "bold" },
+      highlight = { c.black1, c.black0, "bold" },
     },
   }
   gls.short_line_left[2] = {
@@ -264,7 +303,7 @@ function M.config()
       provider = function()
         return " "
       end,
-      highlight = { nord.nord4, nord.nord1, "bold" },
+      highlight = { c.white0, c.black1, "bold" },
     },
   }
 
@@ -276,7 +315,7 @@ function M.config()
         return left_cap
       end,
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord3, nord.nord1, "bold" },
+      highlight = { c.black3, c.black1, "bold" },
     },
   }
   -- File info
@@ -285,8 +324,8 @@ function M.config()
       provider = "FileIcon",
       condition = condition.buffer_not_empty(),
       highlight = {
-        nord.nord10,
-        nord.nord3,
+        c.blue2,
+        c.black3,
       },
     },
   }
@@ -299,7 +338,7 @@ function M.config()
         end,
       },
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord4, nord.nord3 },
+      highlight = { c.white0, c.black3 },
     },
   }
   gls.short_line_right[4] = {
@@ -308,7 +347,7 @@ function M.config()
         return right_cap
       end,
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord3, nord.nord0, "bold" },
+      highlight = { c.black3, c.black0, "bold" },
     },
   }
 end
