@@ -11,9 +11,6 @@ function M.config()
   local ok_neogen, neogen = pcall(function()
     return require("neogen")
   end)
-  local ok_lspkind, lspkind = pcall(function()
-    return require("lspkind")
-  end)
 
   if not ok_cmp then
     return
@@ -23,6 +20,35 @@ function M.config()
     local col = fn.col(".") - 1
     return col == 0 or fn.getline("."):sub(col, col):match("%s")
   end
+
+  -- Custom completion kind icons
+  local icons = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+  }
 
   cmp.setup({
     snippet = {
@@ -36,11 +62,7 @@ function M.config()
     },
     formatting = {
       format = function(entry, vim_item)
-        if ok_lspkind then
-          vim_item.kind = lspkind.presets.default[vim_item.kind]
-        else
-          vim_item.kind = vim_item.kind
-        end
+        vim_item.kind = icons[vim_item.kind]
         vim_item.menu = ({
           buffer = "[Bufr]",
           calc = "[Calc]",
