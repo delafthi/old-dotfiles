@@ -33,6 +33,7 @@ function M.config()
     highlight = { enable = true },
     indent = { enable = false },
     incremental_selection = { enable = false },
+
     -- Treesitter Plugins
     context_commentstring = {
       enable = true,
@@ -57,8 +58,14 @@ function M.config()
       },
       move = {
         set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
-        goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
+        goto_next_start = {
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
         goto_previous_start = {
           ["[m"] = "@function.outer",
           ["[["] = "@class.outer",
@@ -72,8 +79,8 @@ function M.config()
         enable = true,
         border = "none",
         peek_definition_code = {
-          ["df"] = "@function.outer",
-          ["dF"] = "@class.outer",
+          --  ["df"] = "@function.outer",
+          --  ["dF"] = "@class.outer",
         },
       },
     },
