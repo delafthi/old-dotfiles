@@ -18,6 +18,10 @@ function M.config()
 
   local gls = gl.section
 
+  -- Overwrite the statusline hls to prevent interference
+  vim.cmd("highlight Statusline guibg=" .. nord.nord0)
+  vim.cmd("highlight StatuslineNC guibg=" .. nord.nord0)
+
   -- Shorter statusline for these filetypes
   gl.short_line_list = { "packer", "dashboard" }
 
@@ -27,17 +31,17 @@ function M.config()
 
   -- Local helper functions
   local modes = {
-    n = { "NORMAL", nord.nord14_gui },
-    i = { "INSERT", nord.nord8_gui },
-    c = { "COMMAND", nord.nord11_gui },
-    t = { "TERMINAL", nord.nord12_gui },
-    v = { "VISUAL", nord.nord13_gui },
-    V = { "V-LINE", nord.nord13_gui },
-    [""] = { "V-BLOCK", nord.nord13_gui },
-    R = { "REPLACE", nord.nord15_gui },
-    s = { "SELECT", nord.nord11_gui },
-    S = { "S-LINE", nord.nord11_gui },
-    [""] = { "X-BLOCK", nord.nord11_gui },
+    n = { "NORMAL", nord.nord14 },
+    i = { "INSERT", nord.nord8 },
+    c = { "COMMAND", nord.nord11 },
+    t = { "TERMINAL", nord.nord12 },
+    v = { "VISUAL", nord.nord13 },
+    V = { "V-LINE", nord.nord13 },
+    [""] = { "V-BLOCK", nord.nord13 },
+    R = { "REPLACE", nord.nord15 },
+    s = { "SELECT", nord.nord11 },
+    S = { "S-LINE", nord.nord11 },
+    [""] = { "X-BLOCK", nord.nord11 },
   }
 
   -- Left side
@@ -51,7 +55,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViModeLeftCap guifg=" .. mode_style[2])
         return left_cap
       end,
-      highlight = { nord.nord2_gui, nord.nord0_gui, "bold" },
+      highlight = { nord.nord2, nord.nord0, "bold" },
     },
   }
   gls.left[2] = {
@@ -62,7 +66,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViMode guibg=" .. mode_style[2])
         return mode_style[1]
       end,
-      highlight = { nord.nord0_gui, nord.nord2_gui, "bold" },
+      highlight = { nord.nord0, nord.nord2, "bold" },
     },
   }
   gls.left[3] = {
@@ -73,7 +77,7 @@ function M.config()
         vim.api.nvim_command("hi GalaxyViModeRightCap guifg=" .. mode_style[2])
         return right_cap
       end,
-      highlight = { nord.nord2_gui, nord.nord1_gui, "bold" },
+      highlight = { nord.nord2, nord.nord1, "bold" },
     },
   }
   -- Spacer
@@ -83,7 +87,7 @@ function M.config()
         return " "
       end,
       condition = condition.buffer_not_empty(),
-      highlight = { nord.nord4_gui, nord.nord1_gui },
+      highlight = { nord.nord4, nord.nord1 },
     },
   }
   -- LSP Diagnostics
@@ -91,21 +95,21 @@ function M.config()
     DiagnosticError = {
       provider = "DiagnosticError",
       icon = "  ",
-      highlight = { nord.nord11_gui, nord.nord1_gui },
+      highlight = { nord.nord11, nord.nord1 },
     },
   }
   gls.left[6] = {
     DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
-      highlight = { nord.nord14_gui, nord.nord1_gui },
+      highlight = { nord.nord14, nord.nord1 },
     },
   }
   gls.left[7] = {
     DiagnosticInfo = {
       provider = "DiagnosticInfo",
       icon = "  ",
-      highlight = { nord.nord8_gui, nord.nord1_gui },
+      highlight = { nord.nord8, nord.nord1 },
     },
   }
   -- Middle
@@ -118,7 +122,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord1_gui, "bold" },
+      highlight = { nord.nord3, nord.nord1, "bold" },
     },
   }
   -- Git diff
@@ -126,21 +130,21 @@ function M.config()
     GitDiffAdd = {
       provider = "DiffAdd",
       icon = "  ",
-      highlight = { nord.nord14_gui, nord.nord3_gui },
+      highlight = { nord.nord14, nord.nord3 },
     },
   }
   gls.right[3] = {
     GitDiffModified = {
       provider = "DiffModified",
       icon = "  ",
-      highlight = { nord.nord15_gui, nord.nord3_gui },
+      highlight = { nord.nord15, nord.nord3 },
     },
   }
   gls.right[4] = {
     GitDiffRemove = {
       provider = "DiffRemove",
       icon = "  ",
-      highlight = { nord.nord11_gui, nord.nord3_gui },
+      highlight = { nord.nord11, nord.nord3 },
     },
   }
   -- Git branch
@@ -152,7 +156,7 @@ function M.config()
       condition = function()
         return condition.buffer_not_empty() and condition.check_git_workspace()
       end,
-      highlight = { nord.nord12_gui, nord.nord3_gui },
+      highlight = { nord.nord12, nord.nord3 },
     },
   }
   gls.right[7] = {
@@ -166,7 +170,7 @@ function M.config()
       condition = function()
         return condition.buffer_not_empty() and condition.check_git_workspace()
       end,
-      highlight = { nord.nord4_gui, nord.nord3_gui },
+      highlight = { nord.nord4, nord.nord3 },
     },
   }
   -- File info
@@ -175,7 +179,7 @@ function M.config()
       provider = "FileIcon",
       highlight = {
         glpf.get_file_icon_color,
-        nord.nord3_gui,
+        nord.nord3,
       },
     },
   }
@@ -185,7 +189,7 @@ function M.config()
       condition = function()
         return condition.buffer_not_empty()
       end,
-      highlight = { nord.nord4_gui, nord.nord3_gui },
+      highlight = { nord.nord4, nord.nord3 },
     },
   }
   -- Line Info
@@ -194,7 +198,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord9_gui, nord.nord3_gui, "bold" },
+      highlight = { nord.nord9, nord.nord3, "bold" },
     },
   }
   gls.right[11] = {
@@ -204,7 +208,7 @@ function M.config()
         local column = vim.fn.col(".")
         return line .. ":" .. column
       end,
-      highlight = { nord.nord0_gui, nord.nord9_gui },
+      highlight = { nord.nord0, nord.nord9 },
     },
   }
   gls.right[12] = {
@@ -212,7 +216,7 @@ function M.config()
       provider = function()
         return " "
       end,
-      highlight = { nord.nord0_gui, nord.nord9_gui },
+      highlight = { nord.nord0, nord.nord9 },
     },
   }
   gls.right[13] = {
@@ -228,7 +232,7 @@ function M.config()
         local result, _ = math.modf((current_line / total_line) * 100)
         return result .. "%"
       end,
-      highlight = { nord.nord0_gui, nord.nord9_gui },
+      highlight = { nord.nord0, nord.nord9 },
     },
   }
   gls.right[14] = {
@@ -236,7 +240,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord9_gui, nord.nord0_gui, "bold" },
+      highlight = { nord.nord9, nord.nord0, "bold" },
     },
   }
 
@@ -250,7 +254,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord1_gui, nord.nord0_gui, "bold" },
+      highlight = { nord.nord1, nord.nord0, "bold" },
     },
   }
   gls.short_line_left[2] = {
@@ -258,7 +262,7 @@ function M.config()
       provider = function()
         return " "
       end,
-      highlight = { nord.nord4_gui, nord.nord1_gui, "bold" },
+      highlight = { nord.nord4, nord.nord1, "bold" },
     },
   }
 
@@ -269,7 +273,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord1_gui, "bold" },
+      highlight = { nord.nord3, nord.nord1, "bold" },
     },
   }
   -- File info
@@ -277,8 +281,8 @@ function M.config()
     ShortFileIcon = {
       provider = "FileIcon",
       highlight = {
-        nord.nord10_gui,
-        nord.nord3_gui,
+        nord.nord10,
+        nord.nord3,
       },
     },
   }
@@ -290,7 +294,7 @@ function M.config()
           return glpf.get_file_size():sub(1, -2)
         end,
       },
-      highlight = { nord.nord4_gui, nord.nord3_gui },
+      highlight = { nord.nord4, nord.nord3 },
     },
   }
   gls.short_line_right[4] = {
@@ -298,7 +302,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
-      highlight = { nord.nord3_gui, nord.nord0_gui, "bold" },
+      highlight = { nord.nord3, nord.nord0, "bold" },
     },
   }
 end

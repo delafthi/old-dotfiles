@@ -37,10 +37,8 @@ require("packer").startup({
     use({ "wbthomason/packer.nvim" })
     -- Colors
     use({
-      "delafthi/nord.nvim",
-      branch = "devel",
-      setup = require("config.nord").setup(),
-      config = require("config.nord").config(),
+      "delafthi/nord-nvim",
+      config = require("config.nord-nvim").config(),
     })
     -- Comment
     use({
@@ -178,7 +176,6 @@ require("packer").startup({
       branch = "main",
       requires = {
         { "kyazdani42/nvim-web-devicons", opt = true },
-        "shaunsingh/nord.nvim",
       },
       config = require("config.galaxyline").config(),
     })
