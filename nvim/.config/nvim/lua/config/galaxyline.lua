@@ -86,7 +86,6 @@ function M.config()
       provider = function()
         return " "
       end,
-      condition = condition.buffer_not_empty(),
       highlight = { nord.nord4, nord.nord1 },
     },
   }
@@ -122,6 +121,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord3, nord.nord1, "bold" },
     },
   }
@@ -130,6 +130,7 @@ function M.config()
     GitDiffAdd = {
       provider = "DiffAdd",
       icon = "  ",
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord14, nord.nord3 },
     },
   }
@@ -137,6 +138,7 @@ function M.config()
     GitDiffModified = {
       provider = "DiffModified",
       icon = "  ",
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord15, nord.nord3 },
     },
   }
@@ -144,6 +146,7 @@ function M.config()
     GitDiffRemove = {
       provider = "DiffRemove",
       icon = "  ",
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord11, nord.nord3 },
     },
   }
@@ -177,6 +180,7 @@ function M.config()
   gls.right[8] = {
     FileIcon = {
       provider = "FileIcon",
+      condition = condition.buffer_not_empty(),
       highlight = {
         glpf.get_file_icon_color,
         nord.nord3,
@@ -186,9 +190,7 @@ function M.config()
   gls.right[9] = {
     FileName = {
       provider = { "FileName", "FileSize" },
-      condition = function()
-        return condition.buffer_not_empty()
-      end,
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord4, nord.nord3 },
     },
   }
@@ -273,6 +275,7 @@ function M.config()
       provider = function()
         return left_cap
       end,
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord3, nord.nord1, "bold" },
     },
   }
@@ -280,6 +283,7 @@ function M.config()
   gls.short_line_right[2] = {
     ShortFileIcon = {
       provider = "FileIcon",
+      condition = condition.buffer_not_empty(),
       highlight = {
         nord.nord10,
         nord.nord3,
@@ -294,6 +298,7 @@ function M.config()
           return glpf.get_file_size():sub(1, -2)
         end,
       },
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord4, nord.nord3 },
     },
   }
@@ -302,6 +307,7 @@ function M.config()
       provider = function()
         return right_cap
       end,
+      condition = condition.buffer_not_empty(),
       highlight = { nord.nord3, nord.nord0, "bold" },
     },
   }
