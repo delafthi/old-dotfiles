@@ -21,14 +21,15 @@ function M.config()
     full_inclusive_prefix_key = "<C-x>",
     -- For instant-repeat, pressing the trigger key again (f/F/t/T)
     -- always works, but here you can specify additional keys too.
-    instant_repeat_fwd_key = nil,
-    instant_repeat_bwd_key = nil,
+    instant_repeat_fwd_key = ";",
+    instant_repeat_bwd_key = ",",
     -- By default, the values of these will be decided at runtime,
     -- based on `jump_to_first_match`.
     labels = nil,
     cycle_group_fwd_key = nil,
     cycle_group_bwd_key = nil,
   })
+
   vim.cmd([[
     augroup Lightspeed_nohlsearch
       autocmd User LightspeedEnter let &hlsearch = 0
