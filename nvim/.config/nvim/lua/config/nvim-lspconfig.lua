@@ -10,13 +10,11 @@ function M.config()
     return
   end
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = false
-
+  -- Mappings.
+  ------------------------------------------------------------------------------
   local on_attach = function(client, bufnr)
     vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- Mappings.
     local opts = { noremap = true, silent = true }
     u.bufmap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<Cr>", opts)
     u.bufmap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<Cr>", opts)
@@ -25,14 +23,14 @@ function M.config()
     u.bufmap(
       bufnr,
       "n",
-      "gp",
+      "[d",
       "<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
       "n",
-      "gn",
+      "]d",
       "<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>",
       opts
     )
@@ -95,7 +93,7 @@ function M.config()
     u.bufmap(
       bufnr,
       "n",
-      "<Leader>ld",
+      "<Leader>e",
       "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>",
       opts
     )
@@ -140,16 +138,31 @@ function M.config()
     end
   end
 
-  -- Sign Character customization
-  vim.api.nvim_exec(
-    [[
-  sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=LspDiagnosticsSignError
-  sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=LspDiagnosticsSignWarning
-  sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=LspDiagnosticsSignInformation
-  sign define LspDiagnosticsSignHint text=ﯦ texthl=LspDiagnosticsSignHint linehl= numhl=LspDiagnosticsSignHint
-  ]],
-    true
+  -- Visual
+  ------------------------------------------------------------------------------
+  -- Customize how diagnosics are displayed
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      virtual_text = true,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+    }
   )
+
+  -- Sign Character customization
+  local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+  }
+
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
 
   -- Customize virtual text prefix
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -157,7 +170,30 @@ function M.config()
     { virtual_text = { prefix = "" } }
   )
 
-  -- Setup different language servers
+  -- Setup language servers
+  ------------------------------------------------------------------------------
+
+  -- Set language-server capabilities
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = false
+  capabilities.textDocument.completion.completionItem.preselectSupport = true
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport =
+    true
+  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+  capabilities.textDocument.completion.completionItem.commitCharactersSupport =
+    true
+  capabilities.textDocument.completion.completionItem.tagSupport = {
+    valueSet = { 1 },
+  }
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  }
+
   -- bash-language-server
   lspconfig.bashls.setup({
     capabilities = capabilities,
@@ -251,6 +287,14 @@ function M.config()
   })
   -- vim-language-server
   lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })
+
+  -- Activate codelens
+  vim.cmd([[
+  augroup codelens
+    autocmd!
+    autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+  augroup END
+  ]])
 end
 
 return M
