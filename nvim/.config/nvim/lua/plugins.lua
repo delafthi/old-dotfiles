@@ -216,8 +216,7 @@ require("packer").startup({
     -- Visuals/aesthetics
     use({
       "lukas-reineke/indent-blankline.nvim",
-      branch = "master",
-      setup = require("config.indent-blankline").setup(),
+      config = require("config.indent-blankline").config(),
     })
     use({
       "lukas-reineke/headlines.nvim",

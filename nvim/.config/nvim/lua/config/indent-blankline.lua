@@ -1,17 +1,30 @@
 local M = {}
 
-function M.setup()
-  vim.g.indentLine_char = "│"
-  vim.g.indent_blankline_filetype_exclude = {
-    "dashboard",
-    "help",
-    "man",
-    "markdown",
-    "norg",
-    "packer",
-    "terminal",
-    "org",
-  }
+function M.config()
+  local ok, indent_blankline = pcall(function()
+    return require("indent_blankline")
+  end)
+
+  if not ok then
+    return
+  end
+
+  indent_blankline.setup({
+    char = "│",
+    use_treesitter = true,
+    filetype_exclude = {
+      "dashboard",
+      "help",
+      "man",
+      "markdown",
+      "norg",
+      "packer",
+      "org",
+    },
+    buftype_exclude = {
+      "terminal",
+    },
+  })
 end
 
 return M
