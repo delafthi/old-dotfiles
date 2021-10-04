@@ -79,7 +79,7 @@ function M.config()
           return {
             exe = "hindent",
             args = {
-              "--line-lenght",
+              "--line-length",
               80,
               "--indent-size",
               2,
