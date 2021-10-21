@@ -185,7 +185,6 @@ require("packer").startup({
       requires = {
         "JoosepAlviste/nvim-ts-context-commentstring",
         "nvim-treesitter/nvim-treesitter-textobjects",
-        "p00f/nvim-ts-rainbow",
       },
       run = ":TSUpdate",
       config = require("config.nvim-treesitter").config(),
