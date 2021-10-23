@@ -5,7 +5,7 @@ function M.config()
   local ok_cmp, cmp = pcall(function()
     return require("cmp")
   end)
-  local ok_luasnip, ls = pcall(function()
+  local ok_luasnip, luasnip = pcall(function()
     return require("luasnip")
   end)
   local ok_neogen, neogen = pcall(function()
@@ -53,7 +53,7 @@ function M.config()
   cmp.setup({
     snippet = {
       expand = function(args)
-        ls.lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     documentation = {
@@ -66,10 +66,10 @@ function M.config()
         vim_item.menu = ({
           buffer = "[Bufr]",
           calc = "[Calc]",
-          latex_symbols = "[Tex]",
+          latex_symbols = "[TeX]",
           luasnip = "[Snip]",
           nvim_lsp = "[LSP]",
-          nvim_lua = "[Lua]",
+          nvim_lua = "[API]",
           orgmode = "[Org]",
           neorg = "[Norg]",
           path = "[Path]",
@@ -79,37 +79,13 @@ function M.config()
       end,
     },
     mapping = {
-      ["<Tab>"] = cmp.mapping(function(fallback)
-        if fn.pumvisible() == 1 then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes("<C-n>", true, true, true),
-            "n"
-          )
+      ["<C-n>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
         elseif ok_neogen and neogen.jumpable() then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes(
-              "<Cmd>lua require('neogen').jump_next()<Cr>",
-              true,
-              true,
-              true
-            ),
-            ""
-          )
-        elseif ok_luasnip and ls and ls.expand_or_jumpable() then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes(
-              "<Plug>luasnip-expand-or-jump",
-              true,
-              true,
-              true
-            ),
-            ""
-          )
-        elseif check_back_space() then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes("<Tab>", true, true, true),
-            "n"
-          )
+          neogen.jump_next()
+        elseif ok_luasnip and luasnip and luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -117,22 +93,11 @@ function M.config()
         "i",
         "s",
       }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if fn.pumvisible() == 1 then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes("<C-p>", true, true, true),
-            "n"
-          )
-        elseif ok_luasnip and ls and ls.jumpable(-1) then
-          fn.feedkeys(
-            vim.api.nvim_replace_termcodes(
-              "<Plug>luasnip-jump-prev",
-              true,
-              true,
-              true
-            ),
-            ""
-          )
+      ["<C-p>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif ok_luasnip and luasnip and luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
@@ -140,8 +105,6 @@ function M.config()
         "i",
         "s",
       }),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
-      ["<C-n>"] = cmp.mapping.select_next_item(),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<Cr>"] = cmp.mapping.confirm({
@@ -150,51 +113,34 @@ function M.config()
       }),
     },
     sources = {
+      { name = "nvim_lua" },
       { name = "nvim_lsp" },
       { name = "path" },
       { name = "luasnip" },
-      { name = "buffer" },
+      { name = "buffer", keyword_length = 5 },
+    },
+    experimental = {
+      ghost_text = false,
     },
   })
 
   vim.cmd([[
-    augroup nvim-cmp
+    augroup nvim-cmp-buffer
       autocmd!
-      autocmd FileType lua,nvim lua require("cmp").setup.buffer({
-      \  sources = {
-      \    { name = "nvim_lsp" },
-      \    { name = "path" },
-      \    { name = "luasnip" },
-      \    { name = "buffer" },
-      \    { name = "nvim_lua" },
-      \  },
-      \})
       autocmd FileType latex,markdown lua require("cmp").setup.buffer({
       \  sources = {
-      \    { name = "nvim_lsp" },
-      \    { name = "path" },
-      \    { name = "luasnip" },
-      \    { name = "buffer" },
       \    { name = "spell" },
       \    { name = "latex_symbols" },
       \  },
       \})
       autocmd FileType org lua require("cmp").setup.buffer({
       \  sources = {
-      \    { name = "nvim_lsp" },
-      \    { name = "path" },
-      \    { name = "luasnip" },
-      \    { name = "buffer" },
       \    { name = "spell" },
       \    { name = "orgmode" },
       \  },
       \})
       autocmd FileType norg lua require("cmp").setup.buffer({
       \  sources = {
-      \    { name = "nvim_lsp" },
-      \    { name = "path" },
-      \    { name = "luasnip" },
-      \    { name = "buffer" },
       \    { name = "spell" },
       \    { name = "neorg" },
       \  },
