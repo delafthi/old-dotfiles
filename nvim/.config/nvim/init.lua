@@ -90,7 +90,7 @@ cmd([[
   augroup END
 ]]) -- Enable highlight on yank.
 vim.g.vimsyn_embed = "lPr" -- Allow embedded syntax highlighting for lua, python, ruby.
-vim.opt.wrap = false -- Enable line wrapping.
+vim.opt.wrap = true -- Enable line wrapping.
 vim.opt.virtualedit = "block" -- Allow cursor to move past end of line.
 vim.opt.visualbell = false -- Disable annoying beeps
 vim.opt.shortmess = "c" -- Avoid showing extra messages when using completion
