@@ -67,8 +67,6 @@ beautiful.init(
 local terminal = "kitty" -- default terminal
 local browser = "brave" -- default browser
 local visual_filemanager = "pcmanfm" -- default graphical fm
-local filemanager = "ranger" -- default fm
-local filemanager_cmd = terminal .. " -e " .. filemanager -- command to open the fm
 local editor = os.getenv("EDITOR") or "nvim" -- default editor
 local editor_cmd = terminal .. " -e " .. editor -- command to open the editor
 
@@ -133,12 +131,6 @@ awful.keyboard.append_global_keybindings({
     description = "open a terminal",
     group = "launcher",
   }),
-  awful.key({ modkey }, "s", function()
-    awful.spawn(terminal)
-  end, {
-    description = "open a scratchpad terminal",
-    group = "launcher",
-  }),
   awful.key({ modkey, "Shift" }, "Return", function()
     awful.spawn("rofi -show run")
   end, {
@@ -149,12 +141,6 @@ awful.keyboard.append_global_keybindings({
     awful.spawn(browser)
   end, {
     description = "open a browser",
-    group = "launcher",
-  }),
-  awful.key({ modkey }, "f", function()
-    awful.spawn(filemanager_cmd)
-  end, {
-    description = "open a file manager",
     group = "launcher",
   }),
 })
@@ -187,13 +173,13 @@ awful.keyboard.append_global_keybindings({
     description = "maximize the master pane",
     group = "layout",
   }),
-  awful.key({ modkey }, "comma", function()
+  awful.key({ modkey }, "d", function()
     awful.tag.incnmaster(-1, nil, true)
   end, {
     description = "decrease number of master clients",
     group = "layout",
   }),
-  awful.key({ modkey }, "period", function()
+  awful.key({ modkey }, "i", function()
     awful.tag.incnmaster(1, nil, true)
   end, {
     description = "increase number of master clients",
@@ -274,13 +260,13 @@ awful.keyboard.append_global_keybindings({
 
 -- Screen related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "w", function()
+  awful.key({ modkey }, "comma", function()
     awful.screen.focus_bydirection("left", awful.screen.focused())
   end, {
     description = "focus left screen",
     group = "screen",
   }),
-  awful.key({ modkey }, "e", function()
+  awful.key({ modkey }, "period", function()
     awful.screen.focus_bydirection("right", awful.screen.focused())
   end, {
     description = "focus right screen",
@@ -332,20 +318,20 @@ client.connect_signal("request::default_keybindings", function()
       description = "toggle fullscreen mode for the current client",
       group = "client",
     }),
-    awful.key({ modkey }, "p", function(c)
+    awful.key({ modkey }, "f", function(c)
       c.floating = not c.floating
       c:raise()
     end, {
       description = "toggle floating for the current client",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "w", function(c)
+    awful.key({ modkey, "Shift" }, "comma", function(c)
       c:move_to_screen(c.screen.index - 1)
     end, {
       description = "move focused client to the left screen",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "e", function(c)
+    awful.key({ modkey, "Shift" }, "period", function(c)
       c:move_to_screen(c.screen.index + 1)
     end, {
       description = "move focused client to the right screen",
