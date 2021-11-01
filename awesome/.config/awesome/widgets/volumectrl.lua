@@ -17,7 +17,7 @@ local M = {}
 -- Volume control {{{1
 
 local volumecfg = {
-  cardid = 0,
+  device = "default",
   channel = "Speaker",
 }
 
@@ -26,8 +26,8 @@ function M.get_widget()
     {
       id = "watch_role",
       awful.widget.watch(
-        "bash -c 'amixer -c"
-          .. volumecfg.cardid
+        "bash -c 'amixer -D "
+          .. volumecfg.device
           .. " sget "
           .. volumecfg.channel
           .. " -M'",
@@ -61,8 +61,8 @@ function M.get_widget()
       buttons = {
         awful.button({}, 1, function()
           os.execute(
-            "amixer -c "
-              .. volumecfg.cardid
+            "amixer -D "
+              .. volumecfg.device
               .. " sset "
               .. volumecfg.channel
               .. " toggle"
@@ -73,8 +73,8 @@ function M.get_widget()
         end),
         awful.button({}, 4, function()
           os.execute(
-            "amixer -c "
-              .. volumecfg.cardid
+            "amixer -D "
+              .. volumecfg.device
               .. " sset "
               .. volumecfg.channel
               .. " 5%+"
@@ -82,8 +82,8 @@ function M.get_widget()
         end),
         awful.button({}, 5, function()
           os.execute(
-            "amixer -c "
-              .. volumecfg.cardid
+            "amixer -D "
+              .. volumecfg.device
               .. " sset "
               .. volumecfg.channel
               .. " 5%-"
