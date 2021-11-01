@@ -274,22 +274,27 @@ awful.keyboard.append_global_keybindings({
   }),
 })
 
+local volumecfg = {
+  device = "default",
+  channel = "Speaker",
+}
+
 -- Volume control keybindings
 awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86AudioRaiseVolume", function()
-    os.execute("amixer -c 1 sset Speaker 5%+")
+    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " 5%+")
   end, {
     description = "raise volume",
     group = "system",
   }),
   awful.key({}, "XF86AudioLowerVolume", function()
-    os.execute("amixer -c 1 sset Speaker 5%-")
+    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " 5%-")
   end, {
     description = "lower volume",
     group = "system",
   }),
   awful.key({}, "XF86AudioMute", function()
-    os.execute("amixer -c 1 sset Speaker toggle")
+    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " toggle")
   end, {
     description = "toggle mute",
     group = "system",
