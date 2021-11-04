@@ -74,15 +74,6 @@ require("packer").startup({
       "rcarriga/nvim-dap-ui",
       requires = { "mfussenegger/nvim-dap" },
     })
-    use({
-      "termdebug",
-      installer = function() end,
-      updater = function() end,
-      config = function()
-        vim.cmd([[let g:termdebug_wide = 1]])
-      end,
-      cmd = "Termdebug",
-    })
     -- Formatting
     use({
       "mhartington/formatter.nvim",
