@@ -123,6 +123,11 @@ require("packer").startup({
     })
     -- Navigation
     use({
+      "ThePrimeagen/harpoon",
+      requires = { "nvim-lua/plenary.nvim" },
+      config = require("config.harpoon").config(),
+    })
+    use({
       "ggandor/lightspeed.nvim",
       config = require("config.lightspeed").config(),
     })
