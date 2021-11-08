@@ -55,6 +55,14 @@ function M.config()
   })
   telescope.load_extension("fzy_native")
 
+  local git_worktree_ok = pcall(function()
+    return require("git-worktree")
+  end)
+
+  if git_worktree_ok then
+    telescope.load_extension("git_worktree")
+  end
+
   local opts = { noremap = true, silent = true }
   -- Show Telescope buffers.
   u.map(
@@ -103,12 +111,6 @@ function M.config()
     "n",
     "<Leader>gs",
     "<Cmd>lua require('telescope.builtin').git_status()<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>gb",
-    "<Cmd>lua require('telescope.builtin').git_branches()<Cr>",
     opts
   )
 end
