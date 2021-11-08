@@ -16,14 +16,6 @@ function M.config()
     install_info = {
       url = "https://github.com/vhyrro/tree-sitter-norg",
       branch = "main",
-      files = { "src/parser.c" },
-    },
-  }
-
-  parser_configs.org = {
-    install_info = {
-      url = "https://github.com/milisims/tree-sitter-org",
-      branch = "main",
       files = { "src/parser.c", "src/scanner.cc" },
     },
   }

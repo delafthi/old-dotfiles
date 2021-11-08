@@ -145,7 +145,6 @@ require("packer").startup({
     })
     use({
       "kristijanhusak/orgmode.nvim",
-      branch = "tree-sitter",
       config = require("config.orgmode").config(),
     })
     use({
