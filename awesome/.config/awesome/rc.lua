@@ -260,13 +260,13 @@ awful.keyboard.append_global_keybindings({
 
 -- Screen related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "comma", function()
+  awful.key({ modkey }, "w", function()
     awful.screen.focus_bydirection("left", awful.screen.focused())
   end, {
     description = "focus left screen",
     group = "screen",
   }),
-  awful.key({ modkey }, "period", function()
+  awful.key({ modkey }, "v", function()
     awful.screen.focus_bydirection("right", awful.screen.focused())
   end, {
     description = "focus right screen",
@@ -330,13 +330,13 @@ client.connect_signal("request::default_keybindings", function()
       description = "toggle floating for the current client",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "comma", function(c)
+    awful.key({ modkey, "Shift" }, "w", function(c)
       c:move_to_screen(c.screen.index - 1)
     end, {
       description = "move focused client to the left screen",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "period", function(c)
+    awful.key({ modkey, "Shift" }, "v", function(c)
       c:move_to_screen(c.screen.index + 1)
     end, {
       description = "move focused client to the right screen",
