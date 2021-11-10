@@ -91,8 +91,12 @@ function M.set(s)
         shape = gears.shape.rounded_bar,
         widget = wibox.container.background,
       },
+      spacing = beautiful.wibar_spacing,
+      spacing_widget = spacer,
       layout = wibox.layout.align.horizontal,
     },
+    spacing = beautiful.wibar_spacing,
+    spacing_widget = spacer,
     layout = wibox.layout.align.horizontal,
   })
 end
