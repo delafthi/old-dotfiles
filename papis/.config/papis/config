@@ -1,35 +1,23 @@
 [settings]
+use-git = True
+header-format = <ansiblue>{doc.html_escape[title]}</ansiblue> <ansimagenta>({doc.html_escape[year]})</ansimagenta>
+                <ansicyan>{doc.html_escape[author]}</ansicyan>
+                <ansiwhite>[{doc.html_escape[tags]}]</ansiwhite>
 opentool = zathura
-# Ask for confirmation when doing papis add
-add-confirm = True
-# Edit the info.yaml file before adding a doc into the library
-# papis add --edit
-add-edit = True
-# Open the files before adding a document into the library
-# papis add --open
-add-open = True
-# Define custom default match and header formats
-match-format = {doc[tags]}{doc.subfolder}{doc[title]}{doc[author]}{doc[year]}
-# Define header format with colors and multiline support
-header-format = <red>{doc.html_escape[title]}</red>
-  <purple>  {doc.html_escape[author]}</purple>
-  <green>   ({doc.html_escape[year]})</green>
+add-folder-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
+add-file-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 
 [tui]
-editmode = vi
-options_list.selected_margin_style = bg:ansigreen fg:ansired
+status_line_style = fg:ansiwhite
+options_list.selected_margin_style = fg:ansiblue
 options_list.unselected_margin_style =
+editmode = vi
 
-# Define a lib
 [papers]
 dir = ~/Bibliography/papers
-# rename files added by author and title
-add-file-name = {doc[author]}{doc[title]}
 
-# Define a lib for books
 [books]
 dir = ~/Bibliography/books
 
-# Define a lib for Videos
 [videos]
 dir = ~/Bibliography/videos
