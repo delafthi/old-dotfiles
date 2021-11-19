@@ -140,7 +140,7 @@ function M.config()
     DiagnosticWarn = {
       provider = "DiagnosticWarn",
       icon = "  ",
-      highlight = { c.green, c.black1 },
+      highlight = { c.yellow, c.black1 },
     },
   }
   gls.left[7] = {
