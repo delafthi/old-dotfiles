@@ -1,9 +1,9 @@
-[user]
-	name = Thierry Delafontaine
-	email = deaa@zhaw.ch
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+[user]
+	name = Thierry Delafontaine
+	email = deaa@zhaw.ch
 [alias]
   co = checkout
   ci = commit
@@ -11,9 +11,13 @@
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [color "status"]
-    added = cyan
-    changed = red
-    untracked = yellow
+  added = green
+  changed = red
+  untracked = yellow
+[merge]
+  autoStash = true
+[worktree]
+  guessRemove = true
 [gui]
 	fontui = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
