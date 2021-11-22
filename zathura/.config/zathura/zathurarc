@@ -2,7 +2,7 @@
 set sandbox none # Enables copying to the system clipboard
 
 # Colors {{{1
-set highlight-color \#
+set highlight-color \#EBCB8B
 set highlight-active-color \#61afef
 set recolor false
 set recolor-lightcolor \#313640
