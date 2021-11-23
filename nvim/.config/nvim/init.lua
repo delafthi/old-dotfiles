@@ -103,7 +103,8 @@ cmd([[
     autocmd BufNewFile,BufRead *.bb set filetype=sh
     autocmd BufNewFile,BufRead *.bbappend set filetype=sh
   augroup END
-]]) -- Set filetype for opencl device code
+]]) -- Set various filetypes
+vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 
 -- Folds {{{1
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
