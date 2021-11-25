@@ -11,7 +11,7 @@
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [color "status"]
-  added = green
+  added = blue
   changed = red
   untracked = yellow
 [merge]
