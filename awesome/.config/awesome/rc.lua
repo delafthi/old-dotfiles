@@ -355,13 +355,27 @@ end)
 client.connect_signal("request::default_mousebindings", function()
   awful.mouse.append_client_mousebindings({
     awful.button({}, 1, function(c)
-      c:activate({ context = "mouse_click" })
+      c:activate({
+        context = "mouse_click",
+        raise = true,
+        switch_to_tag = true,
+      })
     end),
     awful.button({ modkey }, 1, function(c)
-      c:activate({ context = "mouse_click", action = "mouse_move" })
+      c:activate({
+        context = "mouse_click",
+        raise = true,
+        switch_to_tag = true,
+        action = "mouse_move",
+      })
     end),
     awful.button({ modkey }, 3, function(c)
-      c:activate({ context = "mouse_click", action = "mouse_resize" })
+      c:activate({
+        context = "mouse_click",
+        raise = true,
+        switch_to_tag = true,
+        action = "mouse_resize",
+      })
     end),
   })
 end)
