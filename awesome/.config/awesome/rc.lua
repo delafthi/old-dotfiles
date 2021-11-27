@@ -31,7 +31,8 @@ local wibar = require("wibar")
 naughty.connect_signal("request::display_error", function(message, startup)
   naughty.notification({
     urgency = "critical",
-    title = "Oops, an error happened" .. (startup and " during startup!" or "!"),
+    title = "Oops, an error happened"
+      .. (startup and " during startup!" or "!"),
     message = message,
   })
 end)
@@ -66,9 +67,6 @@ beautiful.init(
 -- Default applications
 local terminal = "kitty" -- default terminal
 local browser = "brave" -- default browser
-local visual_filemanager = "pcmanfm" -- default graphical fm
-local editor = os.getenv("EDITOR") or "nvim" -- default editor
-local editor_cmd = terminal .. " -e " .. editor -- command to open the editor
 
 -- Default mod key
 local modkey = "Mod4" -- Meta key
@@ -173,13 +171,13 @@ awful.keyboard.append_global_keybindings({
     description = "maximize the master pane",
     group = "layout",
   }),
-  awful.key({ modkey }, "d", function()
+  awful.key({ modkey }, "period", function()
     awful.tag.incnmaster(-1, nil, true)
   end, {
     description = "decrease number of master clients",
     group = "layout",
   }),
-  awful.key({ modkey }, "i", function()
+  awful.key({ modkey }, "comma", function()
     awful.tag.incnmaster(1, nil, true)
   end, {
     description = "increase number of master clients",
@@ -220,37 +218,25 @@ awful.keyboard.append_global_keybindings({
 
 -- Focus related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "Tab", function()
+  awful.key({ modkey }, "d", function()
     awful.client.focus.byidx(1)
   end, {
     description = "focus next client",
     group = "client",
   }),
-  awful.key({ modkey, "Shift" }, "Tab", function()
+  awful.key({ modkey }, "u", function()
     awful.client.focus.byidx(-1)
   end, {
     description = "focus previous client",
     group = "client",
   }),
-  awful.key({ modkey }, "j", function()
-    awful.client.focus.byidx(1)
-  end, {
-    description = "focus next client",
-    group = "client",
-  }),
-  awful.key({ modkey }, "k", function()
-    awful.client.focus.byidx(-1)
-  end, {
-    description = "focus previous client",
-    group = "client",
-  }),
-  awful.key({ modkey, "Shift" }, "j", function()
+  awful.key({ modkey, "Shift" }, "d", function()
     awful.client.swap.byidx(1)
   end, {
     description = "swap with next client",
     group = "client",
   }),
-  awful.key({ modkey, "Shift" }, "k", function()
+  awful.key({ modkey, "Shift" }, "u", function()
     awful.client.swap.byidx(-1)
   end, {
     description = "swap with previous client",
@@ -260,13 +246,13 @@ awful.keyboard.append_global_keybindings({
 
 -- Screen related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "w", function()
+  awful.key({ modkey }, "p", function()
     awful.screen.focus_bydirection("left", awful.screen.focused())
   end, {
     description = "focus left screen",
     group = "screen",
   }),
-  awful.key({ modkey }, "v", function()
+  awful.key({ modkey }, "n", function()
     awful.screen.focus_bydirection("right", awful.screen.focused())
   end, {
     description = "focus right screen",
@@ -282,19 +268,37 @@ local volumecfg = {
 -- Volume control keybindings
 awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86AudioRaiseVolume", function()
-    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " 5%+")
+    os.execute(
+      "amixer -D "
+        .. volumecfg.device
+        .. " sset "
+        .. volumecfg.channel
+        .. " 5%+"
+    )
   end, {
     description = "raise volume",
     group = "system",
   }),
   awful.key({}, "XF86AudioLowerVolume", function()
-    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " 5%-")
+    os.execute(
+      "amixer -D "
+        .. volumecfg.device
+        .. " sset "
+        .. volumecfg.channel
+        .. " 5%-"
+    )
   end, {
     description = "lower volume",
     group = "system",
   }),
   awful.key({}, "XF86AudioMute", function()
-    os.execute("amixer -D " .. volumecfg.device .. " sset " .. volumecfg.channel .. " toggle")
+    os.execute(
+      "amixer -D "
+        .. volumecfg.device
+        .. " sset "
+        .. volumecfg.channel
+        .. " toggle"
+    )
   end, {
     description = "toggle mute",
     group = "system",
@@ -330,13 +334,13 @@ client.connect_signal("request::default_keybindings", function()
       description = "toggle floating for the current client",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "w", function(c)
+    awful.key({ modkey, "Shift" }, "p", function(c)
       c:move_to_screen(c.screen.index - 1)
     end, {
       description = "move focused client to the left screen",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "v", function(c)
+    awful.key({ modkey, "Shift" }, "n", function(c)
       c:move_to_screen(c.screen.index + 1)
     end, {
       description = "move focused client to the right screen",
