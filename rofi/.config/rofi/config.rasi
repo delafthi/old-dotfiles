@@ -5,7 +5,6 @@ configuration {
   width: 0;
   line-margin: 0;
   columns: 1;
-  theme: "nord";
   dispaly-ssh: " ";
   display-run:    " ";
   display-drun:   " ";
@@ -13,5 +12,7 @@ configuration {
   display-combi:  " ";
   show-icons:     true;
 }
+
+@theme "nord"
 
 /* vim:ft=css
