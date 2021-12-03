@@ -1,4 +1,5 @@
 local M = {}
+local u = require("util")
 
 function M.config()
   local ok, lightspeed = pcall(function()
@@ -21,8 +22,6 @@ function M.config()
     full_inclusive_prefix_key = "<C-x>",
     -- For instant-repeat, pressing the trigger key again (f/F/t/T)
     -- always works, but here you can specify additional keys too.
-    instant_repeat_fwd_key = ";",
-    instant_repeat_bwd_key = ",",
     -- By default, the values of these will be decided at runtime,
     -- based on `jump_to_first_match`.
     labels = nil,
@@ -36,6 +35,12 @@ function M.config()
       autocmd User LightspeedLeave let &hlsearch = 1
     augroup END
   ]])
+
+  local opts = { noremap = false, silent = true }
+  u.map("v", ";", "<Plug>Lightspeed_;_sx", opts)
+  u.map("v", ";", "<Plug>Lightspeed_;_ft", opts)
+  u.map("v", ",", "<Plug>Ligthspeed_,_sx", opts)
+  u.map("v", ",", "<Plug>Ligthspeed_,_ft", opts)
 end
 
 return M
