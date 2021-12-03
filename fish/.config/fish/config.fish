@@ -153,6 +153,10 @@ if command -v nvim 1>/dev/null 2>&1
     set -gx EDITOR nvim # $EDITOR use Neovim in terminal
 end
 
+if command -v emacsclient 1>/dev/null 2>&1
+    alias emacs="emacsclient"
+end
+
 ############################################################
 # Plugins {{{1
 
