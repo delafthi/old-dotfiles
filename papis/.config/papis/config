@@ -6,6 +6,7 @@ header-format = <ansiblue>{doc.html_escape[title]}</ansiblue> <ansimagenta>({doc
 opentool = zathura
 add-folder-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 add-file-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
+add-edit = True
 
 [tui]
 status_line_style = fg:ansiwhite
