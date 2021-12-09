@@ -29,7 +29,7 @@ end
 # Abbreviations and aliases {{{1
 
 # sudo
-alias sudo="sudo -s"
+alias sudo="sudo -E"
 
 # navigation
 abbr -a .. "cd .."

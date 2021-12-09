@@ -29,7 +29,7 @@ source /usr/share/bash-completion/bash_completion
 ############################################################
 # Aliases {{{1
 
-alias sudo="sudo -s"
+alias sudo="sudo -E"
 
 # navigation
 alias ..="cd .."
