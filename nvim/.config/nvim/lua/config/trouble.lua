@@ -15,7 +15,7 @@ function M.config()
     height = 10, -- height of the trouble list when position is top or bottom
     width = 50, -- width of the list when position is left or right
     icons = true, -- use devicons for filenames
-    mode = "lsp_workspace_diagnostics", -- 'lsp_workspace_diagnostics', 'lsp_document_diagnostics', 'quickfix', 'lsp_references', 'loclist'
+    mode = "workspace_diagnostics", -- 'workspace_diagnostics', 'document_diagnostics', 'quickfix', 'lsp_references', 'loclist'
     fold_open = "", -- icon used for open folds
     fold_closed = "", -- icon used for closed folds
     action_keys = { -- key mappings for actions in the trouble list
@@ -39,23 +39,13 @@ function M.config()
     auto_close = false, -- automatically close the list when you have no diagnostics
     auto_preview = true, -- automatyically preview the location of the diagnostic. <esc> to close preview and go back to last window
     auto_fold = false, -- automatically fold a file trouble list at creation
-    use_lsp_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
+    use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
   })
 
   local opts = { noremap = true, silent = true }
   u.map("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
-  u.map(
-    "n",
-    "<Leader>xw",
-    "<Cmd>TroubleToggle lsp_workspace_diagnostics<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>xd",
-    "<Cmd>TroubleToggle lsp_document_diagnostics<Cr>",
-    opts
-  )
+  u.map("n", "<Leader>xw", "<Cmd>TroubleToggle workspace_diagnostics<Cr>", opts)
+  u.map("n", "<Leader>xd", "<Cmd>TroubleToggle document_diagnostics<Cr>", opts)
   u.map("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
   u.map("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
   u.map("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
