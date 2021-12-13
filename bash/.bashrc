@@ -98,25 +98,19 @@ if command -v fzf 1> /dev/null 2>&1 && command -v rg 1> /dev/null 2>&1; then
     --color='hl:reverse,hl+:reverse'"
 fi
 
+if command -v nvim 1> /dev/null 2>&1; then
+  alias vim="nvim"
+  alias vi="nvim"
+  # set vim as manpager
+  export MANPAGER="nvim +Man! +'set noma'"
+fi
+
 # Changing "ls" to "exa"
 if command -v exa 1> /dev/null 2>&1; then
   alias ls="exa -al --color=always --group-directories-first" # my preferred listing
   alias la="exa -a --color=always --group-directories-first"  # all files and dirs
   alias ll="exa -l --color=always --group-directories-first"  # long format
   alias lt="exa -aT --color=always --group-directories-first" # tree listing
-fi
-
-# Use nvim as default editor
-if command -v nvim 1> /dev/null 2>&1; then
-  alias vim="nvim"
-  alias vi="nvim"
-  # set vim as manpager
-  export MANPAGER="nvim +Man! +'set noma'"
-  export EDITOR="nvim"
-fi
-
-if command -v emacsclient 1> /dev/null 2>&1; then
-  alias emacs="emacsclient"
 fi
 
 # kitty specific aliases
