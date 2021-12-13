@@ -103,6 +103,7 @@ if command -v nvim 1> /dev/null 2>&1; then
   alias vi="nvim"
   # set vim as manpager
   export MANPAGER="nvim +Man! +'set noma'"
+  export EDITOR="nvim"
 fi
 
 # Changing "ls" to "exa"
