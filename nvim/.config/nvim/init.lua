@@ -5,9 +5,6 @@ local u = require("util")
 vim.g.mapleader = " " -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
 
--- Load Plugins {{{1
-require("plugins")
-
 -- Backup {{{1
 vim.opt.backup = false -- Disable backups.
 vim.opt.confirm = true -- Prompt to save before destructive actions.
@@ -301,5 +298,8 @@ vim.opt.wildmenu = true -- Enable commandline autocompletion menu.
 vim.opt.wildmode = "full" -- Select completion mode.
 vim.opt.wildignorecase = true -- Ignores case when completing.
 vim.opt.wildoptions = "pum" -- Display the completion matches using the popupmenu.
+
+-- Load Plugins at the end {{{1
+require("plugins")
 
 -- }}}1
