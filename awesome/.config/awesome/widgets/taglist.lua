@@ -24,7 +24,9 @@ function M.get_prompt()
       if not input or #input == 0 then
         return
       end
-      awful.screen.focused().selected_tag.name = input
+      awful.screen.focused().selected_tag.name = awful.screen.focused().selected_tag.index
+        .. "_"
+        .. input
     end,
   })
   return prompt
