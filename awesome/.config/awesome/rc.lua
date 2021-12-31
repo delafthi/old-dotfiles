@@ -400,6 +400,7 @@ ruled.client.connect_signal("request::rules", function()
       maximized_horizontal = false,
       maximized_vertical = false,
       minimized = false,
+      size_hints_honor = false,
     },
   })
   -- Floating clients
