@@ -72,6 +72,9 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
+export PATH="$HOME/.config/guix/current/bin:$PATH"
+export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+
 ############################################################
 # Visuals {{{1
 

@@ -69,6 +69,9 @@ if test -d $HOME/.local/bin
     set -gx PATH $HOME/.local/bin $PATH
 end
 
+set -gx PATH $HOME/.config/guix/current/bin $PATH
+set -gx GUIX_LOCPATH $HOME/.guix-profile/lib/locale
+
 ############################################################
 # Visuals {{{1
 
