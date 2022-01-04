@@ -53,15 +53,15 @@ function M.config()
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
   })
-  telescope.load_extension("fzy_native")
-
-  local git_worktree_ok = pcall(function()
-    return require("git-worktree")
+  pcall(function()
+    telescope.load_extension("fzy_native")
   end)
-
-  if git_worktree_ok then
+  pcall(function()
+    telescope.load_extension("file_browser")
+  end)
+  pcall(function()
     telescope.load_extension("git_worktree")
-  end
+  end)
 
   local opts = { noremap = true, silent = true }
   -- Show Telescope buffers.
@@ -103,7 +103,7 @@ function M.config()
   u.map(
     "n",
     "<Leader>fb",
-    "<Cmd>lua require('telescope.builtin').file_browser()<Cr>",
+    "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<Cr>",
     opts
   )
   -- Git

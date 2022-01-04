@@ -86,6 +86,7 @@ require("packer").startup({
         { "nvim-lua/popup.nvim" },
         { "nvim-lua/plenary.nvim" },
         { "nvim-telescope/telescope-fzy-native.nvim" },
+        { "nvim-telescope/telescope-file-browser.nvim" },
       },
       config = require("config.telescope").config(),
     })
