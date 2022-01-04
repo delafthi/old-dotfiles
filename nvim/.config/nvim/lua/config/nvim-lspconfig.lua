@@ -20,20 +20,8 @@ function M.config()
     u.bufmap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<Cr>", opts)
     u.bufmap(bufnr, "n", "gr", "<Cmd>lua vim.lsp.buf.references()<Cr>", opts)
     u.bufmap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<Cr>", opts)
-    u.bufmap(
-      bufnr,
-      "n",
-      "[d",
-      "<Cmd>lua vim.lsp.diagnostic.goto_prev()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "]d",
-      "<Cmd>lua vim.lsp.diagnostic.goto_next()<Cr>",
-      opts
-    )
+    u.bufmap(bufnr, "n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<Cr>", opts)
+    u.bufmap(bufnr, "n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<Cr>", opts)
     u.bufmap(
       bufnr,
       "n",
@@ -94,14 +82,14 @@ function M.config()
       bufnr,
       "n",
       "<Leader>e",
-      "<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<Cr>",
+      "<Cmd>lua vim.diagnostic.open_float({severity_sort = true})<Cr>",
       opts
     )
     u.bufmap(
       bufnr,
       "n",
       "<Leader>q",
-      "<Cmd>lua vim.lsp.diagnostic.set_loclist()<Cr>",
+      "<Cmd>lua vim.diagnostic.set_loclist()<Cr>",
       opts
     )
 
