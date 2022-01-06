@@ -258,8 +258,10 @@ function M.config()
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
+      configurationSources = { "flake8" },
       plugins = {
         flake8 = { enabled = true },
+        pydocstyle = { enabled = true },
       },
     },
   })
