@@ -37,7 +37,7 @@ function M.setup()
     },
     file_browser = {
       description = {
-        " File Browser                               SPC f b",
+        " File Browser                               SPC f b",
       },
       command = "Telescope find_browser",
     },
