@@ -23,3 +23,8 @@
 	fontdiff = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	spellingdictionary = en
 	tabsize = 2
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
