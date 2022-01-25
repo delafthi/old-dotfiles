@@ -59,9 +59,6 @@ function M.config()
   pcall(function()
     telescope.load_extension("file_browser")
   end)
-  pcall(function()
-    telescope.load_extension("git_worktree")
-  end)
 
   local opts = { noremap = true, silent = true }
   -- Show Telescope buffers.

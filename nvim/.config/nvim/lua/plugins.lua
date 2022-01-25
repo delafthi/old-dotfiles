@@ -92,10 +92,6 @@ require("packer").startup({
     })
     -- Git
     use({
-      "ThePrimeagen/git-worktree.nvim",
-      config = require("config.git-worktree").config(),
-    })
-    use({
       "TimUntersberger/neogit",
       requires = {
         "nvim-lua/plenary.nvim",
