@@ -1,7 +1,7 @@
 configuration {
   modi: "window,drun,ssh,combi";
   combi-modi: "window,drun,ssh";
-  font: "VictorMonoNerdFont 12";
+  font: "FiraCode 12";
   width: 0;
   line-margin: 0;
   columns: 1;

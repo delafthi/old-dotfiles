@@ -1,5 +1,5 @@
 XTerm*renderFont: true
-XTerm*faceName: xft:VictorMono Nerd Font
+XTerm*faceName: xft:FiraCode
 XTerm*faceSize: 11
 XTerm*locale: true
 XTerm*savelines: 10000
