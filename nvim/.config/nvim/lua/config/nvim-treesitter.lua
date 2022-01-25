@@ -9,17 +9,6 @@ function M.config()
     return
   end
 
-  -- Additional parsers
-  local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-
-  parser_configs.norg = {
-    install_info = {
-      url = "https://github.com/vhyrro/tree-sitter-norg",
-      branch = "main",
-      files = { "src/parser.c", "src/scanner.cc" },
-    },
-  }
-
   ts.setup({
     ensure_installed = "maintained",
     highlight = { enable = true },
