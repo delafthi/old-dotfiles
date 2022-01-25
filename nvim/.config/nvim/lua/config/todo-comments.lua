@@ -43,11 +43,11 @@ function M.config()
     -- list of named colors where we try to extract the guifg from the
     -- list of hilight groups or use the hex color if hl not found as a fallback
     colors = {
-      error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#BF616A" },
-      warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#EBCB8B" },
-      info = { "LspDiagnosticsDefaultInformation", "#5E81AC" },
-      hint = { "LspDiagnosticsDefaultHint", "#A3BE8C" },
-      default = { "Identifier", "#B48EAD" },
+      error = { "iagnosticError", "#BF616A" },
+      warning = { "DiagnosticWarning", "#EBCB8B" },
+      info = { "DiagnosticInformation", "#5E81AC" },
+      hint = { "DiagnosticHint", "#A3BE8C" },
+      default = { "#B48EAD" },
     },
     search = {
       command = "rg",
