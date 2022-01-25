@@ -20,9 +20,6 @@ shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
 shopt -s checkwinsize   # checks term size when bash regains control
 
-# Set vi bindings
-set -o vi
-
 # Auto-completion
 source /usr/share/bash-completion/bash_completion
 

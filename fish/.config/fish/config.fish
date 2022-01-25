@@ -14,10 +14,8 @@ function fish_title
     pwd
 end
 
-# Set vim keybinding
 function fish_user_key_bindings
-    fish_vi_cursor
-    fish_vi_key_bindings
+    fish_default_key_bindings -M insert
 end
 
 # Set command not found handler to the default one
