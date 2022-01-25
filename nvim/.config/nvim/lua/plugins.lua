@@ -150,7 +150,7 @@ require("packer").startup({
       ft = "norg",
     })
     use({
-      "kristijanhusak/orgmode.nvim",
+      "nvim-orgmode/orgmode.nvim",
       config = require("config.orgmode").config(),
     })
     use({
