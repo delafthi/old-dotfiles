@@ -70,7 +70,7 @@ function M.config()
   local opts = { noremap = true, silent = true }
   u.map(
     "n",
-    "<Leader>b",
+    "<Leader>db",
     "<Cmd>lua require('dap').toggle_breakpoint()<Cr>",
     opts
   )

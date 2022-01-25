@@ -61,8 +61,8 @@ function M.setup()
   local opts = { noremap = true, silent = true }
   u.map("n", "<Leader>ss", ":<C-u>SessionSave<Cr>", opts)
   u.map("n", "<Leader>sl", ":<C-u>SessionLoad<Cr>", opts)
-  u.map("n", "<Leader>nf", ":DashboardNewFile<Cr>", opts)
-  u.map("n", "<Leader>hh", ":DashboardFindHistory<Cr>", opts)
+  u.map("n", "<Leader>fn", ":DashboardNewFile<Cr>", opts)
+  u.map("n", "<Leader>fh", ":DashboardFindHistory<Cr>", opts)
 end
 
 return M

@@ -19,34 +19,39 @@ function M.config()
   })
 
   local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>hm", "<Cmd>lua require('harpoon.mark').add_file()<Cr>", opts)
   u.map(
     "n",
-    "<Leader>ht",
+    "<Leader><Space>m",
+    "<Cmd>lua require('harpoon.mark').add_file()<Cr>",
+    opts
+  )
+  u.map(
+    "n",
+    "<Leader><Space>",
     "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<Cr>",
     opts
   )
   u.map(
     "n",
-    "<Leader>h1",
+    "<Leader>1",
     "<Cmd>lua require('harpoon.ui').nav_file(1)<Cr>",
     opts
   )
   u.map(
     "n",
-    "<Leader>h2",
+    "<Leader>2",
     "<Cmd>lua require('harpoon.ui').nav_file(2)<Cr>",
     opts
   )
   u.map(
     "n",
-    "<Leader>h3",
+    "<Leader>3",
     "<Cmd>lua require('harpoon.ui').nav_file(3)<Cr>",
     opts
   )
   u.map(
     "n",
-    "<Leader>h4",
+    "<Leader>4",
     "<Cmd>lua require('harpoon.ui').nav_file(4)<Cr>",
     opts
   )

@@ -95,8 +95,14 @@ function M.config()
   -- Find something in the documentation
   u.map(
     "n",
-    "<Leader>fh",
+    "<Leader>hh",
     "<Cmd>lua require('telescope.builtin').help_tags()<Cr>",
+    opts
+  )
+  u.map(
+    "n",
+    "<Leader>hk",
+    "<Cmd>lua require('telescope.builtin').keymaps()<Cr>",
     opts
   )
   -- File browser
