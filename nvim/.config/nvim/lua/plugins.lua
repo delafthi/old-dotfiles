@@ -204,6 +204,10 @@ require("packer").startup({
       config = require("config.todo-comments").config(),
     })
     -- Text editing
+    use({
+      "windwp/nvim-autopairs",
+      config = require("config.nvim-autopairs").config(),
+    })
     use({ "godlygeek/tabular", cmd = "Tabularize" })
     use({
       "blackCauldron7/surround.nvim",
