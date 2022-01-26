@@ -47,34 +47,23 @@ function M.config()
     return args[1]
   end
 
-  -- 'recursive' dynamic snippet. Expands to some text followed by itself.
-  local rec_ls
-  rec_ls = function()
-    return sn(
-      nil,
-      c(1, {
-        -- Order is important, sn(...) first would cause infinite loop of expansion.
-        t(""),
-        sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
-      })
-    )
-  end
+  -- Load snippets
+  require("luasnip.loaders.from_vscode").lazy_load()
 
   ls.snippets = {
     all = {},
     markdown = {
-      s({ trig = "$$", wordTrig = true }, {
-        t({ "$$", "\\begin{array}{rcl}", "" }),
+      s({
+        trig = "$$",
+        name = "math array",
+        wordTrig = true,
+        docstring = "Insert a math environment",
+      }, {
+        t({ "$$", "\\begin{array}{" }),
+        i(2),
+        t({ "}", "" }),
         i(1),
         t({ "", "\\end{array}", "$$", "" }),
-        i(0),
-      }),
-    },
-    sh = {
-      s({ trig = "#!", worTrig = true }, {
-        t({ "#!/bin/bash" }),
-        i(1),
-        t({ "", "", "" }),
         i(0),
       }),
     },

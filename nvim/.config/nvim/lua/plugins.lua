@@ -160,7 +160,11 @@ require("packer").startup({
       ft = { "org" },
     })
     -- Snippets
-    use({ "L3MON4D3/Luasnip", config = require("config.luasnip").config() })
+    use({
+      "L3MON4D3/Luasnip",
+      requires = { "rafamadriz/friendly-snippets" },
+      config = require("config.luasnip").config(),
+    })
     -- Start screen
     use({
       "glepnir/dashboard-nvim",
