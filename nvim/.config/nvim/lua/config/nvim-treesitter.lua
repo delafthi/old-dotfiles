@@ -9,6 +9,14 @@ function M.config()
     return
   end
 
+  local nord_ok, c = pcall(function()
+    return require("nord.colors")
+  end)
+
+  if not nord_ok then
+    return
+  end
+
   ts.setup({
     ensure_installed = "maintained",
     highlight = { enable = true },
@@ -63,6 +71,11 @@ function M.config()
           --  ["dF"] = "@class.outer",
         },
       },
+    },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
+      max_file_lines = nil,
     },
   })
 end
