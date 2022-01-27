@@ -14,6 +14,7 @@ function M.config()
       vimgrep_arguments = {
         "rg",
         "--no-heading",
+        "--hidden",
         "--with-filename",
         "--line-number",
         "--column",
