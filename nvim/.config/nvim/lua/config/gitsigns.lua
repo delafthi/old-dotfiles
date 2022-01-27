@@ -49,7 +49,10 @@ function M.config()
       noremap = true,
       buffer = true,
     },
-    watch_index = { interval = 1000 },
+    watch_gitdir = {
+      interval = 1000,
+      follow_files = true,
+    },
     current_line_blame = false,
     current_line_blame_opts = { delay = 1000, virt_text_pos = "eol" },
     sign_priority = 6,
