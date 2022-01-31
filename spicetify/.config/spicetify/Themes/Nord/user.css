@@ -9,24 +9,29 @@
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: local("Fira Code"), url("woff2/FiraCode-Regular.woff2") format("woff2");
+  font-family: "Victor Mono";
+  src: local("Victor Mono"),
+    url("https://rubjo.github.io/victor-mono/fonts/VictorMono-Regular.e5c45f3f.woff")
+      format("woff");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Fira Code";
-  src: local("Fira Code"), url("woff2/FiraCode-Regular.woff2") format("woff2");
-  font-style: normal;
-  font-weight: 500;
+  font-family: "Victor Mono";
+  src: local("Victor Mono"),
+    url("https://rubjo.github.io/victor-mono/fonts/VictorMono-Italic.956ea137.woff")
+      format("woff");
+  font-style: italic;
+  font-weight: 400;
 }
 
 body {
-  --glue-font-family: , "Fira Code", spotify-circular, spotify-circular-cyrillic,
-    spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, helvetica,
-    arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
-  --info-font-family: "Fira Code", spotify-circular, spotify-circular-cyrillic,
+  --glue-font-family: , "Victor Mono", spotify-circular,
+    spotify-circular-cyrillic, spotify-circular-arabic, spotify-circular-hebrew,
+    Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo,
+    MS Gothic, sans-serif;
+  --info-font-family: "Victor Mono", spotify-circular, spotify-circular-cyrillic,
     spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, helvetica,
     arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
   font-family: var(--glue-font-family);

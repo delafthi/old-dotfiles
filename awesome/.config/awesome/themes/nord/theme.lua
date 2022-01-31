@@ -51,7 +51,7 @@ theme.purple = theme.nord15
 theme.cyan = theme.nord7
 
 -- Default variables {{{2
-theme.font = "Fira Code" -- The default font
+theme.font = "Victor Mono" -- The default font
 theme.wallpaper = "~/.local/share/backgrounds/nord.png" -- The wallpaper path
 theme.icon_theme = "Papirus" -- The icon theme name
 theme.shape = gears.shape.rectangle -- The clients shape

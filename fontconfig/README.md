@@ -6,7 +6,8 @@ has to be installed on the system.
 
 ## Dependencies
 
-- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/VictorMono.zip)
+- [Fira Code](https://github.com/tonsky/FiraCode)
+- [Victor Mono](https://github.com/rubjo/victor-mono)
 
 ## References
 

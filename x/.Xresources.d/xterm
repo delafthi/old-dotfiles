@@ -1,5 +1,5 @@
 XTerm*renderFont: true
-XTerm*faceName: xft:FiraCode
+XTerm*faceName: xft:VictorMono
 XTerm*faceSize: 11
 XTerm*locale: true
 XTerm*savelines: 10000

@@ -104,9 +104,9 @@
   (standard-indent 2)
   :config
   ;; Set fonts
-  (set-face-attribute 'default nil :font "Fira Code" :height 110)
-  (set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 110)
-  (set-face-attribute 'variable-pitch nil :font "Fira Code:" :height 110 :weight 'regular)
+  (set-face-attribute 'default nil :font "Victor Mono" :height 110)
+  (set-face-attribute 'fixed-pitch nil :font "Victor Mono" :height 110)
+  (set-face-attribute 'variable-pitch nil :font "Victor Mono:" :height 110 :weight 'regular)
   ;; Use the escape key to exit commands
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
   ;; Use y and p instead of yes and no
