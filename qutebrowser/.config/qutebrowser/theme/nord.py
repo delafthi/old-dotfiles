@@ -1,4 +1,3 @@
-# pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 
 nord = {
@@ -428,4 +427,4 @@ c.colors.tabs.selected.odd.fg = nord["nord4"]
 # Background color for webpages if unset (or empty to use the theme's
 # color)
 # Type: QtColor
-c.colors.webpage.bg = nord["nord0"]
+# c.colors.webpage.bg = "none"

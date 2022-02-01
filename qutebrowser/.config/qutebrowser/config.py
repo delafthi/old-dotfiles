@@ -82,7 +82,7 @@ config.source("theme/nord.py")
 #   - lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
 #   - lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
 #   - brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
-c.colors.webpage.darkmode.algorithm = "lightness-cielab"
+# c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 
 # Contrast for dark mode. This only has an effect when
 # `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
@@ -100,7 +100,7 @@ c.colors.webpage.darkmode.algorithm = "lightness-cielab"
 # `colors.webpage.darkmode.threshold.background` to 205.  - "With
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
-c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.enabled = True
 
 # Render all colors as grayscale. This only has an effect when
 # `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
@@ -123,7 +123,7 @@ c.colors.webpage.darkmode.enabled = True
 #   - always: Apply dark mode filter to all images.
 #   - never: Never apply dark mode filter to any images.
 #   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
-c.colors.webpage.darkmode.policy.images = "smart"
+# c.colors.webpage.darkmode.policy.images = "smart"
 
 # Which pages to apply dark mode to. The underlying Chromium setting has
 # been removed in QtWebEngine 5.15.3, thus this setting is ignored
@@ -132,7 +132,7 @@ c.colors.webpage.darkmode.policy.images = "smart"
 # Valid values:
 #   - always: Apply dark mode filter to all frames, regardless of content.
 #   - smart: Apply dark mode filter to frames based on background color.
-c.colors.webpage.darkmode.policy.page = "smart"
+# c.colors.webpage.darkmode.policy.page = "smart"
 
 # Threshold for inverting background elements with dark mode. Background
 # elements with brightness above this threshold will be inverted, and
@@ -159,7 +159,7 @@ c.colors.webpage.darkmode.policy.page = "smart"
 #   - auto: Use the system-wide color scheme setting.
 #   - light: Force a light theme.
 #   - dark: Force a dark theme.
-# c.colors.webpage.preferred_color_scheme = 'auto'
+c.colors.webpage.preferred_color_scheme = "dark"
 
 # Number of commands to save in the command history. 0: no history / -1:
 # unlimited
