@@ -884,7 +884,7 @@ c.fonts.default_family = ["Victor Mono"]
 
 # Font family for cursive fonts.
 # Type: FontFamily
-# c.fonts.web.family.cursive = ''
+c.fonts.web.family.cursive = "Victor Mono Oblique"
 
 # Font family for fantasy fonts.
 # Type: FontFamily
@@ -892,19 +892,19 @@ c.fonts.default_family = ["Victor Mono"]
 
 # Font family for fixed fonts.
 # Type: FontFamily
-# c.fonts.web.family.fixed = ''
+c.fonts.web.family.fixed = "Victor Mono"
 
 # Font family for sans-serif fonts.
 # Type: FontFamily
-# c.fonts.web.family.sans_serif = ''
+c.fonts.web.family.sans_serif = "Victor Mono"
 
 # Font family for serif fonts.
 # Type: FontFamily
-# c.fonts.web.family.serif = ''
+c.fonts.web.family.serif = "Victor Mono Italic"
 
 # Font family for standard fonts.
 # Type: FontFamily
-# c.fonts.web.family.standard = ''
+c.fonts.web.family.standard = "Victor Mono"
 
 # Default font size (in pixels) for regular text.
 # Type: Int
