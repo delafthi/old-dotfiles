@@ -1518,7 +1518,7 @@ c.tabs.show = "multiple"
 
 # Open a new window for every tab.
 # Type: Bool
-c.tabs.tabs_are_windows = True
+# c.tabs.tabs_are_windows = False
 
 # Alignment of the text inside of tabs.
 # Type: TextAlignment
