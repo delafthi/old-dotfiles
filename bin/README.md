@@ -5,8 +5,7 @@ This folder contains custom scripts and executables I regularly use.
 ## outlook, teams, protonmail
 
 These scripts are simple bash functions, which call the according
-website/webapplications in a borderless brave window. The only dependency is
-the [brave browser](https://brave.com/).
+website/webapplications in a borderless browser window
 
 ## sshot
 

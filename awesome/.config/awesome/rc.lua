@@ -66,7 +66,7 @@ beautiful.init(
 
 -- Default applications
 local terminal = "kitty" -- default terminal
-local browser = "brave" -- default browser
+local browser = "qutebrowser" -- default browser
 
 -- Default mod key
 local modkey = "Mod4" -- Meta key
