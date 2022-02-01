@@ -135,6 +135,12 @@ awful.keyboard.append_global_keybindings({
     description = "open rofi",
     group = "launcher",
   }),
+  awful.key({ modkey, "Shift" }, "k", function()
+    awful.spawn("bwmenu --auto-lock 300 -c 15")
+  end, {
+    description = "open bitwarden-rofi",
+    group = "launcher",
+  }),
   awful.key({ modkey }, "b", function()
     awful.spawn(browser)
   end, {
