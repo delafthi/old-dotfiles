@@ -720,7 +720,7 @@ c.completion.shrink = True
 # Directory to save downloads to. If unset, a sensible OS-specific
 # default is used.
 # Type: Directory
-# c.downloads.location.directory = None
+c.downloads.location.directory = "~/Downloads"
 
 # Prompt the user for the download location. If set to false,
 # `downloads.location.directory` will be used.
@@ -750,7 +750,7 @@ c.completion.shrink = True
 # Valid values:
 #   - top
 #   - bottom
-# c.downloads.position = 'top'
+c.downloads.position = "bottom"
 
 # Automatically abort insecure (HTTP) downloads originating from secure
 # (HTTPS) pages. For per-domain settings, the relevant URL is the URL
@@ -762,7 +762,7 @@ c.completion.shrink = True
 # Duration (in milliseconds) to wait before removing finished downloads.
 # If set to -1, downloads are never removed.
 # Type: Int
-# c.downloads.remove_finished = -1
+c.downloads.remove_finished = 5
 
 # Editor (and arguments) to use for the `edit-*` commands. The following
 # placeholders are defined:  * `{file}`: Filename of the file to be
