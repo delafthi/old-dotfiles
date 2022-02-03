@@ -23,6 +23,9 @@ shopt -s checkwinsize   # checks term size when bash regains control
 # Auto-completion
 source /usr/share/bash-completion/bash_completion
 
+# Enable vi bindings
+set -o vi
+
 ############################################################
 # Aliases {{{1
 

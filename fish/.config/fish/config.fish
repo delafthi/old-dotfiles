@@ -14,9 +14,11 @@ function fish_title
     pwd
 end
 
-function fish_user_key_bindings
-    fish_default_key_bindings -M insert
-end
+# Enable vi bindings and cursor
+set -g fish_key_bindings fish_vi_key_bindings
+# Rebind <C-c> to clear the input line in all modes
+bind -M insert \cc kill-whole-line repaint-mode
+bind \cc 'commandline -f kill-whole-line; set fish_bind_mode insert; commandline -f repaint-mode'
 
 # Set command not found handler to the default one
 function fish_command_not_found
