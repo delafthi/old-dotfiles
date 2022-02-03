@@ -1,0 +1,5 @@
+{
+  "steam_dirs":["$HOME/.local/share/Steam/steamapps"],
+  "menu_command":"rofi -p ' ' -dmenu",
+  "prefix_command":"",
+  "blocked":["steamworks_common_redistributables","proton_3.7","proton_3.7_beta"]}
