@@ -123,6 +123,19 @@ if [ $TERM == "xterm-kitty" ]; then
   alias ssh="kitty +kitten ssh"
 fi
 
+# Exit ranger rather than opening a new instance if we are already in an
+# instance
+if command -v ranger 1> /dev/null 2>&1; then
+  ranger()
+  {
+    if [ -z "$RANGER_LEVEL" ]; then
+      /usr/bin/ranger "$@"
+    else
+      exit
+    fi
+  }
+fi
+
 ############################################################
 # Plugins {{{1
 
