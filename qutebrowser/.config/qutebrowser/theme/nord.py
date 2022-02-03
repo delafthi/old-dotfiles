@@ -111,7 +111,7 @@ c.colors.contextmenu.selected.fg = nord["nord0"]
 
 # Background color for the download bar.
 # Type: QssColor
-c.colors.downloads.bar.bg = nord["nord15"]
+c.colors.downloads.bar.bg = nord["nord1"]
 
 # Background color for downloads with errors.
 # Type: QtColor
@@ -123,19 +123,19 @@ c.colors.downloads.error.fg = nord["nord0"]
 
 # Color gradient start for download backgrounds.
 # Type: QtColor
-c.colors.downloads.start.bg = nord["nord10"]
+c.colors.downloads.start.bg = nord["nord1"]
 
 # Color gradient start for download text.
 # Type: QtColor
-c.colors.downloads.start.fg = nord["nord0"]
+c.colors.downloads.start.fg = nord["nord4"]
 
 # Color gradient stop for download backgrounds.
 # Type: QtColor
-c.colors.downloads.stop.bg = nord["nord12"]
+c.colors.downloads.stop.bg = nord["nord10"]
 
 # Color gradient end for download text.
 # Type: QtColor
-c.colors.downloads.stop.fg = nord["nord0"]
+c.colors.downloads.stop.fg = nord["nord4"]
 
 # Color gradient interpolation system for download backgrounds.
 # Type: ColorSystem
@@ -144,7 +144,7 @@ c.colors.downloads.stop.fg = nord["nord0"]
 #   - hsv: Interpolate in the HSV color system.
 #   - hsl: Interpolate in the HSL color system.
 #   - none: Don't show a gradient.
-c.colors.downloads.system.bg = "rgb"
+c.colors.downloads.system.bg = "none"
 
 # Color gradient interpolation system for download text.
 # Type: ColorSystem
@@ -153,7 +153,7 @@ c.colors.downloads.system.bg = "rgb"
 #   - hsv: Interpolate in the HSV color system.
 #   - hsl: Interpolate in the HSL color system.
 #   - none: Don't show a gradient.
-c.colors.downloads.system.fg = "rgb"
+c.colors.downloads.system.fg = "none"
 
 
 # Background color for hints. Note that you can use a `rgba(...)` value

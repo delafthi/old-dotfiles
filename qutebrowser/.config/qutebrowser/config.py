@@ -214,7 +214,7 @@ c.completion.min_chars = 1
 #   - always: Whenever a completion is available.
 #   - auto: Whenever a completion is requested.
 #   - never: Never.
-c.completion.show = "auto"
+c.completion.show = "always"
 
 # Shrink the completion to be smaller than the configured size if there
 # are no scrollbars.
@@ -783,7 +783,7 @@ c.editor.command = ["nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
 # Filename of the file to be written to. If not contained in any
 # argument, the   standard output of the command is read instead.
 # Type: ShellCommand
-# c.fileselect.folder.command = ['xterm', '-e', 'ranger', '--choosedir={}']
+c.fileselect.folder.command = ["kitty", "-e", "ranger", "--choosedir={}"]
 
 # Handler for selecting file(s) in forms. If `external`, then the
 # commands specified by `fileselect.single_file.command` and
@@ -802,7 +802,7 @@ c.editor.command = ["nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
 # contained in any argument, the   standard output of the command is
 # read instead.
 # Type: ShellCommand
-# c.fileselect.multiple_files.command = ['xterm', '-e', 'ranger', '--choosefiles={}']
+c.fileselect.multiple_files.command = ["kitty", "-e", "ranger", "--choosefiles={}"]
 
 # Command (and arguments) to use for selecting a single file in forms.
 # The command should write the selected file path to the specified file
@@ -810,7 +810,7 @@ c.editor.command = ["nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
 # the file to be written to. If not contained in any argument, the
 # standard output of the command is read instead.
 # Type: ShellCommand
-# c.fileselect.single_file.command = ['xterm', '-e', 'ranger', '--choosefile={}']
+c.fileselect.single_file.command = ["kitty", "-e", "ranger", "--choosefile={}"]
 
 # Font used in the completion categories.
 # Type: Font
@@ -939,7 +939,7 @@ c.fonts.web.family.standard = "Victor Mono"
 
 # Characters used for hint strings.
 # Type: UniqueCharString
-c.hints.chars = "aoeuidhtns"
+c.hints.chars = "aoeuidhtns,.prcg"
 
 # Dictionary file to be used by the word hints.
 # Type: File
@@ -1358,7 +1358,7 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 #   - keypress: Display pressed keys when composing a vi command.
 #   - progress: Progress bar for the current page loading.
 #   - text:foo: Display the static text after the colon, `foo` in the example.
-# c.statusbar.widgets = ['keypress', 'url', 'scroll', 'history', 'tabs', 'progress']
+c.statusbar.widgets = ["keypress", "url", "progress", "history", "progress", "scroll"]
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
@@ -1418,7 +1418,7 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 #   - startpage: Load the start page.
 #   - default-page: Load the default page.
 #   - close: Close the window.
-# c.tabs.last_close = 'ignore'
+c.tabs.last_close = "close"
 
 # Maximum width (in pixels) of tabs (-1 for no maximum). This setting
 # only applies when tabs are horizontal. This setting does not apply to
@@ -1445,7 +1445,7 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 
 # Switch between tabs using the mouse wheel.
 # Type: Bool
-# c.tabs.mousewheel_switching = True
+c.tabs.mousewheel_switching = False
 
 # Position of new tabs opened from another tab. See
 # `tabs.new_position.stacking` for controlling stacking behavior.
@@ -1475,7 +1475,7 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 
 # Padding (in pixels) around text for tabs.
 # Type: Padding
-# c.tabs.padding = {'top': 0, 'bottom': 0, 'left': 5, 'right': 5}
+c.tabs.padding = {"top": 1, "bottom": 1, "left": 5, "right": 5}
 
 # Force pinned tabs to stay at fixed URL.
 # Type: Bool
@@ -1483,7 +1483,7 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 
 # Shrink pinned tabs down to their contents.
 # Type: Bool
-# c.tabs.pinned.shrink = True
+c.tabs.pinned.shrink = False
 
 # Position of the tab bar.
 # Type: Position
@@ -1595,7 +1595,7 @@ c.tabs.show = "multiple"
 # Open base URL of the searchengine if a searchengine shortcut is
 # invoked without parameters.
 # Type: Bool
-# c.url.open_base_url = False
+c.url.open_base_url = True
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -1616,7 +1616,13 @@ c.tabs.show = "multiple"
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-# c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "ddg": "https://duckduckgo.com/?q={}",
+    "aur": "https://aur.archlinux.org/packages/?O=0&K={}",
+    "aw": "https://wiki.archlinux.org/index.php?search={}",
+    "wiki": "https://en.wikipedia.org/w/index.php?search={}",
+}
 
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
@@ -1634,7 +1640,7 @@ c.tabs.show = "multiple"
 # Format to use for the window title. The same placeholders like for
 # `tabs.title.format` are defined.
 # Type: FormatString
-# c.window.title_format = '{perc}{current_title}{title_sep}qutebrowser'
+c.window.title_format = "{perc}{current_title}"
 
 # Set the main window background to transparent.  This allows having a
 # transparent tab- or statusbar (might require a compositor such as
