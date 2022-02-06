@@ -106,6 +106,10 @@ require("packer").startup({
       requires = { "nvim-lua/plenary.nvim" },
       config = require("config.gitsigns").config(),
     })
+    -- Language support
+    use({
+      "HiPhish/guile.vim",
+    })
     -- LSP
     use({
       "neovim/nvim-lspconfig",
