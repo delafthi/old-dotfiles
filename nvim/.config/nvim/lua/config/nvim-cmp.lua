@@ -11,6 +11,9 @@ function M.config()
   local ok_neogen, neogen = pcall(function()
     return require("neogen")
   end)
+  local ok_npairs, cmp_npairs = pcall(function()
+    return require("nvim-autopairs.completion.cmp")
+  end)
 
   if not ok_cmp then
     return
@@ -147,6 +150,13 @@ function M.config()
       \})
     augroup END
   ]])
+
+  if ok_npairs then
+    cmp.event:on(
+      "confirm_done",
+      cmp_npairs.on_confirm_done({ map_char = { tex = "" } })
+    )
+  end
 end
 
 return M
