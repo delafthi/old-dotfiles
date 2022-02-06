@@ -9,6 +9,7 @@ function M.config()
   if not ok then
     return
   end
+
   telescope.setup({
     defaults = {
       vimgrep_arguments = {
@@ -53,12 +54,32 @@ function M.config()
       -- Developer configurations: Not meant for general override
       buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
+    extensions = {
+      file_browser = {
+        mappings = {
+          ["i"] = {
+            ["<C-c>"] = telescope.extensions.file_browser.actions.create,
+          },
+        },
+      },
+      project = {
+        base_dirs = {
+          "~/Projects/work",
+          "~/Projects/private",
+        },
+        hidden_files = true,
+      },
+    },
   })
+
   pcall(function()
     telescope.load_extension("fzy_native")
   end)
   pcall(function()
     telescope.load_extension("file_browser")
+  end)
+  pcall(function()
+    telescope.load_extension("project")
   end)
 
   local opts = { noremap = true, silent = true }
@@ -115,6 +136,14 @@ function M.config()
     "n",
     "<Leader>gs",
     "<Cmd>lua require('telescope.builtin').git_status()<Cr>",
+    opts
+  )
+
+  -- Projects
+  u.map(
+    "n",
+    "<Leader>pp",
+    "<Cmd>lua require('telescope').extensions.project.project{}<Cr>",
     opts
   )
 end
