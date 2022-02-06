@@ -5,10 +5,6 @@ function M.config()
     return require("galaxyline")
   end)
 
-  local nord_ok, nord = pcall(function()
-    return require("nord.colors")
-  end)
-
   if not ok then
     return
   end
@@ -36,6 +32,10 @@ function M.config()
     green = "DarkGreen",
     magenta = "DarkMagenta",
   }
+
+  local nord_ok, nord = pcall(function()
+    return require("nord.colors")
+  end)
   if nord_ok then
     c = {
       black0 = nord.nord0,

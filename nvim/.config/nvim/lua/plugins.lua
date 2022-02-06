@@ -43,6 +43,7 @@ require("packer").startup({
     -- Comment
     use({
       "winston0410/commented.nvim",
+      requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
       config = require("config.commented").config(),
     })
     use({
@@ -87,6 +88,7 @@ require("packer").startup({
         { "nvim-lua/plenary.nvim" },
         { "nvim-telescope/telescope-fzy-native.nvim" },
         { "nvim-telescope/telescope-file-browser.nvim" },
+        { "nvim-telescope/telescope-project.nvim" },
       },
       config = require("config.telescope").config(),
     })

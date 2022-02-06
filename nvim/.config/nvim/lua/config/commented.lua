@@ -5,10 +5,6 @@ function M.config()
     return require("commented")
   end)
 
-  local ok_context_commentstring, context_commentstring = pcall(function()
-    return require("ts_context_commentstring.internal")
-  end)
-
   if not ok then
     return
   end
@@ -20,11 +16,7 @@ function M.config()
     set_keybindings = true,
     ex_mode_cmd = "Comment",
     hooks = {
-      before_comment = function()
-        if ok_context_commentstring then
-          return context_commentstring.update_commentstring
-        end
-      end,
+      before_comment = require("ts_context_commentstring.internal").update_commentstring,
     },
   })
 end

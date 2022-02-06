@@ -9,14 +9,6 @@ function M.config()
     return
   end
 
-  local nord_ok, c = pcall(function()
-    return require("nord.colors")
-  end)
-
-  if not nord_ok then
-    return
-  end
-
   ts.setup({
     ensure_installed = "maintained",
     highlight = { enable = true },

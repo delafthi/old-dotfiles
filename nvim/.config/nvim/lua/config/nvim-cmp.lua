@@ -5,15 +5,6 @@ function M.config()
   local ok_cmp, cmp = pcall(function()
     return require("cmp")
   end)
-  local ok_luasnip, luasnip = pcall(function()
-    return require("luasnip")
-  end)
-  local ok_neogen, neogen = pcall(function()
-    return require("neogen")
-  end)
-  local ok_npairs, cmp_npairs = pcall(function()
-    return require("nvim-autopairs.completion.cmp")
-  end)
 
   if not ok_cmp then
     return
@@ -53,10 +44,19 @@ function M.config()
     TypeParameter = "",
   }
 
+  local ok_luasnip, luasnip = pcall(function()
+    return require("luasnip")
+  end)
+  local ok_neogen, neogen = pcall(function()
+    return require("neogen")
+  end)
+
   cmp.setup({
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body)
+        if ok_luasnip then
+          luasnip.lsp_expand(args.body)
+        end
       end,
     },
     documentation = {
@@ -151,12 +151,14 @@ function M.config()
     augroup END
   ]])
 
-  if ok_npairs then
+  pcall(function()
     cmp.event:on(
       "confirm_done",
-      cmp_npairs.on_confirm_done({ map_char = { tex = "" } })
+      require("nvim-autopairs.completion.cmp").on_confirm_done({
+        map_char = { tex = "" },
+      })
     )
-  end
+  end)
 end
 
 return M
