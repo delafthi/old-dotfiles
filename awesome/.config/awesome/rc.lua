@@ -347,13 +347,19 @@ client.connect_signal("request::default_keybindings", function()
       group = "client",
     }),
     awful.key({ modkey, "Shift" }, "p", function(c)
-      c:move_to_screen(c.screen.index - 1)
+      local sel = c.screen
+      local target = sel:get_next_in_direction("left")
+      if target then
+        return c:move_to_screen(target)
+      end
     end, {
       description = "move focused client to the left screen",
       group = "client",
     }),
     awful.key({ modkey, "Shift" }, "n", function(c)
-      c:move_to_screen(c.screen.index + 1)
+      local sel = c.screen
+      local target = sel:get_next_in_direction("right")
+      c:move_to_screen(target)
     end, {
       description = "move focused client to the right screen",
       group = "client",
@@ -423,7 +429,12 @@ ruled.client.connect_signal("request::rules", function()
       name = { "Origin" },
       type = { "dialog" },
     },
-    properties = { floating = true },
+    properties = {
+      floating = true,
+      placement = awful.placement.centered,
+      width = awful.screen.focused().geometry.width * 0.8,
+      height = awful.screen.focused().geometry.height * 0.8,
+    },
   })
 end)
 
@@ -482,7 +493,7 @@ local function set_random_wallpaper(s)
   math.random()
   math.random()
   math.random() -- Pop some random numbers, before using the generator
-  return gears.wallpaper.maximized(files[math.random(0, length)], s, true)
+  return gears.wallpaper.maximized(files[math.random(1, length)], s, true)
 end
 
 screen.connect_signal("request::wallpaper", function(s)
