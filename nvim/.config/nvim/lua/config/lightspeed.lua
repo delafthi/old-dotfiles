@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, lightspeed = pcall(function()
@@ -29,11 +29,11 @@ function M.config()
     augroup END
   ]])
 
-  local opts = { noremap = false, silent = true }
-  u.map("v", ";", "<Plug>Lightspeed_;_sx", opts)
-  u.map("v", ";", "<Plug>Lightspeed_;_ft", opts)
-  u.map("v", ",", "<Plug>Ligthspeed_,_sx", opts)
-  u.map("v", ",", "<Plug>Ligthspeed_,_ft", opts)
+  local opts = { silent = true }
+  keymap.set("v", ";", "<Plug>Lightspeed_;_sx", opts)
+  keymap.set("v", ";", "<Plug>Lightspeed_;_ft", opts)
+  keymap.set("v", ",", "<Plug>Ligthspeed_,_sx", opts)
+  keymap.set("v", ",", "<Plug>Ligthspeed_,_ft", opts)
 end
 
 return M

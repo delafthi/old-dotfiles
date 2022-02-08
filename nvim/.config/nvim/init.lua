@@ -1,6 +1,6 @@
 local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
-local u = require("util")
+local keymap = vim.keymap -- set keymaps
 
 vim.g.mapleader = " " -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
@@ -107,13 +107,7 @@ vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
-function _G.__foldtext()
-  local foldstart = vim.api.nvim_get_vvar("foldstart")
-  local line = vim.api.nvim_buf_get_lines(0, foldstart - 1, foldstart, false)
-  local sub = string.gsub(line[1], "{{{.*", "")
-  return "▸ " .. sub
-end
-vim.opt.foldtext = "luaeval('_G.__foldtext()')" -- Function called to display fold line.
+vim.opt.foldtext = [[luaeval("require('util').foldtext()")]] -- Function called to display fold line.
 
 -- Indentation {{{1
 vim.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
@@ -127,88 +121,82 @@ vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while perfor
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
-local opts = { noremap = true, silent = true }
+local opts = { silent = true }
 -- Remap jk keys to navigate through visual lines.
-u.map("n", "j", "gj", opts)
-u.map("v", "j", "gj", opts)
-u.map("n", "k", "gk", opts)
-u.map("v", "k", "gk", opts)
+keymap.set({ "n", "v" }, "j", "gj", opts)
+keymap.set({ "n", "v" }, "k", "gk", opts)
 -- Move lines with <Leader>j and <Leader>k
-u.map("n", "<Leader>j", ":m .+1<Cr>==", opts)
-u.map("n", "<Leader>k", ":m .-2<Cr>==", opts)
-u.map("v", "<Leader>j", ":m '>+1<Cr>gv=gv", opts)
-u.map("v", "<Leader>k", ":m '<-2<Cr>gv=gv", opts)
+keymap.set("n", "<Leader>j", ":m .+1<Cr>==", opts)
+keymap.set("v", "<Leader>j", ":m '>+1<Cr>gv=gv", opts)
+keymap.set("n", "<Leader>k", ":m .-2<Cr>==", opts)
+keymap.set("v", "<Leader>k", ":m '<-2<Cr>gv=gv", opts)
 -- Keep the cursor centered and open folds
-u.map("n", "n", "nzzzv", opts)
-u.map("n", "N", "Nzzzv", opts)
-u.map("n", "J", "mzJ`z", opts)
+keymap.set("n", "n", "nzzzv", opts)
+keymap.set("n", "N", "Nzzzv", opts)
+keymap.set("n", "J", "mzJ`z", opts)
 -- Insert undo breakpoints in insert mode
-u.map("i", ",", ",<C-g>u", opts)
-u.map("i", ".", ".<C-g>u", opts)
-u.map("i", "(", "(<C-g>u", opts)
-u.map("i", ")", ")<C-g>u", opts)
-u.map("i", "[", "[<C-g>u", opts)
-u.map("i", "]", "]<C-g>u", opts)
-u.map("i", "{", "{<C-g>u", opts)
-u.map("i", "}", "}<C-g>u", opts)
+keymap.set("i", ",", ",<C-g>u", opts)
+keymap.set("i", ".", ".<C-g>u", opts)
+keymap.set("i", "(", "(<C-g>u", opts)
+keymap.set("i", ")", ")<C-g>u", opts)
+keymap.set("i", "[", "[<C-g>u", opts)
+keymap.set("i", "]", "]<C-g>u", opts)
+keymap.set("i", "{", "{<C-g>u", opts)
+keymap.set("i", "}", "}<C-g>u", opts)
 -- Open terminal inside nvim with <Leader>tt.
-u.map("n", "<Leader>tt", [[:call luaeval("_G.__new_term('h')")<Cr>]], opts)
-u.map("n", "<Leader>th", [[:call luaeval("_G.__new_term('h')")<Cr>]], opts)
-u.map("n", "<Leader>tv", [[:call luaeval("_G.__new_term('v')")<Cr>]], opts)
+keymap.set("n", "<Leader>tt", function()
+  require("util").open_terminal("h")
+end, opts)
+keymap.set("n", "<Leader>th", function()
+  require("util").open_terminal("h")
+end, opts)
+keymap.set("n", "<Leader>tv", function()
+  require("util").open_terminal("v")
+end, opts)
 -- Execute a lua line
-function _G.__execute_line()
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-  local line = vim.api.nvim_get_current_line()
-  if filetype == "vim" then
-    vim.api.nvim_command(line)
-  elseif filetype == "lua" then
-    vim.api.nvim_command("call luaeval('" .. line .. "')")
-  end
-end
-
-u.map("n", "<Leader>x", ":call luaeval('_G.__execute_line()')<Cr>", opts)
+keymap.set("n", "<Leader>eb", function()
+  require("util").eval_buffer()
+end, opts)
+keymap.set("n", "<Leader>ee", function()
+  require("util").eval_line()
+end, opts)
+keymap.set("v", "<Leader>e", function()
+  require("util").eval_section()
+end, opts)
 -- Map window navigation to CTRL + hjkl.
 if not pcall(function()
   require("Navigator")
 end) then
-  u.map("n", "<C-h>", "<C-\\><C-n><C-w>h", opts)
-  u.map("i", "<C-h>", "<C-\\><C-n><C-w>h", opts)
-  u.map("t", "<C-h>", "<C-\\><C-n><C-w>h", opts)
-  u.map("n", "<C-j>", "<C-\\><C-n><C-w>j", opts)
-  u.map("i", "<C-j>", "<C-\\><C-n><C-w>j", opts)
-  u.map("t", "<C-j>", "<C-\\><C-n><C-w>j", opts)
-  u.map("n", "<C-k>", "<C-\\><C-n><C-w>k", opts)
-  u.map("i", "<C-k>", "<C-\\><C-n><C-w>k", opts)
-  u.map("t", "<C-k>", "<C-\\><C-n><C-w>k", opts)
-  u.map("n", "<C-l>", "<C-\\><C-n><C-w>l", opts)
-  u.map("i", "<C-l>", "<C-\\><C-n><C-w>l", opts)
-  u.map("t", "<C-l>", "<C-\\><C-n><C-w>l", opts)
+  keymap.set({ "n", "i", "t" }, "<C-h>", "<C-\\><C-n><C-w>h", opts)
+  keymap.set({ "n", "i", "t" }, "<C-j>", "<C-\\><C-n><C-w>j", opts)
+  keymap.set({ "n", "i", "t" }, "<C-k>", "<C-\\><C-n><C-w>k", opts)
+  keymap.set({ "n", "i", "t" }, "<C-l>", "<C-\\><C-n><C-w>l", opts)
 end
 -- Better resizing of windows with CTRL + arrows
-u.map("n", "<C-Left>", "<C-\\><C-n>:vertical resize -2<Cr>", opts)
-u.map("i", "<C-Left>", "<C-\\><C-n>:vertical resize -2<Cr>", opts)
-u.map("t", "<C-Left>", "<C-\\><C-n>:vertical resize -2<Cr>", opts)
-u.map("n", "<C-Up>", "<C-\\><C-n>:resize +2<Cr>", opts)
-u.map("i", "<C-Up>", "<C-\\><C-n>:resize +2<Cr>", opts)
-u.map("t", "<C-Up>", "<C-\\><C-n>:resize +2<Cr>", opts)
-u.map("n", "<C-Down>", "<C-\\><C-n>:resize -2<Cr>", opts)
-u.map("i", "<C-Down>", "<C-\\><C-n>:resize -2<Cr>", opts)
-u.map("t", "<C-Down>", "<C-\\><C-n>:resize -2<Cr>", opts)
-u.map("n", "<C-Right>", "<C-\\><C-n>:vertical resize +2<Cr>", opts)
-u.map("i", "<C-Right>", "<C-\\><C-n>:vertical resize +2<Cr>", opts)
-u.map("t", "<C-Right>", "<C-\\><C-n>:vertical resize +2<Cr>", opts)
+keymap.set(
+  { "n", "i", "t" },
+  "<C-Left>",
+  "<C-\\><C-n>:vertical resize -2<Cr>",
+  opts
+)
+keymap.set({ "n", "i", "t" }, "<C-Up>", "<C-\\><C-n>:resize +2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-Down>", "<C-\\><C-n>:resize -2<Cr>", opts)
+keymap.set(
+  { "n", "i", "t" },
+  "<C-Right>",
+  "<C-\\><C-n>:vertical resize +2<Cr>",
+  opts
+)
 -- Change splits layout from vertical to horizontal or vice versa.
-u.map("n", "<Leader>lv", "<C-w>t<C-w>H", opts)
-u.map("t", "<Leader>lv", "<C-w>t<C-w>H", opts)
-u.map("n", "<Leader>lh", "<C-w>t<C-w>K", opts)
-u.map("t", "<Leader>lh", "<C-w>t<C-w>K", opts)
+keymap.set({ "n", "t" }, "<Leader>lv", "<C-w>t<C-w>H", opts)
+keymap.set({ "n", "t" }, "<Leader>lh", "<C-w>t<C-w>K", opts)
 -- Better indenting in the visual mode.
-u.map("v", "<", "<gv", opts)
-u.map("v", ">", ">gv", opts)
+keymap.set("v", "<", "<gv", opts)
+keymap.set("v", ">", ">gv", opts)
 -- Show buffers and select one to kill.
-u.map("n", "<Leader>bd", ":ls<Cr>:bd<Space>", opts)
+keymap.set("n", "<Leader>bd", ":ls<Cr>:bd<Space>", opts)
 -- Toggle spell checking.
-u.map("n", "<Leader>o", ":setlocal spell!<Cr>", opts)
+keymap.set("n", "<Leader>o", ":setlocal spell!<Cr>", opts)
 -- Try to save file with sudo on files that require root permission
 cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
@@ -256,16 +244,6 @@ vim.opt.splitright = true -- Put new windows right of the current.
 vim.opt.laststatus = 2 -- Always show the statusline
 
 -- Terminal {{{1
-function _G.__new_term(split)
-  if split == "h" then
-    cmd([[botright 12 split term://$SHELL]])
-  else
-    cmd([[botright vsplit term://$SHELL]])
-  end
-  cmd([[setlocal nonumber]])
-  cmd([[setlocal norelativenumber]])
-  cmd([[startinsert]])
-end
 cmd([[
   augroup terminal
     autocmd!

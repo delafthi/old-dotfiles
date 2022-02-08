@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, trouble = pcall(function()
@@ -42,13 +42,23 @@ function M.config()
     use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
-  u.map("n", "<Leader>xw", "<Cmd>TroubleToggle workspace_diagnostics<Cr>", opts)
-  u.map("n", "<Leader>xd", "<Cmd>TroubleToggle document_diagnostics<Cr>", opts)
-  u.map("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
-  u.map("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
-  u.map("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
+  keymap.set(
+    "n",
+    "<Leader>xw",
+    "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
+    opts
+  )
+  keymap.set(
+    "n",
+    "<Leader>xd",
+    "<Cmd>TroubleToggle document_diagnostics<Cr>",
+    opts
+  )
+  keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
+  keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
+  keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
 end
 
 return M

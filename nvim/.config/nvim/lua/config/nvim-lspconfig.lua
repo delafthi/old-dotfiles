@@ -1,5 +1,7 @@
 local M = {}
-local u = require("util")
+local lsp = vim.lsp
+local diagnostic = vim.diagnostic
+local keymap = vim.keymap
 
 function M.config()
   local ok, lspconfig = pcall(function()
@@ -15,101 +17,32 @@ function M.config()
   local on_attach = function(client, bufnr)
     vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    local opts = { noremap = true, silent = true }
-    u.bufmap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<Cr>", opts)
-    u.bufmap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<Cr>", opts)
-    u.bufmap(bufnr, "n", "gr", "<Cmd>lua vim.lsp.buf.references()<Cr>", opts)
-    u.bufmap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<Cr>", opts)
-    u.bufmap(bufnr, "n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<Cr>", opts)
-    u.bufmap(bufnr, "n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<Cr>", opts)
-    u.bufmap(
-      bufnr,
-      "n",
-      "gi",
-      "<Cmd>lua vim.lsp.buf.implementation()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<C-s>",
-      "<Cmd>lua vim.lsp.buf.signature_help()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "i",
-      "<C-s>",
-      "<Cmd>lua vim.lsp.buf.signature_help()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>wa",
-      "<Cmd>lua vim.lsp.buf.add_workspace_folder()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>wr",
-      "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>wl",
-      "<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>D",
-      "<Cmd>lua vim.lsp.buf.type_definition()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>rn",
-      "<Cmd>lua vim.lsp.buf.rename()<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>e",
-      "<Cmd>lua vim.diagnostic.open_float({severity_sort = true})<Cr>",
-      opts
-    )
-    u.bufmap(
-      bufnr,
-      "n",
-      "<Leader>q",
-      "<Cmd>lua vim.diagnostic.set_loclist()<Cr>",
-      opts
-    )
+    local opts = { silent = true, buffer = bufnr }
+    keymap.set("n", "gD", lsp.buf.declaration, opts)
+    keymap.set("n", "gd", lsp.buf.definition, opts)
+    keymap.set("n", "gr", lsp.buf.references, opts)
+    keymap.set("n", "K", lsp.buf.hover, opts)
+    keymap.set("n", "[d", diagnostic.goto_prev, opts)
+    keymap.set("n", "]d", diagnostic.goto_next, opts)
+    keymap.set("n", "gi", lsp.buf.implementation, opts)
+    keymap.set({ "n", "i" }, "<Leader-s>", lsp.buf.signature_help, opts)
+    keymap.set("n", "<Leader>wa", lsp.buf.add_workspace_folder, opts)
+    keymap.set("n", "<Leader>wr", lsp.buf.remove_workspace_folder, opts)
+    keymap.set("n", "<Leader>wl", function()
+      print(vim.inspect(lsp.buf.list_workspace_folders()))
+    end, opts)
+    keymap.set("n", "<Leader>D", lsp.buf.type_definition, opts)
+    keymap.set("n", "<Leader>rn", lsp.buf.rename, opts)
+    keymap.set("n", "<Leader>e", function()
+      diagnostic.open_float({ severity_sort = true })
+    end, opts)
+    keymap.set("n", "<Leader>q", lsp.util.set_loclist, opts)
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-      u.bufmap(
-        bufnr,
-        "n",
-        "<Leader>bf",
-        "<Cmd>lua vim.lsp.buf.formatting()<Cr>",
-        opts
-      )
+      keymap.set("n", "<Leader>bf", lsp.buf.formatting, opts)
     elseif client.resolved_capabilities.document_range_formatting then
-      u.bufmap(
-        bufnr,
-        "v",
-        "<Leader>bf",
-        "<Cmd>lua vim.lsp.buf.ranger_formatting()<Cr>",
-        opts
-      )
+      keymap.set("v", "<Leader>bf", lsp.buf.ranger_formatting, opts)
     end
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -129,8 +62,8 @@ function M.config()
   -- Visual
   ------------------------------------------------------------------------------
   -- Customize how diagnosics are displayed
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
+  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
+    lsp.diagnostic.on_publish_diagnostics,
     {
       virtual_text = true,
       signs = true,
@@ -153,8 +86,8 @@ function M.config()
   end
 
   -- Customize virtual text prefix
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
+  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
+    lsp.diagnostic.on_publish_diagnostics,
     { virtual_text = { prefix = "" } }
   )
 
@@ -162,7 +95,7 @@ function M.config()
   ------------------------------------------------------------------------------
 
   -- Set language-server capabilities
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = false
   capabilities.textDocument.completion.completionItem.preselectSupport = true
   capabilities.textDocument.completion.completionItem.insertReplaceSupport =

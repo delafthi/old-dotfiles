@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, dap = pcall(function()
@@ -67,20 +67,12 @@ function M.config()
   })
 
   -- Mappings.
-  local opts = { noremap = true, silent = true }
-  u.map(
-    "n",
-    "<Leader>db",
-    "<Cmd>lua require('dap').toggle_breakpoint()<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>bl",
-    "<Cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<Cr>",
-    opts
-  )
-  u.map("n", "<Leader>dr", "<Cmd>lua require('dap').repl.toggle()<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>db", dap.toggle_breakpoint, opts)
+  keymap.set("n", "<Leader>bl", function()
+    dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+  end, opts)
+  keymap.set("n", "<Leader>dr", dap.repl.toggle, opts)
 end
 
 return M

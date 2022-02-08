@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, telescope = pcall(function()
@@ -82,70 +82,45 @@ function M.config()
     telescope.load_extension("project")
   end)
 
-  local opts = { noremap = true, silent = true }
+  local opts = { silent = true }
   -- Show Telescope buffers.
-  u.map(
-    "n",
-    "<Leader>bb",
-    "<Cmd>lua require('telescope.builtin').buffers()<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>bb", function()
+    require("telescope.builtin").buffers()
+  end, opts)
   -- Search recursively in all files
-  u.map(
-    "n",
-    "<Leader>ff",
-    "<Cmd>lua require('telescope.builtin').fd({hidden=true})<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>ff", function()
+    require("telescope.builtin").fd({ hidden = true })
+  end, opts)
   -- Search recursively in all git files
-  u.map(
-    "n",
-    "<Leader>fg",
-    "<Cmd>lua require('telescope.builtin').git_files()<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>fg", function()
+    require("telescope.builtin").git_files()
+  end, opts)
   -- Grep a string in the workspace
-  u.map(
-    "n",
-    "<Leader>rg",
-    "<Cmd>lua require('telescope.builtin').live_grep()<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>rg", function()
+    require("telescope.builtin").live_grep()
+  end, opts)
   -- Find something in the documentation
-  u.map(
-    "n",
-    "<Leader>hh",
-    "<Cmd>lua require('telescope.builtin').help_tags()<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>hk",
-    "<Cmd>lua require('telescope.builtin').keymaps()<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>hh", function()
+    require("telescope.builtin").help_tags()
+  end, opts)
+  keymap.set("n", "<Leader>hk", function()
+    require("telescope.builtin").keymaps()
+  end, opts)
+  -- Git
+  keymap.set("n", "<Leader>gs", function()
+    require("telescope.builtin").git_status()
+  end, opts)
   -- File browser
-  u.map(
+  keymap.set(
     "n",
     "<Leader>fb",
-    "<Cmd>lua require('telescope').extensions.file_browser.file_browser()<Cr>",
+    telescope.extensions.file_browser.file_browser,
     opts
   )
-  -- Git
-  u.map(
-    "n",
-    "<Leader>gs",
-    "<Cmd>lua require('telescope.builtin').git_status()<Cr>",
-    opts
-  )
-
   -- Projects
-  u.map(
-    "n",
-    "<Leader>pp",
-    "<Cmd>lua require('telescope').extensions.project.project{}<Cr>",
-    opts
-  )
+  keymap.set("n", "<Leader>pp", function()
+    telescope.extensions.project.project({})
+  end, opts)
 end
 
 return M

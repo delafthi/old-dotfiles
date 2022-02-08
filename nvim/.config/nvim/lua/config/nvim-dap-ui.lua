@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, dapui = pcall(function()
@@ -52,8 +52,8 @@ function M.config()
     windows = { indent = 1 },
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>dg", ":lua require('dapui').toggle()<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>dg", dapui.toggle, opts)
 end
 
 return M

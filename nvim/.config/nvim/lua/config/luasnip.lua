@@ -1,6 +1,6 @@
 local M = {}
-local u = require("util")
 local fn = vim.fn
+local keymap = vim.keymap
 
 function M.config()
   local ok, ls = pcall(function()
@@ -12,40 +12,25 @@ function M.config()
   end
 
   local s = ls.snippet
-  local sn = ls.snippet_node
-  local t = ls.text_node
   local i = ls.insert_node
-  local f = ls.function_node
-  local c = ls.choice_node
-  local d = ls.dynamic_node
-  local l = require("luasnip.extras").lambda
-  local r = require("luasnip.extras").rep
-  local p = require("luasnip.extras").partial
-  local m = require("luasnip.extras").match
-  local n = require("luasnip.extras").nonempty
-  local dl = require("luasnip.extras").dynamic_lambda
+  local fmt = require("luasnip.extras.fmt").fmt
+  local rep = require("luasnip.extras").rep
   local types = require("luasnip.util.types")
 
   -- Every unspecified option will be set to the default.
   ls.config.set_config({
+    -- jump back into snippets
     history = true,
+    -- Disable to maximize performance
+    enable_autosnippets = true,
     -- Update more often, :h events for more info.
     updateevents = "TextChanged,TextChangedI",
     ext_opts = {
       [types.choiceNode] = {
-        active = { virt_text = { { "choiceNode", "Comment" } } },
+        active = { virt_text = { { "<-", "Error" } } },
       },
     },
-    -- treesitter-hl has 100, use something higher (default is 200).
-    ext_base_prio = 300,
-    -- minimal increase in priority.
-    ext_prio_increase = 1,
-    enable_autosnippets = true,
   })
-
-  local function copy(args)
-    return args[1]
-  end
 
   -- Load snippets
   require("luasnip.loaders.from_vscode").lazy_load()
@@ -53,38 +38,59 @@ function M.config()
   ls.snippets = {
     all = {},
     markdown = {
-      s({
-        trig = "---",
-        name = "markdown header",
-        wordTrig = true,
-        docstring = "Insert the markdown document header",
-      }, {
-        t({ "---", "title: " }),
-        i(1, fn.fnamemodify(fn.bufname(), ":t:r")),
-        t({ "", "author: " }),
-        i(2, "Thierry Delafontaine"),
-        t({ "", "date: " }),
-        i(3, fn.strftime("%d.%m.%Y")),
-        t({ "", "output: " }),
-        i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. ".pdf"),
-        t({ "", "---", "" }),
-        i(0),
-      }),
-      s({
-        trig = "$$",
-        name = "math array",
-        wordTrig = true,
-        docstring = "Insert a math environment",
-      }, {
-        t({ "$$", "\\begin{array}{" }),
-        i(1, "rcl"),
-        t({ "}", "" }),
-        i(2, " "),
-        t({ "", "\\end{array}", "$$", "" }),
-        i(0),
-      }),
+      s(
+        {
+          trig = "---",
+          name = "Markdown header",
+          docstring = "Insert the markdown document header",
+        },
+        fmt(
+          "---\n"
+            .. "title: {}\n"
+            .. "author: {}\n"
+            .. "date: {}\n"
+            .. "output: {}\n"
+            .. "---\n"
+            .. "{}",
+          {
+            i(1, fn.fnamemodify(fn.bufname(), ":t:r")),
+            i(2, "Thierry Delafontaine"),
+            i(3, fn.strftime("%d.%m.%Y")),
+            i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. ".pdf"),
+            i(0),
+          }
+        )
+      ),
+      s(
+        {
+          trig = "$$",
+          name = "Math array",
+          docstring = "Insert a math environment",
+        },
+        fmt(
+          "$$\n"
+            .. "\\begin{{array}}{{{}}}\n"
+            .. "{}\n"
+            .. "\\end{{array}}\n"
+            .. "$$\n"
+            .. "{}",
+          {
+            i(1, "rcl"),
+            i(2),
+            i(0),
+          }
+        )
+      ),
     },
   }
+
+  local opts = { silent = true }
+  keymap.set({ "n", "i" }, "<C-i>", function()
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end, opts)
+  -- Other keybindings are set in lua/config/nvim-cmp.lua
 end
 
 return M

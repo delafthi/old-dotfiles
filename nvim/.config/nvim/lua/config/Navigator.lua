@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, navigator = pcall(function()
@@ -15,19 +15,11 @@ function M.config()
     disable_on_zoom = false,
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<C-h>", "<Cmd>lua require('Navigator').left()<Cr>", opts)
-  u.map("i", "<C-h>", "<Cmd>lua require('Navigator').left()<Cr>", opts)
-  u.map("t", "<C-h>", "<Cmd>lua require('Navigator').left()<Cr>", opts)
-  u.map("n", "<C-j>", "<Cmd>lua require('Navigator').down()<Cr>", opts)
-  u.map("i", "<C-j>", "<Cmd>lua require('Navigator').down()<Cr>", opts)
-  u.map("t", "<C-j>", "<Cmd>lua require('Navigator').down()<Cr>", opts)
-  u.map("n", "<C-k>", "<Cmd>lua require('Navigator').up()<Cr>", opts)
-  u.map("i", "<C-k>", "<Cmd>lua require('Navigator').up()<Cr>", opts)
-  u.map("t", "<C-k>", "<Cmd>lua require('Navigator').up()<Cr>", opts)
-  u.map("n", "<C-l>", "<Cmd>lua require('Navigator').right()<Cr>", opts)
-  u.map("i", "<C-l>", "<Cmd>lua require('Navigator').right()<Cr>", opts)
-  u.map("t", "<C-l>", "<Cmd>lua require('Navigator').right()<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set({ "n", "i", "t" }, "<C-h>", navigator.left, opts)
+  keymap.set({ "n", "i", "t" }, "<C-j>", navigator.down, opts)
+  keymap.set({ "n", "i", "t" }, "<C-k>", navigator.up, opts)
+  keymap.set({ "n", "i", "t" }, "<C-l>", navigator.right, opts)
 end
 
 return M

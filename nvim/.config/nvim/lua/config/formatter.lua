@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, formatter = pcall(function()
@@ -215,8 +215,8 @@ function M.config()
     },
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>bf", ":Format<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>bf", ":Format<Cr>", opts)
 
   -- Automatically formats filetypes on save.
   vim.cmd([[

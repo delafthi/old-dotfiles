@@ -225,5 +225,10 @@ require("packer").startup({
       config = require("config.headlines").config(),
     })
   end,
-  config = { display = { open_fn = require("packer.util").float } },
+  config = { display = { open_fn = require("packer.util").float },
+profile = {
+enable = true,
+threshold = 1},
+},
+
 })

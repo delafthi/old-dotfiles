@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, harpoon = pcall(function()
@@ -18,43 +18,25 @@ function M.config()
     },
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map(
-    "n",
-    "<Leader><Space>m",
-    "<Cmd>lua require('harpoon.mark').add_file()<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader><Space>",
-    "<Cmd>lua require('harpoon.ui').toggle_quick_menu()<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>1",
-    "<Cmd>lua require('harpoon.ui').nav_file(1)<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>2",
-    "<Cmd>lua require('harpoon.ui').nav_file(2)<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>3",
-    "<Cmd>lua require('harpoon.ui').nav_file(3)<Cr>",
-    opts
-  )
-  u.map(
-    "n",
-    "<Leader>4",
-    "<Cmd>lua require('harpoon.ui').nav_file(4)<Cr>",
-    opts
-  )
+  local opts = { silent = true }
+  keymap.set("n", "<Leader><Space>m", function()
+    require("harpoon.mark").add_file()
+  end, opts)
+  keymap.set("n", "<Leader><Space>", function()
+    require("harpoon.ui").toggle_quick_menu()
+  end, opts)
+  keymap.set("n", "<Leader>1", function()
+    require("harpoon.ui").nav_file(1)
+  end, opts)
+  keymap.set("n", "<Leader>2", function()
+    require("harpoon.ui").nav_file(2)
+  end, opts)
+  keymap.set("n", "<Leader>3", function()
+    require("harpoon.ui").nav_file(3)
+  end, opts)
+  keymap.set("n", "<Leader>4", function()
+    require("harpoon.ui").nav_file(4)
+  end, opts)
 end
 
 return M

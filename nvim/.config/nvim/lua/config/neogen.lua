@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, neogen = pcall(function()
@@ -15,8 +15,8 @@ function M.config()
     input_after_comment = true,
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>gc", ":lua require('neogen').generate()<CR>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>gc", neogen.generate, opts)
 end
 
 return M

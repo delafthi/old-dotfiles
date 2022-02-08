@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.setup()
   vim.g.dashboard_default_executive = "telescope"
@@ -58,11 +58,11 @@ function M.setup()
   vim.g.dashboard_custom_footer = {}
 
   -- Keybindings
-  local opts = { noremap = true, silent = true }
-  u.map("n", "<Leader>ss", ":<C-u>SessionSave<Cr>", opts)
-  u.map("n", "<Leader>sl", ":<C-u>SessionLoad<Cr>", opts)
-  u.map("n", "<Leader>fn", ":DashboardNewFile<Cr>", opts)
-  u.map("n", "<Leader>fh", ":DashboardFindHistory<Cr>", opts)
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>ss", ":<C-u>SessionSave<Cr>", opts)
+  keymap.set("n", "<Leader>sl", ":<C-u>SessionLoad<Cr>", opts)
+  keymap.set("n", "<Leader>fn", ":DashboardNewFile<Cr>", opts)
+  keymap.set("n", "<Leader>fh", ":DashboardFindHistory<Cr>", opts)
 end
 
 return M

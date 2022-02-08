@@ -87,14 +87,14 @@ function M.config()
           cmp.select_next_item()
         elseif ok_neogen and neogen.jumpable() then
           neogen.jump_next()
-        elseif ok_luasnip and luasnip and luasnip.expand_or_jumpable() then
+        elseif ok_luasnip and luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         else
           fallback()
         end
       end, {
         "i",
-        "s",
+        "c",
       }),
       ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -106,14 +106,26 @@ function M.config()
         end
       end, {
         "i",
-        "s",
+        "c",
       }),
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<Cr>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       }),
+      ["<C-s>"] = cmp.mapping(function(fallback)
+        if cmp.get_active_entry() then
+          cmp.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          })
+        elseif ok_luasnip and luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          fallback()
+        end
+      end, { "i", "c" }),
     },
     sources = {
       { name = "nvim_lua" },

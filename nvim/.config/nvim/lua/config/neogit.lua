@@ -1,5 +1,5 @@
 local M = {}
-local u = require("util")
+local keymap = vim.keymap
 
 function M.config()
   local ok, neogit = pcall(function()
@@ -15,7 +15,7 @@ function M.config()
     disable_context_highlighting = false,
     disable_commit_confirmation = true,
     auto_refresh = true,
-    didsable_builtin_notifications = true,
+    disable_builtin_notifications = false,
     commit_popup = {
       kind = "split",
     },
@@ -65,13 +65,10 @@ function M.config()
     },
   })
 
-  local opts = { noremap = true, silent = true }
-  u.map(
-    "n",
-    "<Leader>ng",
-    "<Cmd>lua require('neogit').open({kind='vsplit'})<Cr>",
-    opts
-  )
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>ng", function()
+    neogit.open({ kind = "vsplit" })
+  end, opts)
 end
 
 return M
