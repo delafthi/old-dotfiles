@@ -18,8 +18,18 @@ function M.config()
   })
 
   npairs.add_rules({
-    rule("$", "$", { "markdown", "md", "tex", "latex" }):with_cr(cond.none()),
-    rule("$$", "$$", { "markdown", "md", "tex", "latex" }),
+    -- Latex/Markdown
+    rule("$", "$", { "markdown", "md", "tex", "latex" }),
+    rule("\\begin%{%w*%}$", "\\end{xxx}", {
+      "markdown",
+      "md",
+      "tex",
+      "latex",
+    }):use_regex(true):use_key("<Cr>"):replace_endpair(function(opts)
+      return "<Cr>\\end{"
+        .. opts.prev_char:match("\\begin%{(%w*)%}$")
+        .. "}<Esc>O"
+    end),
   })
 end
 
