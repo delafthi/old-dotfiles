@@ -215,11 +215,6 @@ require("packer").startup({
       config = require("config.nvim-autopairs").config(),
     })
     use({ "godlygeek/tabular", cmd = "Tabularize" })
-    use({
-      "blackCauldron7/surround.nvim",
-      setup = require("config.surround").setup(),
-      config = require("config.surround").config(),
-    })
     -- Visuals/aesthetics
     use({
       "lukas-reineke/indent-blankline.nvim",
