@@ -42,9 +42,9 @@ require("packer").startup({
     })
     -- Comment
     use({
-      "winston0410/commented.nvim",
+      "numToStr/Comment.nvim",
       requires = { "JoosepAlviste/nvim-ts-context-commentstring" },
-      config = require("config.commented").config(),
+      config = require("config.Comment").config(),
     })
     use({
       "danymat/neogen",
@@ -225,10 +225,11 @@ require("packer").startup({
       config = require("config.headlines").config(),
     })
   end,
-  config = { display = { open_fn = require("packer.util").float },
-profile = {
-enable = true,
-threshold = 1},
-},
-
+  config = {
+    display = { open_fn = require("packer.util").float },
+    profile = {
+      enable = true,
+      threshold = 1,
+    },
+  },
 })
