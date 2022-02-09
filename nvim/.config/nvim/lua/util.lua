@@ -51,9 +51,9 @@ function M.eval_line()
   if filetype == "vim" then
     vim.api.nvim_command(line)
   elseif filetype == "lua" then
-    line = fn.escape(line, "'\"")
-    vim.api.nvim_command('call luaeval("' .. line .. '")')
-    vim.notify("Executed current line")
+    line = "do\n" .. line .. "\nend"
+    vim.notify("Execute current line...")
+    vim.api.nvim_command("luado " .. line)
   else
     vim.notify("Current file is not a lua or vim file", vim.log.levels.INFO)
   end
@@ -61,6 +61,7 @@ end
 
 local a = "Hello"
 print(a .. " World")
+print("Hello ")
 
 function M.eval_section()
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
@@ -68,11 +69,9 @@ function M.eval_section()
   if filetype == "vim" then
     vim.api.nvim_command(selection)
   elseif filetype == "lua" then
-    -- FIXME:
-    selection = fn.escape(selection, "'")
-    vim.notify("call luaeval('" .. selection .. "')")
-    vim.api.nvim_command('call luaeval("' .. selection .. '")')
-    vim.notify("Executed selection")
+    selection = "do\n" .. selection .. "\nend"
+    vim.notify("Execute selection...")
+    vim.api.nvim_command("luado " .. selection)
   else
     vim.notify("Current file is not a lua or vim file", vim.log.levels.INFO)
   end
