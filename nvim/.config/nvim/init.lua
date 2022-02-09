@@ -88,9 +88,21 @@ cmd([[
 ]]) -- Enable highlight on yank.
 vim.g.vimsyn_embed = "lPr" -- Allow embedded syntax highlighting for lua, python, ruby.
 vim.opt.wrap = true -- Enable line wrapping.
-vim.opt.virtualedit = "block" -- Allow cursor to move past end of line.
 vim.opt.visualbell = false -- Disable annoying beeps
 vim.opt.shortmess = "c" -- Avoid showing extra messages when using completion
+
+-- Editing
+vim.opt.virtualedit = "block" -- Allow cursor to move past end of line.
+vim.opt.formatoptions = "tcqj" -- Enables and disables autoformatting options
+vim.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.joinspaces = false -- No double spaces with join after a dot
+vim.opt.shiftround = true -- Round indent
+vim.opt.shiftwidth = 2 -- Size of an indent
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.smarttab = true -- Automatically tab to the next softtabstop
+vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Filetypes {{{1
 cmd([[
@@ -108,17 +120,6 @@ vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
 vim.opt.foldtext = [[luaeval("require('util').foldtext()")]] -- Function called to display fold line.
-
--- Indentation {{{1
-vim.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.joinspaces = false -- No double spaces with join after a dot
-vim.opt.shiftround = true -- Round indent
-vim.opt.shiftwidth = 2 -- Size of an indent
-vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.smarttab = true -- Automatically tab to the next softtabstop
-vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
-vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 -- Key mappings {{{1
 local opts = { silent = true }
