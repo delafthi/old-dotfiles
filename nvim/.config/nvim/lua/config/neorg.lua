@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, neorg = pcall(function()
-    return require("neorg")
-  end)
-
-  if not ok then
-    return
-  end
-
-  neorg.setup({
+  -- Call the setup function
+  require("neorg").setup({
     load = {
       ["core.defaults"] = {},
       ["core.keybinds"] = {},
@@ -108,11 +101,16 @@ function M.config()
 
             unorderedlist = "+TSPunctDelimiter",
 
-            quote = { [""] = "+TSPunctDelimiter", content = "+TSPunctDelimiter" },
+            quote = {
+              [""] = "+TSPunctDelimiter",
+              content = "+TSPunctDelimiter",
+            },
           },
         },
       },
-      ["core.norg.dirman"] = { config = { workspaces = { notes = "~/neorg" } } },
+      ["core.norg.dirman"] = {
+        config = { workspaces = { notes = "~/neorg" } },
+      },
       ["core.integrations.telescope"] = {},
     },
   })

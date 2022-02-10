@@ -2,6 +2,7 @@ local M = {}
 local keymap = vim.keymap
 
 function M.setup()
+  -- Define global variables
   vim.g.dashboard_default_executive = "telescope"
   vim.g.dashboard_custom_header = {
     "                                                       ",
@@ -57,7 +58,7 @@ function M.setup()
 
   vim.g.dashboard_custom_footer = {}
 
-  -- Keybindings
+  -- Define keybindings
   local opts = { silent = true }
   keymap.set("n", "<Leader>ss", ":<C-u>SessionSave<Cr>", opts)
   keymap.set("n", "<Leader>sl", ":<C-u>SessionLoad<Cr>", opts)

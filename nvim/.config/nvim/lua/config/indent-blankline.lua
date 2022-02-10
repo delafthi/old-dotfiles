@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, indent_blankline = pcall(function()
-    return require("indent_blankline")
-  end)
-
-  if not ok then
-    return
-  end
-
-  indent_blankline.setup({
+  -- Call the setup function
+  require("indent_blankline").setup({
     char = "│",
     use_treesitter = true,
     filetype_exclude = {

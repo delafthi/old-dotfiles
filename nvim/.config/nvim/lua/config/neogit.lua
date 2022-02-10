@@ -1,16 +1,17 @@
 local M = {}
 local keymap = vim.keymap
 
+function M.setup()
+  -- Define keybinding
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>ng", function()
+    require("neogit").open({ kind = "vsplit" })
+  end, opts)
+end
+
 function M.config()
-  local ok, neogit = pcall(function()
-    return require("neogit")
-  end)
-
-  if not ok then
-    return
-  end
-
-  neogit.setup({
+  -- Call the setup function
+  require("neogit").setup({
     disable_signs = false,
     disable_context_highlighting = false,
     disable_commit_confirmation = true,
@@ -64,11 +65,6 @@ function M.config()
       },
     },
   })
-
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>ng", function()
-    neogit.open({ kind = "vsplit" })
-  end, opts)
 end
 
 return M

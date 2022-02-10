@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, ts = pcall(function()
-    return require("nvim-treesitter.configs")
-  end)
-
-  if not ok then
-    return
-  end
-
-  ts.setup({
+  -- Call the setup function
+  require("nvim-treesitter.configs").setup({
     ensure_installed = "maintained",
     highlight = { enable = true },
     indent = { enable = false },

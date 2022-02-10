@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, colorizer = pcall(function()
-    return require("colorizer")
-  end)
-
-  if not ok then
-    return
-  end
-
-  colorizer.setup({
+  -- Call the setup function
+  require("colorizer").setup({
     "*",
     "!packer",
     "!dashboard",

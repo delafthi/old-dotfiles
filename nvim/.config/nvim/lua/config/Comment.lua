@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, comment = pcall(function()
-    return require("Comment")
-  end)
-
-  if not ok then
-    return
-  end
-
-  comment.setup({
+  -- Call the setup function
+  require("Comment").setup({
     ---Add a space b/w comment and the line
     ---@type boolean
     padding = true,

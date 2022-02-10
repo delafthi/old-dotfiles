@@ -1,23 +1,8 @@
 local M = {}
 local keymap = vim.keymap
 
-function M.config()
-  local ok, harpoon = pcall(function()
-    return require("harpoon")
-  end)
-
-  if not ok then
-    return
-  end
-
-  harpoon.setup({
-    global_settings = {
-      save_on_toggle = false,
-      save_on_change = true,
-      enter_on_sendcmd = false,
-    },
-  })
-
+function M.setup()
+  -- Define keybindings
   local opts = { silent = true }
   keymap.set("n", "<Leader><Space>m", function()
     require("harpoon.mark").add_file()
@@ -37,6 +22,17 @@ function M.config()
   keymap.set("n", "<Leader>4", function()
     require("harpoon.ui").nav_file(4)
   end, opts)
+end
+
+function M.config()
+  -- Call the setup function
+  require("harpoon").setup({
+    global_settings = {
+      save_on_toggle = false,
+      save_on_change = true,
+      enter_on_sendcmd = false,
+    },
+  })
 end
 
 return M

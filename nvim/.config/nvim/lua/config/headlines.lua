@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, headlines = pcall(function()
-    return require("headlines")
-  end)
-
-  if not ok then
-    return
-  end
-
-  headlines.setup({
+  -- Call the setup function
+  require("headlines").setup({
     markdown = {
       source_pattern_start = "^```",
       source_pattern_end = "^```$",

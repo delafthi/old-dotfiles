@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, nord = pcall(function()
-    return require("nord")
-  end)
-
-  if not ok then
-    return
-  end
-
-  nord.setup({
+  -- Call the setup function
+  require("nord").setup({
     bold = true,
     italic = true,
     underline = true,

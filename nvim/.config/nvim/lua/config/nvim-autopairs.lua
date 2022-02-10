@@ -1,22 +1,16 @@
 local M = {}
 
 function M.config()
-  local ok, npairs = pcall(function()
-    return require("nvim-autopairs")
-  end)
-
-  if not ok then
-    return
-  end
-
+  local npairs = require("nvim-autopairs")
   local rule = require("nvim-autopairs.rule")
-  local cond = require("nvim-autopairs.conds")
 
+  -- Call the setup function
   npairs.setup({
     check_ts = true,
     map_bs = false,
   })
 
+  -- Add additional autopairs rules
   npairs.add_rules({
     -- Latex/Markdown
     rule("$", "$", { "markdown", "md", "tex", "latex" }),

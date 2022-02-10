@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, gitsigns = pcall(function()
-    return require("gitsigns")
-  end)
-
-  if not ok then
-    return
-  end
-
-  gitsigns.setup({
+  -- Call the setup function
+  require("gitsigns").setup({
     signs = {
       add = {
         hl = "GitSignsAdd",

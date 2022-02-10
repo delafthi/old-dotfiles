@@ -1,16 +1,22 @@
 local M = {}
 local keymap = vim.keymap
 
+function M.setup()
+  -- Define keybinding
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>bf", ":Format<Cr>", opts)
+
+  -- Define autocommand to automatically format files on save.
+  vim.cmd([[
+    augroup format_text
+      autocmd!
+      autocmd BufWritePost * silent! FormatWrite
+    augroup END
+  ]])
+end
 function M.config()
-  local ok, formatter = pcall(function()
-    return require("formatter")
-  end)
-
-  if not ok then
-    return
-  end
-
-  formatter.setup({
+  -- Call the setup function
+  require("formatter").setup({
     filetype = {
       c = {
         function()
@@ -214,17 +220,6 @@ function M.config()
       },
     },
   })
-
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>bf", ":Format<Cr>", opts)
-
-  -- Automatically formats filetypes on save.
-  vim.cmd([[
-    augroup format_text
-      autocmd!
-      autocmd BufWritePost * silent! FormatWrite
-    augroup END
-  ]])
 end
 
 return M

@@ -1,15 +1,8 @@
 local M = {}
 
 function M.config()
-  local ok, tcomments = pcall(function()
-    return require("todo-comments")
-  end)
-
-  if not ok then
-    return
-  end
-
-  tcomments.setup({
+  -- Call the setup function
+  require("todo-comments").setup({
     signs = true, -- show icons in the signs column
     sign_priority = 8, -- sign priority
     -- keywords recognized as todo comments

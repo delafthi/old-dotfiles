@@ -27,11 +27,10 @@ function M.get_capabilities()
   return capabilities
 end
 
--- Mappings.
-------------------------------------------------------------------------------
 function M.on_attach(client, bufnr)
   vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
+  -- Define keybindings
   local opts = { silent = true, buffer = bufnr }
   keymap.set("n", "gD", lsp.buf.declaration, opts)
   keymap.set("n", "gd", lsp.buf.definition, opts)
@@ -40,7 +39,7 @@ function M.on_attach(client, bufnr)
   keymap.set("n", "[d", diagnostic.goto_prev, opts)
   keymap.set("n", "]d", diagnostic.goto_next, opts)
   keymap.set("n", "gi", lsp.buf.implementation, opts)
-  keymap.set({ "n", "i" }, "<Leader>s", lsp.buf.signature_help, opts)
+  keymap.set({ "n", "i" }, "<C-s>", lsp.buf.signature_help, opts)
   keymap.set("n", "<Leader>wa", lsp.buf.add_workspace_folder, opts)
   keymap.set("n", "<Leader>wr", lsp.buf.remove_workspace_folder, opts)
   keymap.set("n", "<Leader>wl", function()
@@ -75,16 +74,9 @@ function M.on_attach(client, bufnr)
 end
 
 function M.config()
-  local ok, lspconfig = pcall(function()
-    return require("lspconfig")
-  end)
-
-  if not ok then
-    return
-  end
+  local lspconfig = require("lspconfig")
 
   -- Visual
-  ------------------------------------------------------------------------------
   -- Customize how diagnosics are displayed
   lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
     lsp.diagnostic.on_publish_diagnostics,
@@ -116,8 +108,6 @@ function M.config()
   )
 
   -- Setup language servers
-  ------------------------------------------------------------------------------
-
   -- bash-language-server
   lspconfig.bashls.setup({
     capabilities = M.capabilities,

@@ -1,61 +1,33 @@
 local M = {}
 
 function M.config()
-  local ok, gl = pcall(function()
-    return require("galaxyline")
-  end)
-
-  if not ok then
-    return
-  end
-
+  local gl = require("galaxyline")
   local glpf = require("galaxyline.provider_fileinfo")
   local condition = require("galaxyline.condition")
 
   local gls = gl.section
 
-  local c = {
-    black0 = "Black",
-    black1 = "DimGrey",
-    black2 = "Grey",
-    black3 = "WebGrey",
-    white1 = "Snow",
-    white2 = "GhostWhite",
-    white3 = "White",
-    cyan = "DarkCyan",
-    blue0 = "LightBlue",
-    blue1 = "Blue",
-    blue2 = "DarkBlue",
-    red = "DarkRed",
-    yellow = "DarkYellow",
-    orange = "DarkOrange",
-    green = "DarkGreen",
-    magenta = "DarkMagenta",
+  -- Check if the nord theme is installed
+  -- Write the color definitions
+  local nord = require("nord.colors")
+  c = {
+    black0 = nord.nord0,
+    black1 = nord.nord1,
+    black2 = nord.nord2,
+    black3 = nord.nord3,
+    white0 = nord.nord4,
+    white1 = nord.nord5,
+    white2 = nord.nord6,
+    cyan = nord.nord7,
+    blue0 = nord.nord8,
+    blue1 = nord.nord9,
+    blue2 = nord.nord10,
+    red = nord.nord11,
+    orange = nord.nord12,
+    yellow = nord.nord13,
+    green = nord.nord14,
+    magenta = nord.nord15,
   }
-
-  local nord_ok, nord = pcall(function()
-    return require("nord.colors")
-  end)
-  if nord_ok then
-    c = {
-      black0 = nord.nord0,
-      black1 = nord.nord1,
-      black2 = nord.nord2,
-      black3 = nord.nord3,
-      white0 = nord.nord4,
-      white1 = nord.nord5,
-      white2 = nord.nord6,
-      cyan = nord.nord7,
-      blue0 = nord.nord8,
-      blue1 = nord.nord9,
-      blue2 = nord.nord10,
-      red = nord.nord11,
-      orange = nord.nord12,
-      yellow = nord.nord13,
-      green = nord.nord14,
-      magenta = nord.nord15,
-    }
-  end
 
   -- Overwrite the statusline hls to prevent interference
   vim.cmd("highlight Statusline guibg=" .. c.black0)
@@ -84,7 +56,6 @@ function M.config()
   }
 
   -- Left side
-  ---------------------------------------------------------
   -- ViMode
   gls.left[1] = {
     ViModeLeftCap = {
@@ -151,10 +122,8 @@ function M.config()
     },
   }
   -- Middle
-  ---------------------------------------------------------
 
   -- Right side
-  ---------------------------------------------------------
   gls.right[1] = {
     FileInfoLeftCap = {
       provider = function()
@@ -285,11 +254,8 @@ function M.config()
     },
   }
 
-  ---------------------------------------------------------
   -- Short line status line
-  ---------------------------------------------------------
   -- Left side
-  ---------------------------------------------------------
   gls.short_line_left[1] = {
     ShortLeftCap = {
       provider = function()
@@ -308,7 +274,6 @@ function M.config()
   }
 
   -- Right side
-  ---------------------------------------------------------
   gls.short_line_right[1] = {
     ShortFileInfoLeftCap = {
       provider = function()

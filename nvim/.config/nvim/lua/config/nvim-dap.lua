@@ -1,16 +1,24 @@
 local M = {}
 local keymap = vim.keymap
 
+function M.setup()
+  -- Define keybindings
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>db", function()
+    require("dap").toggle_breakpoint()
+  end, opts)
+  keymap.set("n", "<Leader>bl", function()
+    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+  end, opts)
+  keymap.set("n", "<Leader>dr", function()
+    require("dap").repl.toggle()
+  end, opts)
+end
+
 function M.config()
-  local ok, dap = pcall(function()
-    return require("dap")
-  end)
+  local dap = require("dap")
 
-  if not ok then
-    return
-  end
-
-  -- Configurations
+  -- DAP configurations
   dap.adapters.lldb = {
     type = "executable",
     command = "/usr/bin/lldb-vscode",
@@ -65,14 +73,6 @@ function M.config()
     linehl = "",
     numhl = "",
   })
-
-  -- Mappings.
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>db", dap.toggle_breakpoint, opts)
-  keymap.set("n", "<Leader>bl", function()
-    dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-  end, opts)
-  keymap.set("n", "<Leader>dr", dap.repl.toggle, opts)
 end
 
 return M

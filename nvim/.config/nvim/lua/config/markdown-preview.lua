@@ -2,6 +2,7 @@ local M = {}
 local keymap = vim.keymap
 
 function M.setup()
+  -- Define global variables
   vim.g.mkdp_autoclose = 0 -- Disable auto close, when changing to a different buffer.
   vim.g.mkdp_browser = "qutebrowser" -- Set default browser.
   vim.gmkdp_filetypes = { "markdown", "vimwiki" } -- Set compatible filetypes.
@@ -19,9 +20,7 @@ function M.setup()
     content_editable = false,
     disable_filename = 0,
   }
-end
-
-function M.config()
+  -- Define keybinding
   local opts = { silent = true }
   keymap.set("n", "<Leader>mp", "<Plug>MarkdownPreviewToggle", opts)
 end

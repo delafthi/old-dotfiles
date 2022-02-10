@@ -1,16 +1,29 @@
 local M = {}
 local keymap = vim.keymap
 
+function M.setup()
+  -- Define keybindings
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
+  keymap.set(
+    "n",
+    "<Leader>xw",
+    "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
+    opts
+  )
+  keymap.set(
+    "n",
+    "<Leader>xd",
+    "<Cmd>TroubleToggle document_diagnostics<Cr>",
+    opts
+  )
+  keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
+  keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
+  keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
+end
 function M.config()
-  local ok, trouble = pcall(function()
-    return require("trouble")
-  end)
-
-  if not ok then
-    return
-  end
-
-  trouble.setup({
+  -- Call the setup function
+  require("trouble").setup({
     position = "bottom", -- position of the list can be: bottom, top, left, right
     height = 10, -- height of the trouble list when position is top or bottom
     width = 50, -- width of the list when position is left or right
@@ -41,24 +54,6 @@ function M.config()
     auto_fold = false, -- automatically fold a file trouble list at creation
     use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
   })
-
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
-  keymap.set(
-    "n",
-    "<Leader>xw",
-    "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
-    opts
-  )
-  keymap.set(
-    "n",
-    "<Leader>xd",
-    "<Cmd>TroubleToggle document_diagnostics<Cr>",
-    opts
-  )
-  keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
-  keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
-  keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
 end
 
 return M

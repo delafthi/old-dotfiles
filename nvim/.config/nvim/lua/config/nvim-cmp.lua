@@ -1,20 +1,6 @@
 local M = {}
-local fn = vim.fn
 
 function M.config()
-  local ok_cmp, cmp = pcall(function()
-    return require("cmp")
-  end)
-
-  if not ok_cmp then
-    return
-  end
-
-  local check_back_space = function()
-    local col = fn.col(".") - 1
-    return col == 0 or fn.getline("."):sub(col, col):match("%s")
-  end
-
   -- Custom completion kind icons
   local icons = {
     Text = "",
@@ -44,19 +30,15 @@ function M.config()
     TypeParameter = "",
   }
 
-  local ok_luasnip, luasnip = pcall(function()
-    return require("luasnip")
-  end)
-  local ok_neogen, neogen = pcall(function()
-    return require("neogen")
-  end)
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
+  local neogen = require("neogen")
 
+  -- Call the setup function
   cmp.setup({
     snippet = {
       expand = function(args)
-        if ok_luasnip then
-          luasnip.lsp_expand(args.body)
-        end
+        luasnip.lsp_expand(args.body)
       end,
     },
     documentation = {
@@ -85,9 +67,9 @@ function M.config()
       ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif ok_neogen and neogen.jumpable() then
+        elseif neogen.jumpable() then
           neogen.jump_next()
-        elseif ok_luasnip and luasnip.expand_or_jumpable() then
+        elseif luasnip.expand_or_jumpable() then
           luasnip.expand_or_jump()
         else
           fallback()
@@ -99,7 +81,9 @@ function M.config()
       ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif ok_luasnip and luasnip and luasnip.jumpable(-1) then
+        elseif neogen.jumpable(-1) then
+          neogen.jump_prev()
+        elseif luasnip and luasnip.jumpable(-1) then
           luasnip.jump(-1)
         else
           fallback()
@@ -114,18 +98,6 @@ function M.config()
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
       }),
-      ["<C-s>"] = cmp.mapping(function(fallback)
-        if cmp.get_active_entry() then
-          cmp.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          })
-        elseif ok_luasnip and luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        else
-          fallback()
-        end
-      end, { "i", "c" }),
     },
     sources = {
       { name = "nvim_lua" },
@@ -135,7 +107,7 @@ function M.config()
       { name = "buffer", keyword_length = 5 },
     },
     experimental = {
-      ghost_text = true,
+      ghost_text = false,
     },
   })
 

@@ -1,19 +1,11 @@
 local M = {}
 
 function M.config()
-  local ok, clangd_ext = pcall(function()
-    return require("clangd_extensions")
-  end)
-
-  if not ok then
-    print("Here")
-    return
-  end
-
   local capabilities = require("config.nvim-lspconfig").get_capabilities()
   local on_attach = require("config.nvim-lspconfig").on_attach
 
-  clangd_ext.setup({
+  -- Call the setup function
+  require("clangd_extensions").setup({
     server = {
       capabilities = capabilities,
       on_attach = on_attach,

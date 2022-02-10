@@ -2,15 +2,26 @@ local M = {}
 local fn = vim.fn
 local keymap = vim.keymap
 
+function M.setup()
+  -- Define keybindings
+  local opts = { silent = true }
+  keymap.set({ "n", "i" }, "<C-i>", function()
+    local ls = require("luasnip")
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end, opts)
+  keymap.set({ "n", "i" }, "<C-Cr>", function()
+    local ls = require("luasnip")
+    if ls.expand_or_jumpable() then
+      ls.expand_or_jump()
+    end
+  end, opts)
+  -- Other keybindings are set in lua/config/nvim-cmp.lua
+end
+
 function M.config()
-  local ok, ls = pcall(function()
-    return require("luasnip")
-  end)
-
-  if not ok then
-    return
-  end
-
+  local ls = require("luasnip")
   local s = ls.snippet
   local i = ls.insert_node
   local fmt = require("luasnip.extras.fmt").fmt
@@ -35,6 +46,7 @@ function M.config()
   -- Load snippets
   require("luasnip.loaders.from_vscode").lazy_load()
 
+  -- Define snippets
   ls.snippets = {
     all = {},
     markdown = {
@@ -83,14 +95,6 @@ function M.config()
       ),
     },
   }
-
-  local opts = { silent = true }
-  keymap.set({ "n", "i" }, "<C-i>", function()
-    if ls.choice_active() then
-      ls.change_choice(1)
-    end
-  end, opts)
-  -- Other keybindings are set in lua/config/nvim-cmp.lua
 end
 
 return M

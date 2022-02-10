@@ -1,16 +1,30 @@
 local M = {}
 local keymap = vim.keymap
 
-function M.config()
-  local ok, dapui = pcall(function()
-    return require("dapui")
-  end)
+function M.setup()
+  -- Define keybinding
+  local opts = { silent = true }
+  keymap.set("n", "<Leader>dg", function()
+    require("dapui").toggle()
+  end, opts)
+end
 
-  if not ok then
-    return
+function M.config()
+  -- Automatically open nvim-dap-ui
+  local dap = require("dap")
+
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open()
+  end
+  dap.listeners.before.event_terminateted["dapui_config"] = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
   end
 
-  dapui.setup({
+  -- Call the setup function
+  require("dapui").setup({
     icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
       -- Use a table to apply multiple mappings
@@ -21,7 +35,6 @@ function M.config()
       repl = "r",
     },
     sidebar = {
-      open_on_start = true,
       -- You can change the order of elements in the sidebar
       elements = {
         -- Provide as ID strings or tables with "id" and "size" keys
@@ -37,7 +50,6 @@ function M.config()
       position = "left", -- Can be "left", "right", "top", "bottom"
     },
     tray = {
-      open_on_start = true,
       elements = { "repl" },
       size = 10,
       position = "bottom", -- Can be "left", "right", "top", "bottom"
@@ -45,15 +57,13 @@ function M.config()
     floating = {
       max_height = nil, -- These can be integers or a float between 0 and 1.
       max_width = nil, -- Floats will be treated as percentage of your screen.
+      border = "single", -- Border style. Can be "single", "double" or "rounded"
       mappings = {
         close = { "q", "<Esc>" },
       },
     },
     windows = { indent = 1 },
   })
-
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>dg", dapui.toggle, opts)
 end
 
 return M
