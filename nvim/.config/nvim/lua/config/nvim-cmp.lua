@@ -130,12 +130,12 @@ function M.config()
     sources = {
       { name = "nvim_lua" },
       { name = "nvim_lsp" },
-      { name = "path" },
       { name = "luasnip" },
+      { name = "path" },
       { name = "buffer", keyword_length = 5 },
     },
     experimental = {
-      ghost_text = false,
+      ghost_text = true,
     },
   })
 
