@@ -3,6 +3,77 @@ local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local keymap = vim.keymap
 
+function M.get_capabilities()
+  -- Set language-server capabilities
+  local capabilities = lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = false
+  capabilities.textDocument.completion.completionItem.preselectSupport = true
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport =
+    true
+  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+  capabilities.textDocument.completion.completionItem.commitCharactersSupport =
+    true
+  capabilities.textDocument.completion.completionItem.tagSupport = {
+    valueSet = { 1 },
+  }
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  }
+  return capabilities
+end
+
+-- Mappings.
+------------------------------------------------------------------------------
+function M.on_attach(client, bufnr)
+  vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+  local opts = { silent = true, buffer = bufnr }
+  keymap.set("n", "gD", lsp.buf.declaration, opts)
+  keymap.set("n", "gd", lsp.buf.definition, opts)
+  keymap.set("n", "gr", lsp.buf.references, opts)
+  keymap.set("n", "K", lsp.buf.hover, opts)
+  keymap.set("n", "[d", diagnostic.goto_prev, opts)
+  keymap.set("n", "]d", diagnostic.goto_next, opts)
+  keymap.set("n", "gi", lsp.buf.implementation, opts)
+  keymap.set({ "n", "i" }, "<Leader>s", lsp.buf.signature_help, opts)
+  keymap.set("n", "<Leader>wa", lsp.buf.add_workspace_folder, opts)
+  keymap.set("n", "<Leader>wr", lsp.buf.remove_workspace_folder, opts)
+  keymap.set("n", "<Leader>wl", function()
+    print(vim.inspect(lsp.buf.list_workspace_folders()))
+  end, opts)
+  keymap.set("n", "<Leader>D", lsp.buf.type_definition, opts)
+  keymap.set("n", "<Leader>rn", lsp.buf.rename, opts)
+  keymap.set("n", "<Leader>e", function()
+    diagnostic.open_float({ severity_sort = true })
+  end, opts)
+  keymap.set("n", "<Leader>q", lsp.util.set_loclist, opts)
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    keymap.set("n", "<Leader>bf", lsp.buf.formatting, opts)
+  elseif client.resolved_capabilities.document_range_formatting then
+    keymap.set("v", "<Leader>bf", lsp.buf.ranger_formatting, opts)
+  end
+  -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec(
+      [[
+      augroup lsp_document_highlight
+        autocmd!
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup end
+      ]],
+      false
+    )
+  end
+end
+
 function M.config()
   local ok, lspconfig = pcall(function()
     return require("lspconfig")
@@ -10,53 +81,6 @@ function M.config()
 
   if not ok then
     return
-  end
-
-  -- Mappings.
-  ------------------------------------------------------------------------------
-  local on_attach = function(client, bufnr)
-    vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
-
-    local opts = { silent = true, buffer = bufnr }
-    keymap.set("n", "gD", lsp.buf.declaration, opts)
-    keymap.set("n", "gd", lsp.buf.definition, opts)
-    keymap.set("n", "gr", lsp.buf.references, opts)
-    keymap.set("n", "K", lsp.buf.hover, opts)
-    keymap.set("n", "[d", diagnostic.goto_prev, opts)
-    keymap.set("n", "]d", diagnostic.goto_next, opts)
-    keymap.set("n", "gi", lsp.buf.implementation, opts)
-    keymap.set({ "n", "i" }, "<Leader-s>", lsp.buf.signature_help, opts)
-    keymap.set("n", "<Leader>wa", lsp.buf.add_workspace_folder, opts)
-    keymap.set("n", "<Leader>wr", lsp.buf.remove_workspace_folder, opts)
-    keymap.set("n", "<Leader>wl", function()
-      print(vim.inspect(lsp.buf.list_workspace_folders()))
-    end, opts)
-    keymap.set("n", "<Leader>D", lsp.buf.type_definition, opts)
-    keymap.set("n", "<Leader>rn", lsp.buf.rename, opts)
-    keymap.set("n", "<Leader>e", function()
-      diagnostic.open_float({ severity_sort = true })
-    end, opts)
-    keymap.set("n", "<Leader>q", lsp.util.set_loclist, opts)
-
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-      keymap.set("n", "<Leader>bf", lsp.buf.formatting, opts)
-    elseif client.resolved_capabilities.document_range_formatting then
-      keymap.set("v", "<Leader>bf", lsp.buf.ranger_formatting, opts)
-    end
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-      vim.api.nvim_exec(
-        [[
-        augroup lsp_document_highlight
-          autocmd!
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup end
-        ]],
-        false
-      )
-    end
   end
 
   -- Visual
@@ -94,57 +118,26 @@ function M.config()
   -- Setup language servers
   ------------------------------------------------------------------------------
 
-  -- Set language-server capabilities
-  local capabilities = lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = false
-  capabilities.textDocument.completion.completionItem.preselectSupport = true
-  capabilities.textDocument.completion.completionItem.insertReplaceSupport =
-    true
-  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-  capabilities.textDocument.completion.completionItem.commitCharactersSupport =
-    true
-  capabilities.textDocument.completion.completionItem.tagSupport = {
-    valueSet = { 1 },
-  }
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
-  }
-
   -- bash-language-server
   lspconfig.bashls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
   -- cmake-language server
-  lspconfig.cmake.setup({ capabilities = capabilities, on_attach = on_attach })
-  -- c-language-server
-  lspconfig.clangd.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = {
-      "/usr/bin/clangd",
-      "--all-scopes-completion",
-      "--background-index",
-      "--clang-tidy",
-      "--cross-file-rename",
-      "--header-insertion=iwyu",
-      "--header-insertion-decorators",
-    },
+  lspconfig.cmake.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
+  -- c-language-server moved to clangd_extensions
   -- dockerfile-language-server
   lspconfig.dockerls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
   -- haskell-language-server
   lspconfig.hls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
     root_dir = lspconfig.util.root_pattern(
       "*.cabal",
       "stack.yaml",
@@ -155,8 +148,8 @@ function M.config()
   })
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
     cmd = {
       "/usr/bin/lua-language-server",
       "-E",
@@ -188,8 +181,8 @@ function M.config()
   })
   -- python-language-server
   lspconfig.pylsp.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
     settings = {
       configurationSources = { "flake8" },
       plugins = {
@@ -200,16 +193,19 @@ function M.config()
   })
   -- systemverilog language-server
   lspconfig.svls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
   -- vim-language-server
-  lspconfig.vimls.setup({ capabilities = capabilities, on_attach = on_attach })
+  lspconfig.vimls.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
+  })
 
   -- Activate codelens
   vim.cmd([[

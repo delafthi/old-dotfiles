@@ -110,6 +110,10 @@ require("packer").startup({
     use({
       "HiPhish/guile.vim",
     })
+    use({
+      "p00f/clangd_extensions.nvim",
+      config = require("config.clangd_extensions").config(),
+    })
     -- LSP
     use({
       "neovim/nvim-lspconfig",
