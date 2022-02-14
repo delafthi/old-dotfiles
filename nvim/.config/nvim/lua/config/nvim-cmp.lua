@@ -30,15 +30,30 @@ function M.config()
     TypeParameter = "",
   }
 
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0
+      and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+          :sub(col, col)
+          :match("%s")
+        == nil
+  end
+
   local cmp = require("cmp")
-  local luasnip = require("luasnip")
-  local neogen = require("neogen")
+  local ok_ls, ls = pcall(function()
+    return require("luasnip")
+  end)
+  local ok_ng, ng = pcall(function()
+    return require("neogen")
+  end)
 
   -- Call the setup function
   cmp.setup({
     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body)
+        if ok_ls then
+          ls.lsp_expand(args.body)
+        end
       end,
     },
     documentation = {
@@ -64,27 +79,33 @@ function M.config()
       end,
     },
     mapping = {
+      ["<C-Space>"] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }),
       ["<C-n>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif neogen.jumpable() then
-          neogen.jump_next()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        elseif ok_ng and ng.jumpable() then
+          ng.jump_next()
+        elseif ok_ls and ls.expand_or_jumpable() then
+          ls.expand_or_jump()
+        elseif vim.bo.buftype ~= "prompt" and has_words_before() then
+          cmp.complete()
         else
           fallback()
         end
       end, {
         "i",
-        "c",
+        "s",
       }),
       ["<C-p>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif neogen.jumpable(-1) then
-          neogen.jump_prev()
-        elseif luasnip and luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        elseif ok_ng and ng.jumpable(-1) then
+          ng.jump_prev()
+        elseif ok_ls and ls.jumpable(-1) then
+          ls.jump(-1)
         else
           fallback()
         end
@@ -94,10 +115,6 @@ function M.config()
       }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-      ["<Cr>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      }),
     },
     sources = {
       { name = "nvim_lua" },
