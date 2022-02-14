@@ -93,7 +93,6 @@ vim.opt.shortmess = "c" -- Avoid showing extra messages when using completion
 
 -- Editing
 vim.opt.virtualedit = "block" -- Allow cursor to move past end of line.
-vim.opt.formatoptions = "tcqj" -- Enables and disables autoformatting options
 vim.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.joinspaces = false -- No double spaces with join after a dot
@@ -103,6 +102,12 @@ vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.smarttab = true -- Automatically tab to the next softtabstop
 vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
+
+cmd([[
+  augroup formatOptions
+    autocmd Filetype * set fo-=r fo-=o
+  augroup END
+]]) -- Disables automatic insertion of comment leaders
 
 -- Filetypes {{{1
 cmd([[
