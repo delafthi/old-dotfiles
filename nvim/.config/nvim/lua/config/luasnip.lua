@@ -5,18 +5,25 @@ local keymap = vim.keymap
 function M.setup()
   -- Define keybindings
   local opts = { silent = true }
-  keymap.set({ "n", "i" }, "<C-i>", function()
+  keymap.set({ "n", "i" }, "<C-Tab>", function()
     local ls = require("luasnip")
     if ls.choice_active() then
       ls.change_choice(1)
     end
   end, opts)
-  keymap.set({ "n", "i" }, "<C-Cr>", function()
+  keymap.set({ "n", "i" }, "<C-e>", function()
     local ls = require("luasnip")
     if ls.expand_or_jumpable() then
       ls.expand_or_jump()
     end
   end, opts)
+  -- Currently not working
+  -- keymap.set({ "n", "i" }, "<C-Cr>", function()
+  --   local ls = require("luasnip")
+  --   if ls.expand_or_jumpable() then
+  --     ls.expand_or_jump()
+  --   end
+  -- end, opts)
   -- Other keybindings are set in lua/config/nvim-cmp.lua
 end
 
