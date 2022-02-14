@@ -25,7 +25,6 @@ Neovim is a terminal based text editor with a f
       - [python-lsp-flake8](https://github.com/emanspeaks/pyls-flake8)
       - [python-lsp-isort](https://github.com/paradoxxxzero/pyls-isort)
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
-    - [svls](https://github.com/dalance/svls)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - Code formatters

@@ -181,11 +181,6 @@ function M.config()
       },
     },
   })
-  -- systemverilog language-server
-  lspconfig.svls.setup({
-    capabilities = M.capabilities,
-    on_attach = M.on_attach,
-  })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({
     capabilities = M.capabilities,
