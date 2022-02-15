@@ -107,6 +107,37 @@ function M.config()
     { virtual_text = { prefix = "" } }
   )
 
+  -- Add custom server configs
+  local configs = require("lspconfig.configs")
+  local util = require("lspconfig.util")
+
+  if not configs["rust_ls"] then
+    configs["rust_ls"] = {
+      default_config = {
+        cmd = { "vhdl_ls" },
+        filetypes = { "vhdl" },
+        root_dir = function(fname)
+          return util.root_pattern({ ".vhdl_ls.toml", "vhdl_ls.toml" })(fname)
+            or util.find_git_ancestor(fname)
+        end,
+        settings = {},
+        docs = {
+          description = [[
+https://github.com/VHDL-LS/rust_hdl
+
+A collection of HDL related tools
+
+`rust_hdl` can be built with cargo
+`git clone https://github.com/VHDL-LS/rust_hdl ~/.cache/nvim/rust_ls`
+`cd ~/.cache/nvim/rust_ls`
+`cargo build --release`
+`ln -s ~/.cache/nvim/rust_ls/target/release/vhdl_ls ~/.local/bin/vhdl_ls`
+          ]],
+        },
+      },
+    }
+  end
+
   -- Setup language servers
   -- bash-language-server
   lspconfig.bashls.setup({
@@ -128,13 +159,17 @@ function M.config()
   lspconfig.hls.setup({
     capabilities = M.capabilities,
     on_attach = M.on_attach,
-    root_dir = lspconfig.util.root_pattern(
+    root_dir = util.root_pattern(
       "*.cabal",
       "stack.yaml",
       "cabal.project",
       "package.yaml",
       "hie.yaml"
     ),
+  })
+  lspconfig.rust_ls.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
   })
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup({

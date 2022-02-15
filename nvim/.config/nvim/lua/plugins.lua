@@ -196,9 +196,9 @@ require("packer").startup({
     })
     use({
       "folke/which-key.nvim",
-      config = function()
-        require("config.which-key").config()
-      end,
+      -- config = function()
+      --   require("config.which-key").config()
+      -- end,
     })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })

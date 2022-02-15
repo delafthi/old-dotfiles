@@ -16,6 +16,7 @@ Neovim is a terminal based text editor with a f
     - [clangd](https://github.com/clangd/clangd)
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
     - [hls](https://github.com/haskell/haskell-language-server)
+    - [hdl_checker](https://github.com/suoto/hdl_checker)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
       - [python-rope](https://github.com/python-rope/rope)
       - [python-pyflakes](https://github.com/PYCQA/pyflakes)
