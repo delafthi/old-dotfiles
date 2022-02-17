@@ -2,7 +2,7 @@ local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
 
 -- Install packer.nvim, if it is not yet installed {{{1
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
   if
@@ -41,10 +41,14 @@ cmd([[
 require("packer").startup({
   function(use)
     -- Packer can manage itself
-    use({ "wbthomason/packer.nvim" })
+    use({
+      "wbthomason/packer.nvim",
+      opt = true,
+    })
     -- Theme
     use({
       "delafthi/nord-nvim",
+      opt = false,
       config = function()
         require("config.nord-nvim").config()
       end,
@@ -52,6 +56,7 @@ require("packer").startup({
     -- Start screen
     use({
       "glepnir/dashboard-nvim",
+      event = "VimEnter",
       setup = function()
         require("config.dashboard").setup()
       end,
@@ -64,6 +69,9 @@ require("packer").startup({
         "nord-nvim",
         "kyazdani42/nvim-web-devicons",
       },
+      wants = { "nord-nvim", "nvim-web-devicons" },
+      opt = true,
+      event = "VimEnter",
       config = function()
         require("config.galaxyline").config()
       end,
@@ -78,13 +86,16 @@ require("packer").startup({
         "nvim-treesitter/nvim-treesitter-textobjects",
         "JoosepAlviste/nvim-ts-context-commentstring",
       },
+      opt = true,
       run = ":TSUpdate",
+      event = "BufRead",
       config = function()
         require("config.nvim-treesitter").config()
       end,
     })
     use({
       "norcalli/nvim-colorizer.lua",
+      event = "BufReadPost",
       config = function()
         require("config.nvim-colorizer").config()
       end,
@@ -92,13 +103,18 @@ require("packer").startup({
     use({
       "lewis6991/spellsitter.nvim",
       requires = "nvim-treesitter",
+      wants = "nvim-treesitter",
+      event = "BufReadPost",
       config = function()
         require("config.spellsitter").config()
       end,
     })
     use({
       "folke/todo-comments.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      requires = "kyazdani42/nvim-web-devicons",
+      wants = "nvim-web-devicons",
+      cmd = { "TodoTrouble", "TodoTelescope" },
+      event = "BufReadPost",
       config = function()
         require("config.todo-comments").config()
       end,
@@ -110,13 +126,19 @@ require("packer").startup({
         "nvim-lua/lsp-status.nvim",
         "nvim-lua/lsp_extensions.nvim",
       },
+      wants = {
+        "lsp-status.nvim",
+        "lsp_extensions.nvim",
+      },
+      event = "BufReadPre",
       config = function()
         require("config.nvim-lspconfig").config()
       end,
     })
     use({
       "folke/trouble.nvim",
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      requires = "kyazdani42/nvim-web-devicons",
+      wants = "nvim-web-devicons",
       cmd = "TroubleToggle",
       setup = function()
         require("config.trouble").setup()
@@ -140,6 +162,11 @@ require("packer").startup({
         "f3fora/cmp-spell",
         "saadparwaiz1/cmp_luasnip",
       },
+      wants = {
+        "Luasnip",
+        "neogen",
+      },
+      event = "InsertEnter",
       config = function()
         require("config.nvim-cmp").config()
       end,
@@ -147,6 +174,8 @@ require("packer").startup({
     use({
       "windwp/nvim-autopairs",
       requires = "nvim-treesitter",
+      wants = "nvim-treesitter",
+      event = "BufRead",
       config = function()
         require("config.nvim-autopairs").config()
       end,
@@ -158,6 +187,11 @@ require("packer").startup({
         "rafamadriz/friendly-snippets",
         "VHDL-LS/rust_hdl_vscode", -- Just for the snippets
       },
+      wants = {
+        "friendly-snippets",
+        "rust_hdl_vscode",
+      },
+      event = "InsertEnter",
       setup = function()
         require("config.luasnip").setup()
       end,
@@ -169,6 +203,8 @@ require("packer").startup({
     use({
       "numToStr/Comment.nvim",
       requires = "JoosepAlviste/nvim-ts-context-commentstring",
+      wants = "nvim-ts-context-commentstring",
+      keys = { "gc", "gcc", "gbc" },
       config = function()
         require("config.Comment").config()
       end,
@@ -176,6 +212,8 @@ require("packer").startup({
     use({
       "danymat/neogen",
       requires = "nvim-treesitter",
+      wants = "nvim-treesitter",
+      event = "BufReadPost",
       setup = function()
         require("config.neogen").setup()
       end,
@@ -186,6 +224,7 @@ require("packer").startup({
     -- Visuals/aesthetics
     use({
       "lukas-reineke/indent-blankline.nvim",
+      event = "BufReadPre",
       config = function()
         require("config.indent-blankline").config()
       end,
@@ -193,6 +232,8 @@ require("packer").startup({
     use({
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
+      wants = "plenary.nvim",
+      event = "BufReadPre",
       config = function()
         require("config.gitsigns").config()
       end,
@@ -222,6 +263,7 @@ require("packer").startup({
       setup = function()
         require("config.lightspeed").setup()
       end,
+      event = "BufReadPost",
       config = function()
         require("config.lightspeed").config()
       end,
@@ -237,6 +279,13 @@ require("packer").startup({
         "nvim-telescope/telescope-fzy-native.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-project.nvim",
+      },
+      wants = {
+        "popup.nvim",
+        "plenary.nvim",
+        "telescope-fzy-native.nvim",
+        "telescope-file-browser.nvim",
+        "telescope-project.nvim",
       },
       cmd = "Telescope",
       module = "telescope",
@@ -254,6 +303,10 @@ require("packer").startup({
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
       },
+      wants = {
+        "plenary.nvim",
+        "diffview.nvim",
+      },
       module = "neogit",
       setup = function()
         require("config.neogit").setup()
@@ -266,6 +319,7 @@ require("packer").startup({
     use({
       "ThePrimeagen/harpoon",
       requires = "nvim-lua/plenary.nvim",
+      wants = "plenary.nvim",
       module = "harpoon",
       setup = function()
         require("config.harpoon").setup()
@@ -298,6 +352,7 @@ require("packer").startup({
     use({
       "rcarriga/nvim-dap-ui",
       requires = "nvim-dap",
+      after = "nvim-dap",
       module = "dapui",
       setup = function()
         require("config.nvim-dap-ui").setup()
@@ -349,8 +404,8 @@ require("packer").startup({
     })
     use({
       "nvim-orgmode/orgmode.nvim",
-      module = "orgmode",
       ft = "org",
+      module = "orgmode",
       config = function()
         require("config.orgmode").config()
       end,
@@ -358,6 +413,7 @@ require("packer").startup({
     use({
       "akinsho/org-bullets.nvim",
       requires = "orgmode.nvim",
+      after = "orgmode.nvim",
       ft = "org",
       config = function()
         require("config.org-bullets").config()
@@ -369,6 +425,7 @@ require("packer").startup({
     end
   end,
   config = {
+    opt_default = true,
     display = {
       open_fn = function()
         return require("packer.util").float({ border = "single" })

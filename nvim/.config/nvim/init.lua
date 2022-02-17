@@ -40,6 +40,8 @@ cmd([[
     autocmd BufWritepre * call TrimTrailingLines()
   augroup END
 ]])
+-- Try to save file with sudo on files that require root permission
+cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
@@ -203,8 +205,6 @@ keymap.set("v", ">", ">gv", opts)
 keymap.set("n", "<Leader>bd", ":ls<Cr>:bd<Space>", opts)
 -- Toggle spell checking.
 keymap.set("n", "<Leader>o", ":setlocal spell!<Cr>", opts)
--- Try to save file with sudo on files that require root permission
-cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
 -- Mouse {{{1
 vim.opt.mouse = "nvicr" -- Enables different support modes for the mouse
@@ -284,6 +284,8 @@ vim.opt.wildignorecase = true -- Ignores case when completing.
 vim.opt.wildoptions = "pum" -- Display the completion matches using the popupmenu.
 
 -- Load Plugins at the end {{{1
-require("plugins")
+vim.defer_fn(function()
+  require("plugins")
+end, 0)
 
 -- }}}1
