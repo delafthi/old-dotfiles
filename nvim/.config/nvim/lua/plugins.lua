@@ -154,7 +154,10 @@ require("packer").startup({
     -- Snippets
     use({
       "L3MON4D3/Luasnip",
-      requires = "rafamadriz/friendly-snippets",
+      requires = {
+        "rafamadriz/friendly-snippets",
+        "VHDL-LS/rust_hdl_vscode", -- Just for the snippets
+      },
       setup = function()
         require("config.luasnip").setup()
       end,
@@ -196,9 +199,9 @@ require("packer").startup({
     })
     use({
       "folke/which-key.nvim",
-      config = function()
-        require("config.which-key").config()
-      end,
+      -- config = function()
+      --   require("config.which-key").config()
+      -- end,
     })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })
