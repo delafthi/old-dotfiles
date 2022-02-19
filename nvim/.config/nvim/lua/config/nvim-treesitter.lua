@@ -1,6 +1,17 @@
 local M = {}
 
 function M.config()
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.vhdl = {
+    install_info = {
+      url = "https://github.com/alemuller/tree-sitter-vhdl",
+      files = { "src/parser.c" },
+      branch = "main",
+      generate_requires_npm = false,
+      requires_generate_from_grammar = false,
+    },
+    filetype = { "vhdl", "vhd" },
+  }
   -- Call the setup function
   require("nvim-treesitter.configs").setup({
     ensure_installed = "maintained",

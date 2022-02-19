@@ -91,9 +91,11 @@ require("packer").startup({
       requires = {
         "p00f/nvim-ts-rainbow",
         "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/playground",
         "JoosepAlviste/nvim-ts-context-commentstring",
       },
       run = ":TSUpdate",
+      cmd = { "TSInstall", "TSUpdate" },
       event = "BufRead",
       config = function()
         require("config.nvim-treesitter").config()
