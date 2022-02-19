@@ -1,6 +1,5 @@
 local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
-local keymap = vim.keymap -- set keymaps
 
 vim.g.mapleader = " " -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
@@ -127,84 +126,6 @@ vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
 vim.opt.foldtext = [[luaeval("require('util').foldtext()")]] -- Function called to display fold line.
-
--- Key mappings {{{1
-local opts = { silent = true }
--- Remap jk keys to navigate through visual lines.
-keymap.set({ "n", "v" }, "j", "gj", opts)
-keymap.set({ "n", "v" }, "k", "gk", opts)
--- Move lines with <Leader>j and <Leader>k
-keymap.set("n", "<Leader>j", ":m .+1<Cr>==", opts)
-keymap.set("v", "<Leader>j", ":m '>+1<Cr>gv=gv", opts)
-keymap.set("n", "<Leader>k", ":m .-2<Cr>==", opts)
-keymap.set("v", "<Leader>k", ":m '<-2<Cr>gv=gv", opts)
--- Keep the cursor centered and open folds
-keymap.set("n", "n", "nzzzv", opts)
-keymap.set("n", "N", "Nzzzv", opts)
-keymap.set("n", "J", "mzJ`z", opts)
--- Insert undo breakpoints in insert mode
-keymap.set("i", ",", ",<C-g>u", opts)
-keymap.set("i", ".", ".<C-g>u", opts)
-keymap.set("i", "(", "(<C-g>u", opts)
-keymap.set("i", ")", ")<C-g>u", opts)
-keymap.set("i", "[", "[<C-g>u", opts)
-keymap.set("i", "]", "]<C-g>u", opts)
-keymap.set("i", "{", "{<C-g>u", opts)
-keymap.set("i", "}", "}<C-g>u", opts)
--- Open terminal inside nvim with <Leader>tt.
-keymap.set("n", "<Leader>tt", function()
-  require("util").open_terminal("h")
-end, opts)
-keymap.set("n", "<Leader>th", function()
-  require("util").open_terminal("h")
-end, opts)
-keymap.set("n", "<Leader>tv", function()
-  require("util").open_terminal("v")
-end, opts)
--- Execute a lua line
-keymap.set("n", "<Leader>eb", function()
-  require("util").eval_buffer()
-end, opts)
-keymap.set("n", "<Leader>ee", function()
-  require("util").eval_line()
-end, opts)
-keymap.set("v", "<Leader>e", function()
-  require("util").eval_section()
-end, opts)
--- Map window navigation to CTRL + hjkl.
-if not pcall(function()
-  require("Navigator")
-end) then
-  keymap.set({ "n", "i", "t" }, "<C-h>", "<C-\\><C-n><C-w>h", opts)
-  keymap.set({ "n", "i", "t" }, "<C-j>", "<C-\\><C-n><C-w>j", opts)
-  keymap.set({ "n", "i", "t" }, "<C-k>", "<C-\\><C-n><C-w>k", opts)
-  keymap.set({ "n", "i", "t" }, "<C-l>", "<C-\\><C-n><C-w>l", opts)
-end
--- Better resizing of windows with CTRL + arrows
-keymap.set(
-  { "n", "i", "t" },
-  "<C-Left>",
-  "<C-\\><C-n>:vertical resize -2<Cr>",
-  opts
-)
-keymap.set({ "n", "i", "t" }, "<C-Up>", "<C-\\><C-n>:resize +2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<C-Down>", "<C-\\><C-n>:resize -2<Cr>", opts)
-keymap.set(
-  { "n", "i", "t" },
-  "<C-Right>",
-  "<C-\\><C-n>:vertical resize +2<Cr>",
-  opts
-)
--- Change splits layout from vertical to horizontal or vice versa.
-keymap.set({ "n", "t" }, "<Leader>lv", "<C-w>t<C-w>H", opts)
-keymap.set({ "n", "t" }, "<Leader>lh", "<C-w>t<C-w>K", opts)
--- Better indenting in the visual mode.
-keymap.set("v", "<", "<gv", opts)
-keymap.set("v", ">", ">gv", opts)
--- Show buffers and select one to kill.
-keymap.set("n", "<Leader>bd", ":ls<Cr>:bd<Space>", opts)
--- Toggle spell checking.
-keymap.set("n", "<Leader>o", ":setlocal spell!<Cr>", opts)
 
 -- Mouse {{{1
 vim.opt.mouse = "nvicr" -- Enables different support modes for the mouse

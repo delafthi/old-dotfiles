@@ -1,5 +1,4 @@
 local M = {}
-local keymap = vim.keymap
 
 function M.setup()
   -- Define global variables
@@ -20,9 +19,6 @@ function M.setup()
     content_editable = false,
     disable_filename = 0,
   }
-  -- Define keybinding
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>mp", "<Plug>MarkdownPreviewToggle", opts)
 end
 
 return M

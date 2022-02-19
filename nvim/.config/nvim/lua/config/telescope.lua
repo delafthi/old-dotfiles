@@ -1,45 +1,4 @@
 local M = {}
-local keymap = vim.keymap
-
-function M.setup()
-  -- Define keybindings
-  local opts = { silent = true }
-  -- Show Telescope buffers.
-  keymap.set("n", "<Leader>bb", function()
-    require("telescope.builtin").buffers()
-  end, opts)
-  -- Search recursively in all files
-  keymap.set("n", "<Leader>ff", function()
-    require("telescope.builtin").fd({ hidden = true })
-  end, opts)
-  -- Search recursively in all git files
-  keymap.set("n", "<Leader>fg", function()
-    require("telescope.builtin").git_files()
-  end, opts)
-  -- Grep a string in the workspace
-  keymap.set("n", "<Leader>rg", function()
-    require("telescope.builtin").live_grep()
-  end, opts)
-  -- Find something in the documentation
-  keymap.set("n", "<Leader>hh", function()
-    require("telescope.builtin").help_tags()
-  end, opts)
-  keymap.set("n", "<Leader>hk", function()
-    require("telescope.builtin").keymaps()
-  end, opts)
-  -- Git
-  keymap.set("n", "<Leader>gs", function()
-    require("telescope.builtin").git_status()
-  end, opts)
-  -- File browser
-  keymap.set("n", "<Leader>fb", function()
-    require("telescope").extensions.file_browser.file_browser()
-  end, opts)
-  -- Projects
-  keymap.set("n", "<Leader>pp", function()
-    require("telescope").extensions.project.project({})
-  end, opts)
-end
 
 function M.config()
   local telescope = require("telescope")

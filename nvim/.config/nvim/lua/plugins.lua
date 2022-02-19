@@ -53,6 +53,15 @@ require("packer").startup({
         require("config.nord-nvim").config()
       end,
     })
+    -- Key binding documentation and display
+    use({
+      "folke/which-key.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.which-key").config()
+        require("config.keys")
+      end,
+    })
     -- Start screen
     use({
       "glepnir/dashboard-nvim",
@@ -238,12 +247,6 @@ require("packer").startup({
         require("config.gitsigns").config()
       end,
     })
-    use({
-      "folke/which-key.nvim",
-      -- config = function()
-      --   require("config.which-key").config()
-      -- end,
-    })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })
     -- File formatting
@@ -260,9 +263,6 @@ require("packer").startup({
     -- Movement
     use({
       "ggandor/lightspeed.nvim",
-      setup = function()
-        require("config.lightspeed").setup()
-      end,
       event = "BufReadPost",
       config = function()
         require("config.lightspeed").config()
@@ -289,9 +289,6 @@ require("packer").startup({
       },
       cmd = "Telescope",
       module = "telescope",
-      setup = function()
-        require("config.telescope").setup()
-      end,
       config = function()
         require("config.telescope").config()
       end,
@@ -308,9 +305,6 @@ require("packer").startup({
         "diffview.nvim",
       },
       module = "neogit",
-      setup = function()
-        require("config.neogit").setup()
-      end,
       config = function()
         require("config.neogit").config()
       end,
@@ -321,9 +315,6 @@ require("packer").startup({
       requires = "nvim-lua/plenary.nvim",
       wants = "plenary.nvim",
       module = "harpoon",
-      setup = function()
-        require("config.harpoon").setup()
-      end,
       config = function()
         require("config.harpoon").config()
       end,
@@ -331,9 +322,6 @@ require("packer").startup({
     use({
       "numToStr/Navigator.nvim",
       module = "Navigator",
-      setup = function()
-        require("config.Navigator").setup()
-      end,
       config = function()
         require("config.Navigator").config()
       end,
@@ -342,9 +330,6 @@ require("packer").startup({
     use({
       "mfussenegger/nvim-dap",
       module = "dap",
-      setup = function()
-        require("config.nvim-dap").setup()
-      end,
       config = function()
         require("config.nvim-dap").config()
       end,
@@ -354,9 +339,6 @@ require("packer").startup({
       requires = "nvim-dap",
       after = "nvim-dap",
       module = "dapui",
-      setup = function()
-        require("config.nvim-dap-ui").setup()
-      end,
       config = function()
         require("config.nvim-dap-ui").config()
       end,

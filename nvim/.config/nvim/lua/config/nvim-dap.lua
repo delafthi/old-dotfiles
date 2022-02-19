@@ -1,19 +1,4 @@
 local M = {}
-local keymap = vim.keymap
-
-function M.setup()
-  -- Define keybindings
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>db", function()
-    require("dap").toggle_breakpoint()
-  end, opts)
-  keymap.set("n", "<Leader>bl", function()
-    require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-  end, opts)
-  keymap.set("n", "<Leader>dr", function()
-    require("dap").repl.toggle()
-  end, opts)
-end
 
 function M.config()
   local dap = require("dap")

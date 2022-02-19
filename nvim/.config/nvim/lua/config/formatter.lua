@@ -1,11 +1,6 @@
 local M = {}
-local keymap = vim.keymap
 
 function M.setup()
-  -- Define keybinding
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>bf", ":Format<Cr>", opts)
-
   -- Define autocommand to automatically format files on save.
   vim.cmd([[
     augroup format_text

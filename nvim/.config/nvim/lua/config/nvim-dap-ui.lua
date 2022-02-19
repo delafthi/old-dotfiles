@@ -1,16 +1,8 @@
 local M = {}
-local keymap = vim.keymap
-
-function M.setup()
-  -- Define keybinding
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>dg", function()
-    require("dapui").toggle()
-  end, opts)
-end
 
 function M.config()
   -- Automatically open nvim-dap-ui
+  local dapui = require("dapui")
   local dap = require("dap")
 
   dap.listeners.after.event_initialized["dapui_config"] = function()

@@ -1,13 +1,4 @@
 local M = {}
-local keymap = vim.keymap
-
-function M.setup()
-  -- Define keybinding
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>ng", function()
-    require("neogit").open({ kind = "vsplit" })
-  end, opts)
-end
 
 function M.config()
   -- Call the setup function

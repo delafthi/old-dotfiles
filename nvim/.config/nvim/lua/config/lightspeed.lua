@@ -1,14 +1,4 @@
 local M = {}
-local keymap = vim.keymap
-
-function M.setup()
-  -- Define keybindings
-  local opts = { silent = true }
-  keymap.set("v", ";", "<Plug>Lightspeed_;_sx", opts)
-  keymap.set("v", ";", "<Plug>Lightspeed_;_ft", opts)
-  keymap.set("v", ",", "<Plug>Ligthspeed_,_sx", opts)
-  keymap.set("v", ",", "<Plug>Ligthspeed_,_ft", opts)
-end
 
 function M.config()
   -- Call the setup function

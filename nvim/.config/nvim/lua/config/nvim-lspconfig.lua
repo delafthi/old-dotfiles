@@ -1,7 +1,6 @@
 local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
-local keymap = vim.keymap
 
 function M.get_capabilities()
   -- Set language-server capabilities
@@ -31,32 +30,115 @@ function M.on_attach(client, bufnr)
   vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   -- Define keybindings
-  local opts = { silent = true, buffer = bufnr }
-  keymap.set("n", "gD", lsp.buf.declaration, opts)
-  keymap.set("n", "gd", lsp.buf.definition, opts)
-  keymap.set("n", "gr", lsp.buf.references, opts)
-  keymap.set("n", "K", lsp.buf.hover, opts)
-  keymap.set("n", "[d", diagnostic.goto_prev, opts)
-  keymap.set("n", "]d", diagnostic.goto_next, opts)
-  keymap.set("n", "gi", lsp.buf.implementation, opts)
-  keymap.set({ "n", "i" }, "<C-s>", lsp.buf.signature_help, opts)
-  keymap.set("n", "<Leader>wa", lsp.buf.add_workspace_folder, opts)
-  keymap.set("n", "<Leader>wr", lsp.buf.remove_workspace_folder, opts)
-  keymap.set("n", "<Leader>wl", function()
-    print(vim.inspect(lsp.buf.list_workspace_folders()))
-  end, opts)
-  keymap.set("n", "<Leader>D", lsp.buf.type_definition, opts)
-  keymap.set("n", "<Leader>rn", lsp.buf.rename, opts)
-  keymap.set("n", "<Leader>e", function()
-    diagnostic.open_float({ severity_sort = true })
-  end, opts)
-  keymap.set("n", "<Leader>q", lsp.util.set_loclist, opts)
+  local wk = require("which-key")
+  wk.register({
+    g = {
+      name = "+goto",
+      D = {
+        lsp.buf.declaration,
+        "Go to declaration",
+        buffer = bufnr,
+      },
+      d = {
+        lsp.buf.definition,
+        "Go to definition",
+        buffer = bufnr,
+      },
+      r = {
+        lsp.buf.references,
+        "Go to references",
+        buffer = bufnr,
+      },
+      i = {
+        lsp.buf.implementation,
+        "Go to implementation",
+        buffer = bufnr,
+      },
+    },
+    K = { lsp.buf.hover, "Get hover", buffer = bufnr },
+    d = {
+      name = "+diagnostic",
+      ["["] = {
+        diagnostic.goto_prev,
+        "Go to previous diagnostic",
+        buffer = bufnr,
+      },
+      ["]"] = {
+        diagnostic.goto_next,
+        "Go to next diagnostic",
+        buffer = bufnr,
+      },
+      e = {
+        function()
+          diagnostic.open_float({ severity_sort = true })
+        end,
+        buffer = bufnr,
+      },
+    },
+    ["<C-s>"] = {
+      lsp.buf.signature_help,
+      "Show signature help",
+      buffer = bufnr,
+    },
+    w = {
+      name = "+workspace",
+      a = {
+        lsp.buf.add_workspace_folder,
+        "Add workspace folder",
+        buffer = bufnr,
+      },
+      r = {
+        lsp.buf.remove_workspace_folder,
+        "Remove workspace folder",
+        buffer = bufnr,
+      },
+      l = {
+        function()
+          print(vim.inspect(lsp.buf.list_workspace_folders()))
+        end,
+        "List workspace folder",
+        buffer = bufnr,
+      },
+    },
+    ["<Leader>"] = {
+      D = { lsp.buf.type_definition, "Get type definition", buffer = bufnr },
+      ["rn"] = { lsp.buf.rename, "Rename", buffer = bufnr },
+      q = { lsp.util.set_loclist, "Make local quickfixlist", buffer = bufnr },
+    },
+  })
+  wk.register({
+    ["<C-s>"] = {
+      lsp.buf.signature_help,
+      "Show signature help",
+      mode = "i",
+      buffer = bufnr,
+    },
+  })
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    keymap.set("n", "<Leader>bf", lsp.buf.formatting, opts)
+    wk.register({
+      ["<Leader>"] = {
+        b = {
+          name = "+buffer",
+          f = { lsp.buf.formatting, "Format the buffer", buffer = bufnr },
+        },
+      },
+    })
   elseif client.resolved_capabilities.document_range_formatting then
-    keymap.set("v", "<Leader>bf", lsp.buf.ranger_formatting, opts)
+    wk.register({
+      ["<Leader>"] = {
+        b = {
+          name = "+buffer",
+          f = {
+            lsp.buf.ranger_formatting,
+            "Format the selection",
+            mode = "v",
+            buffer = bufnr,
+          },
+        },
+      },
+    })
   end
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
