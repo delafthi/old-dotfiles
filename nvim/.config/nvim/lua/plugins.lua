@@ -43,7 +43,6 @@ require("packer").startup({
     -- Packer can manage itself
     use({
       "wbthomason/packer.nvim",
-      opt = true,
     })
     -- Theme
     use({
@@ -79,7 +78,6 @@ require("packer").startup({
         "kyazdani42/nvim-web-devicons",
       },
       wants = { "nord-nvim", "nvim-web-devicons" },
-      opt = true,
       event = "VimEnter",
       config = function()
         require("config.galaxyline").config()
@@ -95,7 +93,6 @@ require("packer").startup({
         "nvim-treesitter/nvim-treesitter-textobjects",
         "JoosepAlviste/nvim-ts-context-commentstring",
       },
-      opt = true,
       run = ":TSUpdate",
       event = "BufRead",
       config = function()
