@@ -329,7 +329,7 @@ wk.register({
       h = { ":DashboardNewFile<Cr>", "Search in file history" },
       b = {
         function()
-          require("telescope").extensions.file_browser.file()
+          require("telescope").extensions.file_browser.file_browser()
         end,
         "File browser",
       },
