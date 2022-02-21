@@ -59,10 +59,6 @@ function M.eval_line()
   end
 end
 
-local a = "Hello"
-print(a .. " World")
-print("Hello ")
-
 function M.eval_section()
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   local selection = M.get_visual_selection()
