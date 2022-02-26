@@ -76,8 +76,8 @@ local modkey = "Mod4" -- Meta key
 tag.connect_signal("request::default_layouts", function()
   awful.layout.append_default_layouts({
     -- awful.layout.suit.floating,
-    awful.layout.suit.tile,
     twopane, -- awful.layout.suit.tile.left,
+    awful.layout.suit.tile,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
@@ -105,13 +105,13 @@ awful.keyboard.append_global_keybindings({
     description = "lock the session",
     group = "awesome",
   }),
-  awful.key({ modkey, "Control" }, "q", function()
+  awful.key({ modkey, "Control" }, "d", function()
     awesome.quit()
   end, {
     description = "quit awesome",
     group = "awesome",
   }),
-  awful.key({ modkey, "Shift" }, "q", function()
+  awful.key({ modkey, "Shift" }, "r", function()
     awesome.restart()
   end, {
     description = "restart awesome",
@@ -129,13 +129,26 @@ awful.keyboard.append_global_keybindings({
     description = "open a terminal",
     group = "launcher",
   }),
+  awful.key({ modkey }, "s", function()
+    awful.spawn(terminal, {
+      name = "scratchpad",
+      floating = true,
+      skip_taskbar = true,
+      placement = awful.placement.centered + awful.placement.no_offscreen,
+      width = awful.screen.focused().geometry.width * 0.8,
+      height = awful.screen.focused().geometry.height * 0.8,
+    })
+  end, {
+    description = "open a scrathpad terminal",
+    group = "launcher",
+  }),
   awful.key({ modkey, "Shift" }, "Return", function()
     awful.spawn("rofi -show run")
   end, {
     description = "open rofi",
     group = "launcher",
   }),
-  awful.key({ modkey, "Shift" }, "k", function()
+  awful.key({ modkey, "Shift" }, "p", function()
     awful.spawn("bwmenu --auto-lock 300 -c 15")
   end, {
     description = "open bitwarden-rofi",
@@ -171,25 +184,25 @@ awful.keyboard.append_global_keybindings({
     description = "previous layout",
     group = "layout",
   }),
-  awful.key({ modkey }, "h", function()
+  awful.key({ modkey }, "comma", function()
     awful.tag.incmwfact(-0.03, nil)
   end, {
     description = "minmize the master pane",
     group = "layout",
   }),
-  awful.key({ modkey }, "l", function()
+  awful.key({ modkey }, "period", function()
     awful.tag.incmwfact(0.03, nil)
   end, {
     description = "maximize the master pane",
     group = "layout",
   }),
-  awful.key({ modkey }, "period", function()
+  awful.key({ modkey, "Shift" }, "comma", function()
     awful.tag.incnmaster(-1, nil, true)
   end, {
     description = "decrease number of master clients",
     group = "layout",
   }),
-  awful.key({ modkey }, "comma", function()
+  awful.key({ modkey, "Shift" }, "period", function()
     awful.tag.incnmaster(1, nil, true)
   end, {
     description = "increase number of master clients",
@@ -230,25 +243,25 @@ awful.keyboard.append_global_keybindings({
 
 -- Focus related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "d", function()
+  awful.key({ modkey }, "j", function()
     awful.client.focus.byidx(1)
   end, {
     description = "focus next client",
     group = "client",
   }),
-  awful.key({ modkey }, "u", function()
+  awful.key({ modkey }, "k", function()
     awful.client.focus.byidx(-1)
   end, {
     description = "focus previous client",
     group = "client",
   }),
-  awful.key({ modkey, "Shift" }, "d", function()
+  awful.key({ modkey, "Shift" }, "j", function()
     awful.client.swap.byidx(1)
   end, {
     description = "swap with next client",
     group = "client",
   }),
-  awful.key({ modkey, "Shift" }, "u", function()
+  awful.key({ modkey, "Shift" }, "k", function()
     awful.client.swap.byidx(-1)
   end, {
     description = "swap with previous client",
@@ -258,13 +271,13 @@ awful.keyboard.append_global_keybindings({
 
 -- Screen related keybindings
 awful.keyboard.append_global_keybindings({
-  awful.key({ modkey }, "p", function()
+  awful.key({ modkey }, "h", function()
     awful.screen.focus_bydirection("left", awful.screen.focused())
   end, {
     description = "focus left screen",
     group = "screen",
   }),
-  awful.key({ modkey }, "n", function()
+  awful.key({ modkey }, "l", function()
     awful.screen.focus_bydirection("right", awful.screen.focused())
   end, {
     description = "focus right screen",
@@ -320,7 +333,7 @@ awful.keyboard.append_global_keybindings({
 -- Set client related key bindings
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
-    awful.key({ modkey }, "q", function(c)
+    awful.key({ modkey }, "d", function(c)
       c:kill()
     end, {
       description = "kill the current client",
@@ -346,7 +359,7 @@ client.connect_signal("request::default_keybindings", function()
       description = "toggle floating for the current client",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "p", function(c)
+    awful.key({ modkey, "Shift" }, "h", function(c)
       local sel = c.screen
       local target = sel:get_next_in_direction("left")
       if target then
@@ -356,7 +369,7 @@ client.connect_signal("request::default_keybindings", function()
       description = "move focused client to the left screen",
       group = "client",
     }),
-    awful.key({ modkey, "Shift" }, "n", function(c)
+    awful.key({ modkey, "Shift" }, "l", function(c)
       local sel = c.screen
       local target = sel:get_next_in_direction("right")
       c:move_to_screen(target)
@@ -462,7 +475,7 @@ client.connect_signal("focus", function(c)
 end)
 client.connect_signal("unfocus", function(c)
   c.skip_taskbar = true
-  if c.floating == true then
+  if c.floating then
     c.border_color = beautiful.border_color_floating
   else
     c.border_color = beautiful.border_color_normal
