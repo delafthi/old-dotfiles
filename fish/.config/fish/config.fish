@@ -16,9 +16,6 @@ end
 
 # Enable vi bindings and cursor
 set -g fish_key_bindings fish_vi_key_bindings
-# Rebind <C-c> to clear the input line in all modes
-bind -M insert \cc kill-whole-line repaint-mode
-bind \cc 'commandline -f kill-whole-line; set fish_bind_mode insert; commandline -f repaint-mode'
 
 # Set command not found handler to the default one
 function fish_command_not_found
@@ -40,6 +37,17 @@ abbr -a .5 "cd ../../../../.."
 
 # vim like exit
 abbr -a :q exit
+# Keybindings
+bind -M insert \cq exit
+bind -M insert \ck up-or-search
+bind -M insert \cj down-or-search
+bind -M insert \cp up-or-search
+bind -M insert \cn complete
+bind -M insert \cs pager-toggle-search
+bind -M insert -k nul accept-autosuggestion
+# Rebind <C-c> to clear the input line in all modes
+bind -M insert \cc kill-whole-line repaint-mode
+bind \cc 'commandline -f kill-whole-line; set fish_bind_mode insert; commandline -f repaint-mode'
 
 # Adding flags
 alias cp="cp -i" # confirm before overwriting something
