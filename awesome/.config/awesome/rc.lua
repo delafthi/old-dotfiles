@@ -425,13 +425,12 @@ ruled.client.connect_signal("request::rules", function()
   ruled.client.append_rule({
     id = "floating",
     rule_any = {
-      class = { "Pavucontrol", "Xmessage" },
-      name = { "Origin" },
-      type = { "dialog" },
+      class = { "Pavucontrol" },
+      type = { "dialog", "menu" },
     },
     properties = {
       floating = true,
-      placement = awful.placement.centered,
+      placement = awful.placement.centered + awful.placement.no_offscreen,
       width = awful.screen.focused().geometry.width * 0.8,
       height = awful.screen.focused().geometry.height * 0.8,
     },
