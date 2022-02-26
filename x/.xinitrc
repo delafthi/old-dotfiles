@@ -25,9 +25,9 @@ fi
 
 # start some nice programs
 
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+    [ -x "$f" ] && . "$f"
   done
   unset f
 fi
@@ -41,10 +41,14 @@ udiskie &
 picom &
 pcmanfm -d &
 unclutter --timeout 10 &
+# Start systray icons
+nm-applet &
+volumeicon &
+blueman-applet &
 # Default session
 session=${2:-awesome}
 case $session in
-  awesome ) exec awesome;;
+  awesome) exec awesome ;;
   # If the session is not known, try to execute it as command
-  * ) exec $1;;
+  *) exec $1 ;;
 esac

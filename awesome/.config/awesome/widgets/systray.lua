@@ -17,10 +17,13 @@ function M.get_widget(s)
   if s == screen.primary then
     local systray = wibox.widget({
       {
-        { widget = wibox.widget.systray },
+        {
+          reverse = true,
+          widget = wibox.widget.systray,
+        },
         top = 2 * beautiful.useless_gap,
         bottom = 2 * beautiful.useless_gap,
-        left = 5 * beautiful.useless_gap,
+        left = 2 * beautiful.useless_gap,
         right = 5 * beautiful.useless_gap,
         widget = wibox.container.margin,
       },

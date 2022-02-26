@@ -406,7 +406,7 @@ theme.slider_bar_color = theme.nord1 -- The bar (background) height
 theme.slider_bar_active_color = theme.nord0 -- The bar (active) color
 
 -- Systray {{{3
-theme.systray_icon_spacing = dpi(3) -- The systray icon spacing
+theme.systray_icon_spacing = 4 * theme.useless_gap -- The systray icon spacing
 
 -- Taglist {{{3
 theme.taglist_fg_focus = theme.nord0 -- The tag list main foreground (text) color

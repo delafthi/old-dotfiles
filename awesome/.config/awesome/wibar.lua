@@ -55,7 +55,7 @@ function M.set(s)
   local spacer = require("widgets.spacer").get_widget()
   local cpuinfo = require("widgets.cpuinfo").get_widget()
   local meminfo = require("widgets.meminfo").get_widget()
-  local volumectrl = require("widgets.volumectrl").get_widget()
+  local systray = require("widgets.systray").get_widget(s)
   local time = require("widgets.time").get_widget()
 
   -- Add widgets to the wibox
@@ -82,7 +82,7 @@ function M.set(s)
         {
           cpuinfo,
           meminfo,
-          volumectrl,
+          systray,
           time,
           layout = wibox.layout.fixed.horizontal,
         },
