@@ -7,9 +7,8 @@ adjustements for the corner radius and the transition timings.
 
 ## Dependencies
 
-- [jonaburg-picom](https://github.com/jonaburg/picom)
+- [picom](https://github.com/yshui/picom)
 
 ## References
 
-- [jonaburg-picom](https://github.com/jonaburg/picom)
 - [Arch Wiki](https://wiki.archlinux.org/title/Picom)

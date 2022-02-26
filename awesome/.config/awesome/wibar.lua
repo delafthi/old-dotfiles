@@ -16,7 +16,7 @@ local M = {}
 -- Wibar {{{1
 
 function M.set(s)
-  local gap = 2 * beautiful.useless_gap
+  local gap = beautiful.useless_gap
 
   -- Remove old wibox in case of a restart
   if s.mywibar ~= nil then
@@ -32,9 +32,9 @@ function M.set(s)
     visible = true,
     opacity = beautiful.wibar_opacity,
     type = beautiful.wibar_type,
-    x = s.geometry.x + gap,
-    y = s.geometry.y + gap,
-    width = s.geometry.width - 2 * beautiful.wibar_border_width - 2 * gap,
+    x = s.geometry.x,
+    y = s.geometry.y,
+    width = s.geometry.width - 2 * beautiful.wibar_border_width,
     height = beautiful.wibar_height,
     screen = s,
     shape = beautiful.wibar_shape,
@@ -44,7 +44,7 @@ function M.set(s)
   })
 
   s.mywibar:struts({
-    top = beautiful.wibar_height + 2 * beautiful.wibar_border_width + gap,
+    top = beautiful.wibar_height + 2 * beautiful.wibar_border_width,
   })
 
   -- Create screen specific widgets
