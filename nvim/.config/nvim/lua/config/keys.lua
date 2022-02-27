@@ -299,7 +299,7 @@ wk.register({
       },
       t = {
         function()
-          require("telescope.builtin").buffers()
+          require("telescope.builtin").builtin()
         end,
         "Telescope",
       },

@@ -80,6 +80,36 @@ function M.on_attach(client, bufnr)
       },
       t = { lsp.buf.type_definition, "Get type definition", buffer = bufnr },
     },
+    ["<Leader>"] = {
+      w = {
+        l = {
+          name = "+lsp",
+          a = {
+            lsp.buf.add_workspace_folders,
+            "Add workspace folders",
+            buffer = bufnr,
+          },
+          d = {
+            lsp.buf.remove_workspace_folders,
+            "Remove workspace folders",
+            buffer = bufnr,
+          },
+          l = {
+            lsp.buf.list_workspace_folders,
+            "List workspace folders",
+            buffer = bufnr,
+          },
+          r = { lsp.buf.rename, "Rename", buffer = bufnr },
+          s = {
+            function()
+              require("telescope.builtin").lsp_workspace_symbols()
+            end,
+            "List workspace symbols",
+            buffer = bufnr,
+          },
+        },
+      },
+    },
   })
 
   -- Set some keybinds conditional on server capabilities
