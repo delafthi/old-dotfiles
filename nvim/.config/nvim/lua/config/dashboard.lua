@@ -25,9 +25,9 @@ function M.setup()
   vim.g.dashboard_custom_section = {
     restore_workspace = {
       description = {
-        " Restore last workspace                     SPC w l",
+        " Restore last session                      SPC w s l",
       },
-      command = "SessionLoad",
+      command = "lua require('persistence').load({last = true})",
     },
     find_history = {
       description = {

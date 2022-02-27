@@ -392,14 +392,33 @@ wk.register({
         end,
         "Toggle harpoon menu",
       },
-      l = { ":<C-u>SessionLoad<Cr>", "Load" },
       m = {
         function()
           require("harpoon.mark").add_file()
         end,
         "Add file to harpoon list",
       },
-      s = { ":<C-u>SessionSave<Cr>", "Save" },
+      s = {
+        name = "+session",
+        l = {
+          function()
+            require("persistence").load({ last = true })
+          end,
+          "Restore last",
+        },
+        s = {
+          function()
+            require("persistence").load()
+          end,
+          "Restore",
+        },
+        q = {
+          function()
+            require("persistence").stop()
+          end,
+          "Stop",
+        },
+      },
       x = {
         name = "+errors",
         x = { "<Cmd>TroubleToggle<Cr>", "Trouble" },

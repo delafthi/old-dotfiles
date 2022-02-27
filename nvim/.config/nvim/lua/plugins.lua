@@ -299,6 +299,14 @@ require("packer").startup({
         require("config.neogit").config()
       end,
     })
+    use({
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      module = "persistence",
+      config = function()
+        require("config.persistence").config()
+      end,
+    })
     -- Movement
     use({
       "ThePrimeagen/harpoon",
