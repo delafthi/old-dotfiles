@@ -1,6 +1,7 @@
 local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
+local keymap = vim.keymap
 
 function M.get_capabilities()
   -- Set language-server capabilities
@@ -29,11 +30,15 @@ end
 function M.on_attach(client, bufnr)
   vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 
+  local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
+  keymap.set({ "n", "i", "v" }, "<C-s>", lsp.buf.signature_help, opts)
+  keymap.set({ "n", "i", "v" }, "<C-i>", lsp.buf.hover, opts)
+
   local wk = require("which-key")
   wk.register({
-    g = {
-      name = "+goto",
+    ["<C-g>"] = {
+      name = "+goto/get",
       D = {
         lsp.buf.declaration,
         "Go to declaration",
@@ -44,74 +49,36 @@ function M.on_attach(client, bufnr)
         "Go to definition",
         buffer = bufnr,
       },
-      r = {
-        lsp.buf.references,
-        "Go to references",
-        buffer = bufnr,
-      },
+      h = { lsp.buf.hover, "Get hover", buffer = bufnr },
       i = {
         lsp.buf.implementation,
         "Go to implementation",
         buffer = bufnr,
       },
-    },
-    K = { lsp.buf.hover, "Get hover", buffer = bufnr },
-    d = {
-      name = "+diagnostic",
-      ["["] = {
-        diagnostic.goto_prev,
-        "Go to previous diagnostic",
-        buffer = bufnr,
-      },
-      ["]"] = {
+      n = {
         diagnostic.goto_next,
         "Go to next diagnostic",
         buffer = bufnr,
       },
-      e = {
+      p = {
+        diagnostic.goto_prev,
+        "Go to previous diagnostic",
+        buffer = bufnr,
+      },
+      q = { lsp.util.set_loclist, "Get local quickfixlist", buffer = bufnr },
+      r = {
+        lsp.buf.references,
+        "Go to references",
+        buffer = bufnr,
+      },
+      s = {
         function()
           diagnostic.open_float({ severity_sort = true })
         end,
+        "Get diagnostics",
         buffer = bufnr,
       },
-    },
-    ["<C-s>"] = {
-      lsp.buf.signature_help,
-      "Show signature help",
-      buffer = bufnr,
-    },
-    w = {
-      name = "+workspace",
-      a = {
-        lsp.buf.add_workspace_folder,
-        "Add workspace folder",
-        buffer = bufnr,
-      },
-      r = {
-        lsp.buf.remove_workspace_folder,
-        "Remove workspace folder",
-        buffer = bufnr,
-      },
-      l = {
-        function()
-          print(vim.inspect(lsp.buf.list_workspace_folders()))
-        end,
-        "List workspace folder",
-        buffer = bufnr,
-      },
-    },
-    ["<Leader>"] = {
-      D = { lsp.buf.type_definition, "Get type definition", buffer = bufnr },
-      ["rn"] = { lsp.buf.rename, "Rename", buffer = bufnr },
-      q = { lsp.util.set_loclist, "Make local quickfixlist", buffer = bufnr },
-    },
-  })
-  wk.register({
-    ["<C-s>"] = {
-      lsp.buf.signature_help,
-      "Show signature help",
-      mode = "i",
-      buffer = bufnr,
+      t = { lsp.buf.type_definition, "Get type definition", buffer = bufnr },
     },
   })
 

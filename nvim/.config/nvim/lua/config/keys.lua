@@ -1,282 +1,137 @@
+local keymap = vim.keymap
 local wk = require("which-key")
 
--- nvim
-wk.register({
-  j = { "gj", "Move the cursor a visual line down" },
-})
-wk.register({
-  j = { "gj", "Move the cursor a visual line down", mode = "v" },
-})
-wk.register({
-  k = { "gk", "Move the cursor a visual line up" },
-})
-wk.register({
-  k = { "gk", "Move the cursor a visual line up", mode = "v" },
-})
-wk.register({
-  n = { "nzzzv", "Go to the next found element" },
-})
-wk.register({
-  n = { "nzzzv", "Go to the next found element", mode = "v" },
-})
-wk.register({
-  N = { "Nzzzv", "Go to the previous found element" },
-})
-wk.register({
-  N = { "Nzzzv", "Go to the previous found element", mode = "v" },
-})
-wk.register({
-  J = { "mzJ`z", "Merge with the next line" },
-  Y = { "y$", "Copy from cursor to the end of the line" },
-})
-wk.register({
-  ["<C-h>"] = {
-    "<C-\\><C-n><C-w>h",
-    "Move to the left pane",
-  },
-})
-wk.register({
-  ["<C-h>"] = {
-    "<C-\\><C-n><C-w>h",
-    "Move to the left pane",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-h>"] = {
-    "<C-\\><C-n><C-w>h",
-    "Move to the left pane",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-j>"] = {
-    "<C-\\><C-n><C-w>j",
-    "Move to the lower pane",
-  },
-})
-wk.register({
-  ["<C-j>"] = {
-    "<C-\\><C-n><C-w>j",
-    "Move to the lower pane",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-j>"] = {
-    "<C-\\><C-n><C-w>j",
-    "Move to the lower pane",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-k>"] = {
-    "<C-\\><C-n><C-w>k",
-    "Move to the upper pane",
-  },
-})
-wk.register({
-  ["<C-k>"] = {
-    "<C-\\><C-n><C-w>k",
-    "Move to the upper pane",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-k>"] = {
-    "<C-\\><C-n><C-w>k",
-    "Move to the upper pane",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-l>"] = {
-    "<C-\\><C-n><C-w>l",
-    "Move to the right pane",
-  },
-})
-wk.register({
-  ["<C-l>"] = {
-    "<C-\\><C-n><C-w>l",
-    "Move to the right pane",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-l>"] = {
-    "<C-\\><C-n><C-w>l",
-    "Move to the right pane",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-Left>"] = {
-    "<C-\\><C-n>:vertical resize -2<Cr>",
-    "Decrease pane width",
-  },
-})
-wk.register({
-  ["<C-Left>"] = {
-    "<C-\\><C-n>:vertical resize -2<Cr>",
-    "Decrease pane width",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-Left>"] = {
-    "<C-\\><C-n>:vertical resize -2<Cr>",
-    "Decrease pane width",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-Up>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Increase pane height",
-  },
-})
-wk.register({
-  ["<C-Up>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Increase pane height",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-Up>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Increase pane height",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-Down>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Decrease pane height",
-  },
-})
-wk.register({
-  ["<C-Down>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Decrease pane height",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-Down>"] = {
-    "<C-\\><C-n>:resize +2<Cr>",
-    "Decrease pane height",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<C-Right>"] = {
-    "<C-\\><C-n>:vertical resize +2<Cr>",
-    "Increase pane width",
-  },
-})
-wk.register({
-  ["<C-Right>"] = {
-    "<C-\\><C-n>:vertical resize +2<Cr>",
-    "Increase pane width",
-    mode = "i",
-  },
-})
-wk.register({
-  ["<C-Right>"] = {
-    "<C-\\><C-n>:vertical resize +2<Cr>",
-    "Increase pane width",
-    mode = "t",
-  },
-})
-wk.register({
-  ["<"] = { "<gv", "Decrease indentation level", mode = "v" },
-  [">"] = { ">gv", "Increase indentation level", mode = "v" },
-})
+local opts = { silent = true }
 
--- Lightspeed
-wk.register({
-  [";"] = {
-    "<Plug>Lightspeed_;_sx",
-    "Go to next match",
-  },
-})
-wk.register({
-  [";"] = {
-    "<Plug>Lightspeed_;_sx",
-    "Go to next match",
-    mode = "v",
-  },
-})
-wk.register({
-  [","] = {
-    "<Plug>Lightspeed_,_sx",
-    "Go to next match",
-  },
-})
-wk.register({
-  [","] = {
-    "<Plug>Lightspeed_,_sx",
-    "Go to next match",
-    mode = "v",
-  },
-})
+-- Move visual lines
+keymap.set({ "n", "v" }, "j", "gj", opts)
+keymap.set({ "n", "v" }, "k", "gk", opts)
 
--- keymap.set("v", ";", "<Plug>Lightspeed_;_sx", opts)
--- keymap.set("v", ";", "<Plug>Lightspeed_;_ft", opts)
--- keymap.set("v", ",", "<Plug>Ligthspeed_,_sx", opts)
--- keymap.set("v", ",", "<Plug>Ligthspeed_,_ft", opts)
+-- The cursor should stay in the expected place
+keymap.set({ "n", "v" }, "n", "nzzzv", opts)
+keymap.set({ "n", "v" }, "N", "Nzzzv", opts)
+keymap.set("n", "J", "mzJ`z", opts)
+
+-- Add the expected behaviour of Y
+keymap.set("n", "Y", "y$", opts)
+
+-- Add undo breakpoints
+keymap.set("i", ",", ",<C-g>u", opts)
+keymap.set("i", ".", ".<C-g>u", opts)
+keymap.set("i", ";", ";<C-g>u", opts)
+
+-- Clear searches with <Esc>
+keymap.set("n", "<Esc>", ":noh<Cr>", opts)
+
+-- Move lines
+keymap.set("n", "<A-j>", ":m .+1<Cr>==", opts)
+keymap.set("n", "<A-k>", ":m .-2<Cr>==", opts)
+keymap.set("v", "<A-j>", ":m '>+1<Cr>gv=gv", opts)
+keymap.set("v", "<A-k>", ":m '<-2<Cr>gv=gv", opts)
+keymap.set("i", "<A-j>", "<Esc>:m .+1<Cr>==gi", opts)
+keymap.set("i", "<A-k>", "<Esc>:m .-2<Cr>==gi", opts)
+
+-- Easier window resizing
+keymap.set({ "n", "i", "t" }, "<C-Left>", ":vertical resize -2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-Up>", ":resize +2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-Left>", ":resize -2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-Left>", ":vertical resize +2<Cr>", opts)
+
+-- Keep the selection when indenting
+keymap.set("v", "<", "<gv", opts)
+keymap.set("v", ">", ">gv", opts)
+
+-- Jump to previous and next matches for the f and t search
+keymap.set({ "n", "v" }, ";", "<Plug>Lightspeed_;_ft", opts)
+keymap.set({ "n", "v" }, ",", "<Plug>Lightspeed_,_ft", opts)
+
+-- Evaluate a code section
+keymap.set("v", "<Leader>e", function()
+  require("util").eval_section()
+end, opts)
+
+-- Harpoon
+keymap.set({ "n", "i", "t" }, "<A-1>", function()
+  require("harpoon.ui").nav_file(1)
+end, opts)
+keymap.set({ "n", "i", "t" }, "<A-2>", function()
+  require("harpoon.ui").nav_file(2)
+end, opts)
+keymap.set({ "n", "i", "t" }, "<A-3>", function()
+  require("harpoon.ui").nav_file(3)
+end, opts)
+keymap.set({ "n", "i", "t" }, "<A-4>", function()
+  require("harpoon.ui").nav_file(4)
+end, opts)
+
+-- Luasnip
+keymap.set({ "n", "i" }, "<C-Tab>", function()
+  local ls = require("luasnip")
+  if ls.choice_active() then
+    ls.change_choice(1)
+  end
+end, opts)
+keymap.set({ "n", "i" }, "<C-e>", function()
+  local ls = require("luasnip")
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, opts)
+
+-- Navigator
+keymap.set({ "n", "v", "t" }, "<C-h>", function()
+  require("Navigator").left()
+end, opts)
+keymap.set({ "n", "v", "t" }, "<C-j>", function()
+  require("Navigator").down()
+end, opts)
+keymap.set({ "n", "v", "t" }, "<C-k>", function()
+  require("Navigator").up()
+end, opts)
+keymap.set({ "n", "v", "t" }, "<C-l>", function()
+  require("Navigator").right()
+end, opts)
+
+-- TODO:
+-- Neogen
+keymap.set("n", "<Leader>gc", function()
+  require("neogen").generate()
+end, opts)
+
+-- Trouble
+keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
+keymap.set(
+  "n",
+  "<Leader>xw",
+  "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
+  opts
+)
+keymap.set(
+  "n",
+  "<Leader>xd",
+  "<Cmd>TroubleToggle document_diagnostics<Cr>",
+  opts
+)
+keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
+keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
+keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
 
 -- Leader
 wk.register({
   ["<Leader>"] = {
-    j = {
-      ":m .+1<Cr>==",
-      "Move the current line down",
-    },
-    k = { ":m .-2<Cr>==", "Move the current line up" },
-    o = { ":setlocal spell!<Cr>", "Enable spell check" },
-  },
-})
-wk.register({
-  ["<Leader>"] = {
-    j = {
-      ":m '>+1<Cr>gv=gv",
-      "Move the current line down",
-      mode = "v",
-    },
-    k = { ":m <-2<Cr>gv=gv", "Move the current line up", mode = "v" },
-  },
-})
--- Leader t
-wk.register({
-  ["<Leader>"] = {
-    t = {
-      name = "+terminal",
-      t = {
+    b = {
+      name = "+buffer",
+      b = {
         function()
-          require("util").open_terminal("h")
+          require("telescope.builtin").buffers()
         end,
-        "Quickly open a terminal",
+        "Show buffers",
       },
-      h = {
-        function()
-          require("util").open_terminal("h")
-        end,
-        "Open a terminal in a horizontal split",
-      },
-      v = {
-        function()
-          require("util").open_terminal("v")
-        end,
-        "Open a terminal in a vertical split",
-      },
+      d = { ":bdelete %<Cr>:bd<Space>", "Delete buffer" },
+      f = { ":Format<Cr>", "Format the buffer" },
+      n = { ":pnext<Cr>", "Next buffer" },
+      p = { ":bprevious<Cr>", "Previous buffer" },
     },
-  },
-})
--- Leader e
-wk.register({
-  ["<Leader>"] = {
     e = {
       name = "+evaluate",
       b = {
@@ -292,188 +147,6 @@ wk.register({
         "Evaluate the current line",
       },
     },
-  },
-})
-wk.register({
-  ["<Leader>e"] = {
-    function()
-      require("util").eval_section()
-    end,
-    "Evaluate section",
-    mode = "v",
-  },
-})
--- Leader b
-wk.register({
-  ["<Leader>"] = {
-    b = {
-      name = "+buffer",
-      d = { ":ls<Cr>:bd<Space>", "Delete buffer" },
-      f = { ":Format<Cr>", "Format the buffer" },
-      b = {
-        function()
-          require("telescope.builtin").buffers()
-        end,
-        "Show buffers",
-      },
-    },
-  },
-})
-
--- Leader f
-wk.register({
-  ["<Leader>"] = {
-    f = {
-      name = "+file",
-      n = { ":DashboardNewFile<Cr>", "New file" },
-      h = { ":DashboardNewFile<Cr>", "Search in file history" },
-      b = {
-        function()
-          require("telescope").extensions.file_browser.file_browser()
-        end,
-        "File browser",
-      },
-      f = {
-        function()
-          require("telescope.builtin").fd({ hidden = true })
-        end,
-        "Find file",
-      },
-      g = {
-        function()
-          require("telescope.builtin").git_files()
-        end,
-        "Find Git files",
-      },
-    },
-  },
-})
-
---Leader g
-wk.register({
-  ["<Leader>"] = {
-    g = {
-      name = "+git",
-      s = {
-        function()
-          require("telescope.builtin").git_status()
-        end,
-        "Git status",
-      },
-      g = {
-        function()
-          require("neogit").open({ kind = "vsplit" })
-        end,
-        "Neogit",
-      },
-    },
-  },
-})
-
--- Dashboard
-wk.register({
-  ["<Leader>"] = {
-    s = {
-      name = "+session",
-      s = { ":<C-u>SessionSave<Cr>", "Save the session" },
-      l = { ":<C-u>SessionLoad<Cr>", "Load a session" },
-    },
-  },
-})
-
--- Telescope
-wk.register({
-  ["<Leader>"] = {
-    ["rg"] = {
-      function()
-        require("telescope.builtin").live_grep()
-      end,
-      "Live grep",
-    },
-    h = {
-      name = "+help",
-      h = {
-        function()
-          require("telescope.builtin").help_tags()
-        end,
-        "Search help tags",
-      },
-      k = {
-        function()
-          require("telescope.builtin").keymaps()
-        end,
-        "Search keymaps",
-      },
-    },
-    p = {
-      name = "+project",
-      p = {
-        function()
-          require("telescope").extensions.project.project({})
-        end,
-        "Open Projects",
-      },
-    },
-  },
-})
-
--- Neogit
-wk.register({
-  ["<Leader>"] = {
-    g = {
-      name = "+git",
-    },
-  },
-})
-
--- Harpoon
-wk.register({
-  ["<Leader>"] = {
-    ["<Space>"] = {
-      name = "+harpoon",
-      m = {
-        function()
-          require("harpoon.mark").add_file()
-        end,
-        "Add file to harpoon list",
-      },
-      ["<Space>"] = {
-        function()
-          require("harpoon.ui").toggle_quick_menu()
-        end,
-        "Toggle harpoon menu",
-      },
-    },
-    ["1"] = {
-      function()
-        require("harpoon.ui").nav_file(1)
-      end,
-      "Jump to file 1",
-    },
-    ["2"] = {
-      function()
-        require("harpoon.ui").nav_file(2)
-      end,
-      "Jump to file 1",
-    },
-    ["3"] = {
-      function()
-        require("harpoon.ui").nav_file(3)
-      end,
-      "Jump to file 1",
-    },
-    ["4"] = {
-      function()
-        require("harpoon.ui").nav_file(4)
-      end,
-      "Jump to file 1",
-    },
-  },
-})
-
--- nvim-dap
-wk.register({
-  ["<Leader>"] = {
     d = {
       name = "+debugger",
       b = {
@@ -483,6 +156,12 @@ wk.register({
             require("dap").toggle_breakpoint()
           end,
           "Toggle breakpoint",
+        },
+        g = {
+          function()
+            require("dapui").toggle()
+          end,
+          "Toggle GUI",
         },
         l = {
           function()
@@ -502,55 +181,235 @@ wk.register({
         "Toggle REPL",
       },
     },
-  },
-})
-
--- nvim-dap-ui
-wk.register({
-  ["<Leader>"] = {
-    d = {
-      name = "+debugger",
+    f = {
+      name = "+file",
+      n = { ":enew<Cr>", "New file" },
+      b = {
+        function()
+          require("telescope").extensions.file_browser.file_browser()
+        end,
+        "File browser",
+      },
+      f = {
+        function()
+          require("telescope.builtin").fd({ hidden = true })
+        end,
+        "Find file",
+      },
       g = {
         function()
-          require("dapui").toggle()
+          require("telescope.builtin").git_files()
         end,
-        "Toggle GUI",
+        "Files",
+      },
+      r = {
+        function()
+          require("telescope.builtin").oldfiles()
+        end,
+        "Recent files",
       },
     },
-  },
-})
-
--- markdown-preview
-wk.register({
-  ["<Leader>"] = {
-    ["mp"] = { "<Plug>MarkdownPreviewToggle", "Toggle markdown preview" },
-  },
-})
-
--- Navigator
-wk.register({
-  ["<C-h>"] = {
-    function()
-      require("Navigator").left()
-    end,
-    "Move to the left pane",
-  },
-  ["<C-j>"] = {
-    function()
-      require("Navigator").down()
-    end,
-    "Move to the lower pane",
-  },
-  ["<C-k>"] = {
-    function()
-      require("Navigator").up()
-    end,
-    "Move to the upper pane",
-  },
-  ["<C-l>"] = {
-    function()
-      require("Navigator").right()
-    end,
-    "Move to the right pane",
+    g = {
+      name = "+git",
+      b = {
+        function()
+          require("telescope.builtin").git_branches()
+        end,
+        "Branches",
+      },
+      c = {
+        function()
+          require("telescope.builtin").git_commits()
+        end,
+        "Commits",
+      },
+      g = {
+        function()
+          require("neogit").open({ kind = "vsplit" })
+        end,
+        "Neogit",
+      },
+      s = {
+        function()
+          require("telescope.builtin").git_status()
+        end,
+        "Status",
+      },
+    },
+    h = {
+      name = "+help",
+      a = {
+        function()
+          require("telescope.builtin").autocommands()
+        end,
+        "Auto commands",
+      },
+      c = {
+        function()
+          require("telescope.builtin").commands()
+        end,
+        "Commands",
+      },
+      f = {
+        function()
+          require("telescope.builtin").filetypes()
+        end,
+        "File types",
+      },
+      h = {
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        "Help pages",
+      },
+      k = {
+        function()
+          require("telescope.builtin").keymaps()
+        end,
+        "Keymaps",
+      },
+      l = {
+        "<Cmd>TSHighlightCapturesUnderCursor<Cr>",
+        "Highlight group under cursor",
+      },
+      m = {
+        function()
+          require("telescope.builtin").man_pages()
+        end,
+        "Man pages",
+      },
+      p = {
+        name = "+packer",
+        c = { "<Cmd>PackerCompile<Cr>", "Compile" },
+        i = { "<Cmd>PackerInstall<Cr>", "Install" },
+        p = { "<Cmd>PackerSync<Cr>", "Sync" },
+        s = { "<Cmd>PackerStatus<Cr>", "Status" },
+      },
+      o = {
+        function()
+          require("telescope.builtin").vim_options()
+        end,
+        "Options",
+      },
+      s = {
+        function()
+          require("telescope.builtin").highlights()
+        end,
+        "Highlight groups",
+      },
+      t = {
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        "Telescope",
+      },
+    },
+    o = {
+      name = "+open",
+      m = { "<Plug>MarkdownPreviewToggle", "Toggle markdown preview" },
+      t = {
+        name = "+terminal",
+        t = {
+          function()
+            require("util").open_terminal("h")
+          end,
+          "Quickly open a terminal",
+        },
+        h = {
+          function()
+            require("util").open_terminal("h")
+          end,
+          "Open a terminal in a horizontal split",
+        },
+        v = {
+          function()
+            require("util").open_terminal("v")
+          end,
+          "Open a terminal in a vertical split",
+        },
+      },
+    },
+    p = {
+      name = "+project",
+      p = {
+        function()
+          require("telescope").extensions.project.project({})
+        end,
+        "Open Projects",
+      },
+    },
+    t = {
+      name = "+toggle",
+      s = { ":setlocal spell!<Cr>", "Spell check" },
+    },
+    s = {
+      name = "+search",
+      g = {
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        "Grep",
+      },
+      b = {
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find()
+        end,
+        "Buffer",
+      },
+      h = {
+        function()
+          require("telescope.builtin").command_history()
+        end,
+        "Command history",
+      },
+      m = {
+        function()
+          require("telescope.builtin").marks()
+        end,
+        "Marks",
+      },
+      s = {
+        function()
+          require("telescope.builtin").lsp_document_symbols({
+            symbols = {
+              "Class",
+              "Function",
+              "Method",
+              "Constructor",
+              "Interface",
+              "Module",
+            },
+          })
+        end,
+        "Symbols",
+      },
+    },
+    w = {
+      name = "+workspace",
+      h = {
+        function()
+          require("harpoon.ui").toggle_quick_menu()
+        end,
+        "Toggle harpoon menu",
+      },
+      l = { ":<C-u>SessionLoad<Cr>", "Load" },
+      m = {
+        function()
+          require("harpoon.mark").add_file()
+        end,
+        "Add file to harpoon list",
+      },
+      s = { ":<C-u>SessionSave<Cr>", "Save" },
+      x = {
+        name = "+errors",
+        x = { "<Cmd>TroubleToggle<Cr>", "Trouble" },
+        w = { "<Cmd>TroubleWorkspaceToggle<Cr>", "Workspace Trouble" },
+        d = { "<Cmd>TroubleDocumentToggle<Cr>", "Document Trouble" },
+        t = { "<Cmd>TodoTrouble<Cr>", "Todo Trouble" },
+        T = { "<Cmd>TodoTelescope<Cr>", "Todo Telescope" },
+        l = { "<Cmd>lopen<Cr>", "Open Location List" },
+        q = { "<Cmd>copen<Cr>", "Open Quickfix List" },
+      },
+    },
   },
 })

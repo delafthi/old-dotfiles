@@ -1,26 +1,5 @@
 local M = {}
-local keymap = vim.keymap
 
-function M.setup()
-  -- Define keybindings
-  local opts = { silent = true }
-  keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
-  keymap.set(
-    "n",
-    "<Leader>xw",
-    "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
-    opts
-  )
-  keymap.set(
-    "n",
-    "<Leader>xd",
-    "<Cmd>TroubleToggle document_diagnostics<Cr>",
-    opts
-  )
-  keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
-  keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
-  keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
-end
 function M.config()
   -- Call the setup function
   require("trouble").setup({

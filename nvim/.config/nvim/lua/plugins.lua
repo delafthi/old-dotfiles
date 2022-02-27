@@ -148,9 +148,6 @@ require("packer").startup({
       requires = "kyazdani42/nvim-web-devicons",
       wants = "nvim-web-devicons",
       cmd = "TroubleToggle",
-      setup = function()
-        require("config.trouble").setup()
-      end,
       config = function()
         require("config.trouble").config()
       end,
@@ -200,9 +197,6 @@ require("packer").startup({
         "rust_hdl_vscode",
       },
       event = "InsertEnter",
-      setup = function()
-        require("config.luasnip").setup()
-      end,
       config = function()
         require("config.luasnip").config()
       end,
@@ -222,9 +216,6 @@ require("packer").startup({
       requires = "nvim-treesitter",
       wants = "nvim-treesitter",
       event = "BufReadPost",
-      setup = function()
-        require("config.neogen").setup()
-      end,
       config = function()
         require("config.neogen").config()
       end,

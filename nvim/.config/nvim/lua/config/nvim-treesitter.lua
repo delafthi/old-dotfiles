@@ -37,8 +37,8 @@ function M.config()
       },
       swap = {
         enable = true,
-        swap_next = { ["<Leader>a"] = "@parameter.inner" },
-        swap_previous = { ["<Leader>A"] = "@parameter.inner" },
+        swap_next = { ["<A-t>s"] = "@parameter.inner" },
+        swap_previous = { ["<A-t>S"] = "@parameter.inner" },
       },
       move = {
         set_jumps = true, -- whether to set jumps in the jumplist
@@ -63,8 +63,8 @@ function M.config()
         enable = true,
         border = "none",
         peek_definition_code = {
-          --  ["df"] = "@function.outer",
-          --  ["dF"] = "@class.outer",
+          ["<A-t>f"] = "@function.outer",
+          ["<A-t>c"] = "@class.outer",
         },
       },
     },

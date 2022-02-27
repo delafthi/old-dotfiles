@@ -1,5 +1,4 @@
 local M = {}
-local keymap = vim.keymap
 
 function M.setup()
   -- Define global variables
@@ -18,17 +17,17 @@ function M.setup()
   }
 
   vim.g.dashboard_custom_section = {
-    restore_session = {
+    restore_workspace = {
       description = {
-        " Restore last session                       SPC s l",
+        " Restore last workspace                     SPC w l",
       },
       command = "SessionLoad",
     },
     find_history = {
       description = {
-        " Recently opened files                      SPC h h",
+        " Recently opened files                      SPC f r",
       },
-      command = "DashboardFindHistory",
+      command = "Telescope oldfiles",
     },
     find_files = {
       description = {
@@ -44,15 +43,15 @@ function M.setup()
     },
     find_word = {
       description = {
-        " Find Word                                  SPC r g",
+        " Find Word                                  SPC s g",
       },
-      command = "Telescope grep_string",
+      command = "Telescope live_grep",
     },
     new_file = {
       description = {
-        " New File                                   SPC n f",
+        " New File                                   SPC f n",
       },
-      command = "DashboardNewFile",
+      command = "enew",
     },
   }
 

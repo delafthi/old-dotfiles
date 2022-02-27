@@ -1,6 +1,8 @@
 local M = {}
 
 function M.config()
+  vim.o.timeoutlen = 300
+
   require("which-key").setup({
     plugins = {
       marks = true, -- shows a list of your marks on ' and `
@@ -27,7 +29,7 @@ function M.config()
     key_labels = {
       -- override the label used to display some keys. It doesn't effect WK in any other way.
       -- For example:
-      -- ["<space>"] = "SPC",
+      ["<leader>"] = "SPC",
       -- ["<cr>"] = "RET",
       -- ["<tab>"] = "TAB",
     },
