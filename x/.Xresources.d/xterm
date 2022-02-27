@@ -1,6 +1,6 @@
 XTerm*renderFont: true
-XTerm*faceName: xft:VictorMono
-XTerm*faceSize: 11
+XTerm*scaleHeight: 1.15
+XTerm*faceSize: 10.5
 XTerm*locale: true
 XTerm*savelines: 10000
 XTerm*internalBorder: 8
