@@ -2,7 +2,7 @@
 
 This folder contains configurations related to X, Xterm or Xinit.
 
-## Requirements
+## Dependencies
 
 - [Fira Code](https://github.com/tonsky/FiraCode)
 - [Victor Mono](https://github.com/rubjo/victor-mono)

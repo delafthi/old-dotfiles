@@ -10,7 +10,7 @@ is horrible).
 
 ## Dependencies
 
-The only dependency is the Victor Mono Nerd Font.
+- [Victor Mono](https://github.com/rubjo/victor-mono)
 
 ## References
 

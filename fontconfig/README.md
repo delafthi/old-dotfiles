@@ -6,7 +6,6 @@ has to be installed on the system.
 
 ## Dependencies
 
-- [Fira Code](https://github.com/tonsky/FiraCode)
 - [Victor Mono](https://github.com/rubjo/victor-mono)
 
 ## References
