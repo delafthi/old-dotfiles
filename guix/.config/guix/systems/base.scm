@@ -126,7 +126,7 @@
               curl
               dosfstools
               exfat-utils
-              font-victor-mono
+              font-victor-mono ;; font-victor-mono-nerd-fonts
               fontconfig
               git
               gnupg

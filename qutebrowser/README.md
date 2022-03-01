@@ -2,6 +2,11 @@
 
 A keyboard-driven, vim-like browser based on PyQt5 and Qt
 
+## Dependencies
+
+- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
+  [Victor Mono](https://github.com/rubjo/victor-mono)
+
 ## References
 
 - [Official Website](https://www.qutebrowser.org/)

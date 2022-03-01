@@ -8,8 +8,8 @@ cursor.
 - [Nordic](https://github.com/EliverLara/Nordic)
 - [Papirus-Nord](https://github.com/Adapta-Projects/Papirus-Nord)
 - [Breeze](https://github.com/KDE/breeze) (For the cursor)
-- [Fira Code](https://github.com/tonsky/FiraCode)
-- [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
+  [Victor Mono](https://github.com/rubjo/victor-mono)
 
 ## References
 

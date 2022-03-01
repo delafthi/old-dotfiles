@@ -833,7 +833,7 @@ c.fileselect.single_file.command = ["kitty", "-e", "ranger", "--choosefile={}"]
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = ["Victor Mono"]
+c.fonts.default_family = ["VictorMono Nerd Font"]
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
@@ -884,7 +884,7 @@ c.fonts.default_family = ["Victor Mono"]
 
 # Font family for cursive fonts.
 # Type: FontFamily
-c.fonts.web.family.cursive = "Victor Mono Oblique"
+c.fonts.web.family.cursive = "Victor Mono Italic Nerd Font Complete"
 
 # Font family for fantasy fonts.
 # Type: FontFamily
@@ -892,19 +892,19 @@ c.fonts.web.family.cursive = "Victor Mono Oblique"
 
 # Font family for fixed fonts.
 # Type: FontFamily
-c.fonts.web.family.fixed = "Victor Mono"
+c.fonts.web.family.fixed = "VictorMono Nerd Font"
 
 # Font family for sans-serif fonts.
 # Type: FontFamily
-c.fonts.web.family.sans_serif = "Victor Mono"
+c.fonts.web.family.sans_serif = "VictorMono Nerd Font"
 
 # Font family for serif fonts.
 # Type: FontFamily
-c.fonts.web.family.serif = "Victor Mono Italic"
+c.fonts.web.family.serif = "VictorMono Nerd Font"
 
 # Font family for standard fonts.
 # Type: FontFamily
-c.fonts.web.family.standard = "Victor Mono"
+c.fonts.web.family.standard = "VictorMono Nerd Font"
 
 # Default font size (in pixels) for regular text.
 # Type: Int

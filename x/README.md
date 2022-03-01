@@ -5,7 +5,8 @@ This folder contains configurations related to X, Xterm or Xinit.
 ## Dependencies
 
 - [Fira Code](https://github.com/tonsky/FiraCode)
-- [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
+  [Victor Mono](https://github.com/rubjo/victor-mono)
 - [Breeze Snow Cursor Theme](https://github.com/KDE/breeze)
 - [picom](https://github.com/yshui/picom)
 - [udiskie](https://github.com/coldfix/udiskie)

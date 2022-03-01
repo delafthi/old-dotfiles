@@ -9,31 +9,32 @@
 }
 
 @font-face {
-  font-family: "Victor Mono";
-  src: local("Victor Mono"),
-    url("https://rubjo.github.io/victor-mono/fonts/VictorMono-Regular.e5c45f3f.woff")
-      format("woff");
+  font-family: "Victor Mono Regular Nerd Font Complete";
+  src: local("Victor Mono Regular Nerd Font Complete"),
+    url("https://rubjo.github.io/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Regular/complete/Victor Mono Medium Nerd Font Complete.ttf")
+      format("ttf");
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "Victor Mono";
-  src: local("Victor Mono"),
-    url("https://rubjo.github.io/victor-mono/fonts/VictorMono-Italic.956ea137.woff")
-      format("woff");
+  font-family: "Victor Mono Italic Nerd Font Complete";
+  src: local("Victor Mono Italic Nerd Font Complete"),
+    url("https://rubjo.github.io/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Italic/complete/Victor Mono Medium Nerd Font Complete.ttf")
+      format("ttf");
   font-style: italic;
   font-weight: 400;
 }
 
 body {
-  --glue-font-family: , "Victor Mono", spotify-circular,
+  --glue-font-family: , "Victor Mono Regular Nerd Font Complete",
+    spotify-circular, spotify-circular-cyrillic, spotify-circular-arabic,
+    spotify-circular-hebrew, Helvetica Neue, helvetica, arial,
+    Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+  --info-font-family: "Victor Mono Regular Nerd Font Complete", spotify-circular,
     spotify-circular-cyrillic, spotify-circular-arabic, spotify-circular-hebrew,
     Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo,
     MS Gothic, sans-serif;
-  --info-font-family: "Victor Mono", spotify-circular, spotify-circular-cyrillic,
-    spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, helvetica,
-    arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
   font-family: var(--glue-font-family);
   letter-spacing: normal;
 }
