@@ -350,6 +350,7 @@ require("packer").startup({
     use({
       "p00f/clangd_extensions.nvim",
       requires = "nvim-lspconfig",
+      wants = "nvim-lspconfig",
       ft = { "c", "cpp" },
       config = function()
         require("config.clangd_extensions").config()
