@@ -125,7 +125,7 @@ vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
-vim.opt.foldtext = [[luaeval("require('util').foldtext()")]] -- Function called to display fold line.
+vim.opt.foldtext = [[luaeval("require('util.misc').foldtext()")]] -- Function called to display fold line.
 
 -- Mouse {{{1
 vim.opt.mouse = "nvicr" -- Enables different support modes for the mouse

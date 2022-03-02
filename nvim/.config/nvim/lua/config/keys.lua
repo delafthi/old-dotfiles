@@ -47,7 +47,7 @@ keymap.set({ "n", "v" }, ",", "<Plug>Lightspeed_,_ft", opts)
 
 -- Evaluate a code section
 keymap.set("v", "<Leader>e", function()
-  require("util").eval_section()
+  require("util.evaluate").section()
 end, opts)
 
 -- Harpoon
@@ -136,13 +136,13 @@ wk.register({
       name = "+evaluate",
       b = {
         function()
-          require("util").eval_buffer()
+          require("util.evaluate").buffer()
         end,
         "Evaluate the current buffer",
       },
       e = {
         function()
-          require("util").eval_line()
+          require("util.evaluate").line()
         end,
         "Evaluate the current line",
       },
@@ -311,19 +311,19 @@ wk.register({
         name = "+terminal",
         t = {
           function()
-            require("util").open_terminal("h")
+            require("util.terminal").open("h")
           end,
           "Quickly open a terminal",
         },
         h = {
           function()
-            require("util").open_terminal("h")
+            require("util.terminal").open("h")
           end,
           "Open a terminal in a horizontal split",
         },
         v = {
           function()
-            require("util").open_terminal("v")
+            require("util.terminal").open("v")
           end,
           "Open a terminal in a vertical split",
         },
