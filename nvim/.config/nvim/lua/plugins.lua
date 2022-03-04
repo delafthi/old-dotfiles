@@ -215,7 +215,7 @@ require("packer").startup({
       "danymat/neogen",
       requires = "nvim-treesitter",
       wants = "nvim-treesitter",
-      event = "BufReadPost",
+      module = "neogen",
       config = function()
         require("config.neogen").config()
       end,
