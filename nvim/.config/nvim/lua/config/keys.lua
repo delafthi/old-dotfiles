@@ -92,33 +92,21 @@ keymap.set({ "n", "v", "t" }, "<C-l>", function()
   require("Navigator").right()
 end, opts)
 
--- TODO:
--- Neogen
-keymap.set("n", "<Leader>gc", function()
-  require("neogen").generate()
-end, opts)
-
--- Trouble
-keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<Cr>", opts)
-keymap.set(
-  "n",
-  "<Leader>xw",
-  "<Cmd>TroubleToggle workspace_diagnostics<Cr>",
-  opts
-)
-keymap.set(
-  "n",
-  "<Leader>xd",
-  "<Cmd>TroubleToggle document_diagnostics<Cr>",
-  opts
-)
-keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<Cr>", opts)
-keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<Cr>", opts)
-keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<Cr>", opts)
-
 -- Leader
 wk.register({
   ["<Leader>"] = {
+    a = {
+      name = "+action",
+      g = {
+        name = "+generate",
+        c = {
+          function()
+            require("neogen").generate()
+          end,
+          "Generate documentation",
+        },
+      },
+    },
     b = {
       name = "+buffer",
       b = {
