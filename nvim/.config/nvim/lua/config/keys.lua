@@ -32,10 +32,10 @@ keymap.set("i", "<A-j>", "<Esc>:m .+1<Cr>==gi", opts)
 keymap.set("i", "<A-k>", "<Esc>:m .-2<Cr>==gi", opts)
 
 -- Easier window resizing
-keymap.set({ "n", "i", "t" }, "<C-Left>", ":vertical resize -2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<C-Up>", ":resize +2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<C-Left>", ":resize -2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<C-Left>", ":vertical resize +2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<A-h>", ":vertical resize -2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<A-j>", ":resize +2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<A-k>", ":resize -2<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<A-l>", ":vertical resize +2<Cr>", opts)
 
 -- Keep the selection when indenting
 keymap.set("v", "<", "<gv", opts)
