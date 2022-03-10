@@ -121,10 +121,22 @@ function M.config()
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "path" },
-      { name = "buffer", keyword_length = 5 },
+      { name = "buffer", keyword_length = 5, max_item_count = 5 },
     },
     experimental = {
       ghost_text = false,
+    },
+  })
+
+  cmp.setup.cmdline(":", {
+    sources = {
+      { name = "cmdline" },
+    },
+  })
+
+  cmp.setup.cmdline("/", {
+    sources = {
+      { name = "buffer" },
     },
   })
 
