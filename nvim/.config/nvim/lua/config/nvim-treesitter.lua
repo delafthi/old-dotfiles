@@ -1,8 +1,8 @@
 local M = {}
 
 function M.config()
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.vhdl = {
+  local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_configs.vhdl = {
     install_info = {
       url = "https://github.com/alemuller/tree-sitter-vhdl",
       files = { "src/parser.c" },
@@ -11,6 +11,20 @@ function M.config()
       requires_generate_from_grammar = false,
     },
     filetype = { "vhdl", "vhd" },
+  }
+  parser_configs.norg_meta = {
+    install_info = {
+      url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+      files = { "src/parser.c" },
+      branch = "main",
+    },
+  }
+  parser_configs.norg_table = {
+    install_info = {
+      url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+      files = { "src/parser.c" },
+      branch = "main",
+    },
   }
   -- Call the setup function
   require("nvim-treesitter.configs").setup({
@@ -37,36 +51,36 @@ function M.config()
       },
       swap = {
         enable = true,
-        swap_next = { ["<A-t>s"] = "@parameter.inner" },
-        swap_previous = { ["<A-t>S"] = "@parameter.inner" },
+        swap_next = { ["<Leader>as"] = "@parameter.inner" },
+        swap_previous = { ["<Leader>aS"] = "@parameter.inner" },
       },
       move = {
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["]m"] = "@function.outer",
-          ["]]"] = "@class.outer",
+          ["<C-g>f"] = "@function.outer",
+          ["<C-g>c"] = "@class.outer",
         },
         goto_next_end = {
-          ["]M"] = "@function.outer",
-          ["]["] = "@class.outer",
+          ["<C-g>e"] = "@function.outer",
+          ["<C-g>o"] = "@class.outer",
         },
         goto_previous_start = {
-          ["[m"] = "@function.outer",
-          ["[["] = "@class.outer",
+          ["<C-g>F"] = "@function.outer",
+          ["<C-g>C"] = "@class.outer",
         },
         goto_previous_end = {
-          ["[M"] = "@function.outer",
-          ["[]"] = "@class.outer",
+          ["<C-g>E"] = "@function.outer",
+          ["<C-g>O"] = "@class.outer",
         },
       },
-      lsp_interop = {
-        enable = true,
-        border = "none",
-        peek_definition_code = {
-          ["<A-t>f"] = "@function.outer",
-          ["<A-t>c"] = "@class.outer",
-        },
-      },
+      -- lsp_interop = {
+      --   enable = true,
+      --   border = "none",
+      --   peek_definition_code = {
+      --     ["<C-g>f"] = "@function.outer",
+      --     ["<C-g>c"] = "@class.outer",
+      --   },
+      -- },
     },
     rainbow = {
       enable = true,
