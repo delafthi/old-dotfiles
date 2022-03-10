@@ -137,12 +137,6 @@ function M.config()
       \    { name = "latex_symbols" },
       \  },
       \})
-      autocmd FileType org lua require("cmp").setup.buffer({
-      \  sources = {
-      \    { name = "spell" },
-      \    { name = "orgmode" },
-      \  },
-      \})
       autocmd FileType norg lua require("cmp").setup.buffer({
       \  sources = {
       \    { name = "spell" },

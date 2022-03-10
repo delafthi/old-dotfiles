@@ -383,23 +383,6 @@ require("packer").startup({
         require("config.neorg").config()
       end,
     })
-    use({
-      "nvim-orgmode/orgmode.nvim",
-      ft = "org",
-      module = "orgmode",
-      config = function()
-        require("config.orgmode").config()
-      end,
-    })
-    use({
-      "akinsho/org-bullets.nvim",
-      requires = "orgmode.nvim",
-      after = "orgmode.nvim",
-      ft = "org",
-      config = function()
-        require("config.org-bullets").config()
-      end,
-    })
     -- Automatically set up the configuration
     if PACKER_BOOTSTRAP then
       require("packer").sync()
