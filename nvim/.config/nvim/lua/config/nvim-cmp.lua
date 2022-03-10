@@ -66,14 +66,15 @@ function M.config()
         vim_item.menu = ({
           buffer = "[Bufr]",
           calc = "[Calc]",
-          latex_symbols = "[TeX]",
           luasnip = "[Snip]",
           nvim_lsp = "[LSP]",
+          nvim_lsp_signature_help = "[Sig]",
+          nvim_lsp_document_symbol = "[Sym]",
           nvim_lua = "[API]",
-          orgmode = "[Org]",
           neorg = "[Norg]",
           path = "[Path]",
           spell = "[Spell]",
+          cmp_git = "[Git]",
         })[entry.source.name]
         return vim_item
       end,
@@ -116,51 +117,46 @@ function M.config()
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     },
-    sources = {
-      { name = "nvim_lua" },
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "path" },
+    sources = cmp.config.sources({
+      { name = "nvim_lsp_signature_help", max_item_count = 10 },
+    }, {
+      { name = "luasnip", max_item_count = 10 },
+    }, {
+      { name = "path", max_item_count = 10 },
+    }, {
+      { name = "nvim_lsp", max_item_count = 10 },
+      { name = "nvim_lua", max_item_count = 10 },
+      { name = "neorg", max_item_count = 10 },
+    }, {
       { name = "buffer", keyword_length = 5, max_item_count = 5 },
-    },
+    }),
     experimental = {
-      ghost_text = false,
+      ghost_text = true,
     },
+  })
+
+  cmp.setup.filetype("gitcommit", {
+    sources = cmp.config.sources({
+      { name = "cmp_git", max_item_count = 10 },
+    }, {
+      { name = "buffer", max_item_count = 10 },
+    }),
   })
 
   cmp.setup.cmdline(":", {
-    sources = {
-      { name = "cmdline" },
-    },
+    sources = cmp.config.sources({
+      { name = "path", max_item_count = 10 },
+    }, {
+      { name = "cmdline", max_item_count = 10 },
+    }),
   })
 
   cmp.setup.cmdline("/", {
-    sources = {
-      { name = "buffer" },
-    },
-  })
-
-  local nvim_cmpBuffer = vim.api.nvim_create_augroup(
-    "nvim_cmpBuffer",
-    { clear = true }
-  )
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "latex", "markdown" },
-    callback = function()
-      require("cmp").setup.buffer({
-        sources = { { name = "spell" }, { name = "latex_symbols" } },
-      })
-    end,
-    group = nvim_cmpBuffer,
-  })
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "norg",
-    callback = function()
-      require("cmp").setup.buffer({
-        sources = { { name = "neorg" }, { name = "spell" } },
-      })
-    end,
-    group = nvim_cmpBuffer,
+    sources = cmp.config.sources({
+      { name = "nvim_lsp_document_symbol", max_item_count = 10 },
+    }, {
+      { name = "buffer", max_item_count = 10 },
+    }),
   })
 
   pcall(function()

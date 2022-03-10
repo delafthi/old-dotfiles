@@ -160,17 +160,26 @@ require("packer").startup({
         "hrsh7th/cmp-calc",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-path",
-        "kdheepak/cmp-latex-symbols",
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
+        "hrsh7th/cmp-nvim-lsp-signature-help",
         "hrsh7th/cmp-nvim-lua",
         "f3fora/cmp-spell",
+        {
+          "petertriho/cmp-git",
+          requires = "nvim-lua/plenary.nvim",
+          wants = "plenary.nvim",
+          config = function()
+            require("cmp_git").setup()
+          end,
+        },
         "saadparwaiz1/cmp_luasnip",
       },
       wants = {
         "Luasnip",
         "neogen",
       },
-      event = "InsertEnter",
+      event = { "InsertEnter", "CmdlineEnter" },
       config = function()
         require("config.nvim-cmp").config()
       end,
