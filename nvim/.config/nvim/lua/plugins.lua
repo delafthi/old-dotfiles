@@ -30,13 +30,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Run PackerCompile automatically whenever plugins.lua is updated
-cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup END
-]])
-
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "plugins.lua",
+  command = "source <afile> | PackerCompile",
+  group = vim.api.nvim_create_augroup("packerUserConfig", { clear = true }),
+})
 -- Plugin specification {{{1
 require("packer").startup({
   function(use)
@@ -166,7 +164,7 @@ require("packer").startup({
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
         "f3fora/cmp-spell",
-        "gaadparwaiz1/cmp_luasnip",
+        "saadparwaiz1/cmp_luasnip",
       },
       wants = {
         "Luasnip",

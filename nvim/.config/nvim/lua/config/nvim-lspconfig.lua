@@ -139,16 +139,24 @@ function M.on_attach(client, bufnr)
   end
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd!
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup end
-      ]],
-      false
+    local lspDocumentHighlight = vim.api.nvim_create_augroup(
+      "lspDocumentHighlight",
+      { clear = true }
     )
+    vim.api.nvim_create_autocmd("CursorHold", {
+      pattern = "<buffer>",
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+      group = lspDocumentHighlight,
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      pattern = "<buffer>",
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+      group = lspDocumentHighlight,
+    })
   end
 end
 
@@ -307,12 +315,13 @@ A collection of HDL related tools
   })
 
   -- Activate codelens
-  vim.cmd([[
-  augroup codelens
-    autocmd!
-    autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-  augroup END
-  ]])
+  vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+    pattern = "<buffer>",
+    callback = function()
+      vim.lsp.codelens.refresh()
+    end,
+    group = vim.api.nvim_create_augroup("lspCodelens", { clear = true }),
+  })
 end
 
 return M

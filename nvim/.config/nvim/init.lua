@@ -16,11 +16,10 @@ vim.opt.writebackup = false -- Disable backups, when a file is written.
 
 -- Buffers {{{1
 vim.opt.autoread = true -- Enable automatic reload of unchanged files.
-cmd([[
-  augroup autoreload
-    autocmd CursorHold * checktime
-  augroup END
-]]) -- Auto reload file, when changes where made somewhere else (for autoreload)
+vim.api.nvim_create_autocmd("CursorHold", {
+  command = "checktime",
+  group = vim.api.nvim_create_augroup("autoreload", { clear = true }),
+}) -- Auto reload file, when changes where made somewhere else (for autoreload)
 vim.opt.hidden = true -- Enable modified buffers in the background.
 vim.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 -- Automatically deletes all trailing whitespace and newlines at end of file on
@@ -33,12 +32,20 @@ cmd([[
       silent! execute lastNonblankLine + 1 . ',$delete _'
     endif
   endfunction
-  augroup remove_trailing_whitespaces_and_lines
-    autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd BufWritepre * call TrimTrailingLines()
-  augroup END
 ]])
+
+local removeTrailingWhitespacesAndLines = vim.api.nvim_create_augroup(
+  "removeTrailingWhitespacesAndLines",
+  { clear = true }
+)
+vim.api.nvim_create_buf(
+  "BufWritePre",
+  { command = "%s/s+$//e", group = removeTrailingWhitespacesAndLines }
+)
+vim.api.nvim_create_buf("BufWritePre", {
+  command = "call TrimTrailingLines()",
+  group = removeTrailingWhitespacesAndLines,
+})
 -- Try to save file with sudo on files that require root permission
 cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
@@ -82,11 +89,12 @@ vim.opt.showmode = false -- Don't show mode in the command line.
 vim.opt.signcolumn = "yes" -- Enable sign columns left of the line numbers.
 vim.opt.synmaxcol = 1024 -- Don't syntax highlight long lines.
 vim.opt.textwidth = 80 -- Max text length.
-cmd([[
-  augroup highlight_on_yank
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup END
-]]) -- Enable highlight on yank.
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = vim.api.nvim_create_augroup("highlightOnYank", { clear = true }),
+}) -- Enable highlight on yank.
 vim.g.vimsyn_embed = "lPr" -- Allow embedded syntax highlighting for lua, python, ruby.
 vim.opt.wrap = true -- Enable line wrapping.
 vim.opt.visualbell = false -- Disable annoying beeps
@@ -104,21 +112,31 @@ vim.opt.smarttab = true -- Automatically tab to the next softtabstop
 vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
-cmd([[
-  augroup formatOptions
-    autocmd Filetype * set fo-=r fo-=o
-  augroup END
-]]) -- Disables automatic insertion of comment leaders
+vim.api.nvim_create_autocmd("FileType", {
+  command = "set fo-=r fo-=o",
+  group = vim.api.nvim_create_augroup("formatOptions", { clear = true }),
+}) -- Disables automatic insertion of comment leaders
 
 -- Filetypes {{{1
-cmd([[
-  augroup additionalFiletypes
-    autocmd!
-    autocmd BufNewFile,BufRead *.cl set filetype=cpp
-    autocmd BufNewFile,BufRead *.bb set filetype=sh
-    autocmd BufNewFile,BufRead *.bbappend set filetype=sh
-  augroup END
-]]) -- Set various filetypes
+local additionalFiletypes = vim.api.nvim_create_augroup(
+  "additionalFiletypes",
+  { clear = true }
+)
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.cl",
+  command = "set filetype=cpp",
+  group = additionalFiletypes,
+})
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.bb",
+  command = "set filetype=sh",
+  group = additionalFiletypes,
+})
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.bbappend",
+  command = "set filetype=shh",
+  group = additionalFiletypes,
+})
 vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 
 -- Folds {{{1
@@ -171,12 +189,11 @@ vim.opt.splitright = true -- Put new windows right of the current.
 vim.opt.laststatus = 2 -- Always show the statusline
 
 -- Terminal {{{1
-cmd([[
-  augroup terminal
-    autocmd!
-    autocmd BufWinEnter,WinEnter term://* startinsert
-  augroup END
-]]) -- Automatically go to insert mode, when changing to the terminal window
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+  pattern = "term://*",
+  command = "startinsert",
+  group = vim.api.nvim_create_augroup("terminal", { clear = true }),
+}) -- Automatically go to insert mode, when changing to the terminal window
 
 -- Timings {{{1
 vim.opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.

@@ -140,23 +140,28 @@ function M.config()
     },
   })
 
-  vim.cmd([[
-    augroup nvim-cmp-buffer
-      autocmd!
-      autocmd FileType latex,markdown lua require("cmp").setup.buffer({
-      \  sources = {
-      \    { name = "spell" },
-      \    { name = "latex_symbols" },
-      \  },
-      \})
-      autocmd FileType norg lua require("cmp").setup.buffer({
-      \  sources = {
-      \    { name = "spell" },
-      \    { name = "neorg" },
-      \  },
-      \})
-    augroup END
-  ]])
+  local nvim_cmpBuffer = vim.api.nvim_create_augroup(
+    "nvim_cmpBuffer",
+    { clear = true }
+  )
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "latex", "markdown" },
+    callback = function()
+      require("cmp").setup.buffer({
+        sources = { { name = "spell" }, { name = "latex_symbols" } },
+      })
+    end,
+    group = nvim_cmpBuffer,
+  })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "norg",
+    callback = function()
+      require("cmp").setup.buffer({
+        sources = { { name = "neorg" }, { name = "spell" } },
+      })
+    end,
+    group = nvim_cmpBuffer,
+  })
 
   pcall(function()
     cmp.event:on(

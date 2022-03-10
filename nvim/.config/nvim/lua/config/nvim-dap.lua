@@ -30,12 +30,13 @@ function M.config()
   dap.configurations.c = dap.configurations.cpp
 
   -- Autocompletion
-  vim.cmd([[
-    augroup dap-repl
-      autocmd!
-      autocmd FileType dap-repl lua require("dap.ext.autocompl").attach()
-    augroup END
-  ]])
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "dap-repl",
+    callback = function()
+      require("dap.ext.autocompl").attach()
+    end,
+    group = vim.api.nvim_create_augroup("dapREPL", { clear = true }),
+  })
 
   -- Visuals
   vim.fn.sign_define(
