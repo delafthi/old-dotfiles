@@ -292,6 +292,20 @@ wk.register({
         "Telescope",
       },
     },
+    n = {
+      name = "+neorg",
+      n = { ":NeorgStart<Cr>", "Load the latest workspace" },
+      o = {
+        name = "+open",
+        g = { ":Neorg workspace gtd<Cr>", "GTD" },
+        n = { ":Neorg workspace notes<Cr>", "Notes" },
+        s = { ":Neorg workspace school<Cr>", "School" },
+        w = {
+          ":Neorg workspace work<Cr>",
+          "Work",
+        },
+      },
+    },
     o = {
       name = "+open",
       m = { "<Plug>MarkdownPreviewToggle", "Toggle markdown preview" },

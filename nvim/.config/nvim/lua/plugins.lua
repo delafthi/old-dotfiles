@@ -386,7 +386,10 @@ require("packer").startup({
         "nvim-lua/plenary.nvim",
         "nvim-neorg/neorg-telescope",
       },
+      wants = { "nvim-treesitter", "telescope.nvim" },
       ft = "norg",
+      cmd = { "Neorg", "NeorgStart" },
+      module = "neorg",
       config = function()
         require("config.neorg").config()
       end,

@@ -5,114 +5,38 @@ function M.config()
   require("neorg").setup({
     load = {
       ["core.defaults"] = {},
-      ["core.keybinds"] = {},
-      ["core.norg.concealer"] = {
+      ["core.keybinds"] = {
+        config = { default_keybinds = true },
+      },
+      ["core.gtd.base"] = {
         config = {
-          icons = {
-            todo = {
-              enabled = true, -- Conceal TODO items
-              done = {
-                enabled = true, -- Conceal whenever an item is marked as done
-                icon = " ",
-              },
-              pending = {
-                enabled = true, -- Conceal whenever an item is marked as pending
-                icon = " ",
-              },
-              undone = {
-                enabled = true, -- Conceal whenever an item is marked as undone
-                icon = " ",
-              },
-            },
-            quote = {
-              enabled = true, -- Conceal quotes
-              icon = "∣",
-            },
-            heading = {
-              enabled = true, -- Enable beautified headings
-
-              -- Define icons for all the different heading levels
-              level_1 = {
-                enabled = true,
-                icon = "◉",
-              },
-
-              level_2 = {
-                enabled = true,
-                icon = "○",
-              },
-
-              level_3 = {
-                enabled = true,
-                icon = "✿",
-              },
-
-              level_4 = {
-                enabled = true,
-                icon = "•",
-              },
-            },
-            marker = {
-              enabled = true, -- Enable the beautification of markers
-              icon = "",
-            },
-          },
+          workspace = "gtd",
         },
       },
-      ["core.integrations.treesitter"] = {
-        config = {
-          highlights = {
-            tag = {
-              -- The + tells neorg to link to an existing hl
-              begin = "+TSKeyword",
-
-              ["end"] = "+TSKeyword",
-
-              name = "+TSKeyword",
-              parameters = "+TSType",
-              content = "+Normal",
-              comment = "+TSComment",
-            },
-
-            heading = {
-              ["1"] = "+TSAttribute",
-              ["2"] = "+TSLabel",
-              ["3"] = "+TSMath",
-              ["4"] = "+TSString",
-            },
-
-            error = "+TSError",
-
-            marker = { [""] = "+TSLabel", title = "+Normal" },
-
-            drawer = {
-              [""] = "+TSPunctDelimiter",
-              title = "+TSMath",
-              content = "+Normal",
-            },
-
-            escapesequence = "+TSType",
-
-            todoitem = {
-              [""] = "+TSCharacter",
-              pendingmark = "+TSNamespace",
-              donemark = "+TSMethod",
-            },
-
-            unorderedlist = "+TSPunctDelimiter",
-
-            quote = {
-              [""] = "+TSPunctDelimiter",
-              content = "+TSPunctDelimiter",
-            },
-          },
-        },
+      ["core.norg.concealer"] = {
+        config = { icon_preset = "diamond" },
       },
       ["core.norg.dirman"] = {
-        config = { workspaces = { notes = "~/neorg" } },
+        config = {
+          workspaces = {
+            default = vim.fn.getcwd(),
+            work = "~/Projects/work/notes",
+            notes = "~/Notes",
+            school = "~/Notes/school",
+            gtd = "~/Notes/gtd",
+          },
+          autochdir = false,
+          index = "index.norg",
+          last_workspace = vim.fn.stdpath("cache")
+            .. "/neorg_last_workspace.txt",
+        },
       },
-      ["core.integrations.telescope"] = {},
     },
+    ["core.presenter"] = {
+      config = { slide_count = { position = "bottom" } },
+    },
+    ["core.integrations.telescope"] = {},
+    ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
   })
 end
 
