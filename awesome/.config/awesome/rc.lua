@@ -448,16 +448,33 @@ ruled.client.connect_signal("request::rules", function()
   })
   -- Floating clients
   ruled.client.append_rule({
-    id = "floating",
+    id = "floating_resized",
     rule_any = {
       class = { "Pavucontrol" },
-      type = { "dialog", "menu" },
+      type = { "popup_menu", "menu" },
     },
     properties = {
       floating = true,
       placement = awful.placement.centered + awful.placement.no_offscreen,
       width = awful.screen.focused().geometry.width * 0.8,
       height = awful.screen.focused().geometry.height * 0.8,
+      size_hints_honor = true,
+    },
+  })
+  ruled.client.append_rule({
+    id = "floating_misc",
+    rule_any = {
+      type = {
+        "dialog",
+        "toolbar",
+        "utility",
+        "dropdown_menu",
+      },
+    },
+    properties = {
+      floating = true,
+      placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+      size_hints_honor = true,
     },
   })
 end)
@@ -514,9 +531,10 @@ local function set_random_wallpaper(s)
   end
   f:close()
   math.randomseed(os.time()) -- Set the random seed
-  math.random()
-  math.random()
-  math.random() -- Pop some random numbers, before using the generator
+  -- Pop some random numbers, before using the generator
+  local tmp = math.random()
+  tmp = math.random()
+  tmp = math.random()
   return gears.wallpaper.maximized(files[math.random(1, length)], s, true)
 end
 
