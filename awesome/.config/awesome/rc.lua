@@ -129,19 +129,6 @@ awful.keyboard.append_global_keybindings({
     description = "open a terminal",
     group = "launcher",
   }),
-  awful.key({ modkey }, "s", function()
-    awful.spawn(terminal, {
-      name = "scratchpad",
-      floating = true,
-      skip_taskbar = true,
-      placement = awful.placement.centered + awful.placement.no_offscreen,
-      width = awful.screen.focused().geometry.width * 0.8,
-      height = awful.screen.focused().geometry.height * 0.8,
-    })
-  end, {
-    description = "open a scrathpad terminal",
-    group = "launcher",
-  }),
   awful.key({ modkey, "Shift" }, "Return", function()
     awful.spawn("rofi -show run")
   end, {
@@ -333,6 +320,31 @@ awful.keyboard.append_global_keybindings({
 -- Set client related key bindings
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
+    awful.key({ modkey }, "s", function(c)
+      local name = "scratchpad"
+      if c.name ~= name then
+        -- Returns the existing client if it exists
+        c = awful.spawn.raise_or_spawn(terminal .. " -T=" .. name, {
+          name = name,
+          floating = true,
+          skip_taskbar = true,
+          placement = awful.placement.centered + awful.placement.no_offscreen,
+          width = awful.screen.focused().geometry.width * 0.8,
+          height = awful.screen.focused().geometry.height * 0.8,
+        }, function(c)
+          return c.name == name
+        end, name)
+        -- Set minimized to false if we get the existing client
+        if c then
+          c.minimized = false
+        end
+      else
+        c.minimized = true
+      end
+    end, {
+      description = "open a scratchpad terminal",
+      group = "launcher",
+    }),
     awful.key({ modkey }, "d", function(c)
       c:kill()
     end, {
