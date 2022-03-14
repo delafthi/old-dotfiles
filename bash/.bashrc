@@ -72,10 +72,6 @@ if [ -d "$HOME/.local/bin" ]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Guix
-export PATH="$HOME/.config/guix/current/bin:$PATH"
-export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-
 ############################################################
 # Visuals {{{1
 
@@ -146,11 +142,6 @@ if ! command -v starship 1> /dev/null 2>&1; then
 else
   export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
   eval "$(starship init bash)"
-fi
-
-# Nix
-if [ -f /etc/profile.d/nix.sh ]; then
-  source /etc/profile.d/nix.sh
 fi
 
 # pyenv

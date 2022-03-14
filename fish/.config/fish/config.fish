@@ -77,10 +77,6 @@ if test -d $HOME/.local/bin
     set -gx PATH $HOME/.local/bin $PATH
 end
 
-# Guix
-set -gx PATH $HOME/.config/guix/current/bin $PATH
-set -gx GUIX_LOCPATH $HOME/.guix-profile/lib/locale
-
 ############################################################
 # Visuals {{{1
 
@@ -206,12 +202,6 @@ if not test -d $HOME/.config/fish/plugins/foreign-env
     git clone https://github.com/oh-my-fish/plugin-foreign-env $HOME/.config/fish/plugins/foreign-env
 end
 set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-env/functions
-
-# Nix
-# has to be defined after foreign-env
-if test -f /etc/profile.d/nix.sh
-    fenv source /etc/profile.d/nix.sh
-end
 
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1

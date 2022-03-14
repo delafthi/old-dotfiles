@@ -16,9 +16,7 @@ Therefore, the configuration has nearly the same dependencies.
   package manager)
   - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env): This plugin
-  is needed for nix to work in fish. It will be automatically installed to
-  `~/.config/fish/plugins`.
-- [nix](https://nixos.org/) (As an alternative package manager)
+  will be automatically installed to `~/.config/fish/plugins`.
 
 ## References
 

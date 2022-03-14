@@ -18,7 +18,6 @@ However, I highly suggest you to install them.
 - [pyenv](https://github.com/pyenv/pyenv) (Suggested to install over the default
   package manager)
   - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
-- [nix](https://nixos.org/) (As an alternative package manager)
 
 ## References
 
