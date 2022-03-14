@@ -20,9 +20,9 @@ function M.config()
         config = {
           workspaces = {
             default = vim.fn.getcwd(),
-            work = "~/Projects/work/notes",
             notes = "~/Notes",
             school = "~/Notes/school",
+            projects = "~/Notes/projects",
             gtd = "~/Notes/gtd",
           },
           autochdir = false,

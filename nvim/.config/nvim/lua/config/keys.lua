@@ -295,16 +295,23 @@ wk.register({
     n = {
       name = "+neorg",
       n = { ":NeorgStart<Cr>", "Load the latest workspace" },
-      o = {
-        name = "+open",
+      i = { ":Neorg inject-metadata<Cr>", "Inject File header" },
+      t = {
+        name = "+task",
+        a = { ":Neorg gtd capture<Cr>", "Add a task" },
+        t = { ":Neorg gtd views<Cr>", "View the tasks" },
+      },
+      w = {
+        name = "+workspace",
         g = { ":Neorg workspace gtd<Cr>", "GTD" },
         n = { ":Neorg workspace notes<Cr>", "Notes" },
-        s = { ":Neorg workspace school<Cr>", "School" },
-        w = {
-          ":Neorg workspace work<Cr>",
-          "Work",
+        p = {
+          ":Neorg workspace projects<Cr>",
+          "Projects",
         },
+        s = { ":Neorg workspace school<Cr>", "School" },
       },
+      ["?"] = { ":Neorg news all<Cr>", "View news" },
     },
     o = {
       name = "+open",
