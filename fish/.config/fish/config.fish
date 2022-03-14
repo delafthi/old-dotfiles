@@ -46,8 +46,8 @@ bind -M insert \cn complete
 bind -M insert \cs pager-toggle-search
 bind -M insert -k nul accept-autosuggestion
 # Rebind <C-c> to clear the input line in all modes
-bind -M insert \cc kill-whole-line repaint-mode
-bind \cc 'commandline -f kill-whole-line; set fish_bind_mode insert; commandline -f repaint-mode'
+bind -M insert \cc cancel-commandline repaint-mode
+bind \cc 'commandline -f cancel-commandline; set fish_bind_mode insert; commandline -f repaint-mode'
 
 # Adding flags
 alias cp="cp -i" # confirm before overwriting something
