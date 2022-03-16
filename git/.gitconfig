@@ -3,7 +3,18 @@
 	excludesfile = ~/.gitignore
 [user]
 	name = Thierry Delafontaine
-	email = deaa@zhaw.ch
+	email = delafontaineth@pm.me
+  signingkey = AD78A74DD561FC73DD2F95033F9D47D503575097
+[gpg]
+  program = /usr/bin/gpg
+[commit]
+  gpgsign = true
+[tag]
+  gpgsign = true
+[pull]
+  rebase = true
+[github]
+  user = "delafthi"
 [alias]
   co = checkout
   ci = commit
