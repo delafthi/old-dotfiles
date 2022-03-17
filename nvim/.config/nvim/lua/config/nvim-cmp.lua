@@ -131,7 +131,7 @@ function M.config()
       { name = "buffer", keyword_length = 5, max_item_count = 5 },
     }),
     experimental = {
-      ghost_text = true,
+      ghost_text = { hl_group = "CmpGhostText" },
     },
   })
 
