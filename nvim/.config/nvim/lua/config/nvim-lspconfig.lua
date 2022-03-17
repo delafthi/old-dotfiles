@@ -47,46 +47,54 @@ function M.on_attach(client, bufnr)
   wk.register({
     ["<C-g>"] = {
       name = "+goto/get",
-      D = {
+      ["<C-D>"] = {
         lsp.buf.declaration,
         "Go to declaration",
         buffer = bufnr,
       },
-      d = {
+      ["<C-d>"] = {
         lsp.buf.definition,
         "Go to definition",
         buffer = bufnr,
       },
-      h = { lsp.buf.hover, "Get hover", buffer = bufnr },
-      i = {
+      ["<C-h>"] = { lsp.buf.hover, "Get hover", buffer = bufnr },
+      ["<C-i>"] = {
         lsp.buf.implementation,
         "Go to implementation",
         buffer = bufnr,
       },
-      n = {
+      ["<C-n>"] = {
         diagnostic.goto_next,
         "Go to next diagnostic",
         buffer = bufnr,
       },
-      p = {
+      ["<C-p>"] = {
         diagnostic.goto_prev,
         "Go to previous diagnostic",
         buffer = bufnr,
       },
-      q = { lsp.util.set_loclist, "Get local quickfixlist", buffer = bufnr },
-      r = {
+      ["<C-q>"] = {
+        lsp.util.set_loclist,
+        "Get local quickfixlist",
+        buffer = bufnr,
+      },
+      ["<C-r>"] = {
         lsp.buf.references,
         "Go to references",
         buffer = bufnr,
       },
-      s = {
+      ["<C-s>"] = {
         function()
           diagnostic.open_float({ severity_sort = true })
         end,
         "Get diagnostics",
         buffer = bufnr,
       },
-      t = { lsp.buf.type_definition, "Get type definition", buffer = bufnr },
+      ["<C-t>"] = {
+        lsp.buf.type_definition,
+        "Get type definition",
+        buffer = bufnr,
+      },
     },
     ["<Leader>"] = {
       w = {
