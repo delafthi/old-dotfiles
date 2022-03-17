@@ -3,6 +3,14 @@ local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local keymap = vim.keymap
 
+-- Sign Character customization
+M.signs = {
+  Error = " ",
+  Warn = " ",
+  Hint = " ",
+  Info = " ",
+}
+
 function M.get_capabilities()
   -- Set language-server capabilities
   local capabilities = lsp.protocol.make_client_capabilities()
@@ -175,15 +183,7 @@ function M.config()
     }
   )
 
-  -- Sign Character customization
-  local signs = {
-    Error = " ",
-    Warn = " ",
-    Hint = " ",
-    Info = " ",
-  }
-
-  for type, icon in pairs(signs) do
+  for type, icon in pairs(M.signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end

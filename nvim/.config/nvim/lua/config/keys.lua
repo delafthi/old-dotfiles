@@ -3,6 +3,20 @@ local wk = require("which-key")
 
 local opts = { silent = true }
 
+-- Navigate tabs
+keymap.set({ "n", "i", "t" }, "<C-t><C-d>", "<C-\\><C-n>:tabclose<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t><C-n>", "<C-\\><C-n>:tabn<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t><C-p>", "<C-\\><C-n>:tabp<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t><C-t>", "<C-\\><C-n>:tabnew<Cr>", opts)
+wk.register({
+  ["<C-t>"] = {
+    name = "+tabs",
+    ["<C-d>"] = { "<C-\\><C-n>:tabclose<Cr>", "Close tab" },
+    ["<C-n>"] = { "<C-\\><C-n>:tabn<Cr>", "Next tab" },
+    ["<C-p>"] = { "<C-\\><C-n>:tabp<Cr>", "Previous tab" },
+    ["<C-t>"] = { "<C-\\><C-n>:tabnew<Cr>", "Create new tab" },
+  },
+})
 -- Move visual lines
 keymap.set({ "n", "v" }, "j", "gj", opts)
 keymap.set({ "n", "v" }, "k", "gk", opts)

@@ -245,6 +245,15 @@ require("packer").startup({
         require("config.gitsigns").config()
       end,
     })
+    use({
+      "akinsho/bufferline.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      wants = "nvim-web-devicons",
+      event = "BufReadPre",
+      config = function()
+        require("config.bufferline").config()
+      end,
+    })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })
     -- File formatting
