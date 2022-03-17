@@ -361,6 +361,14 @@ require("packer").startup({
 
     -- Specific language support
     use({
+      "akinsho/toggleterm.nvim",
+      cmd = "ToggleTerm",
+      module = "toggleterm",
+      config = function()
+        require("config.toggleterm").config()
+      end,
+    })
+    use({
       "HiPhish/guile.vim",
       ft = { "scheme" },
     })

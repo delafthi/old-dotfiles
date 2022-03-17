@@ -17,6 +17,10 @@ wk.register({
     ["<C-t>"] = { "<C-\\><C-n>:tabnew<Cr>", "Create new tab" },
   },
 })
+
+-- Exit the terminal
+keymap.set({ "t" }, "<C-x>", "<C-\\><C-n>", opts)
+
 -- Move visual lines
 keymap.set({ "n", "v" }, "j", "gj", opts)
 keymap.set({ "n", "v" }, "k", "gk", opts)
@@ -50,6 +54,10 @@ keymap.set({ "n", "i", "t" }, "<M-h>", ":vertical resize -2<Cr>", opts)
 keymap.set({ "n", "i", "t" }, "<M-j>", ":resize +2<Cr>", opts)
 keymap.set({ "n", "i", "t" }, "<M-k>", ":resize -2<Cr>", opts)
 keymap.set({ "n", "i", "t" }, "<M-l>", ":vertical resize +2<Cr>", opts)
+keymap.set("t", "<M-h>", "<C-\\><C-n>:vertical resize -2<Cr>i", opts)
+keymap.set("t", "<M-j>", "<C-\\><C-n>:resize +2<Cr>i", opts)
+keymap.set("t", "<M-k>", "<C-\\><C-n>:resize -2<Cr>i", opts)
+keymap.set("t", "<M-l>", "<C-\\><C-n>:vertical resize +2<Cr>i", opts)
 
 -- Keep the selection when indenting
 keymap.set("v", "<", "<gv", opts)
@@ -332,23 +340,21 @@ wk.register({
       m = { "<Plug>MarkdownPreviewToggle", "Toggle markdown preview" },
       t = {
         name = "+terminal",
-        t = {
-          function()
-            require("util.terminal").open("h")
-          end,
-          "Quickly open a terminal",
+        f = {
+          ":ToggleTerm direction=float<Cr>",
+          "Open a floating terminal",
         },
-        h = {
-          function()
-            require("util.terminal").open("h")
-          end,
-          "Open a terminal in a horizontal split",
+        t = {
+          ":ToggleTerm direction=tab<Cr>",
+          "Open a terminal tab",
         },
         v = {
-          function()
-            require("util.terminal").open("v")
-          end,
+          ":ToggleTerm direction=vertical<Cr>",
           "Open a terminal in a vertical split",
+        },
+        x = {
+          ":ToggleTerm direction=horizontal<Cr>",
+          "Open a terminal in a horizontal split",
         },
       },
     },
