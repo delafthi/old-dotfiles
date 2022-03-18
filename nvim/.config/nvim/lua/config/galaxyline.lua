@@ -300,6 +300,17 @@ function M.config()
 
   -- Right side
   gls.short_line_right[1] = {
+    ShortRightCap = {
+      provider = function()
+        return right_cap
+      end,
+      condition = function()
+        return not condition.buffer_not_empty()
+      end,
+      highlight = { c.black1, c.black0, "bold" },
+    },
+  }
+  gls.short_line_right[2] = {
     ShortFileInfoLeftCap = {
       provider = function()
         return left_cap
@@ -309,7 +320,7 @@ function M.config()
     },
   }
   -- File info
-  gls.short_line_right[2] = {
+  gls.short_line_right[3] = {
     ShortFileIcon = {
       provider = "FileIcon",
       condition = condition.buffer_not_empty,
@@ -319,7 +330,7 @@ function M.config()
       },
     },
   }
-  gls.short_line_right[3] = {
+  gls.short_line_right[4] = {
     ShortFileName = {
       provider = {
         "FileName",
@@ -331,7 +342,7 @@ function M.config()
       highlight = { c.white0, c.black3 },
     },
   }
-  gls.short_line_right[4] = {
+  gls.short_line_right[5] = {
     ShortFileInfoRightCap = {
       provider = function()
         return right_cap
