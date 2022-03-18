@@ -55,22 +55,23 @@ function M.config()
         swap_previous = { ["<Leader>aS"] = "@parameter.inner" },
       },
       move = {
-        set_jumps = true, -- whether to set jumps in the jumplist
+        enable = true,
+        set_jumps = false, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["<C-g>f"] = "@function.outer",
-          ["<C-g>c"] = "@class.outer",
+          ["<C-g><C-n><C-f>"] = "@function.outer",
+          ["<C-g><C-n><C-c>"] = "@class.outer",
         },
         goto_next_end = {
-          ["<C-g>e"] = "@function.outer",
-          ["<C-g>o"] = "@class.outer",
+          ["<C-g><C-n><C-e>"] = "@function.outer",
+          ["<C-g><C-n><C-o>"] = "@class.outer",
         },
         goto_previous_start = {
-          ["<C-g>F"] = "@function.outer",
-          ["<C-g>C"] = "@class.outer",
+          ["<C-g><C-p><C-f>"] = "@function.outer",
+          ["<C-g><C-p><C-c>"] = "@class.outer",
         },
         goto_previous_end = {
-          ["<C-g>E"] = "@function.outer",
-          ["<C-g>O"] = "@class.outer",
+          ["<C-g><C-p><C-e>"] = "@function.outer",
+          ["<C-g><C-p><C-o>"] = "@class.outer",
         },
       },
       -- lsp_interop = {

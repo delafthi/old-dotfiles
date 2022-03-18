@@ -64,14 +64,20 @@ function M.on_attach(client, bufnr)
         buffer = bufnr,
       },
       ["<C-n>"] = {
-        diagnostic.goto_next,
-        "Go to next diagnostic",
-        buffer = bufnr,
+        name = "+next",
+        ["<C-d>"] = {
+          diagnostic.goto_next,
+          "Go to next diagnostic",
+          buffer = bufnr,
+        },
       },
       ["<C-p>"] = {
-        diagnostic.goto_prev,
-        "Go to previous diagnostic",
-        buffer = bufnr,
+        name = "+previous",
+        ["<C-d>"] = {
+          diagnostic.goto_prev,
+          "Go to previous diagnostic",
+          buffer = bufnr,
+        },
       },
       ["<C-q>"] = {
         lsp.util.set_loclist,
