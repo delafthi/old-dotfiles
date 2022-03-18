@@ -37,13 +37,17 @@ end
 
 function M.on_attach(client, bufnr)
   vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
+  local wk = require("which-key")
 
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
   keymap.set({ "n", "i", "v" }, "<C-s>", lsp.buf.signature_help, opts)
   keymap.set({ "n", "i", "v" }, "<C-i>", lsp.buf.hover, opts)
+  wk.register({
+    ["<C-s>"] = { "Get signature help" },
+    ["<C-i>"] = { "Show hover" },
+  })
 
-  local wk = require("which-key")
   wk.register({
     ["<C-g>"] = {
       name = "+goto/get",

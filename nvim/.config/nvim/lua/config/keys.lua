@@ -11,15 +11,18 @@ keymap.set({ "n", "i", "t" }, "<C-t><C-t>", "<C-\\><C-n>:tabnew<Cr>", opts)
 wk.register({
   ["<C-t>"] = {
     name = "+tabs",
-    ["<C-d>"] = { "<C-\\><C-n>:tabclose<Cr>", "Close tab" },
-    ["<C-n>"] = { "<C-\\><C-n>:tabn<Cr>", "Next tab" },
-    ["<C-p>"] = { "<C-\\><C-n>:tabp<Cr>", "Previous tab" },
-    ["<C-t>"] = { "<C-\\><C-n>:tabnew<Cr>", "Create new tab" },
+    ["<C-d>"] = { "Close tab" },
+    ["<C-n>"] = { "Next tab" },
+    ["<C-p>"] = { "Previous tab" },
+    ["<C-t>"] = { "Create new tab" },
   },
 })
 
 -- Exit the terminal
 keymap.set({ "t" }, "<C-x>", "<C-\\><C-n>", opts)
+wk.register({
+  ["<C-x>"] = { "Exit insert mode" },
+})
 
 -- Move visual lines
 keymap.set({ "n", "v" }, "j", "gj", opts)
@@ -29,9 +32,17 @@ keymap.set({ "n", "v" }, "k", "gk", opts)
 keymap.set({ "n", "v" }, "n", "nzzzv", opts)
 keymap.set({ "n", "v" }, "N", "Nzzzv", opts)
 keymap.set("n", "J", "mzJ`z", opts)
+wk.register({
+  n = { "Next search result" },
+  N = { "Previous search result" },
+  J = { "Merge with next line" },
+})
 
 -- Add the expected behaviour of Y
 keymap.set("n", "Y", "y$", opts)
+wk.register({
+  Y = { "Yank until end of line" },
+})
 
 -- Add undo breakpoints
 keymap.set("i", ",", ",<C-g>u", opts)
@@ -42,22 +53,32 @@ keymap.set("i", ";", ";<C-g>u", opts)
 keymap.set("n", "<Esc>", ":noh<Cr>", opts)
 
 -- Move lines
-keymap.set("n", "<M-j>", ":m .+1<Cr>==", opts)
-keymap.set("n", "<M-k>", ":m .-2<Cr>==", opts)
-keymap.set("v", "<M-j>", ":m '>+1<Cr>gv=gv", opts)
-keymap.set("v", "<M-k>", ":m '<-2<Cr>gv=gv", opts)
-keymap.set("i", "<M-j>", "<Esc>:m .+1<Cr>==gi", opts)
-keymap.set("i", "<M-k>", "<Esc>:m .-2<Cr>==gi", opts)
+keymap.set("n", "<M-J>", ":m .+1<Cr>==", opts)
+keymap.set("n", "<M-K>", ":m .-2<Cr>==", opts)
+keymap.set("v", "<M-J>", ":m '>+1<Cr>gv=gv", opts)
+keymap.set("v", "<M-K>", ":m '<-2<Cr>gv=gv", opts)
+keymap.set("i", "<M-J>", "<Esc>:m .+1<Cr>==gi", opts)
+keymap.set("i", "<M-K>", "<Esc>:m .-2<Cr>==gi", opts)
+wk.register({
+  ["<M-J>"] = { "Move line down" },
+  ["<M-K>"] = { "Move line up" },
+})
 
 -- Easier window resizing
-keymap.set({ "n", "i", "t" }, "<M-h>", ":vertical resize -2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<M-j>", ":resize +2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<M-k>", ":resize -2<Cr>", opts)
-keymap.set({ "n", "i", "t" }, "<M-l>", ":vertical resize +2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-h>", ":vertical resize -2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-j>", ":resize +2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-k>", ":resize -2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-l>", ":vertical resize +2<Cr>", opts)
 keymap.set("t", "<M-h>", "<C-\\><C-n>:vertical resize -2<Cr>i", opts)
 keymap.set("t", "<M-j>", "<C-\\><C-n>:resize +2<Cr>i", opts)
 keymap.set("t", "<M-k>", "<C-\\><C-n>:resize -2<Cr>i", opts)
 keymap.set("t", "<M-l>", "<C-\\><C-n>:vertical resize +2<Cr>i", opts)
+wk.register({
+  ["<M-h>"] = { "Horizontally decrease window size" },
+  ["<M-j>"] = { "Vertically increase window size" },
+  ["<M-k>"] = { "Vertically decrease window size" },
+  ["<M-l>"] = { "Horizontally increase window size" },
+})
 
 -- Keep the selection when indenting
 keymap.set("v", "<", "<gv", opts)
@@ -66,6 +87,12 @@ keymap.set("v", ">", ">gv", opts)
 -- Jump to previous and next matches for the f and t search
 keymap.set({ "n", "v" }, ";", "<Plug>Lightspeed_;_ft", opts)
 keymap.set({ "n", "v" }, ",", "<Plug>Lightspeed_,_ft", opts)
+wk.register({
+  s = { "Lightspeed search" },
+  S = { "Lightspeed search backwards" },
+  [";"] = { "Next ft search match" },
+  [","] = { "Previous ft search match" },
+})
 
 -- Evaluate a code section
 keymap.set("v", "<Leader>e", function()
@@ -85,6 +112,12 @@ end, opts)
 keymap.set({ "n", "i", "t" }, "<M-4>", function()
   require("harpoon.ui").nav_file(4)
 end, opts)
+wk.register({
+  ["<M-1>"] = { "Jump to first marked file" },
+  ["<M-2>"] = { "Jump to second marked file" },
+  ["<M-3>"] = { "Jump to third marked file" },
+  ["<M-4>"] = { "Jump to fourth marked file" },
+})
 
 -- Luasnip
 keymap.set({ "n", "i" }, "<C-Tab>", function()
@@ -99,6 +132,10 @@ keymap.set({ "n", "i" }, "<C-e>", function()
     ls.expand_or_jump()
   end
 end, opts)
+wk.register({
+  ["<C-Tab>"] = { "Switch between choices" },
+  ["<C-e>"] = { "Expand or jump in snippets" },
+})
 
 -- Navigator
 keymap.set({ "n", "v", "t" }, "<C-h>", function()
@@ -113,6 +150,49 @@ end, opts)
 keymap.set({ "n", "v", "t" }, "<C-l>", function()
   require("Navigator").right()
 end, opts)
+wk.register({
+  ["<C-h>"] = { "Activate left window" },
+  ["<C-j>"] = { "Activate lower window" },
+  ["<C-k>"] = { "Activate upper window" },
+  ["<C-l>"] = { "Activate right window" },
+})
+
+-- <C-g>
+wk.register({
+  ["<C-g>"] = {
+    name = "+goto/get",
+    ["<C-n>"] = {
+      name = "+next",
+      ["<C-f>"] = {
+        "Go to the beginning of the next function",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-c>"] = {
+        "Go to the beginning of the next class",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-e>"] = {
+        "Go to the end of the next function",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-o>"] = {
+        "Go to the end of the next class ",
+      }, -- Defined in nvim-treesitter.lua
+    },
+    ["<C-p>"] = {
+      name = "+previous",
+      ["<C-f>"] = {
+        "Go to the beginning of the previous function",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-c>"] = {
+        "Go to the beginning of the previous class",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-e>"] = {
+        "Go to the end of the previous function",
+      }, -- Defined in nvim-treesitter.lua
+      ["<C-o>"] = {
+        "Go to the end of the previous class ",
+      }, -- Defined in nvim-treesitter.lua
+    },
+  },
+})
 
 -- Leader
 wk.register({
@@ -128,6 +208,8 @@ wk.register({
           "Generate documentation",
         },
       },
+      s = { "Swap with next parameter" }, -- Defined in nvim-treesitter.lua
+      S = { "Swap with previous parameter" }, -- Defined in nvim-treesitter.lua
     },
     b = {
       name = "+buffer",
