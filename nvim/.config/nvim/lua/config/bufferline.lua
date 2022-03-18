@@ -91,6 +91,26 @@ function M.config()
           highlight = "TabLine",
         },
       },
+      tab_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      tab_close = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineFill",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineFill",
+        },
+      },
       close_button = {
         guifg = {
           attribute = "fg",
@@ -101,10 +121,310 @@ function M.config()
           highlight = "TabLine",
         },
       },
-      separator_selected = {
+      close_button_visible = {
         guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      close_button_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
           attribute = "bg",
           highlight = "TabLineSel",
+        },
+      },
+      buffer_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      buffer_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      diagnostic = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      diagnostic_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      diagnostic_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      info = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      info_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      info_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      info_diagnostic = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      info_diagnostic_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      info_diagnostic_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticInfo",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      warning = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      warning_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      warning_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      warning_diagnostic = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      warning_diagnostic_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      warning_diagnostic_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      error = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      error_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      error_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      error_diagnostic = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      error_diagnostic_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      error_diagnostic_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticError",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      modified = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      modified_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      modified_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "DiagnosticWarn",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      duplicate = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineDuplicate",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      duplicate_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineDuplicate",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      duplicate_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineDuplicate",
         },
         guibg = {
           attribute = "bg",
@@ -121,10 +441,60 @@ function M.config()
           highlight = "TabLine",
         },
       },
+      separator_visible = {
+        guifg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      separator_selected = {
+        guifg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
       indicator_selected = {
         guifg = {
           attribute = "fg",
           highlight = "TabLineSelector",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+      },
+      pick = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      pick_visible = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLine",
+        },
+        guibg = {
+          attribute = "bg",
+          highlight = "TabLine",
+        },
+      },
+      pick_selected = {
+        guifg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
         },
         guibg = {
           attribute = "bg",
