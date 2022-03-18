@@ -3,6 +3,10 @@ local wk = require("which-key")
 
 local opts = { silent = true }
 
+-- Tab
+wk.register({
+  ["<Tab>"] = { "Indent cursor" },
+})
 -- Navigate tabs
 keymap.set({ "n", "i", "t" }, "<C-t><C-d>", "<C-\\><C-n>:tabclose<Cr>", opts)
 keymap.set({ "n", "i", "t" }, "<C-t><C-n>", "<C-\\><C-n>:tabn<Cr>", opts)

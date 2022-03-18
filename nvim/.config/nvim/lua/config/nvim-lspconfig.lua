@@ -41,11 +41,11 @@ function M.on_attach(client, bufnr)
 
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
-  keymap.set({ "n", "i", "v" }, "<C-s>", lsp.buf.signature_help, opts)
-  keymap.set({ "n", "i", "v" }, "<C-i>", lsp.buf.hover, opts)
+  keymap.set({ "n", "i", "v" }, "<C-s>", function()
+    diagnostic.open_float({ severity_sort = true })
+  end, opts)
   wk.register({
-    ["<C-s>"] = { "Get signature help" },
-    ["<C-i>"] = { "Show hover" },
+    ["<C-s>"] = { "Show diagnostics info" },
   })
 
   wk.register({
@@ -93,16 +93,14 @@ function M.on_attach(client, bufnr)
         "Go to references",
         buffer = bufnr,
       },
-      ["<C-s>"] = {
-        function()
-          diagnostic.open_float({ severity_sort = true })
-        end,
-        "Get diagnostics",
-        buffer = bufnr,
-      },
       ["<C-t>"] = {
         lsp.buf.type_definition,
         "Get type definition",
+        buffer = bufnr,
+      },
+      ["<C-s>"] = {
+        lsp.buf.signature_help,
+        "Get signature help",
         buffer = bufnr,
       },
     },
