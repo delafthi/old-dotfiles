@@ -186,7 +186,7 @@ vim.opt.splitbelow = true -- Put new windows below the current.
 vim.opt.splitright = true -- Put new windows right of the current.
 
 -- Statusline {{{1
-vim.opt.laststatus = 2 -- Always show the statusline
+vim.opt.laststatus = 3 -- Show only one global statusline
 
 -- Terminal {{{1
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
