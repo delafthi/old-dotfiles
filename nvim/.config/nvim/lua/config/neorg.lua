@@ -6,12 +6,15 @@ function M.config()
     load = {
       ["core.defaults"] = {},
       ["core.keybinds"] = {
-        config = { default_keybinds = true },
+        config = { default_keybinds = false },
       },
       ["core.gtd.base"] = {
         config = {
           workspace = "gtd",
         },
+      },
+      ["core.presenter"] = {
+        config = { slide_count = { position = "bottom" } },
       },
       ["core.norg.concealer"] = {
         config = { icon_preset = "diamond" },
@@ -32,11 +35,8 @@ function M.config()
         },
       },
     },
-    ["core.presenter"] = {
-      config = { slide_count = { position = "bottom" } },
-    },
-    ["core.integrations.telescope"] = {},
     ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
+    ["core.integrations.telescope"] = {},
   })
 end
 
