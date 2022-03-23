@@ -413,17 +413,10 @@ wk.register({
     n = {
       name = "+neorg",
       i = {
-        name = "+insert",
-        f = { ":Telescope neorg insert_file_link", "Insert file link" },
-        h = { ":Neorg inject-metadata<Cr>", "Inject File header" },
-        l = { ":Telescope neorg insert_link", "Insert link" },
+        ":Neorg inject-metadata<Cr>",
+        "Inject File header",
       },
       n = { ":NeorgStart<Cr>", "Load the latest workspace" },
-      s = {
-        name = "+search",
-        h = { ":Telescope neorg search_headings", "Search headings" },
-        l = { ":Telescope neorg find_linkable", "Find linkable" },
-      },
       t = {
         name = "+task",
         a = { ":Neorg gtd capture<Cr>", "Add a task" },
