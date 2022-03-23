@@ -49,7 +49,7 @@ function M.config()
             i(1, fn.fnamemodify(fn.bufname(), ":t:r")),
             i(2, "Thierry Delafontaine"),
             i(3, fn.strftime("%d.%m.%Y")),
-            i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. ".pdf"),
+            i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. "pdf_document"),
             i(0),
           }
         )
