@@ -254,6 +254,22 @@ require("packer").startup({
         require("config.bufferline").config()
       end,
     })
+    use({
+      "folke/zen-mode.nvim",
+      cmd = "ZenMode",
+      module = "zen-mode",
+      config = function()
+        require("config.zen-mode").config()
+      end,
+    })
+    use({
+      "folke/twilight.nvim",
+      cmd = "Twilight",
+      module = "twilight",
+      config = function()
+        require("config.twilight").config()
+      end,
+    })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })
     -- File formatting
