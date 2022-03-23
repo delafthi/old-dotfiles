@@ -175,33 +175,33 @@ wk.register({
 wk.register({
   ["<C-g>"] = {
     name = "+goto/get",
-    ["<C-n>"] = {
+    n = {
       name = "+next",
-      ["<C-f>"] = {
+      f = {
         "Go to the beginning of the next function",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-c>"] = {
+      c = {
         "Go to the beginning of the next class",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-e>"] = {
+      F = {
         "Go to the end of the next function",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-o>"] = {
+      C = {
         "Go to the end of the next class ",
       }, -- Defined in nvim-treesitter.lua
     },
     ["<C-p>"] = {
       name = "+previous",
-      ["<C-f>"] = {
+      f = {
         "Go to the beginning of the previous function",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-c>"] = {
+      c = {
         "Go to the beginning of the previous class",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-e>"] = {
+      F = {
         "Go to the end of the previous function",
       }, -- Defined in nvim-treesitter.lua
-      ["<C-o>"] = {
+      C = {
         "Go to the end of the previous class ",
       }, -- Defined in nvim-treesitter.lua
     },

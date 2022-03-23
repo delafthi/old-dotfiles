@@ -51,54 +51,54 @@ function M.on_attach(client, bufnr)
   wk.register({
     ["<C-g>"] = {
       name = "+goto/get",
-      ["<C-D>"] = {
+      d = {
         lsp.buf.declaration,
         "Go to declaration",
         buffer = bufnr,
       },
-      ["<C-d>"] = {
+      D = {
         lsp.buf.definition,
         "Go to definition",
         buffer = bufnr,
       },
-      ["<C-h>"] = { lsp.buf.hover, "Get hover", buffer = bufnr },
-      ["<C-i>"] = {
+      h = { lsp.buf.hover, "Get hover", buffer = bufnr },
+      i = {
         lsp.buf.implementation,
         "Go to implementation",
         buffer = bufnr,
       },
-      ["<C-n>"] = {
+      n = {
         name = "+next",
-        ["<C-d>"] = {
+        d = {
           diagnostic.goto_next,
           "Go to next diagnostic",
           buffer = bufnr,
         },
       },
-      ["<C-p>"] = {
+      p = {
         name = "+previous",
-        ["<C-d>"] = {
+        d = {
           diagnostic.goto_prev,
           "Go to previous diagnostic",
           buffer = bufnr,
         },
       },
-      ["<C-q>"] = {
+      q = {
         lsp.util.set_loclist,
         "Get local quickfixlist",
         buffer = bufnr,
       },
-      ["<C-r>"] = {
+      r = {
         lsp.buf.references,
         "Go to references",
         buffer = bufnr,
       },
-      ["<C-t>"] = {
+      t = {
         lsp.buf.type_definition,
         "Get type definition",
         buffer = bufnr,
       },
-      ["<C-s>"] = {
+      s = {
         lsp.buf.signature_help,
         "Get signature help",
         buffer = bufnr,
