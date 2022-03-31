@@ -1,6 +1,7 @@
 # Systemd
 
-Added a script to start the ssh-agent automatically upon login.
+Use the gpg-agent for ssh keys. The systemd start script for the ssh-agent is
+currently not used.
 
 ## References
 
