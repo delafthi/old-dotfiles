@@ -77,7 +77,11 @@ vim.opt.listchars = {
 }
 vim.opt.number = true -- Print line numbers.
 vim.opt.relativenumber = true -- Set line numbers to be relative to the cursor position.
-vim.opt.scrolloff = 8 -- Keep 8 lines above or below the cursorline
+-- vim.opt.scrolloff = 8
+vim.api.nvim_create_autocmd("FileType", {
+  command = "set so=8",
+  group = vim.api.nvim_create_augroup("scrolloff", { clear = true }),
+}) -- Keep 8 lines above or below the cursorline
 vim.opt.showbreak = ">>> " -- Show wrapped lines with a prepended string.
 vim.opt.showcmd = true -- Show command in the command line.
 vim.opt.showmode = false -- Don't show mode in the command line.
@@ -108,7 +112,7 @@ vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while perfor
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
 vim.api.nvim_create_autocmd("FileType", {
-  command = "set fo-=r fo-=o",
+  command = "set fo-=ro",
   group = vim.api.nvim_create_augroup("formatOptions", { clear = true }),
 }) -- Disables automatic insertion of comment leaders
 
