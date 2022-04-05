@@ -1,4 +1,3 @@
-local cmd = vim.cmd -- to execute vim commands without any output
 local fn = vim.fn -- to execute vim functions
 
 vim.g.mapleader = " " -- Set leader to space.
@@ -22,32 +21,28 @@ vim.api.nvim_create_autocmd("CursorHold", {
 }) -- Auto reload file, when changes where made somewhere else (for autoreload)
 vim.opt.hidden = true -- Enable modified buffers in the background.
 vim.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
--- Automatically deletes all trailing whitespace and newlines at end of file on
--- save.
-cmd([[
-  function! TrimTrailingLines()
-    let lastLine = line('$')
-    let lastNonblankLine = prevnonblank(lastLine)
-    if lastLine > 0 && lastNonblankLine != lastLine
-      silent! execute lastNonblankLine + 1 . ',$delete _'
-    endif
-  endfunction
-]])
-
 local removeTrailingWhitespacesAndLines = vim.api.nvim_create_augroup(
   "removeTrailingWhitespacesAndLines",
   { clear = true }
 )
-vim.api.nvim_create_buf(
-  "BufWritePre",
-  { command = "%s/s+$//e", group = removeTrailingWhitespacesAndLines }
-)
-vim.api.nvim_create_buf("BufWritePre", {
-  command = "call TrimTrailingLines()",
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    require("util.misc").exec_and_restore_view(
+      [[keepj keepp silent! %s/\s*$//e]]
+    )
+  end,
+  group = removeTrailingWhitespacesAndLines,
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    require("util.misc").exec_and_restore_view(
+      [[silent! 0;/^\%(\_s*\S\)\@!/,$d]]
+    )
+  end,
   group = removeTrailingWhitespacesAndLines,
 })
 -- Try to save file with sudo on files that require root permission
-cmd([[ca w!! w !sudo tee >/dev/null "%"]])
+vim.cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
 -- Diff {{{1
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
