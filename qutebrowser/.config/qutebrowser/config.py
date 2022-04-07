@@ -470,7 +470,7 @@ c.completion.shrink = True
 # QtWebEngine, writing the clipboard as response to a user interaction
 # is always allowed.
 # Type: Bool
-# c.content.javascript.can_access_clipboard = False
+c.content.javascript.can_access_clipboard = True
 
 # Allow JavaScript to close tabs.
 # Type: Bool
@@ -802,7 +802,12 @@ c.fileselect.folder.command = ["kitty", "-e", "ranger", "--choosedir={}"]
 # contained in any argument, the   standard output of the command is
 # read instead.
 # Type: ShellCommand
-c.fileselect.multiple_files.command = ["kitty", "-e", "ranger", "--choosefiles={}"]
+c.fileselect.multiple_files.command = [
+    "kitty",
+    "-e",
+    "ranger",
+    "--choosefiles={}",
+]
 
 # Command (and arguments) to use for selecting a single file in forms.
 # The command should write the selected file path to the specified file
@@ -1358,7 +1363,14 @@ c.statusbar.padding = {"top": 1, "bottom": 1, "left": 3, "right": 3}
 #   - keypress: Display pressed keys when composing a vi command.
 #   - progress: Progress bar for the current page loading.
 #   - text:foo: Display the static text after the colon, `foo` in the example.
-c.statusbar.widgets = ["keypress", "url", "progress", "history", "progress", "scroll"]
+c.statusbar.widgets = [
+    "keypress",
+    "url",
+    "progress",
+    "history",
+    "progress",
+    "scroll",
+]
 
 # Open new tabs (middleclick/ctrl+click) in the background.
 # Type: Bool
