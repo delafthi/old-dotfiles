@@ -8,27 +8,27 @@ wk.register({
   ["<Tab>"] = { "Indent cursor" },
 })
 -- Navigate tabs
-keymap.set({ "n", "i", "t" }, "<C-t><C-d>", "<C-\\><C-n>:tabclose<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t>d", "<C-\\><C-n>:tabclose<Cr>", opts)
 keymap.set(
   { "n", "i", "t" },
-  "<C-t><C-n>",
+  "<C-t>n",
   "<C-\\><C-n>:BufferLineCycleNext<Cr>",
   opts
 )
 keymap.set(
   { "n", "i", "t" },
-  "<C-t><C-p>",
+  "<C-t>p",
   "<C-\\><C-n>:BufferLineCyclePrev<Cr>",
   opts
 )
-keymap.set({ "n", "i", "t" }, "<C-t><C-t>", "<C-\\><C-n>:tabnew<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t>t", "<C-\\><C-n>:tabnew<Cr>", opts)
 wk.register({
   ["<C-t>"] = {
     name = "+tabs",
-    ["<C-d>"] = { "Close tab" },
-    ["<C-n>"] = { "Next tab" },
-    ["<C-p>"] = { "Previous tab" },
-    ["<C-t>"] = { "Create new tab" },
+    d = { "Close tab" },
+    n = { "Next tab" },
+    p = { "Previous tab" },
+    t = { "Create new tab" },
   },
 })
 
