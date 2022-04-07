@@ -48,6 +48,7 @@ function M.config()
         end
         return table.concat(s, " ")
       end,
+      color_icons = true, -- whether or not to add the filetype icon highlights
       show_buffer_icons = true, -- disable filetype icons for buffers
       show_buffer_close_icons = false,
       show_close_icon = false,
