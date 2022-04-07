@@ -335,6 +335,24 @@ wk.register({
         end,
         "Neogit",
       },
+      i = {
+        name = "+issue",
+        l = {
+          ":Octo issue list<Cr>",
+          "List issues",
+        },
+        n = {
+          ":Octo issue create<Cr>",
+          "Create new issue",
+        },
+      },
+      p = {
+        name = "+pull request",
+        l = {
+          ":Octo pr list<Cr>",
+          "List PRs",
+        },
+      },
       s = {
         function()
           require("telescope.builtin").git_status()

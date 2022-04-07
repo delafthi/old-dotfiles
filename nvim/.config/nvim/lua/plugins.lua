@@ -81,7 +81,15 @@ require("packer").startup({
         require("config.galaxyline").config()
       end,
     })
-
+    -- Session Management
+    use({
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      module = "persistence",
+      config = function()
+        require("config.persistence").config()
+      end,
+    })
     -- Editing
     -- Syntax highlighting
     use({
@@ -333,11 +341,21 @@ require("packer").startup({
       end,
     })
     use({
-      "folke/persistence.nvim",
-      event = "BufReadPre",
-      module = "persistence",
+      "pwntester/octo.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "kyazdani42/nvim-web-devicons",
+      },
+      wants = {
+        "plenary.nvim",
+        "telescope.nvim",
+        "nvim-web-devicons",
+      },
+      cmd = "Octo",
+      module = "octo",
       config = function()
-        require("config.persistence").config()
+        require("config.octo").config()
       end,
     })
     -- Movement
