@@ -1,6 +1,8 @@
 local M = {}
 
 function M.config()
+  local c = require("nord.colors")
+
   require("octo").setup({
     default_remote = { "upstream", "origin" }, -- order to try remotes
     reaction_viewer_hint_icon = "", -- marker for user reactions
@@ -14,6 +16,20 @@ function M.config()
     file_panel = {
       size = 10, -- changed files panel rows
       use_icons = true, -- use web-devicons in file panel
+    },
+    colors = {
+      white = c.nord4,
+      grey = c.nord3,
+      black = c.nord0,
+      red = c.nord11,
+      dark_red = c.nord11,
+      green = c.nord14,
+      dark_green = c.nord14,
+      yellow = c.nord13,
+      dark_yellow = c.nord13,
+      blue = c.nord8,
+      dark_blue = c.nord10,
+      purple = c.nord15,
     },
     mappings = {
       issue = {

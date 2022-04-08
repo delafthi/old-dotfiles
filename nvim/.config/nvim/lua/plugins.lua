@@ -343,11 +343,13 @@ require("packer").startup({
     use({
       "pwntester/octo.nvim",
       requires = {
+        "nord-nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "kyazdani42/nvim-web-devicons",
       },
       wants = {
+        "nord-nvim",
         "plenary.nvim",
         "telescope.nvim",
         "nvim-web-devicons",
