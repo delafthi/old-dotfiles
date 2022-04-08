@@ -434,6 +434,15 @@ require("packer").startup({
       end,
     })
     use({
+      "jakewvincent/mkdnflow.nvim",
+      cmd = "Mkdnflow",
+      ft = { "markdown", "rmd" },
+      module = "mkdnflow",
+      confg = function()
+        require("config.mkdnflow").config()
+      end,
+    })
+    use({
       "nvim-neorg/neorg",
       requires = {
         "nvim-lua/plenary.nvim",
