@@ -420,7 +420,7 @@ require("packer").startup({
     -- Note taking
     use({
       "lukas-reineke/headlines.nvim",
-      ft = { "markdown", "mkd", "norg", "org" },
+      ft = { "markdown", "rmd" },
       config = function()
         require("config.headlines").config()
       end,
@@ -428,7 +428,7 @@ require("packer").startup({
     use({
       "iamcco/markdown-preview.nvim",
       run = "cd app && yarn install",
-      ft = { "markdown", "mkd" },
+      ft = { "markdown", "rmd" },
       setup = function()
         require("config.markdown-preview").setup()
       end,

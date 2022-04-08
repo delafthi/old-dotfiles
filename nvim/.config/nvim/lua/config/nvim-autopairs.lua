@@ -17,8 +17,9 @@ function M.config()
     Rule(
       "$",
       "$",
-      { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "latex" }
-    ):with_move(cond.after_regex("%$", 1)),
+      { "latex", "markdown", "pandoc", "rmd", "vimwiki" },
+      cond.after_regex("%$", 1)
+    ),
   })
 end
 
