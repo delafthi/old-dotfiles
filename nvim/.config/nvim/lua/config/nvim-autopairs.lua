@@ -2,7 +2,8 @@ local M = {}
 
 function M.config()
   local npairs = require("nvim-autopairs")
-  local rule = require("nvim-autopairs.rule")
+  local Rule = require("nvim-autopairs.rule")
+  local cond = require("nvim-autopairs.conds")
 
   -- Call the setup function
   npairs.setup({
@@ -13,7 +14,11 @@ function M.config()
   -- Add additional autopairs rules
   npairs.add_rules({
     -- Latex/Markdown
-    rule("$", "$", { "markdown", "md", "tex", "latex" }),
+    Rule(
+      "$",
+      "$",
+      { "markdown", "vimwiki", "rmarkdown", "rmd", "pandoc", "latex" }
+    ):with_move(cond.after_regex("%$", 1)),
   })
 end
 
