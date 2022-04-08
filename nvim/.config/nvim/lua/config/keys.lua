@@ -177,34 +177,49 @@ wk.register({
     name = "+goto/get",
     n = {
       name = "+next",
-      f = {
-        "Go to the beginning of the next function",
-      }, -- Defined in nvim-treesitter.lua
       c = {
         "Go to the beginning of the next class",
-      }, -- Defined in nvim-treesitter.lua
-      F = {
-        "Go to the end of the next function",
       }, -- Defined in nvim-treesitter.lua
       C = {
         "Go to the end of the next class ",
       }, -- Defined in nvim-treesitter.lua
-    },
-    ["<C-p>"] = {
-      name = "+previous",
       f = {
-        "Go to the beginning of the previous function",
-      }, -- Defined in nvim-treesitter.lua
-      c = {
-        "Go to the beginning of the previous class",
+        "Go to the beginning of the next function",
       }, -- Defined in nvim-treesitter.lua
       F = {
-        "Go to the end of the previous function",
+        "Go to the end of the next function",
+      }, -- Defined in nvim-treesitter.lua
+      t = {
+        ":tn<Cr>",
+        "Go to the next matching tag",
+      },
+    },
+    p = {
+      name = "+previous",
+      c = {
+        "Go to the beginning of the previous class",
       }, -- Defined in nvim-treesitter.lua
       C = {
         "Go to the end of the previous class ",
       }, -- Defined in nvim-treesitter.lua
+      f = {
+        "Go to the beginning of the previous function",
+      }, -- Defined in nvim-treesitter.lua
+      F = {
+        "Go to the end of the previous function",
+      }, -- Defined in nvim-treesitter.lua
+      t = {
+        ":tN<Cr>",
+        "Go to the previous matching tag",
+      },
     },
+  },
+})
+
+-- C-c
+wk.register({
+  ["<C-c>"] = {
+    name = "+custom",
   },
 })
 
@@ -433,6 +448,9 @@ wk.register({
       i = {
         ":Neorg inject-metadata<Cr>",
         "Inject File header",
+      },
+      m = {
+        name = "+mode",
       },
       n = { ":NeorgStart<Cr>", "Load the latest workspace" },
       t = {

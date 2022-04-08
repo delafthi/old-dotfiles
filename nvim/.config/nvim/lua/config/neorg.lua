@@ -15,37 +15,37 @@ function M.config()
               n = {
 
                 -- Keys for managing TODO items and setting their states
-                { "<C-g>tu", "core.norg.qol.todo_items.todo.task_undone" },
-                { "<C-g>tp", "core.norg.qol.todo_items.todo.task_pending" },
-                { "<C-g>td", "core.norg.qol.todo_items.todo.task_done" },
-                { "<C-g>th", "core.norg.qol.todo_items.todo.task_on_hold" },
-                { "<C-g>tc", "core.norg.qol.todo_items.todo.task_cancelled" },
-                { "<C-g>tr", "core.norg.qol.todo_items.todo.task_recurring" },
-                { "<C-g>ti", "core.norg.qol.todo_items.todo.task_important" },
+                { "<C-c>tu", "core.norg.qol.todo_items.todo.task_undone" },
+                { "<C-c>tp", "core.norg.qol.todo_items.todo.task_pending" },
+                { "<C-c>td", "core.norg.qol.todo_items.todo.task_done" },
+                { "<C-c>th", "core.norg.qol.todo_items.todo.task_on_hold" },
+                { "<C-c>tc", "core.norg.qol.todo_items.todo.task_cancelled" },
+                { "<C-c>tr", "core.norg.qol.todo_items.todo.task_recurring" },
+                { "<C-c>ti", "core.norg.qol.todo_items.todo.task_important" },
                 { "<C-Space>", "core.norg.qol.todo_items.todo.task_cycle" },
 
                 -- Keys for managing GTD
-                { "<C-g>tC", "core.gtd.base.capture" },
-                { "<C-g>tv", "core.gtd.base.views" },
-                { "<C-g>te", "core.gtd.base.edit" },
+                { "<C-c>tC", "core.gtd.base.capture" },
+                { "<C-c>tv", "core.gtd.base.views" },
+                { "<C-c>te", "core.gtd.base.edit" },
 
                 -- Keys for managing notes
                 { leader .. "fn", "core.norg.dirman.new.note" },
-                { "<C-g>Tg", "core.norg.qol.toc.generate_toc" },
-                { "<C-g>Td", "core.norg.qol.toc.display_toc" },
+                { "<C-c>Tg", "core.norg.qol.toc.generate_toc" },
+                { "<C-c>Td", "core.norg.qol.toc.display_toc" },
 
-                { "<CR>", "core.norg.esupports.hop.hop-link" },
-                { "<M-CR>", "core.norg.esupports.hop.hop-link", "vsplit" },
+                { "<Cr>", "core.norg.esupports.hop.hop-link" },
+                { "<C-Cr>v", "core.norg.esupports.hop.hop-link", "vsplit" },
 
-                { "<M-K>", "core.norg.manoeuvre.item_up" },
-                { "<M-J>", "core.norg.manoeuvre.item_down" },
+                { "<M-k>", "core.norg.manoeuvre.item_up" },
+                { "<M-j>", "core.norg.manoeuvre.item_down" },
 
                 {
                   leader .. "sl",
                   "core.integrations.telescope.find_linkable",
                 },
-                { "<C-g>l", "core.integrations.telescope.insert_link" },
-                { "<C-g>f", "core.integrations.telescope.insert_file_link" },
+                { "<C-c>l", "core.integrations.telescope.insert_link" },
+                { "<C-c>f", "core.integrations.telescope.insert_file_link" },
               },
               o = {
                 { "ah", "core.norg.manoeuvre.textobject.around-heading" },
@@ -55,8 +55,8 @@ function M.config()
                 { "al", "core.norg.manoeuvre.textobject.around-whole-list" },
               },
               i = {
-                { "<C-g>l", "core.integrations.telescope.insert_link" },
-                { "<C-g>f", "core.integrations.telescope.insert_file_link" },
+                { "<C-c>l", "core.integrations.telescope.insert_link" },
+                { "<C-c>f", "core.integrations.telescope.insert_file_link" },
               },
             }, { silent = true, noremap = true })
 
@@ -74,7 +74,7 @@ function M.config()
 
             keybinds.map_event_to_mode("toc-split", {
               n = {
-                { "<CR>", "core.norg.qol.toc.hop-toc-link" },
+                { "<Cr>", "core.norg.qol.toc.hop-toc-link" },
 
                 -- Keys for closing the current display
                 { "q", "core.norg.qol.toc.close" },
@@ -89,7 +89,7 @@ function M.config()
             -- Map the below keys on gtd displays
             keybinds.map_event_to_mode("gtd-displays", {
               n = {
-                { "<CR>", "core.gtd.ui.goto_task" },
+                { "<Cr>", "core.gtd.ui.goto_task" },
 
                 -- Keys for closing the current display
                 { "q", "core.gtd.ui.close" },
@@ -107,7 +107,7 @@ function M.config()
             -- Map the below keys on presenter mode
             keybinds.map_event_to_mode("presenter", {
               n = {
-                { "<CR>", "core.presenter.next_page" },
+                { "<Cr>", "core.presenter.next_page" },
                 { "j", "core.presenter.next_page" },
                 { "k", "core.presenter.previous_page" },
 
@@ -123,8 +123,8 @@ function M.config()
             -- Apply the below keys to all modes
             keybinds.map_to_mode("all", {
               n = {
-                { leader .. "mn", ":Neorg mode norg<CR>" },
-                { leader .. "mh", ":Neorg mode traverse-heading<CR>" },
+                { leader .. "nmn", ":Neorg mode norg<CR>" },
+                { leader .. "nmh", ":Neorg mode traverse-heading<CR>" },
               },
             }, {
               silent = true,
