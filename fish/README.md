@@ -12,6 +12,7 @@ Therefore, the configuration has nearly the same dependencies.
 - [neovim](https://github.com/neovim/neovim) (As a manpager and default editor)
 - [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs/)
+- [direnv](https://github.com/direnv/direnv)
 - [pyenv](https://github.com/pyenv/pyenv) (Suggested to install over the default
   package manager)
   - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)

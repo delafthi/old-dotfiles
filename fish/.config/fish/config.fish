@@ -203,6 +203,11 @@ if not test -d $HOME/.config/fish/plugins/foreign-env
 end
 set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-env/functions
 
+# direnv
+if command -v direnv 1>/dev/null 2>&1
+    direnv hook fish | source
+end
+
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1
     pyenv init --path | source
