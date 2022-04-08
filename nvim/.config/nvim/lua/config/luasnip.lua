@@ -28,54 +28,51 @@ function M.config()
   require("luasnip.loaders.from_vscode").lazy_load()
 
   -- Define snippets
-  ls.snippets = {
-    all = {},
-    markdown = {
-      s(
+  ls.add_snippets("markdown", {
+    s(
+      {
+        trig = "---",
+        name = "Markdown header",
+        docstring = "Insert the markdown document header",
+      },
+      fmt(
+        "---\n"
+          .. "title: {}\n"
+          .. "author: {}\n"
+          .. "date: {}\n"
+          .. "output: {}\n"
+          .. "---\n"
+          .. "{}",
         {
-          trig = "---",
-          name = "Markdown header",
-          docstring = "Insert the markdown document header",
-        },
-        fmt(
-          "---\n"
-            .. "title: {}\n"
-            .. "author: {}\n"
-            .. "date: {}\n"
-            .. "output: {}\n"
-            .. "---\n"
-            .. "{}",
-          {
-            i(1, fn.fnamemodify(fn.bufname(), ":t:r")),
-            i(2, "Thierry Delafontaine"),
-            i(3, fn.strftime("%d.%m.%Y")),
-            i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. "pdf_document"),
-            i(0),
-          }
-        )
-      ),
-      s(
+          i(1, fn.fnamemodify(fn.bufname(), ":t:r")),
+          i(2, "Thierry Delafontaine"),
+          i(3, fn.strftime("%d.%m.%Y")),
+          i(4, fn.fnamemodify(fn.bufname(), ":t:r") .. "pdf_document"),
+          i(0),
+        }
+      )
+    ),
+    s(
+      {
+        trig = "$$",
+        name = "Math array",
+        docstring = "Insert a math environment",
+      },
+      fmt(
+        "$$\n"
+          .. "\\begin{{array}}{{{}}}\n"
+          .. "{}\n"
+          .. "\\end{{array}}\n"
+          .. "$$\n"
+          .. "{}",
         {
-          trig = "$$",
-          name = "Math array",
-          docstring = "Insert a math environment",
-        },
-        fmt(
-          "$$\n"
-            .. "\\begin{{array}}{{{}}}\n"
-            .. "{}\n"
-            .. "\\end{{array}}\n"
-            .. "$$\n"
-            .. "{}",
-          {
-            i(1, "rcl"),
-            i(2),
-            i(0),
-          }
-        )
-      ),
-    },
-  }
+          i(1, "rcl"),
+          i(2),
+          i(0),
+        }
+      )
+    ),
+  })
 end
 
 return M
