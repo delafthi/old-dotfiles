@@ -1,0 +1,8 @@
+[Default Applications]
+x-scheme-handler/msteams=teams.desktop
+application/pdf=org.pwmt.zathura.desktop
+text/html=nvim.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=nvim.desktop

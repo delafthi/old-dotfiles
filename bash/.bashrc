@@ -144,6 +144,11 @@ else
   eval "$(starship init bash)"
 fi
 
+# direnv
+if command -v direnv 1> /dev/null 2>&1; then
+  eval "$(direnv hook bash)"
+fi
+
 # pyenv
 if command -v pyenv 1> /dev/null 2>&1; then
   eval "$(pyenv init --path)"

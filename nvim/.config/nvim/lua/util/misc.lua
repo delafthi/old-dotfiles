@@ -9,7 +9,6 @@ end
 
 function M.exec_and_restore_view(cmd)
   local save = vim.fn.winsaveview()
-  print(save["lnum"])
   vim.api.nvim_exec(cmd, false)
   vim.fn.winrestview(save)
 end

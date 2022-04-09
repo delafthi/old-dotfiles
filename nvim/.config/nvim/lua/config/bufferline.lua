@@ -20,7 +20,7 @@ function M.config()
   require("bufferline").setup({
     options = {
       mode = "tabs", -- set to "tabs" to only show tabpages instead
-      number_style = "none", -- buffer_id at index 1, ordinal at index 2
+      numbers = "none", -- buffer_id at index 1, ordinal at index 2
       close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
       right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
       left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
@@ -48,6 +48,7 @@ function M.config()
         end
         return table.concat(s, " ")
       end,
+      color_icons = true, -- whether or not to add the filetype icon highlights
       show_buffer_icons = true, -- disable filetype icons for buffers
       show_buffer_close_icons = false,
       show_close_icon = false,
@@ -57,7 +58,7 @@ function M.config()
       -- [focused and unfocused]. eg: { '|', '|' }
       separator_style = "thin",
       enforce_regular_tabs = false,
-      always_show_bufferline = false,
+      always_show_bufferline = true,
       sort_by = "id",
     },
     highlights = {

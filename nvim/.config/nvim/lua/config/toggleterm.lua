@@ -11,8 +11,21 @@ function M.config()
     end,
     open_mapping = nil,
     hide_numbers = true, -- hide the number column in toggleterm buffers
+    highlights = {
+      Normal = {
+        link = "Normal",
+      },
+      NormalFloat = {
+        link = "Normal",
+      },
+      FloatBorder = {
+        link = "Comment",
+      },
+      SignColumn = {
+        link = "Normal",
+      },
+    },
     shade_terminals = false,
-    shading_factor = "<number>", -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
     start_in_insert = true,
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
     terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
@@ -28,10 +41,6 @@ function M.config()
       -- not natively supported but implemented in this plugin.
       border = "single",
       winblend = 3,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
     },
   })
 end

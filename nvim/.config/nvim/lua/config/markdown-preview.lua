@@ -4,7 +4,7 @@ function M.setup()
   -- Define global variables
   vim.g.mkdp_autoclose = 0 -- Disable auto close, when changing to a different buffer.
   vim.g.mkdp_browser = "qutebrowser" -- Set default browser.
-  vim.gmkdp_filetypes = { "markdown", "vimwiki" } -- Set compatible filetypes.
+  vim.gmkdp_filetypes = { "markdown", "rmd", "vimwiki" } -- Set compatible filetypes.
   vim.g.mkdp_page_title = "${name}" -- Set page title.
   vim.g.mkdp_refresh_slow = 0 -- Turn on faust auto refresh.
   vim.g.mkdp_preview_options = {

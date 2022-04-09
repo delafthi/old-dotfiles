@@ -81,7 +81,15 @@ require("packer").startup({
         require("config.galaxyline").config()
       end,
     })
-
+    -- Session Management
+    use({
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      module = "persistence",
+      config = function()
+        require("config.persistence").config()
+      end,
+    })
     -- Editing
     -- Syntax highlighting
     use({
@@ -333,11 +341,23 @@ require("packer").startup({
       end,
     })
     use({
-      "folke/persistence.nvim",
-      event = "BufReadPre",
-      module = "persistence",
+      "pwntester/octo.nvim",
+      requires = {
+        "nord-nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "kyazdani42/nvim-web-devicons",
+      },
+      wants = {
+        "nord-nvim",
+        "plenary.nvim",
+        "telescope.nvim",
+        "nvim-web-devicons",
+      },
+      cmd = "Octo",
+      module = "octo",
       config = function()
-        require("config.persistence").config()
+        require("config.octo").config()
       end,
     })
     -- Movement
@@ -400,7 +420,7 @@ require("packer").startup({
     -- Note taking
     use({
       "lukas-reineke/headlines.nvim",
-      ft = { "markdown", "mkd", "norg", "org" },
+      ft = { "markdown", "rmd" },
       config = function()
         require("config.headlines").config()
       end,
@@ -408,9 +428,18 @@ require("packer").startup({
     use({
       "iamcco/markdown-preview.nvim",
       run = "cd app && yarn install",
-      ft = { "markdown", "mkd" },
+      ft = { "markdown", "rmd" },
       setup = function()
         require("config.markdown-preview").setup()
+      end,
+    })
+    use({
+      "jakewvincent/mkdnflow.nvim",
+      cmd = "Mkdnflow",
+      ft = { "markdown", "rmd" },
+      module = "mkdnflow",
+      confg = function()
+        require("config.mkdnflow").config()
       end,
     })
     use({

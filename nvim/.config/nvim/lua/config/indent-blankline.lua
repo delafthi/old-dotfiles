@@ -10,9 +10,9 @@ function M.config()
       "help",
       "man",
       "markdown",
+      "rmd",
       "norg",
       "packer",
-      "org",
     },
     buftype_exclude = {
       "terminal",

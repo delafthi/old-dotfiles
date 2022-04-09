@@ -10,6 +10,7 @@ Neovim is a terminal based text editor with a f
   called from within neovim. Such tools are:
   - [ripgrep](https://github.com/BurntSushi/ripgrep)
   - [fd](https://github.com/sharkdp/fd)
+  - [github-cli](https://cli.github.com/)
   - LSP servers:
     - [bashls](https://github.com/bash-lsp/bash-language-server)
     - [cmakels](https://github.com/regen100/cmake-language-server)
