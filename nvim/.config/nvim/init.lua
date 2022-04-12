@@ -36,11 +36,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     require("util.misc").exec_and_restore_view(
-      [[silent! 0;/^\%(\_s*\S\)\@!/,$d]]
+      [[keepj keepp silent! 0;/^\%(\_s*\S\)\@!/,$d]]
     )
   end,
   group = removeTrailingWhitespacesAndLines,
 })
+
 -- Try to save file with sudo on files that require root permission
 vim.cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 

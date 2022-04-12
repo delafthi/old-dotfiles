@@ -8,9 +8,16 @@ function M.foldtext()
 end
 
 function M.exec_and_restore_view(cmd)
-  local save = vim.fn.winsaveview()
-  vim.api.nvim_exec(cmd, false)
-  vim.fn.winrestview(save)
+  local curw = vim.fn.winsaveview()
+  -- Save our undo file to be restored after we are done. This is needed to
+  -- prevent an additional undp jump due to BufWritePre auto command.
+  local tmpundofile = vim.fn.tempname()
+  vim.cmd("wundo! " .. tmpundofile)
+  vim.cmd("try | silent undojoin | catch | endtry")
+  vim.cmd(cmd)
+  vim.cmd("silent! rundo " .. tmpundofile)
+  vim.fn.delete(tmpundofile)
+  vim.fn.winrestview(curw)
 end
 
 return M
