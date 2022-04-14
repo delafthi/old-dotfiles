@@ -438,7 +438,7 @@ require("packer").startup({
       cmd = "Mkdnflow",
       ft = { "markdown", "rmd" },
       module = "mkdnflow",
-      confg = function()
+      config = function()
         require("config.mkdnflow").config()
       end,
     })

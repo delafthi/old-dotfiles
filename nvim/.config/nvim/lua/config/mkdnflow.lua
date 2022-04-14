@@ -22,7 +22,7 @@ function M.config()
     --     the string provided as the value of new_file_prefix.
     -- 'false' results in the value of new_file_prefix being used as a string,
     --     i.e. it is not evaluated, and the prefix will be invariant.
-    evaluate_prefix = true,
+    evaluate_prefix = false,
 
     -- Type: string. Defines the prefix that should be used to create new links.
     --     This is evaluated at the time createLink() is run, which is to say
@@ -34,8 +34,8 @@ function M.config()
     --     link or heading in the file, it will wrap to the beginning of the
     -- file (if it's reached the end) or wrap to the end of the file (if it's
     -- reached the beginning during a backwards search).
-    wrap_to_beginning = true,
-    wrap_to_end = true,
+    wrap_to_beginning = false,
+    wrap_to_end = false,
     -- Type: string. This is the path where mkdnflow will look for a .bib file
     --     when acting upon markdown citations.
     default_bib_path = "~/Bibliography/refs.bib",
@@ -46,8 +46,8 @@ function M.config()
     -- Type: table. Keys should be the names of commands (see :h Mkdnflow-comma-
     -- nds for a list), and values should be strings indicating the key mapping.
     mappings = {
-      MkdnNextLink = "]l",
-      MkdnPrevLink = "[l",
+      MkdnNextLink = "<C-n>",
+      MkdnPrevLink = "<C-p>",
       MkdnNextHeading = "]h",
       MkdnPrevHeading = "[h",
       MkdnGoBack = "<Bs>",
