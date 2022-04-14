@@ -56,9 +56,11 @@ function M.config()
         end
       end,
     },
-    documentation = {
-      border = { "", "", "", " ", "", "", "", " " },
-      winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+    window = {
+      documentation = {
+        border = { "", "", "", " ", "", "", "", " " },
+        winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+      },
     },
     formatting = {
       format = function(entry, vim_item)
