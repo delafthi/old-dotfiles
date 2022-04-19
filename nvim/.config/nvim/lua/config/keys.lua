@@ -7,6 +7,7 @@ local opts = { silent = true }
 wk.register({
   ["<Tab>"] = { "Indent cursor" },
 })
+
 -- Navigate tabs
 keymap.set({ "n", "i", "t" }, "<C-t>d", "<C-\\><C-n>:tabclose<Cr>", opts)
 keymap.set(

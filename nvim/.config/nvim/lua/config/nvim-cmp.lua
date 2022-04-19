@@ -93,12 +93,13 @@ function M.config()
           ng.jump_next()
         elseif ok_ls and ls.expand_or_jumpable() then
           ls.expand_or_jump()
-        elseif vim.bo.buftype ~= "prompt" and has_words_before() then
+        elseif has_words_before() then
           cmp.complete()
         else
           fallback()
         end
       end, {
+        "c",
         "i",
         "s",
       }),
@@ -113,8 +114,9 @@ function M.config()
           fallback()
         end
       end, {
-        "i",
         "c",
+        "i",
+        "s",
       }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
