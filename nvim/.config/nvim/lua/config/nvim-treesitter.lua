@@ -7,8 +7,6 @@ function M.config()
       url = "https://github.com/alemuller/tree-sitter-vhdl",
       files = { "src/parser.c" },
       branch = "main",
-      generate_requires_npm = false,
-      requires_generate_from_grammar = false,
     },
     filetype = { "vhdl", "vhd" },
   }
@@ -30,8 +28,16 @@ function M.config()
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
     highlight = { enable = true },
-    indent = { enable = false },
-    incremental_selection = { enable = false },
+    indent = { enable = true },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+      },
+    },
 
     -- Treesitter Plugins
     context_commentstring = {
