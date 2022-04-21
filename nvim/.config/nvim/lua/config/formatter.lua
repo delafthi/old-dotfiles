@@ -197,6 +197,28 @@ function M.config()
           }
         end,
       },
+      vhdl = {
+        function()
+          return {
+            exe = "emacs",
+            args = {
+              "--batch",
+              [[--eval '
+(let ((vhdl-file-content "")
+      next-line)
+  (while (setq next-line (ignore-errors (read-from-minibuffer "")))
+         (setq vhdl-file-content (concat vhdl-file-content "\n" next-line)))
+  (with-temp-buffer
+    (vhdl-mode)
+    (insert vhdl-file-content)
+    (vhdl-beautify-region (point-min) (point-max))
+    (princ (buffer-string))))
+              ']],
+            },
+            stdin = true,
+          }
+        end,
+      },
       yaml = {
         function()
           return {
