@@ -102,7 +102,7 @@ if command -v nvim 1> /dev/null 2>&1; then
   alias vim="nvim"
   alias vi="nvim"
   # set vim as manpager
-  export MANPAGER="nvim +Man! +'set noma'"
+  export MANPAGER="nvim +Man!"
   export EDITOR="nvim"
 fi
 
