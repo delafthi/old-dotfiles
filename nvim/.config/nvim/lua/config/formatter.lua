@@ -204,13 +204,14 @@ function M.config()
             args = {
               "--batch",
               [[--eval '
-(let ((vhdl-file-content "")
+(let (vhdl-file-content
       next-line)
   (while (setq next-line (ignore-errors (read-from-minibuffer "")))
-         (setq vhdl-file-content (concat vhdl-file-content "\n" next-line)))
+         (setq vhdl-file-content (concat vhdl-file-content next-line "\n")))
   (with-temp-buffer
     (vhdl-mode)
     (insert vhdl-file-content)
+    (delete-region (- (point-max) 1) (point-max))
     (vhdl-beautify-region (point-min) (point-max))
     (princ (buffer-string))))
               ']],
