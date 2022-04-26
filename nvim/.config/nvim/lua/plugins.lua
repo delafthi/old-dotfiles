@@ -456,6 +456,10 @@ require("packer").startup({
         require("config.neorg").config()
       end,
     })
+    use({
+      "jbyuki/venn.nvim",
+      cmd = { "VBox" },
+    })
     -- Automatically set up the configuration
     if PACKER_BOOTSTRAP then
       require("packer").sync()

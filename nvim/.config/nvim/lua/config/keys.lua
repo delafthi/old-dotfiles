@@ -506,6 +506,57 @@ wk.register({
     t = {
       name = "+toggle",
       s = { ":setlocal spell!<Cr>", "Spell check" },
+      v = {
+        function()
+          local venn_enabled = vim.inspect(vim.b.venn_enabled)
+          if venn_enabled == "nil" then
+            vim.b.venn_enabled = true
+            vim.opt.virtualedit = "all"
+            -- draw a line on HJKL keystokes
+            vim.keymap.set(
+              "n",
+              "J",
+              "<C-v>j:VBox<CR>",
+              { noremap = true, buffer = 0 }
+            )
+            vim.keymap.set(
+              "n",
+              "K",
+              "<C-v>k:VBox<CR>",
+              { noremap = true, buffer = 0 }
+            )
+            vim.keymap.set(
+              "n",
+              "L",
+              "<C-v>l:VBox<CR>",
+              { noremap = true, buffer = 0 }
+            )
+            vim.keymap.set(
+              "n",
+              "H",
+              "<C-v>h:VBox<CR>",
+              { noremap = true, buffer = 0 }
+            )
+            -- draw a box by pressing "f" with visual selection
+            vim.keymap.set(
+              "v",
+              "f",
+              ":VBox<CR>",
+              { noremap = true, buffer = 0 }
+            )
+          else
+            -- Remove kepmaps
+            vim.keymap.del("n", "J", { noremap = true, buffer = 0 })
+            vim.keymap.del("n", "K", { noremap = true, buffer = 0 })
+            vim.keymap.del("n", "L", { noremap = true, buffer = 0 })
+            vim.keymap.del("n", "H", { noremap = true, buffer = 0 })
+            vim.keymap.del("v", "f", { noremap = true, buffer = 0 })
+            vim.opt.virtualedit = nil
+            vim.b.venn_enabled = nil
+          end
+        end,
+        "Toggle venn",
+      },
     },
     s = {
       name = "+search",
