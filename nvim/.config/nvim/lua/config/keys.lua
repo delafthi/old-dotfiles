@@ -461,6 +461,7 @@ wk.register({
       },
       w = {
         name = "+workspace",
+        b = { ":Neorg workspace bible<Cr>", "Bible" },
         g = { ":Neorg workspace gtd<Cr>", "GTD" },
         n = { ":Neorg workspace notes<Cr>", "Notes" },
         p = {

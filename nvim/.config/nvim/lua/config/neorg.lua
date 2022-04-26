@@ -153,7 +153,7 @@ function M.config()
             default = vim.fn.getcwd(),
             notes = "~/Notes",
             school = "~/Notes/school",
-            projects = "~/Notes/projects",
+            bible = "~/Notes/bible",
             gtd = "~/Notes/gtd",
           },
           autochdir = false,
