@@ -3,7 +3,8 @@ set signals {
   {{clk & rst} {(dut(_\\w+|\\d+|).clk$|dut(_\\w+|\\d+|).rst$)}}
   {{inputs} {dut(_\\w+|\\d+|).\\w+_i(\\\[0\\\]|$)}}
   {{outputs} {dut(_\\w+|\\d+|).\\w+_o(\\\[0\\\]|$)}}
-  {{misc} {dut(_\\w+|\\d+|).\\w+_(\\w|)s(\\\[0\\\]|$)}}}
+  {{misc} {dut(_\\w+|\\d+|).\\w+_(\\w|)s(\\\[0\\\]|$)}}
+  {{testbench} {(_\\w+|\\d+|).\\w+_tb(\\\[0\\\]|$)}}}
 
 # Load all signals
 set nsigs [ gtkwave::getNumFacs ]
