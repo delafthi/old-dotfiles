@@ -1,7 +1,8 @@
 # Global ignored directories and files
 .cache/
 compile_commands.json
-.python-version
+.envrc
 .gdb_history
 mnt/
+.python-version
 ~*
