@@ -139,6 +139,7 @@ keymap.set({ "n", "i" }, "<C-Tab>", function()
   local ls = require("luasnip")
   if ls.choice_active() then
     ls.change_choice(1)
+  else
   end
 end, opts)
 keymap.set({ "n", "i" }, "<C-e>", function()
@@ -219,8 +220,8 @@ wk.register({
 
 -- C-c
 wk.register({
-  ["<C-c>"] = {
-    name = "+custom",
+  ["<C-s>"] = {
+    name = "+special",
   },
 })
 

@@ -41,7 +41,7 @@ function M.on_attach(client, bufnr)
 
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
-  keymap.set({ "n", "i", "v" }, "<C-s>", function()
+  keymap.set({ "n", "i", "v" }, "<C-o>", function()
     diagnostic.open_float({ severity_sort = true })
   end, opts)
   wk.register({

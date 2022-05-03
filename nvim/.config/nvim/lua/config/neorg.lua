@@ -15,24 +15,24 @@ function M.config()
               n = {
 
                 -- Keys for managing TODO items and setting their states
-                { "<C-c>tu", "core.norg.qol.todo_items.todo.task_undone" },
-                { "<C-c>tp", "core.norg.qol.todo_items.todo.task_pending" },
-                { "<C-c>td", "core.norg.qol.todo_items.todo.task_done" },
-                { "<C-c>th", "core.norg.qol.todo_items.todo.task_on_hold" },
-                { "<C-c>tc", "core.norg.qol.todo_items.todo.task_cancelled" },
-                { "<C-c>tr", "core.norg.qol.todo_items.todo.task_recurring" },
-                { "<C-c>ti", "core.norg.qol.todo_items.todo.task_important" },
+                { "<C-s>tu", "core.norg.qol.todo_items.todo.task_undone" },
+                { "<C-s>tp", "core.norg.qol.todo_items.todo.task_pending" },
+                { "<C-s>td", "core.norg.qol.todo_items.todo.task_done" },
+                { "<C-s>th", "core.norg.qol.todo_items.todo.task_on_hold" },
+                { "<C-s>tc", "core.norg.qol.todo_items.todo.task_cancelled" },
+                { "<C-s>tr", "core.norg.qol.todo_items.todo.task_recurring" },
+                { "<C-s>ti", "core.norg.qol.todo_items.todo.task_important" },
                 { "<C-Space>", "core.norg.qol.todo_items.todo.task_cycle" },
 
                 -- Keys for managing GTD
-                { "<C-c>tC", "core.gtd.base.capture" },
-                { "<C-c>tv", "core.gtd.base.views" },
-                { "<C-c>te", "core.gtd.base.edit" },
+                { "<C-s>tC", "core.gtd.base.capture" },
+                { "<C-s>tv", "core.gtd.base.views" },
+                { "<C-s>te", "core.gtd.base.edit" },
 
                 -- Keys for managing notes
                 { leader .. "fn", "core.norg.dirman.new.note" },
-                { "<C-c>Tg", "core.norg.qol.toc.generate_toc" },
-                { "<C-c>Td", "core.norg.qol.toc.display_toc" },
+                { "<C-s>Tg", "core.norg.qol.toc.generate_toc" },
+                { "<C-s>Td", "core.norg.qol.toc.display_toc" },
 
                 { "<Cr>", "core.norg.esupports.hop.hop-link" },
                 { "<C-Cr>v", "core.norg.esupports.hop.hop-link", "vsplit" },
@@ -44,8 +44,8 @@ function M.config()
                   leader .. "sl",
                   "core.integrations.telescope.find_linkable",
                 },
-                { "<C-c>l", "core.integrations.telescope.insert_link" },
-                { "<C-c>f", "core.integrations.telescope.insert_file_link" },
+                { "<C-s>l", "core.integrations.telescope.insert_link" },
+                { "<C-s>f", "core.integrations.telescope.insert_file_link" },
               },
               o = {
                 { "ah", "core.norg.manoeuvre.textobject.around-heading" },
@@ -55,8 +55,8 @@ function M.config()
                 { "al", "core.norg.manoeuvre.textobject.around-whole-list" },
               },
               i = {
-                { "<C-c>l", "core.integrations.telescope.insert_link" },
-                { "<C-c>f", "core.integrations.telescope.insert_file_link" },
+                { "<C-s>l", "core.integrations.telescope.insert_link" },
+                { "<C-s>f", "core.integrations.telescope.insert_file_link" },
               },
             }, { silent = true, noremap = true })
 
