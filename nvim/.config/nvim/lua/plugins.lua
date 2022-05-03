@@ -178,7 +178,13 @@ require("packer").startup({
           requires = "nvim-lua/plenary.nvim",
           wants = "plenary.nvim",
           config = function()
-            require("cmp_git").setup()
+            require("cmp_git").setup({
+              filetypes = {
+                "gitcommit",
+                "octo",
+                "NeogitCommitMessage",
+              },
+            })
           end,
         },
         "saadparwaiz1/cmp_luasnip",
