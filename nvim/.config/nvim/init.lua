@@ -216,10 +216,7 @@ vim.opt.inccommand = "nosplit" -- Show the effect of a command incrementally, as
 vim.opt.path:prepend("**") -- Searches current directory recursively
 
 -- Wildmenu {{{1
-vim.opt.wildmenu = true -- Enable commandline autocompletion menu.
-vim.opt.wildmode = "full" -- Select completion mode.
-vim.opt.wildignorecase = true -- Ignores case when completing.
-vim.opt.wildoptions = "pum" -- Display the completion matches using the popupmenu.
+vim.opt.wildmenu = false -- Enable commandline autocompletion menu.
 
 -- Load Plugins at the end {{{1
 vim.defer_fn(function()
