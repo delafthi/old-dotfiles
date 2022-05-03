@@ -131,20 +131,13 @@ function M.config()
       { name = "nvim_lsp", max_item_count = 10 },
       { name = "nvim_lua", max_item_count = 10 },
       { name = "neorg", max_item_count = 10 },
+      { name = "git", max_item_count = 10 },
     }, {
       { name = "buffer", keyword_length = 5, max_item_count = 5 },
     }),
     experimental = {
       ghost_text = { hl_group = "CmpGhostText" },
     },
-  })
-
-  cmp.setup.filetype("gitcommit", {
-    sources = cmp.config.sources({
-      { name = "cmp_git", max_item_count = 10 },
-    }, {
-      { name = "buffer", max_item_count = 10 },
-    }),
   })
 
   cmp.setup.cmdline(":", {
@@ -159,7 +152,7 @@ function M.config()
     sources = cmp.config.sources({
       { name = "nvim_lsp_document_symbol", max_item_count = 10 },
     }, {
-      { name = "buffer", max_item_count = 10 },
+      { name = "buffer", keyword_length = 5, max_item_count = 10 },
     }),
   })
 
