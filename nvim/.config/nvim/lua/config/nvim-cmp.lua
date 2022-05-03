@@ -59,7 +59,7 @@ function M.config()
     window = {
       documentation = {
         border = { "", "", "", " ", "", "", "", " " },
-        winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+        winhighlight = "Normal:CmpDocumentation,FloatBorder:CmpDocumentation",
       },
     },
     formatting = {
