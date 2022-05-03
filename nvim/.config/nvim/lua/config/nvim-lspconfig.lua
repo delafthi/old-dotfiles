@@ -137,7 +137,7 @@ function M.on_attach(client, bufnr)
   })
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     wk.register({
       ["<Leader>"] = {
         b = {
@@ -146,7 +146,7 @@ function M.on_attach(client, bufnr)
         },
       },
     })
-  elseif client.resolved_capabilities.document_range_formatting then
+  elseif client.server_capabilities.document_range_formatting then
     wk.register({
       ["<Leader>"] = {
         b = {
@@ -162,7 +162,7 @@ function M.on_attach(client, bufnr)
     })
   end
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     local lspDocumentHighlight = vim.api.nvim_create_augroup(
       "lspDocumentHighlight",
       { clear = true }
