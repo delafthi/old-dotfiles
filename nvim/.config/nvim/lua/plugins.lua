@@ -69,8 +69,7 @@ require("packer").startup({
     })
     -- Statusline
     use({
-      "glepnir/galaxyline.nvim",
-      branch = "main",
+      "feline-nvim/feline.nvim",
       requires = {
         "nord-nvim",
         "kyazdani42/nvim-web-devicons",
@@ -78,7 +77,7 @@ require("packer").startup({
       wants = { "nord-nvim", "nvim-web-devicons" },
       event = "VimEnter",
       config = function()
-        require("config.galaxyline").config()
+        require("config.feline").config()
       end,
     })
     -- Session Management
