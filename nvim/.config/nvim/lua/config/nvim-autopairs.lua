@@ -14,12 +14,7 @@ function M.config()
   -- Add additional autopairs rules
   npairs.add_rules({
     -- Latex/Markdown
-    Rule(
-      "$",
-      "$",
-      { "latex", "markdown", "pandoc", "rmd", "vimwiki" },
-      cond.after_regex("%$", 1)
-    ),
+    Rule("$", "$", { "latex", "markdown", "rmd" }),
   })
 end
 
