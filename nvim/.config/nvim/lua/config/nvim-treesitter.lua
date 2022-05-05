@@ -24,6 +24,7 @@ function M.config()
       branch = "main",
     },
   }
+
   -- Call the setup function
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
