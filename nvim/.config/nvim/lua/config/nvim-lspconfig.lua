@@ -214,13 +214,13 @@ function M.config()
   local configs = require("lspconfig.configs")
   local util = require("lspconfig.util")
 
-  if not configs["rust_ls"] then
-    configs["rust_ls"] = {
+  if not configs["vhdlls"] then
+    configs["vhdlls"] = {
       default_config = {
         cmd = { "vhdl_ls" },
         filetypes = { "vhdl" },
         root_dir = function(fname)
-          return util.root_pattern({ ".vhdl_ls.toml", "vhdl_ls.toml" })(fname)
+          return util.root_pattern("vhdl_ls.toml")(fname)
             or util.find_git_ancestor(fname)
         end,
         settings = {},
@@ -231,10 +231,10 @@ https://github.com/VHDL-LS/rust_hdl
 A collection of HDL related tools
 
 `rust_hdl` can be built with cargo
-`git clone https://github.com/VHDL-LS/rust_hdl ~/.cache/nvim/rust_ls`
+`git clone https://github.com/VHDL-LS/rust_hdl ~/.cache/nvim/rust_hdl`
 `cd ~/.cache/nvim/rust_ls`
 `cargo build --release`
-`ln -s ~/.cache/nvim/rust_ls/target/release/vhdl_ls ~/.local/bin/vhdl_ls`
+`ln -s ~/.cache/nvim/rust_hdl/target/release/vhdl_ls ~/.local/bin/vhdl_ls`
           ]],
         },
       },
@@ -270,7 +270,7 @@ A collection of HDL related tools
       "hie.yaml"
     ),
   })
-  lspconfig.rust_ls.setup({
+  lspconfig.vhdlls.setup({
     capabilities = M.capabilities,
     on_attach = M.on_attach,
   })
