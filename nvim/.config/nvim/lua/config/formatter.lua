@@ -159,6 +159,20 @@ function M.config()
           }
         end,
       },
+      rmd = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--parser",
+              "markdown",
+              "--stdin-filepath",
+              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
+            stdin = true,
+          }
+        end,
+      },
       sh = {
         function()
           return {
