@@ -45,7 +45,7 @@ function M.on_attach(client, bufnr)
     diagnostic.open_float({ severity_sort = true })
   end, opts)
   wk.register({
-    ["<C-s>"] = { "Show diagnostics info" },
+    ["<C-o>"] = { "Show diagnostics info" },
   })
 
   wk.register({
