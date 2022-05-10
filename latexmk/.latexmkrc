@@ -1,5 +1,8 @@
-$pdf_mode = 1;
+$pdf_mode = 2;
 $pdflatex = 'lualatex';
+$dvi_previewer = 'xdvi -watchfile 1.5';
+$ps_previewer = 'gv --watch';
+$pdf_previewer = 'zathura';
 
 add_cus_dep('glo', 'gls', 0, 'run_makeglossaries');
 add_cus_dep('acn', 'acr', 0, 'run_makeglossaries');
