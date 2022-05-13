@@ -44,7 +44,7 @@ force_toolbars 0
 cursor_snap 8
 zoom_pow10_snap on
 
-dynamic_resizing 1
+dynamic_resizing 0
 hpane_pack 1
 
 use_maxtime_display 0
