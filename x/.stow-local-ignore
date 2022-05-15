@@ -1,0 +1,2 @@
+# Ignore the .Xmodmap file, since the configuration is only used for my thinkpad
+.Xmodmap
