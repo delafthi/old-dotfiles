@@ -9,10 +9,6 @@ function M.config()
       fallback = "current",
       root_tell = false,
     },
-    prefix = {
-      evaluate = false,
-      string = "",
-    },
     wrap = false,
     default_bib_path = "~/Bibliography/refs.bib",
     silent = false,
@@ -31,7 +27,16 @@ function M.config()
       MkdnDecreaseHeading = { "n", "-" },
       MkdnToggleToDo = { "n", "<C-Space>" },
     },
-    link_style = "markdown",
+    links = {
+      style = "markdown",
+      implicit_extension = nil,
+      transform_implicit = false,
+      transform_explicit = function(text)
+        text = text:gsub(" ", "_")
+        text = text:lower()
+        return text
+      end,
+    },
     to_do = {
       symbols = { " ", "-", "X" },
       update_parents = true,
