@@ -29,6 +29,8 @@
   autoStash = true
 [worktree]
   guessRemote = true
+[advice]
+  detachedHead = false
 [gui]
 	fontui = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
