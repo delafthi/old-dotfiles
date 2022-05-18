@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sel=$(hacksaw -f "-i %i -g %g")
-shotgun $sel "$1"
+shotgun ${sel} "$1"

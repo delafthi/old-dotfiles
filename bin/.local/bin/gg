@@ -1,13 +1,40 @@
 #!/bin/bash
 
+function print_usage {
+  echo -e "./$(basename $0)\tFuzzy grep word in files:"
+  echo -e "\t-a\tSearch in all files (no-ignore)"
+  echo -e "\t-h\tShow usage"
+  exit 1
+}
+
+opt_args=""
+
+while getopts ":ah" arg
+do
+  case ${arg} in
+    a)
+      opt_args="--no-ignore ${opt_args}"
+      ;;
+    h)
+      print_usage
+      ;;
+
+    ?)
+      echo "Invalid argument: ${arg}." >&2
+      exit 2
+      ;;
+  esac
+done
+
+
 export INITIAL_QUERY=""
-export RG_PREFIX="rg --ignore --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
-export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'"
+export RG_PREFIX="rg ${opt_args} --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
+export FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'"
 selected=$(fzf \
-  --bind "change:reload:$RG_PREFIX {q} || true" \
+  --bind "change:reload:${RG_PREFIX} {q} || true" \
   --disabled \
   --ansi \
-  --query "$INITIAL_QUERY" \
+  --query "${INITIAL_QUERY}" \
   --height=50% \
   --tabstop=2 \
   --layout=reverse \
@@ -21,6 +48,6 @@ selected=$(fzf \
     --line-range :500 {1}")
 
 # Check that the string is not empty
-if ! test -z $selected; then
-  nvim -c +"edit $selected"
+if ! test -z ${selected}; then
+  nvim -c +"edit ${selected}"
 fi
