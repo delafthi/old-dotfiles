@@ -149,16 +149,4 @@ if command -v direnv 1> /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
 
-# pyenv
-if command -v pyenv 1> /dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-  if [ ! -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
-    echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL pyenv-virtualenv is not installed.\n"
-    echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Please install pyenv-virtualenv through your package manager or manually. An installation guide can be found here: https://github.com/pyenv/pyenv-virtualenv#installation"
-  else
-    eval "$(pyenv virtualenv-init -)"
-  fi
-fi
-
 # }}}1

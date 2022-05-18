@@ -4,5 +4,4 @@ compile_commands.json
 .envrc
 .gdb_history
 mnt/
-.python-version
 ~*

@@ -13,9 +13,6 @@ Therefore, the configuration has nearly the same dependencies.
 - [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs/)
 - [direnv](https://github.com/direnv/direnv)
-- [pyenv](https://github.com/pyenv/pyenv) (Suggested to install over the default
-  package manager)
-  - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env): This plugin
   will be automatically installed to `~/.config/fish/plugins`.
 

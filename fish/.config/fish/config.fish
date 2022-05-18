@@ -208,22 +208,4 @@ if command -v direnv 1>/dev/null 2>&1
     direnv hook fish | source
 end
 
-# pyenv
-if command -v pyenv 1>/dev/null 2>&1
-    pyenv init --path | source
-    pyenv init - | source
-    if not test -d $PYENV_ROOT/plugins/pyenv-virtualenv
-        set_color --bold red
-        echo -n "=> Error: "
-        set_color normal
-        echo -e "pyenv-virtualenv not installed.\n"
-        set_color --bold green
-        echo -n "=> Info: "
-        set_color normal
-        echo "Please install pyenv-virtualenv through your package manager or manually. An installation guide can be found here: https://github.com/pyenv/pyenv-virtualenv#installation"
-    else
-        pyenv virtualenv-init - | source
-    end
-end
-
 # }}}1

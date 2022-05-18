@@ -16,9 +16,6 @@ However, I highly suggest you to install them.
 - [exa](https://github.com/ogham/exa)
 - [starship](https://starship.rs/)
 - [direnv](https://github.com/direnv/direnv)
-- [pyenv](https://github.com/pyenv/pyenv) (Suggested to install over the default
-  package manager)
-  - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 
 ## References
 
