@@ -141,6 +141,12 @@ awful.keyboard.append_global_keybindings({
     description = "open bitwarden-rofi",
     group = "launcher",
   }),
+  awful.key({ modkey, "Shift" }, "b", function()
+    awful.spawn("papis -s picktool rofi open")
+  end, {
+    description = "open bibliography database",
+    group = "launcher",
+  }),
   awful.key({ modkey, "Shift" }, "g", function()
     awful.spawn("eidolon menu")
   end, {

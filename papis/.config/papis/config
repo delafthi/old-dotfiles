@@ -1,6 +1,6 @@
 [settings]
 use-git = True
-header-format = <ansiblue>{doc.html_escape[title]}</ansiblue> <ansimagenta>({doc.html_escape[year]})</ansimagenta>
+header-format = <ansiblue><b>{doc.html_escape[title]}</b></ansiblue> <ansimagenta>({doc.html_escape[year]})</ansimagenta>
                 <ansicyan>{doc.html_escape[author]}</ansicyan>
                 <ansiwhite>[{doc.html_escape[tags]}]</ansiwhite>
 opentool = zathura
@@ -22,3 +22,8 @@ dir = ~/Bibliography/books
 
 [videos]
 dir = ~/Bibliography/videos
+
+[rofi-gui]
+header-format = <b>{doc[title]}</b> ({doc[year]})
+                {doc[author]}
+                [{doc[tags]}]
