@@ -10,7 +10,10 @@ function M.config()
       root_tell = false,
     },
     wrap = false,
-    default_bib_path = "~/Bibliography/refs.bib",
+    bib = {
+      default_path = "~/Bibliography/refs.bib",
+      find_in_root = false,
+    },
     silent = false,
     use_mappings_table = true,
     mappings = {
