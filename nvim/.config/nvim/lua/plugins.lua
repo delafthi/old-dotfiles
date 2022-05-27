@@ -448,6 +448,15 @@ require("packer").startup({
       end,
     })
     use({
+      "jubnzv/mdeval.nvim",
+      ft = { "norg", "markdown", "rmd" },
+      cmd = "MdEval",
+      module = "mdeval",
+      config = function()
+        require("config.mdeval").config()
+      end,
+    })
+    use({
       "nvim-neorg/neorg",
       requires = {
         "nvim-lua/plenary.nvim",
