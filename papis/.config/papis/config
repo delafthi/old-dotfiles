@@ -7,6 +7,7 @@ opentool = zathura
 add-folder-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 add-file-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 add-edit = True
+default-library = papers
 
 [tui]
 status_line_style = fg:ansiwhite
