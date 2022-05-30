@@ -1,6 +1,7 @@
 [core]
-	editor = nvim
-	excludesfile = ~/.gitignore
+  editor = nvim
+  excludesfile = ~/.gitignore
+  pager = delta
 [user]
 	name = Thierry Delafontaine
 	email = delafontaineth@pm.me
@@ -13,6 +14,8 @@
   gpgsign = true
 [pull]
   rebase = true
+[interactive]
+  diffFilter = delta --color-only
 [github]
   user = "delafthi"
 [alias]
@@ -21,23 +24,58 @@
   st = status -s -u -b --show-stash
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[diff]
+  colorMoved = default
 [color "status"]
   added = blue
   changed = red
   untracked = yellow
 [merge]
   autoStash = true
+  conflictstyle = diff3
 [worktree]
   guessRemote = true
 [advice]
   detachedHead = false
 [gui]
-	fontui = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	fontdiff = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-	spellingdictionary = en
-	tabsize = 2
+  fontui = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family \"VictorMono Nerd Font\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+  spellingdictionary = en
+  tabsize = 2
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[delta]
+  navigate = true
+  features = nord
+[delta "nord"]
+  #author: https://github.com/AirOnSkin
+  dark = true
+  line-numbers = true
+  keep-plus-minus-markers = true
+  syntax-theme = Nord
+  file-style = "#616E88" bold
+  file-decoration-style = "#616E88" ul
+  file-added-label = 
+  file-copied-label = 
+  file-modified-label = 
+  file-removed-label = 
+  file-renamed-label = 
+  hunk-header-style = omit
+  line-numbers-left-format = " {nm:>1} │"
+  line-numbers-left-style = red
+  line-numbers-right-format = " {np:>1} │"
+  line-numbers-right-style = green
+  line-numbers-minus-style = red italic black
+  line-numbers-plus-style = green italic black
+  line-numbers-zero-style = "#434C5E" italic
+  minus-style = bold red
+  minus-emph-style = bold red
+  plus-style = bold green
+  plus-emph-style = bold green
+  zero-style = syntax
+  blame-code-style = syntax
+  blame-format = "{author:<18} ({commit:>7}) {timestamp:^12} "
+  blame-palette = "#2E3440" "#3B4252" "#434C5E" "#4C566A"
