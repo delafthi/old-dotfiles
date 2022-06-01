@@ -1,6 +1,6 @@
 # Add signal groups and filters
 set signals {
-  {{clk & rst} {(dut(_\\w+|\\d+|).clk$|dut(_\\w+|\\d+|).rst$)}}
+  {{clk & rst} {(dut(_\\w+|\\d+|).clk$|dut(_\\w+|\\d+|).(rst|rst_n)$)}}
   {{inputs} {dut(_\\w+|\\d+|).\\w+_i(\\\[0\\\]|$)}}
   {{outputs} {dut(_\\w+|\\d+|).\\w+_o(\\\[0\\\]|$)}}
   {{misc} {dut(_\\w+|\\d+|).\\w+_(\\w|)s(\\\[0\\\]|$)}}
