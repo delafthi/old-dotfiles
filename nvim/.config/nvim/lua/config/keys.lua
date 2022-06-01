@@ -323,7 +323,7 @@ wk.register({
         function()
           require("telescope.builtin").git_files()
         end,
-        "Files",
+        "Git files",
       },
       r = {
         function()
