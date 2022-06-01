@@ -363,6 +363,32 @@ wk.register({
           "Create new issue",
         },
       },
+      l = {
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+          local lazygit = Terminal:new({
+            cmd = "lazygit",
+            dir = "git_dir",
+            direction = "float",
+            float_opts = {
+              border = "single",
+            },
+            on_open = function(term)
+              vim.cmd("startinsert!")
+              vim.keymap.set("t", "q", function()
+                term:close()
+              end, {
+                buffer = term.bufnr,
+                noremap = true,
+                silent = true,
+              })
+            end,
+            hidden = true,
+          })
+          lazygit:toggle()
+        end,
+        "Toggle lazygit",
+      },
       p = {
         name = "+pull request",
         l = {
@@ -479,19 +505,62 @@ wk.register({
       t = {
         name = "+terminal",
         f = {
-          ":ToggleTerm direction=float<Cr>",
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({
+              direction = "float",
+              float_opts = {
+                border = "single",
+              },
+              on_open = function()
+                vim.cmd("startinsert!")
+              end,
+              hidden = true,
+            })
+            lazygit:toggle()
+          end,
           "Open a floating terminal",
         },
         t = {
-          ":ToggleTerm direction=tab<Cr>",
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({
+              direction = "tab",
+              on_open = function()
+                vim.cmd("startinsert!")
+              end,
+              hidden = true,
+            })
+            lazygit:toggle()
+          end,
           "Open a terminal tab",
         },
         v = {
-          ":ToggleTerm direction=vertical<Cr>",
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({
+              direction = "vertical",
+              on_open = function()
+                vim.cmd("startinsert!")
+              end,
+              hidden = true,
+            })
+            lazygit:toggle()
+          end,
           "Open a terminal in a vertical split",
         },
         x = {
-          ":ToggleTerm direction=horizontal<Cr>",
+          function()
+            local Terminal = require("toggleterm.terminal").Terminal
+            local lazygit = Terminal:new({
+              direction = "horizontal",
+              on_open = function()
+                vim.cmd("startinsert!")
+              end,
+              hidden = true,
+            })
+            lazygit:toggle()
+          end,
           "Open a terminal in a horizontal split",
         },
       },
