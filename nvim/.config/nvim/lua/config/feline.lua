@@ -317,7 +317,7 @@ function M.config()
     force_inactive = {
       filetypes = {
         "^packer$",
-        "^dashboard$",
+        "^alpha$",
         "^Neogit",
         "^Telescope",
         "^help$",

@@ -5,7 +5,7 @@ function M.config()
   require("colorizer").setup({
     "*",
     "!packer",
-    "!dashboard",
+    "!alpha",
     "!help",
     "!terminal",
     "!neogit",

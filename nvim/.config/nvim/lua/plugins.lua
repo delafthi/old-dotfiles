@@ -61,10 +61,12 @@ require("packer").startup({
     })
     -- Start screen
     use({
-      "glepnir/dashboard-nvim",
+      "goolord/alpha-nvim",
+      requires = { "kyazdani42/nvim-web-devicons" },
+      wants = { "nvim-web-devicons" },
       event = "VimEnter",
-      setup = function()
-        require("config.dashboard").setup()
+      config = function()
+        require("config.alpha-nvim").config()
       end,
     })
     -- Statusline

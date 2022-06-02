@@ -6,7 +6,7 @@ function M.config()
     char = "│",
     use_treesitter = true,
     filetype_exclude = {
-      "dashboard",
+      "alpha",
       "help",
       "man",
       "markdown",
