@@ -97,8 +97,8 @@ keybinding:
     nextItem: "j" # go one line down
     prevItem-alt1: "<up>" # go one line up
     nextItem-alt1: "<down>" # go one line down
-    prevBlock: "<c-p>" # goto the previous block / panel
-    nextBlock: "<c-n>" # goto the next block / panel
+    prevBlock: "<c-k>" # goto the previous block / panel
+    nextBlock: "<c-j>" # goto the next block / panel
     prevBlock-alt1: "<left>" # goto the previous block / panel
     nextBlock-alt1: "<right>" # goto the next block / panel
     gotoTop: "g" # go to top of list
@@ -108,8 +108,7 @@ keybinding:
     nextMatch: "n"
     prevMatch: "N"
     optionMenu: "?" # show help menu
-    select: "s"
-    select-alt1: "<space>"
+    select: "<tab>"
     goInto: "<enter>"
     openRecentRepos: "<c-o>"
     confirm: "<enter>"
@@ -120,21 +119,20 @@ keybinding:
     openFile: "<c-e>"
     scrollUpMain: "<c-u>" # main panel scroll up
     scrollDownMain: "<c-d>" # main panel scroll down
-    scrollUpMain-alt1: "K" # main panel scroll up
     executeCustomCommand: ":"
     createRebaseOptionsMenu: "m"
     pushFiles: "P"
     pullFiles: "p"
     refresh: "R"
-    createPatchOptionsMenu: "<c-p>"
-    nextTab: "]"
-    prevTab: "["
+    createPatchOptionsMenu: "<c-m>"
+    nextTab: "<c-n>"
+    prevTab: "<c-p>"
     nextScreenMode: "+"
     prevScreenMode: "-"
     undo: "u"
     redo: "<c-r>"
     filteringMenu: "<c-f>"
-    diffingMenu: "W"
+    diffingMenu: "D"
     copyToClipboard: "<c-y>"
     submitEditorText: "<enter>"
     appendNewline: "o"
@@ -152,10 +150,9 @@ keybinding:
     commitChangesWithEditor: "C"
     ignoreFile: "i"
     refreshFiles: "r"
-    stashAllChanges: "S"
-    viewStashOptions: "<c-s>"
+    stashAllChanges: "s"
+    viewStashOptions: "S"
     toggleStagedAll: "a" # stage/unstage all
-    toggleStaged: "s"
     viewResetOptions: "D"
     fetch: "f"
     toggleTreeView: "<c-t>"
@@ -172,15 +169,15 @@ keybinding:
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
   commits:
-    squashDown: "S"
+    squashDown: "s"
     renameCommit: "r"
     renameCommitWithEditor: "R"
     viewResetOptions: "r"
     markCommitAsFixup: "f"
     createFixupCommit: "F" # create fixup commit for this commit
-    squashAboveCommits: "<c-s>"
-    moveDownCommit: "<c-j>" # move commit down one
-    moveUpCommit: "<c-k>" # move commit up one
+    squashAboveCommits: "S"
+    moveDownCommit: "J" # move commit down one
+    moveUpCommit: "K" # move commit up one
     amendToCommit: "A"
     pickCommit: "p" # pick commit (when mid-rebase)
     revertCommit: "t"
