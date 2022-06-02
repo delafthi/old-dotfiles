@@ -47,6 +47,7 @@ keymap.set({ "n", "v" }, "k", "gk", opts)
 keymap.set({ "n", "v" }, "n", "nzzzv", opts)
 keymap.set({ "n", "v" }, "N", "Nzzzv", opts)
 keymap.set("n", "J", "mzJ`z", opts)
+keymap.set("n", "K", "mzkJ`z", opts)
 wk.register({
   n = { "Next search result" },
   N = { "Previous search result" },
