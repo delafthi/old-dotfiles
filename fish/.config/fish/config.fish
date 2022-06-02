@@ -58,7 +58,7 @@ alias mv="mv -i"
 alias minicom="minicom -m -c on"
 alias htop="htop -t"
 alias feh="feh --auto-zoom --scale-down"
-alias lg="lazygit"
+alias gl="lazygit"
 
 ############################################################
 # Environment variables {{{1
