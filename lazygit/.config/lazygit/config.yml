@@ -21,7 +21,7 @@ gui:
     selectedRangeBgColor:
       - default
     cherryPickedCommitBgColor:
-      - orange
+      - "#3b4252"
     cherryPickedCommitFgColor:
       - yellow
     unstagedChangesColor:
