@@ -141,7 +141,7 @@ function M.config()
             hl = function()
               return {
                 name = "StatusComponentGitBranch",
-                fg = "magenta",
+                fg = "orange",
                 bg = "light_grey",
               }
             end,
