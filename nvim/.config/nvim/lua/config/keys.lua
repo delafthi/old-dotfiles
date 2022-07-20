@@ -497,59 +497,47 @@ wk.register({
         f = {
           function()
             local Terminal = require("toggleterm.terminal").Terminal
-            local lazygit = Terminal:new({
+            local floatterm = Terminal:new({
               direction = "float",
               float_opts = {
                 border = "single",
               },
-              on_open = function()
-                vim.cmd("startinsert!")
-              end,
               hidden = true,
             })
-            lazygit:toggle()
+            floatterm:toggle()
           end,
           "Open a floating terminal",
         },
         t = {
           function()
             local Terminal = require("toggleterm.terminal").Terminal
-            local lazygit = Terminal:new({
+            local tabterm = Terminal:new({
               direction = "tab",
-              on_open = function()
-                vim.cmd("startinsert!")
-              end,
               hidden = true,
             })
-            lazygit:toggle()
+            tabterm:toggle()
           end,
           "Open a terminal tab",
         },
         v = {
           function()
             local Terminal = require("toggleterm.terminal").Terminal
-            local lazygit = Terminal:new({
+            local vertterm = Terminal:new({
               direction = "vertical",
-              on_open = function()
-                vim.cmd("startinsert!")
-              end,
               hidden = true,
             })
-            lazygit:toggle()
+            vertterm:toggle()
           end,
           "Open a terminal in a vertical split",
         },
         x = {
           function()
             local Terminal = require("toggleterm.terminal").Terminal
-            local lazygit = Terminal:new({
+            local horizterm = Terminal:new({
               direction = "horizontal",
-              on_open = function()
-                vim.cmd("startinsert!")
-              end,
               hidden = true,
             })
-            lazygit:toggle()
+            horizterm:toggle()
           end,
           "Open a terminal in a horizontal split",
         },
