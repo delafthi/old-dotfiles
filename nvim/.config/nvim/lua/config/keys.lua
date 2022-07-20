@@ -485,10 +485,6 @@ wk.register({
         b = { ":Neorg workspace bible<Cr>", "Bible" },
         g = { ":Neorg workspace gtd<Cr>", "GTD" },
         n = { ":Neorg workspace notes<Cr>", "Notes" },
-        p = {
-          ":Neorg workspace projects<Cr>",
-          "Projects",
-        },
         s = { ":Neorg workspace school<Cr>", "School" },
       },
       ["?"] = { ":Neorg news all<Cr>", "View news" },
