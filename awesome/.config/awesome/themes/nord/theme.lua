@@ -276,7 +276,7 @@ theme.wibar_cursor = "left_ptr" -- The wibar’s mouse cursor
 theme.wibar_opacity = 1.0 -- The wibar opacity, between 0 and 1
 theme.wibar_type = "dock" -- The window type (desktop, normal, dock, …)
 theme.wibar_width = nil -- The wibar’s width
-theme.wibar_height = dpi(22) -- The wibar’s height
+theme.wibar_height = dpi(24) -- The wibar’s height
 theme.wibar_spacing = 3 * theme.useless_gap -- The spacing between widgets in the wibar
 
 -- Widgets {{{2
@@ -487,11 +487,8 @@ theme.tasklist_shape_border_width_urgent = theme.tasklist_shape_border_width -- 
 theme.tasklist_shape_border_color_urgent = theme.bg_urgent -- The urgent clients border color
 
 -- Awesome {{{2
-theme.awesome_icon = theme_assets.awesome_icon(
-  theme.wibar_height,
-  theme.nord9,
-  theme.fg_focus
-) -- The Awesome icon path
+theme.awesome_icon =
+  theme_assets.awesome_icon(theme.wibar_height, theme.nord9, theme.fg_focus) -- The Awesome icon path
 
 -- }}}1
 
