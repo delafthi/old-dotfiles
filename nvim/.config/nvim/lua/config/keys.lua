@@ -377,16 +377,6 @@ wk.register({
             float_opts = {
               border = "single",
             },
-            on_open = function(term)
-              vim.cmd("startinsert!")
-              vim.keymap.set("t", "q", function()
-                term:close()
-              end, {
-                buffer = term.bufnr,
-                noremap = true,
-                silent = true,
-              })
-            end,
             hidden = true,
           })
           lazygit:toggle()
