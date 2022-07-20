@@ -219,10 +219,10 @@ wk.register({
   },
 })
 
--- C-c
+-- C-s
 wk.register({
   ["<C-s>"] = {
-    name = "+special",
+    name = "+special/specific",
   },
 })
 

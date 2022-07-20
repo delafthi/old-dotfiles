@@ -41,11 +41,11 @@ function M.on_attach(client, bufnr)
 
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
-  keymap.set({ "n", "i", "v" }, "<C-o>", function()
+  keymap.set({ "n", "i", "v" }, "<C-f>", function()
     diagnostic.open_float({ severity_sort = true })
   end, opts)
   wk.register({
-    ["<C-o>"] = { "Show diagnostics info" },
+    ["<C-f>"] = { "Show diagnostics info" },
   })
 
   wk.register({
@@ -163,10 +163,8 @@ function M.on_attach(client, bufnr)
   end
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then
-    local lspDocumentHighlight = vim.api.nvim_create_augroup(
-      "lspDocumentHighlight",
-      { clear = true }
-    )
+    local lspDocumentHighlight =
+      vim.api.nvim_create_augroup("lspDocumentHighlight", { clear = true })
     vim.api.nvim_create_autocmd("CursorHold", {
       pattern = "<buffer>",
       callback = function()
@@ -189,15 +187,13 @@ function M.config()
 
   -- Visual
   -- Customize how diagnosics are displayed
-  lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(
-    lsp.diagnostic.on_publish_diagnostics,
-    {
+  lsp.handlers["textDocument/publishDiagnostics"] =
+    lsp.with(lsp.diagnostic.on_publish_diagnostics, {
       virtual_text = true,
       signs = true,
       underline = true,
       update_in_insert = false,
-    }
-  )
+    })
 
   for type, icon in pairs(M.signs) do
     local hl = "DiagnosticSign" .. type
