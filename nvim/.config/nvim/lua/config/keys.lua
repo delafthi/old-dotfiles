@@ -60,6 +60,9 @@ wk.register({
   Y = { "Yank until end of line" },
 })
 
+-- Enter new line without automatically inserting comment leaders
+keymap.set("i", "<C-Cr>", "<Cr><C-w>")
+
 -- Add undo breakpoints
 keymap.set("i", ",", ",<C-g>u", opts)
 keymap.set("i", ".", ".<C-g>u", opts)

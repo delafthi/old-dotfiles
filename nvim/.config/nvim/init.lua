@@ -112,16 +112,9 @@ vim.opt.smarttab = true -- Automatically tab to the next softtabstop
 vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 
-vim.api.nvim_create_autocmd("FileType", {
-  command = "set fo-=ro",
-  group = vim.api.nvim_create_augroup("formatOptions", { clear = true }),
-}) -- Disables automatic insertion of comment leaders
-
 -- Filetypes {{{1
-local additionalFiletypes = vim.api.nvim_create_augroup(
-  "additionalFiletypes",
-  { clear = true }
-)
+local additionalFiletypes =
+  vim.api.nvim_create_augroup("additionalFiletypes", { clear = true })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.cl",
   command = "set filetype=cpp",
@@ -134,7 +127,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.bbappend",
-  command = "set filetype=shh",
+  command = "set filetype=sh",
   group = additionalFiletypes,
 })
 vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
