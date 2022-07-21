@@ -40,7 +40,7 @@ gui:
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
   authorColors:
-    "Thierry Delafontaine": "#b48ead"
+    "Thierry Delafontaine": "#d08770"
     "*": "#81a1c1"
 git:
   paging:
