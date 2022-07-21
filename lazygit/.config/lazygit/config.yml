@@ -108,7 +108,7 @@ keybinding:
     nextMatch: "n"
     prevMatch: "N"
     optionMenu: "?" # show help menu
-    select: "<tab>"
+    select: "<space>"
     goInto: "<enter>"
     openRecentRepos: "<c-o>"
     confirm: "<enter>"
