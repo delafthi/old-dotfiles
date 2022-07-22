@@ -111,6 +111,7 @@ vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.smarttab = true -- Automatically tab to the next softtabstop
 vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while performing edition operations, like inserting a <Tab> or using <BS>
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.formatoptions = "tcroqlj" -- Defines how text is automatically formatted
 
 -- Filetypes {{{1
 local additionalFiletypes =
