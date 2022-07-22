@@ -9,6 +9,8 @@ add-folder-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 add-file-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
 add-edit = True
 default-library = papers
+database-backend = whoosh
+whoosh-schema-fields = ['author', 'title', 'year', 'tags', 'ref']
 
 [tui]
 status_line_style = fg:ansiwhite

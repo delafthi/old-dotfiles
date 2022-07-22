@@ -142,7 +142,7 @@ awful.keyboard.append_global_keybindings({
     group = "launcher",
   }),
   awful.key({ modkey, "Shift" }, "b", function()
-    awful.spawn("papis -s picktool rofi open")
+    awful.spawn("papis -s picktool rofi open author:*")
   end, {
     description = "open bibliography database",
     group = "launcher",
@@ -523,10 +523,8 @@ end)
 local function set_random_wallpaper(s)
   local wallpaper_path = "~/.local/share/backgrounds"
   local fileending = ".jpg"
-  local f = io.popen(
-    "fd -d 1 --regex " .. fileending .. " " .. wallpaper_path,
-    "r"
-  )
+  local f =
+    io.popen("fd -d 1 --regex " .. fileending .. " " .. wallpaper_path, "r")
   local files = {}
   local length = 0
   local line = "begin"

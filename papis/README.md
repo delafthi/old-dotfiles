@@ -6,6 +6,7 @@ keybindings and default viewer
 ## Dependencies
 
 - [zathura](https://pwmt.org/projects/zathura/): PDF-Viewer
+- [Whoosh](https://github.com/mchaput/whoosh)
 
 ## Reference
 
