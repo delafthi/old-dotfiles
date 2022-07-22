@@ -267,6 +267,12 @@ wk.register({
         end,
         "Evaluate the current buffer",
       },
+      c = {
+        function()
+          require("util.evaluate").config()
+        end,
+        "Evaluate config",
+      },
       e = {
         function()
           require("util.evaluate").line()

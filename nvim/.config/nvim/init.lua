@@ -209,6 +209,11 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.inccommand = "nosplit" -- Show the effect of a command incrementally, as you type.
 vim.opt.path:prepend("**") -- Searches current directory recursively
 
+-- Add a user command to source the config
+vim.api.nvim_create_user_command("EvalConfig", function()
+  require("util.evaluate").config()
+end, {})
+
 -- Wildmenu {{{1
 vim.opt.wildmenu = false -- Enable commandline autocompletion menu.
 

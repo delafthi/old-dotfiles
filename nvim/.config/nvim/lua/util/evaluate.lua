@@ -41,4 +41,10 @@ function M.section()
   end
 end
 
+function M.config()
+  local config = os.getenv("MYVIMRC")
+  vim.api.nvim_command("source " .. config)
+  vim.notify("Evaluated " .. config, vim.log.levels.INFO)
+end
+
 return M
