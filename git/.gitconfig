@@ -5,7 +5,7 @@
 [user]
 	name = Thierry Delafontaine
 	email = delafontaineth@pm.me
-  signingkey = AD78A74DD561FC73DD2F95033F9D47D503575097
+  signingkey = 525EBCF5B866B3FB9EA6CDA7636580A5946D693E
 [gpg]
   program = /usr/bin/gpg
 [commit]
