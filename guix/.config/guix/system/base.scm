@@ -1,26 +1,22 @@
 (define-module (system base)
+  #:use-module (gnu bootloader)
+  #:use-module (gnu bootloader grub)
   #:use-module (gnu system)
   #:use-module (gnu system keyboard)
   #:use-module (gnu system nss)
-  #:use-module (gnu bootloader)
-  #:use-module (gnu bootloader grub)
   #:use-module (gnu packages))
 
 (define-public packages
-  (append
+  (append 
     (map specification->package
-      (list
-        "bash" "bash-completion"
-        "htop"
-        "neovim"
-        "nss-certs"
-        "nss-mdns"
-        "wireless-tools"))
+      (list "htop"
+            "vim"
+            "nss-certs"))
     %base-packages))
 
 (define-public system
   (operating-system
-    (keyboard-layout (keyboard-layout "us" "dvorak-altgr-intl"))
+    (keyboard-layout (keyboard-layout "us" "altgr-intl,nodeadkeys"))
     (bootloader
       (bootloader-configuration
         (bootloader grub-efi-bootloader)

@@ -17,35 +17,29 @@
 (define-public packages
   (append
     (map specification->package
-      (list
-        "awesome"
-        "gtk+"
-        "gtk-engines"
-        "mesa"
-        "vulkan-tools"
-        "xclip"
-        "xdotool"
-        "xf86-input-libinput"
-        "xf86-video-amdgpu"
-        "xf86-video-intel"
-        "xf86-video-vesa"
-        "xrandr"
-        "xss-lock"
-        "xterm"))
+         (list "awesome"
+               "bluez-alsa"
+               "gtk+"
+               "gtk-engines"
+               "libva-utils"
+               "xclip"
+               "xdotool"
+               "xrandr"
+               "xss-lock"
+               "xterm"))
     base:packages))
 
 (define-public services
   (append
-    (list
-      (service bluetooth-service-type
-        (bluetooth-configuration
-          (auto-enable? #t)))
-      (service cups-service-type
-        (cups-configuration
-          (default-paper-size "A4")
-          (web-interface? #t)))
-      (service screen-locker-service-type
-        (screen-locker "slock" (file-append slock "/bin/slock") #f)))
+    (list (service bluetooth-service-type
+            (bluetooth-configuration
+              (auto-enable? #t)))
+          (service cups-service-type
+            (cups-configuration
+              (default-paper-size "A4")
+              (web-interface? #t)))
+          (service screen-locker-service-type
+            (screen-locker "slock" (file-append slock "/bin/slock") #f)))
     (modify-services %desktop-services
       (elogind-service-type config =>
         (elogind-configuration
@@ -59,9 +53,8 @@
           (inherit config)
           (dns "dnsmasq")
           (vpn-plugins
-            (list
-              network-manager-openvpn
-              network-manager-openconnect))))
+            (list network-manager-openvpn
+                  network-manager-openconnect))))
       (sddm-service-type config =>
         (sddm-configuration
           (inherit config)
@@ -72,10 +65,8 @@
         (udev-configuration
           (inherit config)
           (rules
-            (cons*
-              light
-              pipewire
-              (udev-configuration-rules config))))))))
+            (cons light
+                  (udev-configuration-rules config))))))))
 
 (define-public system
   (operating-system
