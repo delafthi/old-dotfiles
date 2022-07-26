@@ -4,9 +4,9 @@ header-format = <ansiblue><b>{doc.html_escape[title]}</b></ansiblue> <ansimagent
                 <ansicyan>{doc.html_escape[author]}</ansicyan>
                 <ansiwhite>[{doc.html_escape[tags]}]</ansiwhite>
 opentool = zathura
-ref-format = {doc[title]:.15]} {doc[author_list][0][surname]} {doc[year]}
-add-folder-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
-add-file-name = {doc[title]:.20}\_{doc[author]:.10}\_{doc[year]}
+ref-format = {doc[title]:.15]}-{doc[author_list][0][family]}-{doc[year]}
+add-folder-name = {doc[title]:.20}-{doc[author_list][0][family]}-{doc[year]}
+add-file-name = {doc[title]:.20}-{doc[author_list][0][family]}-{doc[year]}
 add-edit = True
 default-library = papers
 database-backend = whoosh
