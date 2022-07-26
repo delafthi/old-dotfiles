@@ -1635,6 +1635,7 @@ c.url.searchengines = {
     "aw": "https://wiki.archlinux.org/index.php?search={}",
     "wiki": "https://en.wikipedia.org/w/index.php?search={}",
     "gs": "https://scholar.google.com/scholar?hl=de&as_sdt=0%2C5&q={}&btnG=",
+    "syn": "https://www.thesaurus.com/browse/{}",
 }
 
 # Page(s) to open at the start.
