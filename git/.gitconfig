@@ -21,6 +21,8 @@
 [alias]
   co = checkout
   ci = commit
+  can = commit --amend --no-edit
+  ca = commit --amend
   st = status -s -u -b --show-stash
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
