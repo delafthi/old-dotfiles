@@ -19,13 +19,17 @@
 [github]
   user = "delafthi"
 [alias]
+  br = branch
   co = checkout
-  ci = commit
+  c = commit
   can = commit --amend --no-edit
   ca = commit --amend
-  st = status -s -u -b --show-stash
-  br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  p = pull
+  pr = pull --rebase
+  P = push
+  Pf = push --force
+  st = status -s -u -b --show-stash
 [diff]
   colorMoved = default
 [color "status"]
