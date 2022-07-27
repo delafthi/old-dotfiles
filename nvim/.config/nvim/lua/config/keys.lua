@@ -612,6 +612,12 @@ wk.register({
         end,
         "Toggle venn",
       },
+      z = {
+        function()
+          require("zen-mode").toggle()
+        end,
+        "Toggle zen mode",
+      },
     },
     s = {
       name = "+search",
