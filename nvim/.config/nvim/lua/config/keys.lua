@@ -61,7 +61,7 @@ wk.register({
 })
 
 -- Enter new line without automatically inserting comment leaders
-keymap.set("i", "<C-Cr>", "<Cr><C-w>")
+keymap.set("i", "<C-Cr>", "<Cr><Esc>0DI")
 
 -- Add undo breakpoints
 keymap.set("i", ",", ",<C-g>u", opts)
