@@ -266,9 +266,27 @@ A collection of HDL related tools
       "hie.yaml"
     ),
   })
-  lspconfig.vhdlls.setup({
+  -- python-language-server
+  lspconfig.pylsp.setup({
     capabilities = M.capabilities,
     on_attach = M.on_attach,
+    settings = {
+      configurationSources = { "flake8" },
+      plugins = {
+        flake8 = { enabled = true },
+        pydocstyle = { enabled = true },
+      },
+    },
+  })
+  -- rls (rust-language-server)
+  lspconfig.rls.setup({
+    settings = {
+      rust = {
+        unstable_features = true,
+        build_on_save = false,
+        all_features = true,
+      },
+    },
   })
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup({
@@ -303,20 +321,13 @@ A collection of HDL related tools
       },
     },
   })
-  -- python-language-server
-  lspconfig.pylsp.setup({
-    capabilities = M.capabilities,
-    on_attach = M.on_attach,
-    settings = {
-      configurationSources = { "flake8" },
-      plugins = {
-        flake8 = { enabled = true },
-        pydocstyle = { enabled = true },
-      },
-    },
-  })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
+  })
+  -- VHDL lsp
+  lspconfig.vhdlls.setup({
     capabilities = M.capabilities,
     on_attach = M.on_attach,
   })
