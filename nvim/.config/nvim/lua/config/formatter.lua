@@ -173,6 +173,66 @@ function M.config()
           }
         end,
       },
+      scheme = {
+        function()
+          return {
+            exe = "emacs",
+            args = {
+              "--batch",
+              string.format(
+                [[--eval '
+(let (scheme-file-content
+      next-line)
+  (while (setq next-line (ignore-errors (read-from-minibuffer "")))
+         (setq scheme-file-content (concat scheme-file-content next-line "\n")))
+  (with-temp-buffer
+    (scheme-mode)
+    (setq indent-tabs-mode nil)
+    (setq standard-indent %d)
+    (setq tab-width %d)
+    (insert scheme-file-content)
+    (delete-region (- (point-max) 1) (point-max))
+    (indent-region (point-min) (point-max))
+    (princ (buffer-string))))
+              ']],
+                vim.opt.shiftwidth:get(),
+                vim.opt.shiftwidth:get()
+              ),
+            },
+            stdin = true,
+          }
+        end,
+      },
+      ["scheme.guile"] = {
+        function()
+          return {
+            exe = "emacs",
+            args = {
+              "--batch",
+              string.format(
+                [[--eval '
+(let (scheme-file-content
+      next-line)
+  (while (setq next-line (ignore-errors (read-from-minibuffer "")))
+         (setq scheme-file-content (concat scheme-file-content next-line "\n")))
+  (with-temp-buffer
+    (scheme-mode)
+    (setq indent-tabs-mode nil)
+    (setq standard-indent %d)
+    (setq tab-width %d)
+    (insert scheme-file-content)
+    (delete-region (- (point-max) 1) (point-max))
+    (indent-region (point-min) (point-max))
+    (princ (buffer-string))))
+              ']],
+                vim.opt.shiftwidth:get(),
+                vim.opt.shiftwidth:get()
+              ),
+            },
+            stdin = true,
+          }
+        end,
+      },
       sh = {
         function()
           return {
@@ -194,6 +254,7 @@ function M.config()
           }
         end,
       },
+
       systemverilog = {
         function()
           return {
