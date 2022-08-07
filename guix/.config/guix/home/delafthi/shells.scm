@@ -28,7 +28,7 @@
           "zip")))
 
 (define aliases
-  `(("bat" . (string-append #$(file-append bat "/bin/bat") 
+  `(("bat" . (string-append #$(file-append bat "/bin/bat")
                             " --italic-text=always --color always --theme Nord"))
     ("cp" . "cp -i")
     ("df" . "df -h")
@@ -75,25 +75,25 @@
               `(("HISTCONTROL" . "ignoreboth") ;; No duplicate history entries
                 ("HISTSIZE" . 5000) ;; History size
                 ("HISTFILESIZE" . 10000))) ;; History file size
-            (aliases 
+            (aliases
               (append aliases
                       abbreviations))
-            (bash-profile 
-              `((string-append "source " 
-                               #$(file-append bash-completion 
+            (bash-profile
+              `((string-append "source "
+                               #$(file-append bash-completion
                                   "/usr/share/bash-completion/bash_completion")) ;; Enable auto-completion
-               
+
                 "bind 'set completion-ignore-case on'" ;; Ignore the casing during TAB completion
                 "shopt -s autocd" ;; Change to named directory
                 "shopt -s cdspell" ;; Autocorrects cd misspellings
-                "shopt -s cmdhist" ;; Save multi-line commands in history as single line 
-                "shopt -s dotglob" ;; Bash includes filenames beginning with a ‘.’ in the results of filename expansion 
-                "shopt -s histappend" ;; Do not overwrite the history 
-                "shopt -s expand_aliases" ;; Expand aliases 
-                "shopt -s checkwinsize" ;; Checks term size when bash regains control 
+                "shopt -s cmdhist" ;; Save multi-line commands in history as single line
+                "shopt -s dotglob" ;; Bash includes filenames beginning with a ‘.’ in the results of filename expansion
+                "shopt -s histappend" ;; Do not overwrite the history
+                "shopt -s expand_aliases" ;; Expand aliases
+                "shopt -s checkwinsize" ;; Checks term size when bash regains control
                 "set -o vi" ;; Enable vi bindings
-               
-                (string-append 
+
+                (string-append
                   "ranger()\n"
                   "{\n"
                   "  if [ -z "$RANGER_LEVEL" ]; then\n"
@@ -102,7 +102,7 @@
                   "    exit\n"
                   "}\n"
                   "fi") ;; Exit ranger rather than opening a new instance if we already are in an instance
-               
+
                 (string-append "eval '$("
                                 ; ,(file-append starship "/bin/starship")
                                 "init bash)'"))))) ;; Initialize starship
@@ -140,10 +140,10 @@
                   "bind -M insert \\cs pager-toggle-search"
                   "bind -M insert -k nul accept-autosuggestion"
                   "bind -M insert \\cc cancel-commandline repaint-mode"
-                  (string-append "bind \\cc 'commandline -f cancel-commandline; " 
-                                  "set fish_bind_mode insert; " 
+                  (string-append "bind \\cc 'commandline -f cancel-commandline; "
+                                  "set fish_bind_mode insert; "
                                   "commandline -f repaint-mode'")))
-            (environment-variables 
+            (environment-variables
               `(("fish_greeting" . "") ;; Disable the fish greeting message
                 ("fish_key_bindings" . "fish_vi_key_bindings") ;; Enable vi bindings
                 ;; Set the fish syntax highligting colors

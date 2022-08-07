@@ -12,17 +12,10 @@
 (define-public packages
   (map specification->package
     (list ;;; Utils
-          "alsa-utils"
           "aspell" "aspell-dict-en" "aspell-dict-de"
           "git" "git-lfs"
-          "gnupg"
           "gstreamer" "gst-libav" "gst-plugins-base" "gst-plugins-good"
-          "nmap"
-          "openssh"
-          "rsync"
-          "sshfs"
-          "wget"
-          "xdg-utils"
+          "pinentry"
           "stow"
 
           ;;; Tools extras
@@ -44,32 +37,21 @@
           ;; "neovim-nightly"
           "nordic-theme"
           "papirus-icon-theme"
-          "pavucontrol"
           "qutebrowser"
           "rofi" "pinentry-rofi" ;; "bitwarden-rofi" "eidolon"
           ;; "starship"
-          "xclip"
-          "xdotool"
-          "xrandr"
           "xss-lock"
-          "xterm"
-          "zathura" "zathura-pdf-poppler"
+          "zathura" "zathura-pdf-mupdf"
 
           ;;; Devel base
           "cmake"
           "docker"
           "doxygen"
-          "emacs" "emacs-guix"
           "graphviz"
-          "libvirt"
-          "libtool"
-          "make"
           "ninja"
           "openjdk"
           "openocd"
-          "pkg-config"
           "subversion"
-          "texinfo"
           "texlive"
           "valgrind"
 
@@ -135,32 +117,31 @@
 
           ;;; GUI tools
           "blender"
+          "darktable"
           "gimp"
           "hugin"
           "inkscape"
-          "libreoffice"
           ;; "lutris"
-          "kicad"
           ;; "spotify" "spicetify-cli"
           "virt-manager"
           )))
 
 (define-public services
-  (list (simple-service 'custom-environment-variable-service 
+  (list (simple-service 'custom-environment-variable-service
           home-environment-variables-service-type
           `(("EDITOR" . #$(file-append neovim "/bin/nvim"))
             ("GCC_COLORS" . "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01")
-            ("MANPAGER" . (string-append 
+            ("MANPAGER" . (string-append
                             #$(file-append neovim "/bin/nvim")
                             "+Man! +'set noma'"))))))
 
 (define-public delafthi
   (home-environment
-    (packages 
+    (packages
       (append shells:packages
               xdg:packages
               packages))
-    (services 
+    (services
       (append init:services
               shells:services
               xdg:services
