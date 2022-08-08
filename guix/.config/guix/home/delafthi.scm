@@ -11,140 +11,155 @@
 
 (define-public packages
   (map specification->package
-    (list ;;; Utils
-          "aspell" "aspell-dict-en" "aspell-dict-de"
-          "git" "git-lfs"
-          "gstreamer" "gst-libav" "gst-plugins-base" "gst-plugins-good"
-          "pinentry"
-          "stow"
+       (list ;;; Utils
+        "aspell" "aspell-dict-en" "aspell-dict-de"
+        "git" "git-lfs"
+        "gstreamer" "gst-libav" "gst-plugins-base" "gst-plugins-good"
+        "pinentry"
+        "samba"
+        "stow"
+        "syncthing"
+        "tmux"
 
-          ;;; Tools extras
-          ;; "bitwarden-cli"
-          "hacksaw"
-          "pandoc"
-          "shotgun"
-          ;; "snap-sync"
-          ;; "snapper"
-          ;; "zsa-wally-cli"
+        ;;; Tools extras
+        "rbw"
+        "hacksaw"
+        "pandoc"
+        "shotgun"
+        ;; "snap-sync"
+        ;; "snapper"
+        ;; "zsa-wally-cli"
 
-          ;;; WM
-          "breeze-icons"
-          "feh"
-          "kitty"
-          "mpv"
-          "nerd-fonts-victor-mono" "font-openmoji"
-          "neovim"
-          ;; "neovim-nightly"
-          "nordic-theme"
-          "papirus-icon-theme"
-          "qutebrowser"
-          "rofi" "pinentry-rofi" ;; "bitwarden-rofi" "eidolon"
-          ;; "starship"
-          "xss-lock"
-          "zathura" "zathura-pdf-mupdf"
+        ;;; WM
+        "breeze-icons"
+        "feh"
+        "kitty"
+        "mpv"
+        "nerd-fonts-victor-mono" "font-openmoji"
+        "neovim"
+        ;; "neovim-nightly"
+        "nordic-theme"
+        "papirus-icon-theme"
+        "qutebrowser"
+        "ranger"
+        "rofi" "pinentry-rofi"
+        ;; "starship"
+        "unclutter"
+        "volumeicon"
+        "xss-lock"
+        "zathura" "zathura-pdf-mupdf"
 
-          ;;; Devel base
-          "cmake"
-          "docker"
-          "doxygen"
-          "graphviz"
-          "ninja"
-          "openjdk"
-          "openocd"
-          "subversion"
-          "texlive"
-          "valgrind"
+        ;;; Devel base
+        "cmake"
+        "docker"
+        "doxygen"
+        "graphviz"
+        "ninja"
+        "openjdk"
+        "openocd"
+        "subversion"
+        "texlive"
+        "valgrind"
+        ;; "lazygit" "git-delta"
 
-          ;;; Devel extras
-          ;;;; C++
-          "bear"
-          "boost"
-          ;; "cmake-language-server"
-          "fmt"
-          "gcc-toolchain"
-          "gdb"
-          "lldb"
-          "llvm"
-          "spdlog"
+        ;;; Devel extras
+        ;;;; C++
+        "doxygen"
+        "bear"
+        "boost"
+        ;; "cmake-language-server"
+        "fmt"
+        "gcc-toolchain"
+        "gdb"
+        "lldb"
+        "llvm"
+        "spdlog"
 
-          ;;;; Docker
-          ;; "dockerfile-language-server"
+        ;;;; Docker
+        ;; "dockerfile-language-server"
 
-          ;;;; Haskell
-          "ghc"
-          ;; "haskel-language-server"
-          ;; "hindent"
+        ;;;; Haskell
+        "ghc"
+        ;; "haskel-language-server"
+        "ghc-hindent"
 
-          ;; Javascript
-          "node"
+        ;; Javascript
+        "node"
+        "yarn"
 
-          ;;;; Lua
-          "lua"
-          "luajit"
-          ;; "lua-language-server"
-          ;; "luarocks"
-          ;; "stylua"
+        ;;;; Lua
+        "lua"
+        "luajit"
+        ;; "lua-language-server"
+        ;; "luarocks"
+        ;; "stylua"
 
-          ;;;; Markdown/HTML
-          ;; "prettier"
+        ;;;; Markdown/HTML
+        ;; "prettier"
 
-          ;;;; Python
-          ;; "pyenv"
-          "python"
-          "python-black"
-          "python-flake8"
-          "python-lsp-server"
-          "python-matplotlib"
-          "python-numpy"
-          "python-pandas"
-          "python-pylint"
-          "python-pyls-black"
-          "python-virtualenv"
+        ;;;; Python
+        "python"
+        "python-black"
+        "python-flake8"
+        "python-lsp-server"
+        "python-matplotlib"
+        "python-numpy"
+        "python-pandas"
+        "python-pylint"
+        "python-pyls-black"
+        "python-virtualenv"
 
           ;;;; R
-          "r"
+        "r"
 
-          ;;;; Shell
-          ;; "bash-language-server"
-          ;; "shfmt"
+        ;;;; Rust
+        "rust"
+        "rust-cargo"
+        "rust-lsp-server"
 
-          ;; TeX
-          "texlive"
+        ;;;; Shell
+        ;; "bash-language-server"
+        ;; "shfmt"
 
-          ;;;; VHDL
-          ;; "rust_hdl"
-          ;; "ghdl"
+        ;; TeX
+        "texlive"
 
-          ;;; GUI tools
-          "blender"
-          "darktable"
-          "gimp"
-          "hugin"
-          "inkscape"
-          ;; "lutris"
-          ;; "spotify" "spicetify-cli"
-          "virt-manager"
-          )))
+        ;;;; VHDL
+        ;; "rust_hdl"
+        ;; "ghdl"
+        "gtkwave"
+
+        ;;; GUI tools
+        "blender"
+        "darktable"
+        "gimp"
+        "hugin"
+        "inkscape"
+        ;; "lutris"
+        ;; "onlyoffice"
+        ;; "spotify" "spicetify-cli"
+        "virt-manager"
+        )))
 
 (define-public services
   (list (simple-service 'custom-environment-variable-service
-          home-environment-variables-service-type
-          `(("EDITOR" . #$(file-append neovim "/bin/nvim"))
-            ("GCC_COLORS" . "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01")
-            ("MANPAGER" . (string-append
-                            #$(file-append neovim "/bin/nvim")
-                            "+Man! +'set noma'"))))))
+                        home-environment-variables-service-type
+                        `(("EDITOR" . #$(file-append neovim "/bin/nvim"))
+                          ("GCC_COLORS" . "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01")
+                          ("MANPAGER" . (string-append
+                                         #$(file-append neovim "/bin/nvim")
+                                         "+Man! +'set noma'"))))))
 
 (define-public delafthi
   (home-environment
-    (packages
-      (append shells:packages
-              xdg:packages
-              packages))
-    (services
-      (append init:services
-              shells:services
-              xdg:services
-              services))))
+   (packages
+    (append shells:packages
+            xdg:packages
+            packages))
+   (services
+    (append init:services
+            shells:services
+            xdg:services
+            services))))
 
 delafthi
