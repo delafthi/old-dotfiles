@@ -60,7 +60,7 @@
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
-     (target "/boot/efi")
+     (targets (list "/boot/efi"))
      (keyboard-layout keyboard-layout)))
    (host-name "thinkpad")
    (mapped-devices luks-mapped-devices)

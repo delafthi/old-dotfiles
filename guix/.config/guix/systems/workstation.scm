@@ -18,29 +18,30 @@
   #:use-module (guix gexp)
   #:use-module ((systems delafthi) #:prefix delafthi:))
 
-(define luks-mapped-devices
-  (list (mapped-device
-         (source (uuid "98758da2-6449-41c7-8629-dc5376b829a2"))
-         (target "cryptroot")
-         (type luks-device-mapping))))
-
 (define file-systems
   (cons* (file-system
-          (device (uuid "7857-6E91" 'fat))
-          (mount-point "/boot/efi")
+          (device (uuid "" 'fat))
+          (mount-point "/boot")
           (type "vfat"))
          (file-system
-          (device "/dev/mapper/cryptroot")
+          (device (uuid ""))
           (mount-point "/")
           (type "btrfs")
-          (options "subvol=@,ssd,compress=zstd,noatime,nodiratime")
-          (dependencies luks-mapped-devices))
+          (options "subvol=@,compress=zstd,space_cache=v2"))
          (file-system
-          (device "/dev/mapper/cryptroot")
+          (device (uuid ""))
           (mount-point "/home")
           (type "btrfs")
-          (options "subvol=@home,ssd,compress=zstd,noatime,nodiratime")
-          (dependencies luks-mapped-devices))
+          (options "subvol=@home,compress=zstd,space_cache=v2"))
+         (file-system
+          (device (uuid ""))
+          (mount-point "/var")
+          (type "btrfs")
+          (options "subvol=@var,compress=zstd,space_cache=v2"))
+         (file-system
+          (device (uuid ""))
+          (mount-point "/data")
+          (type "ext4"))
          %base-file-systems))
 
 (define users
@@ -61,16 +62,9 @@
          (shell (file-append fish "/bin/fish")))
         %base-user-accounts))
 
-(define packages
-  delafthi:packages)
-
 (define services
   (append
-   (list (service kernel-module-loader-service-type
-                  (list "nvidia"
-                        "nvidia_modeset"
-                        "nvidia_uvm"))
-         (set-xorg-configuration
+   (list (set-xorg-configuration
           (xorg-configuration
            (drivers (list "nvidia"))
            (keyboard-layout keyboard-layout)
@@ -78,27 +72,31 @@
                           %default-xorg-modules))
            (server ((options->transformation '((with-graft . "mesa=nvda")))
                     xorg-server)))))
-   (modify-services delafthi:services
-                    (udev-service-type config =>
-                                       (udev-configuration
-                                        (inherit config)
-                                        (rules
-                                         (cons nvidia-driver
-                                               (udev-configuration-rules config))))))))
+   (modify-services
+    delafthi:services
+    (kernel-module-loader-service-type modules =>
+                                       (append (list "nvidia"
+                                                     "nvidia_modest"
+                                                     "nvidia_uvm")
+                                               modules))
+
+    (udev-service-type config =>
+                       (udev-configuration
+                        (inherit config)
+                        (rules
+                         (cons nvidia-driver
+                               (udev-configuration-rules config))))))))
 
 (define system
   (operating-system
    (inherit delafthi:system)
-   (kernel-arguments
-    (cons "modprobp.blacklist=nouveau" %default-kernel-arguments))
    (kernel-loadable-modules (cons nvidia-driver
                                   (operating-system-kernel-loadable-modules
                                    delafthi:system)))
-   (host-name "workstation")
-   (mapped-devices luks-mapped-devices)
+   (host-name "CLT-DSK-T-6006")
    (file-systems file-systems)
-   (swap-devices (list (swap-space (target "/var/swapfile"))))
-   (users users)))
-
+   (swap-devices (list (uuid "")))
+   (users users)
+   (services services)))
 
 system
