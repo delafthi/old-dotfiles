@@ -46,14 +46,13 @@ for doc in docs:
             continue
 
         # Create the new file name
-        new_file = os.path.join(
-            os.path.dirname(original_file), clean_name + ".pdf"
-        )
+        clean_name = clean_name + ".pdf"
+        new_file = os.path.join(os.path.dirname(original_file), clean_name)
 
         print(original_file, " -> ", new_file)
 
         if not original_file == new_file:
             # Move the new file to its location and save it in the files field
             shutil.move(original_file, new_file)
-        doc["files"] = [new_file]
+        doc["files"] = [clean_name]
         doc.save()
