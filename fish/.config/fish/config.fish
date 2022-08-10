@@ -209,4 +209,11 @@ if command -v direnv 1>/dev/null 2>&1
     direnv hook fish | source
 end
 
+# Guix
+if command -v guix 1>/dev/null 2>&1
+    set -g GUIX_LOCPATH ~/.guix-profile/lib/locale
+    set -g GUIX_PROFILE ~/.config/guix/current
+    fenv source $GUIX_PROFILE/etc/profile
+end
+
 # }}}1
