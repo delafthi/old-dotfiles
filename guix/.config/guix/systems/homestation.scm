@@ -1,6 +1,7 @@
 (define-module (systems homestation)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
+  #:use-module (gnu system keyboard)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu packages)
   #:use-module (gnu packages xorg)
