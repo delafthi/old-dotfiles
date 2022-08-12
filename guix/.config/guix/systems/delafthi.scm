@@ -83,7 +83,7 @@
 (define-public system
   (operating-system
    (inherit desktop:system)
-   (kernel linux)
+   (kernel linux-lts)
    (kernel-loadable-modules (list acpi-call-linux-module))
    (initrd microcode-initrd)
    (firmware (list linux-firmware))
