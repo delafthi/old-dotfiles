@@ -21,7 +21,7 @@
 (define file-systems
   (cons* (file-system
           (device (uuid "" 'fat))
-          (mount-point "/boot")
+          (mount-point "/boot/efi")
           (type "vfat"))
          (file-system
           (device (uuid ""))
