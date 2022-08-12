@@ -49,7 +49,7 @@
          (name "deaa")
          (group "users")
          (comment "Thierry Delafontaine")
-         (home-directory "/home/thierryd")
+         (home-directory "/home/deaa")
          (supplementary-groups
           (list "audio"
                 "docker"
