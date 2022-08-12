@@ -71,31 +71,29 @@
            (modules (cons nvidia-driver
                           %default-xorg-modules))
            (server ((options->transformation '((with-graft . "mesa=nvda")))
-                    xorg-server)))))
+                    xorg-server))))
+         (udev-rules-service 'nvidia-driver nvidia-driver))
    (modify-services
     delafthi:services
     (kernel-module-loader-service-type modules =>
-                                       (append (list "nvidia"
-                                                     "nvidia_modest"
+                                       (append (list "ipmi_devintf"
+                                                     "nvidia"
+                                                     "nvidia_modeset"
                                                      "nvidia_uvm")
-                                               modules))
-
-    (udev-service-type config =>
-                       (udev-configuration
-                        (inherit config)
-                        (rules
-                         (cons nvidia-driver
-                               (udev-configuration-rules config))))))))
+                                               modules)))))
 
 (define system
   (operating-system
    (inherit delafthi:system)
+   (kernel-arguments (append (list "modprobe.blacklist=nouveau")
+                             %default-kernel-arguments))
    (kernel-loadable-modules (cons nvidia-driver
                                   (operating-system-kernel-loadable-modules
                                    delafthi:system)))
    (host-name "CLT-DSK-T-6006")
    (file-systems file-systems)
-   (swap-devices (list (uuid "")))
+   (swap-devices (list (swap-space
+                        (target (uuid "")))))
    (users users)
    (services services)))
 
