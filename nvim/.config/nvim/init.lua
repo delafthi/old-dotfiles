@@ -60,6 +60,7 @@ vim.opt.diffopt:prepend({
 -- Display {{{1
 vim.opt.colorcolumn = "80" -- Set colorcolumn to 80
 vim.opt.cursorline = true -- Enable the cursorline.
+vim.opt.guicursor = "n-v-sm:block,i-c-ci-ve:ver25,cr-o-r:hor20"
 vim.opt.display:prepend("lastline") -- On wrap display the last line even if it does not fit
 vim.opt.errorbells = false -- Disable annoying errors
 vim.opt.lazyredraw = true -- Disables redraw when executing macros and other commands.

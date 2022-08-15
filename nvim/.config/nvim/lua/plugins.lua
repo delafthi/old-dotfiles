@@ -424,6 +424,16 @@ require("packer").startup({
         require("config.clangd_extensions").config()
       end,
     })
+    use({
+      "mechatroner/rainbow_csv",
+      requires = {
+        "nord-nvim",
+      },
+      ft = { "csv" },
+      setup = function()
+        require("config.rainbow_csv").setup()
+      end,
+    })
     -- Note taking
     use({
       "lukas-reineke/headlines.nvim",
