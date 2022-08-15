@@ -158,16 +158,16 @@ wk.register({
 })
 
 -- Navigator
-keymap.set({ "n", "v", "t" }, "<C-h>", function()
+keymap.set({ "n", "i", "v", "t" }, "<C-h>", function()
   require("Navigator").left()
 end, opts)
-keymap.set({ "n", "v", "t" }, "<C-j>", function()
+keymap.set({ "n", "i", "v", "t" }, "<C-j>", function()
   require("Navigator").down()
 end, opts)
-keymap.set({ "n", "v", "t" }, "<C-k>", function()
+keymap.set({ "n", "i", "v", "t" }, "<C-k>", function()
   require("Navigator").up()
 end, opts)
-keymap.set({ "n", "v", "t" }, "<C-l>", function()
+keymap.set({ "n", "i", "v", "t" }, "<C-l>", function()
   require("Navigator").right()
 end, opts)
 wk.register({
