@@ -485,6 +485,19 @@ ruled.client.connect_signal("request::rules", function()
   })
 end)
 
+-- Special rules
+ruled.client.append_rule({
+  id = "origin",
+  rule_any = {
+    class = { "origin.exe" },
+  },
+  properties = {
+    floating = true,
+    placement = awful.placement.no_overlap + awful.placement.no_offscreen,
+    size_hints_honor = true,
+  },
+})
+
 -----------------------------------------------------------
 -- Notifications {{{1
 
