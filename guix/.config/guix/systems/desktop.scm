@@ -27,7 +27,6 @@
               "light"
               "pavucontrol"
               "picom"
-              "pulseaudio"
               "xclip"
               "xdotool"
               "xrandr"
@@ -67,7 +66,8 @@
     (udev-service-type config =>
                        (udev-configuration
                         (inherit config)
-                        (rules (cons light (udev-configuration-rules config))))))))
+                        (rules (cons* light
+                                      (udev-configuration-rules config))))))))
 
 (define-public system
   (operating-system

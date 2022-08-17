@@ -13,26 +13,26 @@
 
 (define luks-mapped-devices
   (list (mapped-device
-         (source (uuid "dc1c3de7-a081-4866-b8bd-363da8a41766"))
+         (source (uuid ""))
          (target "cryptroot")
          (type luks-device-mapping))))
 
 (define file-systems
   (cons* (file-system
-          (device (uuid "D132-B4FE" 'fat))
+          (device (uuid "" 'fat))
           (mount-point "/boot/efi")
           (type "vfat"))
          (file-system
           (device "/dev/mapper/cryptroot")
           (mount-point "/")
           (type "btrfs")
-          (options "subvol=@,ssd,compress=zstd,noatime,nodiratime")
+          (options "subvol=@,compress=zstd,space_cache=v2")
           (dependencies luks-mapped-devices))
          (file-system
           (device "/dev/mapper/cryptroot")
           (mount-point "/home")
           (type "btrfs")
-          (options "subvol=@home,ssd,compress=zstd,noatime,nodiratime")
+          (options "subvol=@home,compress=zstd,space_cache=v2")
           (dependencies luks-mapped-devices))
          %base-file-systems))
 
@@ -56,7 +56,7 @@
 (define system
   (operating-system
    (inherit delafthi:system)
-   (keyboard-layout (keyboard-layout "us" "dvorak-altgr-intl,nodeadkeys"))
+   (keyboard-layout (keyboard-layout "us" "dvorak" #:model "thinkpad"))
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
@@ -66,11 +66,11 @@
    (mapped-devices luks-mapped-devices)
    (file-systems file-systems)
    (swap-devices
-    (list (swap-space (target "/var/swapfile"))))
+    (list (swap-space (target "/swap/swapfile"))))
    (packages packages)
-   (services (modify-services services
-                              (set-xorg-configuration
-                               (xorg-configuration
-                                (keyboard-layout keyboard-layout)))))))
+   (services (append (list (set-xorg-configuration
+                            (xorg-configuration
+                             (keyboard-layout keyboard-layout))))
+                     services))))
 
 system

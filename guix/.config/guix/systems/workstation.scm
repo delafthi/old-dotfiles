@@ -92,9 +92,8 @@
                                    delafthi:system)))
    (host-name "CLT-DSK-T-6006")
    (file-systems file-systems)
-   (swap-devices (list (swap-space
-                        (target (uuid "")))))
-   (users users)
-   (services services)))
+(swap-devices (list (swap-space (target (uuid "")))))
+(users users)
+(services services)))
 
 system

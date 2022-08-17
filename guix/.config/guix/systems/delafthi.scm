@@ -40,6 +40,7 @@
    (map specification->package
         (list "curl"
               "direnv"
+              "flatpak"
               "libtool"
               "make"
               "nmap"

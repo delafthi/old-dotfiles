@@ -16,13 +16,13 @@
 
 (define luks-mapped-devices
   (list (mapped-device
-         (source (uuid "98758da2-6449-41c7-8629-dc5376b829a2"))
+         (source (uuid ""))
          (target "cryptroot")
          (type luks-device-mapping))))
 
 (define file-systems
   (cons* (file-system
-          (device (uuid "7857-6E91" 'fat))
+          (device (uuid "" 'fat))
           (mount-point "/boot/efi")
           (type "vfat"))
          (file-system
@@ -63,7 +63,8 @@
   (operating-system
    (inherit delafthi:system)
    (kernel-arguments
-    (append (list "amd_iommu=on"
+    (append (list "modprobe.blacklist=nouveau"
+                  "amd_iommu=on"
                   "iommu=pt"
                   "modprobe.blacklist=nouveau"
                   %default-kernel-arguments))
@@ -72,8 +73,8 @@
                                     delafthi:system)))
     (host-name "homestation")
     (file-systems file-systems)
-    (swap-devices (list (swap-space
-                         (target (uuid "")))))
-    (services services)))
+    (swap-devices
+     (list (swap-space (target "/swap/swapfile")))))
+   (services services)))
 
-  system
+system
