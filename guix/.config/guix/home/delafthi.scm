@@ -20,6 +20,7 @@
         "stow"
         "syncthing"
         "tmux"
+        "direnv"
 
         ;;; Tools extras
         "rbw"

@@ -8,21 +8,20 @@
   #:use-module (gnu services)
   #:use-module (gnu services base)
   #:use-module (gnu services linux)
-  #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
   #:use-module (nongnu packages nvidia)
   #:use-module (guix transformations)
-  #:use-module ((systems delafthi) #:prefix delafthi:))
+  #:use-module ((systems desktop) #:prefix desktop:))
 
 (define luks-mapped-devices
   (list (mapped-device
-         (source (uuid ""))
+         (source (uuid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
          (target "cryptroot")
          (type luks-device-mapping))))
 
 (define file-systems
   (cons* (file-system
-          (device (uuid "" 'fat))
+          (device (uuid "XXXX-XXXX" 'fat))
           (mount-point "/boot/efi")
           (type "vfat"))
          (file-system
@@ -51,7 +50,7 @@
                     xorg-server))))
          (udev-rules-service 'nvidia-driver nvidia-driver))
    (modify-services
-    delafthi:services
+    desktop:services
     (kernel-module-loader-service-type modules =>
                                        (append (list "ipmi_devintf"
                                                      "nvidia"
@@ -61,7 +60,7 @@
 
 (define system
   (operating-system
-   (inherit delafthi:system)
+   (inherit desktop:system)
    (kernel-arguments
     (append (list "modprobe.blacklist=nouveau"
                   "amd_iommu=on"
@@ -70,7 +69,7 @@
                   %default-kernel-arguments))
     (kernel-loadable-modules (cons nvidia-driver
                                    (operating-system-kernel-loadable-modules
-                                    delafthi:system)))
+                                    desktop:system)))
     (host-name "homestation")
     (file-systems file-systems)
     (swap-devices

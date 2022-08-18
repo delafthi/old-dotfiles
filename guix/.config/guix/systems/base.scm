@@ -19,13 +19,11 @@
               "guile-readline"
               "man-db"
               "man-pages"
-              "mcron"
-              "ncurses"
-              "nftables"
               "nss-certs"
               "openssh"
               "openssl"
               "texinfo"
+              "vim"
               "wget"))
    %base-packages))
 

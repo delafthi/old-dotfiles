@@ -9,17 +9,17 @@
   #:use-module (gnu services)
   #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
-  #:use-module ((systems delafthi) #:prefix delafthi:))
+  #:use-module ((systems desktop) #:prefix desktop:))
 
 (define luks-mapped-devices
   (list (mapped-device
-         (source (uuid ""))
+         (source (uuid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
          (target "cryptroot")
          (type luks-device-mapping))))
 
 (define file-systems
   (cons* (file-system
-          (device (uuid "" 'fat))
+          (device (uuid "XXXX-XXXX" 'fat))
           (mount-point "/boot/efi")
           (type "vfat"))
          (file-system
@@ -39,23 +39,19 @@
 (define packages
   (append
    (map specification->package
-        (list "mesa"
-              "vulkan-tools"
-              "xf86-input-libinput"
-              "xf86-video-amdgpu"
-              "xf86-video-intel"
-              "xf86-video-vesa"))
-   delafthi:packages))
+        (list "xf86-video-amdgpu"
+              "xf86-video-intel"))
+   desktop:packages))
 
 (define services
   (append (list (service tlp-service-type
                          (tlp-configuration
                           (cpu-boost-on-ac? #t))))
-          delafthi:services))
+          desktop:services))
 
 (define system
   (operating-system
-   (inherit delafthi:system)
+   (inherit desktop:system)
    (keyboard-layout (keyboard-layout "us" "dvorak" #:model "thinkpad"))
    (bootloader
     (bootloader-configuration
