@@ -654,7 +654,7 @@ c.content.pdfjs = False
 # Enable quirks (such as faked user agent headers) needed to get
 # specific sites to work properly.
 # Type: Bool
-# c.content.site_specific_quirks.enabled = True
+c.content.site_specific_quirks.enabled = True
 
 # Disable a list of named quirks. The js-string-replaceall quirk is
 # needed for Nextcloud Calendar < 2.2.0 with QtWebEngine < 5.15.3.
@@ -1635,7 +1635,7 @@ c.url.searchengines = {
     "aw": "https://wiki.archlinux.org/index.php?search={}",
     "wiki": "https://en.wikipedia.org/w/index.php?search={}",
     "gs": "https://scholar.google.com/scholar?hl=de&as_sdt=0%2C5&q={}&btnG=",
-    "syn": "https://www.thesaurus.com/browse/{}",
+    "thes": "https://www.powerthesaurus.org/{}/synonyms",
 }
 
 # Page(s) to open at the start.
