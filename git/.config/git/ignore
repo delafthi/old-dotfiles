@@ -1,0 +1,7 @@
+# Global ignored directories and files
+.cache/
+compile_commands.json
+.envrc
+.gdb_history
+mnt/
+~*

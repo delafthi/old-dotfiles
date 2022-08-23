@@ -1,6 +1,6 @@
 [core]
   editor = nvim
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.config/git/ignore
   pager = delta
 [user]
 	name = Thierry Delafontaine

@@ -1,9 +1,29 @@
-# Clang
+# Python
 
-This folder contains the configuration file for the `black` tool to format
-python code and flake8 to lint the code.
+This folder contains the configuration for tools related to Python development.
 
-## References
+## Black
+
+Tool to format python code.
+
+### References
 
 - [Black](https://github.com/psf/black)
+
+# Flake8
+
+Tool for style guide enforcement.
+
+### References
+
 - [flake8](https://github.com/PyCQA/flake8)
+
+## Jupyter
+
+I sometimes used jupyter notebooks for my studies. It always bugged me, that the
+layout does not expand to the whole space available. This config solves exactly
+that.
+
+### References
+
+- [Jupyter Notebook](https://jupyter.org/documentation)
