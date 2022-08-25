@@ -32,7 +32,6 @@
                     (bluetooth-configuration
                      (auto-enable? #t)))
            fontconfig-file-system-service
-           (service gdm-service-type)
            (simple-service 'network-manager-applet
                            profile-service-type
                            (list network-manager-applet))
