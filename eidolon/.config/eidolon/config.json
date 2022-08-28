@@ -1,5 +1,0 @@
-{
-  "steam_dirs":["$HOME/.local/share/Steam/steamapps"],
-  "menu_command":"rofi -p ' ' -dmenu",
-  "prefix_command":""
-}
