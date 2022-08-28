@@ -15,7 +15,7 @@ function M.config()
       find_in_root = false,
     },
     silent = false,
-    use_mappings_table = true,
+    use_mappings_table = false,
     mappings = {
       MkdnNextLink = { "n", "<C-n>" },
       MkdnPrevLink = { "n", "<C-p>" },
