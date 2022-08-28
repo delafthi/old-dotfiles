@@ -328,7 +328,7 @@
 (use-package projectile
   :diminish
   :init
-  (setq projectile-project-search-path '("~/Projects/work/" "~/Projects/private/"))
+  (setq projectile-project-search-path '("~/projects/work/" "~/projects/private/"))
   :custom
   (projectile-completion-system 'ivy)
   :config

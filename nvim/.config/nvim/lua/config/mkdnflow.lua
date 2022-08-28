@@ -11,7 +11,7 @@ function M.config()
     },
     wrap = false,
     bib = {
-      default_path = "~/Bibliography/refs.bib",
+      default_path = "~/bibliography/refs.bib",
       find_in_root = false,
     },
     silent = false,

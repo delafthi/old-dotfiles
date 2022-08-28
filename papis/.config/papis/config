@@ -19,13 +19,13 @@ options_list.unselected_margin_style =
 editmode = vi
 
 [papers]
-dir = ~/Bibliography/papers
+dir = ~/bibliography/papers
 
 [books]
-dir = ~/Bibliography/books
+dir = ~/bibliography/books
 
 [videos]
-dir = ~/Bibliography/videos
+dir = ~/bibliography/videos
 
 [rofi-gui]
 header-format = <b>{doc[title]}</b> ({doc[year]})

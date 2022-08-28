@@ -58,8 +58,8 @@ function M.config()
       },
       project = {
         base_dirs = {
-          "~/Projects/work",
-          "~/Projects/private",
+          "~/projects/work",
+          "~/projects/private",
         },
         hidden_files = true,
       },
