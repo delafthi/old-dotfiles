@@ -69,3 +69,14 @@ An easily configurable and nice looking shell prompt.
 ### References
 
 - [Starship](https://starship.rs/)
+
+## Tmux
+
+Tmux is a terminal multiplexer. I use it mainly to have multiple 'windows' when
+I work on a machine over ssh.
+
+## References
+
+- [tmux](https://github.com/tmux/tmux/wiki)
+- [Starship](https://starship.rs/)
+- [Arch Wiki](https://wiki.archlinux.org/title/Tmux)

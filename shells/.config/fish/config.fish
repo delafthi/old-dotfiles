@@ -59,6 +59,7 @@ alias minicom="minicom -m -c on"
 alias htop="htop -t"
 alias feh="feh --auto-zoom --scale-down"
 alias gl="lazygit"
+alias tn="tmux new -s (pwd | sed 's/.*\///g')"
 
 ############################################################
 # Environment variables {{{1
