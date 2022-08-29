@@ -239,7 +239,6 @@ function M.config()
             exe = "shfmt",
             args = {
               "-s",
-              "-p",
               "-filename",
               vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
               "-i",
