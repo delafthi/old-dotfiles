@@ -8,6 +8,7 @@ style = 'bold blue'
 fish_style_pwd_dir_length = 3
 
 [git_branch]
+symbol = " "
 disabled = false
 
 [git_status]
