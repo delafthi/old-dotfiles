@@ -445,11 +445,11 @@ theme.taglist_shape_border_color_volatile = theme.taglist_bg_volatile -- The vol
 
 -- Tasklist {{{3
 theme.tasklist_fg_normal = theme.nord4 -- The default foreground (text) color
-theme.tasklist_bg_normal = theme.nord3 -- The default background color
+theme.tasklist_bg_normal = theme.nord0 -- The default background color
 theme.tasklist_fg_focus = theme.nord4 -- The focused client foreground (text) color
-theme.tasklist_bg_focus = theme.nord3 -- The focused client background color
-theme.tasklist_fg_urgent = theme.nord0 -- The urgent clients foreground (text) color
-theme.tasklist_bg_urgent = theme.nord11 -- The urgent clients background color
+theme.tasklist_bg_focus = theme.tasklist_bg_normal -- The focused client background color
+theme.tasklist_fg_urgent = theme.nord11 -- The urgent clients foreground (text) color
+theme.tasklist_bg_urgent = theme.tasklist_bg_normal -- The urgent clients background color
 theme.tasklist_fg_minimize = theme.tasklist_fg_normal -- The minimized clients foreground (text) color
 theme.tasklist_bg_minimize = theme.tasklist_bg_normal -- The minimized clients background color
 theme.tasklist_bg_image_normal = nil -- The elements default background image
@@ -473,7 +473,6 @@ theme.tasklist_font_focus = theme.font -- The focused client title alignment
 theme.tasklist_font_minimized = theme.font -- The minimized clients font
 theme.tasklist_font_urgent = theme.font -- The urgent clients font
 theme.tasklist_spacing = dpi(7) -- The space between the tasklist elements
-theme.tasklist_shape = gears.shape.rounded_bar -- The default tasklist elements shape
 theme.tasklist_shape_border_width = dpi(3) -- The default tasklist elements border width
 theme.tasklist_shape_border_color = theme.tasklist_bg_normal -- The default tasklist elements border color
 theme.tasklist_shape_focus = theme.tasklist_shape -- The focused client shape

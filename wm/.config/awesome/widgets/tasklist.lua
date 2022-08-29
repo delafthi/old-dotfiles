@@ -43,7 +43,7 @@ function M.get_widget(s)
         halign = "center",
         widget = wibox.container.place,
       },
-      layout = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.flex.horizontal,
     },
     widget_template = {
       {

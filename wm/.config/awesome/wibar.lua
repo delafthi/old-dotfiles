@@ -72,10 +72,15 @@ function M.set(s)
       layout = wibox.layout.fixed.horizontal,
     },
     { -- Middle widgets
-      s.mytasklist,
+      {
+        s.mytasklist,
+        valign = "center",
+        halign = "center",
+        widget = wibox.container.place,
+      },
       spacing = beautiful.wibar_spacing,
       spacing_widget = spacer,
-      layout = wibox.layout.fixed.horizontal,
+      layout = wibox.layout.flex.horizontal,
     },
     { -- Right widgets
       {
