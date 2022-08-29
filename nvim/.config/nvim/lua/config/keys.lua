@@ -325,7 +325,7 @@ wk.register({
       },
       f = {
         function()
-          require("telescope.builtin").fd({ hidden = true })
+          require("telescope.builtin").find_files()
         end,
         "Find file",
       },

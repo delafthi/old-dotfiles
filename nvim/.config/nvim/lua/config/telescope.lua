@@ -8,12 +8,16 @@ function M.config()
     defaults = {
       vimgrep_arguments = {
         "rg",
+        "--color=never",
         "--no-heading",
         "--hidden",
         "--with-filename",
         "--line-number",
         "--column",
         "--smart-case",
+        "--glob",
+        "!.git/*",
+        "--trim",
       },
       prompt_prefix = ">> ",
       selection_caret = "> ",
@@ -62,6 +66,11 @@ function M.config()
           "~/projects/private",
         },
         hidden_files = true,
+      },
+    },
+    pickers = {
+      find_files = {
+        find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
       },
     },
   })
