@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
 rg $@ --hidden --color always | bat

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 function print_usage {
   echo -e "./$(basename $0)\tFuzzy grep word in files:"

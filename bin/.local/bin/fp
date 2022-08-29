@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-proj_dir="${HOME}/projects/work"
+proj_dir="${HOME}/Projects/work"
 selected=$(ls ${proj_dir} |
   fzf \
     --ansi \
