@@ -91,8 +91,8 @@ fi
 
 # Use fzf in combination with grep
 # fzf colors
-if command -v fzf 1> /dev/null 2>&1 && command -v rg 1> /dev/null 2>&1; then
-  alias fzf="fzf \
+if command -v fzf 1> /dev/null 2>&1; then
+  export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"\
     --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
     --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
     --color='hl:#ebcb8b,hl+:#ebcb8b,pointer:#b48ead,marker:#d08770' \

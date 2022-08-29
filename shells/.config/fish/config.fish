@@ -132,13 +132,13 @@ end
 
 # Use fzf in combination with grep
 # fzf colors
-if command -v bat 1>/dev/null 2>&1 and command -v rg 1>/dev/null 2>&1
-    alias fzf="fzf \
-    --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
-    --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
-    --color='hl:#ebcb8b,hl+:#ebcb8b,pointer:#b48ead,marker:#d08770' \
-    --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
-    --color='hl:reverse,hl+:reverse'"
+if command -v fzf 1>/dev/null 2>&1
+    set -gax FZF_DEFAULT_OPTS " \
+      --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
+      --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
+      --color='hl:#ebcb8b,hl+:#ebcb8b,pointer:#b48ead,marker:#d08770' \
+      --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
+      --color='hl:reverse,hl+:reverse'"
 end
 
 # Forward term info in kitty when connection via ssh
