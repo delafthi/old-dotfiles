@@ -29,7 +29,7 @@ done
 export INITIAL_QUERY=""
 export RG_PREFIX="rg ${opt_args} --hidden --column --line-number --with-filename --no-heading --color=always --smart-case "
 export FZF_DEFAULT_COMMAND="${RG_PREFIX} '${INITIAL_QUERY}'"
-selected=$(fzf \
+SELECTION=$(fzf \
   --bind "change:reload:${RG_PREFIX} {q} || true" \
   --disabled \
   --ansi \
@@ -47,6 +47,6 @@ selected=$(fzf \
     --line-range :500 {1}")
 
 # Check that the string is not empty
-if ! test -z ${selected}; then
-  nvim -c +"edit ${selected}"
+if ! test -z ${SELECTION}; then
+  nvim -c +"edit ${SELECTION}"
 fi

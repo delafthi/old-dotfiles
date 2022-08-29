@@ -26,7 +26,7 @@ while getopts ":ah" arg; do
   esac
 done
 
-selected=$(rg \
+SELCTION=$(rg \
   --smart-case \
   --hidden \
   --files \
@@ -39,6 +39,6 @@ selected=$(rg \
     --preview "bat --style=numbers --line-range :500 {}")
 
 # Check that the string is not empty
-if ! test -z ${selected}; then
-  nvim +"edit ${selected}"
+if ! test -z ${SELECTION}; then
+  nvim +"edit ${SELECTION}"
 fi
