@@ -126,7 +126,6 @@ end
 
 # Set defaults for bat
 if command -v bat 1>/dev/null 2>&1 and command -v rg 1>/dev/null 2>&1
-    alias bat="bat --italic-text=always --color=always --theme Nord"
     alias grep="batgrep"
 end
 

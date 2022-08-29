@@ -75,8 +75,19 @@ An easily configurable and nice looking shell prompt.
 Tmux is a terminal multiplexer. I use it mainly to have multiple 'windows' when
 I work on a machine over ssh.
 
-## References
+### Dependencies
+
+- [Starship](https://starship.rs/)
+
+### References
 
 - [tmux](https://github.com/tmux/tmux/wiki)
-- [Starship](https://starship.rs/)
 - [Arch Wiki](https://wiki.archlinux.org/title/Tmux)
+
+## Bat
+
+A cat(1) clone with syntax highlighting and Git integration.
+
+### References
+
+- [bat](https://github.com/sharkdp/bat)
