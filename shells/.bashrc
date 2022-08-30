@@ -59,20 +59,6 @@ alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 export HISTCONTROL=ignoreboth # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
-# Set the default editor, this variable is overwritten in case neovim is
-# installed
-export EDITOR="vi"
-export SSH_KEY_PATH="~/.ssh/rsa_id" # Set default ssh key path
-export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
-
-# Path
-if [ -d "$HOME/.bin" ]; then
-  PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
 
 ############################################################
 # Visuals {{{1
