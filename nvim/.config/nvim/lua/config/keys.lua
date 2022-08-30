@@ -319,7 +319,9 @@ wk.register({
       n = { ":enew<Cr>", "New file" },
       b = {
         function()
-          require("telescope").extensions.file_browser.file_browser()
+          require("telescope").extensions.file_browser.file_browser({
+            hidden = true,
+          })
         end,
         "File browser",
       },
