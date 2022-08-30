@@ -1,4 +1,0 @@
-#!/bin/sh
-
-SELECTION=$(hacksaw -f "-i %i -g %g")
-shotgun ${SELECTION} "$1"

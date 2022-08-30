@@ -1,3 +1,0 @@
-#!/bin/sh
-
-git diff $@ --name-only --diff-filter=d | xargs bat --italic-text=always --color=always --theme Nord --diff
