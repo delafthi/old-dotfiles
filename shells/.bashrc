@@ -2,32 +2,8 @@
 # ~/.bashrc: executed by bash(1) for non-login shells. #
 ########################################################
 
-############################################################
-# General settings {{{1
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# Ignore upper and lowercase when TAB completion
-bind "set completion-ignore-case on"
-
-# Bash options
-shopt -s autocd         # change to named directory
-shopt -s cdspell        # autocorrects cd misspellings
-shopt -s cmdhist        # save multi-line commands in history as single line
-shopt -s dotglob        # bash includes filenames beginning with a ‘.’ in the results of filename expansion
-shopt -s histappend     # do not overwrite history
-shopt -s expand_aliases # expand aliases
-shopt -s checkwinsize   # checks term size when bash regains control
-
-# Auto-completion
-source /usr/share/bash-completion/bash_completion
-
-# Enable vi bindings
-set -o vi
-
-############################################################
-# Aliases {{{1
+# Aliases
+# ~~~~~~~
 
 alias sudo="sudo -E"
 
@@ -53,21 +29,43 @@ alias feh="feh --auto-zoom --scale-down"
 alias gl="lazygit"
 alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
-############################################################
-# Environment variables {{{1
+# General settings
+# ~~~~~~~~~~~~~~~~
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
+
+# Bash options
+shopt -s autocd         # change to named directory
+shopt -s cdspell        # autocorrects cd misspellings
+shopt -s cmdhist        # save multi-line commands in history as single line
+shopt -s dotglob        # bash includes filenames beginning with a ‘.’ in the results of filename expansion
+shopt -s histappend     # do not overwrite history
+shopt -s expand_aliases # expand aliases
+shopt -s checkwinsize   # checks term size when bash regains control
+
+# Auto-completion
+source /usr/share/bash-completion/bash_completion
+
+# Enable vi bindings
+set -o vi
+
+# Set bash specific env vars
 export HISTCONTROL=ignoreboth # no duplicate entries
 export HISTSIZE=5000
 export HISTFILESIZE=10000
 
-############################################################
-# Visuals {{{1
+# Visuals
+# ~~~~~~~
 
 # Load dircolors
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
-###########################################################
-# Settings with dependencies {{{1
+# Settings with dependencies
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Set defaults for bat
 if command -v bat 1> /dev/null 2>&1 && command -v rg 1> /dev/null 2>&1; then
@@ -119,8 +117,8 @@ if command -v ranger 1> /dev/null 2>&1; then
   }
 fi
 
-############################################################
-# Plugins {{{1
+# Plugins
+# ~~~~~~~
 
 # Starship prompt
 if ! command -v starship 1> /dev/null 2>&1; then
@@ -135,5 +133,3 @@ fi
 if command -v direnv 1> /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
-
-# }}}1

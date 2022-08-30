@@ -2,8 +2,36 @@
 # ~/.config/fish/config.fish: executed by fish for non-login shells. #
 ######################################################################
 
-############################################################
-# General settings {{{1
+# Abbreviations and aliases
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# sudo
+alias sudo="sudo -E"
+
+# navigation
+abbr -a .. "cd .."
+abbr -a ... "cd ../.."
+abbr -a .3 "cd ../../.."
+abbr -a .4 "cd ../../../.."
+abbr -a .5 "cd ../../../../.."
+
+# vim like exit
+abbr -a :q exit
+
+# Adding flags
+alias cp="cp -i" # confirm before overwriting something
+alias df="df -h" # human-readable sizes
+alias free="free -m" # show sizes in MB
+alias rm="rm -i"
+alias mv="mv -i"
+alias minicom="minicom -m -c on"
+alias htop="htop -t"
+alias feh="feh --auto-zoom --scale-down"
+alias gl="lazygit"
+alias tn="tmux new -s (pwd | sed 's/.*\///g')"
+
+# General settings
+# ~~~~~~~~~~~~~~~~
 
 # Remove greeting message
 set fish_greeting
@@ -22,22 +50,9 @@ function fish_command_not_found
     __fish_default_command_not_found_handler $argv
 end
 
-############################################################
-# Abbreviations and aliases {{{1
-
-# sudo
-alias sudo="sudo -E"
-
-# navigation
-abbr -a .. "cd .."
-abbr -a ... "cd ../.."
-abbr -a .3 "cd ../../.."
-abbr -a .4 "cd ../../../.."
-abbr -a .5 "cd ../../../../.."
-
-# vim like exit
-abbr -a :q exit
 # Keybindings
+# ~~~~~~~~~~~
+
 bind -M insert \cq exit
 bind -M insert \ck up-or-search
 bind -M insert \cj down-or-search
@@ -49,28 +64,9 @@ bind -M insert -k nul accept-autosuggestion
 bind -M insert \cc cancel-commandline repaint-mode
 bind \cc 'commandline -f cancel-commandline; set fish_bind_mode insert; commandline -f repaint-mode'
 
-# Adding flags
-alias cp="cp -i" # confirm before overwriting something
-alias df="df -h" # human-readable sizes
-alias free="free -m" # show sizes in MB
-alias rm="rm -i"
-alias mv="mv -i"
-alias minicom="minicom -m -c on"
-alias htop="htop -t"
-alias feh="feh --auto-zoom --scale-down"
-alias gl="lazygit"
-alias tn="tmux new -s (pwd | sed 's/.*\///g')"
 
-############################################################
-# Environment variables {{{1
-
-
-end
-
-end
-
-############################################################
-# Visuals {{{1
+# Visuals
+# ~~~~~~~
 
 # Load dircolors
 test -r ~/.dir_colors && eval (dircolors -c ~/.dir_colors)
@@ -111,8 +107,8 @@ function nofunc --description "Run command ignoring functions and aliases"
     functions --erase functionholder
 end
 
-############################################################
-# Settings with dependencies {{{1
+# Settings with dependencies
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Set defaults for bat
 if command -v bat 1>/dev/null 2>&1 and command -v rg 1>/dev/null 2>&1
@@ -164,8 +160,8 @@ if command -v ranger 1>/dev/null 2>&1
     end
 end
 
-############################################################
-# Plugins {{{1
+# Plugins
+# ~~~~~~~
 
 if not test -d $HOME/.config/fish/plugins
     mkdir -p $HOME/.config/fish/plugins
@@ -198,5 +194,3 @@ set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-en
 if command -v direnv 1>/dev/null 2>&1
     direnv hook fish | source
 end
-
-# }}}1
