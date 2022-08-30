@@ -133,10 +133,10 @@ theme.layout_tile = themes_path .. "default/layouts/tilew.png" -- The tile layou
 theme.layout_tiletop = themes_path .. "default/layouts/tiletopw.png" -- The tile top layout layoutbox icon
 theme.layout_tilebottom = themes_path .. "default/layouts/tilebottomw.png" -- The tile bottom layout layoutbox icon
 theme.layout_tileleft = themes_path .. "default/layouts/tileleftw.png" -- The tile left layout layoutbox icon
-theme.layout_twopane = config_path .. "layouts/twopanew.png" -- The twopane layout layoutbox icon
-theme.layout_twopanetop = config_path .. "layouts/twopanetopw.png" -- The twopane top layout layoutbox icon
-theme.layout_twopanebottom = config_path .. "layouts/twopanebottomw.png" -- The twopane bottom layout layoutbox icon
-theme.layout_twopaneleft = config_path .. "layouts/twopaneleftw.png" -- The twopane left layout layoutbox icon
+theme.layout_twopane = config_path .. "modules/twopane/twopanew.png" -- The twopane layout layoutbox icon
+theme.layout_twopanetop = config_path .. "modules/twopane/twopanetopw.png" -- The twopane top layout layoutbox icon
+theme.layout_twopanebottom = config_path .. "modules/twopane/twopanebottomw.png" -- The twopane bottom layout layoutbox icon
+theme.layout_twopaneleft = config_path .. "modules/twopane/twopaneleftw.png" -- The twopane left layout layoutbox icon
 
 -- Columns {{{3
 theme.column_count = 1 -- The default number of columns

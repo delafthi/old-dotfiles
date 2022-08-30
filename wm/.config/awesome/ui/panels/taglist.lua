@@ -8,6 +8,8 @@ local awful = require("awful") -- Everything related to window management
 local wibox = require("wibox") -- Awesome own generic widget framework
 -- Theme handling library
 local beautiful = require("beautiful") -- Awesome theme module
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
 
 -- Default mod key
 local modkey = "Mod4" -- Meta key
@@ -42,7 +44,7 @@ function M.get_widget(s)
     {
       awful.widget.taglist({
         screen = s,
-        filter = awful.widget.taglist.filter.noempty,
+        filter = awful.widget.taglist.filter.all,
         buttons = {
           awful.button({}, 1, function(t)
             t:view_only()
@@ -68,6 +70,11 @@ function M.get_widget(s)
       }),
       taglist.prompt,
       layout = wibox.layout.fixed.horizontal(),
+      widget_template = {
+        widget = wibox.container.margin,
+        forced_width = dpi(40),
+        forced_height = dpi(40),
+      },
     },
     bg = beautiful.taglist_bg_empty,
     fg = beautiful.fg_normal,

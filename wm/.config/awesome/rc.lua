@@ -19,9 +19,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- Custom layout
-local twopane = require("layouts.twopane")
+local twopane = require("modules.twopane")
 -- Wibar
-local wibar = require("wibar")
+local wibar = require("ui.panels.wibar")
 
 -----------------------------------------------------------
 -- Error handling {{{1

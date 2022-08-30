@@ -18,15 +18,14 @@ function M.get_widget()
   local time = wibox.widget({
     {
       {
-        format = " %a %d. %b %Y %H:%M",
+        format = "%a %b %d %H:%M",
         widget = wibox.widget.textclock,
       },
       left = 5 * beautiful.useless_gap,
       right = 5 * beautiful.useless_gap,
       widget = wibox.container.margin,
     },
-    bg = beautiful.nord9,
-    fg = beautiful.nord0,
+    fg = beautiful.nord4,
     shape = gears.shape.rounded_bar,
     widget = wibox.container.background,
   })

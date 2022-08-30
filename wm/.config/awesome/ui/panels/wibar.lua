@@ -48,32 +48,27 @@ function M.set(s)
   })
 
   -- Create screen specific widgets
-  s.mytaglist = require("widgets.taglist").get_widget(s)
-  s.mylayoutbox = require("widgets.layoutbox").get_widget(s)
-  s.mytasklist = require("widgets.tasklist").get_widget(s)
+  s.mytaglist = require("ui.panels.taglist").get_widget(s)
+  s.mylayoutbox = require("ui.panels.layoutbox").get_widget(s)
+  s.mytasklist = require("ui.panels.tasklist").get_widget(s)
   -- Create non-specific widgets
-  local spacer = require("widgets.spacer").get_widget()
-  local cpuinfo = require("widgets.cpuinfo").get_widget()
-  local meminfo = require("widgets.meminfo").get_widget()
-  local systray = require("widgets.systray").get_widget(s)
-  local time = require("widgets.time").get_widget()
+  local spacer = require("ui.panels.spacer").get_widget()
+  local cpuinfo = require("ui.panels.cpuinfo").get_widget()
+  local meminfo = require("ui.panels.meminfo").get_widget()
+  local systray = require("ui.panels.systray").get_widget(s)
+  local time = require("ui.panels.time").get_widget()
 
   -- Add widgets to the wibox
   s.mywibar:setup({
     { -- Left widgets
-      s.mytaglist.widget,
-      s.mylayoutbox,
-      wibox.widget.separator({
-        forced_width = dpi(0),
-        color = beautiful.wibar_bg,
-      }),
+      time,
       spacing = beautiful.wibar_spacing,
       spacing_widget = spacer,
       layout = wibox.layout.fixed.horizontal,
     },
     { -- Middle widgets
       {
-        s.mytasklist,
+        s.mytaglist.widget,
         valign = "center",
         halign = "center",
         widget = wibox.container.place,
@@ -88,7 +83,7 @@ function M.set(s)
           cpuinfo,
           meminfo,
           systray,
-          time,
+          s.mylayoutbox,
           layout = wibox.layout.fixed.horizontal,
         },
         bg = beautiful.nord3,
