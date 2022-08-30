@@ -136,11 +136,4 @@ if command -v direnv 1> /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
 
-# Guix
-if command -v guix --version 1> /dev/null 2>&1; then
-  export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-  export GUIX_PROFILE="$HOME/.config/guix/current"
-  source "$GUIX_PROFILE/etc/profile"
-fi
-
 # }}}1

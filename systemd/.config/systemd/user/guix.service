@@ -1,0 +1,11 @@
+[Unit]
+Description=Guix
+
+[Service]
+Type=simple
+Environment="GUIX_LOCPATH=$HOME/.guix-profile/lib/locale"
+Environment="GUIX_PROFILE=$HOME/.config/guix/current"
+ExecStart=source "$GUIX_PROFILE/etc/profile"
+
+[Install]
+WantedBy=default.target
