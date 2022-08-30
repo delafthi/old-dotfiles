@@ -16,6 +16,7 @@ lua.
 
 - [Awesome](https://awesomewm.org/apidoc/)
 - [Arch Wiki](https://wiki.archlinux.org/title/Awesome)
+- [Yoru](https://github.com/rxyhn/yoru)
 
 ## Picom
 
