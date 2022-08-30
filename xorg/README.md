@@ -1,10 +1,9 @@
-# X
+# Xorg
 
-This folder contains configurations related to X, Xterm or Xinit.
+This folder contains configurations related to Xorg, Xterm or Xinit.
 
 ## Dependencies
 
-- [Fira Code](https://github.com/tonsky/FiraCode)
 - [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
   [Victor Mono](https://github.com/rubjo/victor-mono)
 - [Breeze Snow Cursor Theme](https://github.com/KDE/breeze)
