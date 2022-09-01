@@ -15,7 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup.keys")
 local M = {}
 
 -- Default applications
-local terminal = "kitty" -- default terminal
+local terminal = "wezterm" -- default terminal
 local editor = os.getenv("EDITOR") or "nvim" -- default editor
 local editor_cmd = terminal .. " -e " .. editor -- command to open the editor
 

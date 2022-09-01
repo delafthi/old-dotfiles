@@ -65,7 +65,7 @@ beautiful.init(
 )
 
 -- Default applications
-local terminal = "kitty" -- default terminal
+local terminal = "wezterm" -- default terminal
 local browser = "qutebrowser" -- default browser
 
 -- Default mod key
