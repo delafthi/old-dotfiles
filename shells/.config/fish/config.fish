@@ -128,6 +128,7 @@ end
 
 # Changing "ls" to "exa"
 if command -v exa 1>/dev/null 2>&1
+    set -gx EXA_COLORS "xx=02;37"
     alias ls="exa -al --color=always --group-directories-first"
     alias la="exa -a --color=always --group-directories-first"
     alias ll="exa -l --color=always --group-directories-first"
