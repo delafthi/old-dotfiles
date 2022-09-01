@@ -1,7 +1,7 @@
 # GTK
 
-These settings change the look of gtk applications, icons and the look of the
-cursor.
+GTK is a free and open-source cross-platform widget toolkit for creating
+graphical user interfaces.
 
 ## Dependencies
 
