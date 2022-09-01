@@ -1,13 +1,13 @@
 # Shells
 
-This folder contains the configuration for the shells I use; Fish as my main
-shell and bash as a secondary shell.
+A shell is a program that helps you operate your computer by starting other
+programs. fish offers a command-line interface focused on usability and
+interactive use.
 
 ## Fish
 
-Fish in my opinion the best shell. It has great autosuggestion, hightlighting
-and completion. The configuration is very similar to the bash configuration.
-Therefore, the configuration has nearly the same dependencies.
+fish is a smart and user-friendly command line shell for Linux, macOS, and the
+rest of the family.
 
 ### Dependencies
 
@@ -28,7 +28,12 @@ Therefore, the configuration has nearly the same dependencies.
 
 ## Bash
 
-Probably the most popular shell, which is widely used in the industry.
+Bash is the GNU Project's shell—the Bourne Again SHell. This is an sh-compatible
+shell that incorporates useful features from the Korn shell (ksh) and the C
+shell (csh). It is intended to conform to the IEEE POSIX P1003.2/ISO 9945.2
+Shell and Tools standard. It offers functional improvements over sh for both
+programming and interactive use. In addition, most sh scripts can be run by Bash
+without modification.
 
 ### Dependencies
 
