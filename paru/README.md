@@ -1,7 +1,7 @@
 # Paru
 
-Paru is a AUR installer. The configuration is very basic and does mainly change
-the diff viewwer to bat.
+Paru is your standard pacman wrapping AUR helper with lots of features and
+minimal interaction.
 
 ## Dependencies
 
