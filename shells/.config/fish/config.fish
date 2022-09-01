@@ -136,18 +136,6 @@ if command -v nvim 1>/dev/null 2>&1
     alias vi="nvim"
 end
 
-# Exit ranger rather than opening a new instance if we are already in an
-# instance
-if command -v ranger 1>/dev/null 2>&1
-    function ranger
-        if test -z "$RANGER_LEVEL"
-            /usr/bin/ranger $argv
-        else
-            exit
-        end
-    end
-end
-
 # Plugins
 # ~~~~~~~
 
