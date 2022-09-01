@@ -783,7 +783,7 @@ c.editor.command = ["nvim", "-c", "normal {line}G{column0}l", "{file}"]
 # Filename of the file to be written to. If not contained in any
 # argument, the   standard output of the command is read instead.
 # Type: ShellCommand
-c.fileselect.folder.command = ["kitty", "-e", "ranger", "--choosedir={}"]
+c.fileselect.folder.command = ["wezterm", "-e", "xplr", "{}"]
 
 # Handler for selecting file(s) in forms. If `external`, then the
 # commands specified by `fileselect.single_file.command` and
@@ -803,10 +803,10 @@ c.fileselect.folder.command = ["kitty", "-e", "ranger", "--choosedir={}"]
 # read instead.
 # Type: ShellCommand
 c.fileselect.multiple_files.command = [
-    "kitty",
+    "wezterm",
     "-e",
-    "ranger",
-    "--choosefiles={}",
+    "xplr",
+    "{}",
 ]
 
 # Command (and arguments) to use for selecting a single file in forms.
@@ -815,7 +815,7 @@ c.fileselect.multiple_files.command = [
 # the file to be written to. If not contained in any argument, the
 # standard output of the command is read instead.
 # Type: ShellCommand
-c.fileselect.single_file.command = ["kitty", "-e", "ranger", "--choosefile={}"]
+c.fileselect.single_file.command = ["wezterm", "-e", "xplr", "{}"]
 
 # Font used in the completion categories.
 # Type: Font
