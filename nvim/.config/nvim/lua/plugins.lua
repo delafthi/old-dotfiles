@@ -109,6 +109,18 @@ require("packer").startup({
       end,
     })
     use({
+      "nvim-treesitter/nvim-treesitter-context",
+      requires = {
+        "nvim-treesitter",
+      },
+      wants = { "nvim-treesitter" },
+      cmd = "TSContext",
+      event = "BufRead",
+      config = function()
+        require("config.nvim-treesitter-context").config()
+      end,
+    })
+    use({
       "norcalli/nvim-colorizer.lua",
       event = "BufReadPost",
       config = function()
