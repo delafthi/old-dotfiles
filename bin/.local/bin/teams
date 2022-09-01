@@ -1,3 +1,0 @@
-#!/bin/sh
-
-qutebrowser --target 'window' https://teams.microsoft.com
