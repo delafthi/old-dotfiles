@@ -1,7 +1,7 @@
 # Spicetify
 
-Customize the appearance of Spotify. The configuration is heavily based on
-dribbblishs configuration (see references).
+Command-line tool to customize the official Spotify client. The configuration is
+heavily based on dribbblishs configuration (see references).
 
 - Make sure to adjust the paths in `config-xpui.ini` (relative paths are not
   possible).
@@ -13,4 +13,4 @@ dribbblishs configuration (see references).
 ## Reference
 
 - [Spicetify-cli](https://github.com/khanhas/spicetify-cli)
-- https://github.com/morpheusthewhite/spicetify-themes/tree/v2/Dribbblish
+- [Dribbblish](https://github.com/morpheusthewhite/spicetify-themes/tree/v2/Dribbblish)
