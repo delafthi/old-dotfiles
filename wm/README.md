@@ -1,6 +1,8 @@
 # WM
 
-Configuration related to the window management system.
+A window manager (WM) is system software that controls the placement and
+appearance of windows within a windowing system in a graphical user interface
+(GUI).
 
 ## AwesomeWM
 
