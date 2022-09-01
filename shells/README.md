@@ -69,11 +69,3 @@ An easily configurable and nice looking shell prompt.
 ### References
 
 - [Starship](https://starship.rs/)
-
-## Bat
-
-A cat(1) clone with syntax highlighting and Git integration.
-
-### References
-
-- [bat](https://github.com/sharkdp/bat)
