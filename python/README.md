@@ -1,6 +1,7 @@
 # Python
 
-This folder contains the configuration for tools related to Python development.
+Python is powerful... and fast; plays well with others; runs everywhere; is
+friendly & easy to learn; is Open.
 
 ## Black
 
