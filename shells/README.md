@@ -70,20 +70,6 @@ An easily configurable and nice looking shell prompt.
 
 - [Starship](https://starship.rs/)
 
-## Tmux
-
-Tmux is a terminal multiplexer. I use it mainly to have multiple 'windows' when
-I work on a machine over ssh.
-
-### Dependencies
-
-- [Starship](https://starship.rs/)
-
-### References
-
-- [tmux](https://github.com/tmux/tmux/wiki)
-- [Arch Wiki](https://wiki.archlinux.org/title/Tmux)
-
 ## Bat
 
 A cat(1) clone with syntax highlighting and Git integration.
