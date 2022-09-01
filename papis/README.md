@@ -1,7 +1,7 @@
 # Papis
 
-Papis is a terminal based bibliography manager. The configuration set paths,
-keybindings and default viewer
+Papis is a powerful and highly extensible command-line based document and
+bibliography manager.
 
 ## Dependencies
 
