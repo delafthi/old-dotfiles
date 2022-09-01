@@ -67,11 +67,6 @@ test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 # Settings with dependencies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Set defaults for bat
-if command -v bat 1> /dev/null 2>&1 && command -v rg 1> /dev/null 2>&1; then
-  alias grep="batgrep"
-fi
-
 # Use fzf in combination with grep
 # fzf colors
 if command -v fzf 1> /dev/null 2>&1; then
@@ -86,9 +81,6 @@ fi
 if command -v nvim 1> /dev/null 2>&1; then
   alias vim="nvim"
   alias vi="nvim"
-  # set vim as manpager
-  export MANPAGER="nvim +Man!"
-  export EDITOR="nvim"
 fi
 
 # Changing "ls" to "exa"

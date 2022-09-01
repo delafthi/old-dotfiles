@@ -110,11 +110,6 @@ end
 # Settings with dependencies
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Set defaults for bat
-if command -v bat 1>/dev/null 2>&1 and command -v rg 1>/dev/null 2>&1
-    alias grep="batgrep"
-end
-
 # Use fzf in combination with grep
 # fzf colors
 if command -v fzf 1>/dev/null 2>&1
@@ -143,9 +138,6 @@ end
 if command -v nvim 1>/dev/null 2>&1
     alias vim="nvim"
     alias vi="nvim"
-    # set vim as the manpager
-    set -gx MANPAGER "nvim +Man!"
-    set -gx EDITOR nvim # $EDITOR use Neovim in terminal
 end
 
 # Exit ranger rather than opening a new instance if we are already in an
