@@ -1,6 +1,6 @@
 # qutebrowser
 
-A keyboard-driven, vim-like browser based on PyQt5 and Qt
+A keyboard-driven, vim-like browser based on PyQt5 and Qt.
 
 ## Dependencies
 
