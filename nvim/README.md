@@ -1,6 +1,7 @@
 # Neovim
 
-Neovim is a terminal based text editor with a f
+Neovim is a Vim-based text editor engineered for extensibility and usability, to
+encourage new applications and contributions.
 
 ## Dependencies
 
@@ -17,7 +18,7 @@ Neovim is a terminal based text editor with a f
     - [clangd](https://github.com/clangd/clangd)
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
     - [hls](https://github.com/haskell/haskell-language-server)
-    - [hdl_checker](https://github.com/suoto/hdl_checker)
+    - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
       - [python-rope](https://github.com/python-rope/rope)
       - [python-pyflakes](https://github.com/PYCQA/pyflakes)
@@ -35,10 +36,9 @@ Neovim is a terminal based text editor with a f
     - [cmake-format](https://github.com/cheshirekow/cmake_format)
     - [hindent](https://hackage.haskell.org/package/hindent)
     - [prettier](https://prettier.io/)
-    - [scalafmt](https://scalameta.org/scalafmt/)
     - [shfmt](https://github.com/mvdan/sh)
-    - [istyle-verilog-formatter](https://github.com/thomasrussellmurphy/istyle-verilog-formatter)
     - [stylua](https://github.com/johnnymorganz/stylua)
+    - [emacs](https://www.gnu.org/software/emacs/)
 
 ## References
 
