@@ -1,8 +1,9 @@
-# C Dev
+# Clang
 
-This folder contains the configuration for tools related to C/C++ development.
+Programming languages in the C language family (C, C++, Objective C/C++, OpenCL,
+CUDA, and RenderScript).
 
-## Clang
+## Clang-format
 
 The configuration file for the `clang-format` tool, which is part of the clang
 toolset.
