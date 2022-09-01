@@ -121,11 +121,6 @@ if command -v fzf 1>/dev/null 2>&1
       --color='hl:reverse,hl+:reverse'"
 end
 
-# Forward term info in kitty when connection via ssh
-if string match -q xterm-kitty -- $TERM
-    alias ssh="kitty +kitten ssh"
-end
-
 # Changing "ls" to "exa"
 if command -v exa 1>/dev/null 2>&1
     set -gx EXA_COLORS "xx=02;37"
