@@ -38,9 +38,4 @@ if [ -f ~/.xprofile ]; then
 fi
 
 # Default session
-session=${2:-awesome}
-case $session in
-  awesome) exec awesome >> ~/.cache/awesome/log 2>&1 ;;
-  # If the session is not known, try to execute it as command
-  *) exec $1 ;;
-esac
+exec dbus-launch --exit-with-session awesome >> $HOME/.cache/awesome/log &>1
