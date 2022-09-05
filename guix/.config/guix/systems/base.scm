@@ -29,7 +29,7 @@
 
 (define-public system
   (operating-system
-   (keyboard-layout (keyboard-layout "us" "altgr-intl,nodeadkeys"))
+   (keyboard-layout (keyboard-layout "us" "altgr-intl"))
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
