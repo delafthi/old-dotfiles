@@ -93,6 +93,7 @@ set fish_color_host_remote purple
 set fish_color_cancel red
 
 # Vi cursor style
+set fish_vi_force_cursor
 set fish_cursor_default block
 set fish_cursor_visual block
 set fish_cursor_insert line
