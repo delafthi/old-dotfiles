@@ -149,6 +149,7 @@ return {
   quick_select_alphabet = "aoeuqjkxpyhtnsgcrlmwvzfidb",
   scrollback_lines = 10000,
   term = "wezterm",
+  warn_about_missing_glyphs = false,
   window_close_confirmation = "NeverPrompt",
   window_decorations = "NONE",
   window_padding = {
