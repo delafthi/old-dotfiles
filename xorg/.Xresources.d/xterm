@@ -7,3 +7,4 @@ XTerm*internalBorder: 8
 XTerm*metaSendsEscape: true
 XTerm*backarrowKey: false
 XTerm*ttyModes: erase ^?
+XTerm*termName: xterm-256color
