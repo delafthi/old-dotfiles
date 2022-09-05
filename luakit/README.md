@@ -9,3 +9,4 @@ browser’s behaviour and interface.
 ## References
 
 - [Documentation](https://luakit.github.io/docs/)
+- [Arch Wiki](https://wiki.archlinux.org/title/Luakit)
