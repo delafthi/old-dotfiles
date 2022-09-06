@@ -38,4 +38,4 @@ if [ -f ~/.xprofile ]; then
 fi
 
 # Default session
-exec dbus-launch --exit-with-session awesome >> $HOME/.cache/awesome/log &>1
+exec dbus-launch --exit-with-session awesome >> $HOME/.cache/awesome/log 2>&1
