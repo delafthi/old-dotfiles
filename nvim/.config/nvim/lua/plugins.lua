@@ -110,19 +110,17 @@ require("packer").startup({
     })
     use({
       "nvim-treesitter/nvim-treesitter-context",
-      requires = {
-        "nvim-treesitter",
-      },
-      wants = { "nvim-treesitter" },
+      requires = "nvim-treesitter",
+      wants = "nvim-treesitter",
       cmd = "TSContext",
-      event = "BufRead",
+      event = "BufReadPost",
       config = function()
         require("config.nvim-treesitter-context").config()
       end,
     })
     use({
       "norcalli/nvim-colorizer.lua",
-      event = "BufReadPost",
+      event = "BufEnter",
       config = function()
         require("config.nvim-colorizer").config()
       end,
@@ -157,7 +155,7 @@ require("packer").startup({
         "lsp-status.nvim",
         "lsp_extensions.nvim",
       },
-      event = "BufReadPre",
+      event = "BufReadPost",
       config = function()
         require("config.nvim-lspconfig").config()
       end,
@@ -249,7 +247,9 @@ require("packer").startup({
     -- Visuals/aesthetics
     use({
       "lukas-reineke/indent-blankline.nvim",
-      event = "BufReadPre",
+      requires = "nvim-treesitter",
+      wants = "nvim-treesitter",
+      event = "BufReadPost",
       config = function()
         require("config.indent-blankline").config()
       end,
@@ -258,7 +258,7 @@ require("packer").startup({
       "lewis6991/gitsigns.nvim",
       requires = "nvim-lua/plenary.nvim",
       wants = "plenary.nvim",
-      event = "BufReadPre",
+      event = "BufReadPost",
       config = function()
         require("config.gitsigns").config()
       end,
