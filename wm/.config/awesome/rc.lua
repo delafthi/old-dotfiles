@@ -142,7 +142,7 @@ awful.keyboard.append_global_keybindings({
     group = "launcher",
   }),
   awful.key({ modkey, "Shift" }, "b", function()
-    awful.spawn("papis -s picktool rofi open title:*")
+    awful.spawn("papis --pick-lib -s picktool rofi open title:*")
   end, {
     description = "open bibliography database",
     group = "launcher",
