@@ -486,6 +486,15 @@ require("packer").startup({
       end,
     })
     use({
+      "nvim-orgmode/orgmode",
+      requires = { "nvim-treesitter" },
+      wants = { "nvim-treesitter" },
+      ft = "org",
+      config = function()
+        require("config.orgmode").config()
+      end,
+    })
+    use({
       "jbyuki/venn.nvim",
       cmd = { "VBox" },
     })
