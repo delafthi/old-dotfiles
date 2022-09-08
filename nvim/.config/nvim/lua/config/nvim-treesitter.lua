@@ -2,14 +2,7 @@ local M = {}
 
 function M.config()
   local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_configs.vhdl = {
-    install_info = {
-      url = "https://github.com/alemuller/tree-sitter-vhdl",
-      files = { "src/parser.c" },
-      branch = "main",
-    },
-    filetype = { "vhdl", "vhd" },
-  }
+  -- Neorg
   parser_configs.norg_meta = {
     install_info = {
       url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
@@ -23,6 +16,15 @@ function M.config()
       files = { "src/parser.c" },
       branch = "main",
     },
+  }
+  -- VHDL
+  parser_configs.vhdl = {
+    install_info = {
+      url = "https://github.com/alemuller/tree-sitter-vhdl",
+      files = { "src/parser.c" },
+      branch = "main",
+    },
+    filetype = { "vhdl", "vhd" },
   }
 
   -- Call the setup function
