@@ -23,13 +23,13 @@ xplr.config.general.table.header.cols = {
   { format = "size", style = {} },
   { format = "modified", style = {} },
 }
---[[ xplr.config.general.table.header.style = ]]
---[[   { fg = "White", add_modifiers = { "Bold" } } ]]
+xplr.config.general.table.header.style =
+  { fg = "White", add_modifiers = { "Bold" } }
 xplr.config.general.table.header.height = 1
 xplr.config.general.table.row.cols = {
   {
     format = "builtin.fmt_general_table_row_cols_0",
-    style = { fg = "DarkGray", sub_modifiers = { "Bold", "Italic" } },
+    style = { fg = "DarkGray", sub_modifiers = { "Bold" } },
   },
   {
     format = "builtin.fmt_general_table_row_cols_1",
@@ -55,23 +55,24 @@ xplr.config.general.table.tree = {
 }
 xplr.config.general.table.col_spacing = 1
 xplr.config.general.table.col_widths = {
-  { Length = 8 },
+  { Length = 5 },
   { Percentage = 50 },
   { Percentage = 10 },
   { Percentage = 10 },
   { Percentage = 20 },
 }
-xplr.config.general.default_ui.prefix = ""
+xplr.config.general.default_ui.prefix = "  "
 xplr.config.general.default_ui.suffix = ""
+xplr.config.general.default_ui.style = { fg = "White" }
 xplr.config.general.focus_ui.prefix = "> "
 xplr.config.general.focus_ui.suffix = ""
 xplr.config.general.focus_ui.style = { add_modifiers = { "Bold" } }
-xplr.config.general.selection_ui.prefix = "+"
+xplr.config.general.selection_ui.prefix = " │"
 xplr.config.general.selection_ui.suffix = ""
 xplr.config.general.selection_ui.style = {
   add_modifiers = { "Bold" },
 }
-xplr.config.general.focus_selection_ui.prefix = ">+"
+xplr.config.general.focus_selection_ui.prefix = ">│"
 xplr.config.general.focus_selection_ui.suffix = ""
 xplr.config.general.focus_selection_ui.style = {
   add_modifiers = { "Bold" },
@@ -80,352 +81,23 @@ xplr.config.general.sort_and_filter_ui.separator.format = "% "
 xplr.config.general.sort_and_filter_ui.separator.style = {
   add_modifiers = { "Dim" },
 }
-
--- The content of the default identifier in Sort & filter panel.
---
--- Type: nullable string
-xplr.config.general.sort_and_filter_ui.default_identifier.format = nil
-
--- Style for the default identifier in Sort & filter panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.sort_and_filter_ui.default_identifier.style = {}
-
--- The shape of the forward direction indicator for sort identifiers in Sort & filter panel.
---
--- Type: nullable string
-xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.forward.format =
-  "↓"
-
--- Style of forward direction indicator in Sort & filter panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.forward.style =
-  nil
-
--- The shape of the reverse direction indicator for sort identifiers in Sort & filter panel.
---
--- Type: nullable string
-xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.reverse.format =
-  "↑"
-
--- Style of reverse direction indicator in Sort & filter panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.sort_and_filter_ui.sort_direction_identifiers.reverse.style =
-  nil
-
--- The identifiers used to denote applied sorters in the Sort & filter panel.
---
--- Type: nullable mapping of the following key-value pairs:
---
--- * key: [Sorter](https://xplr.dev/en/sorting#sorter)
--- * value:
---   * format: nullable string
---   * style: [Style](https://xplr.dev/en/style)
-xplr.config.general.sort_and_filter_ui.sorter_identifiers = {
-  ByExtension = { format = "ext", style = {} },
-  ByICanonicalAbsolutePath = { format = "[ci]abs", style = {} },
-  ByIRelativePath = { format = "[i]rel", style = {} },
-  ByISymlinkAbsolutePath = { format = "[si]abs", style = {} },
-  ByIsBroken = { format = "⨯", style = {} },
-  ByIsDir = { format = "dir", style = {} },
-  ByIsFile = { format = "file", style = {} },
-  ByIsReadonly = { format = "ro", style = {} },
-  ByIsSymlink = { format = "sym", style = {} },
-  ByMimeEssence = { format = "mime", style = {} },
-  ByRelativePath = { format = "rel", style = {} },
-  BySize = { format = "size", style = {} },
-  ByCreated = { format = "created", style = {} },
-  ByLastModified = { format = "modified", style = {} },
-  ByCanonicalAbsolutePath = { format = "[c]abs", style = {} },
-  ByCanonicalExtension = { format = "[c]ext", style = {} },
-  ByCanonicalIsDir = { format = "[c]dir", style = {} },
-  ByCanonicalIsFile = { format = "[c]file", style = {} },
-  ByCanonicalIsReadonly = { format = "[c]ro", style = {} },
-  ByCanonicalMimeEssence = { format = "[c]mime", style = {} },
-  ByCanonicalSize = { format = "[c]size", style = {} },
-  ByCanonicalCreated = { format = "[c]created", style = {} },
-  ByCanonicalLastModified = { format = "[c]modified", style = {} },
-  BySymlinkAbsolutePath = { format = "[s]abs", style = {} },
-  BySymlinkExtension = { format = "[s]ext", style = {} },
-  BySymlinkIsDir = { format = "[s]dir", style = {} },
-  BySymlinkIsFile = { format = "[s]file", style = {} },
-  BySymlinkIsReadonly = { format = "[s]ro", style = {} },
-  BySymlinkMimeEssence = { format = "[s]mime", style = {} },
-  BySymlinkSize = { format = "[s]size", style = {} },
-  BySymlinkCreated = { format = "[s]created", style = {} },
-  BySymlinkLastModified = { format = "[s]modified", style = {} },
-}
-
--- The identifiers used to denote applied filters in the Sort & filter panel.
---
--- Type: nullable mapping of the following key-value pairs:
---
--- * key: [Filter](https://xplr.dev/en/filtering#filter)
--- * value:
---   * format: nullable string
---   * style: [Style](https://xplr.dev/en/style)
-xplr.config.general.sort_and_filter_ui.filter_identifiers = {
-  RelativePathDoesContain = { format = "rel=~", style = {} },
-  RelativePathDoesEndWith = { format = "rel=$", style = {} },
-  RelativePathDoesNotContain = { format = "rel!~", style = {} },
-  RelativePathDoesNotEndWith = { format = "rel!$", style = {} },
-  RelativePathDoesNotStartWith = { format = "rel!^", style = {} },
-  RelativePathDoesStartWith = { format = "rel=^", style = {} },
-  RelativePathIs = { format = "rel==", style = {} },
-  RelativePathIsNot = { format = "rel!=", style = {} },
-  RelativePathDoesMatchRegex = { format = "rel=/", style = {} },
-  RelativePathDoesNotMatchRegex = { format = "rel!/", style = {} },
-
-  IRelativePathDoesContain = { format = "[i]rel=~", style = {} },
-  IRelativePathDoesEndWith = { format = "[i]rel=$", style = {} },
-  IRelativePathDoesNotContain = { format = "[i]rel!~", style = {} },
-  IRelativePathDoesNotEndWith = { format = "[i]rel!$", style = {} },
-  IRelativePathDoesNotStartWith = { format = "[i]rel!^", style = {} },
-  IRelativePathDoesStartWith = { format = "[i]rel=^", style = {} },
-  IRelativePathIs = { format = "[i]rel==", style = {} },
-  IRelativePathIsNot = { format = "[i]rel!=", style = {} },
-  IRelativePathDoesMatchRegex = { format = "[i]rel=/", style = {} },
-  IRelativePathDoesNotMatchRegex = { format = "[i]rel!/", style = {} },
-
-  AbsolutePathDoesContain = { format = "abs=~", style = {} },
-  AbsolutePathDoesEndWith = { format = "abs=$", style = {} },
-  AbsolutePathDoesNotContain = { format = "abs!~", style = {} },
-  AbsolutePathDoesNotEndWith = { format = "abs!$", style = {} },
-  AbsolutePathDoesNotStartWith = { format = "abs!^", style = {} },
-  AbsolutePathDoesStartWith = { format = "abs=^", style = {} },
-  AbsolutePathIs = { format = "abs==", style = {} },
-  AbsolutePathIsNot = { format = "abs!=", style = {} },
-  AbsolutePathDoesMatchRegex = { format = "abs=/", style = {} },
-  AbsolutePathDoesNotMatchRegex = { format = "abs!/", style = {} },
-
-  IAbsolutePathDoesContain = { format = "[i]abs=~", style = {} },
-  IAbsolutePathDoesEndWith = { format = "[i]abs=$", style = {} },
-  IAbsolutePathDoesNotContain = { format = "[i]abs!~", style = {} },
-  IAbsolutePathDoesNotEndWith = { format = "[i]abs!$", style = {} },
-  IAbsolutePathDoesNotStartWith = { format = "[i]abs!^", style = {} },
-  IAbsolutePathDoesStartWith = { format = "[i]abs=^", style = {} },
-  IAbsolutePathIs = { format = "[i]abs==", style = {} },
-  IAbsolutePathIsNot = { format = "[i]abs!=", style = {} },
-  IAbsolutePathDoesMatchRegex = { format = "[i]abs=/", style = {} },
-  IAbsolutePathDoesNotMatchRegex = { format = "[i]abs!/", style = {} },
-}
-
--- The content for panel title by default.
---
--- Type: nullable string
-xplr.config.general.panel_ui.default.title.format = nil
-
--- The style for panel title by default.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.default.title.style = {
-  fg = "Reset",
-  add_modifiers = { "Bold" },
-}
-
--- Style of the panels by default.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.default.style = {}
-
--- Defines where to show borders for the panels by default.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.default.borders = {
-  "Top",
-  "Right",
-  "Bottom",
-  "Left",
-}
-
--- Type of the borders by default.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
 xplr.config.general.panel_ui.default.border_type = "Rounded"
-
--- Style of the panel borders by default.
---
--- Type: [Style](https://xplr.dev/en/style)
 xplr.config.general.panel_ui.default.border_style = { fg = "DarkGray" }
-
--- The content for the table panel title.
---
--- Type: nullable string
-xplr.config.general.panel_ui.table.title.format = nil
-
--- Style of the table panel title.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.table.title.style = {}
-
--- Style of the table panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.table.style = {}
-
--- Defines where to show borders for the table panel.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.table.borders = nil
-
--- Type of the borders for table panel.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
-xplr.config.general.panel_ui.table.border_type = nil
-
--- Style of the table panel borders.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.table.border_style = {}
-
--- The content for the help menu panel title.
---
--- Type: nullable string
-xplr.config.general.panel_ui.help_menu.title.format = nil
-
--- Style of the help menu panel title.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.help_menu.title.style = {}
-
--- Style of the help menu panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.help_menu.style = {}
-
--- Defines where to show borders for the help menu panel.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.help_menu.borders = nil
-
--- Type of the borders for help menu panel.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
-xplr.config.general.panel_ui.help_menu.border_type = nil
-
--- Style of the help menu panel borders.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.help_menu.border_style = {}
-
--- The content for the input & logs panel title.
---
--- Type: nullable string
-xplr.config.general.panel_ui.input_and_logs.title.format = nil
-
--- Style of the input & logs panel title.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.input_and_logs.title.style = {}
-
--- Style of the input & logs panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.input_and_logs.style = {}
--- Defines where to show borders for the input & logs panel.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.input_and_logs.borders = nil
-
--- Type of the borders for input & logs panel.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
-xplr.config.general.panel_ui.input_and_logs.border_type = nil
-
--- Style of the input & logs panel borders.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.input_and_logs.border_style = {}
-
--- The content for the selection panel title.
---
--- Type: nullable string
-xplr.config.general.panel_ui.selection.title.format = nil
-
--- Style of the selection panel title.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.selection.title.style = {}
-
--- Style of the selection panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.selection.style = {}
--- Defines where to show borders for the selection panel.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.selection.borders = nil
-
--- Type of the borders for selection panel.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
-xplr.config.general.panel_ui.selection.border_type = nil
-
--- Style of the selection panel borders.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.selection.border_style = {}
-
--- The content for the sort & filter panel title.
---
--- Type: nullable string
-xplr.config.general.panel_ui.sort_and_filter.title.format = nil
-
--- Style of the sort & filter panel title.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.sort_and_filter.title.style = {}
-
--- Style of the sort & filter panel.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.sort_and_filter.style = {}
-
--- Defines where to show borders for the sort & filter panel.
---
--- Type: nullable list of [Border](https://xplr.dev/en/borders#border)
-xplr.config.general.panel_ui.sort_and_filter.borders = nil
-
--- Type of the borders for sort & filter panel.
---
--- Type: nullable [Border Type](https://xplr.dev/en/borders#border-type)
-xplr.config.general.panel_ui.sort_and_filter.border_type = nil
-
--- Style of the sort & filter panel borders.
---
--- Type: [Style](https://xplr.dev/en/style)
-xplr.config.general.panel_ui.sort_and_filter.border_style = {}
-
--- Initial group if sorters applied to the nodes list in the table.
---
--- Type: nullable list of [Node Sorter](https://xplr.dev/en/sorting#node-sorter-applicable)
+xplr.config.general.panel_ui.table.title.style = { fg = "Cyan" }
+xplr.config.general.panel_ui.table.border_style = { fg = "Cyan" }
+xplr.config.general.panel_ui.help_menu.title.style = { fg = "Magenta" }
+xplr.config.general.panel_ui.help_menu.border_style = { fg = "Magenta" }
+xplr.config.general.panel_ui.input_and_logs.title.style = { fg = "DarkGray" }
+xplr.config.general.panel_ui.input_and_logs.border_style = { fg = "DarkGray" }
+xplr.config.general.panel_ui.selection.title.style = { fg = "Blue" }
+xplr.config.general.panel_ui.selection.border_style = { fg = "Blue" }
+xplr.config.general.panel_ui.sort_and_filter.title.style = { fg = "Magenta" }
+xplr.config.general.panel_ui.sort_and_filter.border_style = { fg = "Magenta" }
 xplr.config.general.initial_sorting = {
   { sorter = "ByCanonicalIsDir", reverse = true },
   { sorter = "ByIRelativePath", reverse = false },
 }
-
--- The name of one of the modes to use when xplr loads.
---
--- Type: nullable string
-xplr.config.general.initial_mode = "default"
-
--- The name of one of the layouts to use when xplr loads.
---
--- Type: nullable string
 xplr.config.general.initial_layout = "default"
-
--- Set it to a file path to start fifo when xplr loads.
--- Generally it is used to integrate with external tools like previewers.
---
--- Type: nullable string
-xplr.config.general.start_fifo = nil
-
--- Use it to define a set of key bindings that are available by default in
--- every [mode](https://xplr.dev/en/mode). They can be overwritten.
---
--- Type: [Key Bindings](https://xplr.dev/en/configure-key-bindings#key-bindings)
 xplr.config.general.global_key_bindings = {
   on_key = {
     esc = {
@@ -441,175 +113,25 @@ xplr.config.general.global_key_bindings = {
   },
 }
 
--- ### Node Types -------------------------------------------------------------
---
--- This section defines how to deal with different kinds of nodes (files,
--- directories, symlinks etc.) based on their properties.
---
--- One node can fall into multiple categories. For example, a node can have the
--- *extension* `md`, and also be a *file*. In that case, the properties from
--- the more  specific category i.e. *extension* will be used.
---
--- This can be configured using the `xplr.config.node_types` Lua API.
-
--- The style for the directory nodes
---
--- Type: [Style](https://xplr.dev/en/style)
+-- Node Types
+-- ~~~~~~~~~~
 xplr.config.node_types.directory.style = {
-  fg = "Cyan",
+  fg = "Blue",
   add_modifiers = { "Bold" },
 }
-
--- Metadata for the directory nodes.
--- You can set as many metadata as you want.
---
--- Type: nullable string
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.directory.meta.foo = "foo"
--- xplr.config.node_types.directory.meta.bar = "bar"
--- ```
 xplr.config.node_types.directory.meta.icon = " "
-
--- The style for the file nodes.
---
--- Type: [Style](https://xplr.dev/en/style)
 xplr.config.node_types.file.style = {}
-
--- Metadata for the file nodes.
--- You can set as many metadata as you want.
---
--- Type: nullable string
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.file.meta.foo = "foo"
--- xplr.config.node_types.file.meta.bar = "bar"
--- ```
 xplr.config.node_types.file.meta.icon = " "
-
--- The style for the symlink nodes.
---
--- Type: [Style](https://xplr.dev/en/style)
 xplr.config.node_types.symlink.style = {
-  fg = "Magenta",
-  add_modifiers = { "Italic" },
+  fg = "Cyan",
 }
-
--- Metadata for the symlink nodes.
--- You can set as many metadata as you want.
---
--- Type: nullable string
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.symlink.meta.foo = "foo"
--- xplr.config.node_types.symlink.meta.bar = "bar"
--- ```
 xplr.config.node_types.symlink.meta.icon = " "
-
--- Metadata and style based on mime types.
--- It is possible to use the wildcard `*` to match all mime sub types. It will
--- be overwritten by the more specific sub types that are defined.
---
--- Type: mapping of the following key-value pairs:
---
--- * key: string
--- * value:
---   * key: string
---   * value: [Node Type](https://xplr.dev/en/node-type)
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.mime_essence = {
---   application = {
---     -- application/*
---     ["*"] = { meta = { icon = "a" } }
---
---     -- application/pdf
---     pdf = { meta = { icon = "" }, style = { fg = "Blue" } },
---
---     -- application/zip
---     zip = { meta = { icon = ""} },
---   },
--- }
--- ```
 xplr.config.node_types.mime_essence = {}
-
--- Metadata and style based on extension.
---
--- Type: mapping of the following key-value pairs:
---
--- * key: string
--- * value: [Node Type](https://xplr.dev/en/node-type)
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.extension.md = { meta = { icon = "" }, style = { fg = "Blue" } }
--- xplr.config.node_types.extension.rs = { meta = { icon = "🦀" } }
--- ```
 xplr.config.node_types.extension = {}
-
--- Metadata and style based on special file names.
---
--- Type: mapping of the following key-value pairs:
---
--- * key: string
--- * value: [Node Type](https://xplr.dev/en/node-type)
---
--- Example:
---
--- ```lua
--- xplr.config.node_types.special["Cargo.toml"] = { meta = { icon = "" } }
--- xplr.config.node_types.special["Downloads"] = { meta = { icon = "" }, style = { fg = "Blue" } }
--- ```
 xplr.config.node_types.special = {}
 
--- ### Layouts ----------------------------------------------------------------
---
--- xplr layouts define the structure of the UI, i.e. how many panel we see,
--- placement and size of the panels, how they look etc.
---
--- This is configuration exposed via the `xplr.config.layouts` API.
---
--- `xplr.config.layouts.builtin` contain some built-in panels which can be
--- overridden, but you can't add or remove panels in it.
---
--- You can add new panels in `xplr.config.layouts.custom`.
---
--- ##### Example: Defining Custom Layout
---
--- ![demo](https://s6.gifyu.com/images/layout.png)
---
--- ```lua
--- xplr.config.layouts.builtin.default = {
---   Horizontal = {
---     config = {
---       margin = 1,
---       horizontal_margin = 2,
---       vertical_margin = 3,
---       constraints = {
---         { Percentage = 50 },
---         { Percentage = 50 },
---       }
---     },
---     splits = {
---       "Table",
---       "HelpMenu",
---     }
---   }
--- }
--- ```
-
--- The default layout
---
--- Type: [Layout](https://xplr.dev/en/layout)
+-- Layouts
+-- ~~~~~~~
 xplr.config.layouts.builtin.default = {
   Horizontal = {
     config = {
@@ -652,10 +174,6 @@ xplr.config.layouts.builtin.default = {
     },
   },
 }
-
--- The layout without help menu
---
--- Type: [Layout](https://xplr.dev/en/layout)
 xplr.config.layouts.builtin.no_help = {
   Horizontal = {
     config = {
@@ -685,10 +203,6 @@ xplr.config.layouts.builtin.no_help = {
     },
   },
 }
-
--- The layout without selection panel
---
--- Type: [Layout](https://xplr.dev/en/layout)
 xplr.config.layouts.builtin.no_selection = {
   Horizontal = {
     config = {
@@ -718,10 +232,6 @@ xplr.config.layouts.builtin.no_selection = {
     },
   },
 }
-
--- The layout without help menu and selection panel
---
--- Type: [Layout](https://xplr.dev/en/layout)
 xplr.config.layouts.builtin.no_help_no_selection = {
   Vertical = {
     config = {
@@ -738,38 +248,10 @@ xplr.config.layouts.builtin.no_help_no_selection = {
     },
   },
 }
-
--- This is where you can define custom layouts
---
--- Type: mapping of the following key-value pairs:
---
--- * key: string
--- * value: [Layout](https://xplr.dev/en/layout)
---
--- Example:
---
--- ```lua
--- xplr.config.layouts.custom.example = "Nothing" -- Show a blank screen
--- xplr.config.general.initial_layout = "example" -- Load the example layout
--- ```
 xplr.config.layouts.custom = {}
 
--- ### Modes ------------------------------------------------------------------
---
--- xplr is a modal file explorer. That means the users switch between different
--- modes, each containing a different set of key bindings to avoid clashes.
--- Users can switch between these modes at run-time.
---
--- The modes can be configured using the `xplr.config.modes` Lua API.
---
--- `xplr.config.modes.builtin` contain some built-in modes which can be
--- overridden, but you can't add or remove modes in it.
-
--- The builtin default mode.
--- Visit the [Default Key Bindings](https://xplr.dev/en/default-key-bindings)
--- to see what each mode does.
---
--- Type: [Mode](https://xplr.dev/en/mode)
+-- Modes
+-- ~~~~~
 xplr.config.modes.builtin.default = {
   name = "default",
   key_bindings = {
@@ -981,34 +463,22 @@ xplr.config.modes.builtin.default = {
     },
   },
 }
-
 xplr.config.modes.builtin.default.key_bindings.on_key["tab"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-i"]
-
 xplr.config.modes.builtin.default.key_bindings.on_key["v"] =
   xplr.config.modes.builtin.default.key_bindings.on_key.space
-
 xplr.config.modes.builtin.default.key_bindings.on_key["V"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-a"]
-
 xplr.config.modes.builtin.default.key_bindings.on_key["/"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-f"]
-
 xplr.config.modes.builtin.default.key_bindings.on_key["h"] =
   xplr.config.modes.builtin.default.key_bindings.on_key.left
-
 xplr.config.modes.builtin.default.key_bindings.on_key["j"] =
   xplr.config.modes.builtin.default.key_bindings.on_key.down
-
 xplr.config.modes.builtin.default.key_bindings.on_key["k"] =
   xplr.config.modes.builtin.default.key_bindings.on_key.up
-
 xplr.config.modes.builtin.default.key_bindings.on_key["l"] =
   xplr.config.modes.builtin.default.key_bindings.on_key.right
-
--- The builtin debug error mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.debug_error = {
   name = "debug error",
   layout = {
@@ -1070,10 +540,6 @@ xplr.config.modes.builtin.debug_error = {
     },
   },
 }
-
--- The builtin recover mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.recover = {
   name = "recover",
   layout = {
@@ -1101,10 +567,6 @@ xplr.config.modes.builtin.recover = {
     },
   },
 }
-
--- The builtin go to path mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.go_to_path = {
   name = "go to path",
   key_bindings = {
@@ -1138,10 +600,6 @@ xplr.config.modes.builtin.go_to_path = {
     },
   },
 }
-
--- The builtin selection ops mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.selection_ops = {
   name = "selection ops",
   key_bindings = {
@@ -1212,10 +670,6 @@ xplr.config.modes.builtin.selection_ops = {
     },
   },
 }
-
--- The builtin create mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.create = {
   name = "create",
   key_bindings = {
@@ -1241,10 +695,6 @@ xplr.config.modes.builtin.create = {
     },
   },
 }
-
--- The builtin create directory mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.create_directory = {
   name = "create directory",
   key_bindings = {
@@ -1282,10 +732,6 @@ xplr.config.modes.builtin.create_directory = {
     },
   },
 }
-
--- The builtin create file mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.create_file = {
   name = "create file",
   key_bindings = {
@@ -1324,10 +770,6 @@ xplr.config.modes.builtin.create_file = {
     },
   },
 }
-
--- The builtin number mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.number = {
   name = "number",
   key_bindings = {
@@ -1367,15 +809,10 @@ xplr.config.modes.builtin.number = {
     },
   },
 }
-
 xplr.config.modes.builtin.number.key_bindings.on_key["j"] =
   xplr.config.modes.builtin.number.key_bindings.on_key.down
 xplr.config.modes.builtin.number.key_bindings.on_key["k"] =
   xplr.config.modes.builtin.number.key_bindings.on_key.up
-
--- The builtin go to mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.go_to = {
   name = "go to",
   key_bindings = {
@@ -1427,10 +864,6 @@ xplr.config.modes.builtin.go_to = {
     },
   },
 }
-
--- The builtin rename mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.rename = {
   name = "rename",
   key_bindings = {
@@ -1469,10 +902,6 @@ xplr.config.modes.builtin.rename = {
     },
   },
 }
-
--- The builtin duplicate as mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.duplicate_as = {
   name = "duplicate as",
   key_bindings = {
@@ -1511,10 +940,6 @@ xplr.config.modes.builtin.duplicate_as = {
     },
   },
 }
-
--- The builtin delete mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.delete = {
   name = "delete",
   key_bindings = {
@@ -1568,10 +993,6 @@ xplr.config.modes.builtin.delete = {
     },
   },
 }
-
--- The builtin action mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.action = {
   name = "action to",
   key_bindings = {
@@ -1647,10 +1068,6 @@ xplr.config.modes.builtin.action = {
     },
   },
 }
-
--- The builtin quit mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.quit = {
   name = "quit",
   key_bindings = {
@@ -1688,10 +1105,6 @@ xplr.config.modes.builtin.quit = {
     },
   },
 }
-
--- The builtin search mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.search = {
   name = "search",
   key_bindings = {
@@ -1752,17 +1165,12 @@ xplr.config.modes.builtin.search = {
     },
   },
 }
-
 xplr.config.modes.builtin.search.key_bindings.on_key["esc"] =
   xplr.config.modes.builtin.search.key_bindings.on_key.enter
 xplr.config.modes.builtin.search.key_bindings.on_key["ctrl-n"] =
   xplr.config.modes.builtin.search.key_bindings.on_key.down
 xplr.config.modes.builtin.search.key_bindings.on_key["ctrl-p"] =
   xplr.config.modes.builtin.search.key_bindings.on_key.up
-
--- The builtin filter mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.filter = {
   name = "filter",
   key_bindings = {
@@ -1815,10 +1223,6 @@ xplr.config.modes.builtin.filter = {
     },
   },
 }
-
--- The builtin relative_path_does_match_regex mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.relative_path_does_match_regex = {
   name = "relative path does match regex",
   key_bindings = {
@@ -1847,10 +1251,6 @@ xplr.config.modes.builtin.relative_path_does_match_regex = {
     },
   },
 }
-
--- The builtin relative_path_does_not_match_regex mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.relative_path_does_not_match_regex = {
   name = "relative path does not match regex",
   key_bindings = {
@@ -1879,10 +1279,6 @@ xplr.config.modes.builtin.relative_path_does_not_match_regex = {
     },
   },
 }
-
--- The builtin sort mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.sort = {
   name = "sort",
   key_bindings = {
@@ -2081,10 +1477,6 @@ xplr.config.modes.builtin.sort = {
     },
   },
 }
-
--- The builtin switch layout mode.
---
--- Type: [Mode](https://xplr.dev/en/mode)
 xplr.config.modes.builtin.switch_layout = {
   name = "switch layout",
   key_bindings = {
@@ -2120,47 +1512,10 @@ xplr.config.modes.builtin.switch_layout = {
     },
   },
 }
-
--- This is where you define custom modes.
---
--- Type: mapping of the following key-value pairs:
---
--- * key: string
--- * value: [Mode](https://xplr.dev/en/mode)
---
--- Example:
---
--- ```lua
--- xplr.config.modes.custom.example = {
---   name = "example",
---   key_bindings = {
---     on_key = {
---       enter = {
---         help = "default mode",
---         messages = {
---           "PopMode",
---           { SwitchModeBuiltin = "default" },
---         },
---       },
---     },
---   },
--- }
---
--- xplr.config.general.initial_mode = "example"
--- ```
 xplr.config.modes.custom = {}
 
--- ## Function ----------------------------------------------------------------
---
--- While `xplr.config` defines all the static parts of the configuration,
--- `xplr.fn` defines all the dynamic parts using functions.
---
--- See: [Lua Function Calls](https://xplr.dev/en/lua-function-calls)
---
--- As always, `xplr.fn.builtin` is where the built-in functions are defined
--- that can be overwritten.
-
--- Tries to auto complete the path in the input buffer
+-- Function
+-- ~~~~~~~~
 xplr.fn.builtin.try_complete_path = function(m)
   if not m.input_buffer then
     return
@@ -2215,8 +1570,6 @@ xplr.fn.builtin.try_complete_path = function(m)
     }
   end
 end
-
--- Renders the first column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_0 = function(m)
   local r = ""
   if m.is_before_focus then
@@ -2225,12 +1578,10 @@ xplr.fn.builtin.fmt_general_table_row_cols_0 = function(m)
     r = r .. "  "
   end
 
-  r = r .. m.relative_index .. "│" .. m.index
+  r = r .. m.relative_index .. "│"
 
-  return r
+  return string.format("%7s", r)
 end
-
--- Renders the second column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
   local r = m.tree .. m.prefix
 
@@ -2264,8 +1615,6 @@ xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
 
   return r
 end
-
--- Renders the third column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_2 = function(m)
   local no_color = os.getenv("NO_COLOR")
 
@@ -2297,7 +1646,7 @@ xplr.fn.builtin.fmt_general_table_row_cols_2 = function(m)
     if cond then
       return color(x)
     else
-      return color("-")
+      return "-"
     end
   end
 
@@ -2305,67 +1654,55 @@ xplr.fn.builtin.fmt_general_table_row_cols_2 = function(m)
 
   local r = ""
 
-  r = r .. bit("r", green, p.user_read)
-  r = r .. bit("w", yellow, p.user_write)
+  r = r .. bit("r", yellow, p.user_read)
+  r = r .. bit("w", red, p.user_write)
 
   if p.user_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.user_execute)
+    r = r .. "-"
   elseif p.user_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.user_execute)
+    r = r .. bit("x", green, p.user_execute)
   elseif p.user_execute == false and p.setuid == true then
-    r = r .. bit("S", red, p.user_execute)
+    r = r .. bit("S", green, p.user_execute)
   else
-    r = r .. bit("s", red, p.user_execute)
+    r = r .. bit("s", green, p.user_execute)
   end
 
-  r = r .. bit("r", green, p.group_read)
-  r = r .. bit("w", yellow, p.group_write)
+  r = r .. bit("r", yellow, p.group_read)
+  r = r .. bit("w", red, p.group_write)
 
   if p.group_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.group_execute)
+    r = r .. "-"
   elseif p.group_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.group_execute)
+    r = r .. bit("x", green, p.group_execute)
   elseif p.group_execute == false and p.setuid == true then
-    r = r .. bit("S", red, p.group_execute)
+    r = r .. bit("S", green, p.group_execute)
   else
-    r = r .. bit("s", red, p.group_execute)
+    r = r .. bit("s", green, p.group_execute)
   end
 
-  r = r .. bit("r", green, p.other_read)
-  r = r .. bit("w", yellow, p.other_write)
+  r = r .. bit("r", yellow, p.other_read)
+  r = r .. bit("w", red, p.other_write)
 
   if p.other_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.other_execute)
+    r = r .. "-"
   elseif p.other_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.other_execute)
+    r = r .. bit("x", green, p.other_execute)
   elseif p.other_execute == false and p.setuid == true then
-    r = r .. bit("T", red, p.other_execute)
+    r = r .. bit("T", green, p.other_execute)
   else
-    r = r .. bit("t", red, p.other_execute)
+    r = r .. bit("t", green, p.other_execute)
   end
 
   return r
 end
-
--- Renders the fourth column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_3 = function(m)
   if not m.is_dir then
     return m.human_size
   else
-    return ""
+    return "-"
   end
 end
-
--- Renders the fifth column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_4 = function(m)
-  return tostring(os.date("%a %b %d %H:%M:%S %Y", m.last_modified / 1000000000))
+  return tostring(os.date("%d %b %H:%M", m.last_modified / 1000000000))
 end
-
--- This is where the custom functions can be added.
---
--- There is currently no restriction on what kind of functions can be defined
--- in `xplr.fn.custom`.
---
--- You can also use nested tables such as
--- `xplr.fn.custom.my_plugin.my_function` to define custom functions.
 xplr.fn.custom = {}
