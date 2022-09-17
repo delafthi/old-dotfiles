@@ -7,7 +7,12 @@
 
 (define packages
   (append (map specification->package
-               (list "git"
+               (list "emacs-no-x"
+                     "emacs-evil"
+                     "emacs-guix"
+                     "emacs-geiser"
+                     "emacs-geiser-guile"
+                     "git"
                      "stow"
                      "vim"))
           (operating-system-packages installation-os)))
