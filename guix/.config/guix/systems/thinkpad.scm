@@ -9,7 +9,7 @@
   #:use-module (gnu services)
   #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
-  #:use-module ((systems desktop) #:prefix desktop:))
+  #:use-module ((systems delafthi) #:prefix delafthi:))
 
 (define luks-mapped-devices
   (list (mapped-device
@@ -41,17 +41,20 @@
    (map specification->package
         (list "xf86-video-amdgpu"
               "xf86-video-intel"))
-   desktop:packages))
+   delafthi:packages))
 
 (define services
-  (append (list (service tlp-service-type
-                         (tlp-configuration
-                          (cpu-boost-on-ac? #t))))
-          desktop:services))
+  (append
+   (list
+    (service thermald-service-type)
+    (service tlp-service-type
+             (tlp-configuration
+              (cpu-boost-on-ac? #t))))
+   delafthi:packages))
 
 (define system
   (operating-system
-   (inherit desktop:system)
+   (inherit delafthi:system)
    (keyboard-layout (keyboard-layout "us" "dvorak" #:model "thinkpad"))
    (bootloader
     (bootloader-configuration
@@ -64,9 +67,6 @@
    (swap-devices
     (list (swap-space (target "/swap/swapfile"))))
    (packages packages)
-   (services (append (list (set-xorg-configuration
-                            (xorg-configuration
-                             (keyboard-layout keyboard-layout))))
-                     services))))
+   (services services)))
 
 system

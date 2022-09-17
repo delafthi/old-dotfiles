@@ -16,7 +16,7 @@
   #:use-module (nongnu packages nvidia)
   #:use-module (guix transformations)
   #:use-module (guix gexp)
-  #:use-module ((systems desktop) #:prefix desktop:))
+  #:use-module ((systems delafti) #:prefix delafthi:))
 
 (define file-systems
   (cons* (file-system
@@ -56,7 +56,7 @@
                     xorg-server))))
          (udev-rules-service 'nvidia-driver nvidia-driver))
    (modify-services
-    desktop:services
+    delafthi:services
     (kernel-module-loader-service-type modules =>
                                        (append (list "ipmi_devintf"
                                                      "nvidia"
@@ -85,12 +85,12 @@
 
 (define system
   (operating-system
-   (inherit desktop:system)
+   (inherit delafthi:system)
    (kernel-arguments (append (list "modprobe.blacklist=nouveau")
                              %default-kernel-arguments))
    (kernel-loadable-modules (cons nvidia-driver
                                   (operating-system-kernel-loadable-modules
-                                   desktop:system)))
+                                   delafthi:system)))
    (host-name "CLT-DSK-T-6006")
    (file-systems file-systems)
    (swap-devices (list (swap-space (target ""))))
