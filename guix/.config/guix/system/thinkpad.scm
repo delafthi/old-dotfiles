@@ -1,15 +1,15 @@
-(define-module (systems thinkpad)
+(define-module (system thinkpad)
   #:use-module (gnu bootloader)
   #:use-module (gnu bootloader grub)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system keyboard)
   #:use-module (gnu system mapped-devices)
-  #:use-module (gnu packages)
   #:use-module (gnu services)
+  #:use-module (gnu services base)
   #:use-module (gnu services pm)
   #:use-module (gnu services xorg)
-  #:use-module ((systems delafthi) #:prefix delafthi:))
+  #:use-module ((system delafthi) #:prefix delafthi:))
 
 (define luks-mapped-devices
   (list (mapped-device
@@ -36,21 +36,13 @@
           (dependencies luks-mapped-devices))
          %base-file-systems))
 
-(define packages
-  (append
-   (map specification->package
-        (list "xf86-video-amdgpu"
-              "xf86-video-intel"))
-   delafthi:packages))
-
 (define services
   (append
-   (list
-    (service thermald-service-type)
-    (service tlp-service-type
-             (tlp-configuration
-              (cpu-boost-on-ac? #t))))
-   delafthi:packages))
+   (list (service thermald-service-type)
+         (service tlp-service-type
+                  (tlp-configuration
+                   (cpu-boost-on-ac? #t))))
+   delafthi:services))
 
 (define system
   (operating-system
@@ -64,9 +56,24 @@
    (host-name "thinkpad")
    (mapped-devices luks-mapped-devices)
    (file-systems file-systems)
-   (swap-devices
-    (list (swap-space (target "/swap/swapfile"))))
-   (packages packages)
-   (services services)))
+   (swap-devices (list (swap-space (target "/swap/swapfile"))))
+   (services
+    (modify-services
+     services
+     (greetd-service-type config =>
+                          (greetd-configuration
+                           (inherit config)
+                           (terminals
+                            (cons (greetd-terminal-configuration
+                                   (terminal-vt "1")
+                                   (terminal-switch #t)
+                                   (default-session-command
+                                     (greetd-agreety-session
+                                      (command
+                                       (xorg-start-command
+                                        (xorg-configuration
+                                         (inherit delafthi:xorg-config)
+                                         (keyboard-layout keyboard-layout)))))))
+                                  (cdr delafthi:greetd-terminals)))))))))
 
 system

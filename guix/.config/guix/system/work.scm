@@ -1,11 +1,10 @@
-(define-module (systems workstation)
+(define-module (system work)
   #:use-module (gnu system)
   #:use-module (gnu system accounts)
   #:use-module (gnu system file-systems)
   #:use-module (gnu system keyboard)
   #:use-module (gnu system mapped-devices)
   #:use-module (gnu system shadow)
-  #:use-module (gnu packages)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages xorg)
   #:use-module (gnu services)
@@ -16,7 +15,7 @@
   #:use-module (nongnu packages nvidia)
   #:use-module (guix transformations)
   #:use-module (guix gexp)
-  #:use-module ((systems delafti) #:prefix delafthi:))
+  #:use-module ((system delafthi) #:prefix delafthi:))
 
 (define file-systems
   (cons* (file-system
@@ -44,25 +43,42 @@
           (type "ext4"))
          %base-file-systems))
 
+(define xorg-config
+  (xorg-configuration
+   (inherit delafthi:xorg-config)
+   (drivers (list "nvidia"))
+   (modules (cons nvidia-driver
+                  %default-xorg-modules))
+   (server
+    ((options->transformation
+      '((with-graft . "mesa=nvda")))
+     xorg-server))))
+
+(define greetd-terminals
+  (cons (greetd-terminal-configuration
+         (terminal-vt "1")
+         (terminal-switch #t)
+         (default-session-command
+           (greetd-agreety-session
+            (command (xorg-start-command
+                      xorg-config)))))
+        (cdr delafthi:greetd-terminals)))
+
 (define services
-  (append
-   (list (set-xorg-configuration
-          (xorg-configuration
-           (drivers (list "nvidia"))
-           (keyboard-layout keyboard-layout)
-           (modules (cons nvidia-driver
-                          %default-xorg-modules))
-           (server ((options->transformation '((with-graft . "mesa=nvda")))
-                    xorg-server))))
-         (udev-rules-service 'nvidia-driver nvidia-driver))
-   (modify-services
-    delafthi:services
-    (kernel-module-loader-service-type modules =>
-                                       (append (list "ipmi_devintf"
-                                                     "nvidia"
-                                                     "nvidia_modeset"
-                                                     "nvidia_uvm")
-                                               modules)))))
+  (cons (udev-rules-service 'nvidia-driver nvidia-driver)
+        (modify-services
+         delafthi:services
+         (greetd-service-type config =>
+                              (greetd-configuration
+                               (inherit config)
+                               (terminals greetd-terminals)))
+         (kernel-module-loader-service-type modules =>
+                                            (append
+                                             (list "ipmi_devintf"
+                                                   "nvidia"
+                                                   "nvidia_modeset"
+                                                   "nvidia_uvm")
+                                             modules)))))
 
 (define users
   (cons (user-account
@@ -76,24 +92,27 @@
                 "kvm"
                 "lp"
                 "netdev"
+                "seat"
                 "tty"
                 "video"
                 "wheel"))
          (shell (file-append fish "/bin/fish")))
         %base-user-accounts))
 
-
 (define system
   (operating-system
    (inherit delafthi:system)
-   (kernel-arguments (append (list "modprobe.blacklist=nouveau")
-                             %default-kernel-arguments))
+   (kernel-arguments
+    (append
+     (list "i915.modeset=0"
+           "modprobe.blacklist=nouveau")
+     %default-kernel-arguments))
    (kernel-loadable-modules (cons nvidia-driver
                                   (operating-system-kernel-loadable-modules
                                    delafthi:system)))
    (host-name "CLT-DSK-T-6006")
    (file-systems file-systems)
-   (swap-devices (list (swap-space (target ""))))
+   (swap-devices (list (swap-space (target "/swap/swapfile"))))
    (users users)
    (services services)))
 

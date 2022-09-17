@@ -5,162 +5,50 @@
   #:use-module (gnu packages vim)
   #:use-module (gnu services)
   #:use-module (guix gexp)
-  #:use-module ((home delafthi init) #:prefix init:)
-  #:use-module ((home delafthi shells) #:prefix shells:)
-  #:use-module ((home delafthi xdg) #:prefix xdg:))
-
-(define-public packages
-  (map specification->package
-       (list ;;; Utils
-        "aspell" "aspell-dict-en" "aspell-dict-de"
-        "git" "git-lfs"
-        "gstreamer" "gst-libav" "gst-plugins-base" "gst-plugins-good"
-        "pinentry"
-        "samba"
-        "stow"
-        "syncthing"
-        "tmux"
-        "direnv"
-
-        ;;; Tools extras
-        "rbw"
-        "hacksaw"
-        "pandoc"
-        "shotgun"
-        ;; "snap-sync"
-        ;; "snapper"
-        ;; "zsa-wally-cli"
-
-        ;;; WM
-        "breeze-icons"
-        "feh"
-        "kitty"
-        "mpv"
-        "nerd-fonts-victor-mono" "font-openmoji"
-        "neovim"
-        ;; "neovim-nightly"
-        "nordic-theme"
-        "papirus-icon-theme"
-        "qutebrowser"
-        "ranger"
-        "rofi" "pinentry-rofi"
-        ;; "starship"
-        "unclutter"
-        "volumeicon"
-        "xss-lock"
-        "zathura" "zathura-pdf-mupdf"
-
-        ;;; Devel base
-        "cmake"
-        "docker"
-        "doxygen"
-        "graphviz"
-        "ninja"
-        "openjdk"
-        "openocd"
-        "subversion"
-        "texlive"
-        "valgrind"
-        ;; "lazygit" "git-delta"
-
-        ;;; Devel extras
-        ;;;; C++
-        "doxygen"
-        "bear"
-        "boost"
-        ;; "cmake-language-server"
-        "fmt"
-        "gcc-toolchain"
-        "gdb"
-        "lldb"
-        "llvm"
-        "spdlog"
-
-        ;;;; Docker
-        ;; "dockerfile-language-server"
-
-        ;;;; Haskell
-        "ghc"
-        ;; "haskel-language-server"
-        "ghc-hindent"
-
-        ;; Javascript
-        "node"
-        "yarn"
-
-        ;;;; Lua
-        "lua"
-        "luajit"
-        ;; "lua-language-server"
-        ;; "luarocks"
-        ;; "stylua"
-
-        ;;;; Markdown/HTML
-        ;; "prettier"
-
-        ;;;; Python
-        "python"
-        "python-black"
-        "python-flake8"
-        "python-lsp-server"
-        "python-matplotlib"
-        "python-numpy"
-        "python-pandas"
-        "python-pylint"
-        "python-pyls-black"
-        "python-virtualenv"
-
-          ;;;; R
-        "r"
-
-        ;;;; Rust
-        "rust"
-        "rust-cargo"
-        "rust-lsp-server"
-
-        ;;;; Shell
-        ;; "bash-language-server"
-        ;; "shfmt"
-
-        ;; TeX
-        "texlive"
-
-        ;;;; VHDL
-        ;; "rust_hdl"
-        ;; "ghdl"
-        "gtkwave"
-
-        ;;; GUI tools
-        "blender"
-        "darktable"
-        "gimp"
-        "hugin"
-        "inkscape"
-        ;; "lutris"
-        ;; "onlyoffice"
-        ;; "spotify" "spicetify-cli"
-        "virt-manager"
-        )))
-
-(define-public services
-  (list (simple-service 'custom-environment-variable-service
-                        home-environment-variables-service-type
-                        `(("EDITOR" . #$(file-append neovim "/bin/nvim"))
-                          ("GCC_COLORS" . "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01")
-                          ("MANPAGER" . (string-append
-                                         #$(file-append neovim "/bin/nvim")
-                                         "+Man! +'set noma'"))))))
+  #:use-module ((home dev) #:prefix dev:)
+  #:use-module ((home emacs) #:prefix emacs:)
+  #:use-module ((home gui) #:prefix gui:)
+  #:use-module ((home misc) #:prefix misc:)
+  #:use-module ((home nvim) #:prefix nvim:)
+  #:use-module ((home shells) #:prefix shells:)
+  #:use-module ((home wm) #:prefix wm:)
+  #:use-module ((home xdg) #:prefix xdg:)
+  #:use-module ((home xorg) #:prefix xorg:))
 
 (define-public delafthi
   (home-environment
    (packages
-    (append shells:packages
+    (append dev:packages
+            dev:c-packages
+            dev:haskell-packages
+            dev:java-packages
+            dev:javascript-packages
+            dev:lua-packages
+            dev:markdown-packages
+            dev:python-packages
+            dev:r-packages
+            dev:rust-packages
+            dev:shell-packages
+            dev:tex-packages
+            dev:hdl-packages
+            emacs:packages
+            gui:packages
+            misc:packages
+            nvim:packages
+            shells:packages
+            wm:packages
             xdg:packages
-            packages))
+            xorg:packages))
+
    (services
-    (append init:services
+    (append dev:services
+            emacs:services
+            gui:services
+            misc:services
+            nvim:services
             shells:services
+            wm:services
             xdg:services
-            services))))
+            xorg:services))))
 
 delafthi
