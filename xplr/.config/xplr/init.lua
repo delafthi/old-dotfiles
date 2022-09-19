@@ -7,7 +7,7 @@ version = "0.19.0"
 -- General Configuration
 -- ~~~~~~~~~~~~~~~~~~~~~
 xplr.config.general.show_hidden = true
-xplr.config.general.prompt.format = "> "
+xplr.config.general.prompt.format = " "
 xplr.config.general.prompt.style = {}
 xplr.config.general.logs.info.style = { fg = "White" }
 xplr.config.general.logs.success.format = "SUCCESS"
@@ -64,7 +64,7 @@ xplr.config.general.table.col_widths = {
 xplr.config.general.default_ui.prefix = "  "
 xplr.config.general.default_ui.suffix = ""
 xplr.config.general.default_ui.style = { fg = "White" }
-xplr.config.general.focus_ui.prefix = "> "
+xplr.config.general.focus_ui.prefix = " "
 xplr.config.general.focus_ui.suffix = ""
 xplr.config.general.focus_ui.style = { add_modifiers = { "Bold" } }
 xplr.config.general.selection_ui.prefix = " │"
@@ -72,7 +72,7 @@ xplr.config.general.selection_ui.suffix = ""
 xplr.config.general.selection_ui.style = {
   add_modifiers = { "Bold" },
 }
-xplr.config.general.focus_selection_ui.prefix = ">│"
+xplr.config.general.focus_selection_ui.prefix = "│"
 xplr.config.general.focus_selection_ui.suffix = ""
 xplr.config.general.focus_selection_ui.style = {
   add_modifiers = { "Bold" },

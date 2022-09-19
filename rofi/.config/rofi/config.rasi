@@ -5,11 +5,11 @@ configuration {
   width: 0;
   line-margin: 0;
   columns: 1;
-  dispaly-ssh: " ";
-  display-run:    " ";
-  display-drun:   " ";
-  display-window: " ";
-  display-combi:  " ";
+  dispaly-ssh: " ";
+  display-run:    " ";
+  display-drun:   " ";
+  display-window: " ";
+  display-combi:  " ";
   show-icons:     true;
 }
 

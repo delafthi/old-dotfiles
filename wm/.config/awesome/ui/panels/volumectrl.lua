@@ -38,15 +38,13 @@ function M.get_widget()
           local status = stdout:match("%[o[n|ff]%]")
           local icon = ""
           if status:find("off") then
-            icon = "婢"
+            icon = " "
           elseif volume >= 60 then
-            icon = "墳"
+            icon = " "
           elseif volume >= 10 then
-            icon = "奔"
+            icon = " "
           elseif volume < 10 then
-            icon = "奄"
-          else
-            icon = "ﱝ "
+            icon = " "
           end
           widget:set_markup_silently(
             string.format(
