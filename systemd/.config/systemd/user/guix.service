@@ -3,9 +3,9 @@ Description=Guix
 
 [Service]
 Type=simple
-Environment="GUIX_LOCPATH=$HOME/.guix-profile/lib/locale"
-Environment="GUIX_PROFILE=$HOME/.config/guix/current"
-ExecStart=source "$GUIX_PROFILE/etc/profile"
+Environment="GUIX_LOCPATH=/home/delafthi/.guix-profile/lib/locale"
+Environment="GUIX_PROFILE=/home/delafthi/.config/guix/current"
+ExecStart=/bin/sh -c "source $GUIX_PROFILE/etc/profile"
 
 [Install]
 WantedBy=default.target
