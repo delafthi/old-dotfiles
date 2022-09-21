@@ -301,15 +301,6 @@ require("packer").startup({
         require("config.formatter").config()
       end,
     })
-    -- Movement
-    use({
-      "ggandor/lightspeed.nvim",
-      event = "BufReadPost",
-      config = function()
-        require("config.lightspeed").config()
-      end,
-    })
-
     -- Project
     -- Fuzzy finder
     use({

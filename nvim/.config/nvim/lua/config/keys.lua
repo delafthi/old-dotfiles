@@ -103,16 +103,6 @@ wk.register({
 keymap.set("v", "<", "<gv", opts)
 keymap.set("v", ">", ">gv", opts)
 
--- Jump to previous and next matches for the f and t search
-keymap.set({ "n", "v" }, ";", "<Plug>Lightspeed_;_ft", opts)
-keymap.set({ "n", "v" }, ",", "<Plug>Lightspeed_,_ft", opts)
-wk.register({
-  s = { "Lightspeed search" },
-  S = { "Lightspeed search backwards" },
-  [";"] = { "Next ft search match" },
-  [","] = { "Previous ft search match" },
-})
-
 -- Evaluate a code section
 keymap.set("v", "<Leader>e", function()
   require("util.evaluate").section()
