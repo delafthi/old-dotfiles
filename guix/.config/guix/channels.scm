@@ -2,8 +2,8 @@
   #:use-module (guix channels))
 
 (cons* (channel
-        (name 'delafthi)
-        (url "https://github.com/delafthi/guix-channel.git")
+        (name 'addguix)
+        (url "https://github.com/delafthi/addguix")
         (introduction
          (make-channel-introduction
           "1e176ef6e7100b7e0512cc59f392e3a67e54f043"
