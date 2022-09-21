@@ -160,6 +160,15 @@ function M.config()
           }
         end,
       },
+      rust = {
+        function()
+          return {
+            exe = "rustfmt",
+            args = { "--emit stdout", "--" },
+            stdin = true,
+          }
+        end,
+      },
       scheme = {
         function()
           return {

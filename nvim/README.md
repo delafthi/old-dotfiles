@@ -36,6 +36,7 @@ encourage new applications and contributions.
     - [cmake-format](https://github.com/cheshirekow/cmake_format)
     - [hindent](https://hackage.haskell.org/package/hindent)
     - [prettier](https://prettier.io/)
+    - [rustfmt](https://github.com/rust-lang/rustfmt)
     - [shfmt](https://github.com/mvdan/sh)
     - [stylua](https://github.com/johnnymorganz/stylua)
     - [emacs](https://www.gnu.org/software/emacs/)
