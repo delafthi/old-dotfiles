@@ -280,6 +280,8 @@ A collection of HDL related tools
   })
   -- rls (rust-language-server)
   lspconfig.rls.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
     settings = {
       rust = {
         unstable_features = true,
