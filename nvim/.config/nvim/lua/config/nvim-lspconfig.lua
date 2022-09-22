@@ -313,7 +313,7 @@ A collection of HDL related tools
         diagnostics = {
           enable = true,
           -- Get the language server to recognize the vim and awesome globals
-          globals = { "vim", "awesome", "client", "root", "screen" },
+          globals = { "vim" },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
