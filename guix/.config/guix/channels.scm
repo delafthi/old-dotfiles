@@ -3,12 +3,12 @@
 
 (cons* (channel
         (name 'addguix)
-        (url "https://github.com/delafthi/addguix")
+        (url "https://git.sr.ht/~delafthi/addguix")
         (introduction
          (make-channel-introduction
-          "1e176ef6e7100b7e0512cc59f392e3a67e54f043"
+          "ceb0f537a4aaee7de0b67d330d0cc0849f55eba1"
           (openpgp-fingerprint
-           "AD78 A74D D561 FC73 DD2F  9503 3F9D 47D5 0357 5097"))))
+           "525E BCF5 B866 B3FB 9EA6  CDA7 6365 80A5 946D 693E"))))
        (channel
         (name 'rde)
         (url "https://git.sr.ht/~abcdw/rde")
