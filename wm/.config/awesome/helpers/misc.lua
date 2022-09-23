@@ -1,11 +1,12 @@
 local awful = require("awful")
 local naughty = require("naughty")
-local gears = require("gears")
 local beautiful = require("beautiful")
-local icons = require("icons")
 local math = math
 local os = os
+
+---@diagnostic disable
 local capi = { awesome = awesome, client = client }
+---@diagnostic enable
 
 local _misc = {}
 
@@ -79,9 +80,9 @@ function _misc.prompt(action, textbox, prompt, callback)
   if action == "run" then
     awful.prompt.run({
       prompt = prompt,
-      -- prompt       = "<b>Run: </b>",
       textbox = textbox,
-      font = beautiful.font_name .. "Regular 12",
+      font = beautiful.font .. beautiful.font_size,
+      bg_cursor = beautiful.white,
       done_callback = callback,
       exe_callback = awful.spawn,
       completion_callback = awful.completion.shell,
@@ -92,7 +93,8 @@ function _misc.prompt(action, textbox, prompt, callback)
       prompt = prompt,
       -- prompt       = '<b>Web search: </b>',
       textbox = textbox,
-      font = beautiful.font_name .. "Regular 12",
+      font = beautiful.font .. beautiful.font_size,
+      bg_cursor = beautiful.white,
       history_path = awful.util.get_cache_dir() .. "/history_web",
       done_callback = callback,
       exe_callback = function(input)
@@ -101,15 +103,13 @@ function _misc.prompt(action, textbox, prompt, callback)
         end
         awful.spawn.with_shell(
           "noglob "
-            .. "xdg-open https://www.google.com/search?q="
-            .. "'"
+            .. "xdg-open https://www.duckduckgo.com/?q="
             .. input
-            .. "'"
+            .. "&ia=web"
         )
         naughty.notify({
           title = "Searching the web for",
           text = input,
-          icon = gears.color.recolor_image(icons.web_browser, beautiful.accent),
           urgency = "low",
         })
       end,

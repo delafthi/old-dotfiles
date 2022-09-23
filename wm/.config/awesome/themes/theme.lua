@@ -1,1 +1,3 @@
-return require("theme.nord.theme")
+local theme = require("themes.nord")
+
+return theme

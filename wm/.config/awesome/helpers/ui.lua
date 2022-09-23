@@ -2,9 +2,13 @@ local awful = require("awful")
 local wibox = require("wibox")
 local gshape = require("gears.shape")
 local gmatrix = require("gears.matrix")
+local theme_assets = require("beautiful.theme_assets")
+local cairo = require("lgi").cairo
 local ipairs = ipairs
-local table = table
+
+---@diagnostic disable
 local capi = { mouse = mouse }
+---@diagnostic enable
 
 local _ui = {}
 

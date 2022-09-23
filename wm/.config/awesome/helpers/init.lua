@@ -1,8 +1,8 @@
 return {
-  client = require(... .. ".client"),
-  color = require(... .. ".color"),
-  filesystem = require(... .. ".filesystem"),
-  misc = require(... .. ".misc"),
-  run = require(... .. ".run"),
-  ui = require(... .. ".ui"),
+  client = require("helpers.client"),
+  color = require("helpers.color"),
+  filesystem = require("helpers.filesystem"),
+  misc = require("helpers.misc"),
+  run = require("helpers.run"),
+  ui = require("helpers.ui"),
 }

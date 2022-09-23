@@ -4,6 +4,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local capi = { client = client, mouse = mouse }
+local apps = require("config.apps")
 
 local _client = {}
 
@@ -97,14 +98,14 @@ function _client.centered_client_placement(c)
 end
 
 -- Resize gaps on the fly
-_client.resize_gaps = function(amt)
+function _client.resize_gaps(amt)
   local t = awful.screen.focused().selected_tag
   t.gap = t.gap + tonumber(amt)
   awful.layout.arrange(awful.screen.focused())
 end
 
 -- Resize padding on the fly
-_client.resize_padding = function(amt)
+function _client.resize_padding(amt)
   local s = awful.screen.focused()
   local l = s.padding.left
   local r = s.padding.right
