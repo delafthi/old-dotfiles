@@ -173,16 +173,19 @@
                    (tftp-enable? #t)
                    (tftp-root "/srv/tftp")
                    (tftp-unique-root (list "ip"))))
+         (simple-service 'garbage-collector-cron-job mcron-service-type
+                         (list garbage-collector-job))
          (service kernel-module-loader-service-type (list "acpi_call"))
          (service libvirt-service-type)
+         (udev-rules-service 'light light)
          (service nfs-service-type
                   (nfs-configuration
                    (exports
                     (list '("/srv/nfs" "192.168.0.0/24(rw,sync,no_root_squash,no_all_squash,no_subtree_check)")))))
          (service nftables-service-type)
+         (udev-rules-service 'pipewire pipewire-0.3)
          (simple-service 'updatedb-cron-job mcron-service-type (list updatedb-job))
-         (simple-service 'garbage-collector-cron-job mcron-service-type
-                         (list garbage-collector-job)))
+         (service tlp-service-type))
    desktop-services))
 
 (define users
@@ -197,7 +200,6 @@
                 "kvm"
                 "lp"
                 "netdev"
-                "seat"
                 "tty"
                 "video"
                 "wheel"))
