@@ -11,13 +11,7 @@
 
 (define packages
   (append
-   (list emacs-no-x
-         emacs-evil
-         emacs-guix
-         emacs-geiser
-         emacs-geiser-guile
-         git
-         stow
+   (list git
          vim)
    (operating-system-packages installation-os)))
 
