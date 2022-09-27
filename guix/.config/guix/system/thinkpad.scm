@@ -73,7 +73,8 @@
                                        (xorg-start-command
                                         (xorg-configuration
                                          (inherit delafthi:xorg-config)
-                                         (keyboard-layout keyboard-layout)))))))
+                                         (keyboard-layout keyboard-layout))))
+                                      (command-args '()))))
                                   (cdr delafthi:greetd-terminals)))))))))
 
 system

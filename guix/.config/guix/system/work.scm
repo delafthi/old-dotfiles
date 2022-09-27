@@ -61,7 +61,8 @@
          (default-session-command
            (greetd-agreety-session
             (command (xorg-start-command
-                      xorg-config)))))
+                      xorg-config))
+            (command-args '()))))
         (cdr delafthi:greetd-terminals)))
 
 (define services

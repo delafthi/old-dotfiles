@@ -69,12 +69,7 @@
   (xorg-configuration
    (keyboard-layout
     (operating-system-keyboard-layout
-     base:system))
-   (extra-config
-    (list "xsetroot -cursor_name left_ptr"
-          "picom &"
-          "unclutter --timeout 10 &"
-          "exec dbus-launch --exit-with-session awesome >> $HOME/.cache/awesome/log 2>&1"))))
+     base:system))))
 
 (define greetd-terminals
   (cons (greetd-terminal-configuration
@@ -83,7 +78,8 @@
          (default-session-command
            (greetd-agreety-session
             (command (xorg-start-command
-                      xorg-config)))))
+                      xorg-config))
+            (command-args '()))))
         (cdr base:greetd-terminals)))
 
 (define desktop-services
@@ -136,7 +132,7 @@
          (service colord-service-type)
          (geoclue-service)
          (service polkit-service-type)
-         (service seatd-service-type)
+         (service elogind-service-type)
          (dbus-service)
 
          (service ntp-service-type)
