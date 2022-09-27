@@ -82,8 +82,9 @@
                        (guix-configuration
                         (inherit config)
                         (substitute-urls
-                         (cons "https://substitutes.nonguix.org"
-                               %default-substitute-urls))
+                         (cons* "https://substitutes.nonguix.org"
+                                "http://ci.guix.trop.in"
+                                %default-substitute-urls))
                         (authorized-keys
                          (cons (local-file "../keys/nonguix.pub")
                                %default-authorized-guix-keys))))
@@ -100,7 +101,7 @@
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
-     (targets (list "/boot/efi"))
+     (targets (list "/boot"))
      (keyboard-layout keyboard-layout)))
    (host-name "base")
    (file-systems '())

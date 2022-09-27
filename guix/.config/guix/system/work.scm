@@ -20,7 +20,7 @@
 (define file-systems
   (cons* (file-system
           (device (uuid "XXXX-XXXX" 'fat))
-          (mount-point "/boot/efi")
+          (mount-point "/boot")
           (type "vfat"))
          (file-system
           (device (uuid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))

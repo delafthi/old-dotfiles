@@ -20,7 +20,7 @@
 (define file-systems
   (cons* (file-system
           (device (uuid "XXXX-XXXX" 'fat))
-          (mount-point "/boot/efi")
+          (mount-point "/boot")
           (type "vfat"))
          (file-system
           (device "/dev/mapper/cryptroot")
@@ -51,7 +51,7 @@
    (bootloader
     (bootloader-configuration
      (bootloader grub-efi-bootloader)
-     (targets (list "/boot/efi"))
+     (targets (list "/boot"))
      (keyboard-layout keyboard-layout)))
    (host-name "thinkpad")
    (mapped-devices luks-mapped-devices)
