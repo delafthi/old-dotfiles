@@ -20,7 +20,7 @@
     "lazygit"
     "llvm"
     ;; "lua-language-server"
-    "neovim-nightly"
+    "neovim"
     ;; "prettier"
     "python-black"
     "python-lsp-server"

@@ -6,9 +6,7 @@
   #:use-module (gnu packages image-viewers)
   #:use-module (gnu packages rust-apps)
   #:use-module (gnu packages tmux)
-  #:use-module (guix gexp)
-  #:use-module (delafthi packages neovim)
-  )
+  #:use-module (guix gexp))
 
 (define shells-configuration-dir
   "../../../../shells/")
@@ -32,7 +30,7 @@
          "hexyl"
          "htop"
          "neofetch"
-         "neovim-nightly"
+         "neovim"
          "p7zip"
          "plocate"
          "ripgrep"
