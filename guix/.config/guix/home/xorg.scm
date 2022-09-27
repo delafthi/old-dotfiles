@@ -7,7 +7,7 @@
   "../../../../xorg/")
 
 (define-public packages
-  (specifications-packages
+  (specifications->packages
    (list "awesome"
          "breeze-icons"
          "nerd-font-victor-mono"
