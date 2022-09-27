@@ -11,11 +11,14 @@
   #:use-module (gnu services xorg)
   #:use-module ((system delafthi) #:prefix delafthi:))
 
-(define luks-mapped-devices
+(define mapped-devices
   (list (mapped-device
          (source (uuid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
          (target "cryptroot")
          (type luks-device-mapping))))
+
+(define (btrfs-opts subvol)
+  (format #f "subvol=~a,compress=zstd,space_cache=v2,discard=async" subvol))
 
 (define file-systems
   (cons* (file-system
@@ -26,23 +29,19 @@
           (device "/dev/mapper/cryptroot")
           (mount-point "/")
           (type "btrfs")
-          (options "subvol=@,compress=zstd,space_cache=v2")
-          (dependencies luks-mapped-devices))
+          (options (btrfs-opts "@"))
+          (dependencies mapped-devices))
          (file-system
           (device "/dev/mapper/cryptroot")
           (mount-point "/home")
           (type "btrfs")
-          (options "subvol=@home,compress=zstd,space_cache=v2")
-          (dependencies luks-mapped-devices))
+          (options (btrfs-opts "@home"))
+          (dependencies mapped-devices))
          %base-file-systems))
 
 (define services
-  (append
-   (list (service thermald-service-type)
-         (service tlp-service-type
-                  (tlp-configuration
-                   (cpu-boost-on-ac? #t))))
-   delafthi:services))
+  (cons (service thermald-service-type) ;; Intel cpu
+        delafthi:services))
 
 (define system
   (operating-system
@@ -54,7 +53,7 @@
      (targets (list "/boot"))
      (keyboard-layout keyboard-layout)))
    (host-name "thinkpad")
-   (mapped-devices luks-mapped-devices)
+   (mapped-devices mapped-devices)
    (file-systems file-systems)
    (swap-devices (list (swap-space (target "/swap/swapfile"))))
    (services

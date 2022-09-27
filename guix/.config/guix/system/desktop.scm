@@ -12,11 +12,14 @@
   #:use-module (guix transformations)
   #:use-module ((system delafthi) #:prefix delafthi:))
 
-(define luks-mapped-devices
+(define mapped-devices
   (list (mapped-device
          (source (uuid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"))
          (target "cryptroot")
          (type luks-device-mapping))))
+
+(define (btrfs-opts subvol)
+  (format #f "subvol=~a,compress=zstd,space_cache=v2,discard=async" subvol))
 
 (define file-systems
   (cons* (file-system
@@ -27,14 +30,14 @@
           (device "/dev/mapper/cryptroot")
           (mount-point "/")
           (type "btrfs")
-          (options "subvol=@,compress=zstd,space_cache=v2")
-          (dependencies luks-mapped-devices))
+          (options (btrfs-opts "@"))
+          (dependencies mapped-devices))
          (file-system
           (device "/dev/mapper/cryptroot")
           (mount-point "/home")
           (type "btrfs")
-          (options "subvol=@,compress=zstd,space_cache=v2")
-          (dependencies luks-mapped-devices))
+          (options (btrfs-opts "@home"))
+          (dependencies mapped-devices))
          %base-file-systems))
 
 (define xorg-config
@@ -60,20 +63,7 @@
         (cdr delafthi:greetd-terminals)))
 
 (define services
-  (cons (udev-rules-service 'nvidia-driver nvidia-driver)
-        (modify-services
-         delafthi:services
-         (greetd-service-type config =>
-                              (greetd-configuration
-                               (inherit config)
-                               (terminals greetd-terminals)))
-         (kernel-module-loader-service-type modules =>
-                                            (append
-                                             (list "ipmi_devintf"
-                                                   "nvidia"
-                                                   "nvidia_modeset"
-                                                   "nvidia_uvm")
-                                             modules)))))
+  (append (list (udev-rules-service 'nvidia-driver nvidia-driver)
                 (service static-networking
                          (addresses
                           (list (network-address
@@ -84,6 +74,19 @@
                                  (destination "192.168.0.0/24")
                                  (device "enp5s0")
                                  (gateway "192.168.0.1"))))))
+          (modify-services
+           delafthi:services
+           (greetd-service-type config =>
+                                (greetd-configuration
+                                 (inherit config)
+                                 (terminals greetd-terminals)))
+           (kernel-module-loader-service-type modules =>
+                                              (append
+                                               (list "ipmi_devintf"
+                                                     "nvidia"
+                                                     "nvidia_modeset"
+                                                     "nvidia_uvm")
+                                               modules)))))
 
 (define system
   (operating-system
