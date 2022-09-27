@@ -80,6 +80,18 @@
                                                    "nvidia_modeset"
                                                    "nvidia_uvm")
                                              modules)))))
+         (service static-networking
+                  (addresses
+                   (list (network-address
+                          (device "enp6s0")
+                          (value "192.168.0.1/24"))))
+                  (routes
+                   (list (network-route
+                          (destination "192.168.0.0/24")
+                          (device "enp5s0")
+                          (gateway "192.168.0.1"))))
+                  (name-servers (list "160.85.192.100"
+                                      "160.85.193.100"))))
 
 (define users
   (cons (user-account
