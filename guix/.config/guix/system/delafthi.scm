@@ -5,12 +5,10 @@
   #:use-module (gnu system shadow)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages base)
-  #:use-module (gnu packages compton)
   #:use-module (gnu packages gnome)
   #:use-module (gnu packages gnupg)
   #:use-module (gnu packages libusb)
   #:use-module (gnu packages linux)
-  #:use-module (gnu packages networking)
   #:use-module (gnu packages nfs)
   #:use-module (gnu packages package-management)
   #:use-module (gnu packages pulseaudio)
@@ -18,7 +16,6 @@
   #:use-module (gnu packages tmux)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages suckless)
-  #:use-module (gnu packages wm)
   #:use-module (gnu packages xdisorg)
   #:use-module (gnu packages xorg)
   #:use-module (gnu services)
@@ -48,17 +45,13 @@
 
 (define packages
   (append
-   (list awesome
-         blueman
-         gnu-make
+   (list gnu-make
          nmap
          pavucontrol
          pinentry
-         picom
          rsync
          sshfs
          tmux
-         unclutter-xfixes
          xclip
          xdotool
          xrandr
