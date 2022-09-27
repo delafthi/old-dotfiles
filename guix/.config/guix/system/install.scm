@@ -12,7 +12,7 @@
 (define packages
   (append
    (list git
-         vim)
+         neovim)
    (operating-system-packages installation-os)))
 
 (define installation-os-nonfree

@@ -43,7 +43,7 @@
         man-db
         man-pages
         sudo
-        vim))
+        neovim))
 
 (define base-packages-disk-utilities
   (list cryptsetup
