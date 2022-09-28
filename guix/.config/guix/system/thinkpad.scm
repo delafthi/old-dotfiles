@@ -39,10 +39,6 @@
           (dependencies mapped-devices))
          %base-file-systems))
 
-(define services
-  (cons (service thermald-service-type) ;; Intel cpu
-        delafthi:services))
-
 (define system
   (operating-system
    (inherit delafthi:system)
@@ -58,7 +54,7 @@
    (swap-devices (list (swap-space (target "/swap/swapfile"))))
    (services
     (modify-services
-     services
+     delafthi:services
      (greetd-service-type config =>
                           (greetd-configuration
                            (inherit config)
