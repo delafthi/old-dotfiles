@@ -63,7 +63,10 @@
   (xorg-configuration
    (keyboard-layout
     (operating-system-keyboard-layout
-     base:system))))
+     base:system))
+   (server-arguments
+    (cons "-keeptty"
+          %default-xorg-server-arguments))))
 
 (define greetd-terminals
   (cons (greetd-terminal-configuration
