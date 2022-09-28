@@ -45,7 +45,8 @@
 
 (define packages
   (append
-   (list gnu-make
+   (list acpid
+         gnu-make
          nmap
          pavucontrol
          pinentry
