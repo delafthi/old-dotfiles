@@ -654,7 +654,7 @@ c.content.pdfjs = False
 # Enable quirks (such as faked user agent headers) needed to get
 # specific sites to work properly.
 # Type: Bool
-c.content.site_specific_quirks.enabled = True
+c.content.site_specific_quirks.enabled = False
 
 # Disable a list of named quirks. The js-string-replaceall quirk is
 # needed for Nextcloud Calendar < 2.2.0 with QtWebEngine < 5.15.3.
