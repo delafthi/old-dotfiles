@@ -127,9 +127,6 @@ return function(s)
         widget = wibox.container.margin,
       },
       paddings = dpi(5),
-      on_release = function()
-        awesome.emit_signal("central_panel::toggle", s)
-      end,
     })
 
     return wibox.widget({
