@@ -171,3 +171,10 @@ set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-en
 if command -v direnv 1>/dev/null 2>&1
     direnv hook fish | source
 end
+
+# Guix (only executed if not in a guix system)
+if test (cat /etc/os-release | sed -nr 's/^ID=()/\1/p') != guix
+    if command -v guix 1>/dev/null 2>&1
+        fenv source $GUIX_PROFILE/etc/profile
+    end
+end

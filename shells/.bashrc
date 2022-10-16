@@ -108,3 +108,10 @@ fi
 if command -v direnv 1> /dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
+
+# Guix (only executed if not in a guix system)
+if [ $(cat /etc/os-release | sed -nr 's/^ID=()/\1/p') != "guix" ]; then
+  if command -v guix 1> /dev/null 2>&1; then
+    source $GUIX_PROFILE/etc/profile
+  fi
+fi
