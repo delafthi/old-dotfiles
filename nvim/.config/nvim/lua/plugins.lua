@@ -126,15 +126,6 @@ require("packer").startup({
       end,
     })
     use({
-      "lewis6991/spellsitter.nvim",
-      requires = "nvim-treesitter",
-      wants = "nvim-treesitter",
-      event = "BufReadPost",
-      config = function()
-        require("config.spellsitter").config()
-      end,
-    })
-    use({
       "folke/todo-comments.nvim",
       requires = "kyazdani42/nvim-web-devicons",
       wants = "nvim-web-devicons",
