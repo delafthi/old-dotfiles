@@ -254,4 +254,3 @@ keycode 255 = XF86RFKill NoSymbol XF86RFKill
 
 add mod1 = Alt_L
 add mod4 = Super_L
-add mod5 = Mode_switch
