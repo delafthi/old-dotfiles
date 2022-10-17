@@ -50,6 +50,8 @@ require("packer").startup({
         require("config.nord-nvim").config()
       end,
     })
+    -- Startup
+    use({ "lewis6991/impatient.nvim", opt = false })
     -- Key binding documentation and display
     use({
       "folke/which-key.nvim",

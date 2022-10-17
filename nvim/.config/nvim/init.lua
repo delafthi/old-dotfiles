@@ -1,3 +1,8 @@
+-- Enable caching with impatient.nvim
+pcall(function()
+  return require("impatient")
+end)
+
 local fn = vim.fn -- to execute vim functions
 
 vim.g.mapleader = " " -- Set leader to space.
