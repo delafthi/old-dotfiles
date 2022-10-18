@@ -151,10 +151,10 @@ function M.config()
         config = {
           workspaces = {
             default = vim.fn.getcwd(),
-            notes = "~/Notes",
-            school = "~/Notes/school",
-            bible = "~/Notes/bible",
-            gtd = "~/Notes/gtd",
+            notes = "~/notes",
+            school = "~/notes/school",
+            bible = "~/notes/bible",
+            gtd = "~/notes/gtd",
           },
           autochdir = false,
           index = "index.norg",
