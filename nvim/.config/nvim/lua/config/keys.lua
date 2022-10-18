@@ -228,7 +228,7 @@ wk.register({
         name = "+generate",
         c = {
           function()
-            require("neogen").generate()
+            require("neogen").generate({})
           end,
           "Generate documentation",
         },
@@ -282,7 +282,7 @@ wk.register({
         },
         g = {
           function()
-            require("dapui").toggle()
+            require("dapui").toggle({})
           end,
           "Toggle GUI",
         },
