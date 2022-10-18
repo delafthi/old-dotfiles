@@ -464,7 +464,7 @@ require("packer").startup({
       },
       wants = { "nvim-treesitter", "telescope.nvim" },
       ft = "norg",
-      cmd = { "Neorg", "NeorgStart" },
+      cmd = "Neorg",
       module = "neorg",
       config = function()
         require("config.neorg").config()
