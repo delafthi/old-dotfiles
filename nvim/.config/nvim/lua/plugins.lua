@@ -433,11 +433,11 @@ require("packer").startup({
       end,
     })
     use({
-      "iamcco/markdown-preview.nvim",
-      run = "cd app && yarn install",
+      "toppair/peek.nvim",
+      run = "deno task --quiet build:fast",
       ft = { "markdown", "rmd" },
-      setup = function()
-        require("config.markdown-preview").setup()
+      config = function()
+        require("config.peek").config()
       end,
     })
     use({
