@@ -111,13 +111,6 @@ function M.config()
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
-            button(
-              "SPC f n",
-              "  > New File",
-              ":enew<Cr>",
-              {},
-              { hl_shortcut = "DashboardShortCut" }
-            ),
           },
           opts = {
             spacing = 1,
