@@ -427,6 +427,7 @@ require("packer").startup({
     -- Note taking
     use({
       "lukas-reineke/headlines.nvim",
+      wants = "nvim-treesitter",
       ft = { "markdown", "rmd" },
       config = function()
         require("config.headlines").config()
