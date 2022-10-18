@@ -465,19 +465,7 @@ wk.register({
     },
     n = {
       name = "+neorg",
-      i = {
-        "<Cmd>Neorg inject-metadata<Cr>",
-        "Inject File header",
-      },
-      m = {
-        name = "+mode",
-      },
       n = { "<Cmd>Neorg news all<Cr>", "View news" },
-      t = {
-        name = "+task",
-        a = { "<Cmd>Neorg gtd capture<Cr>", "Add a task" },
-        t = { "<Cmd>Neorg gtd views<Cr>", "View the tasks" },
-      },
       w = {
         name = "+workspace",
         b = { "<Cmd>Neorg workspace bible<Cr>", "Bible" },

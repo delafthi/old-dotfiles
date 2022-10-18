@@ -166,6 +166,36 @@ function M.config()
     ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
     ["core.integrations.telescope"] = {},
   })
+
+  -- Create keybindings
+  vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.norg",
+    callback = function()
+      require("which-key").register({
+        ["<Leader>"] = {
+          n = {
+            i = {
+              "<Cmd>Neorg inject-metadata<Cr>",
+              "Inject file header",
+              buffer = vim.api.nvim_get_current_buf(),
+            },
+            m = {
+              name = "+mode",
+            },
+            t = {
+              name = "+task",
+              a = { "<Cmd>Neorg gtd capture<Cr>", "Add a task" },
+              t = { "<Cmd>Neorg gtd views<Cr>", "View the tasks" },
+            },
+          },
+        },
+      })
+    end,
+    group = vim.api.nvim_create_augroup(
+      "NeorgBufferMappings",
+      { clear = true }
+    ),
+  })
 end
 
 return M
