@@ -20,9 +20,17 @@ using namespace std;
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.norg", "*.md", "*.rmd" },
     callback = function()
-      vim.keymap.set("n", "<C-c>e", function()
-        require("mdeval").eval_code_block()
-      end, { buffer = 0 })
+      require("which-key").register({
+        ["<C-c>"] = {
+          e = {
+            function()
+              require("mdeval").eval_code_block({})
+            end,
+            "Evaluate code block",
+            buffer = vim.api.nvim_get_current_buf(),
+          },
+        },
+      })
     end,
     group = vim.api.nvim_create_augroup(
       "MdEvalBufferMappings",
