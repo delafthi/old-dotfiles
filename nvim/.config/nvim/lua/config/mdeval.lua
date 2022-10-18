@@ -17,7 +17,7 @@ using namespace std;
       },
     },
   })
-  vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.norg", "*.md", "*.rmd" },
     callback = function()
       vim.keymap.set("n", "<C-c>e", function()
