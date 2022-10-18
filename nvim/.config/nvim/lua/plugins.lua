@@ -33,7 +33,10 @@ end
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "plugins.lua",
   command = "source <afile> | PackerCompile",
-  group = vim.api.nvim_create_augroup("packerUserConfig", { clear = true }),
+  group = vim.api.nvim_create_augroup(
+    "ReloadPackerUserConfig",
+    { clear = true }
+  ),
 })
 -- Plugin specification {{{1
 require("packer").startup({

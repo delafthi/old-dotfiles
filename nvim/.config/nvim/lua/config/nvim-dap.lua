@@ -35,7 +35,7 @@ function M.config()
     callback = function()
       require("dap.ext.autocompl").attach()
     end,
-    group = vim.api.nvim_create_augroup("dapREPL", { clear = true }),
+    group = vim.api.nvim_create_augroup("DapREPL", { clear = true }),
   })
 
   -- Visuals

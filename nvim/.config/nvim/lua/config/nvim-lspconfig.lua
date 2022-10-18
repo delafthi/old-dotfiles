@@ -164,7 +164,7 @@ function M.on_attach(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then
     local lspDocumentHighlight =
-      vim.api.nvim_create_augroup("lspDocumentHighlight", { clear = true })
+      vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
     vim.api.nvim_create_autocmd("CursorHold", {
       pattern = "<buffer>",
       callback = function()
@@ -345,7 +345,7 @@ A collection of HDL related tools
     callback = function()
       vim.lsp.codelens.refresh()
     end,
-    group = vim.api.nvim_create_augroup("lspCodelens", { clear = true }),
+    group = vim.api.nvim_create_augroup("LspCodelens", { clear = true }),
   })
 end
 

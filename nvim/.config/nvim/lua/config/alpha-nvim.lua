@@ -135,7 +135,10 @@ function M.config()
   vim.api.nvim_create_autocmd("FileType", {
     pattern = "alpha",
     command = "setlocal nofoldenable",
-    group = vim.api.nvim_create_augroup("alpha", { clear = true }),
+    group = vim.api.nvim_create_augroup(
+      "AlphaDisableFolding",
+      { clear = true }
+    ),
   })
 
   -- Send config to alpha

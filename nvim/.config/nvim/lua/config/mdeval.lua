@@ -24,7 +24,10 @@ using namespace std;
         require("mdeval").eval_code_block()
       end, { buffer = 0 })
     end,
-    group = vim.api.nvim_create_augroup("MdEval", { clear = true }),
+    group = vim.api.nvim_create_augroup(
+      "MdEvalBufferMappings",
+      { clear = true }
+    ),
   })
 end
 

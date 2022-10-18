@@ -22,12 +22,12 @@ vim.opt.writebackup = false -- Disable backups, when a file is written.
 vim.opt.autoread = true -- Enable automatic reload of unchanged files.
 vim.api.nvim_create_autocmd("CursorHold", {
   command = "checktime",
-  group = vim.api.nvim_create_augroup("autoreload", { clear = true }),
+  group = vim.api.nvim_create_augroup("AutoreloadFiles", { clear = true }),
 }) -- Auto reload file, when changes where made somewhere else (for autoreload)
 vim.opt.hidden = true -- Enable modified buffers in the background.
 vim.opt.modeline = true -- Don't parse modelines (google 'vim modeline vulnerability').
 local removeTrailingWhitespacesAndLines = vim.api.nvim_create_augroup(
-  "removeTrailingWhitespacesAndLines",
+  "RemoveTrailingWhitespacesAndLines",
   { clear = true }
 )
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -87,7 +87,7 @@ vim.opt.relativenumber = true -- Set line numbers to be relative to the cursor p
 -- vim.opt.scrolloff = 8
 vim.api.nvim_create_autocmd("FileType", {
   command = "set so=8",
-  group = vim.api.nvim_create_augroup("scrolloff", { clear = true }),
+  group = vim.api.nvim_create_augroup("SetScrolloff", { clear = true }),
 }) -- Keep 8 lines above or below the cursorline
 vim.opt.showbreak = ">>> " -- Show wrapped lines with a prepended string.
 vim.opt.showcmd = true -- Show command in the command line.
@@ -99,7 +99,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = vim.api.nvim_create_augroup("highlightOnYank", { clear = true }),
+  group = vim.api.nvim_create_augroup("HighlightOnYank", { clear = true }),
 }) -- Enable highlight on yank.
 vim.g.vimsyn_embed = "lPr" -- Allow embedded syntax highlighting for lua, python, ruby.
 vim.opt.wrap = true -- Enable line wrapping.
@@ -121,7 +121,7 @@ vim.opt.formatoptions = "tcroqlj" -- Defines how text is automatically formatted
 
 -- Filetypes {{{1
 local additionalFiletypes =
-  vim.api.nvim_create_augroup("additionalFiletypes", { clear = true })
+  vim.api.nvim_create_augroup("AddAdditionalFiletypes", { clear = true })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.cl",
   command = "set filetype=cpp",
@@ -192,7 +192,7 @@ vim.opt.laststatus = 2 -- Show only one global statusline
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
   pattern = "term://*",
   command = "startinsert",
-  group = vim.api.nvim_create_augroup("terminal", { clear = true }),
+  group = vim.api.nvim_create_augroup("TerminalStartInsert", { clear = true }),
 }) -- Automatically go to insert mode, when changing to the terminal window
 
 -- Timings {{{1

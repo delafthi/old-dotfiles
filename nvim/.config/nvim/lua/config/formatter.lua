@@ -4,7 +4,7 @@ function M.setup()
   -- Define autocommand to automatically format files on save.
   vim.api.nvim_create_autocmd("BufWritePost", {
     command = "FormatWrite",
-    group = vim.api.nvim_create_augroup("formatText", { clear = true }),
+    group = vim.api.nvim_create_augroup("FormatText", { clear = true }),
   })
 end
 function M.config()
