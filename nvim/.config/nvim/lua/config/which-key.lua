@@ -17,7 +17,7 @@ function M.config()
         operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
         motions = true, -- adds help for motions
         text_objects = true, -- help for text objects triggered after entering an operator
-        windows = false, -- default bindings on <c-w>
+        windows = false, -- default bindings on <C-w>
         nav = true, -- misc bindings to work with windows
         z = true, -- bindings for folds, spelling and others prefixed with z
         g = true, -- bindings for prefixed with g
@@ -29,9 +29,9 @@ function M.config()
     key_labels = {
       -- override the label used to display some keys. It doesn't effect WK in any other way.
       -- For example:
-      ["<leader>"] = "<space>",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
+      ["<Leader>"] = "<Space>",
+      -- ["<Cr>"] = "<Cr>",
+      -- ["<Tab>"] = "<Tab>",
     },
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -57,10 +57,10 @@ function M.config()
     },
     ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
     hidden = {
-      "<silent>",
-      "<cmd>",
+      "<Silent>",
       "<Cmd>",
       "<CR>",
+      "<Cr>",
       "call",
       "lua",
       "^:",
@@ -68,7 +68,7 @@ function M.config()
     }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
     triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
+    -- triggers = {"<Leader>"} -- or specify a list manually
     triggers_blacklist = {
       -- list of mode / prefixes that should never be hooked by WhichKey
       -- this is mostly relevant for key maps that start with a native binding

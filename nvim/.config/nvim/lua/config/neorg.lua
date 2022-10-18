@@ -123,8 +123,8 @@ function M.config()
             -- Apply the below keys to all modes
             keybinds.map_to_mode("all", {
               n = {
-                { leader .. "nmn", ":Neorg mode norg<CR>" },
-                { leader .. "nmh", ":Neorg mode traverse-heading<CR>" },
+                { leader .. "nmn", "<Cmd>Neorg mode norg<Cr>" },
+                { leader .. "nmh", "<Cmd>Neorg mode traverse-heading<Cr>" },
               },
             }, {
               silent = true,

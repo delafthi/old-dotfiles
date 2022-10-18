@@ -4,7 +4,7 @@ function M.config()
   local leader = "SPC"
 
   local function button(sc, txt, keybind, keybind_opts, opts)
-    local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
+    local sc_ = sc:gsub("%s", ""):gsub(leader, "<Leader>")
 
     opts.position = opts.position or "center"
     opts.shortcut = opts.shortcut or sc
@@ -72,42 +72,42 @@ function M.config()
             button(
               "SPC f n",
               "  > New File",
-              ":enew<Cr>",
+              "<Cmd>enew<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
               "SPC w s l",
               "  > Restore last session",
-              ":lua require('persistence').load({last = true})<Cr>",
+              "<Cmd>lua require('persistence').load({last = true})<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
               "SPC f r",
               "  > Recently opened files",
-              ":Telescope oldfiles<Cr>",
+              "<Cmd>Telescope oldfiles<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
               "SPC f f",
               "  > Find File",
-              ":Telescope find_files<Cr>",
+              "<Cmd>Telescope find_files<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
               "SPC f b",
               "  > File Browser",
-              ":Telescope find_browser<Cr>",
+              "<Cmd>Telescope find_browser<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
               "SPC s g",
               "  > Find Word",
-              ":Telescope live_grep<Cr>",
+              "<Cmd>Telescope live_grep<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),

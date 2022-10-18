@@ -9,20 +9,20 @@ wk.register({
 })
 
 -- Navigate tabs
-keymap.set({ "n", "i", "t" }, "<C-t>d", "<C-\\><C-n>:tabclose<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t>d", "<C-\\><C-n><Cmd>tabclose<Cr>", opts)
 keymap.set(
   { "n", "i", "t" },
   "<C-t>n",
-  "<C-\\><C-n>:BufferLineCycleNext<Cr>",
+  "<C-\\><C-n><Cmd>BufferLineCycleNext<Cr>",
   opts
 )
 keymap.set(
   { "n", "i", "t" },
   "<C-t>p",
-  "<C-\\><C-n>:BufferLineCyclePrev<Cr>",
+  "<C-\\><C-n><Cmd>BufferLineCyclePrev<Cr>",
   opts
 )
-keymap.set({ "n", "i", "t" }, "<C-t>t", "<C-\\><C-n>:tabnew<Cr>", opts)
+keymap.set({ "n", "i", "t" }, "<C-t>t", "<C-\\><C-n><Cmd>tabnew<Cr>", opts)
 wk.register({
   ["<C-t>"] = {
     name = "+tabs",
@@ -69,29 +69,29 @@ keymap.set("i", ".", ".<C-g>u", opts)
 keymap.set("i", ";", ";<C-g>u", opts)
 
 -- Clear searches with <Esc>
-keymap.set("n", "<Esc>", ":noh<Cr>", opts)
+keymap.set("n", "<Esc>", "<Cmd>noh<Cr>", opts)
 
 -- Move lines
-keymap.set("n", "<M-J>", ":m .+1<Cr>==", opts)
-keymap.set("n", "<M-K>", ":m .-2<Cr>==", opts)
-keymap.set("v", "<M-J>", ":m '>+1<Cr>gv=gv", opts)
-keymap.set("v", "<M-K>", ":m '<-2<Cr>gv=gv", opts)
-keymap.set("i", "<M-J>", "<Esc>:m .+1<Cr>==gi", opts)
-keymap.set("i", "<M-K>", "<Esc>:m .-2<Cr>==gi", opts)
+keymap.set("n", "<M-J>", "<Cmd>m .+1<Cr>==", opts)
+keymap.set("n", "<M-K>", "<Cmd>m .-2<Cr>==", opts)
+keymap.set("v", "<M-J>", "<Cmd>m '>+1<Cr>gv=gv", opts)
+keymap.set("v", "<M-K>", "<Cmd>m '<-2<Cr>gv=gv", opts)
+keymap.set("i", "<M-J>", "<Esc><Cmd>m .+1<Cr>==gi", opts)
+keymap.set("i", "<M-K>", "<Esc><Cmd>m .-2<Cr>==gi", opts)
 wk.register({
   ["<M-J>"] = { "Move line down" },
   ["<M-K>"] = { "Move line up" },
 })
 
 -- Easier window resizing
-keymap.set({ "n", "i" }, "<M-h>", ":vertical resize -2<Cr>", opts)
-keymap.set({ "n", "i" }, "<M-j>", ":resize +2<Cr>", opts)
-keymap.set({ "n", "i" }, "<M-k>", ":resize -2<Cr>", opts)
-keymap.set({ "n", "i" }, "<M-l>", ":vertical resize +2<Cr>", opts)
-keymap.set("t", "<M-h>", "<C-\\><C-n>:vertical resize -2<Cr>i", opts)
-keymap.set("t", "<M-j>", "<C-\\><C-n>:resize +2<Cr>i", opts)
-keymap.set("t", "<M-k>", "<C-\\><C-n>:resize -2<Cr>i", opts)
-keymap.set("t", "<M-l>", "<C-\\><C-n>:vertical resize +2<Cr>i", opts)
+keymap.set({ "n", "i" }, "<M-h>", "<Cmd>vertical resize -2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-j>", "<Cmd>resize +2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-k>", "<Cmd>resize -2<Cr>", opts)
+keymap.set({ "n", "i" }, "<M-l>", "<Cmd>vertical resize +2<Cr>", opts)
+keymap.set("t", "<M-h>", "<C-\\><C-n><Cmd>vertical resize -2<Cr>i", opts)
+keymap.set("t", "<M-j>", "<C-\\><C-n><Cmd>resize +2<Cr>i", opts)
+keymap.set("t", "<M-k>", "<C-\\><C-n><Cmd>resize -2<Cr>i", opts)
+keymap.set("t", "<M-l>", "<C-\\><C-n><Cmd>vertical resize +2<Cr>i", opts)
 wk.register({
   ["<M-h>"] = { "Horizontally decrease window size" },
   ["<M-j>"] = { "Vertically increase window size" },
@@ -186,7 +186,7 @@ wk.register({
         "Go to the end of the next function",
       }, -- Defined in nvim-treesitter.lua
       t = {
-        ":tn<Cr>",
+        "<Cmd>tn<Cr>",
         "Go to the next matching tag",
       },
     },
@@ -205,7 +205,7 @@ wk.register({
         "Go to the end of the previous function",
       }, -- Defined in nvim-treesitter.lua
       t = {
-        ":tN<Cr>",
+        "<Cmd>tN<Cr>",
         "Go to the previous matching tag",
       },
     },
@@ -244,10 +244,10 @@ wk.register({
         end,
         "Show buffers",
       },
-      d = { ":bdelete %<Cr>:bd<Space>", "Delete buffer" },
-      f = { ":Format<Cr>", "Format the buffer" },
-      n = { ":pnext<Cr>", "Next buffer" },
-      p = { ":bprevious<Cr>", "Previous buffer" },
+      d = { "<Cmd>bdelete %<Cr><Cmd>bd<Space>", "Delete buffer" },
+      f = { "<Cmd>Format<Cr>", "Format the buffer" },
+      n = { "<Cmd>pnext<Cr>", "Next buffer" },
+      p = { "<Cmd>bprevious<Cr>", "Previous buffer" },
     },
     e = {
       name = "+evaluate",
@@ -306,7 +306,7 @@ wk.register({
     },
     f = {
       name = "+file",
-      n = { ":enew<Cr>", "New file" },
+      n = { "<Cmd>enew<Cr>", "New file" },
       b = {
         function()
           require("telescope").extensions.file_browser.file_browser({
@@ -357,11 +357,11 @@ wk.register({
       i = {
         name = "+issue",
         l = {
-          ":Octo issue list<Cr>",
+          "<Cmd>Octo issue list<Cr>",
           "List issues",
         },
         n = {
-          ":Octo issue create<Cr>",
+          "<Cmd>Octo issue create<Cr>",
           "Create new issue",
         },
       },
@@ -384,7 +384,7 @@ wk.register({
       p = {
         name = "+pull request",
         l = {
-          ":Octo pr list<Cr>",
+          "<Cmd>Octo pr list<Cr>",
           "List PRs",
         },
       },
@@ -466,30 +466,28 @@ wk.register({
     n = {
       name = "+neorg",
       i = {
-        ":Neorg inject-metadata<Cr>",
+        "<Cmd>Neorg inject-metadata<Cr>",
         "Inject File header",
       },
       m = {
         name = "+mode",
       },
-      n = { ":NeorgStart<Cr>", "Load the latest workspace" },
+      n = { "<Cmd>Neorg news all<Cr>", "View news" },
       t = {
         name = "+task",
-        a = { ":Neorg gtd capture<Cr>", "Add a task" },
-        t = { ":Neorg gtd views<Cr>", "View the tasks" },
+        a = { "<Cmd>Neorg gtd capture<Cr>", "Add a task" },
+        t = { "<Cmd>Neorg gtd views<Cr>", "View the tasks" },
       },
       w = {
         name = "+workspace",
-        b = { ":Neorg workspace bible<Cr>", "Bible" },
-        g = { ":Neorg workspace gtd<Cr>", "GTD" },
-        n = { ":Neorg workspace notes<Cr>", "Notes" },
-        s = { ":Neorg workspace school<Cr>", "School" },
+        b = { "<Cmd>Neorg workspace bible<Cr>", "Bible" },
+        g = { "<Cmd>Neorg workspace gtd<Cr>", "GTD" },
+        n = { "<Cmd>Neorg workspace notes<Cr>", "Notes" },
+        s = { "<Cmd>Neorg workspace school<Cr>", "School" },
       },
-      ["?"] = { ":Neorg news all<Cr>", "View news" },
     },
     o = {
       name = "+open",
-      m = { "<Plug>MarkdownPreviewToggle", "Toggle markdown preview" },
       t = {
         name = "+terminal",
         f = {
@@ -552,7 +550,7 @@ wk.register({
     },
     t = {
       name = "+toggle",
-      s = { ":setlocal spell!<Cr>", "Spell check" },
+      s = { "<Cmd>setlocal spell!<Cr>", "Spell check" },
       v = {
         function()
           local venn_enabled = vim.inspect(vim.b.venn_enabled)
@@ -563,32 +561,32 @@ wk.register({
             vim.keymap.set(
               "n",
               "J",
-              "<C-v>j:VBox<CR>",
+              "<C-v>j<Cmd>VBox<Cr>",
               { noremap = true, buffer = 0 }
             )
             vim.keymap.set(
               "n",
               "K",
-              "<C-v>k:VBox<CR>",
+              "<C-v>k<Cmd>VBox<Cr>",
               { noremap = true, buffer = 0 }
             )
             vim.keymap.set(
               "n",
               "L",
-              "<C-v>l:VBox<CR>",
+              "<C-v>l<Cmd>VBox<Cr>",
               { noremap = true, buffer = 0 }
             )
             vim.keymap.set(
               "n",
               "H",
-              "<C-v>h:VBox<CR>",
+              "<C-v>h<Cmd>VBox<Cr>",
               { noremap = true, buffer = 0 }
             )
             -- draw a box by pressing "f" with visual selection
             vim.keymap.set(
               "v",
               "f",
-              ":VBox<CR>",
+              "<Cmd>VBox<Cr>",
               { noremap = true, buffer = 0 }
             )
           else
