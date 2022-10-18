@@ -457,6 +457,7 @@ require("packer").startup({
     })
     use({
       "nvim-neorg/neorg",
+      run = ":Neorg sync-parsers",
       requires = {
         "nvim-lua/plenary.nvim",
         "nvim-neorg/neorg-telescope",
