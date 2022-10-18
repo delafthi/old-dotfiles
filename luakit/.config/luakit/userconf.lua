@@ -7,9 +7,10 @@ local luakit = luakit
 
 local settings = require("settings")
 
-settings.window.home_page = "www.duckduckgo.com"
+settings.window.home_page = "htps://searx.fmac.xyz/"
 settings.window.search_engines = {
-  default = "https://duckduckgo.com/?q=%s",
+  default = "https://searx.fmac.xyz/search?q=%s",
+  sx = "https://searx.fmac.xyz/search?q=%s",
   ddg = "https://duckduckgo.com/?q=%s",
   aur = "https://aur.archlinux.org/packages/?O=0&K=%s",
   aw = "https://wiki.archlinux.org/index.php?search=%s",

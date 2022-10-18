@@ -1591,7 +1591,7 @@ c.tabs.show = "multiple"
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-# c.url.default_page = 'https://start.duckduckgo.com/'
+c.url.default_page = "https://searx.fmac.xyz/"
 
 # URL segments where `:navigate increment/decrement` will search for a
 # number.
@@ -1629,7 +1629,8 @@ c.url.open_base_url = True
 # qutebrowser`.
 # Type: Dict
 c.url.searchengines = {
-    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "DEFAULT": "https://searx.fmac.xyz/search?q={}",
+    "sx": "https://searx.fmac.xyz/search?q={}",
     "ddg": "https://duckduckgo.com/?q={}",
     "aur": "https://aur.archlinux.org/packages/?O=0&K={}",
     "aw": "https://wiki.archlinux.org/index.php?search={}",
