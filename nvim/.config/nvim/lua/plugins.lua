@@ -47,12 +47,19 @@ require("packer").startup({
     })
     -- Theme
     use({
-      "delafthi/nord-nvim",
+      "andersevenrud/nordic.nvim",
       opt = false,
       config = function()
-        require("config.nord-nvim").config()
+        require("config.nordic").config()
       end,
     })
+    -- use({
+    --   "delafthi/nord-nvim",
+    --   opt = false,
+    --   config = function()
+    --     require("config.nord-nvim").config()
+    --   end,
+    -- })
     -- Startup
     use({ "lewis6991/impatient.nvim", opt = false })
     -- Key binding documentation and display
@@ -78,10 +85,10 @@ require("packer").startup({
     use({
       "feline-nvim/feline.nvim",
       requires = {
-        "nord-nvim",
+        "nordic.nvim",
         "kyazdani42/nvim-web-devicons",
       },
-      wants = { "nord-nvim", "nvim-web-devicons" },
+      wants = { "nordic.nvim", "nvim-web-devicons" },
       event = "VimEnter",
       config = function()
         require("config.feline").config()
@@ -340,13 +347,13 @@ require("packer").startup({
     use({
       "pwntester/octo.nvim",
       requires = {
-        "nord-nvim",
+        "nordic.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
         "kyazdani42/nvim-web-devicons",
       },
       wants = {
-        "nord-nvim",
+        "nordic.nvim",
         "plenary.nvim",
         "telescope.nvim",
         "nvim-web-devicons",
@@ -417,7 +424,7 @@ require("packer").startup({
     use({
       "mechatroner/rainbow_csv",
       requires = {
-        "nord-nvim",
+        "nordic.nvim",
       },
       ft = { "csv" },
       setup = function()

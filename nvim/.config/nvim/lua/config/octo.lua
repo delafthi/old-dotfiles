@@ -1,7 +1,7 @@
 local M = {}
 
 function M.config()
-  local c = require("nord.colors")
+  local c = require("nordic.palette")
 
   require("octo").setup({
     default_remote = { "upstream", "origin" }, -- order to try remotes
@@ -18,18 +18,18 @@ function M.config()
       use_icons = true, -- use web-devicons in file panel
     },
     colors = {
-      white = c.nord4.gui,
-      grey = c.nord3.gui,
-      black = c.nord0.gui,
-      red = c.nord11.gui,
-      dark_red = c.nord11.gui,
-      green = c.nord14.gui,
-      dark_green = c.nord14.gui,
-      yellow = c.nord13.gui,
-      dark_yellow = c.nord13.gui,
-      blue = c.nord8.gui,
-      dark_blue = c.nord10.gui,
-      purple = c.nord15.gui,
+      white = c.dark_white,
+      grey = c.gray,
+      black = c.dark_black,
+      red = c.red,
+      dark_red = c.red,
+      green = c.green,
+      dark_green = c.green,
+      yellow = c.yellow,
+      dark_yellow = c.yellow,
+      blue = c.blue,
+      dark_blue = c.intense_blue,
+      purple = c.purple,
     },
     mappings = {
       issue = {

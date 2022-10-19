@@ -2,11 +2,11 @@ local M = {}
 
 function M.config()
   -- Write the color definitions
-  local c = require("nord.colors")
+  local c = require("nordic.palette")
 
   -- Overwrite the statusline hls to prevent interference
-  vim.cmd("highlight Statusline guibg=" .. c.nord0.gui)
-  vim.cmd("highlight StatuslineNC guibg=" .. c.nord0.gui)
+  vim.cmd("highlight Statusline guibg=" .. c.dark_black)
+  vim.cmd("highlight StatuslineNC guibg=" .. c.dark_black)
 
   require("feline").setup({
     components = {
@@ -294,25 +294,25 @@ function M.config()
     },
     custom_providers = {},
     theme = {
-      fg = c.nord4.gui,
-      bg = c.nord0.gui,
-      black = c.nord0.gui,
-      dark_grey = c.nord1.gui,
-      grey = c.nord2.gui,
-      light_grey = c.nord3.gui,
-      white = c.nord4.gui,
-      light_white = c.nord5.gui,
-      dark_blue = c.nord10.gui,
-      blue = c.nord9.gui,
-      skyblue = c.nord9.gui,
-      light_blue = c.nord8.gui,
-      cyan = c.nord7.gui,
-      red = c.nord11.gui,
-      orange = c.nord12.gui,
-      yellow = c.nord13.gui,
-      green = c.nord14.gui,
-      magenta = c.nord15.gui,
-      violet = c.nord15.gui,
+      fg = c.dark_white,
+      bg = c.dark_black,
+      black = c.dark_black,
+      dark_grey = c.black,
+      grey = c.bright_black,
+      light_grey = c.gray,
+      white = c.dark_white,
+      light_white = c.white,
+      dark_blue = c.intense_blue,
+      blue = c.blue,
+      skyblue = c.blue,
+      light_blue = c.cyan,
+      cyan = c.bright_cyan,
+      red = c.red,
+      orange = c.orange,
+      yellow = c.yellow,
+      green = c.green,
+      magenta = c.purble,
+      violet = c.purple,
     },
     force_inactive = {
       filetypes = {

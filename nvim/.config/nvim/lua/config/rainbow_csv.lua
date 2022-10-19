@@ -2,18 +2,18 @@ local M = {}
 
 function M.setup()
   -- Write the color definitions
-  local c = require("nord.colors")
+  local c = require("nordic.palette")
 
   vim.g.rcsv_colorpairs = {
-    { c.nord11.cterm, c.nord11.gui },
-    { c.nord7.cterm, c.nord7.gui },
-    { c.nord12.cterm, c.nord12.gui },
-    { c.nord8.cterm, c.nord8.gui },
-    { c.nord13.cterm, c.nord13.gui },
-    { c.nord9.cterm, c.nord9.gui },
-    { c.nord14.cterm, c.nord14.gui },
-    { c.nord10.cterm, c.nord10.gui },
-    { c.nord15.cterm, c.nord15.gui },
+    { 1, c.red },
+    { 14, c.cyan },
+    { 11, c.orange },
+    { 6, c.bright_cyan },
+    { 3, c.yellow },
+    { 4, c.blue },
+    { 2, c.green },
+    { 12, c.intense_blue },
+    { 5, c.purple },
   }
 end
 
