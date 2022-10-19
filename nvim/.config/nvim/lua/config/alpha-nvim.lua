@@ -77,7 +77,7 @@ function M.config()
               { hl_shortcut = "DashboardShortCut" }
             ),
             button(
-              "SPC w s l",
+              "SPC w sl",
               "  > Restore last session",
               "<Cmd>lua require('persistence').load({last = true})<Cr>",
               {},
