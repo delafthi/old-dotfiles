@@ -1,21 +1,55 @@
-# General settings {{{1
+# General settings
 set sandbox none # Enables copying to the system clipboard
+set font "VictorMono Nerd Font 11"
+set adjust-open "best-fit"
+set recolor "false"
+set recolor-keephue "true"
 
-# Colors {{{1
-set highlight-color \#EBCB8B
-set highlight-active-color \#61afef
-set recolor false
-set recolor-lightcolor \#313640
-set recolor-darkcolor \#dcdfe4
-set recolor-keephue
-set default-bg \#282c34
+# Colors
+set default-fg                "#D8DEE9"
+set default-bg 			          "#2E3440"
 
-# Enable copying to the system clipboard {{{1
+set completion-bg		          "#4C566A"
+set completion-fg		          "#D8DEE9"
+set completion-highlight-bg	  "#4C566A"
+set completion-highlight-fg	  "#81A1C1"
+set completion-group-bg		    "#4C566A"
+set completion-group-fg		    "#5E81AC"
+
+set statusbar-fg		          "#D8DEE9"
+set statusbar-bg		          "#3B4252"
+
+set notification-bg		        "#3B4252"
+set notification-fg		        "#D8DEE9"
+set notification-error-bg	    "#3B4252"
+set notification-error-fg	    "#BF616A"
+set notification-warning-bg	  "#3B4252"
+set notification-warning-fg	  "#EBCB80"
+
+set inputbar-fg			          "#D8DEE9"
+set inputbar-bg 		          "#2E3440"
+
+set recolor-lightcolor		    "#434C5E"
+set recolor-darkcolor		      "#D8DEE9"
+
+set index-fg			            "#D8DEE9"
+set index-bg			            "#2E3440"
+set index-active-fg		        "#81A1C1"
+set index-active-bg		        "#2E3440"
+
+set render-loading-bg		      "#2E3440"
+set render-loading-fg		      "#D8DEE9"
+
+set highlight-color		        "#88C0D0"
+set highlight-fg              "#2E3440"
+set highlight-active-color	  "#81A1C1"
+
+# Enable copying to the system clipboard
 set selection-clipboard clipboard
 
-# Layout {{{1
+# Layout
 set page-padding 4
 
-# Key mappings {{{1
+# Key mappings
 map <C-j> zoom out
 map <C-k> zoom in
