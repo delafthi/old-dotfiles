@@ -225,12 +225,6 @@ function M.config()
 https://github.com/VHDL-LS/rust_hdl
 
 A collection of HDL related tools
-
-`rust_hdl` can be built with cargo
-`git clone https://github.com/VHDL-LS/rust_hdl ~/.cache/nvim/rust_hdl`
-`cd ~/.cache/nvim/rust_ls`
-`cargo build --release`
-`ln -s ~/.cache/nvim/rust_hdl/target/release/vhdl_ls ~/.local/bin/vhdl_ls`
           ]],
         },
       },
