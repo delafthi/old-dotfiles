@@ -19,7 +19,7 @@ function M.config()
     -- Darker backgrounds for certain sidebars, popups, etc.
     -- Options: true, false, or a table of explicit names
     -- Supported: terminal, qf, vista_kind, packer, nvim-tree, telescope, whichkey
-    alternate_backgrounds = false,
+    alternate_backgrounds = true,
 
     -- Callback function to define custom color groups
     -- See 'lua/nordic/colors/example.lua' for example defitions

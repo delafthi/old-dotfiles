@@ -13,16 +13,16 @@ function M.config()
     hide_numbers = true, -- hide the number column in toggleterm buffers
     highlights = {
       Normal = {
-        link = "Normal",
+        link = "NormalAlt",
       },
       NormalFloat = {
-        link = "Normal",
+        link = "NormalAlt",
       },
       FloatBorder = {
         link = "Comment",
       },
       SignColumn = {
-        link = "Normal",
+        link = "NormalAlt",
       },
     },
     shade_terminals = false,
