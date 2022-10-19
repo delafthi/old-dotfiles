@@ -1,6 +1,7 @@
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 
 nord = {
+    "nord_0_alt": "#2b303b",
     "nord0": "#2e3440",
     "nord1": "#3b4252",
     "nord2": "#434c5e",
@@ -337,11 +338,11 @@ c.colors.statusbar.url.warn.fg = nord["nord12"]
 
 # Background color of the tab bar.
 # Type: QtColor
-c.colors.tabs.bar.bg = nord["nord0"]
+c.colors.tabs.bar.bg = nord["nord_0_alt"]
 
 # Background color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.bg = nord["nord0"]
+c.colors.tabs.even.bg = nord["nord_0_alt"]
 
 # Foreground color of unselected even tabs.
 # Type: QtColor
@@ -370,7 +371,7 @@ c.colors.tabs.indicator.system = "rgb"
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = nord["nord0"]
+c.colors.tabs.odd.bg = nord["nord_0_alt"]
 
 # Foreground color of unselected odd tabs.
 # Type: QtColor
@@ -378,7 +379,7 @@ c.colors.tabs.odd.fg = nord["nord4"]
 
 # Background color of pinned unselected even tabs.
 # Type: QtColor
-c.colors.tabs.pinned.even.bg = nord["nord0"]
+c.colors.tabs.pinned.even.bg = nord["nord_0_alt"]
 
 # Foreground color of pinned unselected even tabs.
 # Type: QtColor
@@ -386,7 +387,7 @@ c.colors.tabs.pinned.even.fg = nord["nord8"]
 
 # Background color of pinned unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.odd.bg = nord["nord0"]
+c.colors.tabs.pinned.odd.bg = nord["nord_0_alt"]
 
 # Foreground color of pinned unselected odd tabs.
 # Type: QtColor
