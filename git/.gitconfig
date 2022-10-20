@@ -8,6 +8,8 @@
   signingkey = 525EBCF5B866B3FB9EA6CDA7636580A5946D693E
 [gpg]
   program = /usr/bin/gpg
+[init]
+  defaultBranch = main
 [commit]
   gpgsign = true
 [tag]
