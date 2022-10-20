@@ -24,20 +24,7 @@ function M.config()
     -- Callback function to define custom color groups
     -- See 'lua/nordic/colors/example.lua' for example defitions
     custom_colors = function(c, s, cs)
-      return {
-        -- nvim-ts-rainbow
-        { "rainbowcol1", c.intense_blue },
-        { "rainbowcol2", c.purple },
-        { "rainbowcol3", c.blue },
-        { "rainbowcol4", c.green },
-        { "rainbowcol5", c.light_cyan },
-        { "rainbowcol6", c.yellow },
-        -- Dashboard
-        { "DashboardShortCut", c.blue },
-        { "DashboardHeader", c.purple },
-        { "DashboardCenter", c.dark_white },
-        { "DashboardFooter", c.gray, c.none, s.italic },
-      }
+      return {}
     end,
   })
 end
