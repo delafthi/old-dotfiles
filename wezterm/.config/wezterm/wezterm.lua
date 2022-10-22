@@ -52,7 +52,7 @@ return {
     quick_select_match_fg = { Color = "#d8dee9" },
   },
   cursor_blink_rate = 0,
-  debug_key_events = true,
+  debug_key_events = false,
   disable_default_key_bindings = true,
   enable_scroll_bar = false,
   enable_tab_bar = false,
