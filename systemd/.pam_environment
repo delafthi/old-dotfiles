@@ -1,8 +1,0 @@
-EDITOR DEFAULT="nvim"
-GCC_COLORS DEFAULT="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
-MANPAGER DEFAULT="nvim +Man! +'set noma'"
-PATH DEFAULT="@{HOME}/.local/bin:/usr/local/bin:/usr/bin"
-GUIX_LOCPATH DEFAULT="@{HOME}/.guix-profile/lib/locale"
-GUIX_PROFILE DEFAULT="@{HOME}/.config/guix/current"
-SSH_AGENT_PID DEFAULT=
-SSH_AUTH_SOCK DEFAULT="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"

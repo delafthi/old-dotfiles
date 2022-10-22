@@ -2,6 +2,21 @@
 # ~/.config/fish/config.fish: executed by fish for non-login shells. #
 ######################################################################
 
+# Environment
+# ~~~~~~~~~~~
+
+# Only export variables if we use systemd, (in Guix the environment is exported
+# with a service)
+if test (ps -p 1 -o comm=) = systemd
+    set -gx PATH "$HOME/.local/bin:/usr/local/bin:/usr/bin"
+    set -gx GUIX_PROFILE "$HOME/.config/guix/current"
+    set -e SSH_AGENT_PID
+    set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+    set -gx EDITOR nvim
+    set -gx MANPAGER "nvim +Man! +'set noma'"
+    set -gx GCC_COLORS "error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+end
+
 # Abbreviations and aliases
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 

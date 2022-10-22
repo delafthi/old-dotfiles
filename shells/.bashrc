@@ -2,6 +2,21 @@
 # ~/.bashrc: executed by bash(1) for non-login shells. #
 ########################################################
 
+# Environment
+# ~~~~~~~~~~~
+
+# Only export variables if we use systemd, (in Guix the environment is exported
+# with a service)
+if [ "$(ps -p 1 -o comm=)" == "systemd" ]; then
+  export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin"
+  export GUIX_PROFILE="$HOME/.config/guix/current"
+  export SSH_AGENT_PID DEFAULT=
+  export SSH_AUTH_SOCK DEFAULT="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+  export EDITOR="nvim"
+  export MANPAGER="nvim +Man! +'set noma'"
+  export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+fi
+
 # Aliases
 # ~~~~~~~
 
