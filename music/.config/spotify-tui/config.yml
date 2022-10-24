@@ -18,7 +18,7 @@ behavior:
   seek_milliseconds: 5000
   volume_increment: 10
   # The lower the number the higher the "frames per second". You can decrease this number so that the audio visualisation is smoother but this can be expensive!
-  tick_rate_milliseconds: 250
+  tick_rate_milliseconds: 100
   # Enable text emphasis (typically italic/bold text styling). Disabling this might be important if the terminal config is otherwise restricted and rendering text escapes interferes with the UI.
   enable_text_emphasis: true
   # Controls whether to show a loading indicator in the top right of the UI whenever communicating with Spotify API
@@ -41,7 +41,7 @@ keybindings:
   back: "q"
   jump_to_album: "a"
   jump_to_artist_album: "A"
-  manage_devices: "D"
+  manage_devices: "d"
   decrease_volume: "ctrl-d"
   increase_volume: "ctrl-u"
   toggle_playback: " "
@@ -49,8 +49,8 @@ keybindings:
   seek_forwards: "ctrl-n"
   next_track: "n"
   previous_track: "p"
-  copy_song_url: "c"
-  copy_album_url: "C"
+  copy_song_url: "y"
+  copy_album_url: "Y"
   help: "?"
   shuffle: "s"
   repeat: "r"
