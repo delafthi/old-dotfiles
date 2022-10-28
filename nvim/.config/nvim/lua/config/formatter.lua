@@ -15,7 +15,7 @@ function M.config()
         function()
           return {
             exe = "clang-format",
-            args = { "--assume-filename", vim.api.nvim_buf_get_name(0) },
+            args = { "--assume-filename " .. vim.api.nvim_buf_get_name(0) },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
           }
@@ -26,8 +26,7 @@ function M.config()
           return {
             exe = "cmake-format",
             args = {
-              "--tab-size",
-              2,
+              "--tab-size" .. vim.opt.shiftwidth:get(),
               "--enable-sort",
               "-o",
               "-",
@@ -43,8 +42,7 @@ function M.config()
           return {
             exe = "clang-format",
             args = {
-              "--assume-filename",
-              vim.api.nvim_buf_get_name(0),
+              "--assume-filename" .. vim.api.nvim_buf_get_name(0),
             },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
@@ -56,10 +54,9 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser",
-              "css",
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--parser css",
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
@@ -77,13 +74,6 @@ function M.config()
         function()
           return {
             exe = "hindent",
-            args = {
-              "--line-length",
-              80,
-              "--indent-size",
-              2,
-              "--sort-imports",
-            },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
           }
@@ -94,10 +84,9 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser",
-              "html",
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--parser html",
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
@@ -123,10 +112,9 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser",
-              "markdown",
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--parser markdown",
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
@@ -151,8 +139,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser",
-              "markdown",
+              "--parser makdown",
               "--stdin-filepath",
               vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
@@ -235,10 +222,8 @@ function M.config()
             exe = "shfmt",
             args = {
               "-s",
-              "-filename",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-              "-i",
-              2,
+              "-filename " .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "-i " .. vim.opt.shiftwidth:get(),
               "-ci",
               "-sr",
               "-fn",
@@ -283,10 +268,9 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser",
-              "yaml",
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--parser yaml",
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
