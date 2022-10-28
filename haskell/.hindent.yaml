@@ -1,0 +1,5 @@
+indent-size: 2
+line-length: 80
+line-breaks: [":>", ":<|>"]
+force-trailing-newline: true
+sort-imports: true
