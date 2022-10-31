@@ -1,11 +1,21 @@
 # General settings
+# ~~~~~~~~~~~~~~~~
+
 set sandbox none # Enables copying to the system clipboard
 set font "VictorMono Nerd Font 11"
 set adjust-open "best-fit"
 set recolor "false"
 set recolor-keephue "true"
 
+# Enable copying to the system clipboard
+set selection-clipboard clipboard
+
+# Layout
+set page-padding 4
+
 # Colors
+# ~~~~~~
+
 set default-fg                "#D8DEE9"
 set default-bg 			          "#2E3440"
 
@@ -44,11 +54,9 @@ set highlight-color		        "#88C0D0"
 set highlight-fg              "#2E3440"
 set highlight-active-color	  "#81A1C1"
 
-# Enable copying to the system clipboard
-set selection-clipboard clipboard
 
-# Layout
-set page-padding 4
+# Key mappings
+# ~~~~~~~~~~~~
 
 # Key mappings
 map <C-j> zoom out

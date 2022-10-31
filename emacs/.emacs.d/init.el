@@ -6,9 +6,8 @@
 ;; Disable compilation warning messages
 (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~
 
 ;; Define a custom package directory, add append it to the load path and set
 ;; some package related settings
@@ -63,9 +62,8 @@
   (add-hook 'after-init-hook 'benchmark-init/deactivate)
   (add-hook 'after-init-hook (lambda () (message "Emacs loaded in %s" (emacs-init-time)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~
 
 (use-package emacs
   :custom
@@ -119,9 +117,8 @@
   (add-hook 'after-init-hook (lambda() (setq gc-cons-threshold 1000000)
                                (message "gc-cons-threshold reset to %S" gc-cons-threshold))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package management
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~~~~~~~~~~~~~~
 
 ;; Auto Update packages
 (use-package auto-package-update
@@ -150,12 +147,10 @@
   (custom-file (no-littering-expand-etc-file-name "custom.el")))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Interface enhancements
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~~~~~~~~~~~~~~~~~~
 
 ;; Keybindings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Evil
 (use-package evil
@@ -208,7 +203,6 @@
     "cc" '(comment-or-uncomment-region :which-key "comment or uncomment region")))
 
 ;; Startup
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package dashboard
   :custom
@@ -217,7 +211,6 @@
   (dashboard-setup-startup-hook))
 
 ;; Help
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Better describe functions
 (use-package helpful
@@ -243,7 +236,6 @@
   (which-key-mode))
 
 ;; Completion
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Better minibuffer completion
 (use-package ivy
@@ -286,7 +278,6 @@
   (ivy-prescient-mode))
 
 ;; Visual enhancements
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Color delimiters
 (use-package rainbow-delimiters
@@ -299,7 +290,6 @@
   :hook (prog-mode . rainbow-mode))
 
 ;; Syntax highlighting
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Tree-sitter
 (use-package tree-sitter-langs)
@@ -309,9 +299,7 @@
   :config
   (global-tree-sitter-mode))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; File management
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Save a list of recent files
 (use-package recentf
@@ -322,7 +310,6 @@
     "fr" '(counsel-recentf :which-key "recent files")))
 
 ;; Projects management
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Projectile
 (use-package projectile
@@ -347,12 +334,10 @@
     "pg" '(counsel-projectile-rg :which-key "grep in project")
     "pp" '(counsel-projectile-switch-project :which-key "switch the project")))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Programming
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~~~~~~~
 
 ;; Lsp
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; lsp base package
 (use-package lsp-mode
@@ -369,21 +354,17 @@
   :commands lsp-ivy-workspace-symbol)
 
 ;; Error checking
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package flycheck)
 
 ;; Debugging
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package dap-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; VCS
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~
 
 ;; Git
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Magit
 (use-package magit
@@ -404,9 +385,8 @@
 (use-package forge
   :after magit)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Terminal
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~~~~
 
 ;; Terminal emulator with exetrnal lib
 (use-package vterm)
@@ -416,16 +396,14 @@
   :custom
   (eshell-destroy-buffer-when-process-dies t))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~~~~~~
 
 ;; Org base package
 (use-package org)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GUI
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ~~~
 
 ;; Icons
 (use-package all-the-icons)

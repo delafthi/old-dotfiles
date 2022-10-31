@@ -8,7 +8,9 @@ local fn = vim.fn -- to execute vim functions
 vim.g.mapleader = " " -- Set leader to space.
 vim.o.termguicolors = true -- Enable termguicolor support.
 
--- Backup {{{1
+-- Backup
+-- ~~~~~~
+
 vim.opt.backup = false -- Disable backups.
 vim.opt.confirm = true -- Prompt to save before destructive actions.
 vim.opt.swapfile = false -- Disable swapfiles.
@@ -18,7 +20,9 @@ if fn.isdirectory(vim.o.undodir) == 0 then
 end -- Create undo directory.
 vim.opt.writebackup = false -- Disable backups, when a file is written.
 
--- Buffers {{{1
+-- Buffers
+-- ~~~~~~~
+
 vim.opt.autoread = true -- Enable automatic reload of unchanged files.
 vim.api.nvim_create_autocmd("CursorHold", {
   command = "checktime",
@@ -50,7 +54,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Try to save file with sudo on files that require root permission
 vim.cmd([[ca w!! w !sudo tee >/dev/null "%"]])
 
--- Diff {{{1
+-- Diff
+-- ~~~~
+
 -- Use in vertical diff mode, blank lines to keep sides aligned, Ignore whitespace changes
 vim.opt.diffopt:prepend({
   "context:4",
@@ -62,7 +68,9 @@ vim.opt.diffopt:prepend({
   "algorithm:histogram",
 })
 
--- Display {{{1
+-- Display
+-- ~~~~~~~
+
 vim.opt.colorcolumn = "80" -- Set colorcolumn to 80
 vim.opt.cursorline = true -- Enable the cursorline.
 vim.opt.guicursor = "n-v-sm:block,i-c-ci-ve:ver25,cr-o-r:hor20"
@@ -107,6 +115,8 @@ vim.opt.visualbell = false -- Disable annoying beeps
 vim.opt.shortmess = "c" -- Avoid showing extra messages when using completion
 
 -- Editing
+-- ~~~~~~~
+
 vim.opt.virtualedit = "block" -- Allow cursor to move past end of line.
 vim.opt.autoindent = true -- Allow filetype plugins and syntax highlighting
 vim.opt.expandtab = true -- Use spaces instead of tabs
@@ -119,7 +129,9 @@ vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> counts for while perfor
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 vim.opt.formatoptions = "tcroqlj" -- Defines how text is automatically formatted
 
--- Filetypes {{{1
+-- Filetypes
+-- ~~~~~~~~~
+
 local additionalFiletypes =
   vim.api.nvim_create_augroup("AddAdditionalFiletypes", { clear = true })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
@@ -139,19 +151,19 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 
--- Folds {{{1
+-- Folds
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
 vim.opt.foldtext = [[luaeval("require('util.misc').foldtext()")]] -- Function called to display fold line.
 
--- Mouse {{{1
+-- Mouse
 vim.opt.mouse = "nvicr" -- Enables different support modes for the mouse
 
--- Netrw {{{1
+-- Netrw
 vim.g.netrw_banner = 0 -- Disable the banner on top of the window.
 
--- Search {{{1
+-- Search
 vim.opt.hlsearch = true -- Enable search highlighting.
 vim.opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
 vim.opt.ignorecase = true -- Ignore case when searching.
@@ -164,7 +176,7 @@ if fn.executable("rg") > 0 then
   vim.opt.grepformat:prepend("%f:%l:%c:%m")
 end
 
--- Spell checking {{{1
+-- Spell checking
 -- Set spell check languages.
 vim.opt.spelllang = { "en_us", "de_ch" }
 

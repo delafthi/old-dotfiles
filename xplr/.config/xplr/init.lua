@@ -6,6 +6,7 @@ version = "0.19.0"
 
 -- General Configuration
 -- ~~~~~~~~~~~~~~~~~~~~~
+
 xplr.config.general.show_hidden = true
 xplr.config.general.prompt.format = " "
 xplr.config.general.prompt.style = {}
@@ -115,6 +116,7 @@ xplr.config.general.global_key_bindings = {
 
 -- Node Types
 -- ~~~~~~~~~~
+
 xplr.config.node_types.directory.style = {
   fg = "Blue",
   add_modifiers = { "Bold" },
@@ -132,6 +134,7 @@ xplr.config.node_types.special = {}
 
 -- Layouts
 -- ~~~~~~~
+
 xplr.config.layouts.builtin.default = {
   Horizontal = {
     config = {
@@ -252,6 +255,7 @@ xplr.config.layouts.custom = {}
 
 -- Modes
 -- ~~~~~
+
 xplr.config.modes.builtin.default = {
   name = "default",
   key_bindings = {
@@ -1516,6 +1520,7 @@ xplr.config.modes.custom = {}
 
 -- Function
 -- ~~~~~~~~
+
 xplr.fn.builtin.try_complete_path = function(m)
   if not m.input_buffer then
     return
