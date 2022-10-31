@@ -11,6 +11,10 @@ and supports more platforms. Spotifyd also supports the Spotify Connect
 protocol, which makes it show up as a device that can be controlled from the
 official clients.
 
+### Dependencies
+
+- [pass](https://www.passwordstore.org/)
+
 ### References
 
 - [spotifyd](https://github.com/Spotifyd/spotifyd)
