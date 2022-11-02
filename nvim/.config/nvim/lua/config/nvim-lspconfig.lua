@@ -105,9 +105,11 @@ function M.on_attach(client, bufnr)
       },
     },
     ["<Leader>"] = {
-      w = {
-        l = {
-          name = "+lsp",
+      l = {
+        name = "+lsp",
+        r = { lsp.buf.rename, "Rename", buffer = bufnr },
+        w = {
+          name = "+workspace",
           a = {
             lsp.buf.add_workspace_folders,
             "Add workspace folders",
@@ -125,7 +127,6 @@ function M.on_attach(client, bufnr)
             "List workspace folders",
             buffer = bufnr,
           },
-          r = { lsp.buf.rename, "Rename", buffer = bufnr },
           s = {
             function()
               require("telescope.builtin").lsp_workspace_symbols()
