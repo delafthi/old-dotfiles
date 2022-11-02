@@ -349,15 +349,6 @@ A collection of HDL related tools
     capabilities = M.capabilities,
     on_attach = M.on_attach,
   })
-
-  -- Activate codelens
-  vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-    pattern = "<buffer>",
-    callback = function()
-      vim.lsp.codelens.refresh()
-    end,
-    group = vim.api.nvim_create_augroup("LspCodelens", { clear = true }),
-  })
 end
 
 return M
