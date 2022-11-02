@@ -647,6 +647,12 @@ wk.register({
         end,
         "Toggle harpoon menu",
       },
+      l = {
+        function()
+          require("persistence").load({ last = true })
+        end,
+        "Restore last",
+      },
       m = {
         function()
           require("harpoon.mark").add_file()
@@ -655,12 +661,6 @@ wk.register({
       },
       s = {
         name = "+session",
-        l = {
-          function()
-            require("persistence").load({ last = true })
-          end,
-          "Restore last",
-        },
         s = {
           function()
             require("persistence").load()
