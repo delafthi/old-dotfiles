@@ -311,14 +311,17 @@ require("packer").startup({
       requires = {
         "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
-        "nvim-telescope/telescope-fzy-native.nvim",
+        {
+          "nvim-telescope/telescope-fzf-native.nvim",
+          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        },
         "nvim-telescope/telescope-file-browser.nvim",
         "nvim-telescope/telescope-project.nvim",
       },
       wants = {
         "popup.nvim",
         "plenary.nvim",
-        "telescope-fzy-native.nvim",
+        "telescope-fzf-native.nvim",
         "telescope-file-browser.nvim",
         "telescope-project.nvim",
       },

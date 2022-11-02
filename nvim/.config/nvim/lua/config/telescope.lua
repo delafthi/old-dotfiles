@@ -61,6 +61,12 @@ function M.config()
           },
         },
       },
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
       project = {
         base_dirs = {
           "~/projects/work",
@@ -75,8 +81,8 @@ function M.config()
       },
     },
   })
-  telescope.load_extension("fzy_native")
   telescope.load_extension("file_browser")
+  telescope.load_extension("fzf")
   telescope.load_extension("project")
 end
 
