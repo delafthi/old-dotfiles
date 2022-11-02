@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-
   -- Define a custum user-command to write without executing autocommands and
   -- formatting the file
   vim.api.nvim_create_user_command("W", ":noautocmd w", {})
@@ -32,7 +31,7 @@ function M.config()
           return {
             exe = "cmake-format",
             args = {
-              "--tab-size" .. vim.opt.shiftwidth:get(),
+              "--tab-size " .. vim.opt.shiftwidth:get(),
               "--enable-sort",
               "-o",
               "-",
@@ -48,7 +47,7 @@ function M.config()
           return {
             exe = "clang-format",
             args = {
-              "--assume-filename" .. vim.api.nvim_buf_get_name(0),
+              "--assume-filename " .. vim.api.nvim_buf_get_name(0),
             },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
@@ -60,7 +59,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
@@ -89,7 +88,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
@@ -101,7 +100,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
@@ -113,8 +112,8 @@ function M.config()
           return {
             exe = "stylua",
             args = {
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--stdin-filepath "
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
               "--search-parent-directories",
               "-",
             },
@@ -128,7 +127,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
@@ -140,8 +139,8 @@ function M.config()
           return {
             exe = "black",
             args = {
-              "--stdin-filename",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--stdin-filename "
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
               "-",
             },
             stdin = true,
@@ -154,8 +153,8 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath",
-              vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+              "--stdin-filepath "
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
           }
@@ -253,7 +252,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
@@ -294,7 +293,7 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--stdin-filepath"
+              "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
             stdin = true,
