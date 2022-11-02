@@ -90,6 +90,18 @@ function M.config()
           }
         end,
       },
+      javascript = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
+            stdin = true,
+          }
+        end,
+      },
       lua = {
         function()
           return {
@@ -227,6 +239,18 @@ function M.config()
             },
             stdin = true,
             cwd = vim.fn.expand("%:p:h"),
+          }
+        end,
+      },
+      typescript = {
+        function()
+          return {
+            exe = "prettier",
+            args = {
+              "--stdin-filepath"
+                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+            },
+            stdin = true,
           }
         end,
       },
