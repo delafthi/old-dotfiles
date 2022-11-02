@@ -54,7 +54,6 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser css",
               "--stdin-filepath"
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
@@ -84,7 +83,6 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser html",
               "--stdin-filepath"
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
@@ -112,7 +110,6 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser markdown",
               "--stdin-filepath"
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
@@ -139,7 +136,6 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser makdown",
               "--stdin-filepath",
               vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
@@ -268,7 +264,6 @@ function M.config()
           return {
             exe = "prettier",
             args = {
-              "--parser yaml",
               "--stdin-filepath"
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
