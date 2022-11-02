@@ -260,6 +260,17 @@ A collection of HDL related tools
       "hie.yaml"
     ),
   })
+  -- ltex-language server
+  lspconfig.ltex.setup({
+    capabilities = M.capabilities,
+    on_attach = M.on_attach,
+    settings = {
+      additionalRules = {
+        motherTongue = "de-CH",
+        languageModel = "~/.local/share/language-tool/ngrams/",
+      },
+    },
+  })
   -- python-language-server
   lspconfig.pylsp.setup({
     capabilities = M.capabilities,
