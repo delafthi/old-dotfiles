@@ -100,7 +100,7 @@ function M.config()
             button(
               "SPC f b",
               "  > File Browser",
-              "<Cmd>Telescope find_browser<Cr>",
+              "<Cmd>Telescope file_browser hidden=true<Cr>",
               {},
               { hl_shortcut = "DashboardShortCut" }
             ),
