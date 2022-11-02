@@ -272,6 +272,11 @@ A collection of HDL related tools
     on_attach = M.on_attach,
     settings = {
       ltex = {
+        disabledRules = {
+          ["en-US"] = { "MORFOLOGIK_RULE_EN_US" },
+          ["de-CH"] = { "MORFOLOGIK_RULE_DE_CH" },
+          ["fr"] = { "MORFOLOGIK_RULE_FR" },
+        },
         additionalRules = {
           languageModel = "~/.local/share/language-tool/ngrams/",
           motherTongue = "de-CH",
