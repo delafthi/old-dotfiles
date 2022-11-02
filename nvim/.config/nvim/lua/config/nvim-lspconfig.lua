@@ -271,9 +271,11 @@ A collection of HDL related tools
     capabilities = M.capabilities,
     on_attach = M.on_attach,
     settings = {
-      additionalRules = {
-        motherTongue = "de-CH",
-        languageModel = "~/.local/share/language-tool/ngrams/",
+      ltex = {
+        additionalRules = {
+          languageModel = "~/.local/share/language-tool/ngrams/",
+          motherTongue = "de-CH",
+        },
       },
     },
   })
