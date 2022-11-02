@@ -84,7 +84,7 @@ function M.on_attach(client, bufnr)
         },
       },
       q = {
-        lsp.util.set_loclist,
+        diagnostic.setloclist,
         "Get local quickfixlist",
         buffer = bufnr,
       },
@@ -119,7 +119,9 @@ function M.on_attach(client, bufnr)
             buffer = bufnr,
           },
           l = {
-            lsp.buf.list_workspace_folders,
+            function()
+              print(vim.inspect(lsp.buf.list_workspace_folders()))
+            end,
             "List workspace folders",
             buffer = bufnr,
           },
