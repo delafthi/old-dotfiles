@@ -1,12 +1,18 @@
 local M = {}
 
 function M.setup()
+
+  -- Define a custum user-command to write without executing autocommands and
+  -- formatting the file
+  vim.api.nvim_create_user_command("W", ":noautocmd w", {})
+
   -- Define autocommand to automatically format files on save.
   vim.api.nvim_create_autocmd("BufWritePost", {
     command = "FormatWrite",
     group = vim.api.nvim_create_augroup("FormatText", { clear = true }),
   })
 end
+
 function M.config()
   -- Call the setup function
   require("formatter").setup({
