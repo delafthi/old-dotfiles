@@ -107,6 +107,9 @@ function M.on_attach(client, bufnr)
     ["<Leader>"] = {
       l = {
         name = "+lsp",
+        a = { lsp.buf.code_action, "Code actions", buffer = bufnr },
+        d = { lsp.buf.type_definition, "Type definition", buffer = bufnr },
+        f = { lsp.buf.format, "Format", buffer = bufnr },
         r = { lsp.buf.rename, "Rename", buffer = bufnr },
         w = {
           name = "+workspace",
