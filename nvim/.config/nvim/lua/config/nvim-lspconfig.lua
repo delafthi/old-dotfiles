@@ -23,32 +23,9 @@ function M.on_attach(client, bufnr)
 
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
-  keymap.set({ "n", "i", "v" }, "<C-f>", function()
-    diagnostic.open_float({ severity_sort = true })
-  end, opts)
-  wk.register({
-    ["<C-f>"] = { "Show diagnostics info" },
-  })
-
   wk.register({
     ["<C-g>"] = {
       name = "+goto/get",
-      d = {
-        lsp.buf.declaration,
-        "Go to declaration",
-        buffer = bufnr,
-      },
-      D = {
-        lsp.buf.definition,
-        "Go to definition",
-        buffer = bufnr,
-      },
-      h = { lsp.buf.hover, "Get hover", buffer = bufnr },
-      i = {
-        lsp.buf.implementation,
-        "Go to implementation",
-        buffer = bufnr,
-      },
       n = {
         name = "+next",
         d = {
@@ -70,29 +47,10 @@ function M.on_attach(client, bufnr)
         "Get local quickfixlist",
         buffer = bufnr,
       },
-      r = {
-        lsp.buf.references,
-        "Go to references",
-        buffer = bufnr,
-      },
-      t = {
-        lsp.buf.type_definition,
-        "Get type definition",
-        buffer = bufnr,
-      },
-      s = {
-        lsp.buf.signature_help,
-        "Get signature help",
-        buffer = bufnr,
-      },
     },
     ["<Leader>"] = {
       l = {
         name = "+lsp",
-        a = { lsp.buf.code_action, "Code actions", buffer = bufnr },
-        d = { lsp.buf.type_definition, "Type definition", buffer = bufnr },
-        f = { lsp.buf.format, "Format", buffer = bufnr },
-        r = { lsp.buf.rename, "Rename", buffer = bufnr },
         w = {
           name = "+workspace",
           a = {
@@ -112,35 +70,63 @@ function M.on_attach(client, bufnr)
             "List workspace folders",
             buffer = bufnr,
           },
-          s = {
-            function()
-              require("telescope.builtin").lsp_workspace_symbols()
-            end,
-            "List workspace symbols",
-            buffer = bufnr,
-          },
         },
       },
     },
   })
 
   -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.document_formatting then
+  if client.server_capabilities.codeActionProvider then
+    wk.register({
+      ["<Leader>"] = {
+        l = {
+          name = "+lsp",
+          a = { lsp.buf.code_action, "Code actions", buffer = bufnr },
+        }
+      }
+    })
+  end
+  if client.server_capabilities.declarationProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+        d = {
+          lsp.buf.declaration,
+          "Go to declaration",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.definitionProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+        D = {
+          lsp.buf.definition,
+          "Go to definition",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.documentFormattingProvider then
     wk.register({
       ["<Leader>"] = {
         b = {
           name = "+buffer",
-          f = { lsp.buf.formatting, "Format the buffer", buffer = bufnr },
+          f = { lsp.buf.format, "Format the buffer", buffer = bufnr },
         },
       },
     })
-  elseif client.server_capabilities.document_range_formatting then
+  end
+  if client.server_capabilities.documentRangeFormattingProvider then
     wk.register({
       ["<Leader>"] = {
         b = {
           name = "+buffer",
           f = {
-            lsp.buf.ranger_formatting,
+            lsp.buf.range_formattting,
             "Format the selection",
             mode = "v",
             buffer = bufnr,
@@ -149,10 +135,100 @@ function M.on_attach(client, bufnr)
       },
     })
   end
+  if client.server_capabilities.hoverProvider then
+    keymap.set({ "n", "i", "v" }, "<C-f>", function()
+      diagnostic.open_float({ severity_sort = true })
+    end, opts)
+    wk.register({
+      ["<C-f>"] = { "Show diagnostics info" },
+      ["<C-g>"] = {
+        name = "+goto/get",
+        h = { lsp.buf.hover, "Get hover", buffer = bufnr },
+      },
+    })
+  end
+  if client.server_capabilities.implementationsProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+        i = {
+          lsp.buf.implementation,
+          "Go to implementation",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.referencesProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+        r = {
+          lsp.buf.references,
+          "Go to references",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.renameProvider then
+    wk.register({
+      ["<Leader>"] = {
+        l = {
+          name = "+lsp",
+          r = { lsp.buf.rename, "Rename", buffer = bufnr },
+        }
+      }
+    })
+  end
+  if client.server_capabilities.signatureHelpProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+
+        s = {
+          lsp.buf.signature_help,
+          "Get signature help",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.typeDefinitionProvider then
+    wk.register({
+      ["<C-g>"] = {
+        name = "+goto/get",
+
+        t = {
+          lsp.buf.type_definition,
+          "Get type definition",
+          buffer = bufnr,
+        },
+      }
+    })
+  end
+  if client.server_capabilities.workspaceSymbolProvider then
+    wk.register({
+      ["<Leader>"] = {
+        l = {
+          name = "+lsp",
+
+          s = {
+            function()
+              require("telescope.builtin").lsp_workspace_symbols()
+            end,
+            "List workspace symbols",
+            buffer = bufnr,
+          },
+        }
+      }
+    })
+  end
+
   -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
+  if client.server_capabilities.documentHighlightProvider then
     local lspDocumentHighlight =
-      vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
+    vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
     vim.api.nvim_create_autocmd("CursorHold", {
       pattern = "<buffer>",
       callback = function()
@@ -176,12 +252,12 @@ function M.config()
   -- Visual
   -- Customize how diagnosics are displayed
   lsp.handlers["textDocument/publishDiagnostics"] =
-    lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      signs = true,
-      underline = true,
-      update_in_insert = false,
-    })
+  lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+  })
 
   for type, icon in pairs(M.signs) do
     local hl = "DiagnosticSign" .. type

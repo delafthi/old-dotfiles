@@ -245,7 +245,6 @@ wk.register({
         "Show buffers",
       },
       d = { "<Cmd>bdelete %<Cr><Cmd>bd<Space>", "Delete buffer" },
-      f = { "<Cmd>Format<Cr>", "Format the buffer" },
       n = { "<Cmd>pnext<Cr>", "Next buffer" },
       p = { "<Cmd>bprevious<Cr>", "Previous buffer" },
     },
