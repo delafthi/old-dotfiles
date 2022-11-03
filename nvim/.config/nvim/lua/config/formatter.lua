@@ -110,20 +110,6 @@ function M.config()
           }
         end,
       },
-      python = {
-        function()
-          return {
-            exe = "black",
-            args = {
-              "--stdin-filename "
-                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-              "-",
-            },
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
       rmd = {
         function()
           return {

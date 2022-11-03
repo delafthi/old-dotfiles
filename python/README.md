@@ -3,14 +3,6 @@
 Python is powerful... and fast; plays well with others; runs everywhere; is
 friendly & easy to learn; is Open.
 
-## Black
-
-Tool to format python code.
-
-### References
-
-- [Black](https://github.com/psf/black)
-
 # Flake8
 
 Tool for style guide enforcement.
