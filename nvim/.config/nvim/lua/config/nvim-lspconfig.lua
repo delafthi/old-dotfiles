@@ -306,6 +306,68 @@ A collection of HDL related tools
     capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
+  -- general purpose language server (diagnosticls)
+  lspconfig.diagnosticls.setup({
+    capabilities = M.get_capabilities(),
+    on_attach = M.on_attach,
+    filetypes = {
+      "css",
+      "fish",
+      "html",
+      "javascript",
+      "markdown",
+      "rmd",
+      "sh",
+      "typescript",
+      "vhdl",
+      "yaml",
+    },
+    init_options = {
+      formatters = {
+        fish_indent = {
+          command = "fish_indent",
+        },
+        prettier = {
+          command = "prettier",
+          args = {
+            "--stdin-filepath",
+            "%filepath",
+          },
+          rootPatterns = {
+            ".prettierrc",
+            ".prettierrc.json",
+            ".prettierrc.toml",
+            ".prettierrc.yaml",
+            ".prettierrc.yml",
+            ".prettierrc.json5",
+            ".prettierrc.js",
+            ".prettierrc.cjs",
+            ".prettier.config.js",
+            ".prettier.config.cjs",
+          },
+        },
+        shfmt = {
+          command = "shfmt",
+          args = {
+          },
+          rootPatterns = {
+            ".editorconfig",
+          }
+        },
+      },
+      formatFiletypes = {
+        css = "prettier",
+        fish = "fish_indent",
+        html = "prettier",
+        javascript = "prettier",
+        markdown = "prettier",
+        rmd = "prettier",
+        sh = "shfmt",
+        typescript = "prettier",
+        yaml = "prettier",
+      },
+    },
+  })
   -- dockerfile-language-server
   lspconfig.dockerls.setup({
     capabilities = M.get_capabilities(),

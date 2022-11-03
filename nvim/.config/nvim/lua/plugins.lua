@@ -294,17 +294,6 @@ require("packer").startup({
     })
     -- Text formatting
     use({ "godlygeek/tabular", cmd = "Tabularize" })
-    -- File formatting
-    use({
-      "mhartington/formatter.nvim",
-      cmd = { "Format", "FormatWrite" },
-      setup = function()
-        require("config.formatter").setup()
-      end,
-      config = function()
-        require("config.formatter").config()
-      end,
-    })
     -- Project
     -- Fuzzy finder
     use({
