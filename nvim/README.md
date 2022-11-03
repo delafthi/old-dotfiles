@@ -17,7 +17,6 @@ encourage new applications and contributions.
     - [cmakels](https://github.com/regen100/cmake-language-server)
     - [clangd](https://github.com/clangd/clangd)
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
-    - [hls](https://github.com/haskell/haskell-language-server)
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
       - [python-rope](https://github.com/python-rope/rope)

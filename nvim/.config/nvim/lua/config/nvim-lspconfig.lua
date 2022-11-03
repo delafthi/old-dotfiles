@@ -254,18 +254,6 @@ A collection of HDL related tools
     capabilities = M.capabilities,
     on_attach = M.on_attach,
   })
-  -- haskell-language-server
-  lspconfig.hls.setup({
-    capabilities = M.capabilities,
-    on_attach = M.on_attach,
-    root_dir = util.root_pattern(
-      "*.cabal",
-      "stack.yaml",
-      "cabal.project",
-      "package.yaml",
-      "hie.yaml"
-    ),
-  })
   -- ltex-language server
   lspconfig.ltex.setup({
     capabilities = M.capabilities,
