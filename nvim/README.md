@@ -23,8 +23,6 @@ encourage new applications and contributions.
       - [python-pyflakes](https://github.com/PYCQA/pyflakes)
       - [python-mccabe](https://github.com/PYCQA/mccabe)
       - [python-pycodestyle](https://github.com/PYCQA/pycodestyle)
-      - [python-lsp-flake8](https://github.com/emanspeaks/pyls-flake8)
-      - [python-lsp-isort](https://github.com/paradoxxxzero/pyls-isort)
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
       - [yapf](https://github.com/google/yapf)
     - [texlab](https://github.com/latex-lsp/texlab)

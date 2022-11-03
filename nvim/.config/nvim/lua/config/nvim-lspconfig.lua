@@ -336,6 +336,7 @@ A collection of HDL related tools
     settings = {
       configurationSources = { "flake8" },
       plugins = {
+        autopep8 = { enabled = false },
         flake8 = { enabled = true },
         pydocstyle = { enabled = true },
       },
@@ -371,6 +372,13 @@ A collection of HDL related tools
         diagnostics = {
           -- Get the language server to recognize the vim and awesome globals
           globals = { "vim" },
+        },
+        format = {
+          enabled = true,
+          defaultConfig = {
+            indent_style = "space",
+            indent_size = tostring(vim.opt.shiftwidth:get()),
+          },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
