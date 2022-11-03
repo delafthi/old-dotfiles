@@ -145,10 +145,12 @@ require("packer").startup({
       requires = {
         "nvim-lua/lsp-status.nvim",
         "nvim-lua/lsp_extensions.nvim",
+        "nvim-cmp",
       },
       wants = {
         "lsp-status.nvim",
         "lsp_extensions.nvim",
+        "nvim-cmp"
       },
       event = "BufReadPost",
       config = function()

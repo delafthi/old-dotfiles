@@ -13,25 +13,7 @@ M.signs = {
 
 function M.get_capabilities()
   -- Set language-server capabilities
-  local capabilities = lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = false
-  capabilities.textDocument.completion.completionItem.preselectSupport = true
-  capabilities.textDocument.completion.completionItem.insertReplaceSupport =
-    true
-  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-  capabilities.textDocument.completion.completionItem.commitCharactersSupport =
-    true
-  capabilities.textDocument.completion.completionItem.tagSupport = {
-    valueSet = { 1 },
-  }
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-      "documentation",
-      "detail",
-      "additionalTextEdits",
-    },
-  }
+  local capabilities = require("cmp_nvim_lsp").default_capabilities()
   return capabilities
 end
 
@@ -240,23 +222,23 @@ A collection of HDL related tools
   -- Setup language servers
   -- bash-language-server
   lspconfig.bashls.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
   -- cmake-language server
   lspconfig.cmake.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
   -- c-language-server moved to clangd_extensions
   -- dockerfile-language-server
   lspconfig.dockerls.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
   -- ltex-language server
   lspconfig.ltex.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
     settings = {
       ltex = {
@@ -274,7 +256,7 @@ A collection of HDL related tools
   })
   -- python-language-server
   lspconfig.pylsp.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
     settings = {
       configurationSources = { "flake8" },
@@ -286,7 +268,7 @@ A collection of HDL related tools
   })
   -- rls (rust-language-server)
   lspconfig.rls.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
     settings = {
       rust = {
@@ -298,7 +280,7 @@ A collection of HDL related tools
   })
   -- sumneko lua-language-server
   lspconfig.sumneko_lua.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
     settings = {
       Lua = {
@@ -325,17 +307,17 @@ A collection of HDL related tools
   })
   -- (La)Tex-language-server
   lspconfig.texlab.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
   -- VHDL lsp
   lspconfig.vhdlls.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
   -- vim-language-server
   lspconfig.vimls.setup({
-    capabilities = M.capabilities,
+    capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
 end
