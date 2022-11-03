@@ -206,6 +206,13 @@ require("packer").startup({
         require("config.nvim-cmp").config()
       end,
     })
+    use({
+      "windwp/nvim-autopairs",
+      event = "InsertEnter",
+      config = function()
+        require("config.nvim-autopairs").config()
+      end
+    })
     -- Snippets
     use({
       "L3MON4D3/Luasnip",
