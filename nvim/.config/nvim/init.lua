@@ -133,7 +133,7 @@ vim.opt.formatoptions = "tcroqlj" -- Defines how text is automatically formatted
 -- ~~~~~~~~~
 
 local additionalFiletypes =
-  vim.api.nvim_create_augroup("AddAdditionalFiletypes", { clear = true })
+vim.api.nvim_create_augroup("AddAdditionalFiletypes", { clear = true })
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   pattern = "*.cl",
   command = "set filetype=cpp",
@@ -152,18 +152,26 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 vim.g.tex_flavor = "latex" -- Set latex as the default tex flavor
 
 -- Folds
+-- ~~~~~
+
 vim.opt.foldlevelstart = 10 -- Set level of opened folds, when starting vim.
 vim.opt.foldmethod = "marker" -- The kind of folding for the current window.
 vim.opt.foldopen:append("search") -- Open folds, when something is found inside the fold.
 vim.opt.foldtext = [[luaeval("require('util.misc').foldtext()")]] -- Function called to display fold line.
 
 -- Mouse
+-- ~~~~~
+
 vim.opt.mouse = "nvicr" -- Enables different support modes for the mouse
 
 -- Netrw
+-- ~~~~~
+
 vim.g.netrw_banner = 0 -- Disable the banner on top of the window.
 
 -- Search
+-- ~~~~~~
+
 vim.opt.hlsearch = true -- Enable search highlighting.
 vim.opt.incsearch = true -- While typing a search command, show where the pattern, as it was typed so far, matches.
 vim.opt.ignorecase = true -- Ignore case when searching.
@@ -171,16 +179,19 @@ vim.opt.smartcase = true -- Don't ignore case with capitals.
 vim.opt.wrapscan = true -- Searches wraps at the end of the file.
 -- Use faster grep alternatives if possible
 if fn.executable("rg") > 0 then
-  vim.opt.grepprg =
-    [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
+  vim.opt.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
   vim.opt.grepformat:prepend("%f:%l:%c:%m")
 end
 
 -- Spell checking
+-- ~~~~~~~~~~~~~~
+
 -- Set spell check languages.
 vim.opt.spelllang = { "en_us", "de_ch" }
 
--- Splits {{{1
+-- Splits
+-- ~~~~~~
+
 -- Fill characters for the statusline and vertical separators
 vim.opt.fillchars = {
   stl = " ",
@@ -197,28 +208,38 @@ vim.opt.fillchars = {
 vim.opt.splitbelow = true -- Put new windows below the current.
 vim.opt.splitright = true -- Put new windows right of the current.
 
--- Statusline {{{1
+-- Statusline
+-- ~~~~~~~~~~
+
 vim.opt.laststatus = 2 -- Show only one global statusline
 
--- Terminal {{{1
+-- Terminal
+-- ~~~~~~~~
+
 vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
   pattern = "term://*",
   command = "startinsert",
   group = vim.api.nvim_create_augroup("TerminalStartInsert", { clear = true }),
 }) -- Automatically go to insert mode, when changing to the terminal window
 
--- Timings {{{1
+-- Timings
+-- ~~~~~~~
+
 vim.opt.timeout = true -- Determines with 'timeoutlen' how long nvim waits for further commands after a command is received.
 vim.opt.timeoutlen = 500 -- Wait 500 milliseconds for further input.
 vim.opt.ttimeoutlen = 10 -- Wait 10 milliseconds in mappings with CTRL.
 
--- Title {{{1
+-- Title
+-- ~~~~~
+
 vim.opt.title = true -- Set window title by default.
 vim.opt.titlelen = 70 -- Set maximum title length.
 vim.opt.titleold = "%{fnamemodify(getcwd(), ':t')}" -- Set title while exiting vim
 vim.opt.titlestring = "%t" -- Set title string.
 
--- Utils {{{1
+-- Utils
+-- ~~~~~
+
 -- Change backspace to behave more intuitively.
 vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.clipboard = "unnamedplus" -- Enable copy paste into and out of nvim.
@@ -232,12 +253,14 @@ vim.api.nvim_create_user_command("EvalConfig", function()
   require("util.evaluate").config()
 end, {})
 
--- Wildmenu {{{1
+-- Wildmenu
+-- ~~~~~~~~
+
 vim.opt.wildmenu = false -- Enable commandline autocompletion menu.
 
--- Load Plugins at the end {{{1
+-- Load Plugins at the end
+-- ~~~~~~~~~~~~~~~~~~~~~~~
+
 vim.defer_fn(function()
   require("plugins")
 end, 0)
-
--- }}}1
