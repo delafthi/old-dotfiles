@@ -16,44 +16,6 @@ function M.config()
   -- Call the setup function
   require("formatter").setup({
     filetype = {
-      c = {
-        function()
-          return {
-            exe = "clang-format",
-            args = { "--assume-filename " .. vim.api.nvim_buf_get_name(0) },
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
-      cmake = {
-        function()
-          return {
-            exe = "cmake-format",
-            args = {
-              "--tab-size " .. vim.opt.shiftwidth:get(),
-              "--enable-sort",
-              "-o",
-              "-",
-              "-",
-            },
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
-      cpp = {
-        function()
-          return {
-            exe = "clang-format",
-            args = {
-              "--assume-filename " .. vim.api.nvim_buf_get_name(0),
-            },
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
       css = {
         function()
           return {
@@ -118,15 +80,6 @@ function M.config()
               "--stdin-filepath "
                 .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
             },
-            stdin = true,
-          }
-        end,
-      },
-      rust = {
-        function()
-          return {
-            exe = "rustfmt",
-            args = { "--emit stdout", "--" },
             stdin = true,
           }
         end,

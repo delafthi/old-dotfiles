@@ -31,10 +31,7 @@ encourage new applications and contributions.
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - Code formatters
-    - [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
-    - [cmake-format](https://github.com/cheshirekow/cmake_format)
     - [prettier](https://prettier.io/)
-    - [rustfmt](https://github.com/rust-lang/rustfmt)
     - [shfmt](https://github.com/mvdan/sh)
     - [emacs](https://www.gnu.org/software/emacs/)
 
