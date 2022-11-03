@@ -14,6 +14,7 @@ encourage new applications and contributions.
   - [ripgrep](https://github.com/BurntSushi/ripgrep)
   - LSP servers:
     - [bashls](https://github.com/bash-lsp/bash-language-server)
+      - [shellcheck](https://github.com/koalaman/shellcheck)
     - [cmakels](https://github.com/regen100/cmake-language-server)
     - [clangd](https://github.com/clangd/clangd)
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
