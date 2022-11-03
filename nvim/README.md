@@ -38,7 +38,6 @@ encourage new applications and contributions.
     - [prettier](https://prettier.io/)
     - [rustfmt](https://github.com/rust-lang/rustfmt)
     - [shfmt](https://github.com/mvdan/sh)
-    - [stylua](https://github.com/johnnymorganz/stylua)
     - [emacs](https://www.gnu.org/software/emacs/)
 
 ## References

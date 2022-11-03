@@ -107,21 +107,6 @@ function M.config()
           }
         end,
       },
-      lua = {
-        function()
-          return {
-            exe = "stylua",
-            args = {
-              "--stdin-filepath "
-                .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-              "--search-parent-directories",
-              "-",
-            },
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
       markdown = {
         function()
           return {
