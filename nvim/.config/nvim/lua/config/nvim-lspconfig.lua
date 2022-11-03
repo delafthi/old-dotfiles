@@ -281,9 +281,8 @@ function M.config()
         filetypes = { "vhdl" },
         root_dir = function(fname)
           return util.root_pattern("vhdl_ls.toml")(fname)
-            or util.find_git_ancestor(fname)
+              or util.find_git_ancestor(fname)
         end,
-        settings = {},
         docs = {
           description = [[
 https://github.com/VHDL-LS/rust_hdl
@@ -301,12 +300,12 @@ A collection of HDL related tools
     capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
+  -- c-language-server moved to clangd_extensions
   -- cmake-language server
   lspconfig.cmake.setup({
     capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
   })
-  -- c-language-server moved to clangd_extensions
   -- dockerfile-language-server
   lspconfig.dockerls.setup({
     capabilities = M.get_capabilities(),
