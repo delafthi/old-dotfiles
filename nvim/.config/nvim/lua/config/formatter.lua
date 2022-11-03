@@ -74,15 +74,6 @@ function M.config()
           }
         end,
       },
-      haskell = {
-        function()
-          return {
-            exe = "hindent",
-            stdin = true,
-            cwd = vim.fn.expand("%:p:h"),
-          }
-        end,
-      },
       html = {
         function()
           return {

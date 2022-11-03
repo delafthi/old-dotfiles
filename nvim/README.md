@@ -34,7 +34,6 @@ encourage new applications and contributions.
     - [black](https://github.com/psf/black)
     - [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
     - [cmake-format](https://github.com/cheshirekow/cmake_format)
-    - [hindent](https://hackage.haskell.org/package/hindent)
     - [prettier](https://prettier.io/)
     - [rustfmt](https://github.com/rust-lang/rustfmt)
     - [shfmt](https://github.com/mvdan/sh)
