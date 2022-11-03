@@ -5,9 +5,8 @@ local fn = vim.fn -- to execute vim functions
 local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  if
-    fn.input("Packer not installed! Download and install packer.nvim? [Y/n] ")
-    == "n"
+  if fn.input("Packer not installed! Download and install packer.nvim? [Y/n] ")
+      == "n"
   then
     return
   end
@@ -53,14 +52,7 @@ require("packer").startup({
         require("config.nordic").config()
       end,
     })
-    -- use({
-    --   "delafthi/nord-nvim",
-    --   opt = false,
-    --   config = function()
-    --     require("config.nord-nvim").config()
-    --   end,
-    -- })
-    -- Startup
+    -- Lua module load cache
     use({ "lewis6991/impatient.nvim", opt = false })
     -- Key binding documentation and display
     use({
