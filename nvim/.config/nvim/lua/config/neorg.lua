@@ -159,7 +159,7 @@ function M.config()
           autochdir = false,
           index = "index.norg",
           last_workspace = vim.fn.stdpath("cache")
-            .. "/neorg_last_workspace.txt",
+              .. "/neorg_last_workspace.txt",
         },
       },
     },

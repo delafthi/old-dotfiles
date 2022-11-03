@@ -312,11 +312,6 @@ A collection of HDL related tools
   lspconfig.sumneko_lua.setup({
     capabilities = M.capabilities,
     on_attach = M.on_attach,
-    cmd = {
-      "/usr/bin/lua-language-server",
-      "-E",
-      "/usr/share/lua-language-server/main.lua",
-    },
     settings = {
       Lua = {
         runtime = {
@@ -329,7 +324,6 @@ A collection of HDL related tools
           },
         },
         diagnostics = {
-          enable = true,
           -- Get the language server to recognize the vim and awesome globals
           globals = { "vim" },
         },

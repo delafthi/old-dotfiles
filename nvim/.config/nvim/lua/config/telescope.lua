@@ -21,10 +21,7 @@ function M.config()
       },
       prompt_prefix = " ",
       selection_caret = " ",
-      entry_prefix = "  ",
       multi_icon = "│",
-      initial_mode = "insert",
-      selection_strategy = "reset",
       sorting_strategy = "ascending",
       layout_strategy = "flex",
       layout_config = {
@@ -35,23 +32,9 @@ function M.config()
         horizontal = { mirror = false, preview_width = 0.6 },
         vertical = { mirror = true },
       },
-      file_sorter = require("telescope.sorters").get_fuzzy_file,
       file_ignore_patterns = { "%.git", "node_modules", "%.cache" },
-      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-      winblend = 0,
-      border = {},
-      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-      color_devicons = true,
-      use_less = true,
-      path_display = {
-        shorten = 3,
-      },
+      path_display = { shorten = 3 },
       set_env = { ["COLORTERM"] = "truecolor" },
-      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-      -- Developer configurations: Not meant for general override
-      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     },
     extensions = {
       file_browser = {
@@ -60,12 +43,6 @@ function M.config()
             ["<C-c>"] = telescope.extensions.file_browser.actions.create,
           },
         },
-      },
-      fzf = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = "smart_case",
       },
       project = {
         base_dirs = {

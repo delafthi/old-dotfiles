@@ -8,6 +8,7 @@ function M.config()
   vim.cmd("highlight Statusline guibg=" .. c.dark_black)
   vim.cmd("highlight StatuslineNC guibg=" .. c.dark_black)
 
+  -- Call the setup function
   require("feline").setup({
     components = {
       active = {
@@ -18,7 +19,7 @@ function M.config()
             hl = function()
               return {
                 name = require("feline.providers.vi_mode").get_mode_highlight_name()
-                  .. "LeftCap",
+                    .. "LeftCap",
                 fg = require("feline.providers.vi_mode").get_mode_color(),
                 bg = "bg",
                 style = "bold",
@@ -42,7 +43,7 @@ function M.config()
             hl = function()
               return {
                 name = require("feline.providers.vi_mode").get_mode_highlight_name()
-                  .. "RightCap",
+                    .. "RightCap",
                 fg = require("feline.providers.vi_mode").get_mode_color(),
                 bg = "dark_grey",
                 style = "bold",
@@ -311,7 +312,7 @@ function M.config()
       orange = c.orange,
       yellow = c.yellow,
       green = c.green,
-      magenta = c.purble,
+      magenta = c.purple,
       violet = c.purple,
     },
     force_inactive = {

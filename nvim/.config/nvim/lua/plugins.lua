@@ -139,8 +139,8 @@ require("packer").startup({
     })
     use({
       "folke/todo-comments.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
-      wants = "nvim-web-devicons",
+      requires = { "nordic.nvim", "kyazdani42/nvim-web-devicons" },
+      wants = { "nordic.nvim", "nvim-web-devicons", },
       cmd = { "TodoTrouble", "TodoTelescope" },
       event = "BufReadPost",
       config = function()

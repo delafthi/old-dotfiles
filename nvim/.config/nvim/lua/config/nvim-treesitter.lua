@@ -68,14 +68,14 @@ function M.config()
           ["<C-g>pC"] = "@class.outer",
         },
       },
-      -- lsp_interop = {
-      --   enable = true,
-      --   border = "none",
-      --   peek_definition_code = {
-      --     ["<C-g>f"] = "@function.outer",
-      --     ["<C-g>c"] = "@class.outer",
-      --   },
-      -- },
+      lsp_interop = {
+        enable = true,
+        border = "none",
+        peek_definition_code = {
+          ["<C-g>f"] = "@function.outer",
+          ["<C-g>c"] = "@class.outer",
+        },
+      },
     },
     rainbow = {
       enable = true,

@@ -1,8 +1,8 @@
 local M = {}
 
 function M.config()
+  -- Call the setup function
   require("mdeval").setup({
-    -- Don't ask before executing code blocks
     require_confirmation = true,
     -- Change code blocks evaluation options.
     eval_options = {
@@ -13,10 +13,11 @@ function M.config()
 #include <iostream>
 #include <vector>
 using namespace std;
-      ]],
+      ]] ,
       },
     },
   })
+
   vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.norg", "*.md", "*.rmd" },
     callback = function()

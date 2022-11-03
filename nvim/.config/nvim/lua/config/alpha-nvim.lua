@@ -15,7 +15,7 @@ function M.config()
 
     if keybind then
       keybind_opts = keybind_opts
-        or { noremap = true, silent = true, nowait = true }
+          or { noremap = true, silent = true, nowait = true }
       opts.keymap = { "n", sc_, keybind, keybind_opts }
     end
 
