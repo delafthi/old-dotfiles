@@ -7,21 +7,21 @@ return {
   automatically_reload_config = false,
   check_for_updates = false,
   colors = {
-    foreground = "#e5e9f0",
+    foreground = "#d8dee9",
     background = "#2e3440",
 
-    cursor_bg = "#eceff4",
     cursor_fg = "#2e3440",
-    cursor_border = "#eceff4",
+    cursor_bg = "#d8dee9",
+    cursor_border = "#d8dee9",
     compose_cursor = "#3b4252",
 
-    selection_bg = "#ebcb8b",
-    selection_fg = "#2e3440",
+    selection_fg = nil,
+    selection_bg = "#434c5e",
 
-    split = "#4c566a",
+    split = "#3b4252",
 
     ansi = {
-      "#3b4242",
+      "#3b4252",
       "#bf616a",
       "#a3be8c",
       "#ebcb8b",
@@ -41,15 +41,15 @@ return {
       "#eceff4",
     },
 
+    copy_mode_active_highlight_fg = { Color = "#d8dee9" },
     copy_mode_active_highlight_bg = { Color = "#81a1c1" },
-    copy_mode_active_highlight_fg = { Color = "#2e3440" },
-    copy_mode_inactive_highlight_bg = { Color = "#88c0d0" },
     copy_mode_inactive_highlight_fg = { Color = "#2e3440" },
+    copy_mode_inactive_highlight_bg = { Color = "#88c0d0" },
 
-    quick_select_label_bg = { Color = "#81a1c1" },
     quick_select_label_fg = { Color = "#2e3440" },
-    quick_select_match_bg = { Color = "#3b4252" },
+    quick_select_label_bg = { Color = "#81a1c1" },
     quick_select_match_fg = { Color = "#d8dee9" },
+    quick_select_match_bg = { Color = "#434c5e" },
   },
   cursor_blink_rate = 0,
   debug_key_events = false,
