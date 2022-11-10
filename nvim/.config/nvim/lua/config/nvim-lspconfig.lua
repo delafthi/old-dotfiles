@@ -422,15 +422,6 @@ A collection of HDL related tools
     on_attach = M.on_attach,
     settings = {
       Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          path = {
-            "lua/?.lua",
-            "lua/?/init.lua",
-          },
-        },
         diagnostics = {
           -- Get the language server to recognize the vim and awesome globals
           globals = { "vim" },
@@ -442,11 +433,23 @@ A collection of HDL related tools
             indent_size = tostring(vim.opt.shiftwidth:get()),
           },
         },
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most
+          -- likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+          -- Setup your lua path
+          path = {
+            "lua/?.lua",
+            "lua/?/init.lua",
+          },
+        },
+        telemetry = { enable = false },
         workspace = {
+          -- Disable prompt to generate a .luarc.json file
+          checkThirdParty = false,
           -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
         },
-        telemetry = { enable = false },
       },
     },
   })
