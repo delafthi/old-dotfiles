@@ -396,11 +396,11 @@ A collection of HDL related tools
     capabilities = M.get_capabilities(),
     on_attach = M.on_attach,
     settings = {
-      configurationSources = { "flake8" },
-      plugins = {
-        autopep8 = { enabled = false },
-        flake8 = { enabled = true },
-        pydocstyle = { enabled = true },
+      pylsp = {
+        plugins = {
+          autopep8 = { enabled = false },
+          pydocstyle = { enabled = true },
+        },
       },
     },
   })

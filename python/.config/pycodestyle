@@ -1,0 +1,8 @@
+[pycodestyle]
+count = False
+exclude = .git,__pycache__
+ignore = E226,E302,E71
+max-line-length = 80
+statistics = True
+
+# vim:ft=toml
