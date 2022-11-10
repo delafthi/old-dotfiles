@@ -25,6 +25,7 @@ encourage new applications and contributions.
       - [python-mccabe](https://github.com/PYCQA/mccabe)
       - [python-pycodestyle](https://github.com/PYCQA/pycodestyle)
       - [yapf](https://github.com/google/yapf)
+        - [python-whatthepatch](https://github.com/cscorley/whatthepatch)
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
