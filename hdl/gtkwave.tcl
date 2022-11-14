@@ -4,7 +4,14 @@ set signals {
   {{inputs} {dut(_\\w+|\\d+|).\\w+_i(\\\[0\\\]|$)}}
   {{outputs} {dut(_\\w+|\\d+|).\\w+_o(\\\[0\\\]|$)}}
   {{misc} {dut(_\\w+|\\d+|).\\w+_(\\w|)s(\\\[0\\\]|$)}}
-  {{testbench} {(_\\w+|\\d+|).\\w+_tb(\\\[0\\\]|$)}}}
+  {{testbench} {(_\\w+|\\d+|).\\w+_tb(\\\[0\\\]|$)}}
+  {{s_axi} {dut(_\\w+|\\d+|).s_axi_\\w+_i(\\\[0\\\]|$)}}
+  {{m_axi} {dut(_\\w+|\\d+|).m_axi_\\w+_i(\\\[0\\\]|$)}}
+  {{s_axi_str} {dut(_\\w+|\\d+|).s_axi_str_\\w+_i(\\\[0\\\]|$)}}
+  {{m_axi_str} {dut(_\\w+|\\d+|).m_axi_str_\\w+_i(\\\[0\\\]|$)}}
+  {{s_axi_lite} {dut(_\\w+|\\d+|).s_axi_lite_\\w+_i(\\\[0\\\]|$)}}
+  {{m_axi_lite} {dut(_\\w+|\\d+|).m_axi_lite_\\w+_i(\\\[0\\\]|$)}}
+}
 
 # Load all signals
 set nsigs [ gtkwave::getNumFacs ]
