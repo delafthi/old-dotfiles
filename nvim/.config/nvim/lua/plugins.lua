@@ -286,6 +286,8 @@ require("packer").startup({
     })
     use({
       "folke/twilight.nvim",
+      requires = "nordic.nvim",
+      wants = "nordic.nvim",
       cmd = "Twilight",
       module = "twilight",
       config = function()
