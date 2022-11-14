@@ -37,7 +37,7 @@ proc add_signals { groupName filter} {
 # Zoom all
 gtkwave::/Time/Zoom/Zoom_Full
 
-# Add signals thru filters
+# Add signals through filters
 foreach s $signals {
     add_signals [lindex $s 0] [lindex $s 1]
 }
