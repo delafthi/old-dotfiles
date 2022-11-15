@@ -1,4 +1,4 @@
-:q#!/bin/bash
+#!/usr/bin/env bash
 
 function print_help()
 {

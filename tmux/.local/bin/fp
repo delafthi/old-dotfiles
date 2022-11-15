@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # save fzf to variables
 RESULT=$(find ${HOME}/projects -maxdepth 2 -type d |
