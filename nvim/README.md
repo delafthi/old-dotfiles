@@ -5,8 +5,6 @@ encourage new applications and contributions.
 
 ## Dependencies
 
-- I use the nightly version of neovim. However, currently I think the version
-  0.5 will also do fine.
 - All dependencies and plugins will be installed automatically except tools
   called from within neovim. Such tools are:
   - [fd](https://github.com/sharkdp/fd)
@@ -30,7 +28,6 @@ encourage new applications and contributions.
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - Code formatters
-    - [emacs](https://www.gnu.org/software/emacs/)
     - [prettier](https://prettier.io/)
     - [shfmt](https://github.com/mvdan/sh)
 
