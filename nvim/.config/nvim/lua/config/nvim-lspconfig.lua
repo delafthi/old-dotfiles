@@ -126,7 +126,7 @@ function M.on_attach(client, bufnr)
         b = {
           name = "+buffer",
           f = {
-            lsp.buf.range_formattting,
+            lsp.buf.format,
             "Format the selection",
             mode = "v",
             buffer = bufnr,
