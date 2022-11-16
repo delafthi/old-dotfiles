@@ -10,6 +10,7 @@ encourage new applications and contributions.
   - [fd](https://github.com/sharkdp/fd)
   - [github-cli](https://cli.github.com/)
   - [ripgrep](https://github.com/BurntSushi/ripgrep)
+  - [fennel](https://fennel-lang.org/)
   - LSP servers:
     - [bashls](https://github.com/bash-lsp/bash-language-server)
       - [shellcheck](https://github.com/koalaman/shellcheck)
