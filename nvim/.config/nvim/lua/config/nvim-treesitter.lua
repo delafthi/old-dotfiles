@@ -52,20 +52,20 @@ function M.config()
         enable = true,
         set_jumps = false, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["<C-g>nf"] = "@function.outer",
-          ["<C-g>nc"] = "@class.outer",
+          ["]m"] = { query = "@function.outer", desc = "Next function start" },
+          ["]]"] = { query = "@class.outer", desc = "Next class start" },
         },
         goto_next_end = {
-          ["<C-g>nF"] = "@function.outer",
-          ["<C-g>nC"] = "@class.outer",
+          ["]M"] = { query = "@function.outer", desc = "Next function end" },
+          ["]["] = { query = "@class.outer", desc = "Next class end" },
         },
         goto_previous_start = {
-          ["<C-g>pf"] = "@function.outer",
-          ["<C-g>pc"] = "@class.outer",
+          ["[m"] = { query = "@function.outer", desc = "Previous function start" },
+          ["[["] = { query = "@class.outer", desc = "Previous class start" },
         },
         goto_previous_end = {
-          ["<C-g>pF"] = "@function.outer",
-          ["<C-g>pC"] = "@class.outer",
+          ["[M"] = { query = "@function.outer", desc = "Previous function end" },
+          ["[]"] = { query = "@class.outer", desc = "Previous class end" },
         },
       },
       lsp_interop = {

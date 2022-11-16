@@ -167,51 +167,6 @@ wk.register({
   ["<C-l>"] = { "Activate right window" },
 })
 
--- <C-g>
-wk.register({
-  ["<C-g>"] = {
-    name = "+goto/get",
-    n = {
-      name = "+next",
-      c = {
-        "Go to the beginning of the next class",
-      }, -- Defined in nvim-treesitter.lua
-      C = {
-        "Go to the end of the next class ",
-      }, -- Defined in nvim-treesitter.lua
-      f = {
-        "Go to the beginning of the next function",
-      }, -- Defined in nvim-treesitter.lua
-      F = {
-        "Go to the end of the next function",
-      }, -- Defined in nvim-treesitter.lua
-      t = {
-        "<Cmd>tn<Cr>",
-        "Go to the next matching tag",
-      },
-    },
-    p = {
-      name = "+previous",
-      c = {
-        "Go to the beginning of the previous class",
-      }, -- Defined in nvim-treesitter.lua
-      C = {
-        "Go to the end of the previous class ",
-      }, -- Defined in nvim-treesitter.lua
-      f = {
-        "Go to the beginning of the previous function",
-      }, -- Defined in nvim-treesitter.lua
-      F = {
-        "Go to the end of the previous function",
-      }, -- Defined in nvim-treesitter.lua
-      t = {
-        "<Cmd>tN<Cr>",
-        "Go to the previous matching tag",
-      },
-    },
-  },
-})
-
 -- C-s
 wk.register({
   ["<C-s>"] = {

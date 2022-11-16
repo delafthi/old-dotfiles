@@ -24,24 +24,24 @@ function M.on_attach(client, bufnr)
   local opts = { silent = true, buffer = bufnr }
   -- Define keybindings
   wk.register({
-    ["<C-g>"] = {
-      name = "+goto/get",
-      n = {
-        name = "+next",
+    ["]"] = {
+      name = "+next",
         d = {
           diagnostic.goto_next,
-          "Go to next diagnostic",
+          "Next diagnostic",
           buffer = bufnr,
         },
-      },
-      p = {
-        name = "+previous",
+  },
+    ["["] = {
+      name = "+previous",
         d = {
           diagnostic.goto_prev,
-          "Go to previous diagnostic",
+          "Previous diagnostic",
           buffer = bufnr,
         },
-      },
+    },
+    ["<C-g>"] = {
+      name = "+goto/get",
       q = {
         diagnostic.setloclist,
         "Get local quickfixlist",
