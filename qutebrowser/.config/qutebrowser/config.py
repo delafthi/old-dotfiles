@@ -1630,13 +1630,14 @@ c.url.open_base_url = True
 # Type: Dict
 c.url.searchengines = {
     "DEFAULT": "https://searx.fmac.xyz/search?q={}",
-    "sx": "https://searx.fmac.xyz/search?q={}",
-    "ddg": "https://duckduckgo.com/?q={}",
     "aur": "https://aur.archlinux.org/packages/?O=0&K={}",
     "aw": "https://wiki.archlinux.org/index.php?search={}",
-    "wiki": "https://en.wikipedia.org/w/index.php?search={}",
+    "ddg": "https://duckduckgo.com/?q={}",
+    "gh": "https://github.com/search?q={}",
     "gs": "https://scholar.google.com/scholar?hl=de&as_sdt=0%2C5&q={}&btnG=",
+    "sx": "https://searx.fmac.xyz/search?q={}",
     "thes": "https://www.powerthesaurus.org/{}/synonyms",
+    "wiki": "https://en.wikipedia.org/w/index.php?search={}",
 }
 
 # Page(s) to open at the start.
