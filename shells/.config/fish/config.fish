@@ -185,7 +185,7 @@ set fish_function_path $fish_function_path $HOME/.config/fish/plugins/foreign-en
 # direnv
 if command -v direnv 1>/dev/null 2>&1
     direnv hook fish | source
-    direnv reload
+    direnv reload 2>/dev/null
 end
 
 # Guix (only executed if not in a guix system)
