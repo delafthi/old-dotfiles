@@ -70,7 +70,7 @@
          :diagnostics
           {:unusedLocalExclude ["_*"]}
          :format
-          {:enabled true
+          {:enable false
            :defaultConfig
             {:indent_style "space"
              :indent_size (tostring (vim.opt.shiftwidth:get))}
