@@ -28,9 +28,17 @@ encourage new applications and contributions.
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
-  - Code formatters
-    - [prettier](https://prettier.io/)
-    - [shfmt](https://github.com/mvdan/sh)
+  - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
+    - Linters
+      - [checkmake](https://github.com/mrtazz/checkmake)
+      - [commitlint](https://commitlint.js.org/#/)
+      - [editorconfig_checker](https://github.com/editorconfig-checker/editorconfig-checker)
+    - Formatters
+      - [deno](https://deno.land/)
+      - [fnlfmt](https://git.sr.ht/~technomancy/fnlfmt)
+      - [isort](https://github.com/PyCQA/isort)
+      - [prettier](https://git.sr.ht/~technomancy/fnlfmt)
+      - [shfmt](https://github.com/mvdan/sh)
 
 ## References
 
