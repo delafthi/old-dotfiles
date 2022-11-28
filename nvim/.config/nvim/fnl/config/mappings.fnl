@@ -105,10 +105,10 @@
     (util.set-keymap "Increase vertical window size"
       ["n" "i"] ["<M-l>"] "<Cmd>vertical resize -2<Cr>" opts)
     (util.set-keymap "Decrease horizontal window size"
-      ["t"] ["<M-h>"] "<C-\\><C-n><Cmd>vertical resize -2<Cr>i" opts)
+      ["t"] ["<M-h>"] "<C-\\><C-n><Cmd>vertical resize +2<Cr>i" opts)
     (util.set-keymap "Increase horizontal window size"
       ["t"] ["<M-j>"] "<C-\\><C-n><Cmd>resize +2<Cr>i" opts)
     (util.set-keymap "Decrease vertical window size"
       ["t"] ["<M-k>"] "<C-\\><C-n><Cmd>resize -2<Cr>i" opts)
     (util.set-keymap "Increase vertical window size"
-      ["t"] ["<M-l>"] "<C-\\><C-n><Cmd>vertical resize +2<Cr>i" opts)))
+      ["t"] ["<M-l>"] "<C-\\><C-n><Cmd>vertical resize -2<Cr>i" opts)))
