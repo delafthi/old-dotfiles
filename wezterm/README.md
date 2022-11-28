@@ -7,6 +7,7 @@ written by @wez and implemented in Rust
 
 - [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
   [Victor Mono](https://github.com/rubjo/victor-mono)
+- [fennel](https://fennel-lang.org/)
 
 ## References
 
