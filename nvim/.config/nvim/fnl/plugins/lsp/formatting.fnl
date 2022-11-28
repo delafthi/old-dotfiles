@@ -4,19 +4,19 @@
              : util}})
 
 ;; Disable autoformatting by default
-(var autoformat? false)
+(def- state {:autoformat? false})
 
 (defn toggle []
   "Toggle autoformatting"
-  (set autoformat? (not autoformat?))
-  (if autoformat?
+  (tset state :autoformat? (not (. state :autoformat?)))
+  (if (. state :autoformat?)
       (util.info "Autoformatting enabled" "Formatting")
       (util.warn "Autoformatting disabled" "Formatting")))
 
 
 (defn autoformat []
   "Autoformat a buffer"
-  (when autoformat?
+  (when (. state :autoformat?)
     (if vim.lsp.buf.format
       (vim.lsp.buf.format)
       (vim.lsp.buf.formatting_sync))))
