@@ -73,18 +73,8 @@
           {:enable false
            :defaultConfig
             {:indent_style "space"
-             :indent_size (tostring (vim.opt.shiftwidth:get))}
-             :contituation_indent_size (tostring (vim.opt.shiftwidth:get))}}
-         :runtime
-          ;; Tell the language server which version of Lua you're using (most
-          ; likely LuaJIT in the case of Neovim)
-          {:version "LuaJIT"
-           ;; Setup your lua path
-           :path ["lua/?.lua" "lua/?/init.lua"]}
-         :telemetry {:enable false}
-         :workspace
-          {:checkThirdParty false ;; Disable prompt to generate a .luarc.json file
-           :library (nvim.get_runtime_file "" true)}}} ;; Make the server aware of Neovim runtime files
+             :indent_size (tostring (vim.opt.shiftwidth:get))
+             :continuation_indent_size (tostring (vim.opt.shiftwidth:get))}}}}}
    :texlab {}
    :rust_hdl {}
    :vimls {}})
