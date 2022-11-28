@@ -79,6 +79,9 @@
      :cmd "Conjure"
      :module "conjure"
      :setup (fn [] ((. (require "plugins.conjure") :setup)))}
+   :gpanders/editorconfig.nvim
+    {:event "BufReadPost"
+     :module "editorconfig"}
    :feline-nvim/feline.nvim
     {:requires ["nordic.nvim"
                 "kyazdani42/nvim-web-devicons"]
