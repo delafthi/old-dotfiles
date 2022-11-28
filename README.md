@@ -35,7 +35,7 @@ stow <package_name>
 However, some configurations may not run immediately. Make sure you have the
 dependencies installed.
 
-## Managment
+## Management
 
 This dotfile repository is managed with [GNU stow](https://www.gnu.org/software/stow/).
 Stow is a symlink manager which takes files or folders and links them to a
@@ -49,10 +49,10 @@ stow <folder_name>
 stow bash
 ```
 
-Make sure the file does not yet exist in your file system. In such cases stow
+Make sure the files do not yet exist in your file system. In such cases stow
 will throw an error.
 
 ## Configurations
 
-An individual description to each configuration can be found inside of the
+An individual description to each configuration can be found inside the
 corresponding folder.
