@@ -3,11 +3,11 @@
              telescope-builtin telescope.builtin
              : util}})
 
-(defn register [client buffer]
+(defn register [client bufnr]
   "Register keymaps"
   ;; Register buffer-local keybindings
   (let [opts {:silent true
-              :buffer buffer}]
+              :buffer bufnr}]
     ;; Workspace lsp features
     (util.set-keymap "Add worksapace folders"
       ["n"] ["<Leader>" "w" "a"] (fn [] (vim.lsp.buf.add_workspace_folders)) opts)

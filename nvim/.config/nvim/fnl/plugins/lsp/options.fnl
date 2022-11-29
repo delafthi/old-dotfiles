@@ -5,20 +5,19 @@
              lsp-mappings plugins.lsp.mappings
              nvim aniseed.nvim}})
 
-(defn on-attach [client buffer]
+(defn on-attach [client bufnr]
   "Callback when the language server is attached to the buffer"
-  (lsp-formatting.setup client buffer)
-  (lsp-mappings.register client buffer)
+  (lsp-formatting.setup client bufnr)
+  (lsp-mappings.register client bufnr)
   ;; Reference highlighting given the server has the capability
   (when client.server_capabilities.documentHighlightProvider
     (let [group (nvim.create_augroup "LspDocumentHighlight" {})]
       (nvim.create_autocmd "CursorHold"
-        {:pattern "<buffer>"
-          :callback (fn [] (vim.lsp.buf.document_highlight))
-          :group group})
+        {:pattern "<buffer>" :callback (fn [] (vim.lsp.buf.document_highlight))
+         :group group})
       (nvim.create_autocmd "CursorMoved"
         {:pattern "<buffer>"
-          :callback (fn [] (vim.lsp.buf.clear_references))
-          :group group}))))
+         :callback (fn [] (vim.lsp.buf.clear_references))
+         :group group}))))
 
 (def capabilities (lsp-cmp.default_capabilities))

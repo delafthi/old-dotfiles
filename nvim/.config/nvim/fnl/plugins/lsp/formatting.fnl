@@ -21,9 +21,9 @@
       (vim.lsp.buf.format)
       (vim.lsp.buf.formatting_sync))))
 
-(defn setup [client buf]
+(defn setup [client bufnr]
   "Setup nvim formatting configuration"
-  (let [ft (nvim.buf_get_option buf "filetype")
+  (let [ft (nvim.buf_get_option bufnr "filetype")
         null-ls? (= client.name "null-ls")]
     (set client.server_capabilities.documentFormattingProvider
       (if (null-ls.has-formatter ft)
