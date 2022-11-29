@@ -30,8 +30,9 @@
           null-ls?
           (not null-ls?))))
 
-  ;; Create the autocommand to format the buffer on save
-  (nvim.create_autocmd "BufWritePre"
-    {:pattern "<buffer>"
-     :callback (fn [] (autoformat))
-     :group (nvim.create_augroup "LspFormat" {})}))
+  (when client.server_capabilities.documentFormattingProvider
+    ;; Create the autocommand to format the buffer on save
+    (nvim.create_autocmd "BufWritePre"
+      {:pattern "<buffer>"
+       :callback (fn [] (autoformat))
+       :group (nvim.create_augroup "LspFormat" {})})))
