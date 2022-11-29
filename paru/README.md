@@ -6,6 +6,7 @@ minimal interaction.
 ## Dependencies
 
 - [bat](https://github.com/sharkdp/bat)
+- [ranger](https://github.com/ranger/ranger)
 
 ## References
 
