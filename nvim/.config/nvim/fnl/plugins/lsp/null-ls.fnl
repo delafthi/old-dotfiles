@@ -29,5 +29,6 @@
        null-ls.builtins.formatting.isort
        null-ls.builtins.formatting.prettier
        null-ls.builtins.formatting.shfmt
-       null-ls.builtins.formatting.stylua]
+       null-ls.builtins.formatting.stylua
+       null-ls.builtins.formatting.yapf]
      :on_attach lsp-options.on-attach}))
