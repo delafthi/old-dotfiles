@@ -17,7 +17,10 @@
       [;; Diagnostics
        null-ls.builtins.diagnostics.checkmake
        null-ls.builtins.diagnostics.commitlint
-       null-ls.builtins.diagnostics.editorconfig_checker
+       (null-ls.builtins.diagnostics.editorconfig_checker.with
+         {:args ["-disable-indent-size"
+                 "-no-color"
+                 "$FILENAME"]})
        null-ls.builtins.diagnostics.fish
        ;; Formatters
        null-ls.builtins.formatting.deno_fmt

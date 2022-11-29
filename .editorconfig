@@ -10,6 +10,3 @@ indent_size = 2
 
 [*.py]
 indent_size = 4
-
-[*.fnl]
-indent_size = 1
