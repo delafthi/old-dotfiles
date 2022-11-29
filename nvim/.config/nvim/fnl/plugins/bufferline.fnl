@@ -1,6 +1,16 @@
 (module plugins.bufferline
   {autoload {: bufferline
+             lsp-diagnostics plugins.lsp.diagnostics
              : util}})
+
+(def- severities
+  ["error" "warning"])
+
+(def- signs
+  {:error lsp-diagnostics.signs.Error
+   :warning lsp-diagnostics.signs.Warn
+   :info lsp-diagnostics.signs.Info
+   :hint lsp-diagnostics.signs.Hint})
 
 (defn setup []
   "Setup nvim for bufferline.nvim"
@@ -26,7 +36,7 @@
        :diagnostics_indicator
         (fn [_ _ diag]
           (let [s {}]
-            (each [_ serevrity (ipairs severities)]
+            (each [_ severity (ipairs severities)]
               (when (. diag severity)
                 (table.insert s (.. (. signs severity) (. diag severity)))))
             (table.concat s " ")))

@@ -1,6 +1,6 @@
 (module plugins.lsp.diagnostics)
 
-(def- signs
+(def signs
   {:Error " "
    :Warn " "
    :Hint " "
