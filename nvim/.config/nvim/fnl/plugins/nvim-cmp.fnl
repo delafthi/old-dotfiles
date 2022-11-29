@@ -10,13 +10,11 @@
 (defn- has-words-before []
   "Check if there are words before the cursor"
   (let [(line col) (unpack (nvim.win_get_cursor 0))]
-    (a.nil? (string.match
-            (string.sub
-              (and (~= col 0)
-                   (first (nvim.buf_get_lines 0 (- line 1) line true)))
-              col
-              col)
-            "%s"))))
+    (and (~= col 0))
+         (a.nil? (string.match
+                   (string.sub
+                     (. (nvim.buf_get_lines 0 (- line 1) line true) 1) col col)
+                   "%s"))))
 
 (def- shorts
   {:buffer "[Bufr]"
