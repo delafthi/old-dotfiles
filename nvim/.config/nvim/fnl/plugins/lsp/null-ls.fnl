@@ -1,12 +1,17 @@
 (module plugins.lsp.null-ls
-  {autoload {lsp-options plugins.lsp.options
+  {autoload {nls-generators null-ls.generators
+             nls-helpers null-ls.helpers
+             lsp-options plugins.lsp.options
+             nls-methods null-ls.methods
              : null-ls
-             methods null-ls.methods
-             generators null-ls.generators}})
+             nls-utils null-ls.utils}})
+
+(def- FORMATTING nls-methods.internal.FORMATTING)
+
 
 (defn has-formatter [ft]
   "Check whether the null-ls supports a formatter for `ft`"
-  (> (length (generators.get_available ft methods.internal.FORMATTING)) 0))
+  (> (length (nls-generators.get_available ft FORMATTING)) 0))
 
 
 (defn config []

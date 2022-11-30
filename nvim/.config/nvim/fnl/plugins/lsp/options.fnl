@@ -1,6 +1,5 @@
 (module plugins.lsp.options
-  {autoload {formatting plugins.lsp.formatting
-             lsp-cmp cmp_nvim_lsp
+  {autoload {lsp-cmp cmp_nvim_lsp
              lsp-formatting plugins.lsp.formatting
              lsp-mappings plugins.lsp.mappings
              nvim aniseed.nvim}})
