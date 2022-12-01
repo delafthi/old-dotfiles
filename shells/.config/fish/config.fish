@@ -8,7 +8,7 @@
 # Only export variables if we use systemd, (in Guix the environment is exported
 # with a service)
 if test (ps -p 1 -o comm=) = systemd
-    set -gx PATH "$HOME/.local/bin:$PATH"
+    set -gx PATH "$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
     set -gx GUIX_PROFILE "$HOME/.config/guix/current"
     set -e SSH_AGENT_PID
     set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
