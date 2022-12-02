@@ -1,5 +1,6 @@
 (module plugins.nvim-autopairs
-  {autoload {autopairs nvim-autopairs
+  {autoload {a aniseed.core
+             autopairs nvim-autopairs
              ft config.filetypes}})
 
 (defn config []
@@ -8,4 +9,5 @@
   (autopairs.setup {:check_ts true})
 
   ;; Add custom rules
-  (tset (autopairs.get_rule "'") 1 :not_filetypes ft.lisps))
+  (a.assoc-in (autopairs.get_rule "'") [1 :not_filetypes] ft.lisps)
+  (a.assoc-in (autopairs.get_rule "`") [1 :not_filetypes] ft.lisps))
