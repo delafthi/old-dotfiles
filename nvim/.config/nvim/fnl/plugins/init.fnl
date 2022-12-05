@@ -35,15 +35,18 @@
    ;; ~~~~~~~~~~~~~
 
    ;; Nvim config with fennel
-    :Olical/aniseed
-      {:opt false}
+   :Olical/aniseed
+    {:opt false}
    ;; Lua module load cache
-    :lewis6991/impatient.nvim
-      {:opt false}
+   :lewis6991/impatient.nvim
+    {:opt false}
    ;; Theme
    :andersevenrud/nordic.nvim
-      {:opt false
-       :config (fn [] ((. (require "plugins.nordic") :config)))}
+    {:opt false
+      :config (fn [] ((. (require "plugins.nordic") :config)))}
+   ;; Set directory local variables in fennel
+   :Olical/nvim-local-fennel
+    {:opt false}
 
    ;; Opt plugins
    ;; ~~~~~~~~~~~
@@ -204,7 +207,6 @@
      :module "dapui"
      :setup (fn [] ((. (require "plugins.nvim-dap-ui") :setup)))
      :config (fn [] ((. (require "plugins.nvim-dap-ui") :config)))}
-   :Olical/nvim-local-fennel {}
    :neovim/nvim-lspconfig
     {:requires ["nvim-lua/lsp-status.nvim"
                 "nvim-lua/lsp_extensions.nvim"
