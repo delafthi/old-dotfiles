@@ -1,4 +1,5 @@
 .config/nvim/lua
+.config/nvim/.lnvim.lua
 .config/nvim/plugin
 .config/nvim/spell
 .config/nvim/.netrwhist
