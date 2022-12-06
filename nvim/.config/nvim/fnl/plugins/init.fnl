@@ -48,6 +48,12 @@
    :Olical/nvim-local-fennel
     {:opt false}
 
+   ;; Additional filetypes
+   :HiPhish/guile.vim
+    {:opt false}
+   :hylang/vim-hy
+    {:opt false}
+
    ;; Opt plugins
    ;; ~~~~~~~~~~~
 
@@ -97,8 +103,6 @@
      :wants "plenary.nvim"
      :event "BufReadPost"
      :config (fn [] ((. (require "plugins.gitsigns") :config)))}
-   :HiPhish/guile.vim
-    {:ft "scheme"}
    :ThePrimeagen/harpoon
     {:requires "nvim-lua/plenary.nvim"
      :wants "plenary.nvim"
