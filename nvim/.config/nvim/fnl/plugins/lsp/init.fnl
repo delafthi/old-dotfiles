@@ -54,12 +54,6 @@
         {:plugins
           {:autopep8 {:enabled false}
            :pydocstyle {:enabled true}}}}}
-   :rls
-    {:settings
-      {:rust
-        {:unstable_features true
-         :build_on_save false
-         :all_features true}}}
    :sumneko_lua
     {:single_file_support true
      :settings

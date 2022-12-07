@@ -271,6 +271,15 @@
     {:requires "nordic.nvim"
      :ft "csv"
      :setup (fn [] ((. (require "plugins.rainbow-csv") :setup)))}
+   :simrat39/rust-tools.nvim
+    {:requires ["nvim-dap"
+                "nvim-lspconfig"
+                "nvim-lua/plenary.nvim"]
+     :wants ["nvim-dap"
+             "nvim-lspconfig"
+             "plenary.nvim"]
+     :ft "rust"
+     :config (fn [] ((. (require "plugins.lsp.rust-tools") :config)))}
    :godlygeek/tabular
     {:cmd "Tabularize"}
    :nvim-telescope/telescope.nvim ;; <-- keymaps not loading
