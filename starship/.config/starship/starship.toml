@@ -6,7 +6,10 @@ symbol = " "
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
-vicmd_symbol = "[<](bold green)"
+vimcmd_symbol = "[<](bold green)"
+vimcmd_replace_one_symbol = "[<](bold green)"
+vimcmd_replace_symbol = "[<](bold purple)"
+vimcmd_visual_symbol = "[<](bold blue)"
 
 [cmd_duration]
 disabled = false
