@@ -3,6 +3,7 @@
 (def lisps
   ["clojure"
    "fennel"
+   "hy"
    "lisp"
    "scheme"
    "scheme.guile"])
