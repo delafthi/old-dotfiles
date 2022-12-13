@@ -15,12 +15,15 @@
   (null-ls.setup
     {:on_attach lsp-options.on-attach
      :sources
-      [;; Diagnostics
+      [;; Code-actions
+       null-ls.builtins.code_actions.eslint
+       ;; Diagnostics
        null-ls.builtins.diagnostics.checkmake
        (null-ls.builtins.diagnostics.editorconfig_checker.with
          {:args ["-disable-indent-size"
                  "-no-color"
                  "$FILENAME"]})
+       null-ls.builtins.diagnostics.eslint
        null-ls.builtins.diagnostics.fish
        null-ls.builtins.diagnostics.selene
        ;; Formatters
