@@ -19,6 +19,7 @@ encourage new applications and contributions.
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
+      - [flake8](https://github.com/PyCQA/flake8)
       - [python-rope](https://github.com/python-rope/rope)
       - [python-pyflakes](https://github.com/PYCQA/pyflakes)
       - [python-mccabe](https://github.com/PYCQA/mccabe)

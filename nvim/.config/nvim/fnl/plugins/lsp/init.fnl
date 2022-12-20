@@ -53,7 +53,10 @@
       {:pylsp
         {:plugins
           {:autopep8 {:enabled false}
-           :pydocstyle {:enabled true}}}}}
+           :flake8 {:enabled false}
+           :pydocstyle {:enabled false}
+           :rope_autoimport {:enabled true}}
+          :configurationSources ["flake8"]}}}
    :sumneko_lua
     {:single_file_support true
      :settings
