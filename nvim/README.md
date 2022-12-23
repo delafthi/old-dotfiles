@@ -22,8 +22,6 @@ encourage new applications and contributions.
       - [flake8](https://github.com/PyCQA/flake8)
       - [python-mccabe](https://github.com/PYCQA/mccabe)
       - [python-pycodestyle](https://github.com/PYCQA/pycodestyle)
-      - [yapf](https://github.com/google/yapf)
-        - [python-whatthepatch](https://github.com/cscorley/whatthepatch)
       - [python-pyflakes](https://github.com/PYCQA/pyflakes)
       - [python-rope](https://github.com/python-rope/rope)
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
@@ -38,6 +36,7 @@ encourage new applications and contributions.
       - [eslint](https://github.com/eslint/eslint)
       - [selene](https://github.com/Kampfkarren/selene)
     - Formatters
+      - [python-black](https://github.com/psf/black)
       - [cbfmt](https://github.com/lukas-reineke/cbfmt)
       - [deno](https://deno.land/)
       - [fnlfmt](https://git.sr.ht/~technomancy/fnlfmt)
