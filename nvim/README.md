@@ -34,6 +34,7 @@ encourage new applications and contributions.
       - [checkmake](https://github.com/mrtazz/checkmake)
       - [editorconfig_checker](https://github.com/editorconfig-checker/editorconfig-checker)
       - [eslint](https://github.com/eslint/eslint)
+      - [mypy](https://github.com/python/mypy)
       - [selene](https://github.com/Kampfkarren/selene)
     - Formatters
       - [python-black](https://github.com/psf/black)

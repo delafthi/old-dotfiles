@@ -25,6 +25,7 @@
                  "$FILENAME"]})
        null-ls.builtins.diagnostics.eslint
        null-ls.builtins.diagnostics.fish
+       null-ls.builtins.diagnostics.mypy
        null-ls.builtins.diagnostics.selene
        ;; Formatters
        null-ls.builtins.formatting.black
