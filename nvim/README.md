@@ -20,26 +20,32 @@ encourage new applications and contributions.
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
       - [flake8](https://github.com/PyCQA/flake8)
-      - [python-rope](https://github.com/python-rope/rope)
-      - [python-pyflakes](https://github.com/PYCQA/pyflakes)
       - [python-mccabe](https://github.com/PYCQA/mccabe)
       - [python-pycodestyle](https://github.com/PYCQA/pycodestyle)
       - [yapf](https://github.com/google/yapf)
         - [python-whatthepatch](https://github.com/cscorley/whatthepatch)
+      - [python-pyflakes](https://github.com/PYCQA/pyflakes)
+      - [python-rope](https://github.com/python-rope/rope)
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
-    - Linters
+    - Code actions
+      - [eslint](https://github.com/eslint/eslint)
+    - Diagnostics
       - [checkmake](https://github.com/mrtazz/checkmake)
-      - [commitlint](https://commitlint.js.org/#/)
       - [editorconfig_checker](https://github.com/editorconfig-checker/editorconfig-checker)
+      - [eslint](https://github.com/eslint/eslint)
+      - [selene](https://github.com/Kampfkarren/selene)
     - Formatters
+      - [cbfmt](https://github.com/lukas-reineke/cbfmt)
       - [deno](https://deno.land/)
       - [fnlfmt](https://git.sr.ht/~technomancy/fnlfmt)
       - [isort](https://github.com/PyCQA/isort)
       - [prettier](https://git.sr.ht/~technomancy/fnlfmt)
       - [shfmt](https://github.com/mvdan/sh)
+      - [stylua](https://github.com/JohnnyMorganz/StyLua)
+      - [emacs](https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html)
 
 ## References
 
