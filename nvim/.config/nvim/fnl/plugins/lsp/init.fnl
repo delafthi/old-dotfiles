@@ -53,7 +53,7 @@
       {:pylsp
         {:plugins
           {:autopep8 {:enabled false}
-           :flake8 {:enabled false}
+           :flake8 {:enabled true}
            :pydocstyle {:enabled false}
            :rope_autoimport {:enabled true}}
           :configurationSources ["flake8"]}}}
