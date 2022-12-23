@@ -1,5 +1,6 @@
 (module plugins.lsp.null-ls
-  {autoload {nls-generators null-ls.generators
+  {autoload {a aniseed.core
+             nls-generators null-ls.generators
              lsp-options plugins.lsp.options
              : null-ls
              nls-utils null-ls.utils}})
@@ -25,7 +26,12 @@
                  "$FILENAME"]})
        null-ls.builtins.diagnostics.eslint
        null-ls.builtins.diagnostics.fish
-       null-ls.builtins.diagnostics.mypy
+       (null-ls.builtins.diagnostics.mypy.with
+         {:runtime_condition
+          (fn [params]
+            (if (a.nil? (string.match params.bufname "conjure%-log%-%d+%.py$"))
+                true
+                false))})
        null-ls.builtins.diagnostics.selene
        ;; Formatters
        null-ls.builtins.formatting.black
