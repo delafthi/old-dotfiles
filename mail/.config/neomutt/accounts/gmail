@@ -1,0 +1,26 @@
+# Gmail
+# ~~~~~~~~~~
+
+set real_name = "Thierry Delafontaine"
+set from = "delafontaineth@gmail.com"
+set sendmail = "msmtp -a delafontaineth@gmail.com"
+alias me Thierry Delafontaine <delafontaineth@gmail.com>
+set folder = "~/.mail/gmail"
+set header_cache = $cachedir/gmail/headers
+set message_cachedir = $cachedir/gmail/bodies
+set mbox_type = Maildir
+set spool_file = "+INBOX"
+set postponed = "+Drafts"
+set trash = "+Trash"
+set record = "+Sent"
+
+# Mailboxes
+named-mailboxes "== delafontaineth@gmail.com ==" "+INBOX"
+mailboxes "+All Mail"
+mailboxes "+Archive"
+mailboxes "+Drafts"
+mailboxes "+Sent"
+mailboxes "+Spam"
+mailboxes "+Trash"
+
+# vim:set ft=neomuttrc
