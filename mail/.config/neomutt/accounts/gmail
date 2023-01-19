@@ -6,13 +6,15 @@ set from = "delafontaineth@gmail.com"
 set sendmail = "msmtp -a delafontaineth@gmail.com"
 alias me Thierry Delafontaine <delafontaineth@gmail.com>
 set folder = "~/.mail/gmail"
-set header_cache = $cachedir/gmail/headers
-set message_cachedir = $cachedir/gmail/bodies
+set header_cache = ~/.cache/neomutt/gmail/headers
+set message_cachedir = ~/.cache/neomutt/gmail/bodies
 set mbox_type = Maildir
 set spool_file = "+INBOX"
 set postponed = "+Drafts"
 set trash = "+Trash"
 set record = "+Sent"
+set header_cache = ~/.cache/neomutt/gmail/headercache
+set message_cachedir = ~/.cache/neomutt/gmail/messagecache
 
 # Mailboxes
 named-mailboxes "== delafontaineth@gmail.com ==" "+INBOX"

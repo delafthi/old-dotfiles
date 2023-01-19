@@ -6,8 +6,8 @@ set from = "delafontaineth@pm.me"
 set sendmail = "msmtp -a delafontaineth@pm.me"
 alias me Thierry Delafontaine <delafontaineth@pm.me>
 set folder = "~/.mail/protonmail"
-set header_cache = $cachedir/protonmail/headers
-set message_cachedir = $cachedir/protonmail/bodies
+set header_cache = ~/.cache/neomutt/protonmail/headers
+set message_cachedir = ~/.cache/neomutt/protonmail/bodies
 set mbox_type = Maildir
 set spool_file = "+INBOX"
 set postponed = "+Drafts"
