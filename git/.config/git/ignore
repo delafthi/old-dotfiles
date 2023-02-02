@@ -1,7 +1,16 @@
 # Global ignored directories and files
+# C/C++
 .cache/
 compile_commands.json
-.envrc
 .gdb_history
+
+# direnv
+.envrc
+
+# Others
 mnt/
 ~*
+
+# Python
+.ropeproject/
+.mypy_cache/
