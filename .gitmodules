@@ -1,9 +1,0 @@
-[submodule "wm/.config/awesome/modules/awesome-battery_widget"]
-	path = wm/.config/awesome/modules/awesome-battery_widget
-	url = https://github.com/Aire-One/awesome-battery_widget
-[submodule "wm/.config/awesome/modules/color"]
-	path = wm/.config/awesome/modules/color
-	url = https://github.com/andOrlando/color/
-[submodule "wm/.config/awesome/modules/bling"]
-	path = wm/.config/awesome/modules/bling
-	url = https://github.com/BlingCorp/bling/
