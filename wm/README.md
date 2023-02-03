@@ -12,16 +12,17 @@ of i3's features, plus a few extras.
 
 ### Dependencies
 
-- [swaylock](https://github.com/swaywm/swaylock)
+- [swaylock-effects](https://github.com/mortie/swaylock-effects)
 - [swayidle](https://github.com/swaywm/swayidle)
 - [swaync](https://github.com/ErikReider/SwayNotificationCenter)
+- [swaysome](https://gitlab.com/hyask/swaysome)
+- [autotiling](https://github.com/nwg-piotr/autotiling)
 - [grimshot](https://github.com/swaywm/sway/tree/master/contrib)
-- [light](https://github.com/haikarainen/light)
-- [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
 - [clipman](https://github.com/yory8/clipman)
+- [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
+- [light](https://github.com/haikarainen/light)
 - [wob](https://github.com/francma/wob)
-- [kanshi](https://github.com/emersion/kanshi)
-- [rofi](https://github.com/davatorium/rofi)
+- [rofi-wayland](https://github.com/lbonn/rofi#wayland-support)
 - [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
   [Victor Mono](https://github.com/rubjo/victor-mono)
 - [waybar](https://github.com/Alexays/Waybar)

@@ -1,0 +1,147 @@
+/* Colors
+ * ~~~~~~ */
+
+@define-color dark-bg #242833;
+@define-color bg #2E3440;
+@define-color fg #D8DEE9;
+@define-color active #81A1C1;
+@define-color float #3B4252;
+@define-color comment #616E88;
+@define-color accent #B48EAD;
+@define-color error #BF616A;
+@define-color warning #EBCB8B;
+@define-color info #88C0D0;
+
+/* Keyframes
+ * ~~~~~~~~~ */
+
+@keyframes blink-warning {
+  70% {
+    color: @fg;
+  }
+  to {
+    color: @fg;
+    background-color: @warning;
+  }
+}
+
+@keyframes blink-critical {
+  70% {
+    color: @fg;
+  }
+  to {
+    color: @fg;
+    background-color: @error;
+  }
+}
+
+/* Base styles
+ * ~~~~~~~~~~~ */
+
+/* Reset all styles */
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  font-family: "VictorMono Nerd Font";
+}
+
+/* The whole bar */
+window#waybar {
+  background: @bg;
+  color: @fg;
+  font-size: 16px;
+}
+
+/* tooltips */
+tooltip {
+  background: @float;
+  color: @fg;
+  font-size: 16px;
+}
+
+/* Each module */
+#backlight,
+#battery,
+#bluetooth,
+#clock,
+#idle_inhibitor,
+#network,
+#pulseaudio,
+#mode #workspaces #tray {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Module styles
+ * ~~~~~~~~~~~~~ */
+
+#battery {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.warning {
+  color: @warning;
+}
+
+#battery.critical {
+  color: @error;
+}
+
+#battery.warning.discharging {
+  animation-name: blink-warning;
+  animation-duration: 3s;
+}
+
+#battery.critical.discharging {
+  animation-name: blink-critical;
+  animation-duration: 2s;
+}
+
+#bluetooth.disabled {
+  color: @warning;
+}
+
+#clock {
+  font-weight: bold;
+}
+
+#mode {
+  color: @bg;
+  background: @accent;
+}
+
+#network.disconnected {
+  color: @warning;
+}
+
+#pulseaudio.muted {
+  color: @warning;
+}
+
+#workspaces button {
+  color: @comment;
+  padding: 4px;
+  font-size: 16;
+}
+
+#workspaces button.visible {
+  color: @active;
+  font-size: 18px;
+}
+
+#workspaces button.focused {
+  color: @active;
+  padding: 6px;
+  font-size: 20px;
+}
+
+#workspaces button.urgent {
+  color: @error;
+}
+
+/* vim: ft=less */
