@@ -1,6 +1,0 @@
-require("config.autostart")
-require("config.desktop")
-require("config.keys")
-require("config.layout")
-require("config.ruled")
-require("config.tags")
