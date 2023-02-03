@@ -1,0 +1,28 @@
+[options]
+background = 2e3440
+overlay_font = VictorMono Nerd Font:16
+overlay_text_color = d8dee9
+overlay_background_color = 3b4252
+suppress_default_binds = true
+
+[binds]
+q = quit
+<Escape> = quit
+h = pan -50 0
+l = pan 50 0
+j = pan 0 50
+k = pan 0 -50
+n = next
+p = prev
+gg = goto 1
+<Shift+G> = goto -1
+<Shift+J> = zoom -1
+<Shift+K> = zoom 1
+r = rotate by 90
+<Shift+O> = open
+x = close
+o = overlay
+zz = center
+0 = reset
+<space> = toggle_playing
+<Shift+S> = scaling
