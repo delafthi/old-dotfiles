@@ -1,0 +1,121 @@
+{
+  "layer": "top",
+  "height": 30,
+  "mode": "dock",
+
+  "modules-left": [
+    "clock"
+  ],
+  "modules-center": [
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "sway/mode",
+    "idle_inhibitor",
+    "backlight",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "tray",
+    "battery"
+  ],
+
+  // Modules
+  // ~~~~~~~
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", ""],
+    "on-scroll-up": "swaymsg exec \\$brightness_up",
+    "on-scroll-down": "swaymsg exec \\$brightness_down"
+  },
+
+  "battery": {
+    "interval": 30,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": " ",
+    "format-icons": ["", "", "", "", "", ""]
+  },
+
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "",
+    "on-click": "swaymsg exec \\$bluetooth",
+    "on-click-right": "rfkill toggle bluetooth",
+    "tooltip-format": "{}"
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "{:%a %b %e %H:%M}",
+    "tooltip": true,
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "零",
+      "deactivated": "鈴"
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "power-saving disabled",
+    "tooltip-format-deactivated": "power-saving enabled"
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": " ",
+    "format-ethernet": "",
+    "format-disconnected": "睊",
+    "tooltip-format": "{ifname} ({essid}): {ipaddr}",
+    "on-click": "swaymsg exec \\$term_float nmtui"
+  },
+
+  "pulseaudio": {
+      "scroll-step": 5,
+        "format": "{icon} {volume}%{format_source}",
+        "format-muted": "婢 {format_source}",
+        "format-source": "",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["奄", "奔", "墳"]
+        },
+        "tooltip-format": "{icon} {volume}% {format_source}",
+        "on-click": "swaymsg exec \\$pulseaudio",
+        "on-click-middle": "swaymsg exec \\$volume_mute",
+        "on-scroll-up": "swaymsg exec \\$volume_up",
+        "on-scroll-down": "swaymsg exec \\$volume_down"
+  },
+
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+    "tooltip": false
+  },
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": " ",
+      "focused": " ",
+      "visible": " ",
+      "default": " "
+    },
+  },
+
+  "tray": {
+    "icon-size": 21,
+    "spacing": 5
+  }
+}
+
+// vim: set ft=jsonc:

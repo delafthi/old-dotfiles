@@ -1,0 +1,315 @@
+# Variables
+# ~~~~~~~~~
+
+set $font VictorMono Nerd Font 12
+set $cursor_theme Breeze_Snow
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+
+# Modifier key
+set $mod Mod4
+
+# Default applications
+set $term kitty
+set $browser qutebrowser
+set $launcher rofi -no-lazy-grab -show drun -modi drun
+set $locking swaylock -f
+set $pass bwmenu --auto-lock 300 -c 15
+set $bib papis --pick-lib -s picktool rofi open title:*
+set $bluetooth blueman
+set $pulseaudio pavucontrol
+set $volume_up pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+set $volume_down pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+set $volume_mute pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-volume @DEFAULT_SINK@ |  awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+set $volume_mic_mute pactl set-sink-mute @DEFAULT_SOURCE@ toggle && pactl get-sink-volume @DEFAULT_SOURCE@ |  awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+set $audio_play playerctl play-pause && sleep .1 && notify-send playmusic "$(playerctl status)"
+set $audio_next playerctl next && sleep .1 && notify-send playmusic "$(playerctl status)"       set $brightness_up light -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+set $audio_previous playerctl previous && sleep .1 && notify-send playmusic "$(playerctl status)"   set $brightness_down light -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK
+set $audio_stop playerctl stop && sleep .1 && notify-send playmusic "$(playerctl status)"
+set $screenshot_full grimshot save screen ~/pictures/$(date +%s).png
+set $screenshot_area grimshot save area ~/pictures/$(date +%s).png
+
+# General settings
+# ~~~~~~~~~~~~~
+
+# Disable the focus to follow the mouse
+focus_follows_mouse no
+
+# Wrap the focus only inside the workspace
+focus_wrapping workspace
+
+# Use the same modifier for floating windows
+floating_modifier $mod normal
+
+# Use a tiled layout for new workspaces
+workspace_layout default
+
+# Autostart
+# ~~~~~~~~~~
+
+#
+# Applications:
+#
+#
+exec {
+  pcmanfm -d
+  rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+  swaync
+  swaysome init 1
+}
+
+exec_always {
+  autotiling --limit 2
+  blueman-applet
+  nm-applet
+  wl-paste -t text --watch clipman store --max-items 1024
+}
+
+# https://github.com/Alexays/Waybar/issues/1093#issuecomment-841846291
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+#
+# Idle configuration:
+#
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+  timeout 300 'exec $locking' \
+  timeout 600 'swaymsg "output * power off"' \
+  resume 'swaymsg "output * power on"' \
+  before-sleep 'playerctl pause' \
+  before-sleep 'exec $locking'
+
+# Output configuration
+# ~~~~~~~~~~~~~~~~~~~~
+
+# Default wallpaper
+output * bg ~/pictures/wallpaper1.jpg fill
+
+# Input configuration
+# ~~~~~~~~~~~~~~~~~~~
+
+input * {
+  xkb_layout "us"
+  xkb_variant "altgr-intl"
+}
+
+# Select a different layout for the laptop keyboard
+input 1:1:AT_Translated_Set_2_keyboard {
+  xkb_layout "us"
+  xkb_variant "dvorak"
+}
+
+# Key bindings
+# ~~~~~~~~~~~~
+
+#
+# Basics:
+#
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Start a launcher
+bindsym $mod+Shift+Return exec $launcher
+
+# Start a browser
+bindsym $mod+b exec $browser
+
+# Open the clipboard manager
+bindsym $mod+y exec clipman pick -t rofi
+
+# Open the notification center
+bindsym $mod+n exec swaync-client -t -sw
+
+# Start other applications
+mode "open" {
+  bindsym b exec swaymsg mode "default" && $bib
+  bindsym s exec swaymsg mode "default" && $screenshot_full
+  bindsym Shift+s exec swaymsg mode "default" && $screenshot_area
+  bindsym p exec swaymsg mode "default" && $pass
+
+  bindsym Escape mode "default"
+}
+bindsym $mod+o mode "open"
+
+# Kill the focused window
+bindsym $mod+d kill
+
+# Maximize the focused window
+bindsym $mod+m fullscreen toggle
+
+# Toggle tiling / floating for the focused window
+bindsym $mod+f floating toggle
+
+# Reload the configuration file
+bindsym $mod+Shift+r reload
+
+# Exit sway
+bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Lock session
+bindsym $mod+Escape exec $locking
+
+#
+# Moving around:
+#
+
+# Move the focus around
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+g focus output left
+bindsym $mod+c focus output right
+
+# Move the focused window around
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+g exec swaysome prev-output
+bindsym $mod+Shift+c exec swaysome next-output
+
+#
+# Workspaces:
+#
+
+# Switch to workspace
+bindsym $mod+1 exec swaysome focus 1
+bindsym $mod+2 exec swaysome focus 2
+bindsym $mod+3 exec swaysome focus 3
+bindsym $mod+4 exec swaysome focus 4
+bindsym $mod+5 exec swaysome focus 5
+bindsym $mod+6 exec swaysome focus 6
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 exec swaysome move 1
+bindsym $mod+Shift+2 exec swaysome move 2
+bindsym $mod+Shift+3 exec swaysome move 3
+bindsym $mod+Shift+4 exec swaysome move 4
+bindsym $mod+Shift+5 exec swaysome move 5
+bindsym $mod+Shift+6 exec swaysome move 6
+
+#
+# Layout:
+#
+
+# Switch between different layouts
+bindsym $mod+Space layout toggle split stacking tabbed
+
+# Switch focus between the tiling and the floating containers
+bindsym $mod+Shift+Space focus mode_toggle
+
+#
+# Resizing containers:
+#
+mode "resize" {
+  bindsym h resize shrink width 10px
+  bindsym j resize grow height 10px
+  bindsym k resize shrink height 10px
+  bindsym l resize grow width 10px
+
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Media keys:
+#
+
+# Audio
+bindsym --locked XF86AudioRaiseVolume exec $volume_up
+bindsym --locked XF86AudioLowerVolume exec $volume_down
+bindsym --locked XF86AudioMute exec $volume_mute
+bindsym --locked XF86AudioMicMute exec $volume_mic_mute
+bindsym --locked XF86AudioPlay exec $audio_play
+bindsym --locked XF86AudioNext exec $audio_next
+bindsym --locked XF86AudioPrev exec $audio_prev
+bindsym --locked XF86AudioStop exec $audio_stop
+
+# Brightness
+bindsym --locked XF86MonBrightnessUp exec $brightness_up
+bindsym --locked XF86MonBrightnessDown exec $brightness_down
+
+# Appearance
+# ~~~~~~~~~~
+
+#
+# Sway theming
+#
+
+font pango:$font
+gaps inner 3
+default_border pixel 3
+set $dark_bg "#242833"
+set $bg "#2E3440"
+set $fg "#D8DEE9"
+set $active "#81A1C1"
+set $float "#3B4252"
+set $comment "#616E88"
+set $indicator "#B48EAD"
+set $accent "#5E81AC"
+set $error "#BF616A"
+set $warning "#EBCB8B"
+set $info "#88C0D0"
+client.focused $bg $bg $indicator $active $active
+client.focused_inactive $bg $bg $comment $bg $bg
+client.unfocused $dark_bg $dark_bg $comment $float $float
+client.urgent $error $error $bg $error $error
+
+#
+# GTK theming
+#
+
+seat seat0 xcursor_theme $cursor_theme
+seat seat0 hide_cursor 10000
+exec_always {
+  gsettings set org.gnome.desktop.interface gtk-theme "Breeze-Dark"
+  gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+  gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
+  gsettings set org.gnome.desktop.interface font-name "$font"
+  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+  gsettings set org.gnome.desktop.input-sources show-all-sources true
+}
+
+#
+# Status bar:
+#
+
+bar {
+  id default
+  swaybar_command waybar
+  position top
+}
+
+# Layout rules
+# ~~~~~~~~~~~~
+
+# Set floating mode for specific applications
+for_window [app_id="" title="Picture in picture"] floating enable, sticky enable
+for_window [app_id="" title="Picture-in-picture"] floating enable, sticky enable
+for_window [instance="around"] floating enable, sticky enable
+for_window [title="Save File"] floating enable
+for_window [app_id="" title=".* is sharing your screen."] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="origin"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+
+# Inhibit idle
+for_window [app_id="microsoft teams - preview"] inhibit_idle fullscreen
+
+# Don't allow applications to inhibit shortcuts
+seat * shortcuts_inhibitor disable
+
+# Includes
+# ~~~~~~~~
+
+include /etc/sway/config.d/*
