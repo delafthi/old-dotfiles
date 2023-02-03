@@ -137,6 +137,11 @@ if command -v fzf 1>/dev/null 2>&1
       --color='hl:reverse,hl+:reverse'"
 end
 
+# Use the ssh kitten of kitty if we ssh from kitty
+if test "$TERM" = "xterm-kitty"
+  alias ssh="kitty +kitten ssh"
+end
+
 # Changing "ls" to "exa"
 if command -v exa 1>/dev/null 2>&1
     set -gx EXA_COLORS "xx=02;37"
@@ -151,6 +156,7 @@ if command -v nvim 1>/dev/null 2>&1
     alias vim="nvim"
     alias vi="nvim"
 end
+
 
 # Plugins
 # ~~~~~~~
