@@ -1,7 +1,7 @@
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 
 nord = {
-    "nord_0_alt": "#2b303b",
+    "nord_0_alt": "#242833",
     "nord0": "#2e3440",
     "nord1": "#3b4252",
     "nord2": "#434c5e",
