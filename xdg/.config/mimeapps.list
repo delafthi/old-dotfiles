@@ -1,5 +1,5 @@
 [Default Applications]
-application/pcx=feh.desktop
+application/pcx=imv.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
@@ -7,21 +7,21 @@ application/x-extension-html=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
 application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
 
-image/bmp=feh.desktop
-image/gif=feh.desktop
-image/jpeg=feh.desktop
-image/jpg=feh.desktop
-image/png=feh.desktop
-image/svg+xml=feh.desktop
-image/svg-xml=feh.desktop
-image/tiff=feh.desktop
-image/x-bmp=feh.desktop
-image/x-pcx=feh.desktop
-image/x-tga=feh.desktop
-image/x-portable-pixmap=feh.desktop
-image/x-portable-bitmap=feh.desktop
-image/x-targa=feh.desktop
-image/x-portable-greymap=feh.desktop
+image/bmp=imv.desktop
+image/gif=imv.desktop
+image/jpeg=imv.desktop
+image/jpg=imv.desktop
+image/png=imv.desktop
+image/svg+xml=imv.desktop
+image/svg-xml=imv.desktop
+image/tiff=imv.desktop
+image/x-bmp=imv.desktop
+image/x-pcx=imv.desktop
+image/x-tga=imv.desktop
+image/x-portable-pixmap=imv.desktop
+image/x-portable-bitmap=imv.desktop
+image/x-targa=imv.desktop
+image/x-portable-greymap=imv.desktop
 
 text/html=nvim.desktop
 text/plain=nvim.desktop
