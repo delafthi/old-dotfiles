@@ -3,7 +3,7 @@ Description=udiskie daemon
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/udiskie
+ExecStart=/usr/bin/udiskie --file-manager="" --smart-tray --notify-command "notify-send --urgency=low '{event}: {device_presentation}'"
 
 [Install]
 WantedBy=default.target
