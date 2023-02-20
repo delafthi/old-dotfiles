@@ -69,7 +69,7 @@ text/foreground color of selections on backdrop windows */
 @define-color theme_unfocused_selected_fg_color_breeze #d8dee9;
 /*
 base background color of insensitive selections on backdrop windows */
-@define-color insensitive_unfocused_selected_bg_color_breeze rgba(136, 192, 208, 0.35);;
+@define-color insensitive_unfocused_selected_bg_color_breeze rgba(136, 192, 208, 0.35);
 /*
 text foreground color of insensitive widgets on backdrop windows*/
 @define-color insensitive_unfocused_fg_color_breeze rgba(216, 222, 233, 0.35);
