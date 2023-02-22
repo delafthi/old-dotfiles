@@ -85,7 +85,7 @@
          :preview_cutoff 120
          :horizontal {:mirror false :preview_width 0.6}
          :vertical {:mirror true}}
-       :file_ignore_patterns ["%.git" "node_modules" "%.cache"]
+       :file_ignore_patterns ["node_modules" "%.cache"]
        :path_display {:shorten 3}
        :set_env {:COLORTERM "truecolor"}}
      :extensions
