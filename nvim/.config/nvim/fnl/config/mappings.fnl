@@ -25,13 +25,13 @@
          :d {:name "+documentation"}
          :e {:name "+evaluate"}
          :f {:name "+find"}
-         :g {:name "+goto"}}
+         :g {:name "+goto"}
          :h {:name "+hover"}
          :l {:name "+log"}
          :r {:name "+repl"}
          :t {:name "+tests"}
          :x {:name "+error"}
-         :z {:name "+zen"}
+         :z {:name "+zen"}}
        :<C-t>
         {:name "+tabs"}})
 
