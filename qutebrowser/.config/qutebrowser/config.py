@@ -943,7 +943,7 @@ c.fonts.web.family.standard = "VictorMono Nerd Font"
 
 # Characters used for hint strings.
 # Type: UniqueCharString
-c.hints.chars = "aoeuidhtns,.prcg"
+c.hints.chars = "uhetonasidpgkm.cjw,rqv"
 
 # Dictionary file to be used by the word hints.
 # Type: File
