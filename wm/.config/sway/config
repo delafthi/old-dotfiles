@@ -53,7 +53,6 @@ workspace_layout default
 exec {
   pcmanfm -d
   rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
-  swaync
   swaysome init 1
 }
 
@@ -121,9 +120,6 @@ bindsym $mod+b exec $browser
 
 # Open the clipboard manager
 bindsym $mod+y exec clipman pick -t rofi
-
-# Open the notification center
-bindsym $mod+n exec swaync-client -t -sw
 
 # Start other applications
 mode "open" {
