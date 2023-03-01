@@ -3,6 +3,7 @@
 
 set $font VictorMono Nerd Font 12
 set $cursor_theme Breeze_Snow
+set $cursor_size 24
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
 # Modifier key
@@ -265,12 +266,13 @@ client.urgent $error $error $bg $error $error
 # GTK theming
 #
 
-seat seat0 xcursor_theme $cursor_theme
+seat seat0 xcursor_theme $cursor_theme $cursor_size
 seat seat0 hide_cursor 10000
 exec_always {
-  gsettings set org.gnome.desktop.interface gtk-theme "Breeze-Dark"
+  gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
   gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
   gsettings set org.gnome.desktop.interface cursor-theme "$cursor_theme"
+  gsettings set org.gnome.desktop.interface cursor-size "$cursor_size"
   gsettings set org.gnome.desktop.interface font-name "$font"
   gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
   gsettings set org.gnome.desktop.input-sources show-all-sources true
