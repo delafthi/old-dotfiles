@@ -50,7 +50,7 @@
 (defn config []
   "Configure LuaSnip"
   ;; Call the setup function
-  (luasnip.config.set_config
+  (luasnip.config.setup
     {:history true
      :updateevents "TextChanged,TextChangedI"
      :region_check_events "CursorHold,InsertLeave"
