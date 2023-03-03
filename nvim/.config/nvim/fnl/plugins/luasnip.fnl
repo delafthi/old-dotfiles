@@ -57,10 +57,9 @@
      :delete_check_events "TextChanged,InsertEnter"
      :enable_autosnippets true
      :ext_opts
-      (set (ls-util-types.choiceNode)
+      {ls-util-types.choiceNode
         {:active
-          {:virt_text [[" " "Number"]]
-           :priority 0}})})
+          {:virt_text [[" " "TSWarning"]]}}}})
 
   ;; Load external snippets
   (ls-from-vscode.lazy_load)
