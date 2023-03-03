@@ -124,6 +124,7 @@
      :wants ["friendly-snippets"
              "rust_hdl_vscode"]
      :event "InsertEnter"
+     :setup (fn [] ((. (require "plugins.luasnip") :setup)))
      :config (fn [] ((. (require "plugins.luasnip") :config)))}
    :jubnzv/mdeval.nvim
     {:cmd "MdEval"
