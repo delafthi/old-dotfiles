@@ -59,7 +59,10 @@
      :ext_opts
       {ls-util-types.choiceNode
         {:active
-          {:virt_text [[" " "TSWarning"]]}}}})
+          {:virt_text [[" " "TSWarning"]]}}
+       ls-util-types.insertNode
+        {:active
+          {:virt_text [["" "TSNote"]]}}}})
 
   ;; Load external snippets
   (ls-from-vscode.lazy_load)
