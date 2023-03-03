@@ -34,14 +34,18 @@
   "Setup nvim for LuaSnip"
   ;; Register global keybindings
   (let [opts {:silent true}]
-    (util.set-keymap "Switch between choices"
-      ["i"] ["<C-Tab>"] (fn []
-                          (when (luasnip.choice_active)
-                                (luasnip.change_choice 1))) opts)
+    (util.set-keymap "Switch to next choices"
+      ["i"] ["<C-.>"] (fn []
+                        (when (luasnip.choice_active)
+                              (luasnip.change_choice 1))) opts)
+    (util.set-keymap "Switch to previous choices"
+      ["i"] ["<C-,>"] (fn []
+                        (when (luasnip.choice_active)
+                              (luasnip.change_choice -1))) opts)
     (util.set-keymap "Expand or jump into snippet"
       ["i"] ["<C-e>"] (fn []
-                          (when (luasnip.expand_or_jumpable)
-                                (luasnip.expand_or_jump))) opts)))
+                        (when (luasnip.expand_or_jumpable)
+                              (luasnip.expand_or_jump))) opts)))
 
 (defn config []
   "Configure LuaSnip"
