@@ -7,6 +7,9 @@ compile_commands.json
 # direnv
 .envrc
 
+# nvim-local-fennel
+.lnvim.lua
+
 # Others
 mnt/
 ~*
