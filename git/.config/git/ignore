@@ -4,9 +4,6 @@
 compile_commands.json
 .gdb_history
 
-# direnv
-.envrc
-
 # nvim-local-fennel
 .lnvim.lua
 
