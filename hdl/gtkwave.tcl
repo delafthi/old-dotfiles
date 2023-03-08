@@ -1,17 +1,15 @@
 # Add signal groups and filters
 set signals {
-  {{clk & rst} {I} {^(clk|(rst|rst_n)).*$}}
-  {{test_id} {^$} {test_id$}}
-  {{inputs} {I} {^(?!(clk|rst|rst_n|s_axi_|m_axi_)).*$}}
-  {{outputs} {O} {^(?!(s_axi_|m_axi_)).*$}}
-  {{ios} {IO} {^.*$}}
-  {{misc} {^$} {^(?!test_id$).*}}
-  {{s_axi} {I|O} {s_axi_(?!(str_|lite_)).*$}}
-  {{m_axi} {I|O} {m_axi_(?!(str_|lite_)).*$}}
-  {{s_axi_str} {I|O} {s_axi_str_.*$}}
-  {{m_axi_str} {I|O} {m_axi_str_.*$}}
-  {{s_axi_lite} {I|O} {s_axi_lite_.*$}}
-  {{m_axi_lite} {I|O} {m_axi_lite_.*$}}
+  {{test_id} {^$} {test_id\.variant|test$}}
+  {{clk & rst} {I|^$} {clk|rst|rst_n}}
+  {{inputs} {I} {^((?!clk|rst|rst_n|s_axi_|m_axi_).)*$}}
+  {{outputs} {O} {^((?!s_axi_|m_axi_).)*$}}
+  {{ios} {IO} {.*}}
+  {{s_axi} {I|O|^$} {s_axi_(?!str_)}}
+  {{m_axi} {I|O|^$} {m_axi_(?!str_)}}
+  {{s_axi_str} {I|O|^$} {s_axi_str_}}
+  {{m_axi_str} {I|O|^$} {m_axi_str_}}
+  {{misc} {^$} {^((?!clk|rst|rst_n|test_id|s_axi_|m_axi_).)*$}}
 }
 
 # Load all signals
