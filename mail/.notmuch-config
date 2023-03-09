@@ -4,7 +4,6 @@ path=.mail
 [user]
 name=Thierry Delafontaine
 primary_email=delafontaineth@pm.me
-other_email=delafontaineth@gmail.com
 
 [new]
 tags=unread;inbox;
