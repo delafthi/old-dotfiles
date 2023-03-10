@@ -41,13 +41,11 @@
    :ltex
     {:settings
       {:ltex
-        {:disabledRules
-          {:en-US ["MORFOLOGIK_RULE_EN_US"]
-           :de-CH ["MORFOLOGIK_RULE_DE_CH"]
-           :fr ["MORFOLOGIK_RULE_FR"]}
-         :additionalRules
+        {:additionalRules
           {:languageModel "~/.local/share/language-tool/ngrams/"
-           :motherTongue "de-CH"}}}}
+           :motherTongue "de-CH"}
+         :disabledRules
+          {:en-US ["ARROWS"]}}}}
    :pylsp
     {:settings
       {:pylsp
