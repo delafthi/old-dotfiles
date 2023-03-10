@@ -41,11 +41,12 @@
    :ltex
     {:settings
       {:ltex
-        {:additionalRules
-          {:languageModel "~/.local/share/language-tool/ngrams/"
-           :motherTongue "de-CH"}
-         :disabledRules
-          {:en-US ["ARROWS"]}}}}
+        {:disabledRules
+          {:en-US ["ARROWS"]}
+         :additionalRules
+          {:enablePickyRules true
+           :motherTongue "de-CH"
+           :languageModel "~/.local/share/language-tool/ngrams/"}}}}
    :pylsp
     {:settings
       {:pylsp
