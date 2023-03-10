@@ -42,9 +42,10 @@
      :formatting
       {:format (fn [entry item] (lsp-kind.cmp-format entry item shorts))}
      :mapping
-      {:<C-Space> (cmp.mapping.confirm
+      {:<C-y> (cmp.mapping.confirm
                     {:behavior cmp.ConfirmBehavior.Insert
-                     :select true})
+                     :select true} ["c" "i" "s"])
+       :<C-e> (cmp.mapping.abort ["c" "i" "s"])
        :<C-n> (cmp.mapping (fn [fallback]
                              (if (cmp.visible)
                                  (cmp.select_next_item)
