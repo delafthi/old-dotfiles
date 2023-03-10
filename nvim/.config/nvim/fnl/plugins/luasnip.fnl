@@ -41,11 +41,7 @@
     (util.set-keymap "Switch to previous choices"
       ["i"] ["<C-,>"] (fn []
                         (when (luasnip.choice_active)
-                              (luasnip.change_choice -1))) opts)
-    (util.set-keymap "Expand or jump into snippet"
-      ["i"] ["<C-e>"] (fn []
-                        (when (luasnip.expand_or_jumpable)
-                              (luasnip.expand_or_jump))) opts)))
+                              (luasnip.change_choice -1))) opts)))
 
 (defn config []
   "Configure LuaSnip"
