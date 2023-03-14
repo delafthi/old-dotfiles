@@ -1,6 +1,6 @@
 # Add signal groups and filters
 set signals {
-  {{test_id} {^$} {test_id\.variant|test$}}
+  {{test_id} {^$} {test_id$}}
   {{clk & rst} {I|^$} {clk|rst|rst_n}}
   {{inputs} {I} {^((?!clk|rst|rst_n|s_axi_|m_axi_).)*$}}
   {{outputs} {O} {^((?!s_axi_|m_axi_).)*$}}
