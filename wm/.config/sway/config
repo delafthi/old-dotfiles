@@ -52,6 +52,7 @@ workspace_layout default
 #
 #
 exec {
+  kanshi
   pcmanfm -d
   rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
   swaysome init 1
