@@ -5,10 +5,10 @@ set signals {
   {{inputs} {I} {^((?!clk|rst|rst_n|s_axi_|m_axi_).)*$}}
   {{outputs} {O} {^((?!s_axi_|m_axi_).)*$}}
   {{ios} {IO} {.*}}
-  {{s_axi} {I|O|^$} {s_axi_(?!str_)}}
-  {{m_axi} {I|O|^$} {m_axi_(?!str_)}}
-  {{s_axi_str} {I|O|^$} {s_axi_str_}}
-  {{m_axi_str} {I|O|^$} {m_axi_str_}}
+  {{s_axi} {I|O|^$} {s_axi_(?!stream_)}}
+  {{m_axi} {I|O|^$} {m_axi_(?!stream_)}}
+  {{s_axi_stream} {I|O|^$} {s_axi_stream_}}
+  {{m_axi_stream} {I|O|^$} {m_axi_stream_}}
   {{misc} {^$} {^((?!clk|rst|rst_n|test_id|s_axi_|m_axi_).)*$}}
 }
 
