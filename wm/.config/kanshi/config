@@ -6,3 +6,8 @@ profile home {
 profile else {
   output eDP-1 mode 1920x1080
 }
+
+profile work {
+  output 'Dell Inc. DELL UP2716D KRXTR02J279L' mode 2560x1440@60Hz position 0,0
+  output 'Dell Inc. DELL U2415 7MT0163L2FML' mode 1920x1200@59.950Hz position 2560,110
+}
