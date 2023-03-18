@@ -1,10 +1,11 @@
 profile home {
-  output eDP-1 disable
-  output DP-1 mode 2560x1440 position 0,0
-  output HDMI-A-2 mode 2560x1440 position 2560,0
+  output 'Chimei Innolux Corporation 0x15E7 Unknown' disable
+  output 'ASUSTek COMPUTER INC VG27B LALMQS034094' mode 2560x1440 position 0,0
+  output 'ASUSTek COMPUTER INC VG27B LALMQS033754' mode 2560x1440 position 2560,0
 }
+
 profile else {
-  output eDP-1 mode 1920x1080
+  output 'Chimei Innolux Corporation 0x15E7 Unknown' mode 1920x1080
 }
 
 profile work {
