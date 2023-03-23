@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-SPOTIFYD_CMD="spotifyd"
-
-if [[ -z $(ps aux | grep "$SPOTIFYD_CMD\$") ]]; then
-  $SPOTIFYD_CMD
-fi
-
-/usr/bin/spt
