@@ -32,7 +32,6 @@
             (if (a.nil? (string.match params.bufname "conjure%-log%-%d+%.py$"))
                 true
                 false))})
-       null-ls.builtins.diagnostics.rstcheck
        null-ls.builtins.diagnostics.selene
        ;; Formatters
        null-ls.builtins.formatting.black
