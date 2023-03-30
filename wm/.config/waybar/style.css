@@ -20,7 +20,7 @@
     color: @fg;
   }
   to {
-    color: @fg;
+    color: @bg;
     background-color: @warning;
   }
 }
@@ -30,8 +30,17 @@
     color: @fg;
   }
   to {
-    color: @fg;
+    color: @bg;
     background-color: @error;
+  }
+}
+
+@keyframes stretch {
+  70% {
+    min-width: 15px;
+  }
+  to {
+    min-width: 20px;
   }
 }
 
@@ -39,10 +48,8 @@
  * ~~~~~~~~~~~ */
 
 /* Reset all styles */
-* {
-  border: none;
+* { border: none;
   border-radius: 0;
-  min-height: 0;
   margin: 0;
   padding: 0;
   font-family: "VictorMono Nerd Font";
@@ -62,17 +69,27 @@ tooltip {
   font-size: 16px;
 }
 
+/* Module groups */
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
 /* Each module */
-#backlight,
 #battery,
 #bluetooth,
 #clock,
 #idle_inhibitor,
 #network,
 #pulseaudio,
-#mode #workspaces #tray {
-  padding-left: 8px;
-  padding-right: 8px;
+#mode,
+#tags,
+#tray {
+  margin-left: 6px;
+  margin-right: 6px;
 }
 
 /* Module styles
@@ -111,8 +128,8 @@ tooltip {
 }
 
 #mode {
-  color: @bg;
-  background: @accent;
+  color: @comment;
+  margin-right: 16px;
 }
 
 #network.disconnected {
@@ -123,22 +140,33 @@ tooltip {
   color: @warning;
 }
 
-#workspaces button {
+#tags button {
   color: @comment;
-  padding: 4px;
-  font-size: 16;
+  font-size: 1px;
+  background-color: @comment;
+  margin: 10px 8px;
+  padding: 0px;
+  min-width: 10px;
+  min-height: 0px;
+  border-radius: 10px;
 }
 
-#workspaces button.visible {
-  color: @active;
+#tags button.occupied {
+  background-color: @active;
 }
 
-#workspaces button.focused {
-  color: @active;
+#tags button.focused {
+  background-color: @active;
+  animation-name: stretch;
+  animation-timing-function: linear;
+  animation-duration: 0.1s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
 }
 
-#workspaces button.urgent {
-  color: @error;
+#tags button.urgent {
+  background-color: @error;
 }
 
 /* vim: ft=less */

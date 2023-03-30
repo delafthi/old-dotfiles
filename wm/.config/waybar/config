@@ -7,10 +7,10 @@
     "clock"
   ],
   "modules-center": [
-    "sway/workspaces"
+    "river/tags"
   ],
   "modules-right": [
-    "sway/mode",
+    "river/mode",
     "idle_inhibitor",
     "backlight",
     "pulseaudio",
@@ -79,37 +79,31 @@
   },
 
   "pulseaudio": {
-      "scroll-step": 5,
-        "format": "{icon} {volume}%{format_source}",
-        "format-muted": "婢 {format_source}",
-        "format-source": "",
-        "format-source-muted": " ",
-        "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "default": ["奄", "奔", "墳"]
-        },
-        "tooltip-format": "{icon} {volume}% {format_source}",
-        "on-click": "swaymsg exec \\$pulseaudio",
-        "on-click-middle": "swaymsg exec \\$volume_mute",
-        "on-scroll-up": "swaymsg exec \\$volume_up",
-        "on-scroll-down": "swaymsg exec \\$volume_down"
+    "scroll-step": 5,
+    "format": "{icon} {volume}%{format_source}",
+    "format-muted": "婢 {format_source}",
+    "format-source": "",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["奄", "奔", "墳"]
+    },
+    "tooltip-format": "{icon} {volume}% {format_source}",
+    "on-click": "swaymsg exec \\$pulseaudio",
+    "on-click-middle": "swaymsg exec \\$volume_mute",
+    "on-scroll-up": "swaymsg exec \\$volume_up",
+    "on-scroll-down": "swaymsg exec \\$volume_down"
   },
 
-  "sway/mode": {
+  "river/mode": {
     "format": "<span style=\"italic\">{}</span>",
     "tooltip": false
   },
 
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "format": "{icon}",
-    "format-icons": {
-      "urgent": " ",
-      "focused": " ",
-      "visible": " ",
-      "default": " "
-    },
+  "river/tags": {
+    "num-tags": 6,
+    "tag-labels": ["", "", "", "", "", ""]
   },
 
   "tray": {
