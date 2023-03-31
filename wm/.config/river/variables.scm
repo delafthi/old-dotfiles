@@ -25,7 +25,7 @@
 (define browser "qutebrowser")
 (define lockscreen "swaylock -f")
 (define pass "bwmenu --auto-lock 300 -c 15")
-(define bib "papis --pick-lib -s picktool rofi open title:*")
+(define bib "papis --pick-lib -s picktool rofi open title:\\*")
 (define display-volume (string-join
                         (list
                          "if [ \\\"\\$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print \\$2}')\\\" == \\\"yes\\\" ];"
@@ -76,5 +76,3 @@
                                display-brightness)))
 (define screenshot-full "grimshot save screen ~/pictures/\\$(date +%Y%m%d%k%m%S).png")
 (define screenshot-area "grimshot save area ~/pictures/\\$(date +%Y%m%d%k%m%S).png")
-
-(display volume-mute)

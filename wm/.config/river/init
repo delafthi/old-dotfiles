@@ -125,7 +125,7 @@
                Picture-in-Picture
                "Save File"))))
    ("csd-filter" .
-    ((app-id . ("*")))))
+    ((app-id . ("\\*")))))
  #:gsettings
  '(("org.gnome.desktop.interface" .
     ((gtk-theme . "Nordic")
