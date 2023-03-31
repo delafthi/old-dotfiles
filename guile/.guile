@@ -1,0 +1,7 @@
+;;; Guile Scheme Init File
+
+;; Activate Readline for better navigation and history in the REPL
+(use-modules (ice-9 readline))
+(activate-readline)
+
+;; vim: ft=scheme.guile
