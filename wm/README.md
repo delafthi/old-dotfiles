@@ -25,6 +25,8 @@ configuration.
   [Victor Mono](https://github.com/rubjo/victor-mono)
 - [waybar](https://github.com/Alexays/Waybar)
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
+- [wlopm](https://git.sr.ht/~leon_plickat/wlopm)
+- [wlr-randr](https://github.com/bugaevc/wl-clipboard)
 - [wob](https://github.com/francma/wob)
 
 ### References

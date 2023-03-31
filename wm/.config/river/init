@@ -24,9 +24,11 @@
     "mkfifo" ,wob-socket "&&"
     "tail" "-f" ,wob-socket "|" "wob")
    ("wl-paste" "-t" "text" "--watch" "clipman" "store" "--max-items" 1024)
-   ("swayidle" "-w" "timeout" 300 "exec" ,lockscreen
+   ("swayidle" "-w"
+    "timeout" 180 "'",lockscreen "'"
+    "timeout" 300 "'wlopm --off \\*'" "resume" "'wlopm  --on \\*'"
     "before-sleep" "'playerctl pause'"
-    "before-sleep" "'exec" ,lockscreen "'"))
+    "before-sleep" "'" ,lockscreen "'"))
  #:inputs
  '((keyboard-layout . ((-variant altgr-intl us)))
    ((input . "pointer-2-7-SynPS/2_Synaptics_TouchPad") .
