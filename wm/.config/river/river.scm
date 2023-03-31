@@ -45,15 +45,14 @@
    rcons
    (map
     (lambda (input)
-      (let ((name (car input))
+      (let ((cmd (car input))
             (settings (cdr input)))
         (map
          (lambda (setting)
            (string-join
             (list
              "riverctl"
-             "input"
-             (serialize-expr name)
+             (serialize-expr cmd)
              (serialize-expr setting))))
          settings)))
     inputs)))
@@ -276,10 +275,9 @@
       "foo"
       foo))
   (define inputs
-    '(("foo-input" . ((setting-one . #t)
-                      (setting-two . "foo")))
-      (bar-input . ((setting-one . #f)
-                    ("setting-two" . foo)))))
+    '(((input . "foo-input") . ((setting-one . #t)
+                                (setting-two . "foo")))
+      (keyboard-layout . ((-variant intl us)))))
   (define options
     '((option-one . #t)
       ("option-two" . "foo")
@@ -316,7 +314,6 @@
                      (-main-count . 1)
                      (-main-ratio . "0.6"))))
 
-
   (map
    (lambda (test)
      (let ((is (car test))
@@ -336,8 +333,7 @@
     `(,(serialize-inputs inputs) .
       ("riverctl input foo-input setting-one enabled"
        "riverctl input foo-input setting-two foo"
-       "riverctl input bar-input setting-one disabled"
-       "riverctl input bar-input setting-two foo"))
+       "riverctl keyboard-layout -variant intl us"))
     `(,(serialize-options options) .
       ("riverctl option-one enabled"
        "riverctl option-two foo"

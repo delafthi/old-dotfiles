@@ -28,7 +28,8 @@
     "before-sleep" "'playerctl pause'"
     "before-sleep" "'exec" ,lockscreen "'"))
  #:inputs
- '(("pointer-2-7-SynPS/2_Synaptics_TouchPad" .
+ '((keyboard-layout . ((-variant altgr-intl us)))
+   ((input . "pointer-2-7-SynPS/2_Synaptics_TouchPad") .
     ((events ."disabled-on-external-mouse")
      (drag . #t)
      (disable-while-typing . #t)
