@@ -4,32 +4,32 @@ A window manager (WM) is system software that controls the placement and
 appearance of windows within a windowing system in a graphical user interface
 (GUI).
 
-## Sway
+## River
 
-Sway is a tiling Wayland compositor and a drop-in replacement for the i3 window
-manager for X11. It works with your existing i3 configuration and supports most
-of i3's features, plus a few extras.
+River is a dynamic tiling Wayland compositor with flexible runtime
+configuration.
 
 ### Dependencies
 
-- [swaylock-effects](https://github.com/mortie/swaylock-effects)
-- [swayidle](https://github.com/swaywm/swayidle)
-- [swaync](https://github.com/ErikReider/SwayNotificationCenter)
-- [swaysome](https://gitlab.com/hyask/swaysome)
-- [autotiling](https://github.com/nwg-piotr/autotiling)
-- [grimshot](https://github.com/swaywm/sway/tree/master/contrib)
 - [clipman](https://github.com/yory8/clipman)
-- [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
+- [dunst](https://github.com/ErikReider/SwayNotificationCenter)
+- [grimshot](https://github.com/swaywm/sway/tree/master/contrib)
+- [kanshi](https://sr.ht/~emersion/kanshi/)
+- [kile](https://gitlab.com/snakedye/kile)
 - [light](https://github.com/haikarainen/light)
-- [wob](https://github.com/francma/wob)
 - [rofi-wayland](https://github.com/lbonn/rofi#wayland-support)
+- [swaybg](https://github.com/swaywm/swaybg)
+- [swaylock](https://github.com/swaywm/swaylock)
+- [swayidle](https://github.com/swaywm/swayidle)
 - [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
   [Victor Mono](https://github.com/rubjo/victor-mono)
 - [waybar](https://github.com/Alexays/Waybar)
+- [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
+- [wob](https://github.com/francma/wob)
 
-- [sway](https://github.com/swaywm/sway/wiki)
-- [Arch Wiki](https://wiki.archlinux.org/title/Sway)
+### References
 
+- [river](https://github.com/riverwm/river)
 
 ## Swaylock
 
@@ -41,14 +41,16 @@ protocol.
 
 - [Swaylock](https://github.com/swaywm/swaylock)
 
-## Swaync
+## Dunst
 
-A simple notification daemon with a GTK gui for notifications and the control
-center.
+Dunst is a lightweight replacement for the notification daemons provided by most
+desktop environments. It’s very customizable, isn’t dependent on any toolkits,
+and therefore fits into those window manager centric setups we all love to
+customize to perfection.
 
 ### References
 
-- [Swaync](https://github.com/ErikReider/SwayNotificationCenter)
+- [Dunst](https://dunst-project.org/)
 
 ## Waybar
 
@@ -57,3 +59,13 @@ Highly customizable Wayland bar for Sway and Wlroots based compositors.
 ### References
 
 - [Waybar](https://github.com/Alexays/Waybar)
+
+## WOB
+
+A lightweight overlay volume/backlight/progress/anything bar for wlroots based
+Wayland compositors (requrires support for `wlr_layer_shell_unstable_v1`). This
+project is inspired by [xob - X Overlay Bar](https://github.com/florentc/xob).
+
+### References
+
+- [wob](https://github.com/francma/wob)
