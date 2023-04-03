@@ -1,6 +1,8 @@
 (define-module (river)
   #:use-module (ice-9 format)
   #:use-module (ice-9 match)
+  #:use-module (ice-9 string-fun)
+  #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-171)
   #:export (river))
 
@@ -257,7 +259,7 @@
          (#f "disabled")
          ((? symbol? e) (symbol->string e))
          ((? number? e) (number->string e))
-         ((? string? e) e)
+         ((? string? e) (escape-chars e))
          ((e) (serialize-term e))
          (other
           (raise-exception
@@ -265,14 +267,21 @@
                    "'serialize-term' can only process bools, symbols, numbers, and strings. Provided:\n ~a"
                    other)))))
 
+(define (escape-chars str)
+  (fold
+   (lambda (replacement prev)
+     (string-replace-substring prev (car replacement) (cdr replacement)))
+   str '(("$" . "\\$") ("\"" . "\\\"") ("*" . "\\*"))))
+
+
 ;; Testing
 ;; =======
 
 (define (test-river)
   (define startup-commands
     '((foo bar baz)
-      ("foo" "bar" "baz")
-      "foo"
+      ("$foo" "*bar" "baz")
+      "\"foo\""
       foo))
   (define inputs
     '(((input . "foo-input") . ((setting-one . #t)
@@ -327,8 +336,8 @@
    (list
     `(,(serialize-startup-commands startup-commands) .
       ("riverctl spawn \"foo bar baz\""
-       "riverctl spawn \"foo bar baz\""
-       "riverctl spawn \"foo\""
+       "riverctl spawn \"\\$foo \\*bar baz\""
+       "riverctl spawn \"\\\"foo\\\"\""
        "riverctl spawn \"foo\""))
     `(,(serialize-inputs inputs) .
       ("riverctl input foo-input setting-one enabled"
