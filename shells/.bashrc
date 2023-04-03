@@ -83,7 +83,7 @@ test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # Use fzf in combination with grep
 # fzf colors
-if command -v fzf 1> /dev/null 2>&1; then
+if command -v fzf 1>/dev/null 2>&1; then
   export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"\
     --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
     --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
@@ -98,7 +98,7 @@ if [ "${TERM}" = "xterm-kitty" ]; then
 fi
 
 # Changing "ls" to "exa"
-if command -v exa 1> /dev/null 2>&1; then
+if command -v exa 1>/dev/null 2>&1; then
   export EXA_COLORS="xx=02;37"
   alias ls="exa -al --color=always --group-directories-first" # my preferred listing
   alias la="exa -a --color=always --group-directories-first"  # all files and dirs
@@ -106,7 +106,7 @@ if command -v exa 1> /dev/null 2>&1; then
   alias lt="exa -aT --color=always --group-directories-first" # tree listing
 fi
 
-if command -v nvim 1> /dev/null 2>&1; then
+if command -v nvim 1>/dev/null 2>&1; then
   alias vim="nvim"
   alias vi="nvim"
 fi
@@ -115,7 +115,7 @@ fi
 # ~~~~~~~
 
 # Starship prompt
-if ! command -v starship 1> /dev/null 2>&1; then
+if ! command -v starship 1>/dev/null 2>&1; then
   echo -e "$COLOR_RED $BOLD => Error: $COLOR_RESET $NORMAL Starship not installed.\n"
   echo -e "$COLOR_GREEN $BOLD => Info: $COLOR_RESET $NORMAL Please install starship through your package manager or manually. An installation guide can be found here: https://starship.rs/guide/#%F0%9F%9A%80-installation"
 else
@@ -124,14 +124,14 @@ else
 fi
 
 # direnv
-if command -v direnv 1> /dev/null 2>&1; then
+if command -v direnv 1>/dev/null 2>&1; then
   eval "$(direnv hook bash)"
   direnv reload 2>/dev/null
 fi
 
 # Guix (only executed if not in a guix system)
-if [ $(cat /etc/os-release | sed -nr 's/^ID=()/\1/p') != "guix" ]; then
-  if command -v guix 1> /dev/null 2>&1; then
-    source $GUIX_PROFILE/etc/profile
+if [ "$(sed -nr 's/^ID=()/\1/p' </etc/os-release)" != "guix" ]; then
+  if command -v guix 1>/dev/null 2>&1; then
+    source "$GUIX_PROFILE/etc/profile"
   fi
 fi

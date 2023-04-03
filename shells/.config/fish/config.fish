@@ -137,8 +137,8 @@ if command -v fzf 1>/dev/null 2>&1
 end
 
 # Use the ssh kitten of kitty if we ssh from kitty
-if test "$TERM" = "xterm-kitty"
-  alias ssh="kitty +kitten ssh"
+if test "$TERM" = xterm-kitty
+    alias ssh="kitty +kitten ssh"
 end
 
 # Changing "ls" to "exa"
@@ -194,7 +194,7 @@ if command -v direnv 1>/dev/null 2>&1
 end
 
 # Guix (only executed if not in a guix system)
-if test (cat /etc/os-release | sed -nr 's/^ID=()/\1/p') != guix
+if test (sed -nr 's/^ID=()/\1/p' < /etc/os-release) != guix
     if command -v guix 1>/dev/null 2>&1
         fenv source $GUIX_PROFILE/etc/profile
     end
