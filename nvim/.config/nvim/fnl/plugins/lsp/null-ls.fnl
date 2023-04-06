@@ -38,12 +38,12 @@
        null-ls.builtins.formatting.cbfmt
        null-ls.builtins.formatting.deno_fmt
        null-ls.builtins.formatting.fish_indent
-       null-ls.builtins.formatting.fnlfmt
        null-ls.builtins.formatting.isort
        null-ls.builtins.formatting.prettier
        null-ls.builtins.formatting.shfmt
        null-ls.builtins.formatting.stylua
-       null-ls.builtins.formatting.emacs_scheme_mode
+       (null-ls.builtins.formatting.emacs_scheme_mode.with
+         {:extra_filetypes ["fennel"]})
        (null-ls.builtins.formatting.emacs_vhdl_mode.with
          {:args
            (fn [params]
