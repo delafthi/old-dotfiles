@@ -28,7 +28,8 @@
     "timeout" 180 "'",lockscreen "'"
     "timeout" 300 "'wlopm --off *'" "resume" "'wlopm  --on *'"
     "before-sleep" "'playerctl pause'"
-    "before-sleep" "'" ,lockscreen "'"))
+    "before-sleep" "'" ,lockscreen "'")
+   "udiskie")
  #:inputs
  '((keyboard-layout . ((-variant altgr-intl us)))
    ((input . "pointer-2-7-SynPS/2_Synaptics_TouchPad") .
