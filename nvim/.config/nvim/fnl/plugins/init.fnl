@@ -46,7 +46,7 @@
    :numToStr/Comment.nvim
     {:dependencies "JoosepAlviste/nvim-ts-context-commentstring"
      :config (fn [] ((. (require "plugins.comment") :config)))
-     :keys ["gc" "gb"]}
+     :event "BufReadPost"}
    :Olical/conjure
     {:dependencies "Olical/aniseed"
      :init (fn [] ((. (require "plugins.conjure") :init)))
