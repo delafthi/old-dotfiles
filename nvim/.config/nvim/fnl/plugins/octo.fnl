@@ -3,8 +3,8 @@
              : octo
              : util}})
 
-(defn setup []
-  "Setup nvim for octo.nvim"
+(defn init []
+  "Initialize nvim for octo.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Find issue"

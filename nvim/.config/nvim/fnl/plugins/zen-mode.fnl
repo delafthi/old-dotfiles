@@ -2,8 +2,8 @@
   {autoload {: util
              : zen-mode}})
 
-(defn setup []
-  "Setup nvim for zen-mode.nvim"
+(defn init []
+  "Initialize nvim for zen-mode.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Toggle zen mode"

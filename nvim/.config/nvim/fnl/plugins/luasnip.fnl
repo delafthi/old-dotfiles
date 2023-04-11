@@ -30,8 +30,8 @@
                      (i 4 (.. modified-buffer-name "pdf_document"))
                      (i 0)])))]}))
 
-(defn setup []
-  "Setup nvim for LuaSnip"
+(defn init []
+  "Initialize nvim for LuaSnip"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Switch to next choices"

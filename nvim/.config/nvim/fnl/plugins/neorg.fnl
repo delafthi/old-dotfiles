@@ -3,8 +3,8 @@
              nvim aniseed.nvim
              : util}})
 
-(defn setup []
-  "Setup Neorg"
+(defn init []
+  "Initialize Neorg"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Open bible notes"

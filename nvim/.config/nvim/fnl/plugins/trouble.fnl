@@ -2,8 +2,8 @@
   {autoload {: trouble
              : util}})
 
-(defn setup []
-  "Setup nvim for trouble.nvim"
+(defn init []
+  "Initialize nvim for trouble.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Workspace Trouble"

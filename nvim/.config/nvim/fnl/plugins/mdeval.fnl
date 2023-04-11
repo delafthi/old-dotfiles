@@ -3,8 +3,8 @@
              nvim aniseed.nvim
              : util}})
 
-(defn setup []
-  "Setup nvim for mdeval.nvim"
+(defn init []
+  "Initialize nvim for mdeval.nvim"
   ;; Register filetype-specific keybindings
   (let [opts {:silent true
               :buffer true}

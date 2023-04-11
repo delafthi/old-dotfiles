@@ -4,8 +4,8 @@
              telescope-builtin telescope.builtin
              : util}})
 
-(defn setup []
-  "Setup nvim for telescope.nvim"
+(defn init []
+  "Initialize nvim for telescope.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Find buffer"

@@ -9,9 +9,9 @@
      :use_treesitter true
      :filetype_exclude ["alpha"
                         "help"
+                        "lazy"
                         "man"
                         "markdown"
                         "rmd"
-                        "norg"
-                        "packer"]
+                        "norg"]
      :buftype_exclude ["terminal"]}))

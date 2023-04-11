@@ -1,8 +1,8 @@
 (module plugins.vim-sexp
   {autoload {ft config.filetypes}})
 
-(defn setup []
-  "Setup nvim for vim-sexp"
+(defn init []
+  "Initialize nvim for vim-sexp"
   (set vim.g.sexp_filetypes (table.concat ft.lisps ","))
 
   ;; Mappings

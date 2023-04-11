@@ -1,10 +1,10 @@
-(module config.commands
+(module config.autocmds
   {autoload {nvim aniseed.nvim
              : util}})
 
 
-(defn register []
-  "Register autocommands"
+(defn setup []
+  "Setup autocommands"
 
   ;; Buffers
   ;; ~~~~~~~~
@@ -13,9 +13,6 @@
   (nvim.create_autocmd "CursorHold"
     {:command "checktime"
      :group (nvim.create_augroup "AutoreloadFiles" {})})
-
-  ;; Try to save file with sudo on files that require root permission
-  (nvim.command "ca w!! w !sudo tee >/dev/null \"%\"")
 
   ;; Remove trailling lines and whitespace
   (let [group (nvim.create_augroup "RemoveTrailingWhitespacesAndLines" {})]

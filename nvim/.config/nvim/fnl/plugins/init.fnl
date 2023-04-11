@@ -2,33 +2,8 @@
   {autoload {nvim aniseed.nvim
              a aniseed.core
              c aniseed.compile
-             : packer
-             packer-util packer.util
-             ft config.filetypes}})
-
-(defn- register-autocompile []
-  "Automatically run packer.compile"
-  (nvim.create_autocmd "BufWritePost"
-    {:pattern (.. (vim.fn.stdpath "config") "/fnl/plugins/init.fnl")
-     :callback (fn []
-                 (let [fnl-file (.. (vim.fn.stdpath "config")
-                                    "/fnl/plugins/init.fnl")
-                       lua-file (.. (vim.fn.stdpath "config")
-                                    "/lua/plugins/init.lua")]
-                   (vim.schedule (fn [] (c.file fnl-file lua-file)))
-                   (vim.schedule (fn []
-                                   (nvim.command (.. "source " lua-file))
-                                   (nvim.command "PackerCompile")))))}))
-
-(def- packer-config
-  {:config
-    {:opt_default true
-     :display
-      {:open_fn
-        (fn []
-         (packer-util.float {:border "single"}))}
-     :profile {:enable true
-               :threshold 1}}})
+             ft config.filetypes
+             : lazy}})
 
 (def- plugins
   {;; Start plugins
@@ -36,347 +11,272 @@
 
    ;; Nvim config with fennel
    :Olical/aniseed
-    {:opt false}
-   ;; Lua module load cache
-   :lewis6991/impatient.nvim
-    {:opt false}
+    {:lazy false
+     :priority 1}
    ;; Theme
    :andersevenrud/nordic.nvim
-    {:opt false
-      :config (fn [] ((. (require "plugins.nordic") :config)))}
+    {:lazy false
+     :priority 1000
+     :config (fn [] ((. (require "plugins.nordic") :config)))}
    ;; Set directory local variables in fennel
    :Olical/nvim-local-fennel
-    {:opt false}
-
+    {:lazy false}
    ;; Additional filetypes
    :HiPhish/guile.vim
-    {:opt false}
+    {:lazy false}
    :hylang/vim-hy
-    {:opt false}
+    {:lazy false}
 
-   ;; Opt plugins
+   ;; Lazy plugins
    ;; ~~~~~~~~~~~
 
-   :wbthomason/packer.nvim {} ;; Packer can manage itself
-
    :goolord/alpha-nvim
-    {:requires "kyazdani42/nvim-web-devicons"
-     :wants "nvim-web-devicons"
-     :event "VimEnter"
-     :config (fn [] ((. (require "plugins.alpha-nvim") :config)))}
+    {:dependencies "kyazdani42/nvim-web-devicons"
+     :config (fn [] ((. (require "plugins.alpha-nvim") :config)))
+     :event "VimEnter"}
    :akinsho/bufferline.nvim
-    {:requires "kyazdani42/nvim-web-devicons"
-     :wants "nvim-web-devicons"
-     :event "VimEnter"
-     :setup (fn [] ((. (require "plugins.bufferline") :setup)))
-     :config (fn [] ((. (require "plugins.bufferline") :config)))}
+    {:dependencies "kyazdani42/nvim-web-devicons"
+     :init (fn [] ((. (require "plugins.bufferline") :init)))
+     :config (fn [] ((. (require "plugins.bufferline") :config)))
+     :event "VimEnter"}
    :p00f/clangd_extensions.nvim
-    {:requires "nvim-lspconfig"
-     :wants "nvim-lspconfig"
-     :ft ["c" "cpp"]
-     :config (fn [] ((. (require "plugins.clangd-extensions") :config)))}
+    {:dependencies "neovim/nvim-lspconfig"
+     :config (fn [] ((. (require "plugins.clangd-extensions") :config)))
+     :ft ["c" "cpp"]}
    :numToStr/Comment.nvim
-    {:requires "JoosepAlviste/nvim-ts-context-commentstring"
-     :wants "nvim-ts-context-commentstring"
-     :keys ["gc" "gb"]
-     :config (fn [] ((. (require "plugins.comment") :config)))}
-   :Olical/conjure ;; <-- Check keymaps
-    {:requires "aniseed"
-     :wants "aniseed"
-     :ft ["clojure" "fennel" "janet" "racket" "hy" "scheme" "scheme.guile"
-          "lisp" "julia" "rust" "lua" "python"]
+    {:dependencies "JoosepAlviste/nvim-ts-context-commentstring"
+     :config (fn [] ((. (require "plugins.comment") :config)))
+     :keys ["gc" "gb"]}
+   :Olical/conjure
+    {:dependencies "Olical/aniseed"
+     :init (fn [] ((. (require "plugins.conjure") :init)))
      :cmd "Conjure"
-     :module "conjure"
-     :setup (fn [] ((. (require "plugins.conjure") :setup)))}
-   :gpanders/editorconfig.nvim
-    {:event "BufReadPost"
-     :module "editorconfig"}
+     :ft ft.lisps}
    :feline-nvim/feline.nvim
-    {:requires ["nordic.nvim"
-                "kyazdani42/nvim-web-devicons"]
-     :wants ["nordic.nvim"
-             "nvim-web-devicons"]
-     :event "VimEnter"
-     :config (fn [] ((. (require "plugins.feline") :config)))}
+    {:dependencies ["andersevenrud/nordic.nvim"
+                    "kyazdani42/nvim-web-devicons"]
+     :config (fn [] ((. (require "plugins.feline") :config)))
+     :event "VimEnter"}
    :lewis6991/gitsigns.nvim
-    {:requires "nvim-lua/plenary.nvim"
-     :wants "plenary.nvim"
-     :event "BufReadPost"
-     :config (fn [] ((. (require "plugins.gitsigns") :config)))}
+    {:dependencies "nvim-lua/plenary.nvim"
+     :config (fn [] ((. (require "plugins.gitsigns") :config)))
+     :event "BufReadPost"}
    :ThePrimeagen/harpoon
-    {:requires "nvim-lua/plenary.nvim"
-     :wants "plenary.nvim"
-     :module "harpoon"
-     :setup (fn [] ((. (require "plugins.harpoon") :setup)))
+    {:dependencies "nvim-lua/plenary.nvim"
+     :init (fn [] ((. (require "plugins.harpoon") :init)))
      :config (fn [] ((. (require "plugins.harpoon") :config)))}
    :lukas-reineke/headlines.nvim
-    {:wants "nvim-treesitter"
-     :ft ["markdown" "rmd" "norg" "org"]
-     :config (fn [] ((. (require "plugins.headlines") :config)))}
+    {:config (fn [] ((. (require "plugins.headlines") :config)))
+     :ft ["markdown" "rmd" "norg" "org"]}
    :lukas-reineke/indent-blankline.nvim
-    {:requires "nvim-treesitter"
-     :wants "nvim-treesitter"
-     :event "BufReadPost"
-     :config (fn [] ((. (require "plugins.indent-blankline") :config)))}
+    {:dependencies "nvim-treesitter/nvim-treesitter"
+     :config (fn [] ((. (require "plugins.indent-blankline") :config)))
+     :event "BufReadPost"}
    :L3MON4D3/Luasnip
-    {:requires ["rafamadriz/friendly-snippets"
-                "VHDL-LS/rust_hdl_vscode"] ;; Just for the snippets
-     :wants ["friendly-snippets"
-             "rust_hdl_vscode"]
-     :event "InsertEnter"
-     :setup (fn [] ((. (require "plugins.luasnip") :setup)))
-     :config (fn [] ((. (require "plugins.luasnip") :config)))}
+    {:dependencies ["rafamadriz/friendly-snippets"
+                    "VHDL-LS/rust_hdl_vscode"] ;; Just for the snippets
+     :init (fn [] ((. (require "plugins.luasnip") :init)))
+     :config (fn [] ((. (require "plugins.luasnip") :config)))
+     :event "InsertEnter"}
    :jubnzv/mdeval.nvim
-    {:cmd "MdEval"
-     :module "mdeval"
-     :setup (fn [] ((. (require "plugins.mdeval") :setup)))
-     :config (fn [] ((. (require "plugins.mdeval") :config)))}
+    {:init (fn [] ((. (require "plugins.mdeval") :init)))
+     :config (fn [] ((. (require "plugins.mdeval") :config)))
+     :cmd "MdEval"}
    :jakewvincent/mkdnflow.nvim
-    {:cmd "Mkdnflow"
-     :ft ["markdown" "rmd"]
-     :module "mkdnflow"
-     :config (fn [] ((. (require "plugins.mkdnflow") :config)))}
+    {:config (fn [] ((. (require "plugins.mkdnflow") :config)))
+     :cmd "Mkdnflow"
+     :ft ["markdown" "rmd"]}
    :numToStr/Navigator.nvim
-    {:module "Navigator"
-     :setup (fn [] ((. (require "plugins.navigator") :setup)))
+    {:init (fn [] ((. (require "plugins.navigator") :init)))
      :config (fn [] ((. (require "plugins.navigator") :config)))}
    :danymat/neogen
-    {:requires "nvim-treesitter"
-     :wants "nvim-treesitter"
-     :module "neogen"
-     :setup (fn [] ((. (require "plugins.neogen") :setup)))
+    {:dependencies "nvim-treesitter/nvim-treesitter"
+     :init (fn [] ((. (require "plugins.neogen") :init)))
      :config (fn [] ((. (require "plugins.neogen") :config)))}
    :TimUntersberger/neogit
-    {:requires ["sindrets/diffview.nvim"
-                "nvim-lua/plenary.nvim"]
-     :wants ["diffview.nvim"
-             "plenary.nvim"]
-     :module "neogit"
-     :setup (fn [] ((. (require "plugins.neogit") :setup)))
+    {:dependencies ["sindrets/diffview.nvim"
+                    "nvim-lua/plenary.nvim"]
+     :init (fn [] ((. (require "plugins.neogit") :init)))
      :config (fn [] ((. (require "plugins.neogit") :config)))}
    :nvim-neorg/neorg
-    {:run ":Neorg sync-parsers"
-     :requires ["nvim-neorg/neorg-telescope"
-                "nvim-treesitter"
-                "nvim-lua/plenary.nvim"
-                "telescope.nvim"]
-     :wants ["nvim-treesitter"
-             "telescope.nvim"]
-     :ft "norg"
+    {:dependencies ["nvim-neorg/neorg-telescope"
+                    "nvim-treesitter/nvim-treesitter"
+                    "nvim-lua/plenary.nvim"
+                    "nvim-telescope/telescope.nvim"]
+     :init (fn [] ((. (require "plugins.neorg") :init)))
+     :config (fn [] ((. (require "plugins.neorg") :config)))
      :cmd "Neorg"
-     :module "neorg"
-     :setup (fn [] ((. (require "plugins.neorg") :setup)))
-     :config (fn [] ((. (require "plugins.neorg") :config)))}
+     :ft "norg"}
    :jose-elias-alvarez/null-ls.nvim
-    {:event "BufReadPost"
-     :config (fn [] ((. (require "plugins.lsp.null-ls") :config)))}
+    {:config (fn [] ((. (require "plugins.lsp.null-ls") :config)))
+     :event "BufReadPost"}
    :windwp/nvim-autopairs
-    {:event "InsertEnter"
-     :config (fn [] ((. (require "plugins.nvim-autopairs") :config)))}
-   :hrsh7th/nvim-cmp ;; <-- Multiple completions in :command buffer
-    {:requires ["hrsh7th/cmp-buffer"
-                "hrsh7th/cmp-calc"
-                "hrsh7th/cmp-cmdline"
-                {1 "PaterJason/cmp-conjure"
-                 :requires "conjure"
-                 :wants "conjure"}
-                {1 "petertriho/cmp-git"
-                 :requires "nvim-lua/plenary.nvim"
-                 :wants "plenary.nvim"
-                 :config (fn [] ((. (require "plugins.nvim-cmp-git") :config)))}
-                {1 "saadparwaiz1/cmp_luasnip"
-                 :requires "Luasnip"
-                 :wants "Luasnip"}
-                "hrsh7th/cmp-nvim-lsp"
-                "hrsh7th/cmp-nvim-lsp-document-symbol"
-                "hrsh7th/cmp-nvim-lsp-signature-help"
-                "hrsh7th/cmp-nvim-lua"
-                "hrsh7th/cmp-path"
-                "f3fora/cmp-spell"
-                "Luasnip"
-                "neogen"]
-     :wants "Luasnip"
+    {:config (fn [] ((. (require "plugins.nvim-autopairs") :config)))
+     :event "InsertEnter"}
+   :hrsh7th/nvim-cmp
+    {:dependencies ["hrsh7th/cmp-buffer"
+                    "hrsh7th/cmp-calc"
+                    "hrsh7th/cmp-cmdline"
+                    {1 "PaterJason/cmp-conjure"
+                     :dependencies "Olical/conjure"}
+                    {1 "petertriho/cmp-git"
+                     :dependencies "nvim-lua/plenary.nvim"
+                     :config (fn [] ((. (require "plugins.nvim-cmp-git") :config)))}
+                    {1 "saadparwaiz1/cmp_luasnip"
+                     :dependencies "L3MON4D3/Luasnip"}
+                    "hrsh7th/cmp-nvim-lsp"
+                    "hrsh7th/cmp-nvim-lsp-document-symbol"
+                    "hrsh7th/cmp-nvim-lsp-signature-help"
+                    "hrsh7th/cmp-nvim-lua"
+                    "hrsh7th/cmp-path"
+                    "f3fora/cmp-spell"
+                    "L3MON4D3/Luasnip"
+                    "danymat/neogen"]
+     :config (fn [] ((. (require "plugins.nvim-cmp") :config)))
      :event ["InsertEnter"
-             "CmdlineEnter"]
-     :config (fn [] ((. (require "plugins.nvim-cmp") :config)))}
+             "CmdlineEnter"]}
    :norcalli/nvim-colorizer.lua
-    {:event "BufEnter"
-     :config (fn [] ((. (require "plugins.nvim-colorizer") :config)))}
+    {:config (fn [] ((. (require "plugins.nvim-colorizer") :config)))
+     :event "BufEnter"}
    :mfussenegger/nvim-dap
-    {:module "dap"
-     :setup (fn [] ((. (require "plugins.nvim-dap") :setup)))
+    {:init (fn [] ((. (require "plugins.nvim-dap") :init)))
      :config (fn [] ((. (require "plugins.nvim-dap") :config)))}
    :rcarriga/nvim-dap-ui
-    {:requires "nvim-dap"
-     :after "nvim-dap"
-     :module "dapui"
-     :setup (fn [] ((. (require "plugins.nvim-dap-ui") :setup)))
+    {:dependencies "nvim-dap"
+     :init (fn [] ((. (require "plugins.nvim-dap-ui") :init)))
      :config (fn [] ((. (require "plugins.nvim-dap-ui") :config)))}
    :neovim/nvim-lspconfig
-    {:requires ["nvim-lua/lsp-status.nvim"
-                "nvim-lua/lsp_extensions.nvim"
-                "folke/neodev.nvim"
-                "nvim-cmp"
-                "telescope.nvim"]
-     :wants ["lsp-status.nvim"
-             "lsp_extensions.nvim"
-             "neodev.nvim"
-             "nvim-cmp"]
-     :event "BufReadPost"
-     :config (fn [] ((. (require "plugins.lsp.init") :config)))}
+    {:dependencies ["nvim-lua/lsp-status.nvim"
+                    "nvim-lua/lsp_extensions.nvim"
+                    "folke/neodev.nvim"
+                    "hrsh7th/nvim-cmp"
+                    "nvim-telescope/telescope.nvim"]
+     :config (fn [] ((. (require "plugins.lsp.init") :config)))
+     :event "BufReadPost"}
    :nvim-treesitter/nvim-treesitter
-    {:requires ["nvim-treesitter/nvim-treesitter-textobjects"
-                "JoosepAlviste/nvim-ts-context-commentstring"
-                "p00f/nvim-ts-rainbow"
-                "nvim-treesitter/playground"]
-     :run ":TSUpdate"
-     :cmd ["TSInstall"
-           "TSUpdate"]
-     :module "nvim-treesitter"
+    {:dependencies ["nvim-treesitter/nvim-treesitter-textobjects"
+                    "JoosepAlviste/nvim-ts-context-commentstring"
+                    "p00f/nvim-ts-rainbow"]
+     :config (fn [] ((. (require "plugins.nvim-treesitter") :config)))
      :event "BufRead"
-     :config (fn [] ((. (require "plugins.nvim-treesitter") :config)))}
+     :cmd ["TSInstall" "TSUpdate"]}
    :nvim-treesitter/nvim-treesitter-context
-    {:requires "nvim-treesitter"
-     :wants "nvim-treesitter"
-     :cmd  "TSContext"
+    {:dependencies "nvim-treesitter/nvim-treesitter"
+     :config (fn [] ((. (require "plugins.nvim-treesitter-context") :config)))
      :event "BufReadPost"
-     :config (fn [] ((. (require "plugins.nvim-treesitter-context") :config)))}
+     :cmd  "TSContext"}
    :pwntester/octo.nvim
-    {:requires ["nordic.nvim"
-                "kyazdani42/nvim-web-devicons"
-                "nvim-lua/plenary.nvim"
-                "telescope.nvim"]
-     :wants ["nordic.nvim"
-             "nvim-web-devicons"
-             "plenary.nvim"]
-     :cmd "Octo"
-     :module "octo"
-     :setup (fn [] ((. (require "plugins.octo") :setup)))
-     :config (fn [] ((. (require "plugins.octo") :config)))}
+    {:dependencies ["nordic.nvim"
+                    "kyazdani42/nvim-web-devicons"
+                    "nvim-lua/plenary.nvim"
+                    "nvim-telescope/telescope.nvim"]
+     :init (fn [] ((. (require "plugins.octo") :init)))
+     :config (fn [] ((. (require "plugins.octo") :config)))
+     :cmd "Octo"}
    :nvim-orgmode/orgmode
-    {:requires "nvim-treesitter"
-     :wants "nvim-treesitter"
-     :ft "org"
-     :config (fn [] ((. (require "plugins.orgmode") :config)))}
+    {:dependencies "nvim-treesitter/nvim-treesitter"
+     :config (fn [] ((. (require "plugins.orgmode") :config)))
+     :ft "org"}
    :toppair/peek.nvim
-    {:run "deno task --quiet build:fast"
-     :module "peek"
-     :setup (fn [] ((. (require "plugins.peek") :setup)))
-     :config (fn [] ((. (require "plugins.peek") :config)))}
+    {:init (fn [] ((. (require "plugins.peek") :init)))
+     :config (fn [] ((. (require "plugins.peek") :config)))
+     :build "deno task --quiet build:fast"}
    :folke/persistence.nvim
-    {:event "BufReadPre"
-     :module "persistence"
-     :setup (fn [] ((. (require "plugins.persistence") :setup)))
-     :config (fn [] ((. (require "plugins.persistence") :config)))}
+    {:init (fn [] ((. (require "plugins.persistence") :init)))
+     :config (fn [] ((. (require "plugins.persistence") :config)))
+     :event "BufReadPre"}
    :mechatroner/rainbow_csv
-    {:requires "nordic.nvim"
-     :ft "csv"
-     :setup (fn [] ((. (require "plugins.rainbow-csv") :setup)))}
+    {:dependencies "nordic.nvim"
+     :init (fn [] ((. (require "plugins.rainbow-csv") :init)))
+     :ft "csv"}
    :simrat39/rust-tools.nvim
-    {:requires ["nvim-dap"
-                "nvim-lspconfig"
-                "nvim-lua/plenary.nvim"]
-     :wants ["nvim-dap"
-             "nvim-lspconfig"
-             "plenary.nvim"]
-     :ft "rust"
-     :config (fn [] ((. (require "plugins.lsp.rust-tools") :config)))}
+    {:dependencies ["mfussenegger/nvim-dap"
+                    "neovim/nvim-lspconfig"
+                    "nvim-lua/plenary.nvim"]
+     :config (fn [] ((. (require "plugins.lsp.rust-tools") :config)))
+     :ft "rust"}
    :godlygeek/tabular
     {:cmd "Tabularize"}
-   :nvim-telescope/telescope.nvim ;; <-- keymaps not loading
-    {:requires ["nvim-lua/plenary.nvim"
-                "nvim-lua/popup.nvim"
-                "nvim-telescope/telescope-file-browser.nvim"
-                {1 "nvim-telescope/telescope-fzf-native.nvim"
-                 :run (.. "cmake "
-                          "-S. "
-                          "-Bbuild "
-                          "-DCMAKE_BUILD_TYPE=Release"
-                          "&& "
-                          "cmake "
-                          "--build build "
-                          "--config Release "
-                          "&& "
-                          "cmake "
-                          "--install build "
-                          "--prefix build")}
-                "nvim-telescope/telescope-project.nvim"]
-     :wants ["plenary.nvim"
-             "popup.nvim"
-             "telescope-file-browser.nvim"
-             "telescope-fzf-native.nvim"
-             "telescope-project.nvim"]
-     :cmd "Telescope"
-     :module "telescope"
-     :setup (fn [] ((. (require "plugins.telescope") :setup)))
-     :config (fn [] ((. (require "plugins.telescope") :config)))}
+   :nvim-telescope/telescope.nvim
+    {:dependencies ["nvim-lua/plenary.nvim"
+                    "nvim-lua/popup.nvim"
+                    "nvim-telescope/telescope-file-browser.nvim"
+                    {1 "nvim-telescope/telescope-fzf-native.nvim"
+                     :build (.. "cmake "
+                                "-S. "
+                                "-Bbuild "
+                                "-DCMAKE_BUILD_TYPE=Release"
+                                "&& "
+                                "cmake "
+                                "--build build "
+                                "--config Release "
+                                "&& "
+                                "cmake "
+                                "--install build "
+                                "--prefix build")}
+                    "nvim-telescope/telescope-project.nvim"]
+     :init (fn [] ((. (require "plugins.telescope") :init)))
+     :config (fn [] ((. (require "plugins.telescope") :config)))
+     :cmd "Telescope"}
    :folke/todo-comments.nvim
-    {:requires ["nordic.nvim"
-                "kyazdani42/nvim-web-devicons"]
-     :wants ["nordic.nvim"
-             "nvim-web-devicons"]
+    {:dependencies ["andersevenrud/nordic.nvim"
+                    "kyazdani42/nvim-web-devicons"]
+     :config (fn [] ((. (require "plugins.todo-comments") :config)))
+     :event "BufReadPost"
      :cmd ["TodoLocList"
            "TodoQuickFix"
            "TodoTelescope"
-           "TodoTrouble"]
-     :event "BufReadPost"
-     :config (fn [] ((. (require "plugins.todo-comments") :config)))}
+           "TodoTrouble"]}
    :akinsho/toggleterm.nvim
-    {:cmd "ToggleTerm"
-     :module "toggleterm"
-     :setup (fn [] ((. (require "plugins.toggleterm") :setup)))
-     :config (fn [] ((. (require "plugins.toggleterm") :config)))}
+    {:init (fn [] ((. (require "plugins.toggleterm") :init)))
+     :config (fn [] ((. (require "plugins.toggleterm") :config)))
+     :cmd "ToggleTerm"}
    :folke/trouble.nvim
-    {:requires "kyazdani42/nvim-web-devicons"
-     :wants "nvim-web-devicons"
-     :cmd "TroubleToggle"
-     :setup (fn [] ((. (require "plugins.trouble") :setup)))
-     :config (fn [] ((. (require "plugins.trouble") :config)))}
+    {:dependencies "kyazdani42/nvim-web-devicons"
+     :init (fn [] ((. (require "plugins.trouble") :init)))
+     :config (fn [] ((. (require "plugins.trouble") :config)))
+     :cmd "TroubleToggle"}
    :folke/twilight.nvim
-    {:requires "nordic.nvim"
-     :wants "nordic.nvim"
-     :cmd "Twilight"
-     :module "twilight"
-     :config (fn [] ((. (require "plugins.twilight") :config)))}
+    {:dependencies "andersevenrud/nordic.nvim"
+     :config (fn [] ((. (require "plugins.twilight") :config)))
+     :cmd "Twilight"}
    :jbyuki/venn.nvim
-    {:cmd "VBox"
-     :setup (fn [] ((. (require "plugins.venn") :setup)))}
+    {:init (fn [] ((. (require "plugins.venn") :init)))
+     :cmd "VBox"}
    :guns/vim-sexp
-    {:ft ft.lisps
-     :setup (fn [] ((. (require "plugins.vim-sexp") :setup)))}
+    {:init (fn [] ((. (require "plugins.vim-sexp") :init)))
+     :ft ft.lisps}
    :tpope/vim-sexp-mappings-for-regular-people
-    {:requires ["vim-sexp"
-                "tpope/vim-repeat"
-                "vim-surround"]
-     :wants ["vim-sexp"
-             "vim-repeat"
-             "vim-surround"]
+    {:dependencies ["guns/vim-sexp"
+                    "tpope/vim-repeat"
+                    "vim-surround"]
      :ft ft.lisps}
    :tpope/vim-surround
-    {:requires "tpope/vim-repeat"
-     :wants "vim-repeat"
+    {:dependencies "tpope/vim-repeat"
      :event "BufEnter"}
    :folke/which-key.nvim
-    {:event "VimEnter"
-     :module "which-key"
-     :config (fn [] ((. (require "plugins.which-key") :config)))}
+    {:config (fn [] ((. (require "plugins.which-key") :config)))
+     :event "VimEnter"}
    :folke/zen-mode.nvim
-    {:cmd "ZenMode"
-     :module "zen-mode"
-     :setup (fn [] ((. (require "plugins.zen-mode") :setup)))
-     :config (fn [] ((. (require "plugins.zen-mode") :config)))}})
+    {:init (fn [] ((. (require "plugins.zen-mode") :init)))
+     :config (fn [] ((. (require "plugins.zen-mode") :config)))
+     :cmd "ZenMode"}})
 
-(defn- use [plugins packer-config]
-  "Use the plugin with opts"
-  (packer.startup
-    (a.assoc packer-config 1
-      (fn [use]
-        (each [name opts (pairs plugins)]
-          (use (a.assoc opts 1 name)))
-        (when _G.PACKER_BOOTSTRAP
-          (packer.sync))))))
+(def- config
+  {:defaults
+    {:lazy true}
+   :git
+    {:url_format "https://github.com/%s"}
+   :dev
+    {:path "~/projects/private"}
+   :install
+    {:colorscheme ["default"]}
+   :ui
+    {:browser "qutebrowser"}})
 
 (defn setup []
-  "Setup plugins"
-  (register-autocompile)
-  (use plugins packer-config))
+  "Setup lazy.nvim"
+  (lazy.setup
+    (icollect [name opts (pairs plugins)]
+      (a.assoc opts 1 name))
+    config))

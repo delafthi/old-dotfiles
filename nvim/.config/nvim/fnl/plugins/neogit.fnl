@@ -2,8 +2,8 @@
   {autoload {: neogit
              : util}})
 
-(defn setup []
-  "Setup nvim for neogit"
+(defn init []
+  "Initialize nvim for neogit"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Open neogit"

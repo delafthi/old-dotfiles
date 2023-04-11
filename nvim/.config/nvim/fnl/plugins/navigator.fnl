@@ -2,8 +2,8 @@
   {autoload {navigator Navigator
              : util}})
 
-(defn setup []
-  "Setup nvim for Navigator.nvim"
+(defn init []
+  "Initialize nvim for Navigator.nvim"
  ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Move to left window"

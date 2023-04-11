@@ -4,8 +4,8 @@
              harpoon-ui harpoon.ui
              : util}})
 
-(defn setup []
-  "Setup nvim for harpoon"
+(defn init []
+  "Initialize nvim for harpoon"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Jump to first marked file"

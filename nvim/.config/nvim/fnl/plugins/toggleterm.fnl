@@ -4,8 +4,8 @@
              tt-terminal toggleterm.terminal
              : util}})
 
-(defn setup []
-  "Setup nvim for toggleterm.nvim"
+(defn init []
+  "Initialize nvim for toggleterm.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Toggle floating terminal"

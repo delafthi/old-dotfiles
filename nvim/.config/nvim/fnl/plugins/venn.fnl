@@ -2,8 +2,8 @@
   {autoload {a aniseed.core
              : util}})
 
-(defn setup []
-  "Setup nvim for venn.nvim"
+(defn init []
+  "Initilialize nvim for venn.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Workspace Trouble"

@@ -1,10 +1,10 @@
-(module plugins.lsp.mappings
+(module plugins.lsp.keymaps
   {autoload {lsp-formatting plugins.lsp.formatting
              telescope-builtin telescope.builtin
              : util}})
 
-(defn register [client bufnr]
-  "Register keymaps"
+(defn setup [client bufnr]
+  "Setup LSP keymaps"
   ;; Register buffer-local keybindings
   (let [opts {:silent true
               :buffer bufnr}]

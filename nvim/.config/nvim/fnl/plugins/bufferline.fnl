@@ -12,8 +12,8 @@
    :info lsp-diagnostics.signs.Info
    :hint lsp-diagnostics.signs.Hint})
 
-(defn setup []
-  "Setup nvim for bufferline.nvim"
+(defn init []
+  "Initialize nvim for bufferline.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Next tab"

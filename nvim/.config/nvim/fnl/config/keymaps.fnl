@@ -1,9 +1,9 @@
-(module config.mappings
+(module config.keymaps
   {autoload {: util
              : which-key}})
 
-(defn register []
-  "Register keybindings"
+(defn setup []
+  "Setup keybindings"
   (let [opts {:silent true}]
     ;; Define basic keybinding structure
     (which-key.register

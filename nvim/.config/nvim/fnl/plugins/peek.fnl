@@ -9,8 +9,8 @@
       (peek.close)
       (peek.open)))
 
-(defn setup []
-  "Setup nvim for peek.nvim"
+(defn init []
+  "Initialize nvim for peek.nvim"
   ;; Create a usercommand to toggle peek
   (nvim.create_user_command "PeekToggle" (fn [] (peek-toggle)) {})
 

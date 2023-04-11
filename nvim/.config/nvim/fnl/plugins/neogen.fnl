@@ -2,8 +2,8 @@
   {autoload {: neogen
              : util}})
 
-(defn setup []
-  "Set nvim for up neogen"
+(defn init []
+  "Initialize nvim for up neogen"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Generate documentation comment"

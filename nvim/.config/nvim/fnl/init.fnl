@@ -1,13 +1,12 @@
 (module init
-  {autoload {core config.core
-             commands config.commands
-             mappings config.mappings
-             plugins plugins.init}})
+  {autoload {a aniseed.core
+             nvim aniseed.nvim
+             core config.core
+             autocmds config.autocmds
+             keymaps config.keymaps
+             : plugins}})
 
 (core.setup)
 (plugins.setup)
-(commands.register)
-;; Do not load keybindings during the bootstrap phase, since we require
-;; which-key
-(when (not _G.PACKER_BOOTSTRAP)
-  (mappings.register))
+(autocmds.setup)
+(keymaps.setup)

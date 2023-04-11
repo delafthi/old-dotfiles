@@ -1,8 +1,8 @@
 (module plugins.rainbow-csv
   {autoload {nordic-palette nordic.palette}})
 
-(defn setup []
-  "Setup raindow-csv.vim"
+(defn init []
+  "Initialize raindow-csv.vim"
   (let [c nordic-palette]
     (set vim.g.rcsv_colorpairs
       [[1 c.red]

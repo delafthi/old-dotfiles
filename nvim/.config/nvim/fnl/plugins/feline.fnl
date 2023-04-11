@@ -199,10 +199,10 @@
      :custom_providers []
      :theme theme
      :force_inactive
-      {:filetypes ["^packer$"
+      {:filetypes ["^lazy"
                    "^Neogit"
                    "^Telescope"
-                   "^help$"]
-       :buftypes ["^terminal$"]}
+                   "^help"]
+       :buftypes ["^terminal"]}
      :disable
       {:filetypes ["^alpha$"]}}))

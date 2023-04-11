@@ -56,8 +56,8 @@
      :stopOnEntry false
      :runInTerminal false}})
 
-(defn setup []
-  "Setup nvim for nvim-dap"
+(defn init []
+  "Initialize nvim for nvim-dap"
   ;; Register filetype-specific keybindings
   (let [opts {:silent true
               :buffer true}

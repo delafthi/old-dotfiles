@@ -2,8 +2,8 @@
   {autoload {: persistence
              : util}})
 
-(defn setup []
-  "Setup nvim for persistence.nvim"
+(defn init []
+  "Initialize nvim for persistence.nvim"
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Restore last workspace"

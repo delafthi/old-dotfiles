@@ -1,13 +1,13 @@
 (module plugins.lsp.options
   {autoload {lsp-cmp cmp_nvim_lsp
              lsp-formatting plugins.lsp.formatting
-             lsp-mappings plugins.lsp.mappings
+             lsp-keymaps plugins.lsp.keymaps
              nvim aniseed.nvim}})
 
 (defn on-attach [client bufnr]
   "Callback when the language server is attached to the buffer"
   (lsp-formatting.setup client bufnr)
-  (lsp-mappings.register client bufnr)
+  (lsp-keymaps.setup client bufnr)
   ;; Reference highlighting given the server has the capability
   (when client.server_capabilities.documentHighlightProvider
     (let [group (nvim.create_augroup "LspDocumentHighlight" {})]
