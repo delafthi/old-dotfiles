@@ -101,7 +101,7 @@
 
   (set vim.opt.foldlevelstart 10) ;; Set level of opened folds when starting vim
   (set vim.opt.foldmethod "expr") ;; The kind of folding for the current window
-  (set vim.opt.foldexpr "nvim_treesitter#foldexpr()") ;; The fold expression
+  (set vim.opt.foldexpr "v:lua.vim.treesitter.foldexpr()") ;; The fold expression
   (vim.opt.foldopen:append "search") ;; Open folds when something is found inside the fold
   (set vim.opt.foldtext "luaeval(\"require('util').foldtext()\")") ;; Function called to display fold line
 
