@@ -47,6 +47,7 @@ encourage new applications and contributions.
       - [prettier](https://git.sr.ht/~technomancy/fnlfmt)
       - [shfmt](https://github.com/mvdan/sh)
       - [stylua](https://github.com/JohnnyMorganz/StyLua)
+      - [verible](https://github.com/chipsalliance/verible)
       - [emacs](https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html)
 
 ## References

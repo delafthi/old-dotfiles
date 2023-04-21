@@ -44,6 +44,7 @@
        null-ls.builtins.formatting.stylua
        (null-ls.builtins.formatting.emacs_scheme_mode.with
          {:extra_filetypes ["fennel"]})
+       null-ls.builtins.formatting.verible_verilog_format
        (null-ls.builtins.formatting.emacs_vhdl_mode.with
          {:args
            (fn [params]
