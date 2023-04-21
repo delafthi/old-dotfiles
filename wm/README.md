@@ -17,6 +17,8 @@ configuration.
 - [kanshi](https://sr.ht/~emersion/kanshi/)
 - [kile](https://gitlab.com/snakedye/kile)
 - [light](https://github.com/haikarainen/light)
+- [rbw](https://github.com/doy/rbw)
+- [rofi-rbw](https://github.com/fdw/rofi-rbw)
 - [rofi-wayland](https://github.com/lbonn/rofi#wayland-support)
 - [swaybg](https://github.com/swaywm/swaybg)
 - [swaylock](https://github.com/swaywm/swaylock)
@@ -28,6 +30,7 @@ configuration.
 - [wlopm](https://git.sr.ht/~leon_plickat/wlopm)
 - [wlr-randr](https://github.com/bugaevc/wl-clipboard)
 - [wob](https://github.com/francma/wob)
+- [ydotool](https://github.com/ReimuNotMoe/ydotool)
 
 ### References
 

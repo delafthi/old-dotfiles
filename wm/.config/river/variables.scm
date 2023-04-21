@@ -24,7 +24,7 @@
 (define launcher "rofi -no-lazy-grab -show drun -modi drun")
 (define browser "qutebrowser")
 (define lockscreen "swaylock -f")
-(define pass "bwmenu --auto-lock 300 -c 15")
+(define pass "rofi-rbw --clear-after 300 -a copy")
 (define bib "papis --pick-lib -s picktool rofi open title:\\*")
 (define display-volume (string-join
                         (list
