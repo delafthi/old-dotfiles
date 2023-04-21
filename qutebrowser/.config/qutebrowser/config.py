@@ -193,7 +193,7 @@ c.completion.min_chars = 1
 #   - bookmarks
 #   - history
 #   - filesystem
-# c.completion.open_categories = ['searchengines', 'quickmarks', 'bookmarks', 'history', 'filesystem']
+c.completion.open_categories = ["quickmarks", "bookmarks", "history", "filesystem"]
 
 # Move on to the next part when there's only one possible completion
 # left.
@@ -214,7 +214,7 @@ c.completion.min_chars = 1
 #   - always: Whenever a completion is available.
 #   - auto: Whenever a completion is requested.
 #   - never: Never.
-c.completion.show = "always"
+c.completion.show = "auto"
 
 # Shrink the completion to be smaller than the configured size if there
 # are no scrollbars.
@@ -365,7 +365,7 @@ c.completion.shrink = True
 #   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
 #   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
 #   - never: Don't accept cookies at all.
-# c.content.cookies.accept = 'all'
+c.content.cookies.accept = "no-3rdparty"
 
 # Store cookies.
 # Type: Bool
@@ -595,7 +595,7 @@ c.content.javascript.can_access_clipboard = True
 # still be downloaded by clicking the download button in the pdf.js
 # viewer.
 # Type: Bool
-c.content.pdfjs = False
+c.content.pdfjs = True
 
 # Allow websites to request persistent storage quota via
 # `navigator.webkitPersistentStorage.requestQuota`.
@@ -943,7 +943,7 @@ c.fonts.web.family.standard = "VictorMono Nerd Font"
 
 # Characters used for hint strings.
 # Type: UniqueCharString
-c.hints.chars = "uhetonasidpgkm.cjw,rqv"
+c.hints.chars = "uhetonidas"
 
 # Dictionary file to be used by the word hints.
 # Type: File
@@ -1429,7 +1429,7 @@ c.statusbar.widgets = [
 #   - startpage: Load the start page.
 #   - default-page: Load the default page.
 #   - close: Close the window.
-c.tabs.last_close = "close"
+c.tabs.last_close = "startpage"
 
 # Maximum width (in pixels) of tabs (-1 for no maximum). This setting
 # only applies when tabs are horizontal. This setting does not apply to
