@@ -26,6 +26,8 @@ encourage new applications and contributions.
       - [python-rope](https://github.com/python-rope/rope)
     - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [texlab](https://github.com/latex-lsp/texlab)
+    - [verible](https://github.com/chipsalliance/verible)
+    - [vhdl_ls](https://github.com/VHDL-LS/rust_hdl)
     - [vimls](https://github.com/iamcco/vim-language-server)
   - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md)
     - Code actions

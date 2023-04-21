@@ -60,6 +60,7 @@
              :indent_size (tostring (vim.opt.shiftwidth:get))
              :continuation_indent_size (tostring (vim.opt.shiftwidth:get))}}}}}
    :texlab {}
+   :verible {}
    :vhdl_ls {}
    :vimls {}})
 
