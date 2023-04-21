@@ -182,7 +182,7 @@
 
   ;; Change backspace to behave more intuitively
   (set vim.opt.backspace ["indent" "eol" "start"])
-  (set vim.opt.clipboard "unnamedplus") ;; Enable copy paste into and out of nvim
+  (vim.opt.clipboard:append "unnamedplus") ;; Enable copy paste into and out of nvim
   ;; Set completionopt to have a better completion experience
   (set vim.opt.completeopt ["menuone" "noselect"])
   (set vim.opt.inccommand "split") ;; Show the effect of a command incrementally as you type
