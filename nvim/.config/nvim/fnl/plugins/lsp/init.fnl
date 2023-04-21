@@ -21,18 +21,6 @@
                 :capabilities lsp-options.capabilities} opts)]
     (setup opts)))
 
-;; Add additional ls configurations
-(def- rust-hdl-config
-  {:default_config
-    {:cmd ["vhdl_ls"]
-     :filetypes ["vhdl"]
-     :root_dir (fn [fname]
-                 (or ((lspconfig-util.root_pattern "vhdl_ls.toml") fname)
-                     (lspconfig-util.find_git_ancestor fname)))
-     :docs
-     {:description (.. "https://github.com/VHDL-LS/rust_hdl\n"
-                       "\n"
-                       "A collection of HDL related tools")}}})
 
 (def- lsp-servers
   {:bashls {}
@@ -72,7 +60,7 @@
              :indent_size (tostring (vim.opt.shiftwidth:get))
              :continuation_indent_size (tostring (vim.opt.shiftwidth:get))}}}}}
    :texlab {}
-   :rust_hdl {}
+   :vhdl_ls {}
    :vimls {}})
 
 (defn config []
@@ -82,9 +70,6 @@
 
   ;; Setup diagnostics
   (lsp-diagnostics.setup)
-
-  ;; Add custom language servers
-  (add-ls-config :rust_hdl rust-hdl-config)
 
   ;; Call the setup functions for language servers
   (each [ls opts (pairs lsp-servers)]
