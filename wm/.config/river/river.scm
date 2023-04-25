@@ -20,16 +20,17 @@
                 (window-rules '())
                 (gsettings '())
                 (layout-generator '()))
-  (for-each  system
-             (append
-              (serialize-startup-commands startup-commands)
-              (serialize-inputs inputs)
-              (serialize-options options)
-              (serialize-modes (append keymaps mousemaps))
-              (serialize-keymaps keymaps)
-              (serialize-mousemaps mousemaps)
-              (serialize-gsettings gsettings)
-              (serialize-layout-generator layout-generator))))
+  (for-each system
+            (append
+             (serialize-startup-commands startup-commands)
+             (serialize-inputs inputs)
+             (serialize-options options)
+             (serialize-modes (append keymaps mousemaps))
+             (serialize-keymaps keymaps)
+             (serialize-mousemaps mousemaps)
+             (serialize-window-rules window-rules)
+             (serialize-gsettings gsettings)
+             (serialize-layout-generator layout-generator))))
 
 (define (serialize-startup-commands startup-commands)
   (map
