@@ -33,6 +33,6 @@
   ;; Call the setup function
   (dap-ui.setup
     {:icons
-      {:exanded ""
-       :collapsed ""
-       :current_frame ""}}))
+      {:exanded "󰍝"
+       :collapsed "󰍟"
+       :current_frame "󰍟"}}))

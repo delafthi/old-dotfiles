@@ -16,7 +16,7 @@
      :linehl ""
      :numhl ""}
    :DapLogPoint
-    {:text "ﯽ "
+    {:text "󱂅 "
      :texthl "DiagnosticInfo"
      :linehl ""
      :numhl ""}

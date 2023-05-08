@@ -55,27 +55,27 @@
 (def- main
   [{:type "group"
     :val [(entry "SPC c f"
-                 "  > New File"
+                 "󰈔  > New File"
                  "<Cmd>enew<Cr>"
                  []
                  {:hl_shortcut "DashboardShortCut"})
           (entry "SPC w r"
-                 "  > Restore last session"
+                 "󰦛  > Restore last session"
                  "<Cmd>lua require('persistence').load({last = true})<Cr>"
                  []
                  {:hl_shortcut "DashboardShortCut"})
           (entry "SPC f r"
-                 "  > Recently opened files"
+                 "󱋡  > Recently opened files"
                  "<Cmd>Telescope oldfiles<Cr>"
                  []
                  {:hl_shortcut "DashboardShortCut"})
           (entry "SPC f f"
-                 "  > Find File"
+                 "󰱼  > Find File"
                  "<Cmd>Telescope find_files<Cr>"
                  []
                  {:hl_shortcut "DashboardShortCut"})
           (entry "SPC f b"
-                 "  > Find browser"
+                 "󱏒  > Browse files"
                  "<Cmd>Telescope file_browser hidden=true<Cr>"
                  []
                  {:hl_shortcut "DashboardShortCut"})

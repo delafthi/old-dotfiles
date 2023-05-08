@@ -2,7 +2,7 @@
 # ~~~~~~~~~~~~~~~~
 
 set sandbox none # Enables copying to the system clipboard
-set font "VictorMono Nerd Font 11"
+set font "VictorMono NF 11"
 set adjust-open "best-fit"
 set recolor "false"
 set recolor-keephue "true"

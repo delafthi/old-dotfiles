@@ -73,8 +73,8 @@
                            "--glob"
                            "!.git/*"
                            "--trim"]
-       :prompt_prefix " "
-       :selection_caret " "
+       :prompt_prefix "󰭎 "
+       :selection_caret "󰍟 "
        :multi_icon "│"
        :sorting_strategy "ascending"
        :layout_strategy "flex"

@@ -1,7 +1,7 @@
 add_newline = true
 
 [c]
-symbol = " "
+symbol = "󰙱"
 
 [character]
 success_symbol = "[>](bold green)"
@@ -26,7 +26,7 @@ fish_style_pwd_dir_length = 3
 symbol = " "
 
 [git_branch]
-symbol = " "
+symbol = "󰘬 "
 disabled = false
 
 [git_status]
@@ -45,43 +45,43 @@ renamed = "[ ${count} ](bold red)"
 deleted = "[ ${count} ](bold red)"
 
 [golang]
-symbol = " "
+symbol = "󰟓 "
 
 [haskell]
-symbol = " "
+symbol = "󰲒 "
 
 [java]
-symbol = " "
+symbol = "󰬷 "
 
 [julia]
 symbol = " "
 
 [lua]
-symbol = " "
+symbol = "󰢱 "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nix_shell]
-symbol = " "
+symbol = "󱄅 "
 
 [nodejs]
-symbol = " "
+symbol = "󰎙 "
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 
 [python]
-symbol = " "
+symbol = "󰌠 "
 
 [rlang]
-symbol = "ﳒ "
+symbol = "󰟔 "
 
 [ruby]
-symbol = " "
+symbol = "󰴭 "
 
 [rust]
-symbol = " "
+symbol = "󱘗 "
 
 [shell]
 disabled = false

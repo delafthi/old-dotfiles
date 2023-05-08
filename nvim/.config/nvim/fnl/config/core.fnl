@@ -58,7 +58,7 @@
   (set vim.opt.listchars {:eol "↲"
                           :tab "»·"
                           :space " "
-                          :trail ""
+                          :trail "·"
                           :extends "…"
                           :precedes "…"
                           :conceal "┊"

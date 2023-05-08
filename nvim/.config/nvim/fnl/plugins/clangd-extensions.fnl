@@ -3,7 +3,7 @@
              lsp-options plugins.lsp.options}})
 
 (def- kind-icons
-  {:Compound ""
+  {:Compound ""
    :Recovery ""
    :TranslationUnit ""
    :PackExpansion ""
@@ -12,12 +12,12 @@
    :TemplateParamObject ""})
 
 (def- role-icons
-  {:type "ﴯ"
-   :declaration ""
-   :expression ""
-   :specifier ""
-   :statement ""
-   "template argument" ""})
+  {:type ""
+   :declaration ""
+   :expression ""
+   :specifier ""
+   :statement ""
+   "template argument" ""})
 
 (defn config []
   "Configure clangd_extensions.nvim"

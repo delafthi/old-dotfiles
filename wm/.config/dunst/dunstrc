@@ -8,7 +8,7 @@ padding = 4
 horizontal_padding = 6
 frame_width = 3
 gap_size = 3
-font = "VictorMono Nerd Font 12"
+font = "VictorMono NF 12"
 icon_theme = "Papirus-Dark"
 
 frame_color = "#434c5e"

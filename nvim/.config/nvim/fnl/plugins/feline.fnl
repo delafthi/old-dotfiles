@@ -42,28 +42,28 @@
            {:name "StatusComponentGitBranch"
            :fg "orange"
            :bg "light_grey"})
-     :icon " "
+     :icon "󰘬 "
      :left_sep "█"}
     {:provider "git_diff_added"
      :hl (fn []
            {:name "StatusComponentGitDiffAdded"
            :fg "green"
            :bg "light_grey"})
-     :icon " "
+     :icon "󰐗 "
      :left_sep "█"}
     {:provider "git_diff_changed"
      :hl (fn []
            {:name "StatusComponentGitDiffChanged"
            :fg "yellow"
            :bg "light_grey"})
-     :icon " "
+     :icon "󰆗 "
      :left_sep "█"}
     {:provider "git_diff_removed"
      :hl (fn []
            {:name "StatusComponentGitDiffRemoved"
            :fg "red"
            :bg "light_grey"})
-     :icon " "
+     :icon "󰍶 "
      :left_sep "█"}
     {:provider " "
      :hl (fn []
@@ -82,7 +82,7 @@
            :fg "red"
            :bg "dark_grey"
            :style "bold"})
-     :icon " "
+     :icon "󰅙 "
      :right_sep "█"}
     {:provider "diagnostic_warnings"
      :hl (fn []
@@ -97,7 +97,7 @@
            {:name "StatusComponentLspInfo"
            :fg "blue"
            :bg "dark_grey"})
-     :icon " "
+     :icon "󰋼 "
      :right_sep "█"}
     {:provider " "
      :hl (fn []

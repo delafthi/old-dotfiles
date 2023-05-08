@@ -30,8 +30,8 @@
     {:options
       {:mode "tabs"
        :modified_icon ""
-       :left_trunc_marker ""
-       :right_trunc_marker ""
+       :left_trunc_marker "󰍞"
+       :right_trunc_marker "󰍟"
        :diagnostics "nvim_lsp"
        :diagnostics_indicator
         (fn [_ _ diag]
