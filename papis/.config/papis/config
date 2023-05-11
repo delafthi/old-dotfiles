@@ -31,3 +31,5 @@ dir = ~/bibliography/videos
 header-format = <b>{doc[title]}</b> ({doc[year]})
                 {doc[author]}
                 {doc[tags]}
+
+# vim: ft=ini

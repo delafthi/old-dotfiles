@@ -25,7 +25,7 @@
 (define browser "qutebrowser")
 (define lockscreen "swaylock -f")
 (define pass "rofi-rbw --clear-after 300 -a copy")
-(define bib "papis --pick-lib -s picktool rofi open title:\\*")
+(define bib "papis rofi title:\\*")
 (define display-volume (string-join
                         (list
                          "if [ \\\"\\$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print \\$2}')\\\" == \\\"yes\\\" ];"
