@@ -155,8 +155,7 @@
      :event "BufReadPost"}
    :nvim-treesitter/nvim-treesitter
     {:dependencies ["nvim-treesitter/nvim-treesitter-textobjects"
-                    "JoosepAlviste/nvim-ts-context-commentstring"
-                    "p00f/nvim-ts-rainbow"]
+                    "JoosepAlviste/nvim-ts-context-commentstring"]
      :config (fn [] ((. (require "plugins.nvim-treesitter") :config)))
      :event "BufRead"
      :cmd ["TSInstall" "TSUpdate"]}
