@@ -38,7 +38,6 @@
        null-ls.builtins.formatting.cbfmt
        null-ls.builtins.formatting.deno_fmt
        null-ls.builtins.formatting.fish_indent
-       null-ls.builtins.formatting.isort
        null-ls.builtins.formatting.prettier
        null-ls.builtins.formatting.shfmt
        null-ls.builtins.formatting.stylua

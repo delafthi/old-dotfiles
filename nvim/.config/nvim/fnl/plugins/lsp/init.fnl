@@ -35,15 +35,7 @@
           {:enablePickyRules true
            :motherTongue "de-CH"
            :languageModel "~/.local/share/language-tool/ngrams/"}}}}
-   :pylsp
-    {:settings
-      {:pylsp
-        {:plugins
-          {:autopep8 {:enabled false}
-           :flake8 {:enabled true}
-           :pydocstyle {:enabled false}
-           :rope_autoimport {:enabled true}}
-          :configurationSources ["flake8"]}}}
+   :ruff_lsp {}
    :lua_ls
     {:single_file_support true
      :settings
