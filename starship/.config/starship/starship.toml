@@ -17,7 +17,7 @@ disabled = false
 [directory]
 truncation_length = 1
 truncate_to_repo = false
-read_only = " "
+read_only = "󰌾 "
 disabled = false
 style = "bold blue"
 fish_style_pwd_dir_length = 3
