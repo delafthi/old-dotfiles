@@ -5,9 +5,10 @@
              : null-ls
              nls-utils null-ls.utils}})
 
-(defn has-formatter [ft]
-  "Check whether the null-ls supports a formatter for `ft`"
-  (> (length (nls-generators.get_available ft FORMATTING)) 0))
+(defn has-formatter [bufnr]
+  "Check whether the null-ls supports a formatter for the filetype of `bufnr`"
+  (let [ft (vim.api.nvim_buf_get_option bufnr "filetype")]
+    (> (length (nls-generators.get_available ft FORMATTING)) 0)))
 
 
 (defn config []

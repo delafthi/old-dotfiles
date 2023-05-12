@@ -34,7 +34,7 @@ encourage new applications and contributions.
       - [mypy](https://github.com/python/mypy)
       - [selene](https://github.com/Kampfkarren/selene)
     - Formatters
-      - [python-black](https://github.com/psf/black)
+      - [black](https://github.com/psf/black)
       - [cbfmt](https://github.com/lukas-reineke/cbfmt)
       - [deno](https://deno.land/)
       - [fnlfmt](https://git.sr.ht/~technomancy/fnlfmt)

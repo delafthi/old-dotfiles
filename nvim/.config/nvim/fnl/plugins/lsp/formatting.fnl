@@ -6,6 +6,8 @@
 ;; Disable autoformatting by default
 (def- state {:autoformat? false})
 
+(def- augroup (nvim.create_augroup "LspFormatting" {}))
+
 (defn toggle []
   "Toggle autoformatting"
   (tset state :autoformat? (not (. state :autoformat?)))
@@ -14,25 +16,26 @@
       (util.warn "Autoformatting disabled" "Formatting")))
 
 
-(defn autoformat []
+(defn autoformat [bufnr]
   "Autoformat a buffer"
   (when (. state :autoformat?)
-    (if vim.lsp.buf.format
-      (vim.lsp.buf.format)
-      (vim.lsp.buf.formatting_sync))))
+    (vim.lsp.buf.format {:bufnr bufnr})))
 
 (defn setup [client bufnr]
   "Setup nvim formatting configuration"
-  (let [ft (nvim.buf_get_option bufnr "filetype")
-        null-ls? (= client.name "null-ls")]
+  (let [null-ls? (= client.name "null-ls")]
     (set client.server_capabilities.documentFormattingProvider
-      (if (null-ls.has-formatter ft)
-          null-ls?
-          (not null-ls?))))
-
+         (if (null-ls.has-formatter bufnr)
+           null-ls?
+           (if null-ls?
+             false
+             client.server_capabilities.documentFormattingProvider))))
   (when client.server_capabilities.documentFormattingProvider
     ;; Create the autocommand to format the buffer on save
+    (nvim.clear_autocmds
+      {:buffer bufnr
+       :group augroup})
     (nvim.create_autocmd "BufWritePre"
-      {:pattern "<buffer>"
-       :callback (fn [] (autoformat))
-       :group (nvim.create_augroup "LspFormat" {})})))
+      {:buffer bufnr
+       :callback (fn [] (autoformat bufnr))
+       :group augroup})))
