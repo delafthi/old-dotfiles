@@ -47,6 +47,9 @@ deleted = "[ ${count} ](bold red)"
 [golang]
 symbol = "󰟓 "
 
+[guix_shell]
+symbol = " "
+
 [haskell]
 symbol = "󰲒 "
 
