@@ -19,7 +19,6 @@ encourage new applications and contributions.
     - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs)
     - [lua-language-server](https://github.com/sumneko/lua-language-server)
     - [ruff-lsp](https://github.com/charliermarsh/ruff-lsp)
-    - [rust_hdl](https://github.com/VHDL-LS/rust_hdl)
     - [texlab](https://github.com/latex-lsp/texlab)
     - [verible](https://github.com/chipsalliance/verible)
     - [vhdl_ls](https://github.com/VHDL-LS/rust_hdl)
