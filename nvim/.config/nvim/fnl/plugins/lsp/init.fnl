@@ -35,7 +35,14 @@
           {:enablePickyRules true
            :motherTongue "de-CH"
            :languageModel "~/.local/share/language-tool/ngrams/"}}}}
-   :ruff_lsp {}
+   :pylsp
+   {:settings
+    {:pylsp
+     {:plugins
+      {:black {:enabled true}
+       :ruff
+       {:enabled true
+        :extendSelect ["I"]}}}}}
    :lua_ls
     {:single_file_support true
      :settings

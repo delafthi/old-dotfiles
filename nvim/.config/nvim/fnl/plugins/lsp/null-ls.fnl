@@ -38,7 +38,6 @@
                 false))})
        null-ls.builtins.diagnostics.selene
        ;; Formatters
-       null-ls.builtins.formatting.black
        null-ls.builtins.formatting.cbfmt
        null-ls.builtins.formatting.deno_fmt
        null-ls.builtins.formatting.fish_indent
