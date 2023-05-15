@@ -1,6 +1,7 @@
 (module plugins.lsp.null-ls
   {autoload {a aniseed.core
              nls-generators null-ls.generators
+             nls-methods null-ls.methods
              lsp-options plugins.lsp.options
              : null-ls
              nls-utils null-ls.utils}})
@@ -8,7 +9,9 @@
 (defn has-formatter [bufnr]
   "Check whether the null-ls supports a formatter for the filetype of `bufnr`"
   (let [ft (vim.api.nvim_buf_get_option bufnr "filetype")]
-    (> (length (nls-generators.get_available ft FORMATTING)) 0)))
+    (>
+      (length (nls-generators.get_available ft nls-methods.internal.FORMATTING))
+      0)))
 
 
 (defn config []
