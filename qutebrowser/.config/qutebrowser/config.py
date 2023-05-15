@@ -896,7 +896,7 @@ c.fonts.web.family.cursive = "VictorMono NF Italic"
 
 # Font family for fixed fonts.
 # Type: FontFamily
-c.fonts.web.family.fixed = "VictorMono NFM"
+c.fonts.web.family.fixed = "VictorMono NF"
 
 # Font family for sans-serif fonts.
 # Type: FontFamily
