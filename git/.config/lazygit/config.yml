@@ -1,14 +1,5 @@
 gui:
-  # stuff relating to the UI
-  scrollHeight: 2 # how many lines you scroll by
-  scrollPastBottom: true # enable scrolling past the bottom
-  sidePanelWidth: 0.3333 # number from 0 to 1
-  expandFocusedSidePanel: false
-  mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
-  language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja'
-  timeFormat: "02 Jan 06 15:04 MST" # https://pkg.go.dev/time#Time.Format
   theme:
-    lightTheme: false # For terminals with a light background
     activeBorderColor:
       - magenta
       - bold
@@ -26,19 +17,8 @@ gui:
       - yellow
     unstagedChangesColor:
       - red
-  commitLength:
-    show: true
-  mouseEvents: true
-  skipUnstageLineWarning: false
-  skipStashWarning: false
-  showFileTree: false # for rendering changes files in a tree format
-  showListFooter: true # for seeing the '5 of 20' message in list panels
-  showRandomTip: true
-  showBottomLine: false # for hiding the bottom information line (unless it has important information to tell you)
-  showCommandLog: true
-  showIcons: true
-  commandLogSize: 8
-  splitDiff: "auto" # one of 'auto' | 'always'
+    defaultFgColor:
+      - default
   authorColors:
     "Thierry Delafontaine": "#d08770"
     "*": "#81a1c1"
@@ -46,96 +26,67 @@ git:
   paging:
     colorArg: always
     pager: delta --pager=never
-  commit:
-    signOff: false
-  merging:
-    # only applicable to unix users
-    manualCommit: false
-    # extra args passed to `git merge`, e.g. --no-ff
-    args: ""
-  log:
-    # one of date-order, author-date-order, topo-order.
-    # topo-order makes it easier to read the git log graph, but commits may not
-    # appear chronologically. See https://git-scm.com/docs/git-log#_commit_ordering
-    order: "topo-order"
-    # one of always, never, when-maximised
-    # this determines whether the git graph is rendered in the commits panel
-    showGraph: "when-maximised"
-  skipHookPrefix: WIP
-  autoFetch: true
-  autoRefresh: true
-  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
-  allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
-  overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
-  disableForcePushing: false
-  parseEmoji: true
-  diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
-  editCommand: "nvim" # see 'Configuring File Editing' section
-  editCommandTemplate: "{{editor}} +{{line}} -- {{filename}}"
-  openCommand: "xdg-open {{filename}}"
-refresher:
-  refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
-  fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
+  editPreset: "nvim" # see 'Configuring File Editing' section
+  open: "xdg-open {{filename}} >/dev/null"
+  openLink: "qutebrowser {{filename}} >/dev/null"
 update:
   method: never # can be: prompt | background | never
-  days: 14 # how often an update is checked for
-reporting: "undetermined" # one of: 'on' | 'off' | 'undetermined'
-confirmOnQuit: false
-# determines whether hitting 'esc' will quit the application when there is nothing to cancel/close
-quitOnTopLevelReturn: false
-disableStartupPopups: false
-notARepository: "prompt" # one of: 'prompt' | 'create' | 'skip'
 promptToReturnFromSubprocess: false # display confirmation when subprocess terminates
 keybinding:
   universal:
     quit: "q"
-    quit-alt1: "<c-c>" # alternative/alias of quit
+    quit-alt: "<c-c>" # alternative/alias of quit
     return: "<esc>" # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: "Q"
+    togglePanel: "<tab>" # goto the next panel
     prevItem: "k" # go one line up
     nextItem: "j" # go one line down
-    prevItem-alt1: "<up>" # go one line up
-    nextItem-alt1: "<down>" # go one line down
-    prevBlock: "<c-p>" # goto the previous block / panel
-    nextBlock: "<c-n>" # goto the next block / panel
-    prevBlock-alt1: "<left>" # goto the previous block / panel
-    nextBlock-alt1: "<right>" # goto the next block / panel
+    prevItem-alt: "<up>" # go one line up
+    nextItem-alt: "<down>" # go one line down
+    prevPage: "," # go to next page in list
+    nextPage: "." # go to previous page in list
     gotoTop: "g" # go to top of list
     gotoBottom: "G" # go to bottom of list
     scrollLeft: "H" # scroll left within list view
     scrollRight: "L" # scroll right within list view
+    prevBlock: "h" # goto the previous block / panel
+    nextBlock: "l" # goto the next block / panel
+    prevBlock-alt: "<left>" # goto the previous block / panel
+    nextBlock-alt: "<right>" # goto the next block / panel
+    jumpToBlock: ["0", "1", "2", "3", "4"] # goto the Nth block / panel
     nextMatch: "n"
     prevMatch: "N"
     optionMenu: "?" # show help menu
     select: "<space>"
     goInto: "<enter>"
-    openRecentRepos: "<c-o>"
+    openRecentRepos: "<c-r>"
     confirm: "<enter>"
-    confirm-alt1: "y"
     remove: "d"
     new: "n"
     edit: "e"
-    openFile: "<c-e>"
+    openFile: "o"
     scrollUpMain: "<c-u>" # main panel scroll up
     scrollDownMain: "<c-d>" # main panel scroll down
+    scrollUpMain-alt: "<pgup>" # main panel scroll up
+    scrollDownMain-alt: "<pgdown>" # main panel scroll down
     executeCustomCommand: ":"
     createRebaseOptionsMenu: "m"
     pushFiles: "P"
     pullFiles: "p"
     refresh: "R"
-    createPatchOptionsMenu: "<c-m>"
+    createPatchOptionsMenu: "<c-p>"
     nextTab: "]"
     prevTab: "["
     nextScreenMode: "+"
-    prevScreenMode: "-"
-    undo: "u"
-    redo: "<c-r>"
-    filteringMenu: "<c-f>"
-    diffingMenu: "D"
-    copyToClipboard: "<c-y>"
+    prevScreenMode: "_"
+    undo: "z"
+    redo: "<c-z>"
+    filteringMenu: "<c-s>"
+    diffingMenu: "W"
+    diffingMenu-alt: "<c-e>" # deprecated
+    copyToClipboard: "<c-o>"
     submitEditorText: "<enter>"
-    appendNewline: "o"
     extrasMenu: "@"
     toggleWhitespaceInDiffView: "<c-w>"
     increaseContextInDiffView: "}"
@@ -155,16 +106,20 @@ keybinding:
     toggleStagedAll: "a" # stage/unstage all
     viewResetOptions: "D"
     fetch: "f"
-    toggleTreeView: "<c-t>"
+    toggleTreeView: "`"
+    openMergeTool: "M"
+    openStatusFilter: "<c-b>"
   branches:
     createPullRequest: "o"
     viewPullRequestOptions: "O"
     checkoutBranchByName: "c"
     forceCheckoutBranch: "F"
     rebaseBranch: "r"
+    renameBranch: "R"
     mergeIntoCurrentBranch: "M"
     viewGitFlowOptions: "i"
     fastForward: "f" # fast-forward this branch from its upstream
+    createTag: "T"
     pushTag: "P"
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
@@ -172,12 +127,12 @@ keybinding:
     squashDown: "s"
     renameCommit: "r"
     renameCommitWithEditor: "R"
-    viewResetOptions: "r"
+    viewResetOptions: "g"
     markCommitAsFixup: "f"
     createFixupCommit: "F" # create fixup commit for this commit
     squashAboveCommits: "S"
-    moveDownCommit: "J" # move commit down one
-    moveUpCommit: "K" # move commit up one
+    moveDownCommit: "<c-j>" # move commit down one
+    moveUpCommit: "<c-k>" # move commit up one
     amendToCommit: "A"
     pickCommit: "p" # pick commit (when mid-rebase)
     revertCommit: "t"
@@ -191,12 +146,13 @@ keybinding:
     openLogMenu: "<c-l>"
     viewBisectOptions: "b"
   stash:
-    popStash: "p"
+    popStash: "g"
+    renameStash: "r"
   commitFiles:
     checkoutCommitFile: "c"
   main:
     toggleDragSelect: "v"
-    toggleDragSelect-alt1: "V"
+    toggleDragSelect-alt: "V"
     toggleSelectHunk: "a"
     pickBothHunks: "b"
   submodules:
