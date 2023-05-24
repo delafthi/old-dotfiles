@@ -30,7 +30,8 @@
     {:settings
       {:ltex
         {:disabledRules
-          {:en-US ["ARROWS"]}
+          {:en-US ["ARROWS" "EllIPSIS"]
+           :de-CH ["ARROWS" "EllIPSIS"]}
          :additionalRules
           {:enablePickyRules true
            :motherTongue "de-CH"
