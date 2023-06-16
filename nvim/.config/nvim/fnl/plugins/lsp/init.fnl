@@ -43,6 +43,7 @@
       {:black {:enabled true}
        :ruff
        {:enabled true
+        :exclude ["conjure-log-*.py"]
         :extendSelect ["I"]}}}}}
    :lua_ls
     {:single_file_support true
