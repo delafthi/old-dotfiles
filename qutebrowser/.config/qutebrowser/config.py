@@ -1,7 +1,3 @@
-# pylint: disable=C0111
-c = c  # noqa: F821 pylint: disable=E0602,C0103
-config = config  # noqa: F821 pylint: disable=E0602,C0103
-
 # This is here so configs done via the GUI are still loaded.
 # Remove it to not load settings done via the GUI.
 config.load_autoconfig(True)
