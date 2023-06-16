@@ -31,11 +31,15 @@
        null-ls.builtins.diagnostics.eslint
        null-ls.builtins.diagnostics.fish
        (null-ls.builtins.diagnostics.mypy.with
-         {:runtime_condition
+         {:condition
+          (fn [utils]
+            (utils.root_has_file ["mypy.ini"
+                                  ".mypy.ini"
+                                  "pyproject.toml"
+                                  "setup.cfg"]))
+          :runtime_condition
           (fn [params]
-            (if (a.nil? (string.match params.bufname "conjure%-log%-%d+%.py$"))
-                true
-                false))})
+            (a.nil? (string.match params.bufname "conjure%-log%-%d+%.py$")))})
        null-ls.builtins.diagnostics.selene
        ;; Formatters
        null-ls.builtins.formatting.cbfmt
