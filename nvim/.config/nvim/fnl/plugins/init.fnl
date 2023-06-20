@@ -94,15 +94,6 @@
                     "nvim-lua/plenary.nvim"]
      :init (fn [] ((. (require "plugins.neogit") :init)))
      :config (fn [] ((. (require "plugins.neogit") :config)))}
-   :nvim-neorg/neorg
-    {:dependencies ["nvim-neorg/neorg-telescope"
-                    "nvim-treesitter/nvim-treesitter"
-                    "nvim-lua/plenary.nvim"
-                    "nvim-telescope/telescope.nvim"]
-     :init (fn [] ((. (require "plugins.neorg") :init)))
-     :config (fn [] ((. (require "plugins.neorg") :config)))
-     :cmd "Neorg"
-     :ft "norg"}
    :jose-elias-alvarez/null-ls.nvim
     {:config (fn [] ((. (require "plugins.lsp.null-ls") :config)))
      :event "BufReadPost"}

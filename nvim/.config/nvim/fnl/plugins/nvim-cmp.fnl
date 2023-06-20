@@ -24,7 +24,6 @@
    :nvim_lsp_signature_help "[Sig]"
    :nvim_lsp_document_symbol "[Sym]"
    :nvim_lua "[API]"
-   :neorg "[Norg]"
    :path "[Path]"
    :spell "[Spell]"
    :cmp_git "[Git]"})
@@ -79,9 +78,7 @@
                   :max_item_count 10}
                  {:name "nvim_lua"
                   :max_item_count 10}]
-                [{:name "neorg"
-                  :max_item_count 10}
-                 {:name "git"
+                [{:name "git"
                   :max_item_count 10}
                  {:name "path"
                   :max_item_count 10}]
