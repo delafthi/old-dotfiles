@@ -226,9 +226,6 @@
     {:dependencies "andersevenrud/nordic.nvim"
      :config (fn [] ((. (require "plugins.twilight") :config)))
      :cmd "Twilight"}
-   :jbyuki/venn.nvim
-    {:init (fn [] ((. (require "plugins.venn") :init)))
-     :cmd "VBox"}
    :guns/vim-sexp
     {:init (fn [] ((. (require "plugins.vim-sexp") :init)))
      :ft ft.lisps}
