@@ -61,10 +61,6 @@
     {:dependencies "nvim-lua/plenary.nvim"
      :config (fn [] ((. (require "plugins.gitsigns") :config)))
      :event "BufReadPost"}
-   :ThePrimeagen/harpoon
-    {:dependencies "nvim-lua/plenary.nvim"
-     :init (fn [] ((. (require "plugins.harpoon") :init)))
-     :config (fn [] ((. (require "plugins.harpoon") :config)))}
    :lukas-reineke/headlines.nvim
     {:config (fn [] ((. (require "plugins.headlines") :config)))
      :ft ["markdown" "rmd" "norg" "org"]}
