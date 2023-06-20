@@ -46,20 +46,7 @@
             (terminal:new
               {:direction "vertical"
                :hidden true}))
-          (vert-term:toggle))) opts)
-    ;; Lazygit keybinding
-    (util.set-keymap "Toggle lazygit"
-      ["n"] ["<Leader>" "g" "l"]
-      (fn []
-        (let [terminal tt-terminal.Terminal]
-          (local lazygit
-            (terminal:new
-              {:cmd "lazygit"
-               :dir "git_dir"
-               :direction "float"
-               :float_opts {:border "single"}
-               :hidden true}))
-          (lazygit:toggle))) opts))
+          (vert-term:toggle))) opts))
 
   ;; Register buffer-specific keymaps
   (let [opts {:silent true

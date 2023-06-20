@@ -37,10 +37,10 @@ alias cp="cp -i"     # confirm before overwriting something
 alias df="df -h"     # human-readable sizes
 alias free="free -m" # show sizes in MB
 alias rm="rm -i"
+alias magit="nvim +'lua require(\"neogit\").open({kind=\"replace\"})'"
 alias mv="mv -i"
 alias minicom="minicom -m -c on"
 alias htop="htop -t"
-alias gl="lazygit"
 alias tn="tmux new -s $(pwd | sed 's/.*\///g')"
 
 # General settings

@@ -13,21 +13,10 @@ is horrible).
 
 ## Dependencies
 
-- [delta](https://github.com/dandavison/delta)
+- [bat](https://github.com/sharkdp/bat)
+- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
 
 ## References
 
 - [Git](https://git-scm.com/)
 - [Arch Wiki](https://wiki.archlinux.org/title/git)
-
-## Lazygit
-
-A simple terminal UI for git commands, written in Go with the gocui library.
-
-### Dependencies
-
-- [delta](https://github.com/dandavison/delta)
-
-### References
-
-- [lazygit](https://github.com/jesseduffield/lazygit)
