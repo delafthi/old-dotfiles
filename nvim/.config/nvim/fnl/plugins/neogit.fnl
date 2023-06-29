@@ -14,8 +14,7 @@
   "Configure neogit"
   ;; Call the setup function
   (neogit.setup
-    {:disable_commit_confirmation false
-     :disable_insert_on_commit false
+    {:disable_commit_confirmation true
      :use_magit_keybindings true
      :integrations
       {:diffview true}}))
