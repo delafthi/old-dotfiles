@@ -207,7 +207,10 @@
      :cmd "Telescope"}
    :folke/todo-comments.nvim
     {:dependencies ["andersevenrud/nordic.nvim"
-                    "kyazdani42/nvim-web-devicons"]
+                    "kyazdani42/nvim-web-devicons"
+                    "nvim-telescope/telescope.nvim"
+                    "folke/trouble.nvim"]
+     :init (fn [] ((. (require "plugins.todo-comments") :init)))
      :config (fn [] ((. (require "plugins.todo-comments") :config)))
      :event "BufReadPost"
      :cmd ["TodoLocList"

@@ -15,6 +15,7 @@
          :g {:name "+git"}
          :h {:name "+help"}
          :n {:name "+notes"}
+         :q {:name "+quickfixlist"}
          :r {:name "+rename"}
          :t {:name "+terminal"}
          :w {:name "+workspace"}}
@@ -28,9 +29,9 @@
          :g {:name "+goto"}
          :h {:name "+hover"}
          :l {:name "+log"}
+         :q {:name "+quickfixlist"}
          :r {:name "+repl"}
          :t {:name "+tests"}
-         :x {:name "+error"}
          :z {:name "+zen"}}
        :<C-t>
         {:name "+tabs"}})
