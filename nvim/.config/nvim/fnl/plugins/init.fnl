@@ -200,7 +200,8 @@
                                 "cmake "
                                 "--install build "
                                 "--prefix build")}
-                    "nvim-telescope/telescope-project.nvim"]
+                    "nvim-telescope/telescope-project.nvim"
+                    "trouble.nvim"]
      :init (fn [] ((. (require "plugins.telescope") :init)))
      :config (fn [] ((. (require "plugins.telescope") :config)))
      :cmd "Telescope"}

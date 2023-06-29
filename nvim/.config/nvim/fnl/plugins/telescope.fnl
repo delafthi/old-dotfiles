@@ -2,6 +2,7 @@
   {autoload {nvim aniseed.nvim
              : telescope
              telescope-builtin telescope.builtin
+             trouble trouble.providers.telescope
              : util}})
 
 (defn init []
@@ -62,7 +63,10 @@
   ;; Call the setup function
   (telescope.setup
     {:defaults
-      {:vimgrep_arguments ["rg"
+      {:mappings
+       {:i {:<C-q> trouble.open_with_trouble}
+        :n {:<C-q> trouble.open_with_trouble}}
+       :vimgrep_arguments ["rg"
                            "--color=never"
                            "--no-heading"
                            "--hidden"
