@@ -152,7 +152,7 @@
      :event "BufReadPost"
      :cmd  "TSContext"}
    :pwntester/octo.nvim
-    {:dependencies ["nordic.nvim"
+    {:dependencies ["andersevenrud/nordic.nvim"
                     "kyazdani42/nvim-web-devicons"
                     "nvim-lua/plenary.nvim"
                     "nvim-telescope/telescope.nvim"]
@@ -172,7 +172,7 @@
      :config (fn [] ((. (require "plugins.persistence") :config)))
      :event "BufReadPre"}
    :mechatroner/rainbow_csv
-    {:dependencies "nordic.nvim"
+    {:dependencies "andersevenrud/nordic.nvim"
      :init (fn [] ((. (require "plugins.rainbow-csv") :init)))
      :ft "csv"}
    :simrat39/rust-tools.nvim
