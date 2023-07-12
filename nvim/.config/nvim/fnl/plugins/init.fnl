@@ -255,7 +255,7 @@
    :git
     {:url_format "https://github.com/%s"}
    :dev
-    {:path "~/projects/private"}
+    {:path "~/projects"}
    :install
     {:colorscheme ["default"]}
    :ui

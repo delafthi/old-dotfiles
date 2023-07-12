@@ -98,7 +98,7 @@
           {:i
             {:<C-c> telescope.extensions.file_browser.actions.create}}}
        :project
-        {:base_dirs ["~/projects/work" "~/projects/private"]
+        {:base_dirs ["~/projects" "~/projects"]
          :hidden_files true}}
      :pickers
       {:find_files
