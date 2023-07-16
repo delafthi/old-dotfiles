@@ -1,4 +1,4 @@
-XDG_DOCUMENTS_DIR="$HOME/projects"
-XDG_DOWNLOAD_DIR="$HOME/downloads"
-XDG_PICTURES_DIR="$HOME/pictures"
-XDG_TEMPLATES_DIR="$HOME/resources"
+XDG_DOWNLOAD_DIR="$HOME/0-inbox/downloads"
+XDG_PICTURES_DIR="$HOME/2-areas/pictures"
+XDG_VIDEOS_DIR="$HOME/2-areas/videos"
+XDG_TEMPLATES_DIR="$HOME/3-resources/templates"

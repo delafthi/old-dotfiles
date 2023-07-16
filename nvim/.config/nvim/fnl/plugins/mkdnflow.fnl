@@ -6,8 +6,7 @@
   ;; Call the setup function
   (mkdnflow.setup
     {:perspective {:priority "current"}
-     :bib {:default_path "~/bibliography/refs.bib"
-           :find_in_root true}
+     :bib {:find_in_root true}
      :links {:transform_explicit
              (fn [text] (string.lower (string.gsub text " " "-")))}
      :mappings {:MkdnEnter ["n" "<CR>" ]

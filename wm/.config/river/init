@@ -19,7 +19,7 @@
    "kanshi"
    "waybar"
    "dunst"
-   "swaybg -i ~/pictures/wallpaper.jpg"
+   "swaybg -i ~/2-areas/pictures/wallpaper.jpg"
    ("rm" "-f" ,wob-socket "&&"
     "mkfifo" ,wob-socket "&&"
     "tail" "-f" ,wob-socket "|" "wob")
