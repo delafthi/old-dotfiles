@@ -36,6 +36,7 @@ abbr -a :q exit
 # Adding flags
 alias cp="cp -i" # confirm before overwriting something
 alias df="df -h" # human-readable sizes
+alias e="emacsclient --alternate-editor= --create-frame ."
 alias free="free -m" # show sizes in MB
 alias rm="rm -i"
 alias magit="nvim +'lua require(\"neogit\").open({kind=\"replace\"})'"
