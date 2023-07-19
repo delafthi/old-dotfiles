@@ -14,24 +14,24 @@
          :f {:name "+find"}
          :g {:name "+git"}
          :h {:name "+help"}
-         :n {:name "+notes"}
-         :q {:name "+quickfixlist"}
+         :n {:name "+note"}
+         :p {:name "+project"}}
+         :q {:name "+quickfix"}
          :r {:name "+rename"}
          :t {:name "+terminal"}
-         :w {:name "+workspace"}}
        :<LocalLeader>
         {:name "+localleader"
          :b {:name "+beautify"}
          :c {:name "+connect"}
-         :d {:name "+documentation"}
+         :d {:name "+document"}
          :e {:name "+evaluate"}
          :f {:name "+find"}
          :g {:name "+goto"}
-         :h {:name "+hover"}
-         :l {:name "+log"}
-         :q {:name "+quickfixlist"}
+         :l {:name "+lookup"}
+         :L {:name "+log"}
+         :q {:name "+quickfix"}
          :r {:name "+repl"}
-         :t {:name "+tests"}
+         :t {:name "+test"}
          :z {:name "+zen"}}
        :<C-t>
         {:name "+tabs"}})

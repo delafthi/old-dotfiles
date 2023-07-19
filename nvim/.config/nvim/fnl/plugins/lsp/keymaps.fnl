@@ -10,11 +10,11 @@
               :buffer bufnr}]
     ;; Workspace lsp features
     (util.set-keymap "Add worksapace folders"
-      ["n"] ["<Leader>" "w" "a"] (fn [] (vim.lsp.buf.add_workspace_folders)) opts)
+      ["n"] ["<Leader>" "p" "a"] (fn [] (vim.lsp.buf.add_workspace_folders)) opts)
     (util.set-keymap "Remove workspace folders"
-      ["n"] ["<Leader>" "w" "d"] (fn [] (vim.lsp.buf.remove_workspace_folders)) opts)
+      ["n"] ["<Leader>" "p" "d"] (fn [] (vim.lsp.buf.remove_workspace_folders)) opts)
     (util.set-keymap "List workspace folders"
-      ["n"] ["<Leader>" "w" "l"]
+      ["n"] ["<Leader>" "p" "l"]
       (fn [] (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
       opts)
 
@@ -87,4 +87,4 @@
                           "Module"])) opts))
     (when client.server_capabilities.hoverProvider
           (util.set-keymap "Show hover"
-            ["n"] ["<LocalLeader>" "h"] (fn [] (vim.lsp.buf.hover)) opts))))
+            ["n"] ["<LocalLeader>" "l"] (fn [] (vim.lsp.buf.hover)) opts))))

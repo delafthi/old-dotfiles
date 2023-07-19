@@ -50,7 +50,7 @@
     (util.set-keymap "Find telescope builtin"
       ["n"] ["<Leader>" "h" "t"] (fn [] (telescope-builtin.builtin)) opts)
     (util.set-keymap "Open project"
-      ["n"] ["<Leader>" "w" "p"] (fn [] (telescope.extensions.project.project))
+      ["n"] ["<Leader>" "p" "p"] (fn [] (telescope.extensions.project.project))
       opts)
 
     ;; telescope-builtin.lsp_* keybindings set in nvim-lspconfig
