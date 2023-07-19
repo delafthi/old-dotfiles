@@ -1,9 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Type=Application
-Terminal=false
-Exec=qutebrowser --target 'window' https://outlook.office365.com/mail/inbox
-Name=Outlook Web
-Icon=ms-outlook
-Categories=Utility;

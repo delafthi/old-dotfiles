@@ -22,7 +22,7 @@
 (define wob-socket "\\$XDG_RUNTIME_DIR/wob.sock")
 (define term "kitty")
 (define launcher "rofi -no-lazy-grab -show drun -modi drun")
-(define browser "qutebrowser")
+(define browser "firefox")
 (define lockscreen "swaylock -f")
 (define pass "rofi-rbw --clear-after 300 -a copy")
 (define bib "zotero")

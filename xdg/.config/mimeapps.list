@@ -1,11 +1,6 @@
 [Default Applications]
 application/pcx=imv.desktop
 application/pdf=org.pwmt.zathura.desktop
-application/xhtml+xml=org.qutebrowser.qutebrowser.desktop
-application/x-extension-htm=org.qutebrowser.qutebrowser.desktop
-application/x-extension-html=org.qutebrowser.qutebrowser.desktop
-application/x-extension-xhtml=org.qutebrowser.qutebrowser.desktop
-application/x-extension-xht=org.qutebrowser.qutebrowser.desktop
 
 image/bmp=imv.desktop
 image/gif=imv.desktop
@@ -26,9 +21,5 @@ image/x-portable-greymap=imv.desktop
 text/html=nvim.desktop
 text/plain=nvim.desktop
 
-x-scheme-handler/about=http=org.qutebrowser.qutebrowser.desktop
-x-scheme-handler/chrome=http=org.qutebrowser.qutebrowser.desktop
-x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
-x-scheme-handler/https=http=org.qutebrowser.qutebrowser.desktop
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/unknown=nvim.desktop

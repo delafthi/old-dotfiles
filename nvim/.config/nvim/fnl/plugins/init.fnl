@@ -259,7 +259,7 @@
    :install
     {:colorscheme ["default"]}
    :ui
-    {:browser "qutebrowser"}})
+    {:browser "firefox"}})
 
 (defn setup []
   "Setup lazy.nvim"
