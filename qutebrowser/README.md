@@ -4,8 +4,7 @@ A keyboard-driven, vim-like browser based on PyQt5 and Qt.
 
 ## Dependencies
 
-- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
-  [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Fira Code](https://github.com/tonsky/FiraCode)
 - [pdf.js](https://github.com/mozilla/pdf.js)
 
 ## References

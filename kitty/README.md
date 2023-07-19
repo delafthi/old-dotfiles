@@ -5,8 +5,7 @@ of the defaults with vim-like keybindings.
 
 ## Dependencies
 
-- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
-  [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Fira Code](https://github.com/tonsky/FiraCode) based on
 
 ## References
 

@@ -1,13 +1,11 @@
 # Fontconfig
 
 Font config sets the font specific settings for the system. This configuration
-sets Victor Mono Nerd font as the default font. Thus the Victor Mono Nerd Font
-has to be installed on the system.
+sets Fira Code as the default font.
 
 ## Dependencies
 
-- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
-  [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Fira Code](https://github.com/tonsky/FiraCode)
 
 ## References
 

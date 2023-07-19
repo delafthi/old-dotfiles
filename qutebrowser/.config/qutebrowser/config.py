@@ -833,7 +833,7 @@ c.fileselect.single_file.command = ["kitty", "ranger", "{}"]
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = ["VictorMono NF"]
+c.fonts.default_family = ["Fira Code"]
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are
@@ -884,7 +884,7 @@ c.fonts.default_family = ["VictorMono NF"]
 
 # Font family for cursive fonts.
 # Type: FontFamily
-c.fonts.web.family.cursive = "VictorMono NF Italic"
+c.fonts.web.family.cursive = "Fira Code Italic"
 
 # Font family for fantasy fonts.
 # Type: FontFamily
@@ -892,19 +892,19 @@ c.fonts.web.family.cursive = "VictorMono NF Italic"
 
 # Font family for fixed fonts.
 # Type: FontFamily
-c.fonts.web.family.fixed = "VictorMono NF"
+c.fonts.web.family.fixed = "Fira Code"
 
 # Font family for sans-serif fonts.
 # Type: FontFamily
-c.fonts.web.family.sans_serif = "VictorMono NF"
+c.fonts.web.family.sans_serif = "Fira Code"
 
 # Font family for serif fonts.
 # Type: FontFamily
-c.fonts.web.family.serif = "VictorMono NF"
+c.fonts.web.family.serif = "Fira Code"
 
 # Font family for standard fonts.
 # Type: FontFamily
-c.fonts.web.family.standard = "VictorMono NF"
+c.fonts.web.family.standard = "Fira Code"
 
 # Default font size (in pixels) for regular text.
 # Type: Int

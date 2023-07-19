@@ -23,8 +23,7 @@ configuration.
 - [swaybg](https://github.com/swaywm/swaybg)
 - [swaylock](https://github.com/swaywm/swaylock)
 - [swayidle](https://github.com/swaywm/swayidle)
-- [Victor Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts) based on
-  [Victor Mono](https://github.com/rubjo/victor-mono)
+- [Fira Code](https://github.com/tonsky/FiraCode)
 - [waybar](https://github.com/Alexays/Waybar)
 - [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
 - [wlopm](https://git.sr.ht/~leon_plickat/wlopm)

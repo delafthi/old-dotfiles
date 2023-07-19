@@ -2,7 +2,7 @@
 # ~~~~~~~~~~~~~~~~
 
 set sandbox none # Enables copying to the system clipboard
-set font "VictorMono NF 12"
+set font "Fira Code 12"
 set adjust-open "best-fit"
 set recolor "false"
 set recolor-keephue "true"
