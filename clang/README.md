@@ -22,7 +22,6 @@ debugged. It automatically shows up, when hitting a breakpoint.
 ### Dependencies
 
 - [pygments](https://pygments.org/) for text highlighting.
-  - [nord-pygments](https://github.com/lewisacidic/nord-pygments)
 
 ### References
 

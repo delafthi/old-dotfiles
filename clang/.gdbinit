@@ -58,7 +58,7 @@ list of all the available styles can be obtained with (from GDB itself):
 
     python from pygments.styles import *
     python for style in get_all_styles(): print(style)''',
-                'default': 'nord'
+                'default': 'one-dark'
             },
             'discard_scrollback': {
                 'doc': '''Discard the scrollback buffer at each redraw.

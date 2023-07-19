@@ -21,6 +21,7 @@ TERM dvtm
 TERM dvtm-256color
 TERM Eterm
 TERM eterm-color
+TERM foot
 TERM fbterm
 TERM gnome
 TERM gnome-256color

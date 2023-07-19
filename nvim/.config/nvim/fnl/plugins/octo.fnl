@@ -1,5 +1,5 @@
 (module plugins.octo
-  {autoload {nordic-palette nordic.palette
+  {autoload {onedarkpro-helpers onedarkpro.helpers
              : octo
              : util}})
 
@@ -17,12 +17,12 @@
 (defn config []
   "Configure octo.nvim"
   ;; Call the setup function
-  (let [c nordic-palette]
+  (let [c (onedarkpro-helpers.get_colors "onedark")]
     (octo.setup
       {:colors
-        {:white c.dark_white
+        {:white c.white
         :grey c.gray
-        :black c.dark_black
+        :black c.black
         :red c.red
         :dark_red c.red
         :green c.green
@@ -30,7 +30,7 @@
         :yellow c.yellow
         :dark_yellow c.yellow
         :blue c.blue
-        :dark_blue c.intense_blue
+        :dark_blue c.blue
         :purple c.purple}
       :mappings
         {:issue

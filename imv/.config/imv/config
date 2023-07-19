@@ -1,8 +1,8 @@
 [options]
-background = 2e3440
+background = 282c34
 overlay_font = Fira Code:12
-overlay_text_color = d8dee9
-overlay_background_color = 3b4252
+overlay_text_color = 56b6c2
+overlay_background_color = 5c6370
 suppress_default_binds = true
 
 [binds]

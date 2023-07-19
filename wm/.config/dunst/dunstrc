@@ -11,17 +11,15 @@ gap_size = 6
 font = "Fira Code 12"
 icon_theme = "Papirus-Dark"
 
-frame_color = "#434c5e"
-highlight = "#81a1c1"
-background = "#3b4252"
-
-[urgency_low]
-foreground = "#d8dee9"
+background = "#22262d"
+foreground = "#abb2bf"
+frame_color = "#22262d"
+highlight = "#c678dd"
 
 [urgency_normal]
-frame_color = "#81a1c1"
-foreground = "#d8dee9"
+foreground = "#abb2bf"
 
 [urgency_critical]
-background = "#bf616a"
-foreground = "#2e3440"
+background = "#e06c75"
+foreground = "#282c34"
+frame_color = "#e06c75"

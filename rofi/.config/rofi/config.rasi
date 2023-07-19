@@ -13,6 +13,6 @@ configuration {
   show-icons:     true;
 }
 
-@theme "nord"
+@theme "onedark"
 
 /* vim:ft=css

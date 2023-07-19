@@ -14,10 +14,10 @@
     {:lazy false
      :priority 1}
    ;; Theme
-   :andersevenrud/nordic.nvim
+   :olimorris/onedarkpro.nvim
     {:lazy false
      :priority 1000
-     :config (fn [] ((. (require "plugins.nordic") :config)))}
+     :config (fn [] ((. (require "plugins.onedarkpro") :config)))}
    ;; Set directory local variables in fennel
    :Olical/nvim-local-fennel
     {:lazy false}
@@ -53,7 +53,7 @@
      :cmd "Conjure"
      :ft ft.lisps}
    :feline-nvim/feline.nvim
-    {:dependencies ["andersevenrud/nordic.nvim"
+    {:dependencies ["olimorris/onedarkpro.nvim"
                     "kyazdani42/nvim-web-devicons"]
      :config (fn [] ((. (require "plugins.feline") :config)))
      :event "VimEnter"}
@@ -152,7 +152,7 @@
      :event "BufReadPost"
      :cmd  "TSContext"}
    :pwntester/octo.nvim
-    {:dependencies ["andersevenrud/nordic.nvim"
+    {:dependencies ["olimorris/onedarkpro.nvim"
                     "kyazdani42/nvim-web-devicons"
                     "nvim-lua/plenary.nvim"
                     "nvim-telescope/telescope.nvim"]
@@ -172,7 +172,7 @@
      :config (fn [] ((. (require "plugins.persistence") :config)))
      :event "BufReadPre"}
    :mechatroner/rainbow_csv
-    {:dependencies "andersevenrud/nordic.nvim"
+    {:dependencies "olimorris/onedarkpro.nvim"
      :init (fn [] ((. (require "plugins.rainbow-csv") :init)))
      :ft "csv"}
    :simrat39/rust-tools.nvim
@@ -206,7 +206,7 @@
      :config (fn [] ((. (require "plugins.telescope") :config)))
      :cmd "Telescope"}
    :folke/todo-comments.nvim
-    {:dependencies ["andersevenrud/nordic.nvim"
+    {:dependencies ["olimorris/onedarkpro.nvim"
                     "kyazdani42/nvim-web-devicons"
                     "nvim-telescope/telescope.nvim"
                     "folke/trouble.nvim"]
@@ -227,7 +227,7 @@
      :config (fn [] ((. (require "plugins.trouble") :config)))
      :cmd "TroubleToggle"}
    :folke/twilight.nvim
-    {:dependencies "andersevenrud/nordic.nvim"
+    {:dependencies "olimorris/onedarkpro.nvim"
      :config (fn [] ((. (require "plugins.twilight") :config)))
      :cmd "Twilight"}
    :guns/vim-sexp

@@ -68,62 +68,61 @@ clipboard_mouseover yes
 #
 # color additions
 #
-color_back   2E3440
-color_baseline 3B4252
-color_grid   434C5E
-color_grid2  4C566A
-color_high   EBCB8B
-color_highfill 8D7C5F
-color_low    EBCB8B
-color_1      A3BE8C
-color_1fill  65755F
-color_0     A3BE8C
-color_1fill  65755F
-color_trans A3BE8C
-color_mid   876D85
+color_baseline 3a3e46
+color_grid     3a3e46
+color_grid2    4b505b
+color_high     98c379
+color_highfill 70a54a
+color_low      98c379
+color_1        98c379
+color_1fill    70a54a
+color_0        98c379
+color_1fill    70a54a
+color_trans    98c379
+color_mid      98c379
 
-color_value  D8DEE9
-color_vbox   A3BE8C
+color_value  abb2bf
+color_vbox   98c379
 color_vtrans A3BE8C
 
-color_x      BF616A
-color_xfill  74454F
-color_u      BF616A
-color_ufill  74454F
-color_w      D08770
-color_wfill  7E5852
-color_dash   616E88
-color_dashfill 4D576C
+color_x        e06c75
+color_xfill    d32d3a
+color_u        e06c75
+color_ufill    d32d3a
+color_w        e5c07b
+color_wfill    d8a16b
+color_dash     7f848e
+color_dashfill 5a5e66
 
-color_umark  81A1C1
-color_mark   5E81AC
+color_umark  61afef
+color_mark   55a9ee
 
-color_time   D8DEE9
-color_timeb  3B4252
+color_time   abb2bf
+color_timeb  3a3e46
 
-color_brkred 81A1C1
-color_gmstrd B48EAD
+color_brkred 61afef
+color_gmstrd ac3bce
 
-color_normal 2E3440
+color_normal 282c34
 # Signal font color
-color_black D8DEE9
+color_black 282c34
 # Signal selected font color
-color_white 4C566A
+color_white abb2bf
 # Signal selected bg color
-color_dkblue 8FBCBB
+color_dkblue 55a9ee
 # Signal bg color
-color_ltblue 2E3440
-color_dkgray 3B4252
-color_mdgray 434C5E
-color_ltgray 4C566A
+color_ltblue 1c8ce8
+color_dkgray 3a3e46
+color_mdgray 4b505b
+color_ltgray 5c6370
 
-color_red BF616A
-color_orange D08770
-color_yellow EBCB8B
-color_green A3BE8C
-color_blue 81A1C1
-color_indigo 8FBCBB
-color_violet B48EAD
+color_red    e06c75
+color_orange d19a66
+color_yellow e5c07b
+color_green  98c379
+color_blue   61afef
+color_indigo 56b6c2
+color_violet c678dd
 
 #
 # menu accelerators

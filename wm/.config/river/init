@@ -40,10 +40,10 @@
      (scroll-method . "two-finger"))))
  #:options
  '((attach-mode . "bottom")
-   (background-color . "0x2e3440")
-   (border-color-focused . "0x81a1c1")
-   (border-color-unfocused . "0x2e3440")
-   (border-color-urgent . "0xbf616a")
+   (background-color . "0x282c34")
+   (border-color-focused . "0x61afef")
+   (border-color-unfocused . "0x282c34")
+   (border-color-urgent . "0xe06c75")
    (border-width . 3)
    (set-repeat . (50 . 300))
    (focus-follows-cursor . #f)
@@ -129,7 +129,7 @@
     ((app-id . ("*")))))
  #:gsettings
  '(("org.gnome.desktop.interface" .
-    ((gtk-theme . "Nordic")
+    ((gtk-theme . "Adwaita-dark")
      (icon-theme . "Papirus-Dark")
      (cursor-theme . "Breeze_Snow")
      (cursor-size . 24)))

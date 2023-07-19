@@ -1,13 +1,13 @@
 (module plugins.twilight
-  {autoload {nordic-palette nordic.palette
+  {autoload {onedarkpro-helpers onedarkpro.helpers
              : twilight}})
 
 (defn config []
   "Configure twilight.nvim"
-  (let [c nordic-palette]
+  (let [c (onedarkpro-helpers.get_colors "onedark")]
     ;; Call the setup function
     (twilight.setup
       {:dimming
         {:alpha 1.0
-         :color [ c.bright_black]}
+         :color [ c.comment]}
        :context 10})))

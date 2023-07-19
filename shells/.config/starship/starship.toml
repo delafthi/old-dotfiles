@@ -90,5 +90,5 @@ symbol = "󱘗 "
 disabled = false
 format = "$indicator"
 fish_indicator = ""
-zsh_indicator = '[\[zsh\]](bold #4b5263)'
-bash_indicator = '[\[bsh\]](bold #4b5263)'
+zsh_indicator = '[\[zsh\]](bold #3e4451)'
+bash_indicator = '[\[bsh\]](bold #3e4451)'

@@ -1,16 +1,16 @@
 /* Colors
  * ~~~~~~ */
 
-@define-color dark-bg #242833;
-@define-color bg #2E3440;
-@define-color fg #D8DEE9;
-@define-color active #81A1C1;
-@define-color float #3B4252;
-@define-color comment #616E88;
-@define-color accent #B48EAD;
-@define-color error #BF616A;
-@define-color warning #EBCB8B;
-@define-color info #88C0D0;
+@define-color dark-bg #22262d;
+@define-color bg #282c34;
+@define-color fg #abb2bf;
+@define-color active #61afef;
+@define-color float #3e4451;
+@define-color comment #7f848e;
+@define-color accent #c678dd;
+@define-color error #e06c75;
+@define-color warning #e5c07b;
+@define-color info #56b6c2;
 
 /* Keyframes
  * ~~~~~~~~~ */

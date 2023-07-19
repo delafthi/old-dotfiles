@@ -1,6 +1,6 @@
 (module plugins.feline
   {autoload {: feline
-             nordic-palette nordic.palette
+             onedarkpro-helpers onedarkpro.helpers
              nvim aniseed.nvim
              vi-mode feline.providers.vi_mode}})
 
@@ -29,58 +29,58 @@
      :hl (fn []
            {:name "StatusComponentFileInfo"
            :fg "white"
-           :bg "light_grey"})
+           :bg "gray"})
      :left_sep "█"}
     {:provider "file_size"
      :hl (fn []
            {:name "StatusComponentFileSize"
            :fg "white"
-           :bg "light_grey"})
+           :bg "gray"})
      :left_sep "█"}
     {:provider "git_branch"
      :hl (fn []
            {:name "StatusComponentGitBranch"
            :fg "orange"
-           :bg "light_grey"})
+           :bg "gray"})
      :icon "󰘬 "
      :left_sep "█"}
     {:provider "git_diff_added"
      :hl (fn []
            {:name "StatusComponentGitDiffAdded"
            :fg "green"
-           :bg "light_grey"})
+           :bg "gray"})
      :icon "󰐗 "
      :left_sep "█"}
     {:provider "git_diff_changed"
      :hl (fn []
            {:name "StatusComponentGitDiffChanged"
            :fg "yellow"
-           :bg "light_grey"})
+           :bg "gray"})
      :icon "󰆗 "
      :left_sep "█"}
     {:provider "git_diff_removed"
      :hl (fn []
            {:name "StatusComponentGitDiffRemoved"
            :fg "red"
-           :bg "light_grey"})
+           :bg "gray"})
      :icon "󰍶 "
      :left_sep "█"}
     {:provider " "
      :hl (fn []
            {:name "StatusComponentLeftSideRightSpace"
            :fg "fg"
-           :bg "light_grey"})}
+           :bg "gray"})}
     {:provider " "
      :hl (fn []
            {:name "StatusComponentCenterSpace"
             :fg "fg"
-            :bg "dark_grey"})}]
+            :bg "bg"})}]
     ;; Right section of the statusline
    [{:provider "diagnostic_errors"
      :hl (fn []
            {:name "StatusComponentLspErrors"
            :fg "red"
-           :bg "dark_grey"
+           :bg "bg"
            :style "bold"})
      :icon "󰅙 "
      :right_sep "█"}
@@ -88,7 +88,7 @@
      :hl (fn []
            {:name "StatusComponentLspWarnings"
            :fg "yellow"
-           :bg "dark_grey"
+           :bg "bg"
            :style "bold"})
      :icon " "
      :right_sep "█"}
@@ -96,7 +96,7 @@
      :hl (fn []
            {:name "StatusComponentLspInfo"
            :fg "blue"
-           :bg "dark_grey"})
+           :bg "bg"})
      :icon "󰋼 "
      :right_sep "█"}
     {:provider " "
@@ -127,56 +127,50 @@
      :hl (fn []
            {:name "StatusNCComponentFileInfoLeftSpace"
             :fg "fg"
-            :bg "light_grey"})}
+            :bg "gray"})}
     {:provider "file_info"
      :hl (fn []
            {:name "StatusNCComponentFileInfo"
            :fg "white"
-           :bg "light_grey"})
+           :bg "gray"})
      :right_sep "█"}
     {:provider " "
      :hl (fn []
            {:name "StatusNCComponentCenterSpace"
             :fg "fg"
-            :bg "dark_grey"})}]
+            :bg "bg"})}]
   ;; Right section of the statusline
    [{:provider " "
      :hl (fn []
            {:name "StatusNCComponentLinePercentageLeftSpace"
            :fg "fg"
-           :bg "light_grey"})}
+           :bg "bg"})}
     {:provider "position"
      :hl (fn []
            {:name "StatusNCComponentPosition"
            :fg "white"
-           :bg "light_grey"})
+           :bg "bg"})
      :right_sep "█"}
     {:provider "line_percentage"
      :hl (fn []
            {:name "StatusNCComponentLinePercentage"
            :fg "white"
-           :bg "light_grey"})}
+           :bg "bg"})}
     {:provider " "
      :hl (fn []
            {:name "StatusNCComponentLinePercentageRightSpace"
            :fg "fg"
-           :bg "light_grey"})}]])
+           :bg "bg"})}]])
 
 (def- theme
-  (let [c nordic-palette]
-    {:fg c.dark_white
-     :bg c.dark_black
-     :black c.dark_black
-     :dark_grey c.black
-     :grey c.bright_black
-     :light_grey c.gray
-     :white c.dark_white
-     :light_white c.white
-     :dark_blue c.intense_blue
+  (let [c (onedarkpro-helpers.get_colors "onedark")]
+    {:fg c.fg
+     :bg c.bg_statusline
+     :black c.black
+     :gray c.gray
+     :white c.white
      :blue c.blue
-     :skyblue c.blue
-     :light_blue c.cyan
-     :cyan c.bright_cyan
+     :cyan c.cyan
      :red c.red
      :orange c.orange
      :yellow c.yellow
@@ -187,9 +181,9 @@
 
 (defn config [] "Configure feline.nvim"
   ;; Overwrite statusline hl groups to prevent interference
-  (let [c nordic-palette]
-    (nvim.command (.. "highlight Statusline guibg=" c.dark_black))
-    (nvim.command (.. "highlight StatuslineNC guibg=" c.dark_black)))
+  (let [c (onedarkpro-helpers.get_colors "onedark")]
+    (nvim.command (.. "highlight Statusline guibg=" c.black))
+    (nvim.command (.. "highlight StatuslineNC guibg=" c.black)))
 
   ;; Call the setup function
   (feline.setup

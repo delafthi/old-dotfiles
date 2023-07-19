@@ -58,32 +58,32 @@
                  "󰈔  > New File"
                  "<Cmd>enew<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})
+                 {:hl_shortcut "DashboardShotCut"})
           (entry "SPC w r"
                  "󰦛  > Restore last session"
                  "<Cmd>lua require('persistence').load({last = true})<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})
+                 {:hl_shortcut "DashboardShotCut"})
           (entry "SPC f r"
                  "󱋡  > Recently opened files"
                  "<Cmd>Telescope oldfiles<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})
+                 {:hl_shortcut "DashboardShotCut"})
           (entry "SPC f f"
                  "󰱼  > Find File"
                  "<Cmd>Telescope find_files<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})
+                 {:hl_shortcut "DashboardShotCut"})
           (entry "SPC f b"
                  "󱏒  > Browse files"
                  "<Cmd>Telescope file_browser hidden=true<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})
+                 {:hl_shortcut "DashboardShotCut"})
           (entry "SPC f g"
                  "  > Find grep"
                  "<Cmd>Telescope live_grep<Cr>"
                  []
-                 {:hl_shortcut "DashboardShortCut"})]
+                 {:hl_shortcut "DashboardShotCut"})]
     :opts {:spacing 1}}])
 
 (def- footer

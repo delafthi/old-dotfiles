@@ -1,5 +1,5 @@
 (module plugins.todo-comments
-  {autoload {nordic-palette nordic.palette
+  {autoload {onedarkpro-helpers onedarkpro.helpers
              : todo-comments
              : util}})
 
@@ -16,13 +16,13 @@
 
 (defn config []
   "Configure todo-comments.nvim"
-  (let [c nordic-palette]
+  (let [c (onedarkpro-helpers.get_colors "onedark")]
     ;; Call the setup function
     (todo-comments.setup
-      {:corols
+      {:colors
         {:error ["DiagnosticError" c.red]
          :warning ["DiagnosticWarning" c.yellow]
          :info ["DiagnosticInfo" c.blue]
-         :hint ["DiagnosticHint" c.green]
-         :default ["Identifier" c.purple]
+         :hint ["DiagnosticHint" c.cyan]
+         :default ["Identifier" c.white]
          :test ["Identifier" c.orange]}})))

@@ -313,7 +313,7 @@
                                "Save File"))))))
   (define gsettings
     '(("org.gnome.desktop.interface" .
-       ((gtk-theme . "Nordic")
+       ((gtk-theme . "Adwaita-dark")
         (icon-theme . "Papirus-Dark")
         (cursor-theme . "Breeze_Snow")
         (cursor-size . 24)))))
@@ -376,7 +376,7 @@
        "riverctl csd-filter-add title Picture-in-Picture"
        "riverctl csd-filter-add title Save File"))
     `(,(serialize-gsettings gsettings) .
-      ("riverctl spawn \"gsettings set org.gnome.desktop.interface gtk-theme Nordic\""
+      ("riverctl spawn \"gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark\""
        "riverctl spawn \"gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark\""
        "riverctl spawn \"gsettings set org.gnome.desktop.interface cursor-theme Breeze_Snow\""
        "riverctl spawn \"gsettings set org.gnome.desktop.interface cursor-size 24\""))

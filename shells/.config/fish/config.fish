@@ -130,16 +130,11 @@ end
 # fzf colors
 if command -v fzf 1>/dev/null 2>&1
     set -gax FZF_DEFAULT_OPTS " \
-      --color='fg:#d8dee9,bg:#2e3440,fg+:#81a1c1,bg+:#2e3440,border:#4c566a' \
-      --color='info:#81a1c1,spinner:#b48ead,header:#bf616a,prompt:#b48ead' \
-      --color='hl:#ebcb8b,hl+:#ebcb8b,pointer:#b48ead,marker:#d08770' \
+      --color='fg:#abb2bf,bg:#282c34,fg+:#c8cdd5,bg+:#22262d,border:#3e4451' \
+      --color='info:#61afef,spinner:#c678dd,header:#e06c75,prompt:#c678dd' \
+      --color='hl:#e5c07b,hl+:#e5c07b,pointer:#c678dd,marker:#d19a66' \
       --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' \
       --color='hl:reverse,hl+:reverse'"
-end
-
-# Use the ssh kitten of kitty if we ssh from kitty
-if test "$TERM" = xterm-kitty
-    alias ssh="kitty +kitten ssh"
 end
 
 # Changing "ls" to "exa"
