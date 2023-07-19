@@ -48,8 +48,8 @@
 [advice]
   detachedHead = false
 [gui]
-  fontui = -family \"VictorMono NF\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
-  fontdiff = -family \"VictorMono NF\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+  fontui = -family \"VictorMono NF\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family \"VictorMono NF\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
   spellingdictionary = en
   tabsize = 2
 [filter "lfs"]
