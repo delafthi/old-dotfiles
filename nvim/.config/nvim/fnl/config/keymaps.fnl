@@ -41,6 +41,8 @@
 
     ;; Register keybindings
     ;; Editing
+    (util.set-keymap "Create and jump to new line"
+      ["i"] ["<C-Cr>"] "<C-o><S-a><Cr>" opts)
     (util.set-keymap "Merge with previous line"
       ["n"] ["K"] "mzkJ`z" opts)
     (util.set-keymap "Merge with next line"
