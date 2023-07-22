@@ -36,32 +36,32 @@
                          ">" wob-socket ";"
                          "fi")))
 (define volume-up (string-join
-                   (list "pactl set-sink-volume @DEFAULT_SINK@ +5% &&"
+                   (list "pactl set-sink-volume @DEFAULT_SINK@ +5% &"
                          display-volume)))
 (define volume-down (string-join
-                     (list "pactl set-sink-volume @DEFAULT_SINK@ -5% &&"
+                     (list "pactl set-sink-volume @DEFAULT_SINK@ -5% &"
                            display-volume)))
 (define volume-mute (string-join
-                     (list "pactl set-sink-mute @DEFAULT_SINK@ toggle &&"
+                     (list "pactl set-sink-mute @DEFAULT_SINK@ toggle &"
                            display-volume)))
 (define volume-mic-mute (string-join
-                         (list "pactl set-sink-mute @DEFAULT_SINK@ toggle &&"
+                         (list "pactl set-sink-mute @DEFAULT_SINK@ toggle &"
                                display-volume)))
 (define audio-play (string-join
-                    (list "playerctl play-pause &&"
-                          "sleep .1 &&"
+                    (list "playerctl play-pause &"
+                          "sleep .1 &"
                           "notify-send playmusic '\\$(playerctl status)'")))
 (define audio-next (string-join
-                    (list "playerctl next &&"
-                          "sleep .1 &&"
+                    (list "playerctl next &"
+                          "sleep .1 &"
                           "notify-send playmusic '\\$(playerctl status)'")))
 (define audio-prev (string-join
-                    (list "playerctl previous &&"
-                          "sleep .1 &&"
+                    (list "playerctl previous &"
+                          "sleep .1 &"
                           "notify-send playmusic '\\$(playerctl status)'")))
 (define audio-stop (string-join
-                    (list "playerctl stop &&"
-                          "sleep .1 &&"
+                    (list "playerctl stop &"
+                          "sleep .1 &"
                           "notify-send playmusic '\\$(playerctl status)'")))
 (define display-brightness (string-join
                             (list
@@ -69,10 +69,10 @@
                              "| cut -d'.' -f1"
                              ">" wob-socket)))
 (define brightness-up (string-join
-                       (list "light -A 5 &&"
+                       (list "light -A 5 &"
                              display-brightness)))
 (define brightness-down (string-join
-                         (list "light -U 5 &&"
+                         (list "light -U 5 &"
                                display-brightness)))
 (define screenshot-full "grimshot save screen ~/0-inbox/screenshots/\\$(date +%Y%m%d%k%m%S).png")
 (define screenshot-area "grimshot save area ~/0-inbox/screenshots/\\$(date +%Y%m%d%k%m%S).png")
