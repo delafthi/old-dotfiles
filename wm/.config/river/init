@@ -26,7 +26,7 @@
    ("wl-paste" "-t" "text" "--watch" "clipman" "store" "--max-items" 1024)
    ("swayidle" "-w"
     "timeout" 180 "'",lockscreen "'"
-    "timeout" 300 "'wlopm --off *'" "resume" "'wlopm  --on *'"
+    "timeout" 300 "'wlopm --off *'" "resume" "'wlopm --on *'"
     "before-sleep" "'playerctl pause'"
     "before-sleep" "'" ,lockscreen "'")
    "udiskie")
