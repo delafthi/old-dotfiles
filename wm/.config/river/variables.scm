@@ -74,5 +74,5 @@
 (define brightness-down (string-join
                          (list "light -U 5 &"
                                display-brightness)))
-(define screenshot-full "grimshot save screen ~/0-inbox/screenshots/\\$(date +%Y%m%d%k%m%S).png")
-(define screenshot-area "grimshot save area ~/0-inbox/screenshots/\\$(date +%Y%m%d%k%m%S).png")
+(define screenshot-full "grimshot save screen ~/0-inbox/screenshots/\\$(date +%Y%m%d%H%M%S).png")
+(define screenshot-area "grimshot save area ~/0-inbox/screenshots/\\$(date +%Y%m%d%H%M%S).png")
