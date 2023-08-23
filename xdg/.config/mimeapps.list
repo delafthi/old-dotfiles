@@ -23,3 +23,5 @@ text/plain=nvim.desktop
 
 x-scheme-handler/msteams=teams.desktop
 x-scheme-handler/unknown=nvim.desktop
+
+inode/directory=pcmanfm.desktop;ranger.desktop;
