@@ -87,4 +87,4 @@
                           "Module"])) opts))
     (when client.server_capabilities.hoverProvider
           (util.set-keymap "Show hover"
-            ["n"] ["<LocalLeader>" "l"] (fn [] (vim.lsp.buf.hover)) opts))))
+            ["n"] ["<LocalLeader>" "h" "h"] (fn [] (vim.lsp.buf.hover)) opts))))

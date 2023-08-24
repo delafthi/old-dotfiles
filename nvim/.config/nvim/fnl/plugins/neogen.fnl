@@ -7,7 +7,7 @@
   ;; Register global keybindings
   (let [opts {:silent true}]
     (util.set-keymap "Generate documentation comment"
-      ["n"] ["<LocalLeader>" "d"] (fn [] (neogen.generate)) opts)))
+      ["n"] ["<LocalLeader>" "d" "d"] (fn [] (neogen.generate)) opts)))
 
 (defn config []
   "Configure neogen"

@@ -27,8 +27,8 @@
          :e {:name "+evaluate"}
          :f {:name "+find"}
          :g {:name "+goto"}
-         :l {:name "+lookup"}
-         :L {:name "+log"}
+         :h {:name "+help"}
+         :l {:name "+log"}
          :q {:name "+quickfix"}
          :r {:name "+repl"}
          :t {:name "+test"}

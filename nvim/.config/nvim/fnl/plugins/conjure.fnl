@@ -6,4 +6,4 @@
   ;; Enable tree-sitter
   (set vim.g.conjure#extract#tree_sitter#enabled true)
   ;Mappings
-  (set vim.g.conjure#mapping#doc_word "hd"))
+  (set vim.g.conjure#mapping#doc_word "lw"))
