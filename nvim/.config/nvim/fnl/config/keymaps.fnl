@@ -15,10 +15,10 @@
          :g {:name "+git"}
          :h {:name "+help"}
          :n {:name "+note"}
-         :p {:name "+project"}}
+         :p {:name "+project"}
          :q {:name "+quickfix"}
          :r {:name "+rename"}
-         :t {:name "+terminal"}
+         :t {:name "+terminal"}}
        :<LocalLeader>
         {:name "+localleader"
          :b {:name "+beautify"}
