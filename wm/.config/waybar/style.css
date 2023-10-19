@@ -20,8 +20,7 @@
     color: @fg;
   }
   to {
-    color: @bg;
-    background-color: @warning;
+    color: @warning;
   }
 }
 
@@ -30,8 +29,7 @@
     color: @fg;
   }
   to {
-    color: @bg;
-    background-color: @error;
+    color: @error;
   }
 }
 
@@ -48,7 +46,8 @@
  * ~~~~~~~~~~~ */
 
 /* Reset all styles */
-* { border: none;
+* {
+  border: none;
   border-radius: 0;
   margin: 0;
   padding: 0;
@@ -60,6 +59,14 @@ window#waybar {
   background: @bg;
   color: @fg;
   font-size: 16px;
+}
+button {
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  background: inherit;
 }
 
 /* tooltips */
@@ -111,12 +118,20 @@ tooltip {
 
 #battery.warning.discharging {
   animation-name: blink-warning;
-  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
 }
 
 #battery.critical.discharging {
   animation-name: blink-critical;
-  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
 }
 
 #bluetooth.disabled {
@@ -167,6 +182,12 @@ tooltip {
 
 #tags button.urgent {
   background-color: @error;
+  animation-name: blink-critical;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
 }
 
 /* vim: ft=less */
