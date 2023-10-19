@@ -54,7 +54,7 @@
                                  (luasnip.expand_or_jump)
                                  (has-words-before)
                                  (cmp.complete)
-                                 (falback)))
+                                 (fallback)))
                            ["c" "i" "s"])
        :<C-p> (cmp.mapping (fn [fallback]
                              (if (cmp.visible)
