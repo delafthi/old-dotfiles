@@ -19,7 +19,7 @@
             volume-up
             wob-socket))
 
-(define wob-socket "\\$XDG_RUNTIME_DIR/wob.sock")
+(define wob-socket "$XDG_RUNTIME_DIR/wob.sock")
 (define term "foot")
 (define launcher "rofi -no-lazy-grab -show drun -modi drun")
 (define browser "firefox")
@@ -28,11 +28,11 @@
 (define bib "zotero")
 (define display-volume (string-join
                         (list
-                         "if [ \\\"\\$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print \\$2}')\\\" == \\\"yes\\\" ];"
+                         "if [ \"$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')\" == \"yes\" ];"
                          "then echo 0 >" wob-socket ";"
                          "else pactl get-sink-volume @DEFAULT_SINK@"
                          "| head -n 1"
-                         "| awk '{print substr(\\$5, 1, length(\\$5)-1)}'"
+                         "| awk '{print substr($5, 1, length($5)-1)}'"
                          ">" wob-socket ";"
                          "fi")))
 (define volume-up (string-join
@@ -50,19 +50,19 @@
 (define audio-play (string-join
                     (list "playerctl play-pause &"
                           "sleep .1 &"
-                          "notify-send playmusic '\\$(playerctl status)'")))
+                          "notify-send playmusic '$(playerctl status)'")))
 (define audio-next (string-join
                     (list "playerctl next &"
                           "sleep .1 &"
-                          "notify-send playmusic '\\$(playerctl status)'")))
+                          "notify-send playmusic '$(playerctl status)'")))
 (define audio-prev (string-join
                     (list "playerctl previous &"
                           "sleep .1 &"
-                          "notify-send playmusic '\\$(playerctl status)'")))
+                          "notify-send playmusic '$(playerctl status)'")))
 (define audio-stop (string-join
                     (list "playerctl stop &"
                           "sleep .1 &"
-                          "notify-send playmusic '\\$(playerctl status)'")))
+                          "notify-send playmusic '$(playerctl status)'")))
 (define display-brightness (string-join
                             (list
                              "light -G"
@@ -74,5 +74,5 @@
 (define brightness-down (string-join
                          (list "light -U 5 &"
                                display-brightness)))
-(define screenshot-full "grimshot save screen ~/0 Inbox/Screenshots/\\$(date +%Y%m%d%H%M%S).png")
-(define screenshot-area "grimshot save area ~/0 Inbox/Screenshots/\\$(date +%Y%m%d%H%M%S).png")
+(define screenshot-full "grimshot save screen ~/0\\ Inbox/Screenshots/$(date +%Y%m%d%H%M%S).png")
+(define screenshot-area "grimshot save area ~/0\\ Inbox/Screenshots/$(date +%Y%m%d%H%M%S).png")
