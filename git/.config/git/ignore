@@ -8,6 +8,7 @@ compile_commands.json
 .lnvim.lua
 
 # Others
+.envrc
 mnt/
 ~*
 
