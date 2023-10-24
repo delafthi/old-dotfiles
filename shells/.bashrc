@@ -130,3 +130,8 @@ if [ "$(sed -nr 's/^ID=()/\1/p' </etc/os-release)" != "guix" ]; then
     source "$GUIX_PROFILE/etc/profile"
   fi
 fi
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi

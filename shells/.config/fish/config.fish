@@ -194,3 +194,8 @@ if test (sed -nr 's/^ID=()/\1/p' < /etc/os-release) != guix
         fenv source $GUIX_PROFILE/etc/profile
     end
 end
+
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1
+  pyenv init - | source
+end
