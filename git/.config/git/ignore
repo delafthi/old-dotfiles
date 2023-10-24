@@ -1,14 +1,15 @@
 # Global ignored directories and files
 # C/C++
 .cache/
-compile_commands.json
 .gdb_history
+compile_commands.json
 
 # nvim-local-fennel
 .lnvim.lua
 
 # Others
 .envrc
+.python-version
 mnt/
 ~*
 
