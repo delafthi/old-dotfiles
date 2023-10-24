@@ -1,17 +1,21 @@
 (module plugins.indent-blankline
-  {autoload {indent-blankline indent_blankline}})
+  {autoload {ibl ibl}})
 
 (defn config []
   "Configure indent-blankline.nvim"
   ;; Call the setup function
-  (indent-blankline.setup
-    {:char "│"
-     :use_treesitter true
-     :filetype_exclude ["alpha"
-                        "help"
-                        "lazy"
-                        "man"
-                        "markdown"
-                        "rmd"
-                        "norg"]
-     :buftype_exclude ["terminal"]}))
+  (ibl.setup
+    {:indent
+      {:char "│"}
+     :scope
+      {:show_start false
+       :show_end false}
+     :exclude
+      {:filetypes ["alpha"
+                  "help"
+                  "lazy"
+                  "man"
+                  "markdown"
+                  "rmd"
+                  "norg"]
+       :buftypes ["terminal"]}}))

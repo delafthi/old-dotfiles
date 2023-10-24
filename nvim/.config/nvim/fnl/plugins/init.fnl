@@ -65,7 +65,7 @@
     {:config (fn [] ((. (require "plugins.headlines") :config)))
      :ft ["markdown" "rmd" "norg" "org"]}
    :lukas-reineke/indent-blankline.nvim
-    {:dependencies "nvim-treesitter/nvim-treesitter"
+    {:main "ibl"
      :config (fn [] ((. (require "plugins.indent-blankline") :config)))
      :event "BufReadPost"}
    :L3MON4D3/Luasnip
