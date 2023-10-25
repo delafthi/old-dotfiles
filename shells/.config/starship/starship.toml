@@ -1,9 +1,15 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = true
+
+right_format = "$cmd_duration"
 
 [c]
 symbol = "󰙱"
 
 [character]
+disabled = true
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
 vimcmd_symbol = "[<](bold green)"
@@ -88,7 +94,16 @@ symbol = "󱘗 "
 
 [shell]
 disabled = false
-format = "$indicator"
-fish_indicator = ""
-zsh_indicator = '[\[zsh\]](bold #3e4451)'
-bash_indicator = '[\[bsh\]](bold #3e4451)'
+format = "[$indicator]($style)"
+style = "bold #3e4451"
+bash_indicator = '\[bsh\]'
+fish_indicator = '\[fsh\]'
+zsh_indicator = '\[zsh\]'
+powershell_indicator = '\[pwsh\]'
+ion_indicator = '\[ion\]'
+elvish_indicator = '\[esh\]'
+tcsh_indicator = '\[tcsh\]'
+xonsh_indicator = '\[xonsh\]'
+cmd_indicator = '\[cmd\]'
+nu_indicator =  '​'
+unknown_indicator = '\[?\]'

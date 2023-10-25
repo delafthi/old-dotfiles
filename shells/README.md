@@ -4,27 +4,27 @@ A shell is a program that helps you operate your computer by starting other
 programs. fish offers a command-line interface focused on usability and
 interactive use.
 
-## Fish
+## Nushell
 
-fish is a smart and user-friendly command line shell for Linux, macOS, and the
-rest of the family.
+A new type of shell
 
 ### Dependencies
 
 - [bat](https://github.com/sharkdp/bat)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [carapace-bin](https://github.com/rsteube/carapace-bin)
+- [direnv](https://github.com/direnv/direnv)
+- [eza](https://github.com/eza-community/eza)
 - [fzf](https://github.com/junegunn/fzf)
 - [neovim](https://github.com/neovim/neovim) (As a manpager and default editor)
-- [exa](https://github.com/ogham/exa)
+- [pyenv](https://github.com/pyenv/pyenv)
 - [starship](https://starship.rs/)
-- [direnv](https://github.com/direnv/direnv)
-- [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env): This plugin
-  will be automatically installed to `~/.config/fish/plugins`.
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [vivid](https://github.com/sharkdp/vivid)
 
 ### References
 
-- [Fish](https://fishshell.com/)
-- [Arch Wiki](https://wiki.archlinux.org/title/Fish)
+- [Nushell](https://www.nushell.sh/)
+- [Arch Wiki](https://wiki.archlinux.org/title/Nushell)
 
 ## Bash
 
@@ -37,20 +37,20 @@ without modification.
 
 ### Dependencies
 
-The only hard dependency of this configuration is `bash_completion`, which is in
-my opinion a necessity for bash. The following dependency are not required.
-However, I highly suggest you to install them.
-
 - [bat](https://github.com/sharkdp/bat)
-- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [carapace-bin](https://github.com/rsteube/carapace-bin)
+- [direnv](https://github.com/direnv/direnv)
+- [eza](https://github.com/eza-community/eza)
 - [fzf](https://github.com/junegunn/fzf)
 - [neovim](https://github.com/neovim/neovim) (As a manpager and default editor)
-- [exa](https://github.com/ogham/exa)
+- [pyenv](https://github.com/pyenv/pyenv)
 - [starship](https://starship.rs/)
-- [direnv](https://github.com/direnv/direnv)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [vivid](https://github.com/sharkdp/vivid)
 
 ### References
 
+- [Bash](https://www.gnu.org/software/bash/)
 - [Arch Wiki](https://wiki.archlinux.org/title/Bash)
 
 ## Starship
