@@ -140,6 +140,10 @@
                     "nvim-telescope/telescope.nvim"]
      :config (fn [] ((. (require "plugins.lsp.init") :config)))
      :event "BufReadPost"}
+   :LhKipp/nvim-nu
+    {:build ":TSInstall nu"
+     :config (fn [] ((. (require "plugins.nvim-nu") :config)))
+     :ft "nu"}
    :nvim-treesitter/nvim-treesitter
     {:dependencies ["nvim-treesitter/nvim-treesitter-textobjects"
                     "JoosepAlviste/nvim-ts-context-commentstring"]
