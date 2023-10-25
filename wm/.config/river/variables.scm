@@ -20,7 +20,7 @@
             wob-socket))
 
 (define wob-socket "$XDG_RUNTIME_DIR/wob.sock")
-(define term "foot")
+(define term "alacritty")
 (define launcher "rofi -no-lazy-grab -show drun -modi drun")
 (define browser "firefox")
 (define lockscreen "swaylock -f")
