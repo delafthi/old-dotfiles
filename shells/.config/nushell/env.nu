@@ -96,12 +96,13 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 # Environment
-$env.PATH = ($env.PATH | split row (char esep) | prepend ($env.HOME | path join ".local/bin"))
+$env.PATH = ($env.PATH | split row (char esep) | prepend [($env.HOME | path join ".local/bin") ($env.HOME | path join ".pyenv/shims")])
 $env.EDITOR = "nvim"
 $env.FZF_DEFAULT_OPTS = "--color='fg:#abb2bf,bg:#282c34,fg+:#c8cdd5,bg+:#22262d,border:#3e4451' --color='info:#61afef,spinner:#c678dd,header:#e06c75,prompt:#c678dd' --color='hl:#e5c07b,hl+:#e5c07b,pointer:#c678dd,marker:#d19a66' --color='fg+:reverse,header:bold,pointer:bold,marker:bold,prompt:bold' --color='hl:reverse,hl+:reverse'"
 $env.GUIX_PROFILE = ($env.XDG_CONFIG_HOME | path join "guix/current")
 $env.LS_COLORS = (vivid generate one-dark | str trim)
 $env.MANPAGER = "nvim +Man! +'set noma'"
 $env.PIPENV_VENV_IN_PROJECT = 1
+$env.PYENV_SHELL = "nu"
 $env.SSH_AGENT_PID = ""
 $env.SSH_AUTH_SOCK = ($env.XDG_RUNTIME_DIR | path join "gnupg/S.gpg-agent.ssh")
