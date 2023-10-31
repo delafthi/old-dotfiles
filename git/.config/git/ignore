@@ -7,6 +7,9 @@ compile_commands.json
 # nvim-local-fennel
 .lnvim.lua
 
+# null-ls
+.null-ls*
+
 # Others
 .envrc
 .python-version
