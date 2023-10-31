@@ -209,7 +209,7 @@ $env.config = {
     {
       name: completion_menu
       only_buffer_difference: false
-      marker: "| "
+      marker: "▾ "
       type: {
         layout: columnar
         columns: 4
@@ -225,7 +225,7 @@ $env.config = {
     {
       name: history_menu
       only_buffer_difference: true
-      marker: "? "
+      marker: "▴ "
       type: {
         layout: list
         page_size: 10
@@ -474,13 +474,26 @@ $env.config = {
       event: {edit: movetolineend}
     }
     {
+      name: completion_menu
+      modifier: control
+      keycode: char_n
+      mode: [emacs vi_normal vi_insert]
+      event: {
+        until: [
+          { send: menu name: completion_menu }
+          { send: menunext }
+          { edit: complete }
+        ]
+      }
+    }
+    {
       name: move_up
       modifier: control
       keycode: char_p
       mode: [emacs, vi_normal, vi_insert]
       event: {
         until: [
-          {send: menuup}
+          {send: menuprevious}
           {send: up}
         ]
       }
