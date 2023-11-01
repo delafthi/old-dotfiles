@@ -20,7 +20,7 @@ bspc config borderless_monocle false
 bspc config gapless_monocle false
 bspc config click-to-focus button1
 bspc config swallow_first_click false
-bspc config pointer_follows_focus true
+bspc config pointer_follows_focus false
 bspc config pointer_follows_monitor true
 bspc config ignore_ewmh_focus false
 bspc config ignore_ewmh_fullscreen false
