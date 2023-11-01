@@ -4,46 +4,47 @@ A window manager (WM) is system software that controls the placement and
 appearance of windows within a windowing system in a graphical user interface
 (GUI).
 
-## River
 
-River is a dynamic tiling Wayland compositor with flexible runtime
-configuration.
+## Xorg
+
+The X.Org project provides an open source implementation of the X Window System.
+The development work is being done in conjunction with the freedesktop.org
+community. The X.Org Foundation is the educational non-profit corporation whose
+Board serves this effort, and whose Members lead this work.
 
 ### Dependencies
 
-- [clipman](https://github.com/yory8/clipman)
+- [picom](https://github.com/yshui/picom)
+- [xss-lock](https://bitbucket.org/raymonad/xss-lock/)
+
+### References
+
+- [Xorg](https://www.x.org/wiki/)
+- [Arch Wiki](https://wiki.archlinux.org/title/Xorg)
+
+## bspwm
+
+bspwm is a tiling window manager that represents windows as the leaves of a full
+binary tree.
+
+### Dependencies
+
 - [dunst](https://github.com/ErikReider/SwayNotificationCenter)
-- [grimshot](https://github.com/swaywm/sway/tree/master/contrib)
-- [kanshi](https://sr.ht/~emersion/kanshi/)
-- [kile](https://gitlab.com/snakedye/kile)
-- [light](https://github.com/haikarainen/light)
-- [rbw](https://github.com/doy/rbw)
-- [rofi-rbw](https://github.com/fdw/rofi-rbw)
-- [rofi-wayland](https://github.com/lbonn/rofi#wayland-support)
-- [swaybg](https://github.com/swaywm/swaybg)
-- [swaylock](https://github.com/swaywm/swaylock)
-- [swayidle](https://github.com/swaywm/swayidle)
 - [Fira Code](https://github.com/tonsky/FiraCode)
-- [waybar](https://github.com/Alexays/Waybar)
-- [wl-clipboard](https://github.com/bugaevc/wl-clipboard)
-- [wlopm](https://git.sr.ht/~leon_plickat/wlopm)
-- [wlr-randr](https://github.com/bugaevc/wl-clipboard)
-- [wob](https://github.com/francma/wob)
-- [ydotool](https://github.com/ReimuNotMoe/ydotool)
+- [i3-lock](https://github.com/i3/i3lock)
+- [light](https://github.com/haikarainen/light)
+- [maim](https://github.com/naelstrof/maim)
+- [nitrogen](https://github.com/l3ib/nitrogen)
+- [polybar](https://github.com/polybar/polybar)
+- [rofi](https://github.com/lbonn/rofi#wayland-support)
+- [sxhkd](https://github.com/baskerville/sxhkd)
+- [xclip](https://github.com/astrand/xclip)
+- [xdotool](https://github.com/jordansissel/xdotool)
 
 ### References
 
-- [river](https://github.com/riverwm/river)
-
-## Swaylock
-
-Swaylock is a screen locking utility for Wayland compositors. It is compatible
-with any Wayland compositor which implements the ext-session-lock-v1 Wayland
-protocol.
-
-### References
-
-- [Swaylock](https://github.com/swaywm/swaylock)
+- [bspwm](https://github.com/baskerville/bspwm)
+- [Arch Wiki](https://wiki.archlinux.org/title/Bspwm)
 
 ## Dunst
 
@@ -54,22 +55,22 @@ customize to perfection.
 
 ### References
 
-- [Dunst](https://dunst-project.org/)
+- [dunst](https://dunst-project.org/)
 
-## Waybar
+## picom
 
-Highly customizable Wayland bar for Sway and Wlroots based compositors.
-
-### References
-
-- [Waybar](https://github.com/Alexays/Waybar)
-
-## WOB
-
-A lightweight overlay volume/backlight/progress/anything bar for wlroots based
-Wayland compositors (requrires support for `wlr_layer_shell_unstable_v1`). This
-project is inspired by [xob - X Overlay Bar](https://github.com/florentc/xob).
+picom is a compositor for X, and a fork of Compton.
 
 ### References
 
-- [wob](https://github.com/francma/wob)
+- [picom](https://github.com/yshui/picom)
+- [Arch Wiki](https://wiki.archlinux.org/title/Picom)
+
+## sxhkd
+
+sxhkd is an X daemon that reacts to input events by executing commands.
+
+### References
+
+- [bspwm](https://github.com/baskerville/sxhkd)
+- [Arch Wiki](https://wiki.archlinux.org/title/Sxhkd)

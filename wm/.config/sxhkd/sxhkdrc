@@ -1,0 +1,95 @@
+#
+# bspwm
+#
+
+# lockscreen
+super + Escape
+  i3lock -c 282c34
+
+# quit/restart
+super + shift + {q,r}
+  bspc {quit,wm -r}
+
+#
+# launch applications
+#
+
+# terminal
+super + Return
+  alacritty
+
+# launcher
+super + shift + Return
+  rofi -no-lazy-grab -show drun -modi drun
+
+# browser
+super + b
+  firefox
+
+#
+# window management
+#
+
+# close and kill
+super + {_,shift + }d
+  bspc node -{c,k}
+
+# focus the next/previous window in the current desktop
+super + {j,k}
+  bspc node -f {next,prev}.local.!hidden.window
+
+# swap the current node with the next
+super + shift + {j,k}
+  bspc node -s {next,prev} --follow
+
+# set the window state
+super + {f,shift + m}
+  bspc node -t ~{floating,fullscreen}
+
+# focus the next/previous monitor
+super + {n,p}
+  bspc monitor -f {next,prev}
+
+# send a window to the next/previous monitor
+super + shift + {n,p}
+  bspc node -m {next,prev}
+
+# focus the given desktop
+super + {1-6}
+  bspc desktop -f {1-6}.local
+
+# send a window to the given desktop
+super + shift + {1-6}
+  bspc node -d {1-6}.local
+
+#
+# layout management
+#
+
+# alternate between the tiled and monocle layout
+super + g
+  bspc desktop -l next
+
+#
+# special keys
+#
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioPlay
+  playerctl play-pause
+XF86AudioNext
+  playerctl next
+XF86AudioPrev
+  playerctl previous
+XF86AudioStop
+  playerctl stop
+XF86MonBrightnessUp
+  light -A 5
+XF86MonBrightnessDown
+  light -U 5

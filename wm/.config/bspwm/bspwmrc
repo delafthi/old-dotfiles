@@ -1,0 +1,44 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+
+killall polybar
+
+for monitor in $(xrandr --listmonitors | awk '{print $4}'); do
+  bspc monitor "$monitor" -d 1 2 3 4 5 6
+  bspc monitor "$monitor" -d 1 2 3 4 5 6
+  MONITOR="$monitor" polybar --reload &
+done
+
+# global settings
+bspc config normal_border_color "#282c34"
+bspc config active_border_color "#5c6370"
+bspc config focused_border_color "#61afef"
+bspc config split_ratio 0.50
+bspc config borderless_monocle false
+bspc config gapless_monocle false
+bspc config click-to-focus button1
+bspc config swallow_first_click false
+bspc config pointer_follows_focus true
+bspc config pointer_follows_monitor true
+bspc config ignore_ewmh_focus false
+bspc config ignore_ewmh_fullscreen false
+bspc config ignore_ewmh_struts false
+bspc config honor_size_hinst true
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+
+# desktop settings
+bspc config window_gap 3
+
+# node settings
+bspc config border_width 3
+
+# startup
+nitrogen --restore &
+dunst &
+unclutter --timeout 10 &
+udiskie &
+
+# vim: ft=bash
