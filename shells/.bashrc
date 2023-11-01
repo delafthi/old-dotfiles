@@ -40,7 +40,7 @@ export GUIX_PROFILE="$HOME/.config/guix/current"
 export LS_COLORS="$(vivid generate one-dark)"
 export MANPAGER="nvim +Man! +'set noma'"
 export PIPENV_VENV_IN_PROJECT=1
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export SSH_AGENT_PID=
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
