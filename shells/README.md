@@ -1,8 +1,7 @@
 # Shells
 
 A shell is a program that helps you operate your computer by starting other
-programs. fish offers a command-line interface focused on usability and
-interactive use.
+programs.
 
 ## Nushell
 

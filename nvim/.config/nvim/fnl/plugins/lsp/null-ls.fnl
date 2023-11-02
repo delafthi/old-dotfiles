@@ -29,7 +29,6 @@
                  "-no-color"
                  "$FILENAME"]})
        null-ls.builtins.diagnostics.eslint
-       null-ls.builtins.diagnostics.fish
        (null-ls.builtins.diagnostics.mypy.with
          {:condition
           (fn [utils]
@@ -44,7 +43,6 @@
        ;; Formatters
        null-ls.builtins.formatting.cbfmt
        null-ls.builtins.formatting.deno_fmt
-       null-ls.builtins.formatting.fish_indent
        null-ls.builtins.formatting.prettier
        null-ls.builtins.formatting.shfmt
        null-ls.builtins.formatting.stylua
