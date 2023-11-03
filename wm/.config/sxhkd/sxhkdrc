@@ -26,6 +26,14 @@ super + shift + Return
 super + b
   firefox
 
+# screenshot
+super + s
+  maim -s | tee ~/0\ Inbox/Screenshots/$(date +%Y%m%d%H%M%S).png | xclip -selection clipboard -t image/png
+
+# zotero
+super + z
+  zotero
+
 #
 # window management
 #
@@ -40,19 +48,15 @@ super + {j,k}
 
 # swap the current node with the next
 super + shift + {j,k}
-  bspc node -s {next,prev} --follow
+  bspc node -s {next,prev}.local.!hidden.window --follow
+
+# swap the current node with the next
+super + {h,l}
+  bspc node first_ancestor -r {-,+}5
 
 # set the window state
 super + {f,shift + m}
   bspc node -t ~{floating,fullscreen}
-
-# focus the next/previous monitor
-super + {n,p}
-  bspc monitor -f {next,prev}
-
-# send a window to the next/previous monitor
-super + shift + {n,p}
-  bspc node -m {next,prev}
 
 # focus the given desktop
 super + {1-6}
@@ -61,6 +65,14 @@ super + {1-6}
 # send a window to the given desktop
 super + shift + {1-6}
   bspc node -d {1-6}.local
+
+# focus the next/previous monitor
+super + {n,p}
+  bspc monitor -f {next,prev}
+
+# send a window to the next/previous monitor
+super + shift + {n,p}
+  bspc node -m {next,prev}
 
 #
 # layout management
@@ -73,6 +85,7 @@ super + g
 #
 # special keys
 #
+
 XF86AudioRaiseVolume
   pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume

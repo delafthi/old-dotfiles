@@ -1,8 +1,10 @@
 #! /bin/sh
 
+
+# init
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-
+# setup monitors
 killall polybar
 
 for monitor in $(xrandr --listmonitors | awk '{print $4}'); do
@@ -34,6 +36,12 @@ bspc config window_gap 3
 
 # node settings
 bspc config border_width 3
+
+# rules
+bspc rule -a Nitrogen state=floating follow=on
+bspc rule -a Nm-connection-editor state=floating follow=on
+bspc rule -a Pavucontrol state=floating follow=on
+bspc rule -a System-config-printer.py state=floating follow=on
 
 # startup
 nitrogen --restore &
