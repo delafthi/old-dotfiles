@@ -1,8 +1,12 @@
 #! /bin/sh
 
+# environment
+CONFIG_DIR="$HOME/.config/bspwm"
+SCRIPTS_DIR="$CONFIG_DIR/scripts"
 
 # init
 pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep bspswallow || "$SCRIPTS_DIR/bspswallow" &
 
 # setup monitors
 killall polybar
@@ -42,6 +46,9 @@ bspc rule -a Nitrogen state=floating follow=on
 bspc rule -a Nm-connection-editor state=floating follow=on
 bspc rule -a Pavucontrol state=floating follow=on
 bspc rule -a System-config-printer.py state=floating follow=on
+
+# unset default rules
+bspc rule -a Zathura state=tiled follow=on
 
 # startup
 nitrogen --restore &
