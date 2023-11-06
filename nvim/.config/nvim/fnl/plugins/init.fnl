@@ -234,6 +234,19 @@
     {:dependencies "olimorris/onedarkpro.nvim"
      :config (fn [] ((. (require "plugins.twilight") :config)))
      :cmd "Twilight"}
+   :tpope/vim-fugitive
+    {:cmd ["Git"
+           "Gedit"
+           "Gsplit"
+           "Gdiffsplit"
+           "Gread"
+           "Gwrite"
+           "Ggrep"
+           "GMove"
+           "GRename"
+           "GDelete"
+           "GRemove"
+           "GBrowse"]}
    :guns/vim-sexp
     {:init (fn [] ((. (require "plugins.vim-sexp") :init)))
      :ft ft.lisps}

@@ -43,6 +43,12 @@
 [merge]
   autoStash = true
   conflictstyle = diff3
+  tool = nvim
+[mergetool]
+  keepBackup = false
+  prompt = false
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [worktree]
   guessRemote = true
 [advice]
