@@ -29,7 +29,7 @@ fi
 
 # Start some programs
 xsetroot -cursor_name left_ptr
-xss-lock --transfer-sleep -- i3lock -c 282C34 --nofork &
+xss-lock --transfer-sleep-lock -- i3lock -c 282C34 --nofork &
 picom &
 
 # GTK settings
