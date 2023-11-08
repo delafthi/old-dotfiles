@@ -1,52 +1,52 @@
 #!/usr/bin/env bash
 
 # save fzf to variables
-RESULT=$(find ${HOME}/1\ Projects -maxdepth 1 -type d |
+RESULT=$(find "${HOME}/1 Projects" -maxdepth 1 -type d |
   fzf \
     --ansi \
     --height=50% \
     --layout=reverse)
 
 # if empty exit
-if [ -z "$RESULT" ]; then
+if [ -z "${RESULT}" ]; then
   exit 0
 fi
 
-FOLDER=$(basename $RESULT)
+FOLDER=$(basename "${RESULT}")
 
 # lookup tmux session name
-SESSION=$(tmux list-sessions | grep $FOLDER | awk '{print $1}')
-SESSION=$(echo ${SESSION} | sed 's/://')
+SESSION=$(tmux list-sessions | grep "${FOLDER}" | awk '{print $1}')
+SESSION="${SESSION/://}"
 
 # if not currently in tmux
-if [ -z "$TMUX" ]; then
-  if [ -z "$SESSION" ]; then
+if [ -z "${TMUX}" ]; then
+  if [ -z "${SESSION}" ]; then
     # session does not exist
     echo "session does not exist"
     # jump to directory
-    cd $RESULT
+    cd "${RESULT}" || exit
     # create session
-    tmux new-session -s $FOLDER
+    tmux new-session -s "${FOLDER}"
   else
     # session exists
     echo "session exists"
     # attach to session
-    tmux attach -t $SESSION
+    tmux attach -t "${SESSION}"
   fi
 else
-  if [ -z "$SESSION" ]; then
+  if [ -z "${SESSION}" ]; then
     # session does not exist
     echo "session does not exist"
     # jump to directory
-    cd $RESULT
+    cd "${RESULT}" || exit
     # create session
-    tmux new-session -d -s $FOLDER
+    tmux new-session -d -s "${FOLDER}"
     # attach to session
-    tmux switch-client -t $FOLDER
+    tmux switch-client -t "${FOLDER}"
   else
     # session exists
     echo "session exists"
     # switch to tmux session
-    tmux switch-client -t $SESSION
+    tmux switch-client -t "${SESSION}"
   fi
 fi
