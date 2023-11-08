@@ -71,8 +71,8 @@ element-text {
 }
 
 element selected {
-	background-color: @black;
-	text-color: @magenta;
+	background-color: @blue;
+	text-color: @black;
 }
 
 message {
