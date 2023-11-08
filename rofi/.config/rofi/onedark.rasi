@@ -18,7 +18,7 @@
   bright-white: #c8cdd5;
 
   text-color: @white;
-  background-color: #22262d;
+  background-color: #2d313b;
 }
 
 window {
