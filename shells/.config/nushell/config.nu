@@ -2,6 +2,7 @@
 #
 # version = "0.86.0"
 
+
 # Aliases
 alias sudo = ^sudo -E
 alias .. = cd ..
@@ -19,6 +20,13 @@ alias tn = tmux new -s (pwd | sed 's/.*\///g')
 alias vi = nvim
 alias vim = nvim
 
+
+# Custom completions
+source git-completions.nu
+source make-completions.nu
+source man-completions.nu
+source pass-completions.nu
+source poetry-completions.nu
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
