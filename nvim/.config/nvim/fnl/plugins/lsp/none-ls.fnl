@@ -15,7 +15,7 @@
 
 
 (defn config []
-  "Configure null-ls.nvim"
+  "Configure none-ls.nvim"
   ;; Call the setup function
   (null-ls.setup
     {:on_attach lsp-options.on-attach

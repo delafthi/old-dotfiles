@@ -94,8 +94,8 @@
                     "nvim-lua/plenary.nvim"]
      :init (fn [] ((. (require "plugins.neogit") :init)))
      :config (fn [] ((. (require "plugins.neogit") :config)))}
-   :jose-elias-alvarez/null-ls.nvim
-    {:config (fn [] ((. (require "plugins.lsp.null-ls") :config)))
+   :nvimtools/none-ls.nvim
+    {:config (fn [] ((. (require "plugins.lsp.none-ls") :config)))
      :event "BufReadPost"}
    :windwp/nvim-autopairs
     {:config (fn [] ((. (require "plugins.nvim-autopairs") :config)))
