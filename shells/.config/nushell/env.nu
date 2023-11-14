@@ -104,5 +104,6 @@ $env.LS_COLORS = (vivid generate one-dark | str trim)
 $env.MANPAGER = "nvim +Man! +'set noma'"
 $env.PIPENV_VENV_IN_PROJECT = 1
 $env.PYENV_SHELL = "nu"
+$env.PYTHON_KEYRING_BACKEND = "keyring.backends.null.Keyring"
 $env.SSH_AGENT_PID = ""
 $env.SSH_AUTH_SOCK = ($env.XDG_RUNTIME_DIR | path join "gnupg/S.gpg-agent.ssh")
