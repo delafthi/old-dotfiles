@@ -74,3 +74,12 @@ sxhkd is an X daemon that reacts to input events by executing commands.
 
 - [bspwm](https://github.com/baskerville/sxhkd)
 - [Arch Wiki](https://wiki.archlinux.org/title/Sxhkd)
+
+## GTK
+
+Offering a complete set of UI elements, GTK is suitable for projects ranging
+from small one-off tools to complete application suites.
+
+### References
+
+- [Arch Wiki](https://wiki.archlinux.org/title/GTK)
