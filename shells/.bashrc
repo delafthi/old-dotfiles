@@ -45,6 +45,7 @@ export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 export SSH_AGENT_PID=
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+export _JAVA_WT_WM_NONREPARENTING=1
 
 # Aliases
 # ~~~~~~~

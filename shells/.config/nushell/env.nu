@@ -107,3 +107,4 @@ $env.PYENV_SHELL = "nu"
 $env.PYTHON_KEYRING_BACKEND = "keyring.backends.null.Keyring"
 $env.SSH_AGENT_PID = ""
 $env.SSH_AUTH_SOCK = ($env.XDG_RUNTIME_DIR | path join "gnupg/S.gpg-agent.ssh")
+$env._JAVA_WT_WM_NONREPARENTING = 1
