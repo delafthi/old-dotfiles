@@ -272,7 +272,7 @@
    :git
     {:url_format "https://github.com/%s"}
    :dev
-    {:path "~/1 Projects"}
+    {:path "~/repos"}
    :install
     {:colorscheme ["default"]}
    :ui

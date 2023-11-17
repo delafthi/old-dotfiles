@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # save fzf to variables
-RESULT=$(find "${HOME}/1 Projects" -maxdepth 1 -type d |
+RESULT=$(find "${HOME}/repos" -maxdepth 1 -type d |
   fzf \
     --ansi \
     --height=50% \
